@@ -106,46 +106,6 @@ export const suggestionsApi = {
   setSuggestThreadsType: (guildId: bigint, type: number) =>
     apiRequest<void>(`suggestions/${guildId}/suggestThreadsType`, "POST", type),
 
-  getSuggestButtonChannel: (guildId: bigint) =>
-    apiRequest<bigint>(`suggestions/${guildId}/suggestButtonChannel`),
-
-  setSuggestButtonChannel: (guildId: bigint, channelId: bigint) =>
-    apiRequest<void>(
-      `suggestions/${guildId}/suggestButtonChannel`,
-      "POST",
-      channelId,
-    ),
-
-  getSuggestButtonMessage: (guildId: bigint) =>
-    apiRequest<string | null>(`suggestions/${guildId}/suggestButtonMessage`),
-
-  setSuggestButtonMessage: (guildId: bigint, message: string | null) =>
-    apiRequest<void>(
-      `suggestions/${guildId}/suggestButtonMessage`,
-      "POST",
-      message,
-    ),
-
-  getSuggestButtonLabel: (guildId: bigint) =>
-    apiRequest<string | null>(`suggestions/${guildId}/suggestButtonLabel`),
-
-  setSuggestButtonLabel: (guildId: bigint, label: string | null) =>
-    apiRequest<void>(
-      `suggestions/${guildId}/suggestButtonLabel`,
-      "POST",
-      label,
-    ),
-
-  getSuggestButtonEmote: (guildId: bigint) =>
-    apiRequest<string | null>(`suggestions/${guildId}/suggestButtonEmote`),
-
-  setSuggestButtonEmote: (guildId: bigint, emote: string | null) =>
-    apiRequest<void>(
-      `suggestions/${guildId}/suggestButtonEmote`,
-      "POST",
-      emote,
-    ),
-
   getArchiveOnDeny: (guildId: bigint) =>
     apiRequest<boolean>(`suggestions/${guildId}/archiveOnDeny`),
 
@@ -203,35 +163,6 @@ export const suggestionsApi = {
       `suggestions/${guildId}/suggestionMessage`,
       "POST",
       message,
-    ),
-
-  // Emote mode (0 = reactions, 1 = buttons)
-  getEmoteMode: (guildId: bigint) =>
-    apiRequest<number>(`suggestions/${guildId}/emoteMode`),
-
-  setEmoteMode: (guildId: bigint, mode: number) =>
-    apiRequest<void>(`suggestions/${guildId}/emoteMode`, "POST", mode),
-
-  // Suggest button color
-  getSuggestButtonColor: (guildId: bigint) =>
-    apiRequest<number>(`suggestions/${guildId}/suggestButtonColor`),
-
-  setSuggestButtonColor: (guildId: bigint, color: number) =>
-    apiRequest<void>(
-      `suggestions/${guildId}/suggestButtonColor`,
-      "POST",
-      color,
-    ),
-
-  // Individual emote button styles (buttonId 1-5)
-  getEmoteButtonStyle: (guildId: bigint, buttonId: number) =>
-    apiRequest<number>(`suggestions/${guildId}/emoteButtonStyle/${buttonId}`),
-
-  setEmoteButtonStyle: (guildId: bigint, buttonId: number, color: number) =>
-    apiRequest<void>(
-      `suggestions/${guildId}/emoteButtonStyle/${buttonId}`,
-      "POST",
-      color,
     ),
 
   // Clear all suggestions

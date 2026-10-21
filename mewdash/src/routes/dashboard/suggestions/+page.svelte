@@ -70,28 +70,11 @@
   let implementChannel: string = $state("");
   let suggestChannel: string = $state("");
   let threadType = $state(0);
-  let emoteMode = $state(0); // 0 = reactions, 1 = buttons
-  let suggestButtonColor = $state(1); // 1=Blue, 2=Grey, 3=Green, 4=Red
-  let emote1Style = $state(1);
-  let emote2Style = $state(1);
-  let emote3Style = $state(1);
-  let emote4Style = $state(1);
-  let emote5Style = $state(1);
-  let suggestButtonMessage: any = $state({});
-  let suggestButtonLabel: string = $state("");
-  let suggestButtonEmote: string | string[] | null = $state(null);
   let suggestEmotes: string[] | string | null = $state([]);
   let archiveOnDeny = $state(false);
   let archiveOnAccept = $state(false);
   let archiveOnConsider = $state(false);
   let archiveOnImplement = $state(false);
-
-  const buttonColorOptions = $derived([
-    { id: "1", name: m.common.blue(), label: m.common.blue() },
-    { id: "2", name: m.common.colorGrey(), label: m.common.colorGrey() },
-    { id: "3", name: m.common.colorGreen(), label: m.common.colorGreen() },
-    { id: "4", name: m.common.red(), label: m.common.red() }
-  ]);
 
   // Suggestion-specific placeholders
   const suggestionPlaceholders = $derived([
@@ -146,16 +129,6 @@
     implementChannel: "",
     suggestChannel: "",
     threadType: 0,
-    emoteMode: 0,
-    suggestButtonColor: 1,
-    emote1Style: 1,
-    emote2Style: 1,
-    emote3Style: 1,
-    emote4Style: 1,
-    emote5Style: 1,
-    suggestButtonMessage: {} as any,
-    suggestButtonLabel: "",
-    suggestButtonEmote: null as string | string[] | null,
     suggestEmotes: [] as string[] | string | null,
     archiveOnDeny: false,
     archiveOnAccept: false,
@@ -306,21 +279,11 @@
           fetchedImplementChannel,
           fetchedSuggestChannel,
           fetchedThreadType,
-          fetchedEmoteMode,
-          fetchedButtonColor,
-          fetchedEmote1Style,
-          fetchedEmote2Style,
-          fetchedEmote3Style,
-          fetchedEmote4Style,
-          fetchedEmote5Style,
           fetchedArchiveOnDeny,
           fetchedArchiveOnAccept,
           fetchedArchiveOnConsider,
           fetchedArchiveOnImplement,
-          fetchedSuggestEmotes,
-          fetchedButtonMessage,
-          fetchedButtonLabel,
-          fetchedButtonEmote
+          fetchedSuggestEmotes
         ] = await Promise.all([
           suggestionsApi.getMinLength($currentGuild.id),
           suggestionsApi.getMaxLength($currentGuild.id),
@@ -335,21 +298,11 @@
           suggestionsApi.getImplementChannel($currentGuild.id),
           suggestionsApi.getSuggestChannel($currentGuild.id),
           suggestionsApi.getSuggestThreadsType($currentGuild.id),
-          suggestionsApi.getEmoteMode($currentGuild.id),
-          suggestionsApi.getSuggestButtonColor($currentGuild.id),
-          suggestionsApi.getEmoteButtonStyle($currentGuild.id, 1),
-          suggestionsApi.getEmoteButtonStyle($currentGuild.id, 2),
-          suggestionsApi.getEmoteButtonStyle($currentGuild.id, 3),
-          suggestionsApi.getEmoteButtonStyle($currentGuild.id, 4),
-          suggestionsApi.getEmoteButtonStyle($currentGuild.id, 5),
           suggestionsApi.getArchiveOnDeny($currentGuild.id),
           suggestionsApi.getArchiveOnAccept($currentGuild.id),
           suggestionsApi.getArchiveOnConsider($currentGuild.id),
           suggestionsApi.getArchiveOnImplement($currentGuild.id),
           suggestionsApi.getSuggestEmotes($currentGuild.id),
-          suggestionsApi.getSuggestButtonMessage($currentGuild.id),
-          suggestionsApi.getSuggestButtonLabel($currentGuild.id),
-          suggestionsApi.getSuggestButtonEmote($currentGuild.id)
         ]);
 
         minLength = fetchedMinLength;
@@ -378,7 +331,6 @@
         denyMessage = fetchedDenyMessage;
         considerMessage = fetchedConsiderMessage;
         implementMessage = fetchedImplementMessage;
-        suggestButtonMessage = fetchedButtonMessage;
 
         acceptChannel = fetchedAcceptChannel?.toString() || "";
         denyChannel = fetchedDenyChannel?.toString() || "";
@@ -405,13 +357,6 @@
         };
 
         threadType = extractNumber(fetchedThreadType, 0);
-        emoteMode = extractNumber(fetchedEmoteMode, 0);
-        suggestButtonColor = extractNumber(fetchedButtonColor, 1);
-        emote1Style = extractNumber(fetchedEmote1Style, 1);
-        emote2Style = extractNumber(fetchedEmote2Style, 1);
-        emote3Style = extractNumber(fetchedEmote3Style, 1);
-        emote4Style = extractNumber(fetchedEmote4Style, 1);
-        emote5Style = extractNumber(fetchedEmote5Style, 1);
         archiveOnDeny = fetchedArchiveOnDeny;
         archiveOnAccept = fetchedArchiveOnAccept;
         archiveOnConsider = fetchedArchiveOnConsider;
@@ -425,44 +370,6 @@
         } else {
           suggestEmotes = [];
         }
-
-        // Handle button message - parse JSON or convert string to embed format
-        const buttonMessageAny = fetchedButtonMessage as any;
-        if (typeof buttonMessageAny === "string") {
-          try {
-            suggestButtonMessage = JSON.parse(buttonMessageAny);
-          } catch {
-            // Legacy string format - convert to embed format
-            suggestButtonMessage = { content: buttonMessageAny };
-          }
-        } else if (buttonMessageAny?.data && typeof buttonMessageAny.data === "string") {
-          try {
-            suggestButtonMessage = JSON.parse(buttonMessageAny.data);
-          } catch {
-            suggestButtonMessage = { content: buttonMessageAny.data };
-          }
-        } else if (typeof buttonMessageAny === "object" && buttonMessageAny !== null) {
-          suggestButtonMessage = buttonMessageAny;
-        } else {
-          suggestButtonMessage = {};
-        }
-
-        // Handle button label - should be a simple string, but API might return component structure
-        const buttonLabelAny = fetchedButtonLabel as any;
-        if (typeof buttonLabelAny === "string") {
-          suggestButtonLabel = buttonLabelAny;
-        } else if (buttonLabelAny?.data && typeof buttonLabelAny.data === "string") {
-          suggestButtonLabel = buttonLabelAny.data;
-        } else if (buttonLabelAny?.actionRows?.[0]?.components?.[0]?.label) {
-          suggestButtonLabel = String(buttonLabelAny.actionRows[0].components[0].label);
-        } else {
-          suggestButtonLabel = "";
-        }
-
-        // Handle button emote - extract from object if needed
-        const rawButtonEmote = (fetchedButtonEmote as any)?.data || fetchedButtonEmote || "";
-        // Set to null if empty, disabled, or "-"
-        suggestButtonEmote = (rawButtonEmote && rawButtonEmote !== "disabled" && rawButtonEmote !== "-") ? String(rawButtonEmote) : null;
 
         // Store original values for comparison (with deep copies for objects)
         originalValues = {
@@ -479,16 +386,6 @@
           implementChannel,
           suggestChannel,
           threadType,
-          emoteMode,
-          suggestButtonColor,
-          emote1Style,
-          emote2Style,
-          emote3Style,
-          emote4Style,
-          emote5Style,
-          suggestButtonMessage: JSON.parse(JSON.stringify(suggestButtonMessage)),
-          suggestButtonLabel,
-          suggestButtonEmote,
           suggestEmotes: Array.isArray(suggestEmotes) ? [...suggestEmotes] : suggestEmotes,
           archiveOnDeny,
           archiveOnAccept,
@@ -602,33 +499,6 @@
     persist("threadType", value, (guildId) => suggestionsApi.setSuggestThreadsType(guildId, value), (p) => threadType = p);
   }
 
-  function setEmoteMode(value: number) {
-    emoteMode = value;
-    persist("emoteMode", value, (guildId) => suggestionsApi.setEmoteMode(guildId, value), (p) => emoteMode = p);
-  }
-
-  function setSuggestButtonColor(value: number) {
-    suggestButtonColor = value;
-    persist("suggestButtonColor", value, (guildId) => suggestionsApi.setSuggestButtonColor(guildId, value), (p) => suggestButtonColor = p);
-  }
-
-  type EmoteStyleKey = "emote1Style" | "emote2Style" | "emote3Style" | "emote4Style" | "emote5Style";
-
-  function setEmoteStyle(buttonId: 1 | 2 | 3 | 4 | 5, value: number) {
-    const key = `emote${buttonId}Style` as EmoteStyleKey;
-    const restore = (previous: number) => {
-      switch (buttonId) {
-        case 1: emote1Style = previous; break;
-        case 2: emote2Style = previous; break;
-        case 3: emote3Style = previous; break;
-        case 4: emote4Style = previous; break;
-        case 5: emote5Style = previous; break;
-      }
-    };
-    restore(value);
-    persist(key, value, (guildId) => suggestionsApi.setEmoteButtonStyle(guildId, buttonId, value), restore);
-  }
-
   type ArchiveKey = "archiveOnAccept" | "archiveOnDeny" | "archiveOnConsider" | "archiveOnImplement";
 
   /** Called after the bound checkbox has already flipped the value. */
@@ -655,18 +525,7 @@
     persist("suggestEmotes", value, (guildId) => suggestionsApi.setSuggestEmotes(guildId, emotesString), (p) => suggestEmotes = p);
   }
 
-  function saveSuggestButtonEmote() {
-    const value = suggestButtonEmote;
-    const emoteValue = Array.isArray(value) ? value[0] : value;
-    persist("suggestButtonEmote", value, (guildId) => suggestionsApi.setSuggestButtonEmote(guildId, emoteValue || null), (p) => suggestButtonEmote = p);
-  }
-
-  function saveSuggestButtonLabel() {
-    const value = suggestButtonLabel;
-    persist("suggestButtonLabel", value, (guildId) => suggestionsApi.setSuggestButtonLabel(guildId, value || null), undefined, true);
-  }
-
-  type MessageKey = "suggestionMessage" | "acceptMessage" | "denyMessage" | "considerMessage" | "implementMessage" | "suggestButtonMessage";
+  type MessageKey = "suggestionMessage" | "acceptMessage" | "denyMessage" | "considerMessage" | "implementMessage";
 
   const messageSetters: Record<MessageKey, (guildId: bigint, message: string | null) => Promise<unknown>> = {
     suggestionMessage: suggestionsApi.setSuggestionMessage,
@@ -674,7 +533,6 @@
     denyMessage: suggestionsApi.setDenyMessage,
     considerMessage: suggestionsApi.setConsiderMessage,
     implementMessage: suggestionsApi.setImplementMessage,
-    suggestButtonMessage: suggestionsApi.setSuggestButtonMessage
   };
 
   /**
@@ -1448,30 +1306,6 @@
       {#if activeSubTab === 'emotes'}
         <div class=" rounded-xl border p-6 space-y-6 transition-all"
              style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}30;">
-          <div class="space-y-4">
-            <h3 class="text-lg font-semibold" style="color: {$colorStore.text}">{m.suggestions.emoteModeTitle()}</h3>
-            <div class="space-y-2">
-              <span id="emote-mode-label" class="block text-sm" style="color: {$colorStore.muted}">{m.suggestions.emoteModeLabel()}</span>
-              <DiscordSelector
-                type="custom"
-                options={[
-                    { id: "0", name: m.features.wizardReactionEventsName(), label: m.features.wizardReactionEventsName() },
-                    { id: "1", name: m.common.buttons(), label: m.common.buttons() }
-                  ]}
-                selected={emoteMode.toString()}
-                searchable={false}
-                placeholder={m.suggestions.emoteModePlaceholder()}
-                onchange={(e) => {
-                    const selected = Array.isArray(e.selected) ? e.selected[0] : e.selected;
-                    setEmoteMode(parseInt(selected || "0"));
-                  }}
-              />
-              <p class="text-xs" style="color: {$colorStore.muted}">
-                {m.suggestions.emoteModeHint()}
-              </p>
-            </div>
-          </div>
-
           <div class="space-y-2">
             <label for="f-+page-custom-emotes-1507" class="block text-sm" style="color: {$colorStore.muted}">{m.suggestions.emoteCustomLabel()}</label>
             <EmojiPicker id="f-+page-custom-emotes-1507"
@@ -1485,152 +1319,6 @@
             />
             <p class="text-xs" style="color: {$colorStore.muted}">
               {m.suggestions.emoteCustomHint()}
-            </p>
-          </div>
-
-          <div class="space-y-4">
-            <h3 class="text-lg font-semibold" style="color: {$colorStore.text}">{m.suggestions.buttonTitle()}</h3>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <div class="space-y-2">
-                <label for="suggest-button-label" class="block text-sm" style="color: {$colorStore.muted}">{m.common.buttonLabel()}</label>
-                <input
-                  id="suggest-button-label"
-                  type="text"
-                  bind:value={suggestButtonLabel}
-                  oninput={saveSuggestButtonLabel}
-                  onblur={() => autoSave.flush("suggestButtonLabel")}
-                  class="w-full p-3 rounded-lg"
-                  style="background: {$colorStore.primary}10;
-                           border: 1px solid {$colorStore.primary}30;
-                           color: {$colorStore.text};"
-                  placeholder={m.suggestions.buttonLabelPlaceholder()}
-                >
-              </div>
-              <div class="space-y-2">
-                <label for="f-+page-button-emote-1540" class="block text-sm" style="color: {$colorStore.muted}">{m.suggestions.buttonEmote()}</label>
-                <EmojiPicker id="f-+page-button-emote-1540"
-                  guildEmojis={guildEmojis}
-                  bind:selected={suggestButtonEmote}
-                  onchange={saveSuggestButtonEmote}
-                  placeholder={m.suggestions.buttonEmotePlaceholder()}
-                  showUnicodeEmojis={true}
-                />
-                <p class="text-xs" style="color: {$colorStore.muted}">
-                  {m.suggestions.buttonEmoteHint()}
-                </p>
-              </div>
-            </div>
-            <div class="space-y-2">
-              <label for="suggest-button-message" class="block text-sm" style="color: {$colorStore.muted}">{m.suggestions.buttonMessage()}</label>
-              <FullscreenEmbedBuilder
-                bind:value={suggestButtonMessage}
-                onclose={() => saveMessage("suggestButtonMessage", suggestButtonMessage)}
-                previewTitle={m.suggestions.buttonMessage()}
-                previewDescription={m.suggestions.buttonMessagePreview()}
-                icon="fa-comments"
-                allowContent={true}
-                allowComponents={false}
-                additionalPlaceholders={suggestionPlaceholders}
-                user={currentUser}
-              />
-            </div>
-          </div>
-
-          <div class="space-y-4">
-            <h3 class="text-lg font-semibold" style="color: {$colorStore.text}">{m.suggestions.colorsTitle()}</h3>
-            <div class="space-y-2">
-              <span id="suggest-button-color-label" class="block text-sm" style="color: {$colorStore.muted}">{m.suggestions.colorsSuggestButton()}</span>
-              <DiscordSelector
-                type="custom"
-                options={buttonColorOptions}
-                selected={suggestButtonColor.toString()}
-                searchable={false}
-                placeholder={m.suggestions.colorsSuggestPlaceholder()}
-                onchange={(e) => {
-                    const selected = Array.isArray(e.selected) ? e.selected[0] : e.selected;
-                    setSuggestButtonColor(parseInt(selected || "1"));
-                  }}
-              />
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-              <div class="space-y-2">
-                <span class="block text-sm" style="color: {$colorStore.muted}">{m.suggestions.colorsEmoteButton({ number: 1 })}</span>
-                <DiscordSelector
-                  type="custom"
-                  options={buttonColorOptions}
-                  selected={emote1Style.toString()}
-                  searchable={false}
-                  placeholder={m.suggestions.colorsPlaceholder()}
-                  onchange={(e) => {
-                      const selected = Array.isArray(e.selected) ? e.selected[0] : e.selected;
-                      setEmoteStyle(1, parseInt(selected || "1"));
-                    }}
-                />
-              </div>
-
-              <div class="space-y-2">
-                <span class="block text-sm" style="color: {$colorStore.muted}">{m.suggestions.colorsEmoteButton({ number: 2 })}</span>
-                <DiscordSelector
-                  type="custom"
-                  options={buttonColorOptions}
-                  selected={emote2Style.toString()}
-                  searchable={false}
-                  placeholder={m.suggestions.colorsPlaceholder()}
-                  onchange={(e) => {
-                      const selected = Array.isArray(e.selected) ? e.selected[0] : e.selected;
-                      setEmoteStyle(2, parseInt(selected || "1"));
-                    }}
-                />
-              </div>
-
-              <div class="space-y-2">
-                <span class="block text-sm" style="color: {$colorStore.muted}">{m.suggestions.colorsEmoteButton({ number: 3 })}</span>
-                <DiscordSelector
-                  type="custom"
-                  options={buttonColorOptions}
-                  selected={emote3Style.toString()}
-                  searchable={false}
-                  placeholder={m.suggestions.colorsPlaceholder()}
-                  onchange={(e) => {
-                      const selected = Array.isArray(e.selected) ? e.selected[0] : e.selected;
-                      setEmoteStyle(3, parseInt(selected || "1"));
-                    }}
-                />
-              </div>
-
-              <div class="space-y-2">
-                <span class="block text-sm" style="color: {$colorStore.muted}">{m.suggestions.colorsEmoteButton({ number: 4 })}</span>
-                <DiscordSelector
-                  type="custom"
-                  options={buttonColorOptions}
-                  selected={emote4Style.toString()}
-                  searchable={false}
-                  placeholder={m.suggestions.colorsPlaceholder()}
-                  onchange={(e) => {
-                      const selected = Array.isArray(e.selected) ? e.selected[0] : e.selected;
-                      setEmoteStyle(4, parseInt(selected || "1"));
-                    }}
-                />
-              </div>
-
-              <div class="space-y-2">
-                <span class="block text-sm" style="color: {$colorStore.muted}">{m.suggestions.colorsEmoteButton({ number: 5 })}</span>
-                <DiscordSelector
-                  type="custom"
-                  options={buttonColorOptions}
-                  selected={emote5Style.toString()}
-                  searchable={false}
-                  placeholder={m.suggestions.colorsPlaceholder()}
-                  onchange={(e) => {
-                      const selected = Array.isArray(e.selected) ? e.selected[0] : e.selected;
-                      setEmoteStyle(5, parseInt(selected || "1"));
-                    }}
-                />
-              </div>
-            </div>
-            <p class="text-xs" style="color: {$colorStore.muted}">
-              {m.suggestions.colorsHint()}
             </p>
           </div>
         </div>

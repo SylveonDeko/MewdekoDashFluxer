@@ -15577,20 +15577,6 @@ export const m = {
     archiveOnDeny: () => t("suggestions", "archive_on_deny", "Archive on Deny"),
     /** Archive on Implement */
     archiveOnImplement: () => t("suggestions", "archive_on_implement", "Archive on Implement"),
-    /** Button Emote */
-    buttonEmote: () => t("suggestions", "button_emote", "Button Emote"),
-    /** Single emote for the suggest button. Supports Unicode or Fluxer custom emotes. Leave em... */
-    buttonEmoteHint: () => t("suggestions", "button_emote_hint", "Single emote for the suggest button. Supports Unicode or Fluxer custom emotes. Leave empty for no emote."),
-    /** Select button emote... */
-    buttonEmotePlaceholder: () => t("suggestions", "button_emote_placeholder", "Select button emote..."),
-    /** Enter button label */
-    buttonLabelPlaceholder: () => t("suggestions", "button_label_placeholder", "Enter button label"),
-    /** Button Message */
-    buttonMessage: () => t("suggestions", "button_message", "Button Message"),
-    /** Configure the message sent when users click the suggestion button */
-    buttonMessagePreview: () => t("suggestions", "button_message_preview", "Configure the message sent when users click the suggestion button"),
-    /** Suggestion Button */
-    buttonTitle: () => t("suggestions", "button_title", "Suggestion Button"),
     /** Accept Channel */
     channelAccept: () => t("suggestions", "channel_accept", "Accept Channel"),
     /** Select accept channel... */
@@ -15611,18 +15597,6 @@ export const m = {
     channelSuggest: () => t("suggestions", "channel_suggest", "Suggest Channel"),
     /** Select suggest channel... */
     channelSuggestPlaceholder: () => t("suggestions", "channel_suggest_placeholder", "Select suggest channel..."),
-    /** Emote {number} Button */
-    colorsEmoteButton: (p: { number: P }) => t("suggestions", "colors_emote_button", "Emote {number} Button", p),
-    /** Customize button colors for each emote when using button mode (applies to all 5 emote b... */
-    colorsHint: () => t("suggestions", "colors_hint", "Customize button colors for each emote when using button mode (applies to all 5 emote buttons)"),
-    /** Color... */
-    colorsPlaceholder: () => t("suggestions", "colors_placeholder", "Color..."),
-    /** Suggest Button Color */
-    colorsSuggestButton: () => t("suggestions", "colors_suggest_button", "Suggest Button Color"),
-    /** Select button color... */
-    colorsSuggestPlaceholder: () => t("suggestions", "colors_suggest_placeholder", "Select button color..."),
-    /** Button Colors */
-    colorsTitle: () => t("suggestions", "colors_title", "Button Colors"),
     /** Are you sure you want to delete this suggestion? */
     confirmDelete: () => t("suggestions", "confirm_delete", "Are you sure you want to delete this suggestion?"),
     /** Reason (optional)... */
@@ -15639,14 +15613,6 @@ export const m = {
     emoteCustomLabel: () => t("suggestions", "emote_custom_label", "Custom Emotes"),
     /** Select up to 5 emotes... */
     emoteCustomPlaceholder: () => t("suggestions", "emote_custom_placeholder", "Select up to 5 emotes..."),
-    /** Choose how users interact with suggestions: traditional reactions or interactive buttons */
-    emoteModeHint: () => t("suggestions", "emote_mode_hint", "Choose how users interact with suggestions: traditional reactions or interactive buttons"),
-    /** Mode */
-    emoteModeLabel: () => t("suggestions", "emote_mode_label", "Mode"),
-    /** Select emote mode... */
-    emoteModePlaceholder: () => t("suggestions", "emote_mode_placeholder", "Select emote mode..."),
-    /** Emote Display Mode */
-    emoteModeTitle: () => t("suggestions", "emote_mode_title", "Emote Display Mode"),
     /** Suggestions from your community will appear here */
     emptyBody: () => t("suggestions", "empty_body", "Suggestions from your community will appear here"),
     /** No suggestions yet */
