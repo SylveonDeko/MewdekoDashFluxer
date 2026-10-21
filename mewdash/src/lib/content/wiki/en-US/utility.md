@@ -1,20 +1,20 @@
 ---
 title: Utilities
 slug: utility
-summary: A toolbox of everyday helpers, from command aliases, quotes and reminders to auto-publishing, stream roles, an AI assistant, message counting and repeaters.
+summary: A toolbox of everyday helpers, from command aliases, quotes and reminders to auto-publishing, an AI assistant, message counting and repeaters.
 icon: fa-wrench
 category: Actions
 dashboard: /dashboard/utility
 module: Utility
-tags: [alias, quotes, auto publish, stream role, ai, chatbot, nsfw filter, role monitor, reminder, snipe, repeater, sticky, message count, invites, embed, calculator, userinfo, serverinfo]
+tags: [alias, quotes, auto publish, ai, chatbot, nsfw filter, role monitor, reminder, snipe, repeater, sticky, message count, invites, embed, calculator, userinfo, serverinfo]
 related: [repeaters, polls, invites, messagestats, embedbuilder, xp, administration, moderation]
 ---
 
 ## What it does
 
-Utility is the catch-all module for small features that most servers end up wanting. Members get reminders, quotes, dice rolls, a calculator, unit conversion, and info commands for users, roles, channels and the server. Staff get command aliases, repeating messages, auto-publishing for announcement channels, a role that follows members while they stream, deleted-message sniping, message counting and invite tracking.
+Utility is the catch-all module for small features that most servers end up wanting. Members get reminders, quotes, dice rolls, a calculator, unit conversion, and info commands for users, roles, channels and the server. Staff get command aliases, repeating messages, auto-publishing for announcement channels, deleted-message sniping, message counting and invite tracking.
 
-The dashboard's **Utilities** page collects the parts that benefit from a form: aliases, quotes, auto publish, stream role, the AI assistant, the NSFW tag filter and the role monitor. Everything else is command-only.
+The dashboard's **Utilities** page collects the parts that benefit from a form: aliases, quotes, auto publish, the AI assistant, the NSFW tag filter and the role monitor. Everything else is command-only.
 
 Because this module is broad, each sub-feature below is described on its own. The command table at the end lists every command in the module.
 
@@ -23,7 +23,6 @@ Because this module is broad, each sub-feature below is described on its own. Th
 - Shorten `play youtube` to `yt` for the whole server with an alias.
 - Keep a shared quote book that members can add to and pull random lines from.
 - Have every post in your announcements channel published to followers automatically.
-- Give members a "Live" role only while they are streaming a specific game.
 - Post rules or a sticky notice every few minutes, or only when the channel is active.
 - Let members set reminders for themselves or for a channel.
 - Run an AI assistant in one channel using your own API key.
@@ -45,12 +44,6 @@ The **Quotes** tab lets you add, edit, search and delete quotes.
 Discord announcement channels need each message to be published by hand. `addautopublish #channel` makes the bot publish every new message in that channel. Two blacklists per channel skip messages: `addpublishblacklist @user #channel` ignores a user, and `addpublishblacklist #channel word` ignores any message containing that word, case-insensitive. `getautopublishes` shows every channel with its blacklists.
 
 The **Auto Publish** tab adds channels and manages the **Skip messages from these users** and **Skip messages containing these words** lists.
-
-## Stream role
-
-`streamrole <fromRole> <addRole>` gives **addRole** to any member of **fromRole** while they are streaming, and takes it away when they stop. `streamrolekeyword <keyword>` limits it to streams whose title contains the keyword; run it with no keyword to clear. Whitelisted members get the role while streaming even if the keyword does not match, and blacklisted members never get it. `streamrole` with no arguments turns the feature off. If the bot loses permission to manage the role, or the role is deleted, the feature disables itself.
-
-The **Stream Role** tab has **Eligible role**, **Role while streaming**, **Stream title keyword** and a **Whitelist** and **Blacklist** list by user ID.
 
 ## AI assistant
 
@@ -109,7 +102,7 @@ Invite tracking records who invited each member. `invites`, `whoinvited`, `invit
 
 ## Settings
 
-The dashboard page is split into tabs: **Aliases**, **Quotes**, **Auto Publish**, **Stream Role**, **AI Assistant**, **NSFW Filter** and **Role Monitor**.
+The dashboard page is split into tabs: **Aliases**, **Quotes**, **Auto Publish**, **AI Assistant**, **NSFW Filter** and **Role Monitor**.
 
 | Setting | Default | What it controls |
 | --- | --- | --- |
@@ -117,9 +110,6 @@ The dashboard page is split into tabs: **Aliases**, **Quotes**, **Auto Publish**
 | Quote keyword and text | none | A stored quote |
 | Auto publish channels | none | Announcement channels the bot publishes in |
 | Skip messages from these users / containing these words | none | Per-channel publish blacklists |
-| Eligible role | none | Members who can receive the stream role |
-| Role while streaming | none | The role added and removed |
-| Stream title keyword | any stream | Only streams whose title contains this text count |
 | Assistant enabled | off | Whether the AI channel responds |
 | Provider, Model, API key, System prompt | none | AI configuration |
 | Allow web search | off | Claude web search |
@@ -134,9 +124,8 @@ Sniping, message counting, invite tracking, repeaters, reminders and link previe
 1. Open **Utilities** in the dashboard.
 2. On **Aliases**, add a trigger such as `yt` mapped to `play youtube`. Test it in Discord.
 3. On **Auto Publish**, add your announcements channel. Add any bot or webhook users to the skip list.
-4. On **Stream Role**, pick the eligible role and the role to add, and optionally a title keyword. Check the bot's role is above the role it adds.
-5. On **AI Assistant**, choose a channel, provider and model, paste your key, write a system prompt and enable it.
-6. In Discord, run `snipeset enable` if you want deleted-message sniping and `togglemsgcount` for message statistics.
+4. On **AI Assistant**, choose a channel, provider and model, paste your key, write a system prompt and enable it.
+5. In Discord, run `snipeset enable` if you want deleted-message sniping and `togglemsgcount` for message statistics.
 
 ## Commands
 
@@ -162,10 +151,6 @@ Run these with your server's prefix (`.` unless you changed it).
 | `addpublishblacklist <@user> <#channel>` or `<#channel> <word>` | `addpubbl` | Administrator | Skip a user or word |
 | `removepublishblacklist <@user> <#channel>` or `<#channel> <word>` | `removepubbl` | Administrator | Remove a skip |
 | `getautopublishes` | `getaps` | Administrator | List auto-publish channels |
-| `streamrole [fromRole] [addRole]` | | Manage Roles | Set the stream role, or disable it with no roles |
-| `streamrolekeyword [keyword]` | `srkw` | Manage Roles | Require a keyword in the stream title |
-| `streamroleblacklist <add\|remove> <@user>` | `srbl` | Manage Roles | Never give the role to this member |
-| `streamrolewhitelist <add\|remove> <@user>` | `srwl` | Manage Roles | Always give the role to this member while streaming |
 | `aichannel [#channel] [enabled]` | `aic` | Manage Server | Set the AI channel |
 | `aimodel <provider> [model]` | `aim` | Manage Server | Provider and model |
 | `aikey` | `ak` | Administrator | Set the API key |
@@ -272,7 +257,6 @@ Run these with your server's prefix (`.` unless you changed it).
 
 - An alias only rewrites the text; the mapped command still runs with its own permission checks.
 - Auto publish only works in Discord announcement (news) channels.
-- Stream role needs the bot's role above the role it adds. If it cannot manage the role, the feature switches itself off rather than failing silently on every stream.
 - Sniping is off by default, and snipes older than 30 days are dropped.
 - Reminders longer than 60 days are rejected.
 - The AI assistant only responds in the one configured channel and ignores bots. Its memory is the last five messages per member, so long conversations lose early context.

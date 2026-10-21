@@ -7097,8 +7097,8 @@ export const m = {
     twitchDescription: () => t("features", "twitch_description", "Chat bot for your own Twitch channel (commands, timers, events)"),
     /** Twitch Bot */
     twitchName: () => t("features", "twitch_name", "Twitch Bot"),
-    /** Aliases, quotes, auto publish, stream roles, AI, NSFW filters */
-    utilityDescription: () => t("features", "utility_description", "Aliases, quotes, auto publish, stream roles, AI, NSFW filters"),
+    /** Aliases, quotes, auto publish, AI, NSFW filters */
+    utilityDescription: () => t("features", "utility_description", "Aliases, quotes, auto publish, AI, NSFW filters"),
     /** Utilities */
     utilityName: () => t("features", "utility_name", "Utilities"),
     /** Voting and polls */
@@ -10112,7 +10112,7 @@ export const m = {
     /** Some features keep their own history and expose their own retention setting, which serv... */
     privacySomeFeaturesKeepTheirOwn: () => t("legal", "privacy_some_features_keep_their_own", "Some features keep their own history and expose their own retention setting, which server administrators control. Others, such as XP and reputation, reduce scores over a period of inactivity rather than deleting the record."),
     /** Some features read your Discord status and activities, such as the game you are playing... */
-    privacySomeFeaturesReadYourDiscord: () => t("legal", "privacy_some_features_read_your_discord", "Some features read your Discord status and activities, such as the game you are playing, whether you are streaming, and your custom status. They are used by Status Roles and Stream Roles to give or remove roles, by game voice channels to move you to a channel for your game, and to show how many members are online. If a server turns on activity tracking in Server Stats, the bot also records which activities members spend time on so that server's staff can see what is popular. Your custom status text is read by Status Roles but never stored."),
+    privacySomeFeaturesReadYourDiscord: () => t("legal", "privacy_some_features_read_your_discord", "Some features read your Discord status and activities, such as the game you are playing, whether you are streaming, and your custom status. They are used by Status Roles to give or remove roles and to show how many members are online. If a server turns on activity tracking in Server Stats, the bot also records which activities members spend time on so that server's staff can see what is popular. Your custom status text is read by Status Roles but never stored."),
     /** Starboard: a copy of messages that reach a server's starboard. */
     privacyStarboardACopyOfMessages: () => t("legal", "privacy_starboard_a_copy_of_messages", "Starboard: a copy of messages that reach a server's starboard."),
     /** Status and activities */
@@ -17245,8 +17245,8 @@ export const m = {
     nsfwTagPlaceholder: () => t("utility", "nsfw_tag_placeholder", "Tag to block, e.g. gore"),
     /** Unblock {tag} */
     nsfwUnblockAria: (p: { tag: P }) => t("utility", "nsfw_unblock_aria", "Unblock {tag}", p),
-    /** Aliases, quotes, auto publish, stream roles, AI, NSFW filters, and role monitoring */
-    pageSubtitle: () => t("utility", "page_subtitle", "Aliases, quotes, auto publish, stream roles, AI, NSFW filters, and role monitoring"),
+    /** Aliases, quotes, auto publish, AI, NSFW filters, and role monitoring */
+    pageSubtitle: () => t("utility", "page_subtitle", "Aliases, quotes, auto publish, AI, NSFW filters, and role monitoring"),
     /** Manage Events */
     permManageEvents: () => t("utility", "perm_manage_events", "Manage Events"),
     /** Manage Threads */
@@ -17345,48 +17345,6 @@ export const m = {
     rmWhitelistRoleFailed: () => t("utility", "rm_whitelist_role_failed", "Failed to whitelist role"),
     /** Failed to whitelist user */
     rmWhitelistUserFailed: () => t("utility", "rm_whitelist_user_failed", "Failed to whitelist user"),
-    /** Role while streaming */
-    streamroleAdded: () => t("utility", "streamrole_added", "Role while streaming"),
-    /** Never given the stream role */
-    streamroleBlacklistHint: () => t("utility", "streamrole_blacklist_hint", "Never given the stream role"),
-    /** Give members a role automatically while they are live on Discord. */
-    streamroleCardSubtitle: () => t("utility", "streamrole_card_subtitle", "Give members a role automatically while they are live on Discord."),
-    /** Disable the stream role? Members keep the role until they stop streaming. */
-    streamroleDisableConfirm: () => t("utility", "streamrole_disable_confirm", "Disable the stream role? Members keep the role until they stop streaming."),
-    /** Failed to disable stream role */
-    streamroleDisableFailed: () => t("utility", "streamrole_disable_failed", "Failed to disable stream role"),
-    /** Eligible role */
-    streamroleEligible: () => t("utility", "streamrole_eligible", "Eligible role"),
-    /** Members with this role */
-    streamroleEligiblePlaceholder: () => t("utility", "streamrole_eligible_placeholder", "Members with this role"),
-    /** Failed to enable stream role */
-    streamroleEnableFailed: () => t("utility", "streamrole_enable_failed", "Failed to enable stream role"),
-    /** Fine-tune who can receive the stream role. */
-    streamroleExceptionsSubtitle: () => t("utility", "streamrole_exceptions_subtitle", "Fine-tune who can receive the stream role."),
-    /** Exceptions */
-    streamroleExceptionsTitle: () => t("utility", "streamrole_exceptions_title", "Exceptions"),
-    /** Stream title keyword */
-    streamroleKeyword: () => t("utility", "streamrole_keyword", "Stream title keyword"),
-    /** Failed to save keyword */
-    streamroleKeywordFailed: () => t("utility", "streamrole_keyword_failed", "Failed to save keyword"),
-    /** Only streams whose title contains this word count. Leave empty to match any stream. */
-    streamroleKeywordHint: () => t("utility", "streamrole_keyword_hint", "Only streams whose title contains this word count. Leave empty to match any stream."),
-    /** Any stream */
-    streamroleKeywordPlaceholder: () => t("utility", "streamrole_keyword_placeholder", "Any stream"),
-    /** Failed to update list */
-    streamroleListFailed: () => t("utility", "streamrole_list_failed", "Failed to update list"),
-    /** List type */
-    streamroleListTypeAria: () => t("utility", "streamrole_list_type_aria", "List type"),
-    /** Pick both roles first */
-    streamrolePickBoth: () => t("utility", "streamrole_pick_both", "Pick both roles first"),
-    /** Remove {user} */
-    streamroleRemoveAria: (p: { user: P }) => t("utility", "streamrole_remove_aria", "Remove {user}", p),
-    /** @{from} streamers get @{to} */
-    streamroleSummary: (p: { from: P; to: P }) => t("utility", "streamrole_summary", "@{from} streamers get @{to}", p),
-    /** Update roles */
-    streamroleUpdateRoles: () => t("utility", "streamrole_update_roles", "Update roles"),
-    /** Always eligible, even without the role */
-    streamroleWhitelistHint: () => t("utility", "streamrole_whitelist_hint", "Always eligible, even without the role"),
     /** AI assistant */
     tabAi: () => t("utility", "tab_ai", "AI assistant"),
     /** Aliases */
@@ -17395,8 +17353,6 @@ export const m = {
     tabAutopublish: () => t("utility", "tab_autopublish", "Auto publish"),
     /** NSFW Filter */
     tabNsfw: () => t("utility", "tab_nsfw", "NSFW Filter"),
-    /** Stream role */
-    tabStreamrole: () => t("utility", "tab_streamrole", "Stream role"),
   },
   votes: {
     /** API Password (for webhooks) */

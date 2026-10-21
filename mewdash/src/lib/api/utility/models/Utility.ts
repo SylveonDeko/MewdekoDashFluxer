@@ -42,23 +42,6 @@ export interface AutoPublishChannel {
   blacklistedWords: string[];
 }
 
-export interface StreamRoleListUser {
-  userId: bigint;
-  username: string | null;
-}
-
-/**
- * Stream role settings
- */
-export interface StreamRoleSettings {
-  enabled: boolean;
-  addRoleId: bigint;
-  fromRoleId: bigint;
-  keyword: string | null;
-  whitelist: StreamRoleListUser[];
-  blacklist: StreamRoleListUser[];
-}
-
 /**
  * Mirrors Mewdeko.Modules.Utility.Services.AiService.AiProvider
  */

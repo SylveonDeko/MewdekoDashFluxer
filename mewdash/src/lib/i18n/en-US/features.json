@@ -137,7 +137,7 @@
   "todo_name": "Todo Lists",
   "twitch_description": "Chat bot for your own Twitch channel (commands, timers, events)",
   "twitch_name": "Twitch Bot",
-  "utility_description": "Aliases, quotes, auto publish, stream roles, AI, NSFW filters",
+  "utility_description": "Aliases, quotes, auto publish, AI, NSFW filters",
   "utility_name": "Utilities",
   "votes_description": "Voting and polls",
   "votes_name": "Votes",
