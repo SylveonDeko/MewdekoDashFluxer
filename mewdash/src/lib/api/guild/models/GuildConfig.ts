@@ -349,9 +349,6 @@ export interface GuildConfig {
   timeZoneId: string | null;
 
   // Game Settings
-  /** Game voice channel */
-  gameVoiceChannel: bigint | null;
-
   /** Verbose errors */
   verboseErrors: boolean;
 

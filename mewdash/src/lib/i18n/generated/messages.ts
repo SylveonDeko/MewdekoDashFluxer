@@ -2399,18 +2399,6 @@ export const m = {
     automationDeleteMessageSubtitle: () => t("administration", "automation_delete_message_subtitle", "Auto-delete command messages"),
     /** Delete Message on Command */
     automationDeleteMessageTitle: () => t("administration", "automation_delete_message_title", "Delete Message on Command"),
-    /** Current Channel: {channel} */
-    automationGameVoiceChannelCurrent: (p: { channel: P }) => t("administration", "automation_game_voice_channel_current", "Current Channel: {channel}", p),
-    /** Automatically move users to matching voice channels based on their game activity */
-    automationGameVoiceChannelDescription: () => t("administration", "automation_game_voice_channel_description", "Automatically move users to matching voice channels based on their game activity"),
-    /** Select voice channel for automatic game-based voice routing */
-    automationGameVoiceChannelHint: () => t("administration", "automation_game_voice_channel_hint", "Select voice channel for automatic game-based voice routing"),
-    /** Set as Game Voice Channel */
-    automationGameVoiceChannelSetButton: () => t("administration", "automation_game_voice_channel_set_button", "Set as Game Voice Channel"),
-    /** Set Game Voice Channel */
-    automationGameVoiceChannelSetLabel: () => t("administration", "automation_game_voice_channel_set_label", "Set Game Voice Channel"),
-    /** Game Voice Channel */
-    automationGameVoiceChannelTitle: () => t("administration", "automation_game_voice_channel_title", "Game Voice Channel"),
     /** Add Override */
     automationPermissionOverridesAdd: () => t("administration", "automation_permission_overrides_add", "Add Override"),
     /** Bot Command ({count} available) */
@@ -2587,8 +2575,6 @@ export const m = {
     overviewConfigureProtectionHint: () => t("administration", "overview_configure_protection_hint", "Set up anti-raid, anti-spam, and pattern detection"),
     /** Cooldowns */
     overviewCooldowns: () => t("administration", "overview_cooldowns", "Cooldowns"),
-    /** Game Voice Channel: */
-    overviewGameVoiceChannel: () => t("administration", "overview_game_voice_channel", "Game Voice Channel:"),
     /** Configure role assignment and permissions */
     overviewManageRolesHint: () => t("administration", "overview_manage_roles_hint", "Configure role assignment and permissions"),
     /** Member Role: */

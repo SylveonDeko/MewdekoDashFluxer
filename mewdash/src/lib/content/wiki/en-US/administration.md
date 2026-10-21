@@ -171,7 +171,6 @@ These cards are on the **Automation & Settings** tab.
 | **Server Timezone** | UTC | Timezone used wherever the bot prints local times |
 | **Command Cooldowns** | none | Per command rate limit in seconds, 1 to 90,000 |
 | **Permission Overrides** | none | Discord permission each command requires (see above) |
-| **Game Voice Channel** | none | When a member in this voice channel starts playing a game, the bot moves them to the voice channel whose name matches the game |
 | **Delete Message On Command** | off | Delete the invoking message after a command runs, with per channel overrides of Enable, Disable or Inherit |
 | **Stats opt-out** | opted in | Stop command usage statistics for this server; **Delete Stats** wipes what is stored |
 
@@ -294,7 +293,6 @@ The `autobanrole` commands are also available as `/autobanrole list`, `add`, `re
 | `staffroledisable` | | Administrator | Clear the staff role |
 | `memberrole <role>` | | Administrator | Show or set the member role |
 | `delmsgoncmd [list, server, or channel <enable, disable, inherit> [#channel]]` | `dmc` | Administrator | Show, toggle, or override command message deletion |
-| `gamevoicechannel` | `gvc` | Administrator | Toggle your current voice channel as the game voice channel |
 | `timezone [id]` | | Nobody to view, Administrator to set | Show or set the server timezone |
 | `timezones` | | Nobody | List available timezone IDs |
 | `prefix [new]` | | Nobody to view, Administrator to set | Show or change the command prefix |

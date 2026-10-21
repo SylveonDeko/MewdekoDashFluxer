@@ -5,7 +5,6 @@
   import CommandCooldownsCard from "../automation/CommandCooldownsCard.svelte";
   import PermissionOverridesCard from "../automation/PermissionOverridesCard.svelte";
   import PermissionsManagementCard from "../automation/PermissionsManagementCard.svelte";
-  import GameVoiceChannelCard from "../automation/GameVoiceChannelCard.svelte";
   import DeleteMessageOnCommandCard from "../automation/DeleteMessageOnCommandCard.svelte";
   import StatsManagementCard from "../automation/StatsManagementCard.svelte";
 
@@ -17,7 +16,6 @@
     guildTimezone,
     newTimezone = $bindable(),
     availableTimezones,
-    gameVoiceChannel,
     commandCooldowns,
     permissionOverrides,
     expandedRoleCard = $bindable(),
@@ -40,7 +38,6 @@
     addPermissionOverride,
     resetPermissionOverrides,
     deleteSelectedPermissionOverrides,
-    toggleGameVoiceChannel,
     fetchAllData
   } = $props();
 </script>
@@ -95,14 +92,6 @@
     {guildChannels}
     {fetchAllData}
     {showConfirm}
-  />
-
-  <GameVoiceChannelCard
-    bind:newVoiceChannelRole
-    {gameVoiceChannel}
-    {guildChannels}
-    {toggleGameVoiceChannel}
-    {voiceChannels}
   />
 
   <DeleteMessageOnCommandCard

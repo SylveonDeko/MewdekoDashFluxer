@@ -30,7 +30,6 @@ import type {
   SetGroupRequest,
   SetTimezoneRequest,
   TimezoneInfo,
-  ToggleGameVoiceChannelRequest,
   VoiceChannelRole,
   VoiceChannelRoleRequest
 } from "./models";
@@ -657,34 +656,6 @@ export const administrationApi = {
     apiRequest<void>(
       `Administration/${guildId}/permission-overrides`,
       "DELETE",
-    ),
-
-  // ============================================
-  // Game Voice Channel
-  // ============================================
-
-  /**
-   * Gets the game voice channel
-   * @param guildId The guild ID
-   * @returns Game voice channel ID or null
-   */
-  getGameVoiceChannel: (guildId: bigint) =>
-    apiRequest<bigint | null>(`Administration/${guildId}/game-voice-channel`),
-
-  /**
-   * Toggles game voice channel
-   * @param guildId The guild ID
-   * @param request Channel configuration
-   * @returns Channel ID or null
-   */
-  toggleGameVoiceChannel: (
-    guildId: bigint,
-    request: ToggleGameVoiceChannelRequest,
-  ) =>
-    apiRequest<bigint | null>(
-      `Administration/${guildId}/game-voice-channel/toggle`,
-      "POST",
-      request,
     ),
 
   // ============================================

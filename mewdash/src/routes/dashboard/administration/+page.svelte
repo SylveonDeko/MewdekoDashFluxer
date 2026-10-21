@@ -45,7 +45,6 @@
   let memberRole: bigint | null = $state(null);
   let guildTimezone: string = $state("UTC");
   let availableTimezones: Array<{ id: string; displayName: string; offset: string }> = $state([]);
-  let gameVoiceChannel: bigint | null = $state(null);
 
   // Auto-assign roles
   let autoAssignRoles: { normalRoles: bigint[]; botRoles: bigint[] } = $state({ normalRoles: [], botRoles: [] });
@@ -253,7 +252,7 @@
         const [
           autoAssignData, protectionData, selfAssignData, rolesData, textChannelsData, voiceChannelsData,
           staffRoleData, memberRoleData, timezoneData, timezonesData,
-          _deleteMsgData, gameVoiceData,
+          _deleteMsgData,
           autoBanRolesData, voiceChannelRolesData, reactionRolesData,
           permissionOverridesData, commandsAndModulesData, commandCooldownsData,
           banMessageData, antiPatternPatternsData
@@ -269,7 +268,6 @@
           administrationApi.getGuildTimezone($currentGuild.id),
           administrationApi.getTimezones($currentGuild.id),
           administrationApi.getDeleteMessageOnCommand($currentGuild.id),
-          administrationApi.getGameVoiceChannel($currentGuild.id),
           administrationApi.getAutoBanRoles($currentGuild.id),
           administrationApi.getVoiceChannelRoles($currentGuild.id),
           administrationApi.getReactionRoles($currentGuild.id),
@@ -304,7 +302,6 @@
           tz.id.includes(guildTimezone)
         );
         newTimezone = currentTimezoneOption ? currentTimezoneOption.id : (guildTimezone || "UTC");
-        gameVoiceChannel = gameVoiceData;
 
         // Auto-assign roles
         autoAssignRoles = autoAssignData || { normalRoles: [], botRoles: [] };
@@ -546,17 +543,6 @@
       logger.error("Failed to save server settings:", err);
     } finally {
       saving = false;
-    }
-  }
-
-  async function toggleGameVoiceChannel(channelId: bigint) {
-    if (!$currentGuild?.id) return;
-
-    try {
-      await administrationApi.toggleGameVoiceChannel($currentGuild.id, { channelId });
-      await fetchAllData();
-    } catch (err) {
-      logger.error("Failed to toggle game voice channel:", err);
     }
   }
 
@@ -1078,7 +1064,6 @@
         {staffRole}
         {memberRole}
         {guildTimezone}
-        {gameVoiceChannel}
         {availableRoles}
         {guildChannels}
         bind:activeTab
@@ -1154,7 +1139,6 @@
         {guildTimezone}
         bind:newTimezone
         {availableTimezones}
-        {gameVoiceChannel}
         {commandCooldowns}
         {permissionOverrides}
         bind:expandedRoleCard
@@ -1177,7 +1161,6 @@
         {addPermissionOverride}
         {resetPermissionOverrides}
         {deleteSelectedPermissionOverrides}
-        {toggleGameVoiceChannel}
         {fetchAllData}
       />
     {/if}

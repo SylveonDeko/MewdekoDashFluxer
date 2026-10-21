@@ -88,15 +88,6 @@ export interface PermissionOverrideRequest {
 }
 
 /**
- * Request model for toggling game voice channel
- * Maps to Mewdeko.Controllers.Common.Administration.ToggleGameVoiceChannelRequest
- */
-export interface ToggleGameVoiceChannelRequest {
-  /** The ID of the voice channel to toggle as game voice channel */
-  channelId: bigint;
-}
-
-/**
  * Request model for server recovery setup
  * Maps to Mewdeko.Controllers.Common.Administration.ServerRecoveryRequest
  */

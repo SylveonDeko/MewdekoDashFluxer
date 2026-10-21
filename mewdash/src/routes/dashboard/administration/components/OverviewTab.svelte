@@ -11,7 +11,6 @@
     staffRole,
     memberRole,
     guildTimezone,
-    gameVoiceChannel,
     availableRoles,
     guildChannels,
     activeTab = $bindable()
@@ -218,10 +217,6 @@
         <div class="flex justify-between items-center">
           <span style="color: {$colorStore.muted}">{m.common.timezoneLabel()}</span>
           <span style="color: {$colorStore.text}">{guildTimezone}</span>
-        </div>
-        <div class="flex justify-between items-center">
-          <span style="color: {$colorStore.muted}">{m.administration.overviewGameVoiceChannel()}</span>
-          <span style="color: {$colorStore.text}">{getChannelName(gameVoiceChannel)}</span>
         </div>
       </div>
     </div>
