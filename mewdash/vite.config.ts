@@ -48,7 +48,7 @@ export default defineConfig(() => ({
     mobileMusicWsPlugin,
   ],
   server: {
-    allowedHosts: ["test.mewdeko.tech"],
+    allowedHosts: ["testflux.mewdeko.tech"],
   },
   esbuild: {
     supported: {
