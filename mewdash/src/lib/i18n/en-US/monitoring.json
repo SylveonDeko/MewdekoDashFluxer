@@ -3,7 +3,7 @@
   "event_metrics_col_error_rate": "Error Rate",
   "event_metrics_col_processed": "Processed",
   "event_metrics_empty": "No event metrics available yet.",
-  "event_metrics_empty_hint": "Event metrics will appear as your bot processes Discord events.",
+  "event_metrics_empty_hint": "Event metrics will appear as your bot processes Fluxer events.",
   "event_metrics_event_types": "Event Types",
   "event_metrics_load_failed": "Failed to load event metrics",
   "event_metrics_title": "Event Metrics",

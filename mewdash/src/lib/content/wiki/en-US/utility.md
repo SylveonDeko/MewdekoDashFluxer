@@ -42,7 +42,7 @@ The **Quotes** tab lets you add, edit, search and delete quotes.
 
 ## Auto publish
 
-Discord announcement channels need each message to be published by hand. `addautopublish #channel` makes the bot publish every new message in that channel. Two blacklists per channel skip messages: `addpublishblacklist @user #channel` ignores a user, and `addpublishblacklist #channel word` ignores any message containing that word, case-insensitive. `getautopublishes` shows every channel with its blacklists.
+Fluxer announcement channels need each message to be published by hand. `addautopublish #channel` makes the bot publish every new message in that channel. Two blacklists per channel skip messages: `addpublishblacklist @user #channel` ignores a user, and `addpublishblacklist #channel word` ignores any message containing that word, case-insensitive. `getautopublishes` shows every channel with its blacklists.
 
 The **Auto Publish** tab adds channels and manages the **Skip messages from these users** and **Skip messages containing these words** lists.
 
@@ -132,11 +132,11 @@ Sniping, message counting, invite tracking, repeaters, reminders and link previe
 ## Setup walkthrough
 
 1. Open **Utilities** in the dashboard.
-2. On **Aliases**, add a trigger such as `yt` mapped to `play youtube`. Test it in Discord.
+2. On **Aliases**, add a trigger such as `yt` mapped to `play youtube`. Test it in Fluxer.
 3. On **Auto Publish**, add your announcements channel. Add any bot or webhook users to the skip list.
 4. On **Stream Role**, pick the eligible role and the role to add, and optionally a title keyword. Check the bot's role is above the role it adds.
 5. On **AI Assistant**, choose a channel, provider and model, paste your key, write a system prompt and enable it.
-6. In Discord, run `snipeset enable` if you want deleted-message sniping and `togglemsgcount` for message statistics.
+6. In Fluxer, run `snipeset enable` if you want deleted-message sniping and `togglemsgcount` for message statistics.
 
 ## Commands
 
@@ -271,7 +271,7 @@ Run these with your server's prefix (`.` unless you changed it).
 ## Tips and gotchas
 
 - An alias only rewrites the text; the mapped command still runs with its own permission checks.
-- Auto publish only works in Discord announcement (news) channels.
+- Auto publish only works in Fluxer announcement (news) channels.
 - Stream role needs the bot's role above the role it adds. If it cannot manage the role, the feature switches itself off rather than failing silently on every stream.
 - Sniping is off by default, and snipes older than 30 days are dropped.
 - Reminders longer than 60 days are rejected.

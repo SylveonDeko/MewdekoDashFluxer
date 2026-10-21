@@ -174,7 +174,7 @@ The **Tickets** tab lists open and closed tickets with search by ticket, user, c
 7. For several ticket types in one dropdown, add a **New Select Menu** instead and add an option per type with the same settings.
 8. Open a test ticket from another account, claim it, set a priority, close it, and check the transcript channel.
 
-In Discord, `/tickets setup wizard #channel` walks through the same steps with templates (Basic Support, Department Support, Gaming Server, Business, Mod Applications).
+In Fluxer, `/tickets setup wizard #channel` walks through the same steps with templates (Basic Support, Department Support, Gaming Server, Business, Mod Applications).
 
 ## Commands
 
@@ -240,8 +240,6 @@ Run these with your server's prefix (`.` unless you changed it). Panel IDs are m
 | `ticketmoveall <category> <category>` | `tmoveall` | Administrator | Move all tickets between categories |
 | `ticketstats` | `tstats` | Nobody | Server ticket statistics |
 | `ticketuserstats [@user]` | `tuserstats` | Nobody | A member's ticket statistics |
-
-Slash commands live under `/tickets` (create panel, list panels, claim, close, note, archive, priority, panel and settings groups, cases group) and `/tickets setup` (wizard, quick-button, quick-menu, from-template, templates).
 
 ## Tips and gotchas
 

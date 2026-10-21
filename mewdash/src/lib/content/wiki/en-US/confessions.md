@@ -16,7 +16,7 @@ A member runs `/confess` in the server, or DMs the bot `.confess <server id> "te
 
 Staff can set a separate log channel. Every confession is copied there with the sender's tag and ID, the confession number, and a jump link to the posted message. Members are told in every confession footer how to confess, and in the confirmation that they can report a server that abuses the feature.
 
-Staff can also blacklist individual members so their confessions are refused, and delete confessions from the dashboard, which removes the Discord message as well.
+Staff can also blacklist individual members so their confessions are refused, and delete confessions from the dashboard, which removes the Fluxer message as well.
 
 ## Why you would use it
 
@@ -63,7 +63,7 @@ The **Confessions** page has three tabs: **Configuration**, **Confessions** and 
 | Log Channel (shows user IDs) | none | Where the identifying copy of each confession goes |
 | Role Blacklist | none | See the blacklist section above |
 
-**Confessions** lists every stored confession newest first with its number and date. Content is hidden until you expand it, and **Delete confession** removes it from the database and deletes the message in Discord if it still exists.
+**Confessions** lists every stored confession newest first with its number and date. Content is hidden until you expand it, and **Delete confession** removes it from the database and deletes the message in Fluxer if it still exists.
 
 **Statistics** shows **Total Confessions**, **This Month**, **Today** and **Latest Number**.
 
@@ -78,7 +78,7 @@ The **Confessions** page has three tabs: **Configuration**, **Confessions** and 
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). The slash versions live under `/confessions`, except `/confess`, which is top level.
+Run these with your server's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |

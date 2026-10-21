@@ -143,8 +143,6 @@ Run these with your server's prefix (`.` unless you changed it). `<id>` is the s
 | `starboardstats` | `starstats`, `starboardstatistics`, `sbstats` | Nobody | Server-wide starboard statistics |
 | `starboarduserstats [@user]` | `staruserstats`, `userstarstats`, `sbuserstats` | Nobody | Statistics for one member |
 
-Slash equivalents live under `/starboard`.
-
 ## Tips and gotchas
 
 - The bot silently does nothing if it cannot send messages in the starboard channel. Check channel permissions first.

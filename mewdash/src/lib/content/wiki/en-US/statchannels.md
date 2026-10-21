@@ -16,7 +16,7 @@ A stat channel is a locked voice channel that sits at the top of your channel li
 
 You choose a counter type, a template for the name, a style for the number and how often it refreshes. The bot supports several dozen counters covering server facts, presence, Nitro boosts, emoji slots, member goals and countdowns, plus values pulled from other Mewdeko features such as tickets, suggestions, giveaways, XP, counting, the starboard, and linked Twitch or Minecraft servers.
 
-Discord only allows a channel to be renamed twice every ten minutes. Stat Channels works around that with a choice of update mechanism, including one that deletes and recreates the channel so it can refresh every minute.
+Fluxer only allows a channel to be renamed twice every ten minutes. Stat Channels works around that with a choice of update mechanism, including one that deletes and recreates the channel so it can refresh every minute.
 
 ## Why you would use it
 
@@ -134,7 +134,7 @@ These read from the Twitch channel linked through the Twitch module.
 | `%server.boostcount%` | Boost count |
 | `%server.boostlevel%` | Boost tier |
 
-Channel names are capped at Discord's 100 character limit.
+Channel names are capped at Fluxer's 100 character limit.
 
 ## Display styles
 
@@ -158,7 +158,7 @@ The **Counter Style** decides how `%count%` is rendered. It only applies to nume
 
 | Mechanism | Dashboard label | How it works |
 | --- | --- | --- |
-| `Rename` | Rename only | Edits the channel name. Discord allows two renames per ten minutes per channel, so the refresh interval is forced to at least 5 minutes. Channel ID never changes. |
+| `Rename` | Rename only | Edits the channel name. Fluxer allows two renames per ten minutes per channel, so the refresh interval is forced to at least 5 minutes. Channel ID never changes. |
 | `Recreate` | Delete and recreate | Creates a new channel with the same name, category, position and permission overwrites, then deletes the old one. Can refresh every minute, but the channel ID changes every update and each update leaves two audit log entries. |
 | `Auto` | Auto (recommended) | Renames while the two-per-ten-minutes budget allows. When the budget is spent and the interval is under 5 minutes, it recreates instead. When the interval is 5 minutes or more it just waits for the next rename slot. |
 
@@ -199,7 +199,7 @@ A newly created channel denies Connect to `@everyone` so it acts as a label. A c
 3. Choose a **Counter**, for example Total Members. Adjust the **Template** and watch the preview.
 4. Pick a **Counter Style** and save.
 5. Repeat for each counter. For a member goal, choose `MemberGoal`, set **Goal Target** and try the `ProgressBar` style.
-6. Drag the new channels to the top of the channel list in Discord if they did not land there.
+6. Drag the new channels to the top of the channel list in Fluxer if they did not land there.
 7. Wait one refresh interval and confirm the names update.
 
 ## Commands
@@ -221,7 +221,7 @@ Run these with your server's prefix (`.` unless you changed it). Types, styles a
 | `statchannellist` | `scl` | Nobody | List this server's stat channels with type, style, mode and template |
 | `statchannelremove #voice` | `statchrm` | Manage Channels | Stop tracking a channel |
 
-`statchannelcreate` also needs the bot to have Manage Channels. Slash equivalents live under `/statchannel`.
+`statchannelcreate` also needs the bot to have Manage Channels.
 
 ## Tips and gotchas
 

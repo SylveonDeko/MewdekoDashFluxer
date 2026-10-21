@@ -79,7 +79,7 @@ Run these with your server's prefix (`.` unless you changed it). Every command a
 ## Tips and gotchas
 
 - The bot's highest role must be above the managed role, and it needs Manage Roles.
-- Each Discord role can be managed by one stat role. Delete the old rule before pointing a new one at the same role.
+- Each Fluxer role can be managed by one stat role. Delete the old rule before pointing a new one at the same role.
 - A rule with a minimum of 0 and no maximum would match everyone; give it a maximum or use invert on purpose.
 - Members opted out of activity stats have no messages, voice or game time, so they never qualify for those measures.
 - Preview before enabling a rule on a big server. Role edits are spaced out to respect rate limits, so a rule touching thousands of members takes a few minutes to apply.

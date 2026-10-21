@@ -1,7 +1,7 @@
 ---
 title: Message Filters
 slug: filter
-summary: Delete messages that contain blocked words, Discord invites or links, optionally warn the sender, and ban on sight for a separate list of auto-ban words.
+summary: Delete messages that contain blocked words, Fluxer invites or links, optionally warn the sender, and ban on sight for a separate list of auto-ban words.
 icon: fa-filter
 category: Security
 dashboard: /dashboard/filter
@@ -12,7 +12,7 @@ related: [moderation, logging, administration]
 
 ## What it does
 
-The filter checks every message a member sends or edits before other modules see it. If the message contains a filtered word, a Discord invite or a link in a place where that filter is active, the bot deletes it. You can also have the bot issue a warning through the moderation system and send the member a DM explaining what was removed.
+The filter checks every message a member sends or edits before other modules see it. If the message contains a filtered word, a Fluxer invite or a link in a place where that filter is active, the bot deletes it. You can also have the bot issue a warning through the moderation system and send the member a DM explaining what was removed.
 
 A second list, auto-ban words, is stricter. A message that matches an auto-ban word is deleted and the author is banned immediately, with a DM containing the reason where the bot can send one.
 
@@ -58,7 +58,7 @@ The Message Filters page has four tabs: **Filters**, **Filtered Words**, **Auto-
 | Setting | Default | What it controls |
 | --- | --- | --- |
 | Word filter | Off | Server-wide switch shown on the Filters tab |
-| Invite filter | Off | Deletes Discord invite links; needed for the invite channel list to do anything |
+| Invite filter | Off | Deletes Fluxer invite links; needed for the invite channel list to do anything |
 | Link filter | Off | Deletes any message with a URL server-wide |
 | Warn on filtered word | Off | Adds a warning and DMs the member when a filtered word is removed |
 | Warn on invite link | Off | Adds a warning and DMs the member when an invite is removed |

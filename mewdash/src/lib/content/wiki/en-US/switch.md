@@ -13,7 +13,7 @@ related: [userprofile, help]
 
 The Switch module is a support toolkit for servers around Nintendo Switch homebrew and emulation. When someone posts an error like `2168-0002`, a helper runs `err 2168-0002` and the bot replies with the module the error belongs to, what is known about it, and a link to Nintendo's support page when one exists.
 
-Two small converters turn the `NNNN-NNNN` form into the raw hex value used in code and back. `switchbrew` searches the switchbrew.org wiki so people can find SVC, result code or hardware pages without leaving Discord.
+Two small converters turn the `NNNN-NNNN` form into the raw hex value used in code and back. `switchbrew` searches the switchbrew.org wiki so people can find SVC, result code or hardware pages without leaving Fluxer.
 
 The biggest feature is the Ryujinx log analyser. A user attaches their `Ryujinx.log`, someone runs `analyselog` on it or as a reply to it, and the bot produces an embed with the game, emulator version, hardware, every relevant setting, the last error, installed mods and cheats, and a list of notes pointing at common misconfigurations.
 
@@ -24,7 +24,7 @@ Nothing needs configuring and nothing is stored. All commands are open to everyo
 - A support channel gets the same "what does 2811-5001 mean" question daily.
 - Ryujinx troubleshooting starts with reading the log, and most people do not know what to look for.
 - Developers want the hex form of an error to search source code.
-- Anyone can pull up a switchbrew.org page from Discord.
+- Anyone can pull up a switchbrew.org page from Fluxer.
 
 ## Error code lookups
 

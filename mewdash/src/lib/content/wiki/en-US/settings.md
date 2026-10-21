@@ -16,7 +16,7 @@ The Settings page holds the handful of options that affect every module at once 
 
 It also covers the mute role name, whether a muted member loses their other roles, how long warnings last, and two chat utilities: message sniping and message link previews.
 
-Most of these settings have a matching text command, so staff can change them from Discord as well. A few extras live only in commands: the staff role, the member role and per-channel command message deletion.
+Most of these settings have a matching text command, so staff can change them from Fluxer as well. A few extras live only in commands: the staff role, the member role and per-channel command message deletion.
 
 ## Why you would use it
 
@@ -51,7 +51,7 @@ The server timezone drives reminders, scheduled messages and any time display. `
 
 ## Mute role and role removal
 
-**Mute Role** is the name of the role the mute commands and punishments apply. If a role with that name does not exist the bot creates it. From Discord, `muterole @role` points the setting at an existing role; the role must sit below your own highest role unless you are the server owner. `muterole` with no argument shows the current mute role.
+**Mute Role** is the name of the role the mute commands and punishments apply. If a role with that name does not exist the bot creates it. From Fluxer, `muterole @role` points the setting at an existing role; the role must sit below your own highest role unless you are the server owner. `muterole` with no argument shows the current mute role.
 
 **Remove all other roles while muted** strips a member's other roles for the duration of a mute and returns them afterwards. The command form is `removeonmute y` or `removeonmute n`.
 
@@ -60,7 +60,7 @@ The server timezone drives reminders, scheduled messages and any time display. `
 | Setting | Command | Effect |
 | --- | --- | --- |
 | Message sniping | `snipeset enable` or `snipeset disable` | Lets members use the snipe commands to recover recently deleted or edited messages. Off by default. |
-| Message link previews | `previewlinks y` or `previewlinks n` | When someone posts a link to a Discord message, the bot shows that message's contents. |
+| Message link previews | `previewlinks y` or `previewlinks n` | When someone posts a link to a Fluxer message, the bot shows that message's contents. |
 
 ## Command-only settings
 
@@ -96,7 +96,7 @@ Everything below is on the single **Bot Settings** page. Press **Save Changes** 
 | Mute Role | Muted | Name of the role applied by mutes and punishments |
 | Remove all other roles while muted | Off | Strip other roles for the length of a mute |
 | Message sniping | Off | Allow the snipe commands |
-| Message link previews | Off | Expand Discord message links |
+| Message link previews | Off | Expand Fluxer message links |
 
 > [!NOTE]
 > The page only covers the shared basics. Logging, moderation, starboard and other features have their own pages with their own settings.
@@ -111,7 +111,7 @@ Everything below is on the single **Bot Settings** page. Press **Save Changes** 
 6. Check the **Mute Role** name matches the role your moderators already use, or leave it as `Muted` and let the bot create one.
 7. Turn on **Message sniping** or **Message link previews** if you want them.
 8. Press **Save Changes**.
-9. In Discord, run `staffrole @YourStaffRole` so filters and suggestion limits skip your team.
+9. In Fluxer, run `staffrole @YourStaffRole` so filters and suggestion limits skip your team.
 
 ## Commands
 
@@ -130,7 +130,7 @@ Run these with your server's prefix (`.` unless you changed it).
 | `muterole [@role]` | `setmuterole` | Manage Roles | Show or set the mute role |
 | `removeonmute <y or n>` | | Administrator | Strip other roles while muted |
 | `snipeset <enable or disable>` | `setsnipe` | Administrator | Allow or block the snipe commands |
-| `previewlinks <y or n>` | `plinks` | Administrator | Expand Discord message links |
+| `previewlinks <y or n>` | `plinks` | Administrator | Expand Fluxer message links |
 | `staffrole [@role]` | | Administrator | Show or set the staff role |
 | `staffroledisable` | | Administrator | Clear the staff role |
 | `memberrole [@role]` | | Administrator | Show or set the member role |
@@ -141,5 +141,4 @@ Run these with your server's prefix (`.` unless you changed it).
 - `delmsgoncmd` needs the bot to have Manage Messages, otherwise the command refuses to run.
 - The dashboard stores warning expiry in hours while `warnexpire` takes days. `warnexpire 1` and a dashboard value of `24` are the same thing.
 - `muterole` compares the role you pass against your own top role. If it errors with insufficient permissions, ask the owner or pick a lower role.
-- Slash commands ignore the prefix entirely, so a prefix change only affects text commands.
 - The staff role exemption only covers filters and suggestion spam checks. It does not grant command permissions; use the Permissions module for that.

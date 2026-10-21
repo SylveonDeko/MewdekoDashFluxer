@@ -125,7 +125,7 @@ Everything is on the **Birthdays** page under three tabs: **Configuration**, **U
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). The slash versions live under `/birthday` and `/birthday config`.
+Run these with your server's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |

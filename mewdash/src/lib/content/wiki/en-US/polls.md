@@ -97,8 +97,6 @@ Run these with your server's prefix (`.` unless you changed it).
 | `polltemplate <name>` | `ptemplate` | Manage Messages | Post a poll from a saved template |
 | `polltemplates` | `ptemplates` | Nobody | List the server's templates |
 
-Slash commands under `/poll` add `create` (up to ten options with anonymous and multiple-choice switches), `close`, `stats`, `list`, `create-template` and `delete-template`. `close`, `create-template` and `delete-template` need Manage Messages.
-
 ## Tips and gotchas
 
 - The bot needs Send Messages and Embed Links in the poll channel. The text commands also delete your command message, which needs Manage Messages for the bot.

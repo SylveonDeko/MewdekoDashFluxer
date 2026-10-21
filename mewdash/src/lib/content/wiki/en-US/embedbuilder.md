@@ -1,7 +1,7 @@
 ---
 title: Embeds
 slug: embedbuilder
-summary: Build rich Discord messages with embeds, buttons, and select menus, save them as templates, send them to a channel, and reuse the same JSON anywhere the bot accepts a custom message.
+summary: Build rich Fluxer messages with embeds, buttons, and select menus, save them as templates, send them to a channel, and reuse the same JSON anywhere the bot accepts a custom message.
 icon: fa-link
 category: Actions
 dashboard: /dashboard/embedbuilder
@@ -12,7 +12,7 @@ related: [multigreets, chat-triggers, afk, feeds, giveaways, suggestions]
 
 ## What it does
 
-The embed builder is a visual editor for Discord messages. You fill in a title, description, colour, fields, images, and optional buttons or select menus, watch a live preview, and get a block of JSON at the end. That JSON is the bot's universal message format. Paste it into `say` to post it, save it as a named template, or drop it into any feature that takes a custom message, such as greets, chat triggers, AFK replies, feed updates, or the giveaway winner DM.
+The embed builder is a visual editor for Fluxer messages. You fill in a title, description, colour, fields, images, and optional buttons or select menus, watch a live preview, and get a block of JSON at the end. That JSON is the bot's universal message format. Paste it into `say` to post it, save it as a named template, or drop it into any feature that takes a custom message, such as greets, chat triggers, AFK replies, feed updates, or the giveaway winner DM.
 
 Templates can be personal, visible only to you across every server, or shared with a server so any staff member can load them. The dashboard can also send a finished message straight to a channel, optionally through a webhook with a custom name and avatar, called a persona.
 
@@ -39,7 +39,7 @@ The parser looks for the first `{` in the text and reads up to its matching `}`.
 
 An embed object accepts `title`, `description`, `url`, `color`, `author` (`name`, `url`, `icon_url`), `footer` (`text`, `icon_url`), `thumbnail` (`url`), `image` (`url`), and `fields` (array of `name`, `value`, `inline`). `color` can be a number or a string such as `#5865F2`. Field names are cut to 256 characters and values to 1024. Any URL that is not a full absolute address is dropped rather than failing the whole message. A `timestamp` key is accepted but not shown.
 
-A component has `row` (which row it sits in), `displayName`, and either `url` for a link button or `id` for a button bound to a chat trigger. `style` is 1 to 4 for the four Discord button styles, and `emoji` is optional. Set `isSelect` to true for a select menu, then give `options` (each with `id`, `name`, `description`, `emoji`) and `minOptions` and `maxOptions` between 0 and 25. A component that breaks a rule is rendered as a disabled red button whose label is the error, so you can see what went wrong in Discord.
+A component has `row` (which row it sits in), `displayName`, and either `url` for a link button or `id` for a button bound to a chat trigger. `style` is 1 to 4 for the four Fluxer button styles, and `emoji` is optional. Set `isSelect` to true for a select menu, then give `options` (each with `id`, `name`, `description`, `emoji`) and `minOptions` and `maxOptions` between 0 and 25. A component that breaks a rule is rendered as a disabled red button whose label is the error, so you can see what went wrong in Fluxer.
 
 > [!EXAMPLE]
 > `{"content": "Welcome %user.mention%!", "embeds": [{"title": "Read the rules", "description": "See %channel.mention%", "color": "#57F287"}]}`
@@ -63,7 +63,7 @@ Some commands accept a template reference in place of raw JSON: write `{template
 
 ## The dashboard page
 
-The page is titled **Discord Embed Builder** and has six tabs, with a **Live Preview** and an **Issues** panel alongside. **Undo**, **Redo**, **Cancel edits**, and **Copy JSON** sit in the header.
+The page is titled **Fluxer Embed Builder** and has six tabs, with a **Live Preview** and an **Issues** panel alongside. **Undo**, **Redo**, **Cancel edits**, and **Copy JSON** sit in the header.
 
 | Tab | What you do there |
 | --- | --- |
@@ -89,11 +89,11 @@ The builder has no server settings. Everything is per message or per template.
 ## Setup walkthrough
 
 1. Open **Embeds** in the dashboard and pick a template or **Start from Scratch**.
-2. In **Editor**, write the content and fill in the embed. Watch the **Issues** panel for anything Discord would reject.
+2. In **Editor**, write the content and fill in the embed. Watch the **Issues** panel for anything Fluxer would reject.
 3. Add buttons or menus in **Components** if you need them, binding each to a chat trigger or a URL.
 4. Go to **Saved**, give it a name, tick **Share with everyone in (server)** if staff should use it, and press **Save**.
 5. To post it now, open **Send**, pick a channel, and press **Send Message**. To use it elsewhere, press **Copy JSON** and paste it into the other feature.
-6. In Discord, `embedpreview <name>` posts a saved template with placeholders filled in.
+6. In Fluxer, `embedpreview <name>` posts a saved template with placeholders filled in.
 
 ## Commands
 
@@ -117,5 +117,5 @@ Run these with your server's prefix (`.` unless you changed it).
 - An embed with only a title and nothing else is still sent, but the dashboard will not let you copy or send until there is a title, description, field, or content.
 - Trigger-bound buttons only work in the server whose trigger ID they reference. Loading a shared template in another server leaves those buttons broken.
 - Malformed image, thumbnail, author, and footer URLs are silently dropped. If an image is missing, check that the URL starts with `https://`.
-- Discord limits a message to ten embeds, 25 fields per embed, five component rows, and five buttons per row. The builder enforces the same numbers.
+- Fluxer limits a message to ten embeds, 25 fields per embed, five component rows, and five buttons per row. The builder enforces the same numbers.
 - Deleting a persona does not remove the webhooks it created in channels. Clean those up in the channel's integrations settings if needed.

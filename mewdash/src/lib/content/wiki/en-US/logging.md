@@ -12,7 +12,7 @@ related: [moderation, administration, filter]
 
 ## What it does
 
-Logging watches the events Discord sends the bot and posts a summary of each one to a text channel you pick. A deleted message shows who wrote it and what it said. A member joining shows their account age. A role change shows which roles were added or removed. Where the bot can read the audit log, it also names the staff member who did it.
+Logging watches the events Fluxer sends the bot and posts a summary of each one to a text channel you pick. A deleted message shows who wrote it and what it said. A member joining shows their account age. A role change shows which roles were added or removed. Where the bot can read the audit log, it also names the staff member who did it.
 
 Every event type has its own channel setting, so you can send message edits to one channel, moderation actions to another, and leave the rest switched off. Nothing is logged until you assign a channel, and an event type whose channel is empty is silently skipped.
 
@@ -113,7 +113,7 @@ The Logging page has two tabs, **Log Channels** and **Ignored Channels**.
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). Slash versions live under `/log`.
+Run these with your server's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |

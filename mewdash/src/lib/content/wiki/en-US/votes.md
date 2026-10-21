@@ -29,7 +29,7 @@ The link between top.gg and your server is the vote password. top.gg sends it in
 
 ## How a vote is processed
 
-1. top.gg posts to the bot's `/votes/` webhook endpoint with the voter's Discord ID and your password in the Authorization header.
+1. top.gg posts to the bot's `/votes/` webhook endpoint with the voter's Fluxer ID and your password in the Authorization header.
 2. The bot finds the server whose stored vote password matches. If none matches, the vote is discarded.
 3. The vote is saved with the voter's ID and the time.
 4. If a vote channel is set, the bot posts the thank-you message there. With no vote channel nothing is posted and no roles are given.
@@ -116,7 +116,7 @@ Run these with your server's prefix (`.` unless you changed it).
 | `votes [@user]` | | Nobody | Show a member's monthly and total votes |
 | `votesleaderboard [true]` | `voteslb` | Nobody | Rank voters by total, or by this month with `true` |
 
-The same commands exist as slash commands under `/votes`.
+The same commands exist as
 
 ## Tips and gotchas
 

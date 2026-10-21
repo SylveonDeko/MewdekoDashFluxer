@@ -1,7 +1,7 @@
 ---
 title: Forms
 slug: forms
-summary: Build applications, surveys, ban appeals, and join applications on the dashboard, collect answers through a shareable link, and approve or reject them from Discord or the response queue.
+summary: Build applications, surveys, ban appeals, and join applications on the dashboard, collect answers through a shareable link, and approve or reject them from Fluxer or the response queue.
 icon: fa-clipboard
 category: Community
 dashboard: /dashboard/forms
@@ -12,9 +12,9 @@ related: [administration, moderation, rolestates]
 
 ## What it does
 
-Staff build a form on the dashboard: a name, a set of questions, and rules about who may answer and what happens afterwards. Publishing it produces a permanent share link. A member opens the link, signs in with Discord, fills in the questions page by page, reviews their answers, and submits. Their progress is saved as a draft while they type, so they can come back later.
+Staff build a form on the dashboard: a name, a set of questions, and rules about who may answer and what happens afterwards. Publishing it produces a permanent share link. A member opens the link, signs in with Fluxer, fills in the questions page by page, reviews their answers, and submits. Their progress is saved as a draft while they type, so they can come back later.
 
-Each submission is posted as an embed in the channel you choose, with **Approve** and **Reject** buttons if the form needs a decision. Reviewers press a button in Discord or use the **Responses** tab on the dashboard. The submitter gets a DM with the decision and any notes, and can follow it on a status page at any time.
+Each submission is posted as an embed in the channel you choose, with **Approve** and **Reject** buttons if the form needs a decision. Reviewers press a button in Fluxer or use the **Responses** tab on the dashboard. The submitter gets a DM with the decision and any notes, and can follow it on a status page at any time.
 
 Forms come in three types. A regular form is for members. A ban appeal form is for people currently banned, and approving it unbans them. A join application is for people outside the server, and approving it sends them a single-use invite with roles waiting for them when they join.
 
@@ -76,7 +76,7 @@ Text comparisons ignore case. Greater than and less than compare numbers.
 
 ## Who can submit
 
-The form turns people away, with a reason, in this order: it is still a draft, it is not accepting responses, it has not reached **Opens at**, it has passed **Closes at**, the account is younger than **Minimum Discord account age**, the **Total responses accepted** cap is full, the person already answered and multiple answers are off, they lack the **Role required to submit**, and finally the type rule above.
+The form turns people away, with a reason, in this order: it is still a draft, it is not accepting responses, it has not reached **Opens at**, it has passed **Closes at**, the account is younger than **Minimum Fluxer account age**, the **Total responses accepted** cap is full, the person already answered and multiple answers are off, they lack the **Role required to submit**, and finally the type rule above.
 
 **Let rejected people try again** means a rejected response no longer counts as "already answered". If **Require a captcha** is on, a Cloudflare Turnstile check appears at the review step.
 
@@ -84,7 +84,7 @@ Ban appeals add their own limits under **Appeal limits**: a wait after the ban (
 
 ## Filling in a form
 
-The public page requires a Discord login. Answers are saved as a draft about a second and a half after the last keystroke and when moving to the next page. Coming back within 30 days restores the draft with a "We brought back what you had already written" banner and a **Start over** button.
+The public page requires a Fluxer login. Answers are saved as a draft about a second and a half after the last keystroke and when moving to the next page. Coming back within 30 days restores the draft with a "We brought back what you had already written" banner and a **Start over** button.
 
 A progress bar shows answered questions. The last page ends with **Review & Continue**, which lists every answer with an **Edit** link, then **Confirm & Submit**. Afterwards the page shows your **Message after submitting** (or a default per type) and a **Check Your Status** link. The status page also links to **My submissions** at `/forms/submissions`, which lists every non-anonymous response the signed-in user has made across servers.
 
@@ -94,7 +94,7 @@ Submitters can edit their answers from the status page while the response is sti
 
 1. Roles in **Roles given on submitting** and the **Role while awaiting review** are granted.
 2. If **Where answers are posted** is set, an embed is posted there showing the user (or "Anonymous (login required)"), the time, and up to 20 answers, pinging **Ping when a response arrives**. Approve and Reject buttons are attached when the form is reviewed.
-3. If **Send to a webhook** is set, the same embed is posted to that webhook, without the buttons. When the response is later approved or rejected, a second message with the outcome, reviewer and reason goes to the webhook too. The URL must be a Discord webhook; anything else is ignored with a warning in the bot's log, and a webhook that fails never blocks the submission.
+3. If **Send to a webhook** is set, the same embed is posted to that webhook, without the buttons. When the response is later approved or rejected, a second message with the outcome, reviewer and reason goes to the webhook too. The URL must be a Fluxer webhook; anything else is ignored with a warning in the bot's log, and a webhook that fails never blocks the submission.
 4. The response appears in the **Responses** tab with status Pending Review.
 
 Anonymous forms store no user ID, so they cannot change roles and their responses cannot be edited.
@@ -103,7 +103,7 @@ Anonymous forms store no user ID, so they cannot change roles and their response
 
 Responses move from Pending Review to Approved or Rejected. **Who may approve or reject** names a role; anyone with Manage Server or Administrator can always decide. If no reviewer role is set, holders of the approval roles can also decide.
 
-In Discord, **Approve** decides immediately. **Reject** opens a modal asking for a reason, which is required because it is sent to the submitter. Either way the embed is recoloured, gains an **Approved** or **Rejected** field with the reviewer and time, the reason if any, and loses its buttons. On the dashboard, the same decision is made from the queue with a **Notes for the submitter** box.
+In Fluxer, **Approve** decides immediately. **Reject** opens a modal asking for a reason, which is required because it is sent to the submitter. Either way the embed is recoloured, gains an **Approved** or **Rejected** field with the reviewer and time, the reason if any, and loses its buttons. On the dashboard, the same decision is made from the queue with a **Notes for the submitter** box.
 
 On a decision the bot:
 
@@ -124,13 +124,13 @@ The **Forms** page has **Forms**, **Create**, and **Settings** tabs, plus **Edit
 | Setting | Default | What it controls |
 | --- | --- | --- |
 | Name | empty, required | Title of the form, up to 255 characters |
-| Description | empty | Shown under the title and in Discord link previews |
+| Description | empty | Shown under the title and in Fluxer link previews |
 | Where answers are posted | none | Channel for the submission embed; empty keeps answers on the dashboard only |
 | Message after submitting | none | Text on the confirmation page and in the approval DM |
 | Draft | on for new forms | Drafts cannot be submitted to |
 | Accepting responses | on | Turn off to close without deleting |
 | Role required to submit | Anyone in the server | Gate by role |
-| Minimum Discord account age | No limit | Days |
+| Minimum Fluxer account age | No limit | Days |
 | Allow people outside the server | off | Regular forms only |
 | Submit anonymously | off | Records no submitter |
 | Opens at, Closes at | none | Window; a launch announcement needs an opening time |
@@ -142,7 +142,7 @@ The **Forms** page has **Forms**, **Create**, and **Settings** tabs, plus **Edit
 | Ping when a response arrives | none | Role mentioned with each submission |
 | Roles given on submitting | none | Granted straight away |
 | Role while awaiting review | none | Removed on decision |
-| Send to a webhook | none | Discord webhook URL that also receives each submission embed and each approve or reject decision |
+| Send to a webhook | none | Fluxer webhook URL that also receives each submission embed and each approve or reject decision |
 | Answers need approving | off | Adds review to a regular form |
 | Who may approve or reject | Manage Server only | Reviewer role |
 | Approve button emote, Reject button emote | server default | |
@@ -165,7 +165,7 @@ Settings that do not apply to the form's type are dropped on save.
 
 ## Commands
 
-Forms have no text or slash commands. The only Discord interaction is the **Approve** and **Reject** buttons on each submission embed.
+Forms have no text or slash commands. The only Fluxer interaction is the **Approve** and **Reject** buttons on each submission embed.
 
 ## Tips and gotchas
 

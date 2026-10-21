@@ -1,7 +1,7 @@
 ---
 title: Patreon
 slug: patreon
-summary: Connect a Patreon campaign, give supporters Discord roles that match their tier, and post a monthly thank you with live supporter and revenue numbers.
+summary: Connect a Patreon campaign, give supporters Fluxer roles that match their tier, and post a monthly thank you with live supporter and revenue numbers.
 icon: fa-heart
 category: Community
 dashboard: /dashboard/patreon
@@ -12,7 +12,7 @@ related: [administration, utility]
 
 ## What it does
 
-A server owner who runs a Patreon campaign links it to the bot by signing in with their creator account. From then on the bot pulls the campaign's tiers and supporters, keeps them in sync, and can hand out Discord roles based on how much each supporter pledges. When a supporter's Discord account is known to Patreon, the link is automatic; otherwise staff can link a member to a Patreon user by hand.
+A server owner who runs a Patreon campaign links it to the bot by signing in with their creator account. From then on the bot pulls the campaign's tiers and supporters, keeps them in sync, and can hand out Fluxer roles based on how much each supporter pledges. When a supporter's Fluxer account is known to Patreon, the link is automatic; otherwise staff can link a member to a Patreon user by hand.
 
 Once a month, on a day you choose, the bot can post an announcement in a channel thanking supporters. The message can be plain text or an embed and can include live figures such as the active supporter count, monthly revenue and how many people joined this month. There is also a recognition command that posts a shout out for anyone who became a supporter in the last week.
 
@@ -23,7 +23,7 @@ The dashboard handles the whole flow: connecting, viewing supporters and tiers, 
 - Supporters should get a coloured role and access to patron only channels without staff checking Patreon by hand.
 - Tiers change roles automatically when someone upgrades, downgrades or stops pledging.
 - You want a recurring "thank you to our 40 supporters" post that stays accurate without editing numbers.
-- Staff want a quick view of who supports and at what level from inside Discord.
+- Staff want a quick view of who supports and at what level from inside Fluxer.
 
 ## Connecting a campaign
 
@@ -38,19 +38,19 @@ The dashboard's **Overview** tab shows the connection status with the **Campaign
 
 ## Supporters and syncing
 
-A sync fetches every member of the campaign with their pledge amount, status and, where the supporter has connected Discord to Patreon, their Discord user ID. Active supporters are those Patreon reports as active or with a current pledge. The **Supporters** tab lists them with **Name** (and email where Patreon provides one), **Pledge**, **Joined** and **Status**, and the **Sync Supporters** button at the top of the page refreshes the list.
+A sync fetches every member of the campaign with their pledge amount, status and, where the supporter has connected Fluxer to Patreon, their Fluxer user ID. Active supporters are those Patreon reports as active or with a current pledge. The **Supporters** tab lists them with **Name** (and email where Patreon provides one), **Pledge**, **Joined** and **Status**, and the **Sync Supporters** button at the top of the page refreshes the list.
 
-`patreonsupporters` shows up to 15 active supporters in chat with their pledge and Discord mention, `patreontop [count]` ranks the top 1 to 20 by pledge, `patreonstats` summarises supporter count, linked count, total and average revenue and tier count, and `patreonanalytics` adds former supporters, lifetime revenue, new supporters this month and tier distribution.
+`patreonsupporters` shows up to 15 active supporters in chat with their pledge and Fluxer mention, `patreontop [count]` ranks the top 1 to 20 by pledge, `patreonstats` summarises supporter count, linked count, total and average revenue and tier count, and `patreonanalytics` adds former supporters, lifetime revenue, new supporters this month and tier distribution.
 
-If a supporter's Discord account is not attached on Patreon's side, use `patreonlink @member <patreonUserId>` to link them manually. The Patreon user ID is the numeric ID of the supporter's Patreon account; the dashboard's supporter list does not display it.
+If a supporter's Fluxer account is not attached on Patreon's side, use `patreonlink @member <patreonUserId>` to link them manually. The Patreon user ID is the numeric ID of the supporter's Patreon account; the dashboard's supporter list does not display it.
 
 ## Tier to role mapping
 
-Each Patreon tier can be mapped to one Discord role. On the **Tier Mapping** tab, pick a **Patreon Tier** and a **Discord Role** and save. The **Available Tiers** list shows every published tier with its price and whether it is mapped. In chat, `patreontiermap <tierId> @role` does the same; get tier IDs from `patreonroles`.
+Each Patreon tier can be mapped to one Fluxer role. On the **Tier Mapping** tab, pick a **Patreon Tier** and a **Fluxer Role** and save. The **Available Tiers** list shows every published tier with its price and whether it is mapped. In chat, `patreontiermap <tierId> @role` does the same; get tier IDs from `patreonroles`.
 
 Role sync is off until you turn it on with `patreonrolesync` or the **Enable Role Sync** checkbox. When on, the bot works out which role a supporter should have: the highest priced mapped tier whose amount is at or below their pledge. Any other mapped Patreon roles they hold are removed, and the target role is added. A supporter who stops pledging loses all mapped roles.
 
-Sync happens when a member is linked and when you run `patreonsyncall` or the dashboard's sync roles action. Only supporters with a known Discord ID can be synced.
+Sync happens when a member is linked and when you run `patreonsyncall` or the dashboard's sync roles action. Only supporters with a known Fluxer ID can be synced.
 
 > [!PERMISSION]
 > The bot needs Manage Roles and its own role must sit above every mapped role. Roles above the bot are skipped.
@@ -76,7 +76,7 @@ These work in the announcement message alongside the usual server and channel pl
 | `%supporter.total%` | All supporters ever recorded |
 | `%supporter.new%` | New supporters this month |
 | `%supporter.former%` | Former supporters |
-| `%supporter.linked%` | Supporters with a linked Discord account |
+| `%supporter.linked%` | Supporters with a linked Fluxer account |
 | `%revenue.monthly%` | Current monthly pledges |
 | `%revenue.average%` | Average pledge |
 | `%revenue.lifetime%` | Lifetime revenue |
@@ -150,7 +150,7 @@ Run these with your server's prefix (`.` unless you changed it).
 
 ## Tips and gotchas
 
-- Only supporters who connected Discord in their Patreon profile, or were linked with `patreonlink`, can receive roles.
+- Only supporters who connected Fluxer in their Patreon profile, or were linked with `patreonlink`, can receive roles.
 - Role sync picks one role per supporter, the best tier their pledge covers. Stacking multiple tier roles is not supported.
 - Announcements post at most once per calendar month. Running `patreonannounce` on the 3rd means the scheduled post on the 15th is skipped that month.
 - The announcement day is in UTC.

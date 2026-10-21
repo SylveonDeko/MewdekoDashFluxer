@@ -84,7 +84,7 @@ The Role Greets page has an **Add New Role Greet** form at the top and a card fo
 6. Use the toggle on the card to pause a greet, or the delete button to remove it.
 
 > [!TIP]
-> In Discord, `rolegreetmessage 1` with no text shows the current message and offers a **Preview** button that renders it with your own details.
+> In Fluxer, `rolegreetmessage 1` with no text shows the current message and offers a **Preview** button that renders it with your own details.
 
 ## Commands
 
@@ -100,8 +100,6 @@ Run these with your server's prefix (`.` unless you changed it). Greets are numb
 | `rolegreetdisable <id> <true/false>` | `rgdisable`, `rgdis` | Administrator | Disable or re-enable a greet |
 | `rolegreetgreetbots <id> <true/false>` | `rolegreetbots`, `rggb` | Administrator | Whether bots trigger the greet |
 | `rolegreetwebhook <id> [name] [avatar url]` | `rgwebhook`, `rghook`, `rgh` | Administrator | Create a webhook in the greet channel with that name and avatar, or clear it with no name |
-
-Slash commands live under `/rolegreets` with the same actions: `add`, `remove`, `removerole`, `message`, `delete`, `disable`, `greetbots`, `webhook` and `list`.
 
 ## Tips and gotchas
 

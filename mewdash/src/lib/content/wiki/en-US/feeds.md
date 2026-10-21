@@ -60,7 +60,7 @@ These placeholders are replaced in the custom message, on top of the general ser
 | `%feedurl%` | The feed's own URL |
 | `%image_url%` | The item's image if the feed supplies one, otherwise the feed's image |
 | `%categories%` | The item's categories, comma separated |
-| `%timestamp%` | The publish date as a Discord timestamp |
+| `%timestamp%` | The publish date as a Fluxer timestamp |
 
 > [!EXAMPLE]
 > `feedmessage 1 New post: **%title%** by %author%
@@ -86,7 +86,7 @@ The channel and URL of an existing feed cannot be changed. Remove the feed and a
 2. Pick the **Channel** the updates should go to.
 3. Paste the feed address into **RSS Feed URL** and press **Add RSS Feed**. It must be a full `http` or `https` address to an RSS or Atom document, not the site's home page.
 4. Back on **RSS Feeds**, press **Add Custom Message** if you want your own wording, then **Save**.
-5. Run `feedtest 1` in Discord to post the newest item and check the result. The number is the feed's position in `feedlist`.
+5. Run `feedtest 1` in Fluxer to post the newest item and check the result. The number is the feed's position in `feedlist`.
 
 ## Commands
 

@@ -1,7 +1,7 @@
 ---
 title: Status Roles
 slug: statusroles
-summary: Give or take away roles automatically when a member's Discord custom status contains a piece of text, and optionally announce it in a channel.
+summary: Give or take away roles automatically when a member's Fluxer custom status contains a piece of text, and optionally announce it in a channel.
 icon: fa-user-circle
 category: Actions
 dashboard: /dashboard/statusroles
@@ -16,7 +16,7 @@ Staff add one or more pieces of text to watch for, such as `discord.gg/yourserve
 
 When the text disappears from their status again, two toggles decide what happens. **Remove Added** takes back the roles that were given. **Readd Removed** gives back the roles that were taken. Both are off by default, so with no changes the member simply keeps whatever roles they ended up with.
 
-Only the custom status is checked, the text you type under "Set a custom status" in Discord. Game, Spotify and streaming activities are ignored. Members who are offline or invisible are skipped, and the match is a plain substring check, so `mewdeko` matches `I love mewdeko` but is case sensitive.
+Only the custom status is checked, the text you type under "Set a custom status" in Fluxer. Game, Spotify and streaming activities are ignored. Members who are offline or invisible are skipped, and the match is a plain substring check, so `mewdeko` matches `I love mewdeko` but is case sensitive.
 
 Each server can hold any number of status role entries, each with its own roles, channel and message. Commands refer to an entry by its index, the number shown by `liststatusroles`.
 
@@ -92,7 +92,7 @@ The **Statistics** tab shows the total number of entries, how many change roles,
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). Every command needs Manage Server. The `<index>` is the number shown by `liststatusroles`, starting at 1. Slash versions are under `/statusroles`.
+Run these with your server's prefix (`.` unless you changed it). Every command needs Manage Server. The `<index>` is the number shown by `liststatusroles`, starting at 1.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -115,7 +115,7 @@ Run these with your server's prefix (`.` unless you changed it). Every command n
 - The bot needs Manage Roles, and its highest role must sit above every role it adds or removes. Failures are only logged, the member sees nothing.
 - The bot must have the presence intent to see custom statuses at all. If nothing happens when you change your status, this is the first thing to check.
 - Matching is case sensitive and looks anywhere in the status text. Keep the watched text short and distinctive.
-- The bot only looks at the first activity in a member's presence. Discord normally lists the custom status first, but if another activity is reported ahead of it the status is not seen.
+- The bot only looks at the first activity in a member's presence. Fluxer normally lists the custom status first, but if another activity is reported ahead of it the status is not seen.
 - Roles are only changed on a status change. A member who already has the text in their status when you create the entry is not processed until their status changes.
 - The notification is sent each time the status starts matching, so a member who toggles their status repeatedly will trigger repeated messages.
-- The dashboard takes role IDs, not names. Enable Developer Mode in Discord and right-click a role to copy its ID.
+- The dashboard takes role IDs, not names. Enable Developer Mode in Fluxer and right-click a role to copy its ID.

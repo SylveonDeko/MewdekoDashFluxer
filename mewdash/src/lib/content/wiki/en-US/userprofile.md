@@ -35,7 +35,7 @@ Pronouns are a little special. If a member has not set any with the bot, the bot
 | --- | --- |
 | Title | "Profile for" the user |
 | Colour | `setprofilecolor`, otherwise the bot's default colour |
-| Thumbnail | The member's Discord avatar |
+| Thumbnail | The member's Fluxer avatar |
 | Description | The bio from `setbio` (only shown if set) |
 | Pronouns | Your override, otherwise PronounDB, otherwise "Unspecified" |
 | Zodiac Sign | `setzodiac`, otherwise "Unspecified" |
@@ -83,7 +83,7 @@ Pronouns are a little special. If a member has not set any with the bot, the bot
 `pronouns [@user]` shows pronouns for you or someone else. Lookup order:
 
 1. Text the member set with `setpronouns`.
-2. The member's English pronoun set on PronounDB, if they linked their Discord account there. Standard sets are shown in the usual form, for example `he/him`, `Any pronouns`, or `Ask me my pronouns`.
+2. The member's English pronoun set on PronounDB, if they linked their Fluxer account there. Standard sets are shown in the usual form, for example `he/him`, `Any pronouns`, or `Ask me my pronouns`.
 3. "Unspecified".
 
 `setpronouns <text>` stores an override. Run it with no text to see your current override with two buttons: **Overwrite** opens a form to type new pronouns, and **Clear** removes the override so PronounDB is used again.
@@ -124,7 +124,7 @@ The same page also has a toggle that disables pronoun fetching for your account.
 ## Setup walkthrough
 
 1. Run `setbio Hi, I run the art channel.` to add a description.
-2. Run `setpronouns she/her`, or skip this if your PronounDB account is already linked to Discord.
+2. Run `setpronouns she/her`, or skip this if your PronounDB account is already linked to Fluxer.
 3. Run `setbirthday 1998-04-12` and then `setbirthdayprivacy MonthAndDate` if you do not want the year shown.
 4. Run `setprofilecolor #ff66aa` and `setprofileimage https://example.com/banner.png` to style the embed.
 5. Add `setswitchfc SW-1234-5678-9012` if you want people to find you on Switch.
@@ -132,7 +132,7 @@ The same page also has a toggle that disables pronoun fetching for your account.
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). Slash versions exist for most of them under names such as `/profile`, `/setbio`, `/setcolor`, `/setbirthday`, `/setbirthdayprivacy`, `/setswitchfriendcode`, `/setprofileimage`, `/setprivacy`, `/setzodiac`, `/pronouns`, `/setpronouns`, `/statsoptout` and `/deletestatsdata`.
+Run these with your server's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -156,7 +156,7 @@ Run these with your server's prefix (`.` unless you changed it). Slash versions 
 
 - The profile is global. Changing it in one server changes it everywhere.
 - `setbirthday` reads the date with the bot's date parser, so an unambiguous format like `1998-04-12` is safest.
-- If the profile image URL stops working, the embed still sends but Discord shows no image. Set a new URL to fix it.
-- PronounDB lookups need the member to have linked their Discord account on pronoundb.org. Without that, the profile says "Unspecified" until they run `setpronouns`.
+- If the profile image URL stops working, the embed still sends but Fluxer shows no image. Set a new URL to fix it.
+- PronounDB lookups need the member to have linked their Fluxer account on pronoundb.org. Without that, the profile says "Unspecified" until they run `setpronouns`.
 - Private profiles still respond to `profile @user`, but with an error saying the profile is private, so people can tell one exists.
 - `deleteuserstatsdata` only removes command statistics. Profile fields are cleared by overwriting them.

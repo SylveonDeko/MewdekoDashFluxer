@@ -5,7 +5,7 @@
   "emoji_done_with_count": "Done ({count} selected)",
   "emoji_error_duplicate": "This emoji is already selected",
   "emoji_error_empty": "Please enter an emoji",
-  "emoji_error_format": "Invalid emoji format. Use Discord format: <:name:id> or <a:name:id>",
+  "emoji_error_format": "Invalid emoji format. Use Fluxer format: <:name:id> or <a:name:id>",
   "emoji_fallback_alt": "emoji",
   "emoji_none_available": "No emojis available",
   "emoji_none_found": "No matching emojis found",

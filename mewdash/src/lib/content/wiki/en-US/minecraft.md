@@ -1,7 +1,7 @@
 ---
 title: Minecraft
 slug: minecraft
-summary: Register your Minecraft servers, post live status embeds that update themselves, get online and offline alerts, run RCON commands, and bridge in-game chat, joins, deaths and advancements to Discord with the companion plugin.
+summary: Register your Minecraft servers, post live status embeds that update themselves, get online and offline alerts, run RCON commands, and bridge in-game chat, joins, deaths and advancements to Fluxer with the companion plugin.
 icon: fa-server
 category: Entertainment
 dashboard: /dashboard/minecraft
@@ -14,16 +14,16 @@ related: [statchannels, logging, utility]
 
 Staff register one or more Minecraft servers by name and address. Any member can then run `mcstatus` to see whether the server is up, its MOTD, version, latency and who is online. A server can also be watched: the bot posts a status embed in a channel and edits it on a timer, or writes the player count into the channel topic, and announces when the server goes down or comes back.
 
-If the server has RCON enabled, staff can send console commands and manage the whitelist from Discord or the dashboard console without joining the game.
+If the server has RCON enabled, staff can send console commands and manage the whitelist from Fluxer or the dashboard console without joining the game.
 
-The optional companion plugin turns the link into a two-way bridge. Player chat, joins, leaves, deaths and advancements are posted to Discord channels you choose, and messages typed in the bridge channel are broadcast to players in game.
+The optional companion plugin turns the link into a two-way bridge. Player chat, joins, leaves, deaths and advancements are posted to Fluxer channels you choose, and messages typed in the bridge channel are broadcast to players in game.
 
 ## Why you would use it
 
 - Show a live "who is online" embed so members know when it is worth logging in.
 - Alert the community the moment the server crashes or comes back after maintenance.
-- Whitelist new members from Discord without opening the server console.
-- Keep Discord-only members in the loop with in-game chat, deaths and advancements.
+- Whitelist new members from Fluxer without opening the server console.
+- Keep Fluxer-only members in the loop with in-game chat, deaths and advancements.
 - Look up a player's UUID or skin render while handling an application or report.
 
 ## Server types
@@ -96,20 +96,20 @@ Once connected, the plugin streams events over a WebSocket and the bot routes th
 | Advancement | **Advancements** channel | Green embed with the advancement name |
 | Server status | Nowhere; stored as a history snapshot with TPS and memory | |
 
-Any event channel left empty falls back to the **Watch Channel**. Messages sent by non-bot users in the Chat Bridge channel (or the watch channel if none is set) are forwarded to the game as `[Discord] user: message` by default. The plugin's own config can turn each event category off, and console streaming is off by default and not displayed by the bot.
+Any event channel left empty falls back to the **Watch Channel**. Messages sent by non-bot users in the Chat Bridge channel (or the watch channel if none is set) are forwarded to the game as `[Fluxer] user: message` by default. The plugin's own config can turn each event category off, and console streaming is off by default and not displayed by the bot.
 
 ### Bridge event templates
 
-Each Discord-bound event can have its own template under **Bridge Event Templates**. They accept embed builder output, mentions are neutralised, and these placeholders are replaced.
+Each Fluxer-bound event can have its own template under **Bridge Event Templates**. They accept embed builder output, mentions are neutralised, and these placeholders are replaced.
 
 | Template | Placeholders |
 | --- | --- |
-| Player Join (Discord) | `%mc.player%`, `%mc.uuid%`, `%mc.avatar%` |
-| Player Leave (Discord) | `%mc.player%`, `%mc.uuid%`, `%mc.avatar%` |
-| Chat Message (Discord) | `%mc.player%`, `%mc.message%`, `%mc.avatar%` |
-| Death Message (Discord) | `%mc.player%`, `%mc.death.message%`, `%mc.avatar%` |
-| Advancement (Discord) | `%mc.player%`, `%mc.advancement%`, `%mc.avatar%` |
-| Chat from Discord (In-game format) | `%user%`, `%message%`, `%channel%`; use Minecraft section sign colour codes |
+| Player Join (Fluxer) | `%mc.player%`, `%mc.uuid%`, `%mc.avatar%` |
+| Player Leave (Fluxer) | `%mc.player%`, `%mc.uuid%`, `%mc.avatar%` |
+| Chat Message (Fluxer) | `%mc.player%`, `%mc.message%`, `%mc.avatar%` |
+| Death Message (Fluxer) | `%mc.player%`, `%mc.death.message%`, `%mc.avatar%` |
+| Advancement (Fluxer) | `%mc.player%`, `%mc.advancement%`, `%mc.avatar%` |
+| Chat from Fluxer (In-game format) | `%user%`, `%message%`, `%channel%`; use Minecraft section sign colour codes |
 
 ## Settings
 
@@ -144,7 +144,7 @@ The Minecraft page has a **Servers** tab, an **Add Server** tab, **History**, **
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). Slash versions live under `/minecraft`.
+Run these with your server's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -163,9 +163,9 @@ Run these with your server's prefix (`.` unless you changed it). Slash versions 
 
 ## Tips and gotchas
 
-- `mcstatus` is rate limited to ten queries per minute per Discord server, shared by every member.
+- `mcstatus` is rate limited to ten queries per minute per Fluxer server, shared by every member.
 - Direct address lookups with `mcstatus play.example.com:25565` work without registering, but private and local addresses are blocked.
-- The bot needs **Manage Channels** in the watch channel for Channel Topic mode, and Discord itself limits topic edits, so topic mode never updates more often than every five minutes.
+- The bot needs **Manage Channels** in the watch channel for Channel Topic mode, and Fluxer itself limits topic edits, so topic mode never updates more often than every five minutes.
 - Extended details such as map, game mode and plugins only appear when `enable-query=true` is set in `server.properties` and the **Query Port** matches.
 - If the watch embed is deleted, the next tick posts a fresh one rather than failing.
-- Bridge messages neutralise `@everyone`, `@here` and user mentions, so players cannot ping Discord from in game.
+- Bridge messages neutralise `@everyone`, `@here` and user mentions, so players cannot ping Fluxer from in game.

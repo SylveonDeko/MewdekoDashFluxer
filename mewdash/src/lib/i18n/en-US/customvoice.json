@@ -46,7 +46,7 @@
   "prefs_name": "Default channel name",
   "prefs_text": "Look up a member to view or change the defaults applied when they create a channel.",
   "prefs_title": "User Preferences",
-  "prefs_user_id_placeholder": "Discord user ID",
+  "prefs_user_id_placeholder": "Fluxer user ID",
   "stat_active": "Active last hour",
   "stat_kept_alive": "Kept alive",
   "stat_total": "Total created",

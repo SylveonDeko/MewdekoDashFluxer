@@ -110,12 +110,12 @@ These work inside custom level-up messages, alongside the general user and serve
 | `%xp.guild.membercount%` | Approximate member count |
 | `%xp.guild.icon%`, `%xp.guild.banner%` | Server icon and banner URLs |
 | `%xp.time%`, `%xp.time.full%`, `%xp.date%` | Current UTC time, time with date, and date |
-| `%xp.timestamp%`, `%xp.timestamp.relative%` | Discord timestamp tags for now |
+| `%xp.timestamp%`, `%xp.timestamp.relative%` | Fluxer timestamp tags for now |
 
 > [!EXAMPLE]
 > `addlevelupmessage %xp.user.mention% just hit level %xp.level.new% and is now %xp.rank.ordinal% on the leaderboard.`
 
-Run `levelupplaceholders` in Discord for the same list.
+Run `levelupplaceholders` in Fluxer for the same list.
 
 ## Role rewards
 
@@ -188,7 +188,7 @@ These fields also exist in the `GuildXpSetting` record but are set by command on
 2. On **Settings**, leave the message and voice values at their defaults to start, pick a curve, then **Save Changes**.
 3. On **Exclusions**, exclude bot command channels and any muted or bot roles.
 4. On **Rewards**, add a role reward for a few milestone levels. Make sure the bot's role sits above those roles.
-5. In Discord, run `levelupchannel #level-ups` and add one or two `addlevelupmessage` templates. Test with `testlevelupmessage`.
+5. In Fluxer, run `levelupchannel #level-ups` and add one or two `addlevelupmessage` templates. Test with `testlevelupmessage`.
 6. Open **Template**, upload a background and lay out the card. Run `rank` to see the result.
 
 ## Commands
@@ -243,8 +243,6 @@ Run these with your server's prefix (`.` unless you changed it).
 | `togglelevelupmessage <id> <true\|false>` | `togglelvlupmsg` | Manage Server | Enable or disable one message |
 | `testlevelupmessage [template]` | `testlvlupmsg` | Manage Server | Preview a template, or a random saved one |
 | `levelupplaceholders` | `lvlupplaceholders` | Manage Server | List the placeholders above |
-
-Slash equivalents live under `/xp`, with the staff commands grouped as `/xp admin` (add, set, reset, exclude, include, role syncs), `/xp config` (rates, multipliers, curve, exclusive), `/xp rewards`, `/xp boost`, `/xp competition` and `/xp levelup`. `/xp admin reset` with no user resets XP for the whole server; it needs Administrator and `confirm: true`.
 
 ## Tips and gotchas
 

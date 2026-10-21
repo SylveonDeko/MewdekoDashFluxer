@@ -63,7 +63,7 @@
   "setting_track_voice": "Track voice time",
   "setting_track_voice_hint": "Seconds spent in voice channels, per member and channel",
   "setting_verify": "Verify activities",
-  "setting_verify_hint": "Only count activities backed by a Discord application, Spotify or a stream, which blocks spoofed presences",
+  "setting_verify_hint": "Only count activities backed by a game application, Spotify or a stream, which blocks spoofed presences",
   "setting_window": "Default window (days)",
   "setting_window_hint": "What stats commands and this page use when no window is picked, 1 to 90",
   "settings_subtitle": "What is recorded, for whom, and where",

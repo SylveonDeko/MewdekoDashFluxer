@@ -15,14 +15,14 @@ Analytics is the history page for whoever runs the bot. It is only visible to bo
 
 Where [Performance](/wiki/performance) shows the live process and forgets on restart, Analytics reads what the bot has written to its own database. Every running instance records commands, gateway events, shard latency, REST calls, database timings, process gauges, exceptions, feature use, AI and music activity, and dashboard page views. Numbers are aggregated in memory per minute, flushed every minute, folded into 5 minute and hourly buckets, and pruned on a fixed schedule, so you can look at last week, compare it with the week before, and filter by instance, shard or guild.
 
-A weekly digest can be posted to a Discord webhook, and alert rules on any stored metric notify a webhook when a threshold is crossed.
+A weekly digest can be posted to a Fluxer webhook, and alert rules on any stored metric notify a webhook when a threshold is crossed.
 
 ## Why you would use it
 
 - You want to know whether an error spike started before or after a deploy, not just what is failing right now.
 - A guild reports the bot being slow and you want its command latency, activity and security events for a date range.
 - You want to see which features servers actually configure and use, and how that changed over months.
-- You need a Discord ping when shard latency, error rate or REST 429s go past a limit, without watching a page.
+- You need a Fluxer ping when shard latency, error rate or REST 429s go past a limit, without watching a page.
 - You want a Monday summary of growth, commands, errors and top features in a channel.
 
 ## Tabs
@@ -82,7 +82,7 @@ Each rule watches one metric. The editor fields are:
 | Cooldown | Minimum gap between firing notifications |
 | Repeat | Re-notify while still firing, or once |
 | Min samples | Skip evaluation when the window holds fewer samples than this |
-| Webhook URL, Mention role id, Thread id | A Discord webhook, an optional role pinged on firing, an optional thread to post into |
+| Webhook URL, Mention role id, Thread id | A Fluxer webhook, an optional role pinged on firing, an optional thread to post into |
 | Quiet from, Quiet to | A UTC window, which may wrap midnight, in which nothing is sent |
 | notify on resolve | Also post when the group returns to normal |
 
@@ -98,7 +98,7 @@ Set these in `bot.yml` or with the owner `config` command. All default to on, 30
 | --- | --- |
 | `analyticsEnabled` | `false` makes the collector a no-op; the Pipeline tab shows `disabled` |
 | `analyticsRetentionDays` | Days raw command rows, page views and the guild event log are kept |
-| `analyticsDigestWebhook` | Discord webhook the weekly digest is posted to; empty disables the digest |
+| `analyticsDigestWebhook` | Fluxer webhook the weekly digest is posted to; empty disables the digest |
 
 ### What is kept and for how long
 
@@ -150,5 +150,5 @@ The Analytics page is dashboard only; there is no matching bot module. The owner
 - The digest goes out on Mondays at or after 09:00 UTC and covers the previous seven days against the seven before: guilds, commands, errors, events, new and lost guilds, page views, AI tokens, music tracks, plus the top five commands, errors and features.
 - Series over a long range come from hourly buckets, so percentiles smooth out; narrow the range to see minute detail, which only exists for the last 48 hours.
 - If the collector's in-memory buffer fills before a flush, extra raw command rows are dropped for that interval while the aggregates keep counting; a growing **Pending rows** figure on Pipeline is the sign.
-- Alert rules need a Discord webhook URL; anything else is rejected on save.
+- Alert rules need a Fluxer webhook URL; anything else is rejected on save.
 - Estimated AI cost only covers models with a known list price, so the total is a floor.

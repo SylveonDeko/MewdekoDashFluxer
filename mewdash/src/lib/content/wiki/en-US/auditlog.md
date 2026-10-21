@@ -11,9 +11,9 @@ related: [logging, administration, channel-access]
 
 ## What it does
 
-Every request the dashboard sends to the bot for your server is recorded against the Discord account that was logged in. The Audit Log page turns that into a timeline: who opened the XP settings, who edited the welcome message, who deleted a chat trigger, and what the values were before and after.
+Every request the dashboard sends to the bot for your server is recorded against the Fluxer account that was logged in. The Audit Log page turns that into a timeline: who opened the XP settings, who edited the welcome message, who deleted a chat trigger, and what the values were before and after.
 
-It is separate from Discord's own audit log and from the Logging feature. Discord's log covers actions taken inside Discord. Mewdeko's Logging feature posts server events such as joins, edits and role changes into channels you choose. The dashboard Audit Log covers only the dashboard.
+It is separate from Fluxer's own audit log and from the Logging feature. Fluxer's log covers actions taken inside Fluxer. Mewdeko's Logging feature posts server events such as joins, edits and role changes into channels you choose. The dashboard Audit Log covers only the dashboard.
 
 Nothing needs enabling. Entries are written from the moment someone logs into the dashboard and opens your server, and they age out after ninety days.
 
@@ -29,7 +29,7 @@ Nothing needs enabling. Entries are written from the moment someone logs into th
 Each entry carries:
 
 - **When**: the time of the request, stored in UTC and shown in your own timezone on the page.
-- **User**: the Discord username and ID taken from the dashboard login, not from anything the user typed.
+- **User**: the Fluxer username and ID taken from the dashboard login, not from anything the user typed.
 - **Action**: one of the actions in the table below.
 - **Section**: the dashboard area, shown with a friendly name such as "AFK System", "Triggers" or "Protection".
 - **Endpoint**: the exact request, for example `PUT Afk/123/settings`, shown in small print under the section.
@@ -65,7 +65,7 @@ On the page, booleans are shown as On and Off, lists as "3 items", empty strings
 
 ### What is not recorded
 
-- Anything done with commands in Discord. Those actions show in Discord's audit log where the bot acted, and in Logging if you have it configured.
+- Anything done with commands in Fluxer. Those actions show in Fluxer's audit log where the bot acted, and in Logging if you have it configured.
 - Requests that were not tied to a logged in dashboard user.
 - Opening the Audit Log page itself, Leave Feedback, and a handful of infrastructure and polling endpoints such as bot status, performance, system info and instance management.
 - A few endpoints that are explicitly excluded: the persona avatar image served to the embed builder, the setup wizard's "should show" check, and the dashboard page view beacon.

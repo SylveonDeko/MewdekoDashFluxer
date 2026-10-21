@@ -14,7 +14,7 @@ related: [utility, administration]
 
 A member runs `afk` with an optional message. From then on, whenever someone mentions them, the bot replies in that channel with the message and how long they have been away. When the member comes back, the status is cleared, a short "welcome back" notice is posted and deleted after five seconds, and the nickname is restored.
 
-While a member is away the bot also tries to rename them to `[AFK] name`, trimmed to fit Discord's nickname limit, so the status is visible in the member list.
+While a member is away the bot also tries to rename them to `[AFK] name`, trimmed to fit Fluxer's nickname limit, so the status is visible in the member list.
 
 Running `afk` with no message toggles: it turns AFK on with a blank message if you are not away, and turns it off if you are.
 

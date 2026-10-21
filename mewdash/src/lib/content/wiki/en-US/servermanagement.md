@@ -21,7 +21,7 @@ Nothing here is configured on the dashboard. Everything is run from commands.
 
 ## Why you would use it
 
-- Setting up a new server and wanting ten channels under a category without clicking through Discord's UI ten times.
+- Setting up a new server and wanting ten channels under a category without clicking through Fluxer's UI ten times.
 - Giving a "Member" role to two thousand existing members after turning on role gating.
 - Locking the server during a raid so nobody can post, then restoring the old permissions exactly.
 - Copying emotes from a friend's server in one command.
@@ -112,7 +112,7 @@ Role and member arguments can be given in either order for `setrole` and `remove
 
 ### Mass role jobs
 
-These go through the whole member list and run as background jobs. Because of Discord rate limits the bot pauses briefly per member and only allows five jobs per server at a time. Each job reports how long it expects to take.
+These go through the whole member list and run as background jobs. Because of Fluxer rate limits the bot pauses briefly per member and only allows five jobs per server at a time. Each job reports how long it expects to take.
 
 | Command | Who is affected |
 | --- | --- |

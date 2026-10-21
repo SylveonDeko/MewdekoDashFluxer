@@ -16,7 +16,7 @@ Moderation is the toolbox staff use on individual members. Warnings are the core
 
 Warnings add up. You can build a punishment ladder so that reaching a set number of active warnings triggers something automatically: a mute, a timeout, a kick, a ban, or a role. Staff do not have to remember the rules; the bot applies them the moment the count is hit. Warnings can be forgiven later, or set to expire on their own after a number of days.
 
-Around that sit the direct actions: mute (with a managed mute role), timeout, kick, softban, ban, temporary ban, mass kick, message purging, and nickname clean up for members who hoist themselves to the top of the list with special characters. Every ban action also has a configurable purge, which is how many days of the member's messages Discord deletes along with the ban.
+Around that sit the direct actions: mute (with a managed mute role), timeout, kick, softban, ban, temporary ban, mass kick, message purging, and nickname clean up for members who hoist themselves to the top of the list with special characters. Every ban action also has a configurable purge, which is how many days of the member's messages Fluxer deletes along with the ban.
 
 The dashboard page covers warnings, the punishment ladder, the warning log channel and ban purge settings. Direct actions like mute, kick and ban are commands only.
 
@@ -64,7 +64,7 @@ Set a rule with `warnpunish <number> <punishment> [time]`, or `warnpunish <numbe
 | Mute | Optional | Applies the mute role, or a timed mute if a time is given |
 | ChatMute | Optional | Mute role only, no voice mute |
 | VoiceMute | Optional | Server voice mute only |
-| Timeout | Required, up to 28 days | Discord timeout |
+| Timeout | Required, up to 28 days | Fluxer timeout |
 | Kick | No | Kicks the member |
 | Softban | No | Bans and immediately unbans to delete messages |
 | Ban | Optional | Permanent ban, or a timed ban if a time is given |
@@ -99,7 +99,7 @@ Each has a timed form. Full mutes run from one minute up to 90 days; chat and vo
 
 ## Timeouts
 
-`timeout <time> <user> [reason]` uses Discord's native timeout, up to 28 days. Both you and the bot need Moderate Members. `untimeout <user>` lifts it. The reason goes into the audit log as `moderator | reason`.
+`timeout <time> <user> [reason]` uses Fluxer's native timeout, up to 28 days. Both you and the bot need Moderate Members. `untimeout <user>` lifts it. The reason goes into the audit log as `moderator | reason`.
 
 ## Bans, kicks and softbans
 
@@ -124,7 +124,7 @@ Server placeholders such as `%server.name%` also work here.
 
 ## Ban purge
 
-Every ban carries a purge: the number of days of the member's messages Discord deletes with it, from 0 to 7. Rather than one global number, each kind of ban has its own default, and you can override any of them for the whole server, for a category, or for a single channel.
+Every ban carries a purge: the number of days of the member's messages Fluxer deletes with it, from 0 to 7. Rather than one global number, each kind of ban has its own default, and you can override any of them for the whole server, for a category, or for a single channel.
 
 | Action | Key | Built in default |
 | --- | --- | --- |
@@ -251,8 +251,8 @@ Run these with your server's prefix (`.` unless you changed it).
 - The bot's role must sit above anyone it mutes, kicks or bans, and above the mute role itself. Most "cannot apply punishment" errors are hierarchy problems.
 - The bot needs Ban Members, Kick Members, Moderate Members, Manage Roles and Manage Messages for the matching commands; each command checks the bot's own permission before running.
 - The ladder only fires on an exact count. Fill in every step you care about rather than assuming "3 or more".
-- Only warnings issued through the bot count. Discord's own timeouts and bans do not add warnings.
+- Only warnings issued through the bot count. Fluxer's own timeouts and bans do not add warnings.
 - The mute role denies permissions per channel. Channels created after the role exists get the overwrite the next time someone is muted, not immediately.
-- Discord only lets bulk delete reach back 14 days. Older messages are skipped by purge commands.
-- Purge on ban is capped at 7 days by Discord no matter what you configure.
+- Fluxer only lets bulk delete reach back 14 days. Older messages are skipped by purge commands.
+- Purge on ban is capped at 7 days by Fluxer no matter what you configure.
 - Warnings from the dashboard need a valid reason and use your dashboard account as the moderator name.

@@ -1,7 +1,7 @@
 ---
 title: Searches
 slug: searches
-summary: Look things up without leaving Discord, from weather, time and dictionary definitions to anime, movies, images, osu! profiles, jokes and reaction GIFs.
+summary: Look things up without leaving Fluxer, from weather, time and dictionary definitions to anime, movies, images, osu! profiles, jokes and reaction GIFs.
 icon: fa-magnifying-glass
 category: Entertainment
 module: Searches

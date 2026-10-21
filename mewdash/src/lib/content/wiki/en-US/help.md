@@ -1,11 +1,11 @@
 ---
 title: Help and Commands
 slug: help
-summary: How to find and understand the bot's commands from inside Discord: the category help menu, module overviews, per-command help pages, command search, and the dashboard setup wizard the bot links to when it joins.
+summary: How to find and understand the bot's commands from inside Fluxer: the category help menu, module overviews, per-command help pages, command search, and the dashboard setup wizard the bot links to when it joins.
 icon: fa-life-ring
 category: General
 module: Help
-tags: [help, commands, modules, search command, slash commands, prefix, setup wizard, invite, guide, source, donate, vote]
+tags: [help, commands, modules, search command, prefix, setup wizard, invite, guide, source, donate, vote]
 related: [permissions, administration, userprofile]
 ---
 
@@ -13,11 +13,11 @@ related: [permissions, administration, userprofile]
 
 The Help module is how members discover what the bot can do. `help` (or `cmds`) opens a menu that lists the command categories with a module and command count for each, plus a dropdown to open one. Picking a category shows its modules; picking a module shows its commands ten per page with short descriptions, or, for very large modules, an overview split into sections first.
 
-`help <command>` shows a single command: its name and first alias, what it does, the Discord permissions it needs from you and from the bot, a cooldown if it has one, the matching slash command, each parameter, alternative forms, usage examples, and a link to the documentation. A **Run** button lets you run the command straight from the help page, opening a form for its arguments if it has any.
+`help <command>` shows a single command: its name and first alias, what it does, the Fluxer permissions it needs from you and from the bot, a cooldown if it has one, each parameter, alternative forms, usage examples, and a link to the documentation. A **Run** button lets you run the command straight from the help page, opening a form for its arguments if it has any.
 
 `searchcommand <term>` finds commands whose name or description contains the term. Mentioning the bot with no text replies with the current prefix and a pointer to `cmds`.
 
-Every command has both a text version, used with the server prefix, and in most cases a slash version. The help menu and command pages are the same either way; `/help`, `/search` and `/invite` are the slash entry points.
+Every command is a text command, used with the server prefix.
 
 ## Why you would use it
 
@@ -54,19 +54,18 @@ Modules with more than 30 commands and at least three sections show an overview 
 `help <command>` matches the exact name or any alias. The embed contains:
 
 - The command with its prefix and first alias, and its description.
-- **User Permissions**: what you need. When a Discord permission override from the Administration module replaces the built-in requirement, the original is shown struck through and the override is listed after it.
+- **User Permissions**: what you need. When a Fluxer permission override from the Administration module replaces the built-in requirement, the original is shown struck through and the override is listed after it.
 - **Bot Permissions**: what the bot needs.
 - **Documentation**: a link to the command's page on the docs site.
 - **Cooldown**: shown only when the command has one.
-- **Slash Command**: a clickable mention of the slash version when one exists.
 - **Parameters**, **Overloads** and **Usage** from the command documentation, listing each argument, whether it is optional and any default.
 - A footer with the module, submodule and method name, useful when reporting bugs.
 
 The **Run** button runs the command as if you had typed it. If it takes arguments a form asks for them first. Administrators also see a **Permissions** button that opens the Command Permissions quick menu for that command, described in the Command Permissions article.
 
-## Slash versus text commands
+## Text commands
 
-Text commands use the server prefix, `.` by default, and the exact names in the help menu. Slash commands are grouped, so a text command like `setprivacy` appears as `/setprivacy` while permission commands live under `/permissions servercommand`. The command page shows the slash mention so you can click it. Both forms go through the same permission rules.
+Commands use the server prefix, `.` by default, and the exact names in the help menu. Every command goes through the same permission rules.
 
 ## When the bot joins
 
@@ -120,8 +119,6 @@ Run these with your server's prefix (`.` unless you changed it).
 | `donate` | | Nobody | How to support the bot |
 | `vote` | | Nobody | Link to vote for the bot |
 | `exportcommandsjson` | `exportcommands`, `excj` | Nobody | Export every command as a JSON file (once a minute) |
-
-Slash only: `/search <command>` with autocomplete, and `/invite`. `/help`, `/commands <module> [filter]`, `/donate`, `/guide`, `/source` and `/vote` mirror the text commands.
 
 ## Tips and gotchas
 

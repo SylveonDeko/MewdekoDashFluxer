@@ -515,8 +515,8 @@ export const m = {
     inactiveLower: () => t("_common", "inactive_lower", "inactive"),
     /** That does not look like a channel ID */
     invalidChannelId: () => t("_common", "invalid_channel_id", "That does not look like a channel ID"),
-    /** Enter a valid Discord user ID. */
-    invalidUserId: () => t("_common", "invalid_user_id", "Enter a valid Discord user ID."),
+    /** Enter a valid Fluxer user ID. */
+    invalidUserId: () => t("_common", "invalid_user_id", "Enter a valid Fluxer user ID."),
     /** Invite leaderboard */
     inviteLeaderboard: () => t("_common", "invite_leaderboard", "Invite leaderboard"),
     /** {count} item */
@@ -589,8 +589,8 @@ export const m = {
     login: () => t("_common", "login", "Login"),
     /** Login Required */
     loginRequired: () => t("_common", "login_required", "Login Required"),
-    /** Login with Discord */
-    loginWithDiscord: () => t("_common", "login_with_discord", "Login with Discord"),
+    /** Login with Fluxer */
+    loginWithDiscord: () => t("_common", "login_with_discord", "Login with Fluxer"),
     /** Maintenance */
     maintenance: () => t("_common", "maintenance", "Maintenance"),
     /** Manage */
@@ -1087,8 +1087,8 @@ export const m = {
     show: () => t("_common", "show", "Show"),
     /** Show Error Details */
     showErrorDetails: () => t("_common", "show_error_details", "Show Error Details"),
-    /** Mewdeko - The most customizable discord bot. */
-    siteTagline: () => t("_common", "site_tagline", "Mewdeko - The most customizable discord bot."),
+    /** Mewdeko - The most customizable Fluxer bot. */
+    siteTagline: () => t("_common", "site_tagline", "Mewdeko - The most customizable Fluxer bot."),
     /** Slash Commands */
     slashCommands: () => t("_common", "slash_commands", "Slash Commands"),
     /** Something went wrong */
@@ -2259,8 +2259,8 @@ export const m = {
     tabCards: () => t("achievements", "tab_cards", "Cards"),
   },
   administration: {
-    /** This message will be sent to users when they are banned. Supports rich embeds and Disco... */
-    advancedBanMessageHint: () => t("administration", "advanced_ban_message_hint", "This message will be sent to users when they are banned. Supports rich embeds and Discord formatting."),
+    /** This message will be sent to users when they are banned. Supports rich embeds and Fluxe... */
+    advancedBanMessageHint: () => t("administration", "advanced_ban_message_hint", "This message will be sent to users when they are banned. Supports rich embeds and Fluxer formatting."),
     /** Custom Ban Message */
     advancedBanMessageLabel: () => t("administration", "advanced_ban_message_label", "Custom Ban Message"),
     /** Click to configure ban message with rich embeds */
@@ -2437,16 +2437,16 @@ export const m = {
     automationPermissionOverridesDeleteSelectedConfirmOther: (p: { count: P }) => t("administration", "automation_permission_overrides_delete_selected_confirm_other", "Delete {count} selected permission overrides?", p),
     /** Delete Selected Overrides */
     automationPermissionOverridesDeleteSelectedTitle: () => t("administration", "automation_permission_overrides_delete_selected_title", "Delete Selected Overrides"),
-    /** Override Discord permissions required for specific bot commands. Select from {count} av... */
-    automationPermissionOverridesDescription: (p: { count: P }) => t("administration", "automation_permission_overrides_description", "Override Discord permissions required for specific bot commands. Select from {count} available commands.", p),
+    /** Override Fluxer permissions required for specific bot commands. Select from {count} ava... */
+    automationPermissionOverridesDescription: (p: { count: P }) => t("administration", "automation_permission_overrides_description", "Override Fluxer permissions required for specific bot commands. Select from {count} available commands.", p),
     /** Add command permission overrides using actual bot commands */
     automationPermissionOverridesEmptyHint: () => t("administration", "automation_permission_overrides_empty_hint", "Add command permission overrides using actual bot commands"),
     /** No permission overrides configured */
     automationPermissionOverridesEmptyTitle: () => t("administration", "automation_permission_overrides_empty_title", "No permission overrides configured"),
     /** Add Permission Override */
     automationPermissionOverridesFormTitle: () => t("administration", "automation_permission_overrides_form_title", "Add Permission Override"),
-    /** Required Discord Permission */
-    automationPermissionOverridesRequiredPermission: () => t("administration", "automation_permission_overrides_required_permission", "Required Discord Permission"),
+    /** Required Fluxer Permission */
+    automationPermissionOverridesRequiredPermission: () => t("administration", "automation_permission_overrides_required_permission", "Required Fluxer Permission"),
     /** Requires: {permission} */
     automationPermissionOverridesRequires: (p: { permission: P }) => t("administration", "automation_permission_overrides_requires", "Requires: {permission}", p),
     /** Permission Overrides */
@@ -2533,8 +2533,8 @@ export const m = {
     automationPermissionsManagementTargetModule: (p: { name: P }) => t("administration", "automation_permissions_management_target_module", "module {name}", p),
     /** Command Permissions */
     automationPermissionsManagementTitle: () => t("administration", "automation_permissions_management_title", "Command Permissions"),
-    /** Paste a Discord user ID */
-    automationPermissionsManagementUserIdPlaceholder: () => t("administration", "automation_permissions_management_user_id_placeholder", "Paste a Discord user ID"),
+    /** Paste a Fluxer user ID */
+    automationPermissionsManagementUserIdPlaceholder: () => t("administration", "automation_permissions_management_user_id_placeholder", "Paste a Fluxer user ID"),
     /** Tell users when a rule blocks a command */
     automationPermissionsManagementVerboseHint: () => t("administration", "automation_permissions_management_verbose_hint", "Tell users when a rule blocks a command"),
     /** Verbose Mode */
@@ -2769,8 +2769,8 @@ export const m = {
     protectionImagehashPresetCountOne: (p: { count: P }) => t("administration", "protection_imagehash_preset_count_one", "({count} image)", p),
     /** ({count} images) */
     protectionImagehashPresetCountOther: (p: { count: P }) => t("administration", "protection_imagehash_preset_count_other", "({count} images)", p),
-    /** The fake crypto casino and MrBeast giveaway images currently being spammed across Discord. */
-    protectionImagehashPresetDescription: () => t("administration", "protection_imagehash_preset_description", "The fake crypto casino and MrBeast giveaway images currently being spammed across Discord."),
+    /** The fake crypto casino and MrBeast giveaway images currently being spammed across Fluxer. */
+    protectionImagehashPresetDescription: () => t("administration", "protection_imagehash_preset_description", "The fake crypto casino and MrBeast giveaway images currently being spammed across Fluxer."),
     /** Remove blocked image */
     protectionImagehashRemoveBlockedImage: () => t("administration", "protection_imagehash_remove_blocked_image", "Remove blocked image"),
     /** Action anyone posting a blocked image */
@@ -2915,8 +2915,8 @@ export const m = {
     protectionSpamTitle: () => t("administration", "protection_spam_title", "Anti-Spam Protection"),
     /** Add Another Pair */
     rolesAddReactionRoleAddPair: () => t("administration", "roles_add_reaction_role_add_pair", "Add Another Pair"),
-    /** Right-click a message and "Copy ID" (requires Developer Mode enabled in Discord settings) */
-    rolesAddReactionRoleCopyIdHint: () => t("administration", "roles_add_reaction_role_copy_id_hint", "Right-click a message and \"Copy ID\" (requires Developer Mode enabled in Discord settings)"),
+    /** Right-click a message and "Copy ID" (requires Developer Mode enabled in Fluxer settings) */
+    rolesAddReactionRoleCopyIdHint: () => t("administration", "roles_add_reaction_role_copy_id_hint", "Right-click a message and \"Copy ID\" (requires Developer Mode enabled in Fluxer settings)"),
     /** ({total} / {max} emojis on message) */
     rolesAddReactionRoleEmojiCount: (p: { max: P; total: P }) => t("administration", "roles_add_reaction_role_emoji_count", "({total} / {max} emojis on message)", p),
     /** Failed to add reaction roles. Please check that the message and channel IDs are correct... */
@@ -2925,10 +2925,10 @@ export const m = {
     rolesAddReactionRoleErrorMaxReactions: (p: { max: P }) => t("administration", "roles_add_reaction_role_error_max_reactions", "Cannot add more than {max} reactions!", p),
     /** Please select at least one emoji and role pair. */
     rolesAddReactionRoleErrorNeedPair: () => t("administration", "roles_add_reaction_role_error_need_pair", "Please select at least one emoji and role pair."),
-    /** Total emoji count ({total}) exceeds Discord's limit of {max} reactions per message! */
-    rolesAddReactionRoleErrorTotalExceeds: (p: { max: P; total: P }) => t("administration", "roles_add_reaction_role_error_total_exceeds", "Total emoji count ({total}) exceeds Discord's limit of {max} reactions per message!", p),
-    /** Cannot add reactions: total would exceed Discord's {max} emoji limit. */
-    rolesAddReactionRoleErrorWouldExceed: (p: { max: P }) => t("administration", "roles_add_reaction_role_error_would_exceed", "Cannot add reactions: total would exceed Discord's {max} emoji limit.", p),
+    /** Total emoji count ({total}) exceeds Fluxer's limit of {max} reactions per message! */
+    rolesAddReactionRoleErrorTotalExceeds: (p: { max: P; total: P }) => t("administration", "roles_add_reaction_role_error_total_exceeds", "Total emoji count ({total}) exceeds Fluxer's limit of {max} reactions per message!", p),
+    /** Cannot add reactions: total would exceed Fluxer's {max} emoji limit. */
+    rolesAddReactionRoleErrorWouldExceed: (p: { max: P }) => t("administration", "roles_add_reaction_role_error_would_exceed", "Cannot add reactions: total would exceed Fluxer's {max} emoji limit.", p),
     /** Exclusive (users can only have one role from this message) */
     rolesAddReactionRoleExclusive: () => t("administration", "roles_add_reaction_role_exclusive", "Exclusive (users can only have one role from this message)"),
     /** This message already has {count} reaction role. Your new reactions will be added to it. */
@@ -2945,8 +2945,8 @@ export const m = {
     rolesAddReactionRoleSetUp: () => t("administration", "roles_add_reaction_role_set_up", "Set Up New Reaction Roles"),
     /** Add Reaction Role */
     rolesAddReactionRoleTitle: () => t("administration", "roles_add_reaction_role_title", "Add Reaction Role"),
-    /** Warning: You're approaching Discord's limit of {max} reactions per message (currently a... */
-    rolesAddReactionRoleWarningApproaching: (p: { max: P; total: P }) => t("administration", "roles_add_reaction_role_warning_approaching", "Warning: You're approaching Discord's limit of {max} reactions per message (currently at {total}).", p),
+    /** Warning: You're approaching Fluxer's limit of {max} reactions per message (currently at... */
+    rolesAddReactionRoleWarningApproaching: (p: { max: P; total: P }) => t("administration", "roles_add_reaction_role_warning_approaching", "Warning: You're approaching Fluxer's limit of {max} reactions per message (currently at {total}).", p),
     /** This message already has {count} reaction role. Adding to existing setup. */
     rolesAddReactionRoleWarningExistingOne: (p: { count: P }) => t("administration", "roles_add_reaction_role_warning_existing_one", "This message already has {count} reaction role. Adding to existing setup.", p),
     /** This message already has {count} reaction roles. Adding to existing setup. */
@@ -3517,8 +3517,8 @@ export const m = {
     tabAlertsToastMuted: (p: { name: P }) => t("analytics", "tab_alerts_toast_muted", "{name} muted for 1h", p),
     /** {name} saved */
     tabAlertsToastSaved: (p: { name: P }) => t("analytics", "tab_alerts_toast_saved", "{name} saved", p),
-    /** Discord rejected the test for {name} */
-    tabAlertsToastTestRejected: (p: { name: P }) => t("analytics", "tab_alerts_toast_test_rejected", "Discord rejected the test for {name}", p),
+    /** Fluxer rejected the test for {name} */
+    tabAlertsToastTestRejected: (p: { name: P }) => t("analytics", "tab_alerts_toast_test_rejected", "Fluxer rejected the test for {name}", p),
     /** Test sent for {name} */
     tabAlertsToastTestSent: (p: { name: P }) => t("analytics", "tab_alerts_toast_test_sent", "Test sent for {name}", p),
     /** {name} unmuted */
@@ -4293,8 +4293,8 @@ export const m = {
     questionPlaceholder: () => t("channel-access", "question_placeholder", "Question (45 characters max)"),
     /** No questions, so applicants apply with a single click. */
     questionsEmpty: () => t("channel-access", "questions_empty", "No questions, so applicants apply with a single click."),
-    /** Discord caps application forms at five questions. */
-    questionsMax: () => t("channel-access", "questions_max", "Discord caps application forms at five questions."),
+    /** Fluxer caps application forms at five questions. */
+    questionsMax: () => t("channel-access", "questions_max", "Fluxer caps application forms at five questions."),
     /** Application questions */
     questionsTitle: () => t("channel-access", "questions_title", "Application questions"),
     /** Blocked users */
@@ -4761,8 +4761,8 @@ export const m = {
     pageQuickPreviewDescription: () => t("chat-triggers", "page_quick_preview_description", "Bot's response to the trigger"),
     /** Quick Response */
     pageQuickPreviewTitle: () => t("chat-triggers", "page_quick_preview_title", "Quick Response"),
-    /** 💡 Supports rich embeds, interactive buttons, select menus, and Discord formatting */
-    pageQuickResponseHint: () => t("chat-triggers", "page_quick_response_hint", "💡 Supports rich embeds, interactive buttons, select menus, and Discord formatting"),
+    /** 💡 Supports rich embeds and Fluxer formatting */
+    pageQuickResponseHint: () => t("chat-triggers", "page_quick_response_hint", "💡 Supports rich embeds and Fluxer formatting"),
     /** Bot responds with: */
     pageQuickResponseLabel: () => t("chat-triggers", "page_quick_response_label", "Bot responds with:"),
     /** Click to configure response message with rich embeds and components */
@@ -4927,8 +4927,8 @@ export const m = {
     saverSaveLog: () => t("chatsaver", "saver_save_log", "Save Log"),
     /** Select time unit */
     saverSelectTimeUnit: () => t("chatsaver", "saver_select_time_unit", "Select time unit"),
-    /** Save and view chat logs from your Discord channels */
-    saverSubtitle: () => t("chatsaver", "saver_subtitle", "Save and view chat logs from your Discord channels"),
+    /** Save and view chat logs from your Fluxer channels */
+    saverSubtitle: () => t("chatsaver", "saver_subtitle", "Save and view chat logs from your Fluxer channels"),
     /** Fetch Messages */
     saverTabFetch: () => t("chatsaver", "saver_tab_fetch", "Fetch Messages"),
     /** Saved Logs */
@@ -5429,8 +5429,8 @@ export const m = {
     itemTypeCollectible: () => t("currency", "item_type_collectible", "Collectible"),
     /** Collectible (inventory only) */
     itemTypeCollectibleLabel: () => t("currency", "item_type_collectible_label", "Collectible (inventory only)"),
-    /** Role (grants a Discord role) */
-    itemTypeRoleLabel: () => t("currency", "item_type_role_label", "Role (grants a Discord role)"),
+    /** Role (grants a Fluxer role) */
+    itemTypeRoleLabel: () => t("currency", "item_type_role_label", "Role (grants a Fluxer role)"),
     /** Text (DMs the buyer some content) */
     itemTypeTextLabel: () => t("currency", "item_type_text_label", "Text (DMs the buyer some content)"),
     /** Failed to adjust balance */
@@ -5669,8 +5669,8 @@ export const m = {
     prefsText: () => t("customvoice", "prefs_text", "Look up a member to view or change the defaults applied when they create a channel."),
     /** User Preferences */
     prefsTitle: () => t("customvoice", "prefs_title", "User Preferences"),
-    /** Discord user ID */
-    prefsUserIdPlaceholder: () => t("customvoice", "prefs_user_id_placeholder", "Discord user ID"),
+    /** Fluxer user ID */
+    prefsUserIdPlaceholder: () => t("customvoice", "prefs_user_id_placeholder", "Fluxer user ID"),
     /** Active last hour */
     statActive: () => t("customvoice", "stat_active", "Active last hour"),
     /** Kept alive */
@@ -6057,8 +6057,8 @@ export const m = {
     editorCustomColor: () => t("embedbuilder", "editor_custom_color", "Or enter custom hex color:"),
     /** Supports **bold**, *italic*, __underline__, ~~strikethrough~~, `code`, and more. Click ... */
     editorDescriptionHint: () => t("embedbuilder", "editor_description_hint", "Supports **bold**, *italic*, __underline__, ~~strikethrough~~, `code`, and more. Click % for placeholders."),
-    /** Enter embed description... (Supports Discord markdown) */
-    editorDescriptionPlaceholder: () => t("embedbuilder", "editor_description_placeholder", "Enter embed description... (Supports Discord markdown)"),
+    /** Enter embed description... (Supports Fluxer markdown) */
+    editorDescriptionPlaceholder: () => t("embedbuilder", "editor_description_placeholder", "Enter embed description... (Supports Fluxer markdown)"),
     /** Duplicate embed */
     editorDuplicateEmbed: () => t("embedbuilder", "editor_duplicate_embed", "Duplicate embed"),
     /** Embed Color */
@@ -6451,14 +6451,14 @@ export const m = {
     pageSendWebhookToggle: () => t("embedbuilder", "page_send_webhook_toggle", "Send through a webhook with a custom name and avatar"),
     /** Start from Scratch */
     pageStartFromScratch: () => t("embedbuilder", "page_start_from_scratch", "Start from Scratch"),
-    /** Create and customize embeds for your Discord server */
-    pageSubtitle: () => t("embedbuilder", "page_subtitle", "Create and customize embeds for your Discord server"),
+    /** Create and customize embeds for your Fluxer server */
+    pageSubtitle: () => t("embedbuilder", "page_subtitle", "Create and customize embeds for your Fluxer server"),
     /** Choose a Template */
     pageTemplatesHeading: () => t("embedbuilder", "page_templates_heading", "Choose a Template"),
     /** Start with a pre-built template or create from scratch */
     pageTemplatesHint: () => t("embedbuilder", "page_templates_hint", "Start with a pre-built template or create from scratch"),
-    /** Discord Embed Builder */
-    pageTitle: () => t("embedbuilder", "page_title", "Discord Embed Builder"),
+    /** Fluxer Embed Builder */
+    pageTitle: () => t("embedbuilder", "page_title", "Fluxer Embed Builder"),
     /** Embed {number} is empty */
     pageValidationEmbedEmpty: (p: { number: P }) => t("embedbuilder", "page_validation_embed_empty", "Embed {number} is empty", p),
     /** Link */
@@ -6575,8 +6575,8 @@ export const m = {
     templatesAnnouncementEventFieldLocationValue: () => t("embedbuilder", "templates_announcement_event_field_location_value", "Voice Channel: Community Events"),
     /** 🎁 Prizes */
     templatesAnnouncementEventFieldPrizesName: () => t("embedbuilder", "templates_announcement_event_field_prizes_name", "🎁 Prizes"),
-    /** Special roles and Discord Nitro! */
-    templatesAnnouncementEventFieldPrizesValue: () => t("embedbuilder", "templates_announcement_event_field_prizes_value", "Special roles and Discord Nitro!"),
+    /** Special roles and bonus perks! */
+    templatesAnnouncementEventFieldPrizesValue: () => t("embedbuilder", "templates_announcement_event_field_prizes_value", "Special roles and bonus perks!"),
     /** React with 🎉 to get notified! */
     templatesAnnouncementEventFooter: () => t("embedbuilder", "templates_announcement_event_footer", "React with 🎉 to get notified!"),
     /** Event Announcement */
@@ -6771,8 +6771,8 @@ export const m = {
     mineEmpty: () => t("feature-requests", "mine_empty", "You have not submitted anything yet."),
     /** Suggest something */
     mineEmptyAction: () => t("feature-requests", "mine_empty_action", "Suggest something"),
-    /** Up to three requests an hour. Your Discord name is attached so we can follow up. */
-    rateLimitHint: () => t("feature-requests", "rate_limit_hint", "Up to three requests an hour. Your Discord name is attached so we can follow up."),
+    /** Up to three requests an hour. Your Fluxer name is attached so we can follow up. */
+    rateLimitHint: () => t("feature-requests", "rate_limit_hint", "Up to three requests an hour. Your Fluxer name is attached so we can follow up."),
     /** Report channel */
     reportChannelHeading: () => t("feature-requests", "report_channel_heading", "Report channel"),
     /** Channel ID new requests get posted to */
@@ -7809,8 +7809,8 @@ export const m = {
     filteredWordAria: () => t("filter", "filtered_word_aria", "New filtered word"),
     /** Invite filter channels */
     inviteChannelsTitle: () => t("filter", "invite_channels_title", "Invite filter channels"),
-    /** Delete Discord invite links posted by members */
-    inviteHint: () => t("filter", "invite_hint", "Delete Discord invite links posted by members"),
+    /** Delete Fluxer invite links posted by members */
+    inviteHint: () => t("filter", "invite_hint", "Delete Fluxer invite links posted by members"),
     /** Enable the invite filter only in these channels. */
     inviteOnlyHere: () => t("filter", "invite_only_here", "Enable the invite filter only in these channels."),
     /** The invite filter is on server-wide, so these channel entries have no extra effect. */
@@ -8311,8 +8311,8 @@ export const m = {
     pageTabResponsesPending: (p: { count: P }) => t("forms", "page_tab_responses_pending", "Responses ({count})", p),
     /** Failed to verify administrator permissions */
     publicAdminVerifyFailed: () => t("forms", "public_admin_verify_failed", "Failed to verify administrator permissions"),
-    /** This form accepts <strong>anonymous submissions</strong>. Your Discord login is require... */
-    publicAnonymousIntro: () => t("forms", "public_anonymous_intro", "This form accepts <strong>anonymous submissions</strong>. Your Discord login is required to verify guild membership and prevent spam, but your identity <strong>will not be stored</strong>."),
+    /** This form accepts <strong>anonymous submissions</strong>. Your Fluxer login is required... */
+    publicAnonymousIntro: () => t("forms", "public_anonymous_intro", "This form accepts <strong>anonymous submissions</strong>. Your Fluxer login is required to verify guild membership and prevent spam, but your identity <strong>will not be stored</strong>."),
     /** Anonymous Submission */
     publicAnonymousSubmission: () => t("forms", "public_anonymous_submission", "Anonymous Submission"),
     /** We could not load your answers. Try the link in your submission again. */
@@ -8495,8 +8495,8 @@ export const m = {
     publicWhyLoginIsRequired: () => t("forms", "public_why_login_is_required", "Why login is required:"),
     /** You are changing a response you already sent */
     publicYouAreChangingAResponse: () => t("forms", "public_you_are_changing_a_response", "You are changing a response you already sent"),
-    /** You need to login with Discord to access this form */
-    publicYouNeedToLoginWith: () => t("forms", "public_you_need_to_login_with", "You need to login with Discord to access this form"),
+    /** You need to login with Fluxer to access this form */
+    publicYouNeedToLoginWith: () => t("forms", "public_you_need_to_login_with", "You need to login with Fluxer to access this form"),
     /** You'll be redirected back to this form after logging in */
     publicYoullBeRedirectedBackTo: () => t("forms", "public_youll_be_redirected_back_to", "You'll be redirected back to this form after logging in"),
     /** ✓ Your answers to form questions */
@@ -8507,8 +8507,8 @@ export const m = {
     publicYourApplicationWillBeReviewed: () => t("forms", "public_your_application_will_be_reviewed", "Your application will be reviewed by the moderation team"),
     /** Your assigned roles will be applied automatically when you join */
     publicYourAssignedRolesWillBe: () => t("forms", "public_your_assigned_roles_will_be", "Your assigned roles will be applied automatically when you join"),
-    /** Your Discord login is used only for verification and is not saved with your submission. */
-    publicYourDiscordLoginIsUsed: () => t("forms", "public_your_discord_login_is_used", "Your Discord login is used only for verification and is not saved with your submission."),
+    /** Your Fluxer login is used only for verification and is not saved with your submission. */
+    publicYourDiscordLoginIsUsed: () => t("forms", "public_your_discord_login_is_used", "Your Fluxer login is used only for verification and is not saved with your submission."),
     /** ✗ Your IP address */
     publicYourIpAddress: () => t("forms", "public_your_ip_address", "✗ Your IP address"),
     /** ✗ Your user ID */
@@ -8677,8 +8677,8 @@ export const m = {
     settingsExpiresAt: () => t("forms", "settings_expires_at", "Closes at"),
     /** The form stops accepting answers at this moment. */
     settingsExpiresAtHint: () => t("forms", "settings_expires_at_hint", "The form stops accepting answers at this moment."),
-    /** Shown under the title, and used as the preview when the link is pasted into Discord. */
-    settingsFormDescriptionHint: () => t("forms", "settings_form_description_hint", "Shown under the title, and used as the preview when the link is pasted into Discord."),
+    /** Shown under the title, and used as the preview when the link is pasted into Fluxer. */
+    settingsFormDescriptionHint: () => t("forms", "settings_form_description_hint", "Shown under the title, and used as the preview when the link is pasted into Fluxer."),
     /** Shown as the title of the form and in your list of forms. */
     settingsFormNameHint: () => t("forms", "settings_form_name_hint", "Shown as the title of the form and in your list of forms."),
     /** Form type */
@@ -8735,8 +8735,8 @@ export const m = {
     settingsMaxResponses: () => t("forms", "settings_max_responses", "Total responses accepted"),
     /** The form closes itself once this many people have answered, across everyone. */
     settingsMaxResponsesHint: () => t("forms", "settings_max_responses_hint", "The form closes itself once this many people have answered, across everyone."),
-    /** Minimum Discord account age */
-    settingsMinAccountAge: () => t("forms", "settings_min_account_age", "Minimum Discord account age"),
+    /** Minimum Fluxer account age */
+    settingsMinAccountAge: () => t("forms", "settings_min_account_age", "Minimum Fluxer account age"),
     /** Turns away accounts newer than this many days. Useful against throwaway accounts. */
     settingsMinAccountAgeHint: () => t("forms", "settings_min_account_age_hint", "Turns away accounts newer than this many days. Useful against throwaway accounts."),
     /** No wait */
@@ -8791,8 +8791,8 @@ export const m = {
     settingsRequiredRoleHint: () => t("forms", "settings_required_role_hint", "Only people holding this role can open the form. Everyone else is turned away."),
     /** Who may approve or reject */
     settingsReviewerRole: () => t("forms", "settings_reviewer_role", "Who may approve or reject"),
-    /** Can press the buttons on the submission in Discord. Anyone with Manage Server can regar... */
-    settingsReviewerRoleHint: () => t("forms", "settings_reviewer_role_hint", "Can press the buttons on the submission in Discord. Anyone with Manage Server can regardless."),
+    /** Can review submissions in Fluxer. Anyone with Manage Server can regardless. */
+    settingsReviewerRoleHint: () => t("forms", "settings_reviewer_role_hint", "Can review submissions in Fluxer. Anyone with Manage Server can regardless."),
     /** Reviewing answers */
     settingsReviewingAnswersTitle: () => t("forms", "settings_reviewing_answers_title", "Reviewing answers"),
     /** Scheduling, limits, and how often one person may answer. */
@@ -9011,8 +9011,8 @@ export const m = {
     pageFieldDuration: () => t("giveaways", "page_field_duration", "Duration"),
     /** Reaction Emoji */
     pageFieldEmoji: () => t("giveaways", "page_field_emoji", "Reaction Emoji"),
-    /** Select a custom emoji or paste Discord emoji code */
-    pageFieldEmojiHint: () => t("giveaways", "page_field_emoji_hint", "Select a custom emoji or paste Discord emoji code"),
+    /** Select a custom emoji or paste Fluxer emoji code */
+    pageFieldEmojiHint: () => t("giveaways", "page_field_emoji_hint", "Select a custom emoji or paste Fluxer emoji code"),
     /** Entry Method */
     pageFieldEntryMethod: () => t("giveaways", "page_field_entry_method", "Entry Method"),
     /** Giveaway Item */
@@ -9131,10 +9131,10 @@ export const m = {
     errorReturnHome: () => t("home", "error_return_home", "Return Home"),
     /** Error {status} - Mewdeko */
     errorTitle: (p: { status: P }) => t("home", "error_title", "Error {status} - Mewdeko", p),
-    /** Add to Discord */
-    heroAddToDiscord: () => t("home", "hero_add_to_discord", "Add to Discord"),
-    /** Mewdeko, the free and open source Discord bot */
-    heroEyebrow: () => t("home", "hero_eyebrow", "Mewdeko, the free and open source Discord bot"),
+    /** Add to Fluxer */
+    heroAddToDiscord: () => t("home", "hero_add_to_discord", "Add to Fluxer"),
+    /** Mewdeko, the free and open source Fluxer bot */
+    heroEyebrow: () => t("home", "hero_eyebrow", "Mewdeko, the free and open source Fluxer bot"),
     /** Open dashboard */
     heroOpenDashboard: () => t("home", "hero_open_dashboard", "Open dashboard"),
     /** In 11,400+ servers, with every feature free. */
@@ -9231,10 +9231,10 @@ export const m = {
     landingMembersThankEachOther: () => t("home", "landing_members_thank_each_other", "Members thank each other"),
     /** 1,082 commands across 34 modules - Forms, XP/Leveling, Economy, Music, Protection, Logg... */
     landingMetaDescription: () => t("home", "landing_meta_description", "1,082 commands across 34 modules - Forms, XP/Leveling, Economy, Music, Protection, Logging, and more. Trusted by 11,400+ servers. Completely free and open source since 2020."),
-    /** Discord bot, free Discord bot, open source Discord bot, 1082 commands, forms builder, b... */
-    landingMetaKeywords: () => t("home", "landing_meta_keywords", "Discord bot, free Discord bot, open source Discord bot, 1082 commands, forms builder, ban appeals, XP leveling bot, Discord economy bot, Discord music bot, Discord moderation bot, anti-raid protection, anti-spam, server logging, chat triggers, embed builder, ticket system, giveaway bot, suggestion bot, starboard, custom commands, role states, multi-purpose bot, Discord reputation system, stream alerts, invite tracking, automated moderation, Mewdeko"),
-    /** Mewdeko - 1,082 Commands. Free & Open Source Discord Bot */
-    landingMetaTitle: () => t("home", "landing_meta_title", "Mewdeko - 1,082 Commands. Free & Open Source Discord Bot"),
+    /** Fluxer bot, free Fluxer bot, open source Fluxer bot, 1082 commands, forms builder, ban ... */
+    landingMetaKeywords: () => t("home", "landing_meta_keywords", "Fluxer bot, free Fluxer bot, open source Fluxer bot, 1082 commands, forms builder, ban appeals, XP leveling bot, Fluxer economy bot, Fluxer music bot, Fluxer moderation bot, anti-raid protection, anti-spam, server logging, chat triggers, embed builder, ticket system, giveaway bot, suggestion bot, starboard, custom commands, role states, multi-purpose bot, Fluxer reputation system, stream alerts, invite tracking, automated moderation, Mewdeko"),
+    /** Mewdeko - 1,082 Commands. Free & Open Source Fluxer Bot */
+    landingMetaTitle: () => t("home", "landing_meta_title", "Mewdeko - 1,082 Commands. Free & Open Source Fluxer Bot"),
     /** Mewdeko Bot Customization */
     landingMewdekoBotCustomization: () => t("home", "landing_mewdeko_bot_customization", "Mewdeko Bot Customization"),
     /** Mewdeko Forms Builder Interface */
@@ -9301,8 +9301,8 @@ export const m = {
     landingTriviaHangmanTictactoe: () => t("home", "landing_trivia_hangman_tictactoe", "Trivia, hangman, TicTacToe"),
     /** Twitch/YouTube */
     landingTwitchYoutube: () => t("home", "landing_twitch_youtube", "Twitch/YouTube"),
-    /** Free & open source Discord bot with 1,082 commands. Forms builder, XP/leveling, economy... */
-    landingTwitterDescription: () => t("home", "landing_twitter_description", "Free & open source Discord bot with 1,082 commands. Forms builder, XP/leveling, economy, music, protection systems, and more. No limitations, no subscriptions."),
+    /** Free & open source Fluxer bot with 1,082 commands. Forms builder, XP/leveling, economy,... */
+    landingTwitterDescription: () => t("home", "landing_twitter_description", "Free & open source Fluxer bot with 1,082 commands. Forms builder, XP/leveling, economy, music, protection systems, and more. No limitations, no subscriptions."),
     /** Mewdeko - 1,082 Commands. Ridiculously Over-Engineered. */
     landingTwitterTitle: () => t("home", "landing_twitter_title", "Mewdeko - 1,082 Commands. Ridiculously Over-Engineered."),
     /** View Complete Feature List */
@@ -9354,7 +9354,7 @@ export const m = {
     /** Stats and logging */
     tailsChartTitle: () => t("home", "tails_chart_title", "Stats and logging"),
     /** Applications and ban appeals that people fill in from a link and your staff approve in ... */
-    tailsClipboardText: () => t("home", "tails_clipboard_text", "Applications and ban appeals that people fill in from a link and your staff approve in Discord."),
+    tailsClipboardText: () => t("home", "tails_clipboard_text", "Applications and ban appeals that people fill in from a link and your staff approve in Fluxer."),
     /** Personal reminders, and messages that repost on a schedule. */
     tailsClockText: () => t("home", "tails_clock_text", "Personal reminders, and messages that repost on a schedule."),
     /** Reminders and repeaters */
@@ -9749,8 +9749,8 @@ export const m = {
     notifyResetDone: (p: { count: P }) => t("invites", "notify_reset_done", "Reset invites for {count} inviters.", p),
     /** Couldn't save invite settings. Use Retry to try again. */
     notifySaveFailed: () => t("invites", "notify_save_failed", "Couldn't save invite settings. Use Retry to try again."),
-    /** Imported invite uses from Discord and raised totals for {count} inviters. */
-    notifySynced: (p: { count: P }) => t("invites", "notify_synced", "Imported invite uses from Discord and raised totals for {count} inviters.", p),
+    /** Imported invite uses from Fluxer and raised totals for {count} inviters. */
+    notifySynced: (p: { count: P }) => t("invites", "notify_synced", "Imported invite uses from Fluxer and raised totals for {count} inviters.", p),
     /** No joins in this window */
     overviewChartEmpty: () => t("invites", "overview_chart_empty", "No joins in this window"),
     /** No joins recorded yet */
@@ -9809,8 +9809,8 @@ export const m = {
     settingsRemoveOnLeaveHint: () => t("invites", "settings_remove_on_leave_hint", "The inviter's left count goes up and their total goes down"),
     /** Reset inviters who left */
     settingsResetLeft: () => t("invites", "settings_reset_left", "Reset inviters who left"),
-    /** Import uses from Discord */
-    settingsSync: () => t("invites", "settings_sync", "Import uses from Discord"),
+    /** Import uses from Fluxer */
+    settingsSync: () => t("invites", "settings_sync", "Import uses from Fluxer"),
     /** Importing raises each inviter's regular total to the sum of uses across their codes and... */
     settingsSyncHint: () => t("invites", "settings_sync_hint", "Importing raises each inviter's regular total to the sum of uses across their codes and never lowers it, so it is safe to run again."),
     /** Invite Tracking Settings */
@@ -10039,16 +10039,16 @@ export const m = {
     privacyAiChatMessagesSentIn: () => t("legal", "privacy_ai_chat_messages_sent_in", "AI chat: messages sent in a channel a server has set up for AI chat, kept as conversation history until you clear it by sending \"deletesession\" in that channel."),
     /** Changes to our privacy policy */
     privacyChangesToOurPrivacyPolicy: () => t("legal", "privacy_changes_to_our_privacy_policy", "Changes to our privacy policy"),
-    /** Data belonging to a Discord server, such as XP levels, warnings, suggestions, starboard... */
-    privacyDataBelongingToADiscord: () => t("legal", "privacy_data_belonging_to_a_discord", "Data belonging to a Discord server, such as XP levels, warnings, suggestions, starboard entries, and tickets, is kept for as long as the bot remains in that server, because the features depend on it. It is removed when a server administrator deletes it, when a relevant command is used, or when you ask us to remove it. When the bot is removed from a server, that server's data is permanently deleted after 7 days, which gives an administrator who removed it by mistake time to add it back."),
+    /** Data belonging to a Fluxer server, such as XP levels, warnings, suggestions, starboard ... */
+    privacyDataBelongingToADiscord: () => t("legal", "privacy_data_belonging_to_a_discord", "Data belonging to a Fluxer server, such as XP levels, warnings, suggestions, starboard entries, and tickets, is kept for as long as the bot remains in that server, because the features depend on it. It is removed when a server administrator deletes it, when a relevant command is used, or when you ask us to remove it. When the bot is removed from a server, that server's data is permanently deleted after 7 days, which gives an administrator who removed it by mistake time to add it back."),
     /** Deleting your data */
     privacyDeletingYourData: () => t("legal", "privacy_deleting_your_data", "Deleting your data"),
     /** Privacy Policy for Mewdeko */
     privacyDescription: () => t("legal", "privacy_description", "Privacy Policy for Mewdeko"),
     /** Diagnose errors and faults so they can be fixed */
     privacyDiagnoseErrorsAndFaultsSo: () => t("legal", "privacy_diagnose_errors_and_faults_so", "Diagnose errors and faults so they can be fixed"),
-    /** Discord itself processes your data whenever you use Discord. That relationship is gover... */
-    privacyDiscordItselfProcessesYourData: () => t("legal", "privacy_discord_itself_processes_your_data", "Discord itself processes your data whenever you use Discord. That relationship is governed by Discord's own privacy policy, not this one."),
+    /** Fluxer itself processes your data whenever you use Fluxer. That relationship is governe... */
+    privacyDiscordItselfProcessesYourData: () => t("legal", "privacy_discord_itself_processes_your_data", "Fluxer itself processes your data whenever you use Fluxer. That relationship is governed by Fluxer's own privacy policy, not this one."),
     /** How do we collect your data? */
     privacyHowDoWeCollectYour: () => t("legal", "privacy_how_do_we_collect_your", "How do we collect your data?"),
     /** How do we store your data? */
@@ -10074,7 +10074,7 @@ export const m = {
     /** Measure how the bot and dashboard are used, such as which commands are run and which da... */
     privacyMeasureHowTheBotAnd: () => t("legal", "privacy_measure_how_the_bot_and", "Measure how the bot and dashboard are used, such as which commands are run and which dashboard pages are visited, so we know what to improve"),
     /** Message logs: when a server enables them, the old and new text of edited and deleted me... */
-    privacyMessageLogsWhenAServer: () => t("legal", "privacy_message_logs_when_a_server", "Message logs: when a server enables them, the old and new text of edited and deleted messages is posted to that server's log channel in Discord. It is not kept in our database."),
+    privacyMessageLogsWhenAServer: () => t("legal", "privacy_message_logs_when_a_server", "Message logs: when a server enables them, the old and new text of edited and deleted messages is posted to that server's log channel in Fluxer. It is not kept in our database."),
     /** Mewdeko collects the following data: */
     privacyMewdekoCollectsTheFollowingData: () => t("legal", "privacy_mewdeko_collects_the_following_data", "Mewdeko collects the following data:"),
     /** Mewdeko collects your data so that we can: */
@@ -10083,8 +10083,8 @@ export const m = {
     privacyMewdekoKeepsItsPrivacyPolicy: (p: { date: P }) => t("legal", "privacy_mewdeko_keeps_its_privacy_policy", "Mewdeko keeps its privacy policy under regular review and places any updates on this web page. This privacy policy was last updated on {date}.", p),
     /** Mewdeko Mobile can be pointed at a self-hosted Mewdeko dashboard instead of the officia... */
     privacyMewdekoMobileCanBePointed: () => t("legal", "privacy_mewdeko_mobile_can_be_pointed", "Mewdeko Mobile can be pointed at a self-hosted Mewdeko dashboard instead of the official one. If you do that, your data goes to whoever runs that deployment rather than to us, and their own policy applies."),
-    /** Mewdeko Mobile signs you in with Discord. It does not create a separate account and it ... */
-    privacyMewdekoMobileSignsYouIn: () => t("legal", "privacy_mewdeko_mobile_signs_you_in", "Mewdeko Mobile signs you in with Discord. It does not create a separate account and it never sees or stores your Discord password. When you sign in, your Discord user ID, username, and avatar are sent to the dashboard so it can show you the servers you administer."),
+    /** Mewdeko Mobile signs you in with Fluxer. It does not create a separate account and it n... */
+    privacyMewdekoMobileSignsYouIn: () => t("legal", "privacy_mewdeko_mobile_signs_you_in", "Mewdeko Mobile signs you in with Fluxer. It does not create a separate account and it never sees or stores your Fluxer password. When you sign in, your Fluxer user ID, username, and avatar are sent to the dashboard so it can show you the servers you administer."),
     /** Mewdeko reads the messages in channels it can see so that its features work. Most messa... */
     privacyMewdekoReadsTheMessagesIn: () => t("legal", "privacy_mewdeko_reads_the_messages_in", "Mewdeko reads the messages in channels it can see so that its features work. Most messages are checked and then forgotten: prefix commands, chat triggers, word and link filters, anti-spam, highlights, counting, games, AFK and XP all read a message without keeping its text. XP and message statistics keep counts, never the text itself."),
     /** Mewdeko stores your data in a PostgreSQL database and a Redis cache, both hosted at Het... */
@@ -10101,18 +10101,18 @@ export const m = {
     privacyShowServerAdministratorsAnAudit: () => t("legal", "privacy_show_server_administrators_an_audit", "Show server administrators an audit log of who changed a setting through the dashboard, and what they changed"),
     /** Sign-in sessions for the dashboard and the mobile app expire after 30 days without use,... */
     privacySignInSessionsForThe: () => t("legal", "privacy_sign_in_sessions_for_the", "Sign-in sessions for the dashboard and the mobile app expire after 30 days without use, and are destroyed immediately when you sign out or delete your data."),
-    /** Sign in to the dashboard or the Mewdeko Mobile app with Discord. We receive your user I... */
-    privacySignInToTheDashboard: () => t("legal", "privacy_sign_in_to_the_dashboard", "Sign in to the dashboard or the Mewdeko Mobile app with Discord. We receive your user ID, username, and avatar from Discord so we can show you the servers you administer"),
+    /** Sign in to the dashboard or the Mewdeko Mobile app with Fluxer. We receive your user ID... */
+    privacySignInToTheDashboard: () => t("legal", "privacy_sign_in_to_the_dashboard", "Sign in to the dashboard or the Mewdeko Mobile app with Fluxer. We receive your user ID, username, and avatar from Fluxer so we can show you the servers you administer"),
     /** Sign-in tokens issued to you when you authorise the dashboard or the mobile app through... */
-    privacySignInTokensIssuedTo: () => t("legal", "privacy_sign_in_tokens_issued_to", "Sign-in tokens issued to you when you authorise the dashboard or the mobile app through Discord"),
+    privacySignInTokensIssuedTo: () => t("legal", "privacy_sign_in_tokens_issued_to", "Sign-in tokens issued to you when you authorise the dashboard or the mobile app through Fluxer"),
     /** Snipe: when a server turns it on, the most recent deleted and edited messages in each c... */
     privacySnipeWhenAServerTurns: () => t("legal", "privacy_snipe_when_a_server_turns", "Snipe: when a server turns it on, the most recent deleted and edited messages in each channel are kept so members can view them. They are deleted after 30 days."),
     /** Some features do keep message text: */
     privacySomeFeaturesDoKeepMessage: () => t("legal", "privacy_some_features_do_keep_message", "Some features do keep message text:"),
     /** Some features keep their own history and expose their own retention setting, which serv... */
     privacySomeFeaturesKeepTheirOwn: () => t("legal", "privacy_some_features_keep_their_own", "Some features keep their own history and expose their own retention setting, which server administrators control. Others, such as XP and reputation, reduce scores over a period of inactivity rather than deleting the record."),
-    /** Some features read your Discord status and activities, such as the game you are playing... */
-    privacySomeFeaturesReadYourDiscord: () => t("legal", "privacy_some_features_read_your_discord", "Some features read your Discord status and activities, such as the game you are playing, whether you are streaming, and your custom status. They are used by Status Roles and Stream Roles to give or remove roles, by game voice channels to move you to a channel for your game, and to show how many members are online. If a server turns on activity tracking in Server Stats, the bot also records which activities members spend time on so that server's staff can see what is popular. Your custom status text is read by Status Roles but never stored."),
+    /** Some features read your Fluxer status and activities, such as the game you are playing,... */
+    privacySomeFeaturesReadYourDiscord: () => t("legal", "privacy_some_features_read_your_discord", "Some features read your Fluxer status and activities, such as the game you are playing, whether you are streaming, and your custom status. They are used by Status Roles to give or remove roles and to show how many members are online. If a server turns on activity tracking in Server Stats, the bot also records which activities members spend time on so that server's staff can see what is popular. Your custom status text is read by Status Roles but never stored."),
     /** Starboard: a copy of messages that reach a server's starboard. */
     privacyStarboardACopyOfMessages: () => t("legal", "privacy_starboard_a_copy_of_messages", "Starboard: a copy of messages that reach a server's starboard."),
     /** Status and activities */
@@ -10138,7 +10138,7 @@ export const m = {
     /** Things you create with the bot, such as suggestions, confessions, tickets, reminders, b... */
     privacyThingsYouCreateWithThe: () => t("legal", "privacy_things_you_create_with_the", "Things you create with the bot, such as suggestions, confessions, tickets, reminders, birthdays, AFK messages and highlight words"),
     /** This privacy policy explains how we use the personal data we collect from you when you ... */
-    privacyThisPrivacyPolicyExplainsHow: () => t("legal", "privacy_this_privacy_policy_explains_how", "This privacy policy explains how we use the personal data we collect from you when you use Mewdeko. It covers the Discord bot, this dashboard, and the Mewdeko Mobile app for Android and iOS."),
+    privacyThisPrivacyPolicyExplainsHow: () => t("legal", "privacy_this_privacy_policy_explains_how", "This privacy policy explains how we use the personal data we collect from you when you use Mewdeko. It covers the Fluxer bot, this dashboard, and the Mewdeko Mobile app for Android and iOS."),
     /** Usage records, such as which commands were run in which server and which dashboard page... */
     privacyUsageRecordsSuchAsWhich: () => t("legal", "privacy_usage_records_such_as_which", "Usage records, such as which commands were run in which server and which dashboard pages were visited, are deleted after 30 days. They do not contain your user ID; dashboard visits are recorded with a short anonymous hash instead. Daily totals built from them are kept."),
     /** Use or view our bot via your browser’s cookies */
@@ -10154,25 +10154,25 @@ export const m = {
     /** What data do we collect? */
     privacyWhatDataDoWeCollect: () => t("legal", "privacy_what_data_do_we_collect", "What data do we collect?"),
     /** When the bot or the dashboard encounters an error, a report is sent to Sentry, an error... */
-    privacyWhenTheBotOrThe: () => t("legal", "privacy_when_the_bot_or_the", "When the bot or the dashboard encounters an error, a report is sent to Sentry, an error tracking service, so the fault can be diagnosed. These reports can include your Discord user ID and the action that failed. The Mewdeko Mobile app does not send error reports."),
+    privacyWhenTheBotOrThe: () => t("legal", "privacy_when_the_bot_or_the", "When the bot or the dashboard encounters an error, a report is sent to Sentry, an error tracking service, so the fault can be diagnosed. These reports can include your Fluxer user ID and the action that failed. The Mewdeko Mobile app does not send error reports."),
     /** Who else processes your data */
     privacyWhoElseProcessesYourData: () => t("legal", "privacy_who_else_processes_your_data", "Who else processes your data"),
     /** You can also have specific data removed while continuing to use Mewdeko. Full instructi... */
     privacyYouCanAlsoHaveSpecific: () => t("legal", "privacy_you_can_also_have_specific", "You can also have specific data removed while continuing to use Mewdeko. Full instructions, including what is deleted and what is kept, are on our <a class=\"underline\" href=\"/delete-account\">data deletion page</a>."),
     /** You directly provide Mewdeko with most of the data we collect. We collect data and proc... */
     privacyYouDirectlyProvideMewdekoWith: () => t("legal", "privacy_you_directly_provide_mewdeko_with", "You directly provide Mewdeko with most of the data we collect. We collect data and process data when you:"),
-    /** Your Discord avatar, when you sign in to the dashboard or the mobile app */
-    privacyYourDiscordAvatarWhenYou: () => t("legal", "privacy_your_discord_avatar_when_you", "Your Discord avatar, when you sign in to the dashboard or the mobile app"),
-    /** Your Discord status and activities, where a feature needs them (see <a class="underline... */
-    privacyYourDiscordStatusAndActivities: () => t("legal", "privacy_your_discord_status_and_activities", "Your Discord status and activities, where a feature needs them (see <a class=\"underline\" href=\"#presence\">Status and activities</a> below)"),
+    /** Your Fluxer avatar, when you sign in to the dashboard or the mobile app */
+    privacyYourDiscordAvatarWhenYou: () => t("legal", "privacy_your_discord_avatar_when_you", "Your Fluxer avatar, when you sign in to the dashboard or the mobile app"),
+    /** Your Fluxer status and activities, where a feature needs them (see <a class="underline"... */
+    privacyYourDiscordStatusAndActivities: () => t("legal", "privacy_your_discord_status_and_activities", "Your Fluxer status and activities, where a feature needs them (see <a class=\"underline\" href=\"#presence\">Status and activities</a> below)"),
     /** Acceptable Use */
     termsAcceptableUse: () => t("legal", "terms_acceptable_use", "Acceptable Use"),
     /** Arbitration */
     termsArbitration: () => t("legal", "terms_arbitration", "Arbitration"),
     /** Attempt to disrupt, overload, or gain unauthorised access to the bot, the dashboard, or... */
     termsAttemptToDisruptOverloadOr: () => t("legal", "terms_attempt_to_disrupt_overload_or", "Attempt to disrupt, overload, or gain unauthorised access to the bot, the dashboard, or the systems they run on"),
-    /** Break Discord's Terms of Service or Community Guidelines, or any law that applies to you */
-    termsBreakDiscordsTermsOfService: () => t("legal", "terms_break_discords_terms_of_service", "Break Discord's Terms of Service or Community Guidelines, or any law that applies to you"),
+    /** Break Fluxer's Terms of Service or Community Guidelines, or any law that applies to you */
+    termsBreakDiscordsTermsOfService: () => t("legal", "terms_break_discords_terms_of_service", "Break Fluxer's Terms of Service or Community Guidelines, or any law that applies to you"),
     /** By using Mewdeko, you are agreeing to be bound by the following terms and conditions ("... */
     termsByUsingMewdekoYouAre: () => t("legal", "terms_by_using_mewdeko_you_are", "By using Mewdeko, you are agreeing to be bound by the following terms and conditions (\"Terms of Service\")."),
     /** Changes To The Service */
@@ -10201,8 +10201,8 @@ export const m = {
     termsTheService: () => t("legal", "terms_the_service", "The Service"),
     /** The Service is provided free of charge, "as is" and "as available", without warranties ... */
     termsTheServiceIsProvidedFree: () => t("legal", "terms_the_service_is_provided_free", "The Service is provided free of charge, \"as is\" and \"as available\", without warranties of any kind. We do not guarantee that it will always be available or free of errors, or that data stored by it will never be lost, and to the extent permitted by law we are not liable for any loss resulting from your use of it."),
-    /** These Terms cover the official Mewdeko Discord bot, this dashboard, and the Mewdeko Mob... */
-    termsTheseTermsCoverTheOfficial: () => t("legal", "terms_these_terms_cover_the_official", "These Terms cover the official Mewdeko Discord bot, this dashboard, and the Mewdeko Mobile app for Android and iOS (together, the \"Service\"). Copies of Mewdeko run by other people, and dashboards they host, are not operated by us and are not covered by these Terms. How we handle your data is described in our <a class=\"underline\" href=\"/privacy\">Privacy Policy</a>."),
+    /** These Terms cover the official Mewdeko Fluxer bot, this dashboard, and the Mewdeko Mobi... */
+    termsTheseTermsCoverTheOfficial: () => t("legal", "terms_these_terms_cover_the_official", "These Terms cover the official Mewdeko Fluxer bot, this dashboard, and the Mewdeko Mobile app for Android and iOS (together, the \"Service\"). Copies of Mewdeko run by other people, and dashboards they host, are not operated by us and are not covered by these Terms. How we handle your data is described in our <a class=\"underline\" href=\"/privacy\">Privacy Policy</a>."),
     /** Third-Party Services */
     termsThirdPartyServices: () => t("legal", "terms_third_party_services", "Third-Party Services"),
     /** This Terms of Service was last updated on {date}. */
@@ -11059,8 +11059,8 @@ export const m = {
     placeholderTemplateChat: () => t("minecraft", "placeholder_template_chat", "Default: **player**: message"),
     /** Default: gray embed with skull emoji */
     placeholderTemplateDeath: () => t("minecraft", "placeholder_template_death", "Default: gray embed with skull emoji"),
-    /** Default: [Discord] %user%: %message% | Use §-codes for MC colors */
-    placeholderTemplateIngame: () => t("minecraft", "placeholder_template_ingame", "Default: [Discord] %user%: %message% | Use §-codes for MC colors"),
+    /** Default: [Fluxer] %user%: %message% | Use §-codes for MC colors */
+    placeholderTemplateIngame: () => t("minecraft", "placeholder_template_ingame", "Default: [Fluxer] %user%: %message% | Use §-codes for MC colors"),
     /** Default: green embed with player name */
     placeholderTemplateJoin: () => t("minecraft", "placeholder_template_join", "Default: green embed with player name"),
     /** Default: red embed with player name */
@@ -11095,8 +11095,8 @@ export const m = {
     previewAdvancementDescription: () => t("minecraft", "preview_advancement_description", "When a player earns an advancement"),
     /** Advancement */
     previewAdvancementTitle: () => t("minecraft", "preview_advancement_title", "Advancement"),
-    /** MC chat relayed to Discord */
-    previewChatDescription: () => t("minecraft", "preview_chat_description", "MC chat relayed to Discord"),
+    /** MC chat relayed to Fluxer */
+    previewChatDescription: () => t("minecraft", "preview_chat_description", "MC chat relayed to Fluxer"),
     /** Chat Relay */
     previewChatTitle: () => t("minecraft", "preview_chat_title", "Chat Relay"),
     /** When a player dies */
@@ -11159,20 +11159,20 @@ export const m = {
     statusVersion: () => t("minecraft", "status_version", "Version"),
     /** Console */
     tabConsole: () => t("minecraft", "tab_console", "Console"),
-    /** Advancement (Discord) */
-    templateAdvancement: () => t("minecraft", "template_advancement", "Advancement (Discord)"),
-    /** Chat Message (Discord) */
-    templateChatDiscord: () => t("minecraft", "template_chat_discord", "Chat Message (Discord)"),
-    /** Chat from Discord (In-game format) */
-    templateChatIngame: () => t("minecraft", "template_chat_ingame", "Chat from Discord (In-game format)"),
-    /** Death Message (Discord) */
-    templateDeath: () => t("minecraft", "template_death", "Death Message (Discord)"),
-    /** Player Join (Discord) */
-    templateJoin: () => t("minecraft", "template_join", "Player Join (Discord)"),
-    /** Player Leave (Discord) */
-    templateLeave: () => t("minecraft", "template_leave", "Player Leave (Discord)"),
-    /** Customize how events from the companion plugin appear in Discord and in-game. Leave emp... */
-    templatesDescription: () => t("minecraft", "templates_description", "Customize how events from the companion plugin appear in Discord and in-game. Leave empty for defaults."),
+    /** Advancement (Fluxer) */
+    templateAdvancement: () => t("minecraft", "template_advancement", "Advancement (Fluxer)"),
+    /** Chat Message (Fluxer) */
+    templateChatDiscord: () => t("minecraft", "template_chat_discord", "Chat Message (Fluxer)"),
+    /** Chat from Fluxer (In-game format) */
+    templateChatIngame: () => t("minecraft", "template_chat_ingame", "Chat from Fluxer (In-game format)"),
+    /** Death Message (Fluxer) */
+    templateDeath: () => t("minecraft", "template_death", "Death Message (Fluxer)"),
+    /** Player Join (Fluxer) */
+    templateJoin: () => t("minecraft", "template_join", "Player Join (Fluxer)"),
+    /** Player Leave (Fluxer) */
+    templateLeave: () => t("minecraft", "template_leave", "Player Leave (Fluxer)"),
+    /** Customize how events from the companion plugin appear in Fluxer and in-game. Leave empt... */
+    templatesDescription: () => t("minecraft", "templates_description", "Customize how events from the companion plugin appear in Fluxer and in-game. Leave empty for defaults."),
     /** Bridge Event Templates */
     templatesTitle: () => t("minecraft", "templates_title", "Bridge Event Templates"),
     /** Embed (edit in place) */
@@ -11377,8 +11377,8 @@ export const m = {
     eventMetricsColProcessed: () => t("monitoring", "event_metrics_col_processed", "Processed"),
     /** No event metrics available yet. */
     eventMetricsEmpty: () => t("monitoring", "event_metrics_empty", "No event metrics available yet."),
-    /** Event metrics will appear as your bot processes Discord events. */
-    eventMetricsEmptyHint: () => t("monitoring", "event_metrics_empty_hint", "Event metrics will appear as your bot processes Discord events."),
+    /** Event metrics will appear as your bot processes Fluxer events. */
+    eventMetricsEmptyHint: () => t("monitoring", "event_metrics_empty_hint", "Event metrics will appear as your bot processes Fluxer events."),
     /** Event Types */
     eventMetricsEventTypes: () => t("monitoring", "event_metrics_event_types", "Event Types"),
     /** Failed to load event metrics */
@@ -12509,8 +12509,8 @@ export const m = {
     howStep2: () => t("patreon", "how_step_2", "Authorize Mewdeko to access your campaign information and supporter data."),
     /** Configure automatic role rewards and exclusive perks for your supporters. */
     howStep3: () => t("patreon", "how_step_3", "Configure automatic role rewards and exclusive perks for your supporters."),
-    /** Supporters will automatically receive their Discord roles and perks! */
-    howStep4: () => t("patreon", "how_step_4", "Supporters will automatically receive their Discord roles and perks!"),
+    /** Supporters will automatically receive their Fluxer roles and perks! */
+    howStep4: () => t("patreon", "how_step_4", "Supporters will automatically receive their Fluxer roles and perks!"),
     /** Loading Patreon data... */
     loading: () => t("patreon", "loading", "Loading Patreon data..."),
     /** Failed to send the announcement */
@@ -12581,8 +12581,8 @@ export const m = {
     tabTiers: () => t("patreon", "tab_tiers", "Tier Mapping"),
     /** Available Tiers */
     tiersAvailableTitle: () => t("patreon", "tiers_available_title", "Available Tiers"),
-    /** Discord Role */
-    tiersDiscordRole: () => t("patreon", "tiers_discord_role", "Discord Role"),
+    /** Fluxer Role */
+    tiersDiscordRole: () => t("patreon", "tiers_discord_role", "Fluxer Role"),
     /** No tiers found. Make sure your Patreon campaign has published tiers. Try clicking "Sync... */
     tiersEmpty: () => t("patreon", "tiers_empty", "No tiers found. Make sure your Patreon campaign has published tiers. Try clicking \"Sync All Data\"."),
     /** Map Tier */
@@ -12967,14 +12967,14 @@ export const m = {
     serverOwner: () => t("placeholders", "server_owner", "Server owner username"),
     /** Current server time with timezone */
     serverTime: () => t("placeholders", "server_time", "Current server time with timezone"),
-    /** Discord long date timestamp */
-    serverTimestampLongdate: () => t("placeholders", "server_timestamp_longdate", "Discord long date timestamp"),
-    /** Discord long date/time timestamp */
-    serverTimestampLongdatetime: () => t("placeholders", "server_timestamp_longdatetime", "Discord long date/time timestamp"),
-    /** Discord long time timestamp */
-    serverTimestampLongtime: () => t("placeholders", "server_timestamp_longtime", "Discord long time timestamp"),
-    /** Discord short date/time timestamp */
-    serverTimestampShortdatetime: () => t("placeholders", "server_timestamp_shortdatetime", "Discord short date/time timestamp"),
+    /** Fluxer long date timestamp */
+    serverTimestampLongdate: () => t("placeholders", "server_timestamp_longdate", "Fluxer long date timestamp"),
+    /** Fluxer long date/time timestamp */
+    serverTimestampLongdatetime: () => t("placeholders", "server_timestamp_longdatetime", "Fluxer long date/time timestamp"),
+    /** Fluxer long time timestamp */
+    serverTimestampLongtime: () => t("placeholders", "server_timestamp_longtime", "Fluxer long time timestamp"),
+    /** Fluxer short date/time timestamp */
+    serverTimestampShortdatetime: () => t("placeholders", "server_timestamp_shortdatetime", "Fluxer short date/time timestamp"),
     /** Number of servers on this shard */
     shardServercount: () => t("placeholders", "shard_servercount", "Number of servers on this shard"),
     /** Number of users on this shard */
@@ -13039,8 +13039,8 @@ export const m = {
     supporterCount: () => t("placeholders", "supporter_count", "Active supporters"),
     /** Former supporters */
     supporterFormer: () => t("placeholders", "supporter_former", "Former supporters"),
-    /** Supporters with a linked Discord account */
-    supporterLinked: () => t("placeholders", "supporter_linked", "Supporters with a linked Discord account"),
+    /** Supporters with a linked Fluxer account */
+    supporterLinked: () => t("placeholders", "supporter_linked", "Supporters with a linked Fluxer account"),
     /** New supporters this month */
     supporterNew: () => t("placeholders", "supporter_new", "New supporters this month"),
     /** All supporters ever recorded */
@@ -13061,10 +13061,10 @@ export const m = {
     timeDay: () => t("placeholders", "time_day", "Current day name"),
     /** Current year */
     timeYear: () => t("placeholders", "time_year", "Current year"),
-    /** Discord timestamp */
-    timestamp: () => t("placeholders", "timestamp", "Discord timestamp"),
-    /** Relative Discord timestamp */
-    timestampRelative: () => t("placeholders", "timestamp_relative", "Relative Discord timestamp"),
+    /** Fluxer timestamp */
+    timestamp: () => t("placeholders", "timestamp", "Fluxer timestamp"),
+    /** Relative Fluxer timestamp */
+    timestampRelative: () => t("placeholders", "timestamp_relative", "Relative Fluxer timestamp"),
     /** Username of the user */
     user: () => t("placeholders", "user", "Username of the user"),
     /** User's avatar URL */
@@ -13153,10 +13153,10 @@ export const m = {
     xpTime: () => t("placeholders", "xp_time", "Current time (HH:mm format)"),
     /** Full timestamp (dd/MM/yyyy HH:mm format) */
     xpTimeFull: () => t("placeholders", "xp_time_full", "Full timestamp (dd/MM/yyyy HH:mm format)"),
-    /** Discord timestamp for current time */
-    xpTimestamp: () => t("placeholders", "xp_timestamp", "Discord timestamp for current time"),
-    /** Discord relative timestamp for current time */
-    xpTimestampRelative: () => t("placeholders", "xp_timestamp_relative", "Discord relative timestamp for current time"),
+    /** Fluxer timestamp for current time */
+    xpTimestamp: () => t("placeholders", "xp_timestamp", "Fluxer timestamp for current time"),
+    /** Fluxer relative timestamp for current time */
+    xpTimestampRelative: () => t("placeholders", "xp_timestamp_relative", "Fluxer relative timestamp for current time"),
     /** Total XP of the user */
     xpTotal: () => t("placeholders", "xp_total", "Total XP of the user"),
     /** User who triggered the XP notification */
@@ -13249,8 +13249,8 @@ export const m = {
     errorChannel: () => t("polls", "error_channel", "Pick the channel the poll is posted in."),
     /** Failed to create poll. */
     errorCreateFailed: () => t("polls", "error_create_failed", "Failed to create poll."),
-    /** Discord polls support at most 25 options. */
-    errorOptionsMax: () => t("polls", "error_options_max", "Discord polls support at most 25 options."),
+    /** Polls support at most 25 options. */
+    errorOptionsMax: () => t("polls", "error_options_max", "Polls support at most 25 options."),
     /** Add at least two options. */
     errorOptionsMin: () => t("polls", "error_options_min", "Add at least two options."),
     /** Ask a question. */
@@ -13457,8 +13457,8 @@ export const m = {
     credguideCredentialsSetupWizard: () => t("public", "credguide_credentials_setup_wizard", "Credentials Setup Wizard"),
     /** Database setup */
     credguideDatabaseSetup: () => t("public", "credguide_database_setup", "Database setup"),
-    /** Step-by-step guide to setting up credentials for Mewdeko Discord bot */
-    credguideDescription: () => t("public", "credguide_description", "Step-by-step guide to setting up credentials for Mewdeko Discord bot"),
+    /** Step-by-step guide to setting up credentials for Mewdeko Fluxer bot */
+    credguideDescription: () => t("public", "credguide_description", "Step-by-step guide to setting up credentials for Mewdeko Fluxer bot"),
     /** Download PostgreSQL installer */
     credguideDownloadPostgresqlInstaller: () => t("public", "credguide_download_postgresql_installer", "Download PostgreSQL installer"),
     /** During installation, remember the password you set for the 'postgres' user */
@@ -13491,10 +13491,10 @@ export const m = {
     credguideFinalConfiguration: () => t("public", "credguide_final_configuration", "Final Configuration"),
     /** Final Configuration Example: */
     credguideFinalConfigurationExample: () => t("public", "credguide_final_configuration_example", "Final Configuration Example:"),
-    /** Get your Discord bot token from the Developer Portal */
-    credguideGetYourDiscordBotToken: () => t("public", "credguide_get_your_discord_bot_token", "Get your Discord bot token from the Developer Portal"),
-    /** Get your Discord bot token */
-    credguideGetYourDiscordBotToken2: () => t("public", "credguide_get_your_discord_bot_token_2", "Get your Discord bot token"),
+    /** Get your Fluxer bot token from the Developer Portal */
+    credguideGetYourDiscordBotToken: () => t("public", "credguide_get_your_discord_bot_token", "Get your Fluxer bot token from the Developer Portal"),
+    /** Get your Fluxer bot token */
+    credguideGetYourDiscordBotToken2: () => t("public", "credguide_get_your_discord_bot_token_2", "Get your Fluxer bot token"),
     /** Give your application a name and click 'Create' */
     credguideGiveYourApplicationAName: () => t("public", "credguide_give_your_application_a_name", "Give your application a name and click 'Create'"),
     /** Go to Credentials → Create Credentials → API Key */
@@ -13513,10 +13513,10 @@ export const m = {
     credguideGoToLibraryAndEnable: () => t("public", "credguide_go_to_library_and_enable", "Go to Library and enable the YouTube Data API v3"),
     /** Go to step {number} */
     credguideGoToStep: (p: { number: P }) => t("public", "credguide_go_to_step", "Go to step {number}", p),
-    /** Go to the Discord Developer Portal (https://discord.dev) and log in */
-    credguideGoToTheDiscordDeveloper: () => t("public", "credguide_go_to_the_discord_developer", "Go to the Discord Developer Portal (https://discord.dev) and log in"),
-    /** Go to your Discord server */
-    credguideGoToYourDiscordServer: () => t("public", "credguide_go_to_your_discord_server", "Go to your Discord server"),
+    /** Open Fluxer, go to User Settings, then Applications, and log in */
+    credguideGoToTheDiscordDeveloper: () => t("public", "credguide_go_to_the_discord_developer", "Open Fluxer, go to User Settings, then Applications, and log in"),
+    /** Go to your Fluxer server */
+    credguideGoToYourDiscordServer: () => t("public", "credguide_go_to_your_discord_server", "Go to your Fluxer server"),
     /** Important Note: */
     credguideImportantNote: () => t("public", "credguide_important_note", "Important Note:"),
     /** Install PostgreSQL and additional components */
@@ -13645,8 +13645,8 @@ export const m = {
     credguideWindows: () => t("public", "credguide_windows", "Windows"),
     /** Windows Installation Steps: */
     credguideWindowsInstallationSteps: () => t("public", "credguide_windows_installation_steps", "Windows Installation Steps:"),
-    /** Your bot token is the unique identifier that allows your bot to connect to Discord. */
-    credguideYourBotTokenIsThe: () => t("public", "credguide_your_bot_token_is_the", "Your bot token is the unique identifier that allows your bot to connect to Discord."),
+    /** Your bot token is the unique identifier that allows your bot to connect to Fluxer. */
+    credguideYourBotTokenIsThe: () => t("public", "credguide_your_bot_token_is_the", "Your bot token is the unique identifier that allows your bot to connect to Fluxer."),
     /** YouTube search and playlist queuing */
     credguideYoutubeSearchAndPlaylistQueuing: () => t("public", "credguide_youtube_search_and_playlist_queuing", "YouTube search and playlist queuing"),
     /** Activity recorded about you by Server Stats in a named server. */
@@ -13659,22 +13659,22 @@ export const m = {
     deleteAccountDeleteFromInsideTheApp: () => t("public", "delete_account_delete_from_inside_the_app", "Delete from inside the app"),
     /** Delete some of your data without signing out */
     deleteAccountDeleteSomeOfYourData: () => t("public", "delete_account_delete_some_of_your_data", "Delete some of your data without signing out"),
-    /** Deleting your Mewdeko Mobile data does not remove data the Mewdeko bot holds for the Di... */
-    deleteAccountDeletingYourMewdekoMobileData: () => t("public", "delete_account_deleting_your_mewdeko_mobile_data", "Deleting your Mewdeko Mobile data does not remove data the Mewdeko bot holds for the Discord servers you are in, because that data belongs to those servers rather than to your app sign-in. Examples include XP levels, warnings, suggestions, and starboard entries."),
+    /** Deleting your Mewdeko Mobile data does not remove data the Mewdeko bot holds for the Fl... */
+    deleteAccountDeletingYourMewdekoMobileData: () => t("public", "delete_account_deleting_your_mewdeko_mobile_data", "Deleting your Mewdeko Mobile data does not remove data the Mewdeko bot holds for the Fluxer servers you are in, because that data belongs to those communities rather than to your app sign-in. Examples include XP levels, warnings, suggestions, and starboard entries."),
     /** How to delete your Mewdeko Mobile account and data */
     deleteAccountDescription: () => t("public", "delete_account_description", "How to delete your Mewdeko Mobile account and data"),
     /** If you can no longer sign in to the app, email {email} from any address and include you... */
-    deleteAccountEmailRequest: (p: { email: P }) => t("public", "delete_account_email_request", "If you can no longer sign in to the app, email {email} from any address and include your Discord user ID. Requests are answered within one month.", p),
+    deleteAccountEmailRequest: (p: { email: P }) => t("public", "delete_account_email_request", "If you can no longer sign in to the app, email {email} from any address and include your Fluxer user ID. Requests are answered within one month.", p),
     /** This page was last updated on {date}. */
     deleteAccountLastUpdated: (p: { date: P }) => t("public", "delete_account_last_updated", "This page was last updated on {date}.", p),
     /** Mewdeko Mobile can be pointed at a self-hosted Mewdeko dashboard. If you signed in to o... */
     deleteAccountMewdekoMobileCanBePointed: () => t("public", "delete_account_mewdeko_mobile_can_be_pointed", "Mewdeko Mobile can be pointed at a self-hosted Mewdeko dashboard. If you signed in to one, your data is held by whoever runs that deployment, and the deletion request should go to them. The in-app steps above still revoke your session and clear the device."),
-    /** Mewdeko Mobile signs you in with your Discord account. It does not create a separate ac... */
-    deleteAccountMewdekoMobileSignsYouIn: () => t("public", "delete_account_mewdeko_mobile_signs_you_in", "Mewdeko Mobile signs you in with your Discord account. It does not create a separate account, so deleting your data here removes the link between your Discord account and Mewdeko, along with everything stored about that link. Your Discord account itself is not affected and is only ever deleted by Discord."),
+    /** Mewdeko Mobile signs you in with your Fluxer account. It does not create a separate acc... */
+    deleteAccountMewdekoMobileSignsYouIn: () => t("public", "delete_account_mewdeko_mobile_signs_you_in", "Mewdeko Mobile signs you in with your Fluxer account. It does not create a separate account, so deleting your data here removes the link between your Fluxer account and Mewdeko, along with everything stored about that link. Your Fluxer account itself is not affected and is only ever deleted by Fluxer."),
     /** Open Mewdeko Mobile. */
     deleteAccountOpenMewdekoMobile: () => t("public", "delete_account_open_mewdeko_mobile", "Open Mewdeko Mobile."),
     /** You can have specific data removed while keeping your sign-in and continuing to use Mew... */
-    deleteAccountPartialRequest: (p: { email: P }) => t("public", "delete_account_partial_request", "You can have specific data removed while keeping your sign-in and continuing to use Mewdeko Mobile. Email {email} with your Discord user ID and say what you want removed, for example:", p),
+    deleteAccountPartialRequest: (p: { email: P }) => t("public", "delete_account_partial_request", "You can have specific data removed while keeping your sign-in and continuing to use Mewdeko Mobile. Email {email} with your Fluxer user ID and say what you want removed, for example:", p),
     /** Request deletion by email */
     deleteAccountRequestDeletionByEmail: () => t("public", "delete_account_request_deletion_by_email", "Request deletion by email"),
     /** Self-hosted dashboards */
@@ -13682,7 +13682,7 @@ export const m = {
     /** Server administrators can also remove most of this directly from the dashboard or with ... */
     deleteAccountServerAdministratorsCanAlsoRemove: () => t("public", "delete_account_server_administrators_can_also_remove", "Server administrators can also remove most of this directly from the dashboard or with bot commands, which is usually faster. Requests sent by email are answered within one month."),
     /** Sessions and sign-in tokens are destroyed at the moment of deletion and are not retaine... */
-    deleteAccountSessionsAndSignInTokens: () => t("public", "delete_account_sessions_and_sign_in_tokens", "Sessions and sign-in tokens are destroyed at the moment of deletion and are not retained. Data belonging to a Discord server is kept for as long as the bot remains in that server, and is covered by the section above."),
+    deleteAccountSessionsAndSignInTokens: () => t("public", "delete_account_sessions_and_sign_in_tokens", "Sessions and sign-in tokens are destroyed at the moment of deletion and are not retained. Data belonging to a Fluxer server is kept for as long as the bot remains in that server, and is covered by the section above."),
     /** Tap <strong>Delete my data</strong>. */
     deleteAccountStepDelete: () => t("public", "delete_account_step_delete", "Tap <strong>Delete my data</strong>."),
     /** Scroll to the <strong>Privacy</strong> section. */
@@ -13693,8 +13693,8 @@ export const m = {
     deleteAccountSuggestionsFormResponsesOrStarboard: () => t("public", "delete_account_suggestions_form_responses_or_starboard", "Suggestions, form responses, or starboard entries you authored."),
     /** The bot instance and dashboard address saved on the device. */
     deleteAccountTheBotInstanceAndDashboard: () => t("public", "delete_account_the_bot_instance_and_dashboard", "The bot instance and dashboard address saved on the device."),
-    /** The cached copy of your Discord user ID, username, and avatar. */
-    deleteAccountTheCachedCopyOfYour: () => t("public", "delete_account_the_cached_copy_of_your", "The cached copy of your Discord user ID, username, and avatar."),
+    /** The cached copy of your Fluxer user ID, username, and avatar. */
+    deleteAccountTheCachedCopyOfYour: () => t("public", "delete_account_the_cached_copy_of_your", "The cached copy of your Fluxer user ID, username, and avatar."),
     /** The deletion happens immediately. You are returned to the first screen of the app and s... */
     deleteAccountTheDeletionHappensImmediatelyYou: () => t("public", "delete_account_the_deletion_happens_immediately_you", "The deletion happens immediately. You are returned to the first screen of the app and signed out everywhere that session was active."),
     /** Delete your Mewdeko Mobile account and data */
@@ -13719,8 +13719,8 @@ export const m = {
     giveawaysCaptchaRequired: () => t("public", "giveaways_captcha_required", "Please complete the captcha verification"),
     /** Complete the verification below to secure your entry */
     giveawaysCompleteTheVerificationBelowTo: () => t("public", "giveaways_complete_the_verification_below_to", "Complete the verification below to secure your entry"),
-    /** Enter Mewdeko Discord bot giveaway */
-    giveawaysDescription: () => t("public", "giveaways_description", "Enter Mewdeko Discord bot giveaway"),
+    /** Enter Mewdeko Fluxer bot giveaway */
+    giveawaysDescription: () => t("public", "giveaways_description", "Enter Mewdeko Fluxer bot giveaway"),
     /** Ended {time} */
     giveawaysEmbedEnded: (p: { time: P }) => t("public", "giveaways_embed_ended", "Ended {time}", p),
     /** Ends {time} */
@@ -13825,8 +13825,8 @@ export const m = {
     leaderboardNoLeaderboardDataAvailable: () => t("public", "leaderboard_no_leaderboard_data_available", "No leaderboard data available"),
     /** Oops! */
     leaderboardOops: () => t("public", "leaderboard_oops", "Oops!"),
-    /** Please log in with Discord to view server leaderboards */
-    leaderboardPleaseLogInWithDiscord: () => t("public", "leaderboard_please_log_in_with_discord", "Please log in with Discord to view server leaderboards"),
+    /** Please log in with Fluxer to view server leaderboards */
+    leaderboardPleaseLogInWithDiscord: () => t("public", "leaderboard_please_log_in_with_discord", "Please log in with Fluxer to view server leaderboards"),
     /** Powered by <span style="color: {color};" class="font-semibold">Mewdeko</span> */
     leaderboardPoweredBy: (p: { color: P }) => t("public", "leaderboard_powered_by", "Powered by <span style=\"color: {color};\" class=\"font-semibold\">Mewdeko</span>", p),
     /** • {count} messages */
@@ -13891,8 +13891,8 @@ export const m = {
     staffClickToRevealEasterEgg: () => t("public", "staff_click_to_reveal_easter_egg", "Click to reveal easter egg"),
     /** Contribute on GitHub */
     staffContributeOnGithub: () => t("public", "staff_contribute_on_github", "Contribute on GitHub"),
-    /** Meet the talented team behind Mewdeko Discord bot */
-    staffDescription: () => t("public", "staff_description", "Meet the talented team behind Mewdeko Discord bot"),
+    /** Meet the talented team behind Mewdeko Fluxer bot */
+    staffDescription: () => t("public", "staff_description", "Meet the talented team behind Mewdeko Fluxer bot"),
     /** Head of evil science/Catgirl shenanigans */
     staffEggCottage: () => t("public", "staff_egg_cottage", "Head of evil science/Catgirl shenanigans"),
     /** LEEEEROY JEEEENKINS */
@@ -13908,7 +13908,7 @@ export const m = {
     /** Meet Our Team */
     staffMeetOurTeam: () => t("public", "staff_meet_our_team", "Meet Our Team"),
     /** Meet the dedicated team that makes Mewdeko possible. Each member brings unique skills a... */
-    staffMeetTheDedicatedTeamThat: () => t("public", "staff_meet_the_dedicated_team_that", "Meet the dedicated team that makes Mewdeko possible. Each member brings unique skills and passion to create the best Discord bot experience."),
+    staffMeetTheDedicatedTeamThat: () => t("public", "staff_meet_the_dedicated_team_that", "Meet the dedicated team that makes Mewdeko possible. Each member brings unique skills and passion to create the best Fluxer bot experience."),
     /** Mewdeko staff members */
     staffMewdekoStaffMembers: () => t("public", "staff_mewdeko_staff_members", "Mewdeko staff members"),
     /** Mewdeko - The people that make the bot possible. */
@@ -14079,8 +14079,8 @@ export const m = {
     pageFormMaxTriggers: () => t("repeaters", "page_form_max_triggers", "Max displays"),
     /** Leave empty for unlimited */
     pageFormMaxTriggersPlaceholder: () => t("repeaters", "page_form_max_triggers_placeholder", "Leave empty for unlimited"),
-    /** Create rich messages with embeds, buttons, and select menus. Supports Discord markdown ... */
-    pageFormMessageHint: () => t("repeaters", "page_form_message_hint", "Create rich messages with embeds, buttons, and select menus. Supports Discord markdown and placeholders."),
+    /** Create rich messages with embeds. Supports Fluxer markdown and placeholders. */
+    pageFormMessageHint: () => t("repeaters", "page_form_message_hint", "Create rich messages with embeds. Supports Fluxer markdown and placeholders."),
     /** Click to configure repeater message with rich embeds and components */
     pageFormMessagePlaceholder: () => t("repeaters", "page_form_message_placeholder", "Click to configure repeater message with rich embeds and components"),
     /** Message that will be repeated in the channel */
@@ -14467,8 +14467,8 @@ export const m = {
     menuModePickAny: () => t("role-menus", "menu_mode_pick_any", "Pick any"),
     /** Pick one */
     menuModePickOne: () => t("role-menus", "menu_mode_pick_one", "Pick one"),
-    /** Open in Discord */
-    menuOpenInDiscord: () => t("role-menus", "menu_open_in_discord", "Open in Discord"),
+    /** Open in Fluxer */
+    menuOpenInDiscord: () => t("role-menus", "menu_open_in_discord", "Open in Fluxer"),
     /** Post again */
     menuPostAgain: () => t("role-menus", "menu_post_again", "Post again"),
     /** Resume */
@@ -14503,8 +14503,8 @@ export const m = {
     pageSaveFailed: () => t("role-menus", "page_save_failed", "Couldn't save the menu."),
     /** Add an option to see the menu */
     previewEmpty: () => t("role-menus", "preview_empty", "Add an option to see the menu"),
-    /** Paused: the dropdown or buttons are greyed out in Discord. */
-    previewPaused: () => t("role-menus", "preview_paused", "Paused: the dropdown or buttons are greyed out in Discord."),
+    /** Paused: the menu is inactive in Fluxer. */
+    previewPaused: () => t("role-menus", "preview_paused", "Paused: the menu is inactive in Fluxer."),
     /** Channel missing */
     statusChannelMissing: () => t("role-menus", "status_channel_missing", "Channel missing"),
     /** Live */
@@ -14537,8 +14537,8 @@ export const m = {
     pageEditPreviewDescription: () => t("rolegreets", "page_edit_preview_description", "Message sent when users receive this role"),
     /** Role Greeting Message */
     pageEditPreviewTitle: () => t("rolegreets", "page_edit_preview_title", "Role Greeting Message"),
-    /** Enter a full Discord webhook URL, or leave it empty. It saves once it is complete. */
-    pageEditWebhookInvalid: () => t("rolegreets", "page_edit_webhook_invalid", "Enter a full Discord webhook URL, or leave it empty. It saves once it is complete."),
+    /** Enter a full Fluxer webhook URL, or leave it empty. It saves once it is complete. */
+    pageEditWebhookInvalid: () => t("rolegreets", "page_edit_webhook_invalid", "Enter a full Fluxer webhook URL, or leave it empty. It saves once it is complete."),
     /** Create a role greet to welcome users when they get a specific role */
     pageEmptyHint: () => t("rolegreets", "page_empty_hint", "Create a role greet to welcome users when they get a specific role"),
     /** No role greets configured */
@@ -14847,8 +14847,8 @@ export const m = {
     settingTrackVoiceHint: () => t("serverstats", "setting_track_voice_hint", "Seconds spent in voice channels, per member and channel"),
     /** Verify activities */
     settingVerify: () => t("serverstats", "setting_verify", "Verify activities"),
-    /** Only count activities backed by a Discord application, Spotify or a stream, which block... */
-    settingVerifyHint: () => t("serverstats", "setting_verify_hint", "Only count activities backed by a Discord application, Spotify or a stream, which blocks spoofed presences"),
+    /** Only count activities backed by a game application, Spotify or a stream, which blocks s... */
+    settingVerifyHint: () => t("serverstats", "setting_verify_hint", "Only count activities backed by a game application, Spotify or a stream, which blocks spoofed presences"),
     /** Default window (days) */
     settingWindow: () => t("serverstats", "setting_window", "Default window (days)"),
     /** What stats commands and this page use when no window is picked, 1 to 90 */
@@ -14951,8 +14951,8 @@ export const m = {
     pageMuteTitle: () => t("settings", "page_mute_title", "Mute Role"),
     /** The prefix used to invoke bot commands */
     pagePrefixHint: () => t("settings", "page_prefix_hint", "The prefix used to invoke bot commands"),
-    /** Show the contents of Discord message links when they are posted */
-    pagePreviewsHint: () => t("settings", "page_previews_hint", "Show the contents of Discord message links when they are posted"),
+    /** Show the contents of Fluxer message links when they are posted */
+    pagePreviewsHint: () => t("settings", "page_previews_hint", "Show the contents of Fluxer message links when they are posted"),
     /** Message link previews */
     pagePreviewsTitle: () => t("settings", "page_previews_title", "Message link previews"),
     /** Couldn't save bot settings. */
@@ -15089,8 +15089,8 @@ export const m = {
     validationOptionsNotUnique: () => t("shared", "validation_options_not_unique", "Option values must be unique"),
     /** {type} questions must have at least one option */
     validationOptionsRequired: (p: { type: P }) => t("shared", "validation_options_required", "{type} questions must have at least one option", p),
-    /** Cannot have more than 25 options (Discord embed limit) */
-    validationOptionsTooMany: () => t("shared", "validation_options_too_many", "Cannot have more than 25 options (Discord embed limit)"),
+    /** Cannot have more than 25 options (maximum) */
+    validationOptionsTooMany: () => t("shared", "validation_options_too_many", "Cannot have more than 25 options (maximum)"),
     /** Parent question must come before this question */
     validationParentMustPrecede: () => t("shared", "validation_parent_must_precede", "Parent question must come before this question"),
     /** Placeholder text cannot exceed 200 characters */
@@ -15395,8 +15395,8 @@ export const m = {
     defaultsText: () => t("statchannels", "defaults_text", "These apply to stat channels created from now on. Existing channels keep their own settings."),
     /** Defaults For New Stat Channels */
     defaultsTitle: () => t("statchannels", "defaults_title", "Defaults For New Stat Channels"),
-    /** Changes save automatically. Each save renames the channel, which Discord limits to two ... */
-    editHint: () => t("statchannels", "edit_hint", "Changes save automatically. Each save renames the channel, which Discord limits to two per 10 minutes."),
+    /** Changes save automatically. Each save renames the channel, which is rate limited to two... */
+    editHint: () => t("statchannels", "edit_hint", "Changes save automatically. Each save renames the channel, which is rate limited to two per 10 minutes."),
     /** Refresh Interval (minutes) */
     editInterval: () => t("statchannels", "edit_interval", "Refresh Interval (minutes)"),
     /** Update Mechanism */
@@ -15429,8 +15429,8 @@ export const m = {
     mechanismRecreateLabel: () => t("statchannels", "mechanism_recreate_label", "Delete and recreate"),
     /** Edits the existing channel name. The channel keeps its ID, position and permissions. */
     mechanismRenameBlurb: () => t("statchannels", "mechanism_rename_blurb", "Edits the existing channel name. The channel keeps its ID, position and permissions."),
-    /** Discord allows two name edits per 10 minutes per channel, so this cannot refresh faster... */
-    mechanismRenameCaution: () => t("statchannels", "mechanism_rename_caution", "Discord allows two name edits per 10 minutes per channel, so this cannot refresh faster than every 5 minutes."),
+    /** Channel renames are rate limited to two per 10 minutes per channel, so this cannot refr... */
+    mechanismRenameCaution: () => t("statchannels", "mechanism_rename_caution", "Channel renames are rate limited to two per 10 minutes per channel, so this cannot refresh faster than every 5 minutes."),
     /** Rename only */
     mechanismRenameLabel: () => t("statchannels", "mechanism_rename_label", "Rename only"),
     /** Failed to add. That channel may already be a stat channel. */
@@ -15695,8 +15695,8 @@ export const m = {
     pageStatNotifySub: () => t("statusroles", "page_stat_notify_sub", "have notification channels"),
     /** Total Status Roles */
     pageStatTotal: () => t("statusroles", "page_stat_total", "Total Status Roles"),
-    /** Manage roles based on Discord custom status */
-    pageSubtitle: () => t("statusroles", "page_subtitle", "Manage roles based on Discord custom status"),
+    /** Manage roles based on Fluxer custom status */
+    pageSubtitle: () => t("statusroles", "page_subtitle", "Manage roles based on Fluxer custom status"),
     /** Add New */
     pageTabAdd: () => t("statusroles", "page_tab_add", "Add New"),
     /** Re-add removed roles when status removed: */
@@ -15835,8 +15835,8 @@ export const m = {
     archiveOnImplement: () => t("suggestions", "archive_on_implement", "Archive on Implement"),
     /** Button Emote */
     buttonEmote: () => t("suggestions", "button_emote", "Button Emote"),
-    /** Single emote for the suggest button. Supports Unicode or Discord custom emotes. Leave e... */
-    buttonEmoteHint: () => t("suggestions", "button_emote_hint", "Single emote for the suggest button. Supports Unicode or Discord custom emotes. Leave empty for no emote."),
+    /** Single emote for the suggest button. Supports Unicode or Fluxer custom emotes. Leave em... */
+    buttonEmoteHint: () => t("suggestions", "button_emote_hint", "Single emote for the suggest button. Supports Unicode or Fluxer custom emotes. Leave empty for no emote."),
     /** Select button emote... */
     buttonEmotePlaceholder: () => t("suggestions", "button_emote_placeholder", "Select button emote..."),
     /** Enter button label */
@@ -15889,8 +15889,8 @@ export const m = {
     confirmUpdating: () => t("suggestions", "confirm_updating", "Updating..."),
     /** Emote {number}: {count} */
     emoteCountLabel: (p: { count: P; number: P }) => t("suggestions", "emote_count_label", "Emote {number}: {count}", p),
-    /** Select up to 5 emotes. Supports Unicode and Discord custom emotes. Leave empty for defa... */
-    emoteCustomHint: () => t("suggestions", "emote_custom_hint", "Select up to 5 emotes. Supports Unicode and Discord custom emotes. Leave empty for default 👍/👎"),
+    /** Select up to 5 emotes. Supports Unicode and Fluxer custom emotes. Leave empty for defau... */
+    emoteCustomHint: () => t("suggestions", "emote_custom_hint", "Select up to 5 emotes. Supports Unicode and Fluxer custom emotes. Leave empty for default 👍/👎"),
     /** Custom Emotes */
     emoteCustomLabel: () => t("suggestions", "emote_custom_label", "Custom Emotes"),
     /** Select up to 5 emotes... */
@@ -15915,40 +15915,40 @@ export const m = {
     loadingDeleting: () => t("suggestions", "loading_deleting", "Deleting suggestion..."),
     /** Loading suggestions... */
     loadingSuggestions: () => t("suggestions", "loading_suggestions", "Loading suggestions..."),
-    /** Message sent when a suggestion is accepted. Supports Discord embeds and placeholders. */
-    messageAcceptHint: () => t("suggestions", "message_accept_hint", "Message sent when a suggestion is accepted. Supports Discord embeds and placeholders."),
+    /** Message sent when a suggestion is accepted. Supports Fluxer embeds and placeholders. */
+    messageAcceptHint: () => t("suggestions", "message_accept_hint", "Message sent when a suggestion is accepted. Supports Fluxer embeds and placeholders."),
     /** Click to configure the accept message */
     messageAcceptPlaceholder: () => t("suggestions", "message_accept_placeholder", "Click to configure the accept message"),
     /** Message sent when a suggestion is accepted */
     messageAcceptPreview: () => t("suggestions", "message_accept_preview", "Message sent when a suggestion is accepted"),
     /** Accept Message */
     messageAcceptTitle: () => t("suggestions", "message_accept_title", "Accept Message"),
-    /** Message sent when a suggestion is being considered. Supports Discord embeds and placeho... */
-    messageConsiderHint: () => t("suggestions", "message_consider_hint", "Message sent when a suggestion is being considered. Supports Discord embeds and placeholders."),
+    /** Message sent when a suggestion is being considered. Supports Fluxer embeds and placehol... */
+    messageConsiderHint: () => t("suggestions", "message_consider_hint", "Message sent when a suggestion is being considered. Supports Fluxer embeds and placeholders."),
     /** Click to configure the consider message */
     messageConsiderPlaceholder: () => t("suggestions", "message_consider_placeholder", "Click to configure the consider message"),
     /** Message sent when a suggestion is being considered */
     messageConsiderPreview: () => t("suggestions", "message_consider_preview", "Message sent when a suggestion is being considered"),
     /** Consider Message */
     messageConsiderTitle: () => t("suggestions", "message_consider_title", "Consider Message"),
-    /** Message sent when a suggestion is denied. Supports Discord embeds and placeholders. */
-    messageDenyHint: () => t("suggestions", "message_deny_hint", "Message sent when a suggestion is denied. Supports Discord embeds and placeholders."),
+    /** Message sent when a suggestion is denied. Supports Fluxer embeds and placeholders. */
+    messageDenyHint: () => t("suggestions", "message_deny_hint", "Message sent when a suggestion is denied. Supports Fluxer embeds and placeholders."),
     /** Click to configure the deny message */
     messageDenyPlaceholder: () => t("suggestions", "message_deny_placeholder", "Click to configure the deny message"),
     /** Message sent when a suggestion is denied */
     messageDenyPreview: () => t("suggestions", "message_deny_preview", "Message sent when a suggestion is denied"),
     /** Deny Message */
     messageDenyTitle: () => t("suggestions", "message_deny_title", "Deny Message"),
-    /** Message sent when a suggestion is implemented. Supports Discord embeds and placeholders. */
-    messageImplementHint: () => t("suggestions", "message_implement_hint", "Message sent when a suggestion is implemented. Supports Discord embeds and placeholders."),
+    /** Message sent when a suggestion is implemented. Supports Fluxer embeds and placeholders. */
+    messageImplementHint: () => t("suggestions", "message_implement_hint", "Message sent when a suggestion is implemented. Supports Fluxer embeds and placeholders."),
     /** Click to configure the implement message */
     messageImplementPlaceholder: () => t("suggestions", "message_implement_placeholder", "Click to configure the implement message"),
     /** Message sent when a suggestion is implemented */
     messageImplementPreview: () => t("suggestions", "message_implement_preview", "Message sent when a suggestion is implemented"),
     /** Implement Message */
     messageImplementTitle: () => t("suggestions", "message_implement_title", "Implement Message"),
-    /** Format for displaying new suggestions. Supports Discord embeds and placeholders. */
-    messageSuggestionHint: () => t("suggestions", "message_suggestion_hint", "Format for displaying new suggestions. Supports Discord embeds and placeholders."),
+    /** Format for displaying new suggestions. Supports Fluxer embeds and placeholders. */
+    messageSuggestionHint: () => t("suggestions", "message_suggestion_hint", "Format for displaying new suggestions. Supports Fluxer embeds and placeholders."),
     /** Click to configure the suggestion message */
     messageSuggestionPlaceholder: () => t("suggestions", "message_suggestion_placeholder", "Click to configure the suggestion message"),
     /** Message sent when a new suggestion is created */
@@ -16725,10 +16725,10 @@ export const m = {
     commandResponsePlaceholder: () => t("twitch", "command_response_placeholder", "Hey %display%, welcome in."),
     /** Save command */
     commandSave: () => t("twitch", "command_save", "Save command"),
-    /** Manage the Twitch integration from Discord with the <code style="font-family:monospace;... */
-    commandSlashHint: () => t("twitch", "command_slash_hint", "Manage the Twitch integration from Discord with the <code style=\"font-family:monospace;font-size:0.85em\">/twitch</code> command group."),
-    /** Discord slash commands */
-    commandSlashTitle: () => t("twitch", "command_slash_title", "Discord slash commands"),
+    /** Manage the Twitch integration from Fluxer with the <code style="font-family:monospace;f... */
+    commandSlashHint: () => t("twitch", "command_slash_hint", "Manage the Twitch integration from Fluxer with the <code style=\"font-family:monospace;font-size:0.85em\">twitch</code> command group."),
+    /** Fluxer commands */
+    commandSlashTitle: () => t("twitch", "command_slash_title", "Fluxer commands"),
     /** {permission} · {cooldown}s · used {count} time */
     commandStatsOne: (p: { cooldown: P; count: P; permission: P }) => t("twitch", "command_stats_one", "{permission} · {cooldown}s · used {count} time", p),
     /** {permission} · {cooldown}s · used {count} times */
@@ -16757,8 +16757,8 @@ export const m = {
     confirmRemoveTimer: (p: { name: P }) => t("twitch", "confirm_remove_timer", "Remove timer {name}?", p),
     /** Not seen yet */
     dateNever: () => t("twitch", "date_never", "Not seen yet"),
-    /** Go-live Discord channel */
-    eventsGoliveChannel: () => t("twitch", "events_golive_channel", "Go-live Discord channel"),
+    /** Go-live Fluxer channel */
+    eventsGoliveChannel: () => t("twitch", "events_golive_channel", "Go-live Fluxer channel"),
     /** Leave empty for a default embed. Placeholders: */
     eventsGoliveFooter: () => t("twitch", "events_golive_footer", "Leave empty for a default embed. Placeholders:"),
     /** Go-live message */
@@ -16767,8 +16767,8 @@ export const m = {
     eventsGolivePreviewDescription: () => t("twitch", "events_golive_preview_description", "Sent to the go-live channel when the connected streamer goes live"),
     /** This channel is connected via OAuth, so go-live notifications set up here replace anyth... */
     eventsOauthNotice: (p: { name: P }) => t("twitch", "events_oauth_notice", "This channel is connected via OAuth, so go-live notifications set up here replace anything configured for @{name} under Stream Alerts.", p),
-    /** Raid Discord channel */
-    eventsRaidChannel: () => t("twitch", "events_raid_channel", "Raid Discord channel"),
+    /** Raid Fluxer channel */
+    eventsRaidChannel: () => t("twitch", "events_raid_channel", "Raid Fluxer channel"),
     /** Raid message */
     eventsRaidMessage: () => t("twitch", "events_raid_message", "Raid message"),
     /** %raider% raided %channel% with %viewers% viewers! */
@@ -16777,14 +16777,14 @@ export const m = {
     eventsRoutingHint: () => t("twitch", "events_routing_hint", "Post a message when the connected channel goes live (and goes offline again)."),
     /** Event routing */
     eventsRoutingTitle: () => t("twitch", "events_routing_title", "Event routing"),
-    /** Sub Discord channel */
-    eventsSubChannel: () => t("twitch", "events_sub_channel", "Sub Discord channel"),
+    /** Sub Fluxer channel */
+    eventsSubChannel: () => t("twitch", "events_sub_channel", "Sub Fluxer channel"),
     /** Sub message */
     eventsSubMessage: () => t("twitch", "events_sub_message", "Sub message"),
     /** %display% subscribed to %channel%! */
     eventsSubPlaceholder: () => t("twitch", "events_sub_placeholder", "%display% subscribed to %channel%!"),
-    /** Configure subscription and raid messages without touching slash commands. */
-    eventsTemplatesHint: () => t("twitch", "events_templates_hint", "Configure subscription and raid messages without touching slash commands."),
+    /** Configure subscription and raid messages without touching commands. */
+    eventsTemplatesHint: () => t("twitch", "events_templates_hint", "Configure subscription and raid messages without touching commands."),
     /** Sub and raid templates */
     eventsTemplatesTitle: () => t("twitch", "events_templates_title", "Sub and raid templates"),
     /** Send test go-live */
@@ -16829,12 +16829,12 @@ export const m = {
     healthTransportIrc: () => t("twitch", "health_transport_irc", "Legacy IRC"),
     /** Add link */
     linksAdd: () => t("twitch", "links_add", "Add link"),
-    /** Discord user */
-    linksDiscordUser: () => t("twitch", "links_discord_user", "Discord user"),
+    /** Fluxer user */
+    linksDiscordUser: () => t("twitch", "links_discord_user", "Fluxer user"),
     /** No linked accounts yet. */
     linksEmpty: () => t("twitch", "links_empty", "No linked accounts yet."),
-    /** Link Discord members to their Twitch username so chat commands can recognise them. */
-    linksHint: () => t("twitch", "links_hint", "Link Discord members to their Twitch username so chat commands can recognise them."),
+    /** Link Fluxer members to their Twitch username so chat commands can recognise them. */
+    linksHint: () => t("twitch", "links_hint", "Link Fluxer members to their Twitch username so chat commands can recognise them."),
     /** Select a user */
     linksSelectUser: () => t("twitch", "links_select_user", "Select a user"),
     /** twitchlogin */
@@ -16995,28 +16995,28 @@ export const m = {
     quoteSearchPlaceholder: () => t("twitch", "quote_search_placeholder", "filter quotes"),
     /** The stream moment worth saving. */
     quoteTextPlaceholder: () => t("twitch", "quote_text_placeholder", "The stream moment worth saving."),
-    /** Discord channel */
-    redemptionDiscordChannel: () => t("twitch", "redemption_discord_channel", "Discord channel"),
-    /** Discord message */
-    redemptionDiscordMessage: () => t("twitch", "redemption_discord_message", "Discord message"),
+    /** Fluxer channel */
+    redemptionDiscordChannel: () => t("twitch", "redemption_discord_channel", "Fluxer channel"),
+    /** Fluxer message */
+    redemptionDiscordMessage: () => t("twitch", "redemption_discord_message", "Fluxer message"),
     /** %display% redeemed %reward%: %input% */
     redemptionDiscordPlaceholder: () => t("twitch", "redemption_discord_placeholder", "%display% redeemed %reward%: %input%"),
     /** No channel point actions yet. */
     redemptionEmpty: () => t("twitch", "redemption_empty", "No channel point actions yet."),
-    /** Map reward titles to Twitch replies or Discord posts. */
-    redemptionHint: () => t("twitch", "redemption_hint", "Map reward titles to Twitch replies or Discord posts."),
+    /** Map reward titles to Twitch replies or Fluxer posts. */
+    redemptionHint: () => t("twitch", "redemption_hint", "Map reward titles to Twitch replies or Fluxer posts."),
     /** no */
     redemptionNo: () => t("twitch", "redemption_no", "no"),
-    /** No Discord post */
-    redemptionNoDiscordPost: () => t("twitch", "redemption_no_discord_post", "No Discord post"),
+    /** No Fluxer post */
+    redemptionNoDiscordPost: () => t("twitch", "redemption_no_discord_post", "No Fluxer post"),
     /** Hydrate */
     redemptionRewardPlaceholder: () => t("twitch", "redemption_reward_placeholder", "Hydrate"),
     /** Reward title */
     redemptionRewardTitle: () => t("twitch", "redemption_reward_title", "Reward title"),
     /** Save action */
     redemptionSave: () => t("twitch", "redemption_save", "Save action"),
-    /** Discord: {channel} · Twitch reply: {reply} */
-    redemptionSummary: (p: { channel: P; reply: P }) => t("twitch", "redemption_summary", "Discord: {channel} · Twitch reply: {reply}", p),
+    /** Fluxer: {channel} · Twitch reply: {reply} */
+    redemptionSummary: (p: { channel: P; reply: P }) => t("twitch", "redemption_summary", "Fluxer: {channel} · Twitch reply: {reply}", p),
     /** Channel point actions */
     redemptionTitle: () => t("twitch", "redemption_title", "Channel point actions"),
     /** Twitch reply */
@@ -17047,14 +17047,14 @@ export const m = {
     setupReconnectChannel: () => t("twitch", "setup_reconnect_channel", "Reconnect channel"),
     /** Show the current Twitch configuration for this server. */
     slashConfigDescription: () => t("twitch", "slash_config_description", "Show the current Twitch configuration for this server."),
-    /** Set the Discord channel and optional message template for go-live notifications. */
-    slashGoliveChannelDescription: () => t("twitch", "slash_golive_channel_description", "Set the Discord channel and optional message template for go-live notifications."),
+    /** Set the Fluxer channel and optional message template for go-live notifications. */
+    slashGoliveChannelDescription: () => t("twitch", "slash_golive_channel_description", "Set the Fluxer channel and optional message template for go-live notifications."),
     /** Clear the go-live notification channel. */
     slashGoliveClearDescription: () => t("twitch", "slash_golive_clear_description", "Clear the go-live notification channel."),
     /** Override the language used for Twitch chat responses. */
     slashLanguageDescription: () => t("twitch", "slash_language_description", "Override the language used for Twitch chat responses."),
-    /** Link a Discord user to their Twitch account. */
-    slashLinkDescription: () => t("twitch", "slash_link_description", "Link a Discord user to their Twitch account."),
+    /** Link a Fluxer user to their Twitch account. */
+    slashLinkDescription: () => t("twitch", "slash_link_description", "Link a Fluxer user to their Twitch account."),
     /** List all Twitch account links for this server. */
     slashLinksDescription: () => t("twitch", "slash_links_description", "List all Twitch account links for this server."),
     /** Change the Twitch chat command prefix. */
@@ -17063,8 +17063,8 @@ export const m = {
     slashRemoveDescription: () => t("twitch", "slash_remove_description", "Remove the Twitch channel configuration and leave the channel."),
     /** Set the Twitch channel this server's bot should join and enable chat commands. */
     slashSetDescription: () => t("twitch", "slash_set_description", "Set the Twitch channel this server's bot should join and enable chat commands."),
-    /** Remove a Discord user's Twitch account link. */
-    slashUnlinkDescription: () => t("twitch", "slash_unlink_description", "Remove a Discord user's Twitch account link."),
+    /** Remove a Fluxer user's Twitch account link. */
+    slashUnlinkDescription: () => t("twitch", "slash_unlink_description", "Remove a Fluxer user's Twitch account link."),
     /** Checking */
     statusChecking: () => t("twitch", "status_checking", "Checking"),
     /** Missing */
@@ -17481,8 +17481,8 @@ export const m = {
     emojiErrorDuplicate: () => t("widgets", "emoji_error_duplicate", "This emoji is already selected"),
     /** Please enter an emoji */
     emojiErrorEmpty: () => t("widgets", "emoji_error_empty", "Please enter an emoji"),
-    /** Invalid emoji format. Use Discord format: <:name:id> or <a:name:id> */
-    emojiErrorFormat: () => t("widgets", "emoji_error_format", "Invalid emoji format. Use Discord format: <:name:id> or <a:name:id>"),
+    /** Invalid emoji format. Use Fluxer format: <:name:id> or <a:name:id> */
+    emojiErrorFormat: () => t("widgets", "emoji_error_format", "Invalid emoji format. Use Fluxer format: <:name:id> or <a:name:id>"),
     /** emoji */
     emojiFallbackAlt: () => t("widgets", "emoji_fallback_alt", "emoji"),
     /** No emojis available */
@@ -17993,8 +17993,8 @@ export const m = {
     importSubtitle: () => t("wizard", "import_subtitle", "Bring your members' XP, levels, level roles and balances with you. Skip this if you're starting fresh."),
     /** Coming From Another Bot? */
     importTitle: () => t("wizard", "import_title", "Coming From Another Bot?"),
-    /** Set up Mewdeko for your Discord server with our guided setup wizard. */
-    layoutMetaDescription: () => t("wizard", "layout_meta_description", "Set up Mewdeko for your Discord server with our guided setup wizard."),
+    /** Set up Mewdeko for your Fluxer server with our guided setup wizard. */
+    layoutMetaDescription: () => t("wizard", "layout_meta_description", "Set up Mewdeko for your Fluxer server with our guided setup wizard."),
     /** Setup Wizard - Mewdeko Dashboard */
     layoutPageTitle: () => t("wizard", "layout_page_title", "Setup Wizard - Mewdeko Dashboard"),
     /** Get your server configured in minutes */

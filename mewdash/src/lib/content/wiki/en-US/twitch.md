@@ -1,7 +1,7 @@
 ---
 title: Twitch Bot
 slug: twitch
-summary: Run Mewdeko inside your own Twitch chat with custom commands, timers, quotes and counters, and route subs, raids, channel point redemptions and go-live events into Discord.
+summary: Run Mewdeko inside your own Twitch chat with custom commands, timers, quotes and counters, and route subs, raids, channel point redemptions and go-live events into Fluxer.
 icon: fa-brands fa-twitch
 category: Community
 dashboard: /dashboard/twitch
@@ -12,21 +12,21 @@ related: [streams, administration]
 
 ## What it does
 
-The Twitch Bot connects one Twitch channel to your Discord server and lets Mewdeko act as a chat bot inside that channel. Viewers type `!ping`, `!quote`, `!counter deaths` or your own custom commands in Twitch chat, and the bot answers there. Timers post repeating messages while you are live, quotes and counters are stored per server, and channel point rewards can trigger a chat reply or a Discord post.
+The Twitch Bot connects one Twitch channel to your Fluxer server and lets Mewdeko act as a chat bot inside that channel. Viewers type `!ping`, `!quote`, `!counter deaths` or your own custom commands in Twitch chat, and the bot answers there. Timers post repeating messages while you are live, quotes and counters are stored per server, and channel point rewards can trigger a chat reply or a Fluxer post.
 
-Events from the channel flow back into Discord. When the channel goes live, a go-live post is sent to a Discord channel; subscriptions, gifted subs and raids can each post to their own channel with your own template, and an end-of-stream recap can summarise duration, peak viewers, chat messages, subs and raids.
+Events from the channel flow back into Fluxer. When the channel goes live, a go-live post is sent to a Fluxer channel; subscriptions, gifted subs and raids can each post to their own channel with your own template, and an end-of-stream recap can summarise duration, peak viewers, chat messages, subs and raids.
 
-Viewers can link their Twitch account to their Discord account. Once linked, the bot knows which Discord member is chatting on Twitch, and role sync can hand out Discord roles to subscribers, VIPs, mods or the broadcaster.
+Viewers can link their Twitch account to their Fluxer account. Once linked, the bot knows which Fluxer member is chatting on Twitch, and role sync can hand out Fluxer roles to subscribers, VIPs, mods or the broadcaster.
 
 > [!NOTE]
 > This is not the same as Stream Alerts. Stream Alerts only watches public channels on several platforms and announces when they go live. The Twitch Bot needs you to authorise your own Twitch account and gives the bot a presence in your chat. If both are set up for the same Twitch channel, the Twitch Bot's go-live post replaces the Stream Alerts one so you do not get duplicates.
 
 ## Why you would use it
 
-- You stream on Twitch and want one bot for both your Discord and your Twitch chat, with the same custom commands and socials in both places.
-- You want subs and raids celebrated in Discord as they happen.
-- You want subscriber or VIP roles on Discord without handing them out by hand.
-- You want a hydrate or stretch channel point reward to actually say something in chat and log to Discord.
+- You stream on Twitch and want one bot for both your Fluxer and your Twitch chat, with the same custom commands and socials in both places.
+- You want subs and raids celebrated in Fluxer as they happen.
+- You want subscriber or VIP roles on Fluxer without handing them out by hand.
+- You want a hydrate or stretch channel point reward to actually say something in chat and log to Fluxer.
 - Your mods need a shoutout command, a raid target picker and a quote list that survives between streams.
 
 ## Connecting
@@ -51,7 +51,7 @@ Every connected channel gets these built-in commands. The prefix is `!` by defau
 | `!ping` | Everyone | Replies with a pong |
 | `!uptime` | Everyone | How long the bot process has been running |
 | `!commands` | Everyone | Lists built-in and enabled custom commands |
-| `!discord` | Everyone | Shows which Discord account is linked to the caller |
+| `!discord` | Everyone | Shows which Fluxer account is linked to the caller |
 | `!link` | Everyone | Generates a six-digit claim code for account linking |
 | `!rank` | Everyone | Shows the caller's resolved rank |
 | `!stream` | Everyone | Live status, title, category, viewers and uptime, or "offline" |
@@ -84,7 +84,7 @@ The dashboard also has a **Test args** field and a preview so you can see the re
 | `%channel%` | Your Twitch channel login |
 | `%args%` | Everything typed after the command name |
 | `%target%` | The first word after the command name |
-| `%discord%` | The chatter's linked Discord user ID, or empty |
+| `%discord%` | The chatter's linked Fluxer user ID, or empty |
 | `%random:a\|b\|c%` | One option picked at random |
 | `%count:name%` | Current value of the named counter |
 | `%stream%` | The same summary `!stream` gives |
@@ -112,13 +112,13 @@ The scheduler checks timers every 30 seconds. Timer lines support `%channel%`, `
 
 Quotes are stored with their text, optional author and who added them. The dashboard **Quotes** sub-tab lets staff add, search and remove them; viewers use `!quote`. Counters are simple named integers that mods bump from chat; staff can set values with `/twitch commands counter-set` and list them with `counter-list`.
 
-## Events into Discord
+## Events into Fluxer
 
 The **Events** tab, **Alerts** sub-tab holds the sub, raid and channel point settings. The go-live post lives under **Setup**, **Bot Settings**, **Event routing**.
 
 ### Go-live and offline
 
-When the channel goes live the bot posts to the **Go-live Discord channel**. With no **Go-live message** it sends a default embed: the streamer name linked to the channel, the title as author line, status, viewer count, category and a preview image. A custom message runs through the embed builder, so full embeds and components work. When the channel goes offline a short red "Offline" embed is posted to the same channel.
+When the channel goes live the bot posts to the **Go-live Fluxer channel**. With no **Go-live message** it sends a default embed: the streamer name linked to the channel, the title as author line, status, viewer count, category and a preview image. A custom message runs through the embed builder, so full embeds and components work. When the channel goes offline a short red "Offline" embed is posted to the same channel.
 
 | Placeholder | Value |
 | --- | --- |
@@ -141,7 +141,7 @@ Each alert has a **Send test** button on the dashboard, and the **Event history*
 
 ### Channel point actions
 
-Under **Channel point actions**, map a **Reward title** (matched case-insensitively) to a **Twitch reply**, a **Discord channel** with a **Discord message**, or both. Placeholders: `%user%`, `%display%`, `%channel%`, `%reward%`, `%input%` (what the viewer typed) and `%url%`.
+Under **Channel point actions**, map a **Reward title** (matched case-insensitively) to a **Twitch reply**, a **Fluxer channel** with a **Fluxer message**, or both. Placeholders: `%user%`, `%display%`, `%channel%`, `%reward%`, `%input%` (what the viewer typed) and `%url%`.
 
 ### Stream recap
 
@@ -149,18 +149,18 @@ Under **Channel point actions**, map a **Reward title** (matched case-insensitiv
 
 ## Account linking and role sync
 
-There are two ways to link a Discord member to a Twitch login:
+There are two ways to link a Fluxer member to a Twitch login:
 
-1. Self-service: the viewer types `!link` in Twitch chat, gets a six-digit code, and runs `/twitch claim <code>` in Discord within ten minutes.
+1. Self-service: the viewer types `!link` in Twitch chat, gets a six-digit code, and runs `/twitch claim <code>` in Fluxer within ten minutes.
 2. Staff: the **Account Links** tab or `/twitch links add @user twitchlogin`.
 
-One Twitch login per Discord member per server. Once linked, `%discord%` fills in for that viewer and role sync applies.
+One Twitch login per Fluxer member per server. Once linked, `%discord%` fills in for that viewer and role sync applies.
 
-Role sync maps a Twitch rank to a Discord role with `/twitch rolesync add`. Every time a linked viewer sends a chat message, the bot adds the role if their rank is at or above the mapping and removes it if it is below. Role sync is only available through slash commands.
+Role sync maps a Twitch rank to a Fluxer role with the `twitch rolesync add` command. Every time a linked viewer sends a chat message, the bot adds the role if their rank is at or above the mapping and removes it if it is below.
 
 ## Live Tools
 
-The **Events** tab, **Live Tools** sub-tab exposes stream operator actions that use your channel authorisation: send a chat message as the bot, create a stream marker, create a clip, start a poll (one choice per line, default 60 seconds), and time out (default 600 seconds), ban, unban or delete a message by ID. `/twitch stream-info` and `/twitch clip` do the title, category and clip parts from Discord.
+The **Events** tab, **Live Tools** sub-tab exposes stream operator actions that use your channel authorisation: send a chat message as the bot, create a stream marker, create a clip, start a poll (one choice per line, default 60 seconds), and time out (default 600 seconds), ban, unban or delete a message by ID. `/twitch stream-info` and `/twitch clip` do the title, category and clip parts from Fluxer.
 
 ## Settings
 
@@ -172,16 +172,16 @@ Under **Setup**, **Bot Settings**:
 | Language override | server default | BCP-47 tag such as `de-DE` used for the bot's chat replies |
 | Enable Twitch chat bot for this server | on | Master switch; disabling keeps the configuration |
 | Use EventSub for chat events | on | Receive chat and events over EventSub; if off, chat commands do not run |
-| Go-live Discord channel | none | Where go-live and offline posts go |
+| Go-live Fluxer channel | none | Where go-live and offline posts go |
 | Go-live message | default embed | Custom template with the go-live placeholders |
 
-Under **Events**, **Alerts**: **Sub Discord channel**, **Sub message**, **Raid Discord channel**, **Raid message**, and the channel point action list.
+Under **Events**, **Alerts**: **Sub Fluxer channel**, **Sub message**, **Raid Fluxer channel**, **Raid message**, and the channel point action list.
 
 ## Setup walkthrough
 
 1. Open **Twitch Bot** in the dashboard. A bot owner must have connected the **Bot account** first; the **Connect** sub-tab shows whether one exists.
 2. Click **Connect channel** and authorise with your own Twitch account.
-3. In **Bot Settings**, set the prefix, turn on **Enable Twitch chat bot for this server**, pick a **Go-live Discord channel** and save.
+3. In **Bot Settings**, set the prefix, turn on **Enable Twitch chat bot for this server**, pick a **Go-live Fluxer channel** and save.
 4. In **Commands**, add a couple of custom commands and a socials timer. Use **Test args** and the preview to check placeholders.
 5. In **Events**, **Alerts**, choose sub and raid channels and press **Send test** for each.
 6. Type `!ping` in your Twitch chat to confirm the bot is listening, then `!link` and `/twitch claim` to link yourself.
@@ -189,7 +189,7 @@ Under **Events**, **Alerts**: **Sub Discord channel**, **Sub message**, **Raid D
 
 ## Commands
 
-This module is slash commands only. Type `/twitch` in Discord to see them. Replies are only visible to you.
+Run the `twitch` command in Fluxer to see the available commands.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -251,4 +251,4 @@ This module is slash commands only. Type `/twitch` in Discord to see them. Repli
 - Unknown ranks passed to `rolesync` fall back to Subscriber, and unknown permissions passed to `commands add` fall back to Everyone.
 - Link codes expire after ten minutes and generating a new one invalidates the old.
 - Timeouts and bans from Live Tools use your channel's moderation scopes, so they appear in Twitch as actions taken by the authorised account.
-- Language override changes only Twitch chat replies. Discord replies keep the server locale.
+- Language override changes only Twitch chat replies. Fluxer replies keep the server locale.

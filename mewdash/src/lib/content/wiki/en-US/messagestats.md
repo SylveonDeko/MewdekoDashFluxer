@@ -64,7 +64,7 @@ The **Overview** tab shows **Daily Messages**, **Total Messages**, **Last Update
 
 1. Open **Message Stats** in the dashboard and go to **Management**, then **Settings**.
 2. Turn on **Enable Message Counting**.
-3. Optionally set **Minimum Message Length** to 5, or run `minmsglength 5` in Discord, so one-character replies are ignored.
+3. Optionally set **Minimum Message Length** to 5, or run `minmsglength 5` in Fluxer, so one-character replies are ignored.
 4. Let the server chat for a day, then check **Statistics** for the first numbers.
 5. After a week, run `activitygraph hours` and pick your timezone to see when the server is busiest.
 

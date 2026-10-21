@@ -30,7 +30,7 @@ Windows up to ninety days read the timestamped data. **All time** reads the life
 
 Game tracking is off until you turn it on, because it is the heaviest tracker. Once on, the bot watches every member's presence and records how long each game, stream, Spotify session or watched app lasts.
 
-- **Verify activities** (on by default) only counts activities Discord itself attests to: ones with a registered application ID, Spotify, and streams. A modified client can claim to be playing anything, so plain named activities are ignored while this is on.
+- **Verify activities** (on by default) only counts activities Fluxer itself attests to: ones with a registered application ID, Spotify, and streams. A modified client can claim to be playing anything, so plain named activities are ignored while this is on.
 - The **activity filter** is a list of game names that is either a **blacklist** (listed games are ignored) or a **whitelist** (only listed games count).
 - Custom statuses are never counted.
 
@@ -53,7 +53,7 @@ Game tracking is off until you turn it on, because it is the heaviest tracker. O
 | Hourly snapshots | on | Whether member and status counts are sampled every hour |
 | Count bots | off | Whether bot accounts are included |
 | Track games and apps | off | Whether presence activities are recorded |
-| Verify activities | on | Only count Discord attested activities |
+| Verify activities | on | Only count Fluxer attested activities |
 | Voice states that do not count | none | Any of self muted, self deafened, server muted, server deafened, AFK channel, alone, streaming, camera on |
 | Ignored channels, roles, members | none | Nothing from these is counted |
 

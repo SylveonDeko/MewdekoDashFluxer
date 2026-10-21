@@ -225,7 +225,7 @@
   "page_quick_more_options": "More Options →",
   "page_quick_preview_description": "Bot's response to the trigger",
   "page_quick_preview_title": "Quick Response",
-  "page_quick_response_hint": "💡 Supports rich embeds, interactive buttons, select menus, and Discord formatting",
+  "page_quick_response_hint": "💡 Supports rich embeds and Fluxer formatting",
   "page_quick_response_label": "Bot responds with:",
   "page_quick_response_placeholder": "Click to configure response message with rich embeds and components",
   "page_quick_trigger_hint": "Simple text that will trigger the response",
