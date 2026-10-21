@@ -28,7 +28,7 @@
   "page_stat_notify": "With Notifications",
   "page_stat_notify_sub": "have notification channels",
   "page_stat_total": "Total Status Roles",
-  "page_subtitle": "Manage roles based on Discord custom status",
+  "page_subtitle": "Manage roles based on Fluxer custom status",
   "page_tab_add": "Add New",
   "page_toggle_readd_removed": "Re-add removed roles when status removed:",
   "page_toggle_remove_added": "Remove added roles when status removed:"

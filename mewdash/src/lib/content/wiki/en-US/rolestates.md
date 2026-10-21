@@ -112,14 +112,12 @@ Run these with your server's prefix (`.` unless you changed it). Every command i
 | `removerolesfromrolestate @user @role...` | `rrfrs` | Administrator | Remove roles from a member's saved state |
 | `deleteuserrolestate @user` | `dur` | Administrator | Forget a member's saved state |
 
-Slash equivalents live under `/rolestates`.
-
 ## Tips and gotchas
 
 - Nothing is saved for members who were already in the server when you enabled the feature until they leave, or until you run **Save All**. Run it once right after setup.
 - Only leaves trigger a save. Kicks count as leaves. Bans also count as leaves, and the state is then removed again if **Clear on Ban** is on.
 - Restoring uses a single add-roles call. One missing or too-high role makes the whole restore fail silently, so keep the deny list current when you delete or reorder roles.
-- Managed roles (bot integration roles, the booster role) are never saved. Discord assigns those itself.
+- Managed roles (bot integration roles, the booster role) are never saved. Fluxer assigns those itself.
 - `viewuserrolestates` shows three members per page.
 - Both `setuserrolestate` and `deleteuserrolestate` accept a user who has already left, so you can fix a state before someone rejoins.
 - Denied Users only affects automatic saves and restores. Manual commands and **Copy Role State** still work on those members.

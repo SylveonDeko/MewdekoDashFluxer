@@ -20,20 +20,20 @@ Requirements are checked at the end, not at entry. Someone who reacted but later
 
 ## Why you would use it
 
-- Give away game keys, Nitro, or merch to active members without picking names by hand.
+- Give away game keys, gift cards, or merch to active members without picking names by hand.
 - Reward people who have actually been talking, by requiring a minimum message count.
 - Restrict a prize to boosters or a supporter role by requiring those roles.
 - Stop alt accounts and bots from stuffing entries by using captcha entry.
 
 ## Entry methods
 
-Each giveaway uses exactly one of these. The interactive `gstart` wizard asks which, the slash command has `use_button` and `use_captcha` options, and the dashboard has an **Entry Method** choice.
+Each giveaway uses exactly one of these. The interactive `gstart` wizard asks which and the dashboard has an **Entry Method** choice.
 
 | Method | How members enter | Notes |
 | --- | --- | --- |
 | Reaction | React with the server's giveaway emote | The default. The bot reads the reaction list when the giveaway ends, up to 1000 users. |
 | Button | Press the **Enter** button under the embed | Entries are stored by the bot. Entering twice, after it has ended, or while not in the server is refused. |
-| Captcha | Press **Enter (Web Captcha)**, sign in to the dashboard, and pass a Cloudflare Turnstile check | Same storage as button entry. The entry is credited to the signed-in Discord account. |
+| Captcha | Press **Enter (Web Captcha)**, sign in to the dashboard, and pass a Cloudflare Turnstile check | Same storage as button entry. The entry is credited to the signed-in Fluxer account. |
 
 The giveaway emote is set per server with `gemote`. The bot validates it by reacting with it, so a custom emote from another server only works if the bot is also in that server. Reaction giveaways also need the bot's Add Reactions and Use External Emojis permissions, and `gstart` refuses to start without them.
 
@@ -41,21 +41,21 @@ The giveaway emote is set per server with `gemote`. The bot validates it by reac
 
 | Requirement | Set by | Effect at draw time |
 | --- | --- | --- |
-| Required roles | Wizard, slash `required_roles`, dashboard **Required Roles** | The member must hold all of the listed roles |
-| Message count | Wizard, slash `required_messages`, dashboard **Required Message Count** | The member's counted messages in this server must be at least this number. Uses the message count service, so it only knows about messages counted since that was enabled. |
+| Required roles | Wizard, dashboard **Required Roles** | The member must hold all of the listed roles |
+| Message count | Wizard, dashboard **Required Message Count** | The member's counted messages in this server must be at least this number. Uses the message count service, so it only knows about messages counted since that was enabled. |
 
 Bots are always excluded, and so is anyone who has left the server. Requirements are listed in the giveaway embed as a **Required Roles** line and a "N Messages Required" line.
 
 ## The giveaway message
 
-The embed's title is the prize. The description reads "React with (emote) to enter!", names the host, and shows the end time as a relative and absolute Discord timestamp. The footer shows the winner count, the server name, and the end date. Message content is the ping role mention if one is set.
+The embed's title is the prize. The description reads "React with (emote) to enter!", names the host, and shows the end time as a relative and absolute Fluxer timestamp. The footer shows the winner count, the server name, and the end date. Message content is the ping role mention if one is set.
 
 Server-wide appearance settings:
 
 | Setting | Command | Effect |
 | --- | --- | --- |
 | Embed colour | `gembedcolor` | Colour of the giveaway embed, as a colour name or `#hex` |
-| Banner | `gbanner` | Image shown on every giveaway. The wizard and slash command can override it per giveaway with a URL or attachment. |
+| Banner | `gbanner` | Image shown on every giveaway. The wizard can override it per giveaway with a URL or attachment. |
 | Ping role | none, only wizard override | The wizard offers to ping a role; if a server ping role is stored it asks whether to override it |
 | DM winners | `gdm` | Whether winners get a DM. On by default. |
 
@@ -108,7 +108,7 @@ The **Create Giveaway** form:
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). The same commands exist as slash commands under `/giveaways`.
+Run these with your server's prefix (`.` unless you changed it). The same commands exist as
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -131,5 +131,5 @@ Run these with your server's prefix (`.` unless you changed it). The same comman
 - After a restart the bot schedules giveaways ending within the next 24 hours straight away; ones ending later are picked up by an hourly check, so a giveaway with a long duration still ends on time.
 - If the bot cannot read reactions on a reaction giveaway it falls back to the current server emote, but if the emote was changed to something nobody reacted with, the draw finds no entrants.
 - The dashboard's **Active Giveaways** list also shows ended giveaways, and the **Ended Giveaways** tab is currently empty. Use the end time and the missing **End Giveaway** button to tell them apart.
-- Captcha entry needs the dashboard to be reachable and the member to sign in with Discord; the entry is tied to that account, not to anything typed on the page.
+- Captcha entry needs the dashboard to be reachable and the member to sign in with Fluxer; the entry is tied to that account, not to anything typed on the page.
 - Winner DMs fail silently if the winner has DMs closed. The channel announcement still goes out.

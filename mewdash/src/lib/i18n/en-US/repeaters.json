@@ -74,7 +74,7 @@
   "page_form_max_age_placeholder": "7.00:00:00 (7 days)",
   "page_form_max_triggers": "Max displays",
   "page_form_max_triggers_placeholder": "Leave empty for unlimited",
-  "page_form_message_hint": "Create rich messages with embeds, buttons, and select menus. Supports Discord markdown and placeholders.",
+  "page_form_message_hint": "Create rich messages with embeds. Supports Fluxer markdown and placeholders.",
   "page_form_message_placeholder": "Click to configure repeater message with rich embeds and components",
   "page_form_message_preview_description": "Message that will be repeated in the channel",
   "page_form_message_preview_title": "Repeater Message",

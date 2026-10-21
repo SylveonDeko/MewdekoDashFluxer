@@ -86,7 +86,7 @@ This feature is dashboard only. There are no bot commands; owners answer through
 
 ## Tips and gotchas
 
-- The bot only DMs the person Discord lists as the server owner, not whoever kicked it.
+- The bot only DMs the person Fluxer lists as the server owner, not whoever kicked it.
 - The thirty day cooldown is per server, so a server that re-adds the bot and removes it again inside that window is not asked twice.
 - The summary embed goes to the configured channel, or to the join/leave log channel from the bot's credentials when none is set. If neither exists, answers are still stored and visible on the page.
 - Deleting a record from the dashboard does not delete the embed already posted in the report channel.

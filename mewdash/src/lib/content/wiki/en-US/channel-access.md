@@ -40,7 +40,7 @@ Approved members are never removed automatically. Take the role away or delete t
 
 Before an application opens, the bot checks in this order: the gate is accepting applications, the member does not already have access, they are not blocked, their account and server join are old enough, they have no open application for this gate, and their reapply cooldown has passed. Failing any check returns an ephemeral message saying why.
 
-If the gate has questions, a modal opens with one box per question. Questions are capped at 45 characters because of Discord's modal limits. Answer boxes are either single-line (200 characters) or multi-line (1000 characters) and can be marked required. A gate with no questions submits straight away.
+If the gate has questions, a modal opens with one box per question. Questions are capped at 45 characters. Answer boxes are either single-line (200 characters) or multi-line (1000 characters) and can be marked required. A gate with no questions submits straight away.
 
 The review message goes to the **Review channel**, or into the gated channel itself when none is set. It shows the applicant, when their account was created and when they joined, each question and answer, a live vote tally, and a footer with when voting closes. If **Hide the applicant until the vote closes** is on, the name is replaced with "Hidden until the vote closes" while pending.
 
@@ -111,7 +111,7 @@ The **Channel Access** page has three tabs: **Gates**, **Applications** and **Bl
 
 ## Setup walkthrough
 
-1. Make the channel private in Discord and, for a role gate, create the role that can see it.
+1. Make the channel private in Fluxer and, for a role gate, create the role that can see it.
 2. Open **Channel Access** in the dashboard and use **Open applications for a channel**. Pick the **Locked channel**, choose **How people get in**, and select the role if needed.
 3. Expand the gate. Set a **Review channel** so applications do not land in the locked channel, and a **Log channel** if you want a record.
 4. Adjust **Approvals needed**, **Denials needed** and the **Voting window** to match how many voters you expect.
@@ -121,7 +121,7 @@ The **Channel Access** page has three tabs: **Gates**, **Applications** and **Bl
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). The slash versions live under `/channelaccess`.
+Run these with your server's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |

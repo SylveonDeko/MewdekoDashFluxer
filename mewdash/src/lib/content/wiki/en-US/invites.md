@@ -65,7 +65,7 @@ Inviters on the **blacklist**, or holding a blacklisted role, still show up as t
 | Personal link channel | system channel | Where invites created by `invitelink` point |
 | Join and leave log channel | none | Posts an embed on every join and leave saying who invited whom, with the code, account age and any fake flag |
 
-**Import uses from Discord** raises each inviter's regular total to the sum of uses across their codes and never lowers it, so it is safe to run again after a restart or a fresh install. **Reset inviters who left** clears the tally of everyone no longer in the server. **Reset everything** clears every tally and the join history.
+**Import uses from Fluxer** raises each inviter's regular total to the sum of uses across their codes and never lowers it, so it is safe to run again after a restart or a fresh install. **Reset inviters who left** clears the tally of everyone no longer in the server. **Reset everything** clears every tally and the join history.
 
 ## Greet placeholders
 
@@ -78,7 +78,7 @@ Any greet can use these once tracking is on. Unknown values fall back to `Unknow
 | `%invite.code%`, `%invite.url%`, `%invite.uses%`, `%invite.label%`, `%invite.type%`, `%invite.fake%` | The invite that was used |
 | `%user.joincount%`, `%user.leavecount%` | How many times this member has joined and left |
 | `%server.members.ordinal%` | The member count as 1st, 2nd, 1,204th |
-| `%user.joined.R%`, `%user.created.F%` and the other Discord timestamp styles t, T, d, D, f, F, R | Join and account creation times as live timestamps |
+| `%user.joined.R%`, `%user.created.F%` and the other Fluxer timestamp styles t, T, d, D, f, F, R | Join and account creation times as live timestamps |
 
 ## Commands
 
@@ -97,7 +97,7 @@ Run these with your server's prefix (`.` unless you changed it). Every command a
 | `invitelink` | `findlink`, `mylink` | Nobody | Your personal permanent link, created if you have none |
 | `addinvites`, `removeinvites`, `addbonusinvites`, `removebonusinvites`, `addfakeinvites`, `removefakeinvites <@user> <amount>` | | Manage Server | Adjust a member's tally |
 | `resetinvites <@user>` or `resetinvites Server` or `resetinvites LeftMembers` | | Manage Server, Administrator for server-wide | Reset tallies |
-| `syncinvites [@user]` | | Manage Server | Import uses from Discord |
+| `syncinvites [@user]` | | Manage Server | Import uses from Fluxer |
 | `deleteinvite <code>` | `delinvite` | Manage Server | Delete a code |
 | `purgeinvites [maxUses] [#channel]` | | Manage Server | Delete every unlabelled code used at most that many times |
 | `inviteblacklist <@user or @role>` | `invbl` | Manage Server | Toggle whether someone can earn credit |
@@ -110,7 +110,7 @@ Run these with your server's prefix (`.` unless you changed it). Every command a
 
 ## Tips and gotchas
 
-- Members who joined before tracking was enabled, or while the bot was offline, have no join record. Run **Import uses from Discord** once to seed regular totals from Discord's own counts.
+- Members who joined before tracking was enabled, or while the bot was offline, have no join record. Run **Import uses from Fluxer** once to seed regular totals from Fluxer's own counts.
 - Fake joins never lower a total when the member leaves; only regular ones become left invites.
 - A member who leaves and comes back gets a new join record. With **Count rejoins** on the inviter earns a regular invite again, which cancels out the left invite from before.
 - Retention on the leaderboard only counts joins the bot witnessed, so it starts at 100% and settles as history builds.

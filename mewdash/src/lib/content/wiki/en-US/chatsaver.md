@@ -1,7 +1,7 @@
 ---
 title: Chat Saver
 slug: chatsaver
-summary: Pull the recent history of a channel into the dashboard, read it there, and keep named snapshots for later, or export an HTML transcript from Discord with a command.
+summary: Pull the recent history of a channel into the dashboard, read it there, and keep named snapshots for later, or export an HTML transcript from Fluxer with a command.
 icon: fa-folder
 category: Security
 dashboard: /dashboard/chatsaver
@@ -14,7 +14,7 @@ related: [tickets, logging, auditlog]
 
 Chat Saver has two halves. On the dashboard, staff pick a channel and a time window, and the bot fetches every message from that period: text, author, attachments and embeds. They can read it on the page and, if it is worth keeping, save it as a named log. Saved logs live in the bot's database, so they survive the original messages being deleted.
 
-In Discord, `savechat` runs a full transcript export of a channel for the last few minutes, hours or days and gives you a link to an HTML file that looks like Discord, including media.
+In Fluxer, `savechat` runs a full transcript export of a channel for the last few minutes, hours or days and gives you a link to an HTML file that looks like Fluxer, including media.
 
 Ticket transcripts also land here. When a ticket closes in a server that has a ticket transcript channel set, the ticket system stores the conversation as a saved log named `Ticket #<id> - <channel>`, so it shows up under **Saved Logs** with everything else.
 
@@ -22,7 +22,7 @@ Ticket transcripts also land here. When a ticket closes in a server that has a t
 
 - Keeping evidence of an argument or rule break before people delete their messages.
 - Archiving an event channel or announcement thread before it is removed.
-- Reviewing what happened in a channel overnight without scrolling back in Discord.
+- Reviewing what happened in a channel overnight without scrolling back in Fluxer.
 - Reading old ticket transcripts in one place.
 
 ## Fetching messages
@@ -41,7 +41,7 @@ All three caps are the same three day window. Fetching does not store anything; 
 
 With messages loaded, click **Save Log** on the **View Messages** tab. The log is named `<channel> - <today's date>` and stored with the channel, who saved it and the message count. Each saved log records the message text, author name and avatar, timestamp, attachment links and embed titles, descriptions and thumbnails.
 
-Attachment and avatar links point at Discord's CDN. If Discord removes the file, the link in the saved log stops working, though the text stays.
+Attachment and avatar links point at Fluxer's CDN. If Fluxer removes the file, the link in the saved log stops working, though the text stays.
 
 **Export HTML**, next to **Save Log**, downloads the loaded messages as a standalone HTML transcript built in your browser. Nothing is stored on the bot.
 

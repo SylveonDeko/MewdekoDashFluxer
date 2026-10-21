@@ -147,14 +147,14 @@ The dashboard page has two tabs, **Suggestions** and **Settings**. The Settings 
 > [!WARNING]
 > Nothing works until **Suggest Channel** is set. Until then `suggest` replies that no channel is set and deletes the error after three seconds.
 
-The **Suggestions** tab lists every suggestion with its status, vote counts and date, sortable by date or status. Each card has **Accept**, **Deny**, **Consider** and **Implement** buttons with an optional reason box, and a **Delete** button that removes the record from the database without touching the Discord message.
+The **Suggestions** tab lists every suggestion with its status, vote counts and date, sortable by date or status. Each card has **Accept**, **Deny**, **Consider** and **Implement** buttons with an optional reason box, and a **Delete** button that removes the record from the database without touching the Fluxer message.
 
 ## Setup walkthrough
 
 1. Open **Suggestions** in the dashboard and switch to the **Settings** tab.
 2. On **Channels**, pick a **Suggest Channel**. Optionally pick separate channels for accepted, denied, considered and implemented suggestions.
 3. On **General**, set **Minimum Length** and **Maximum Length**, for example 10 and 1000, and pick a **Thread Type** if you want per-idea discussion.
-4. On **Emotes**, choose **Reactions** or **Buttons** and optionally pick up to five **Custom Emotes**. If you want a suggest button, set its label, emote and message here and run `suggestbuttonchannel #channel` in Discord to post it.
+4. On **Emotes**, choose **Reactions** or **Buttons** and optionally pick up to five **Custom Emotes**. If you want a suggest button, set its label, emote and message here and run `suggestbuttonchannel #channel` in Fluxer to post it.
 5. On **Archive**, turn on the archive toggles for the states that should close discussion.
 6. On **Messages**, customise the status embeds if you want, using the placeholders above.
 7. Save, then test: run `suggest test idea`, vote on it, and run `accept 1 looks good` to see the status embed and DM.
@@ -198,8 +198,6 @@ Run these with your server's prefix (`.` unless you changed it).
 | `suggestbuttonemote [emote]` | | Administrator | Button emote, none to reset |
 | `suggestbuttoncolor <colour>` | | Administrator | Suggest button colour: `blurple`, `grey`, `green` or `red` |
 
-Slash equivalents live under `/suggestions` and `/suggestions customize`.
-
 ## Tips and gotchas
 
 - The bot needs Manage Messages in the suggestion channel to delete originals, Add Reactions for reaction mode, and Create Public or Private Threads for discussions. Status channels need Embed Links or the copy is silently skipped.
@@ -207,5 +205,5 @@ Slash equivalents live under `/suggestions` and `/suggestions customize`.
 - Members with the staff role set in Administration can chat in the suggestion channel without their messages becoming suggestions. Everyone else's messages are converted and deleted.
 - The `suggest` command respects the permissions system, so you can block it in channels or for roles with the usual permission commands and the typed-message path respects the same rule.
 - Custom emotes must be ones the bot can use. The command tests each emote by reacting with it and refuses the set if one fails.
-- Dashboard **Delete** only removes the database record. The Discord message and any thread stay where they are.
+- Dashboard **Delete** only removes the database record. The Fluxer message and any thread stay where they are.
 - `suggestclear` cannot be undone and resets numbering to 1.

@@ -158,7 +158,7 @@
   "tab_alerts_toast_enabled": "{name} enabled",
   "tab_alerts_toast_muted": "{name} muted for 1h",
   "tab_alerts_toast_saved": "{name} saved",
-  "tab_alerts_toast_test_rejected": "Discord rejected the test for {name}",
+  "tab_alerts_toast_test_rejected": "Fluxer rejected the test for {name}",
   "tab_alerts_toast_test_sent": "Test sent for {name}",
   "tab_alerts_toast_unmuted": "{name} unmuted",
   "tab_alerts_transition": "{from} → {to}",

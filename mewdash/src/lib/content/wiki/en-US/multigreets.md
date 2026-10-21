@@ -70,14 +70,14 @@ Greets are built with the user, server and bot placeholder sets. Inviter placeho
 | `%server.icon%`, `%server.banner%` | Icon and banner URLs |
 | `%server.members%`, `%members%` | Member count |
 | `%server.boostlevel%`, `%server.boostcount%` | Boost tier and number of boosts |
-| `%server.time%`, `%server.timestamp.longdatetime%` | Current time, plain or as a Discord timestamp |
+| `%server.time%`, `%server.timestamp.longdatetime%` | Current time, plain or as a Fluxer timestamp |
 | `%bot.name%`, `%bot.id%`, `%bot.avatar%` | About the bot itself |
 | `%inviter.username%`, `%inviter.mention%`, `%inviter.id%`, `%inviter.avatar%` | The person whose invite was used, or `Unknown` |
 | `%inviter.count%`, `%inviter.regular%`, `%inviter.left%`, `%inviter.fake%`, `%inviter.bonus%` | The inviter's invite tally |
 | `%invite.code%`, `%invite.url%`, `%invite.uses%`, `%invite.label%`, `%invite.type%` | The invite that was used, its label, and whether it was an invite, the vanity link or an app |
 | `%user.joincount%`, `%user.leavecount%` | How many times this member has joined and left |
 | `%server.members.ordinal%` | Member count as 1st, 2nd, 1,204th |
-| `%user.joined.R%`, `%user.created.F%` (and t, T, d, D, f styles) | Join and account creation times as Discord timestamps |
+| `%user.joined.R%`, `%user.created.F%` (and t, T, d, D, f styles) | Join and account creation times as Fluxer timestamps |
 
 > [!EXAMPLE]
 > `Welcome %user.mention% to %server%! You are member #%server.members%.`

@@ -12,7 +12,7 @@
   "filtered_hint": "Messages containing these words are deleted when the word filter is enabled server-wide or in a channel.",
   "filtered_word_aria": "New filtered word",
   "invite_channels_title": "Invite filter channels",
-  "invite_hint": "Delete Discord invite links posted by members",
+  "invite_hint": "Delete Fluxer invite links posted by members",
   "invite_only_here": "Enable the invite filter only in these channels.",
   "invite_server_wide": "The invite filter is on server-wide, so these channel entries have no extra effect.",
   "invite_title": "Invite filter",

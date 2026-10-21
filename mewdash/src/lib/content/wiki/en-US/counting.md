@@ -188,5 +188,5 @@ Run these with your server's prefix (`.` unless you changed it).
 - Members who have the bot blocked cannot count: their number is deleted and a warning is posted.
 - With the default no-repeat rule, a member posting twice in a row is rejected before the number is even read, and that rejection does not count as an error.
 - **Reset count on error** resets to the start number, so with a start of 1 the next expected number is 1 again.
-- Moderation punishments use the same actions as the warning system (Mute, Ban, Kick, AddRole and so on), so the bot needs the matching Discord permissions and a mute role.
+- Moderation punishments use the same actions as the warning system (Mute, Ban, Kick, AddRole and so on), so the bot needs the matching Fluxer permissions and a mute role.
 - `countingdisable` with purge removes stats, bans and save points for that channel and cannot be undone. Disabling without purge keeps the data.

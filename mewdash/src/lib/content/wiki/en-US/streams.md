@@ -12,19 +12,19 @@ related: [twitch, utility, administration]
 
 ## What it does
 
-Staff paste a stream URL and pick a Discord channel. The bot then polls that streamer's platform and, when the stream flips from offline to online, posts a go-live message in the chosen channel. By default that is an embed with the streamer's name linked to the stream, the stream title, the game or category, the viewer count, the streamer's avatar, and a preview image.
+Staff paste a stream URL and pick a Fluxer channel. The bot then polls that streamer's platform and, when the stream flips from offline to online, posts a go-live message in the chosen channel. By default that is an embed with the streamer's name linked to the stream, the stream title, the game or category, the viewer count, the streamer's avatar, and a preview image.
 
 You can replace the default embed with your own message. There is a server-wide template that applies to every followed stream, and each stream can also have its own online message and its own offline message. All of them accept the `%stream.*%` placeholders listed below and can be plain text or a full embed built in the dashboard's embed editor.
 
 Offline notices are off by default. Turn them on and the bot also posts when a followed stream ends, using the stream's offline message if one is set, otherwise the server template, otherwise the default embed showing "Offline".
 
 > [!NOTE]
-> Stream Alerts announces other people's streams into your Discord. The separate Twitch Bot feature connects the bot to your own Twitch chat for commands, timers and events. See the Twitch Bot article for that.
+> Stream Alerts announces other people's streams into your Fluxer server. The separate Twitch Bot feature connects the bot to your own Twitch chat for commands, timers and events. See the Twitch Bot article for that.
 
 ## Why you would use it
 
 - A community server wants a "now live" channel that lights up whenever one of its creators starts streaming.
-- A streamer's own Discord wants an automatic ping with the title and category so nobody has to post it by hand.
+- A streamer's own Fluxer wants an automatic ping with the title and category so nobody has to post it by hand.
 - An esports or event server follows several tournament channels across Twitch and Kick in one place.
 - A server wants a clean "stream ended" notice so the go-live post does not look stale.
 

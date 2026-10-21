@@ -21,7 +21,7 @@ Every new request is also posted as an embed in a channel the bot owner picks, s
 2. Choose a category, write a title and the details, and send it.
 3. If you were managing a server at the time, you can attach its name so the developers have context. Untick the box if you would rather not.
 
-You can send up to three requests an hour. Your Discord name is attached so the developers can follow up.
+You can send up to three requests an hour. Your Fluxer name is attached so the developers can follow up.
 
 ## Browsing and voting
 

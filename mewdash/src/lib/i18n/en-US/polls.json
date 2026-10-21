@@ -30,7 +30,7 @@
   "detail_unique": "Unique voters",
   "error_channel": "Pick the channel the poll is posted in.",
   "error_create_failed": "Failed to create poll.",
-  "error_options_max": "Discord polls support at most 25 options.",
+  "error_options_max": "Polls support at most 25 options.",
   "error_options_min": "Add at least two options.",
   "error_question": "Ask a question.",
   "error_roles": "Choose which roles may vote.",

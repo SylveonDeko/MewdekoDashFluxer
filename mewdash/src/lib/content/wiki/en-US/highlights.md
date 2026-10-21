@@ -72,7 +72,7 @@ There is nothing to enable. Highlights work as soon as the bot is in the server.
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). The same actions exist as the single slash command `/highlights manage`, whose `action` option is `Add`, `List`, `Delete`, `Match`, `ToggleUser`, `ToggleChannel` or `ToggleGlobal`, with separate `words`, `user` and `channel` options.
+Run these with your server's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |

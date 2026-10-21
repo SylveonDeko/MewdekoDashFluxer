@@ -38,7 +38,7 @@ Each `rep` gives one point, multiplied by the channel multiplier if one is set. 
 | Cooldown | 60 minutes | Time before the same giver can rep the same receiver again |
 | Daily limit | 10 | Rep a giver may hand out per UTC day |
 | Weekly limit | none | Optional cap per week, counted from Sunday |
-| Min account age | 7 days | Giver's Discord account age |
+| Min account age | 7 days | Giver's Fluxer account age |
 | Min server time | 24 hours | How long the giver has been in the server |
 | Min message count | 10 | Messages the giver has sent, from message counting |
 
@@ -97,7 +97,7 @@ Decay is not on the dashboard; use the `repdecay*` commands below.
 2. Set **Cooldown**, **Daily Limit** and the three minimum requirements to suit your server's size.
 3. Pick a **Notification channel** for milestones and save.
 4. On **Role Rewards**, add a role with its **Reputation Required** and tick **Remove role if rep drops below threshold** if you want it to be earned continuously.
-5. In Discord, run `repreaction <emoji> 1` to enable reaction rep, and `repchannel #bot-spam disabled` to keep spam channels out.
+5. In Fluxer, run `repreaction <emoji> 1` to enable reaction rep, and `repchannel #bot-spam disabled` to keep spam channels out.
 6. Test with a second account: `rep @you great help`, then `repcheck @you`.
 
 > [!WARNING]
@@ -157,8 +157,6 @@ Run these with your server's prefix (`.` unless you changed it).
 | `repexport` | `repex` | Administrator | Export the configuration as JSON |
 | `repimport` | `repim` | Administrator | Import a configuration file attached to the message |
 | `repmilestonelost <@user> <@role> <threshold>` | | Administrator | Test message for a lost milestone |
-
-`/rep` slash commands cover `give`, `check`, `leaderboard`, `history` and `stats`, plus the admin groups `/rep config`, `/rep decay`, `/rep manage`, `/rep reaction`, `/rep role`, `/rep type`, `/rep event` and `/rep require`, which mirror the settings commands above. `/rep role list` and `/rep role info` are slash-only.
 
 ## Tips and gotchas
 

@@ -86,7 +86,7 @@ Polls need Manage Messages to create. Options are separated with semicolons.
 | `pollm question;option1;option2;...` | Multiple choice | Members can pick several options |
 | `polla question;option1;option2;...` | Anonymous | Voter identities are hidden |
 
-Polls with two to five options use buttons; longer ones use a dropdown with up to 25 entries. Members can change their vote. Templates save a question and its options for reuse: `polltemplates` lists them and `polltemplate <name>` posts one. Creating and deleting templates, closing a poll, listing active polls and viewing a poll's statistics are done with the `/poll` slash commands (`create-template`, `delete-template`, `close`, `list`, `stats`) or on the Polls dashboard page, which has its own article.
+Polls with two to five options use buttons; longer ones use a dropdown with up to 25 entries. Members can change their vote. Templates save a question and its options for reuse: `polltemplates` lists them and `polltemplate <name>` posts one. Creating and deleting templates, closing a poll, listing active polls and viewing a poll's statistics are done with the Polls dashboard page, which has its own article.
 
 ## Other
 

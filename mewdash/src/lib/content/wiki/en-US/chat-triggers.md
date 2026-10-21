@@ -66,7 +66,7 @@ If several triggers match one message, one of them is picked at random. Messages
 
 ### Interaction triggers
 
-`setctintertype` registers the trigger as a Slash, Message or User application command. `setctintername` and `setctinterdesc` set its name and description; names must follow Discord's command naming rules. `ctinterephemeral` makes the reply visible only to the person who ran it. `ctintererrors` lists why registration failed, such as duplicate names or too many subcommands.
+`setctintertype` registers the trigger as a Slash, Message or User application command. `setctintername` and `setctinterdesc` set its name and description; names must follow Fluxer's command naming rules. `ctinterephemeral` makes the reply visible only to the person who ran it. `ctintererrors` lists why registration failed, such as duplicate names or too many subcommands.
 
 ### Reaction triggers
 
@@ -105,7 +105,7 @@ The primary response is the text given when the trigger is created. It goes thro
 
 Delivery options, all off by default:
 
-- **Reply to the message** (`ctreply`): sends the response as a Discord reply.
+- **Reply to the message** (`ctreply`): sends the response as a Fluxer reply.
 - **Send the response as a DM** (`ctdm`): sends it to the member privately.
 - **Delete the triggering message** (`ctad`): removes what they typed.
 - **React to the message instead** (`rtt`): puts the trigger's emoji on their message rather than on the reply. Cannot be combined with delete.
@@ -317,6 +317,6 @@ Run these with your server's prefix (`.` unless you changed it). Trigger IDs are
 - Cooldowns live in memory and reset when the bot restarts. Use limits and expiry are stored and survive restarts.
 - Round robin order is shared by everyone in the server, not tracked per member.
 - The permission system's entries for the module `ActualChatTriggers` and any `permoverride` for the trigger text are checked before the trigger's own conditions.
-- Interaction triggers register real application commands, so Discord's limits on command counts and names apply. Check `ctintererrors` when one does not show up.
+- Interaction triggers register real application commands, so Fluxer's limits on command counts and names apply. Check `ctintererrors` when one does not show up.
 - Reactions on the response are paced one per second, so six emoji take six seconds to appear.
 - Event triggers for joins, leaves, voice and boosts silently do nothing until you set **Respond in**.

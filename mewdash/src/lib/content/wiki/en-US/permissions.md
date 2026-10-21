@@ -12,13 +12,13 @@ related: [administration, help, filter, moderation]
 
 ## What it does
 
-By default every command is available to everyone the Discord permissions allow. Command Permissions adds a server-specific rule list on top. Each rule says whether a command, a module, or all modules is allowed or denied for the whole server, a role, a channel, a category, or one member. When someone runs a command, the bot walks the list, applies the first rule that matches, and either lets the command through or stops it.
+By default every command is available to everyone the Fluxer permissions allow. Command Permissions adds a server-specific rule list on top. Each rule says whether a command, a module, or all modules is allowed or denied for the whole server, a role, a channel, a category, or one member. When someone runs a command, the bot walks the list, applies the first rule that matches, and either lets the command through or stops it.
 
-Blocked commands fail quietly unless **verbose** mode is on, in which case the bot replies with the number and text of the rule that blocked it. Slash commands always get an ephemeral explanation.
+Blocked commands fail quietly unless **verbose** mode is on, in which case the bot replies with the number and text of the rule that blocked it.
 
 Rules can be managed by administrators, or by anyone holding the **permission role** you choose. The same list is on the dashboard under **Administration**, in the **Automation & Settings** section, as the **Command Permissions** card.
 
-Two related tools live alongside it. Command cooldowns limit how often a command can be used per member in a server. Discord permission overrides, in the Administration module, replace the Discord permission a command normally demands, for example letting Manage Messages holders use a command that normally needs Administrator.
+Two related tools live alongside it. Command cooldowns limit how often a command can be used per member in a server. Fluxer permission overrides, in the Administration module, replace the Fluxer permission a command normally demands, for example letting Manage Messages holders use a command that normally needs Administrator.
 
 ## Why you would use it
 
@@ -87,11 +87,11 @@ Every command in this module goes through an extra gate. Administrators can alwa
 
 `cmdcooldown <command> [time]` sets a per-member cooldown for a command in this server, from 1 second up to 90000 seconds (25 hours). Give no time, or `0s`, to clear it. `allcmdcooldowns` lists the current cooldowns. These are in addition to any built-in cooldown a command already has.
 
-## Discord permission overrides
+## Fluxer permission overrides
 
-The Administration module can replace the Discord permission a command requires. `dpo <command> <permissions...>` makes the command require the listed permissions instead of its built-in one, for example `dpo purge ManageMessages`. Run `dpo <command>` with no permissions to remove the override, `dpol` to list them, and `dpor` to clear all after a confirmation. All three need Administrator.
+The Administration module can replace the Fluxer permission a command requires. `dpo <command> <permissions...>` makes the command require the listed permissions instead of its built-in one, for example `dpo purge ManageMessages`. Run `dpo <command>` with no permissions to remove the override, `dpol` to list them, and `dpor` to clear all after a confirmation. All three need Administrator.
 
-An override replaces the built-in Discord requirement only. The command permission rules above still apply, and the command page from `help <command>` shows the original requirement struck through with the override next to it.
+An override replaces the built-in Fluxer requirement only. The command permission rules above still apply, and the command page from `help <command>` shows the original requirement struck through with the override next to it.
 
 ## The quick menu in help
 
@@ -111,7 +111,7 @@ On the dashboard, open **Administration**, then the **Automation & Settings** se
 | Permission role | none | Members with this role can edit rules via commands |
 | Rules | rule 1 only | The ordered list; add with **Action**, **What** and **For**, then a module, command, role, channel, category or user ID |
 
-The card also shows counts of custom rules and whether verbose mode is on. The **Permission Overrides** card in the same section manages Discord permission overrides: pick a bot command and the **Required Discord Permission** it should need instead of its built-in one.
+The card also shows counts of custom rules and whether verbose mode is on. The **Permission Overrides** card in the same section manages Fluxer permission overrides: pick a bot command and the **Required Fluxer Permission** it should need instead of its built-in one.
 
 ## Setup walkthrough
 
@@ -124,7 +124,7 @@ The card also shows counts of custom rules and whether verbose mode is on. The *
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). Slash versions are under `/permissions`, for example `/permissions servercommand`.
+Run these with your server's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -151,7 +151,7 @@ Run these with your server's prefix (`.` unless you changed it). Slash versions 
 | `allusrmdls <enable|disable> @user` | `aum` | Administrator or permission role | All modules for a member |
 | `cmdcooldown <command> [time]` | `cmdcd` | Administrator or permission role | Set or clear a cooldown |
 | `allcmdcooldowns` | `acmdcds` | Administrator or permission role | List cooldowns |
-| `discordpermoverride <command> [permissions...]` | `dpo` | Administrator | Set or remove a Discord permission override |
+| `discordpermoverride <command> [permissions...]` | `dpo` | Administrator | Set or remove a Fluxer permission override |
 | `discordpermoverridelist` | `dpol`, `dpoli` | Administrator | List overrides |
 | `discordpermoverridereset` | `dpor` | Administrator | Clear all overrides |
 | `globalmodule <module>` | `gmod` | Bot owner | Toggle a module everywhere |
@@ -169,6 +169,6 @@ Run these with your server's prefix (`.` unless you changed it). Slash versions 
 - Rules match on the command's canonical name, so `srvrcmd clear disable` and `srvrcmd purge disable` are the same rule. Use the first name from `help <command>`.
 - A rule for "all modules" also covers the Permissions module. If you deny everything for a role, members with only that role cannot run `listperms` either.
 - Category rules use the channel's parent category at the time the command runs; threads inherit from their parent channel.
-- Discord permission overrides change what Discord permission is required, not who the rules allow. Use both together: an override to lower the bar, then a rule to restrict where.
+- Fluxer permission overrides change what Fluxer permission is required, not who the rules allow. Use both together: an override to lower the bar, then a rule to restrict where.
 - Permission rules never apply in DMs.
 - The dashboard labels the target choices Whole server, A role, A channel, A category and A specific user; the user option takes a pasted user ID.

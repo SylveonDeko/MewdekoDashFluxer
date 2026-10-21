@@ -21,7 +21,7 @@
   "validation_options_empty_text": "All options must have text",
   "validation_options_not_unique": "Option values must be unique",
   "validation_options_required": "{type} questions must have at least one option",
-  "validation_options_too_many": "Cannot have more than 25 options (Discord embed limit)",
+  "validation_options_too_many": "Cannot have more than 25 options (maximum)",
   "validation_parent_must_precede": "Parent question must come before this question",
   "validation_placeholder_too_long": "Placeholder text cannot exceed 200 characters",
   "validation_question_prefixed": "Question {number}: {message}",

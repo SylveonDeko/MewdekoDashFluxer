@@ -82,7 +82,7 @@
   "question_multiline": "Multi-line answer",
   "question_placeholder": "Question (45 characters max)",
   "questions_empty": "No questions, so applicants apply with a single click.",
-  "questions_max": "Discord caps application forms at five questions.",
+  "questions_max": "Fluxer caps application forms at five questions.",
   "questions_title": "Application questions",
   "stat_blocked_users": "Blocked users",
   "stat_open_applications": "Open applications",

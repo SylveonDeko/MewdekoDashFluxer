@@ -11,7 +11,7 @@ related: [servermanagement, permissions, filter]
 
 ## What it does
 
-The NSFW module fetches adult images from image boards and Reddit on request. Every command in it carries Discord's NSFW requirement: it only runs in a channel that has the NSFW flag set, and most of the image board commands also work in a DM with the bot. In any other channel the command is silently refused.
+The NSFW module fetches adult images from image boards and Reddit on request. Every command in it carries Fluxer's NSFW requirement: it only runs in a channel that has the NSFW flag set, and most of the image board commands also work in a DM with the bot. In any other channel the command is silently refused.
 
 Staff control two things. `nsfwtoggle` (in the Administration module) flips the NSFW flag on the current channel, which is what unlocks these commands there. `nsfwtagbl` keeps a list of tags that are removed from every image board search in this server, so a server can allow the module while excluding content it does not want.
 
@@ -25,7 +25,7 @@ Members run a source command with optional tags and get one image with its ratin
 
 ## Channel requirement
 
-Discord's NSFW flag is per channel. Run `nsfwtoggle` in a channel to turn it on or off; it needs Manage Channels for you and for the bot. The bot replies to confirm the new state. The same flag can be set in Discord's channel settings.
+Fluxer's NSFW flag is per channel. Run `nsfwtoggle` in a channel to turn it on or off; it needs Manage Channels for you and for the bot. The bot replies to confirm the new state. The same flag can be set in Fluxer's channel settings.
 
 If a command is used in a non-NSFW channel nothing happens. Members sometimes read this as the bot being broken, so a note in your rules channel helps.
 
@@ -65,7 +65,7 @@ There is no dashboard page for this module.
 
 ## Setup walkthrough
 
-1. Pick the channel and run `nsfwtoggle` in it, or set the flag in Discord's channel settings.
+1. Pick the channel and run `nsfwtoggle` in it, or set the flag in Fluxer's channel settings.
 2. Use Command Permissions to keep the module out of everywhere else, for example `srvrmdl nsfw disable` followed by `chnlmdl nsfw enable #adult`.
 3. Add tags you do not want with `nsfwtagbl <tag>`, one per command.
 4. Test with `hentai` or `rule34 <tag>` in the channel.
@@ -108,7 +108,7 @@ Run these with your server's prefix (`.` unless you changed it).
 
 ## Tips and gotchas
 
-- Age gating is Discord's channel flag plus the bot's tag blacklist. The bot does not check member age or roles; use Command Permissions for that.
+- Age gating is Fluxer's channel flag plus the bot's tag blacklist. The bot does not check member age or roles; use Command Permissions for that.
 - Bot owners can also disable the module globally, in which case it shows as blocked in the help menu.
 - Image boards rate limit and occasionally return nothing for narrow tag combinations; the bot replies that no image was found.
 - Timers are per channel and in memory. After a restart, start them again.

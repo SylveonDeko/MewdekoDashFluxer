@@ -1,7 +1,7 @@
 ---
 title: Dashboard Access
 slug: access
-summary: Let specific members or roles open your server's dashboard and view or manage only the sections you pick, without making them Discord administrators.
+summary: Let specific members or roles open your server's dashboard and view or manage only the sections you pick, without making them Fluxer administrators.
 icon: fa-key
 category: Security
 dashboard: /dashboard/access
@@ -19,7 +19,7 @@ The server owner also decides who may edit the access list itself. By default on
 
 ## Why you would use it
 
-- A community team runs giveaways, suggestions and tickets from the dashboard without holding Administrator in Discord.
+- A community team runs giveaways, suggestions and tickets from the dashboard without holding Administrator in Fluxer.
 - A moderator role gets **Manage** on Moderation and Logging and **View** on everything else, so they can look but not change settings they do not own.
 - A bot helper is trusted to edit XP and Currency but nothing security related.
 - The owner delegates upkeep of the access list to a co-owner role without giving away owner-only controls.
@@ -86,6 +86,6 @@ Dashboard Access is configured only from the dashboard; there are no bot command
 - Grants are checked against the bot's cached member list, so a member must be in the server and visible to the bot for their grant to work.
 - Role grants follow the member's current roles. Removing the role removes the access immediately.
 - A grant with every section set to **None** counts as no grant and is dropped, and the member loses the server in their switcher.
-- Administrators keep full access no matter what grants say. To restrict someone, remove Administrator in Discord first, then grant what they need here.
+- Administrators keep full access no matter what grants say. To restrict someone, remove Administrator in Fluxer first, then grant what they need here.
 - The dashboard proxy attaches a shared API key to every request, but that key alone never grants access to a server; the signed-in user's identity is always required.
 - Endpoints that are not tied to a server, such as the global command list, are not subject to section checks and keep working for restricted users.

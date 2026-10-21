@@ -33,7 +33,7 @@ If **Allow multiple channels per user** is off (the default), joining the hub wh
 
 ## Channel naming
 
-The **Default Name Format** is a template. The bot replaces `{0}` with the member's username, `{1}` with their discriminator and `{2}` with the server name. The default is `{0}'s Channel`. The name is trimmed to fit Discord's limits.
+The **Default Name Format** is a template. The bot replaces `{0}` with the member's username, `{1}` with their discriminator and `{2}` with the server name. The default is `{0}'s Channel`. The name is trimmed to fit Fluxer's limits.
 
 > [!NOTE]
 > The dashboard placeholder text shows `{username}'s Channel`, but the bot only substitutes `{0}`, `{1}` and `{2}`. Use the numbered form.

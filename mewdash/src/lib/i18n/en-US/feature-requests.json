@@ -24,7 +24,7 @@
   "loading_requests": "Loading feature requests...",
   "mine_empty": "You have not submitted anything yet.",
   "mine_empty_action": "Suggest something",
-  "rate_limit_hint": "Up to three requests an hour. Your Discord name is attached so we can follow up.",
+  "rate_limit_hint": "Up to three requests an hour. Your Fluxer name is attached so we can follow up.",
   "report_channel_heading": "Report channel",
   "report_channel_label": "Channel ID new requests get posted to",
   "report_channel_unreachable": "The bot cannot see channel {channel}, so requests will not be posted.",

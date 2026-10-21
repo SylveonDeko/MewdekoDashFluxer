@@ -50,7 +50,7 @@ With **Tell members what changed** on, members get a private note only they can 
 
 Saving an edit rebuilds the same message in place. A new message is only posted when the channel changes or the old message is gone.
 
-**Pause** greys out the dropdown or buttons in Discord until the menu is resumed. **Post again** posts a fresh copy and deletes the old message, which helps when a menu has scrolled out of sight or was deleted by hand. If a menu's channel is deleted, edit it, pick a new channel, and save to post it again.
+**Pause** greys out the dropdown or buttons in Fluxer until the menu is resumed. **Post again** posts a fresh copy and deletes the old message, which helps when a menu has scrolled out of sight or was deleted by hand. If a menu's channel is deleted, edit it, pick a new channel, and save to post it again.
 
 Deleting a menu deletes its message too. Members keep the roles they already picked.
 

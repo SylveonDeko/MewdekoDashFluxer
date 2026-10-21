@@ -15,7 +15,7 @@
   "page_mute_remove_roles": "Remove all other roles while muted",
   "page_mute_title": "Mute Role",
   "page_prefix_hint": "The prefix used to invoke bot commands",
-  "page_previews_hint": "Show the contents of Discord message links when they are posted",
+  "page_previews_hint": "Show the contents of Fluxer message links when they are posted",
   "page_previews_title": "Message link previews",
   "page_save_failed": "Couldn't save bot settings.",
   "page_snipe_hint": "Let members recover recently deleted or edited messages with the snipe commands",

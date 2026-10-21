@@ -92,7 +92,7 @@
   "games_title": "Game performance",
   "item_type_collectible": "Collectible",
   "item_type_collectible_label": "Collectible (inventory only)",
-  "item_type_role_label": "Role (grants a Discord role)",
+  "item_type_role_label": "Role (grants a Fluxer role)",
   "item_type_text_label": "Text (DMs the buyer some content)",
   "notify_adjust_failed": "Failed to adjust balance",
   "notify_adjusted": "Adjusted. Wallet is now {wallet}.",

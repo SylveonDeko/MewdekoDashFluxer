@@ -1,7 +1,7 @@
 ---
 title: Administration
 slug: administration
-summary: Automatic raid, spam, alt, scam and honeypot protection, roles handed out on join or picked up by members, Discord permission overrides for commands, and the mass operations you reach for on a bad day.
+summary: Automatic raid, spam, alt, scam and honeypot protection, roles handed out on join or picked up by members, Fluxer permission overrides for commands, and the mass operations you reach for on a bad day.
 icon: fa-cog
 category: Security
 dashboard: /dashboard/administration
@@ -14,7 +14,7 @@ related: [moderation, permissions, logging, multigreets, settings, auditlog, rol
 
 Administration is the module that keeps a server orderly when no moderator is watching. Its protection systems watch joins and messages and punish automatically when something looks like a raid, a spam burst, a throwaway alt, a mass ping, a scam link pasted into every channel, a post in a trap channel, or a known scam image. Each system is independent, has its own punishment, and can be switched on and off on its own.
 
-The same module handles role automation: roles given on join, roles members pick up themselves with `iam`, reaction roles, roles tied to being in a voice channel, and tripwire roles that ban whoever receives them. It also lets you change which Discord permission a command needs, set the staff and member roles other features rely on, rate limit commands, and clean up command messages.
+The same module handles role automation: roles given on join, roles members pick up themselves with `iam`, reaction roles, roles tied to being in a voice channel, and tripwire roles that ban whoever receives them. It also lets you change which Fluxer permission a command needs, set the staff and member roles other features rely on, rate limit commands, and clean up command messages.
 
 For the bad days there are mass operations: ban or kick everyone who joined in the last few minutes, ban by name pattern, by role, or by avatar, prune inactive members, and a server recovery flow that gets an administrator role back to a verified owner.
 
@@ -25,7 +25,7 @@ Everything lives on the **Administration** page of the dashboard across five tab
 - Join raids and bot waves hit at 3am and you want them handled before anyone wakes up.
 - A compromised account is pasting the same phishing link into ten channels.
 - Members should be able to pick their own colour, region or notification roles without staff help.
-- You want `ban` to work for people with Manage Messages instead of Ban Members, without touching Discord's role settings.
+- You want `ban` to work for people with Manage Messages instead of Ban Members, without touching Fluxer's role settings.
 - One command is spammed in general and needs a cooldown.
 - A rogue admin stripped the owner's roles and you need a way back in.
 
@@ -41,14 +41,14 @@ Every protection system takes a **punishment action**. Some actions also take a 
 | Kick | Removes the member; they can rejoin |
 | Softban | Bans and immediately unbans to wipe recent messages |
 | Ban | Bans, or temporarily bans if you give a duration |
-| Timeout | Discord native timeout; needs a duration, at most 28 days |
+| Timeout | Fluxer native timeout; needs a duration, at most 28 days |
 | AddRole | Adds the role you pick, for example a quarantine role |
 | RemoveRoles | Strips every role |
 | Warn | Adds a warning through the Moderation module |
 | Delete | Deletes the offending message and nothing else |
 | None | Records the hit and takes no action |
 
-Only Ban, Mute, ChatMute, VoiceMute, AddRole and Timeout accept a duration; for anything else a duration is ignored. Durations are in minutes. The dashboard allows up to 10080 (one week) for Anti-Raid, Anti-Spam, Anti-Mass-Mention and Anti-Pattern, 1440 (one day) for Anti-Mass-Post, Anti-Post-Channel and Anti-Image-Hash, and a year for Anti-Alt. Punishments are applied one per second from a queue, and the reason on Discord's audit log reads like "Raiding Protection" or "ImageHash Protection".
+Only Ban, Mute, ChatMute, VoiceMute, AddRole and Timeout accept a duration; for anything else a duration is ignored. Durations are in minutes. The dashboard allows up to 10080 (one week) for Anti-Raid, Anti-Spam, Anti-Mass-Mention and Anti-Pattern, 1440 (one day) for Anti-Mass-Post, Anti-Post-Channel and Anti-Image-Hash, and a year for Anti-Alt. Punishments are applied one per second from a queue, and the reason on Fluxer's audit log reads like "Raiding Protection" or "ImageHash Protection".
 
 > [!WARNING]
 > Anti-Raid, Anti-Alt and Anti-Pattern run when a member joins, and they skip the check entirely when the action is Warn. Pick Kick, Ban, Timeout or a role for those three.
@@ -121,7 +121,7 @@ Blocks specific images by how they look, so a re-upload that was resized, recomp
 - Each blocked image can carry its own action, duration and role, overriding the system default. **Delete only** removes the image without punishing the poster.
 - Ignored roles and channels are skipped; the poster gets a DM by default.
 
-**Block known scam images** switches on a preset list shipped with the bot, currently the fake crypto casino and MrBeast giveaway images circulating on Discord. The card shows how many images are on the list and how many posts it has caught in your server.
+**Block known scam images** switches on a preset list shipped with the bot, currently the fake crypto casino and MrBeast giveaway images circulating on Fluxer. The card shows how many images are on the list and how many posts it has caught in your server.
 
 To block your own image on the dashboard, drop or upload the file, or paste its URL, give it a label, optionally pick a per-image action, and save. With commands, run `blockimage [action] [name]` while attaching the image, replying to a message that contains it, or pasting the link. `blockedimages` lists everything with hit counts, `unblockimage <id>` removes one, and `imagehash` shows an image's hash without blocking it.
 
@@ -130,18 +130,18 @@ To block your own image on the dashboard, drop or upload the file, or paste its 
 
 ### Anti-External App
 
-Members can add apps to their own Discord account and use them in any server, even one the app was never added to. Messages from those apps post under the app's name, so the other protections, which look at who sent a message, never see the member behind them. Anti-External App reads which member ran the app and acts on them.
+Members can add apps to their own Fluxer account and use them in any server, even one the app was never added to. Messages from those apps post under the app's name, so the other protections, which look at who sent a message, never see the member behind them. Anti-External App reads which member ran the app and acts on them.
 
 A message counts as a violation when it:
 
 - mentions at least the **mention limit** of users and roles (default 5), or pings everyone or here,
-- contains a Discord invite link, while **remove invite links** is on,
+- contains a Fluxer invite link, while **remove invite links** is on,
 - or comes from a member who has run apps more than **app messages allowed** times within the window (default 5 in 10 seconds).
 
 Setting a limit to 0 turns that check off. When a message breaks a rule it is deleted, and the member who ran the app gets the punishment, a one hour timeout by default. **Delete only** removes the message without punishing anyone. Apps that were added to the server itself are left alone, and so are server administrators.
 
 > [!TIP]
-> Discord's **Use External Apps** permission is a good partner for this. Members without it can still use their apps, but only they see the replies. Deny it for `@everyone` and allow it for a trusted or levelled role, and new or throwaway accounts can't post through apps at all.
+> Fluxer's **Use External Apps** permission is a good partner for this. Members without it can still use their apps, but only they see the replies. Deny it for `@everyone` and allow it for a trusted or levelled role, and new or throwaway accounts can't post through apps at all.
 
 ## Roles
 
@@ -157,7 +157,7 @@ Roles members can give themselves with `iam <role>` and drop with `iamnot <role>
 
 ### Reaction roles
 
-Attach emoji to roles on an existing message. Members click the emoji to get the role and remove it to lose it. Each message can be marked **Exclusive** so a member may hold only one role from it. Discord allows twenty reactions per message, and the dashboard counts them for you. Adding to a message that already has reaction roles extends the existing setup.
+Attach emoji to roles on an existing message. Members click the emoji to get the role and remove it to lose it. Each message can be marked **Exclusive** so a member may hold only one role from it. Fluxer allows twenty reactions per message, and the dashboard counts them for you. Adding to a message that already has reaction roles extends the existing setup.
 
 With commands, `reactionroles [messageId] [excl] <role> <emoji> ...` sets up pairs; leave the message ID out to use the message directly above your command. `reactionroleslist` shows every setup with an index, and `reactionrolesremove <index>` deletes one.
 
@@ -171,7 +171,7 @@ Any role in this list is a tripwire: the moment a member gains it, they are bann
 
 ## Permission overrides and command permissions
 
-**Permission overrides** replace the Discord permission a command normally checks. Add an override for `ban` requiring Manage Messages and anyone with Manage Messages can run it; add one requiring Administrator and only administrators can. When several permissions are listed the user needs all of them. With commands, `dpo <command> <permission> [permission...]` sets one, `dpo <command>` with no permissions removes it, `dpol` lists them and `dpor` clears everything after a confirmation. Custom chat trigger names are accepted too.
+**Permission overrides** replace the Fluxer permission a command normally checks. Add an override for `ban` requiring Manage Messages and anyone with Manage Messages can run it; add one requiring Administrator and only administrators can. When several permissions are listed the user needs all of them. With commands, `dpo <command> <permission> [permission...]` sets one, `dpo <command>` with no permissions removes it, `dpol` lists them and `dpor` clears everything after a confirmation. Custom chat trigger names are accepted too.
 
 The **Permissions Management** card on the same tab is the rule based command permission system: allow or deny a command, a module or everything for a user, role, channel, category or the whole server, evaluated top to bottom. It has its own article, see `permissions`.
 
@@ -185,7 +185,7 @@ These cards are on the **Automation & Settings** tab.
 | **Member Role** | none | The role treated as "member"; `prunemembers` can include people with it |
 | **Server Timezone** | UTC | Timezone used wherever the bot prints local times |
 | **Command Cooldowns** | none | Per command rate limit in seconds, 1 to 90,000 |
-| **Permission Overrides** | none | Discord permission each command requires (see above) |
+| **Permission Overrides** | none | Fluxer permission each command requires (see above) |
 | **Game Voice Channel** | none | When a member in this voice channel starts playing a game, the bot moves them to the voice channel whose name matches the game |
 | **Delete Message On Command** | off | Delete the invoking message after a command runs, with per channel overrides of Enable, Disable or Inherit |
 | **Stats opt-out** | opted in | Stop command usage statistics for this server; **Delete Stats** wipes what is stored |
@@ -215,7 +215,7 @@ The dashboard card can also store keys directly: generate or type a recovery key
 
 | Operation | What it does |
 | --- | --- |
-| **Prune Inactive Users** | Discord's member prune for members inactive for the given number of days (1 to 30) |
+| **Prune Inactive Users** | Fluxer's member prune for members inactive for the given number of days (1 to 30) |
 | **Mass Ban Users** | Bans a pasted list of user IDs with one reason; message deletion follows the Moderation ban prune setting |
 | **Mass Rename Users** | Sets every member's nickname to a pattern where `{username}` is replaced with their username, for example `[AFK] {username}`; members the bot cannot rename are skipped |
 | **Prune to Message** | Deletes every message after a given message ID in a channel, one at a time |
@@ -298,8 +298,6 @@ Run these with your server's prefix (`.` unless you changed it). Protection comm
 | `rolehoist <role>` | `rh` | Manage Roles | Toggle showing the role separately |
 | `rolecolor <role> [color]` | `roleclr` | Nobody to view, Manage Roles to set | Show or set a role's colour |
 
-The `autobanrole` commands are also available as `/autobanrole list`, `add`, `remove` and `reason` slash commands.
-
 ### Permissions and settings
 
 | Command | Aliases | Needs | Purpose |
@@ -348,11 +346,9 @@ The `autobanrole` commands are also available as `/autobanrole list`, `add`, `re
 | `setguildbanner [url]` | `sgbanner`, `setgbanner` | Manage Server | Set the server banner |
 | `setguildbio <text>` | `sgbio`, `setgbio` | Manage Server | Set the server description |
 
-Server recovery is slash only: `/serverrecovery server-recover` and `/serverrecovery clear-server-recover`. Most of the other commands above also have slash equivalents under `/protection`, `/administration`, `/channel`, `/purge-members`, `/delmsgoncmd`, `/voice`, `/perm-override` and `/roles`.
-
 ### Logging and greeting commands
 
-The module also contains the logging commands (`log`, `logcategory`, `logevents`, `logignore`, `logignorelist`, `commandlogchannel`, all Administrator, plus the `/log` slash group) and the classic greeting commands (`greetdm`, `greetdmmsg`, `greetdmtest`, `bye`, `byemsg`, `byedel`, `byetest`, `leavehook`, `boost`, `boostmsg`, `boostdel`, `boosttest`, all Manage Server). They are documented in the `logging` and `multigreets` articles.
+The module also contains the logging commands (`log`, `logcategory`, `logevents`, `logignore`, `logignorelist`, `commandlogchannel`, all Administrator,) and the classic greeting commands (`greetdm`, `greetdmmsg`, `greetdmtest`, `bye`, `byemsg`, `byedel`, `byetest`, `leavehook`, `boost`, `boostmsg`, `boostdel`, `boosttest`, all Manage Server). They are documented in the `logging` and `multigreets` articles.
 
 ## Tips and gotchas
 

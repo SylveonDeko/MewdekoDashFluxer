@@ -134,9 +134,9 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "Mewdeko",
-    "description": "Free and open source Discord bot with 1,082 commands across 34 modules. Features include forms builder, XP/leveling, economy games, music bot, automated moderation, and more.",
+    "description": "Free and open source Fluxer bot with 1,082 commands across 34 modules. Features include forms builder, XP/leveling, economy games, music bot, automated moderation, and more.",
     "applicationCategory": "CommunicationApplication",
-    "operatingSystem": "Discord",
+    "operatingSystem": "Fluxer",
     "offers": {
       "@type": "Offer",
       "price": "0",

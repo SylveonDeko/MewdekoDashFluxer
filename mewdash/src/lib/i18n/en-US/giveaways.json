@@ -22,7 +22,7 @@
   "page_error_winners_min": "The number of winners must be at least 1.",
   "page_field_duration": "Duration",
   "page_field_emoji": "Reaction Emoji",
-  "page_field_emoji_hint": "Select a custom emoji or paste Discord emoji code",
+  "page_field_emoji_hint": "Select a custom emoji or paste Fluxer emoji code",
   "page_field_entry_method": "Entry Method",
   "page_field_item": "Giveaway Item",
   "page_field_item_placeholder": "Enter the item to be given away",
