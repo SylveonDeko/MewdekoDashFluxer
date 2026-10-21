@@ -509,7 +509,7 @@
 
   onMount(async () => {
     if (!data.user) {
-      goto(`/api/discord/login?redirect_to=${encodeURIComponent($page.url.pathname)}`);
+      goto(`/api/auth/login?redirect_to=${encodeURIComponent($page.url.pathname)}`);
       return;
     }
 

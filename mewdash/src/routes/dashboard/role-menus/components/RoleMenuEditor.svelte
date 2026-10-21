@@ -15,7 +15,7 @@
     type RoleMenuRequest
   } from "$lib/api/index.ts";
   import type { GuildEmojiInfo } from "$lib/api/client/models";
-  import type { DiscordUser } from "$lib/types/discord";
+  import type { FluxerUser } from "$lib/types/fluxer";
   import { logger } from "$lib/logger";
   import DiscordSelector from "$lib/components/forms/DiscordSelector.svelte";
   import ToggleRow from "$lib/components/forms/ToggleRow.svelte";
@@ -44,7 +44,7 @@
     /** Channels, roles, emojis, and limits from the bot */
     lookups: RoleMenuLookups | null;
     /** The signed in user, for previews */
-    user?: DiscordUser | null;
+    user?: FluxerUser | null;
     /** Whether the draft differs from what was loaded */
     dirty?: boolean;
     /** Called with the saved menu after a successful post or save */

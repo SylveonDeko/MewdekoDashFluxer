@@ -1126,7 +1126,7 @@
         </div>
 
         <button
-          onclick={() => goto(`/api/discord/login?redirect_to=${encodeURIComponent($page.url.pathname)}`)}
+          onclick={() => goto(`/api/auth/login?redirect_to=${encodeURIComponent($page.url.pathname)}`)}
           class="px-8 py-4 rounded-xl font-bold text-lg transition-all hover:scale-[1.02] shadow-lg border"
           style="background: linear-gradient(135deg, {$colorStore.primary}15, {$colorStore.secondary}10); color: {$colorStore.text}; border-color: {$colorStore.primary}30; box-shadow: 0 4px 20px {$colorStore.primary}10;"
         >

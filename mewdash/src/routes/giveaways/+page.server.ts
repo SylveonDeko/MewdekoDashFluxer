@@ -1,6 +1,6 @@
 // routes/giveaways/+page.server.ts
 import type { PageServerLoad } from "./$types";
-import type { DiscordUser } from "$lib/types/discord.ts";
+import type { FluxerUser } from "$lib/types/fluxer.ts";
 import { botApiGet, findInstanceWithGuild } from "$lib/server/instances";
 
 interface GiveawayPreview {
@@ -43,7 +43,7 @@ async function loadPreview(url: URL): Promise<GiveawayPreview | null> {
 export const load: PageServerLoad = async ({
   locals,
   url,
-}): Promise<{ user?: DiscordUser; preview: GiveawayPreview | null }> => {
+}): Promise<{ user?: FluxerUser; preview: GiveawayPreview | null }> => {
   const preview = await loadPreview(url);
   if (!locals.user) return { preview };
   return { user: locals.user, preview };

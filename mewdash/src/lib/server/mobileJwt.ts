@@ -2,7 +2,7 @@ import { createHmac, randomBytes } from "node:crypto";
 import Redis from "ioredis";
 import { env } from "$env/dynamic/private";
 import { logger } from "$lib/logger";
-import type { DiscordUser } from "$lib/types/discord";
+import type { FluxerUser } from "$lib/types/fluxer";
 
 const ACCESS_TTL = Number(env.MOBILE_ACCESS_TOKEN_TTL ?? 900);
 const REFRESH_TTL = Number(env.MOBILE_REFRESH_TOKEN_TTL ?? 60 * 60 * 24 * 30);
@@ -32,7 +32,7 @@ function hmac(payload: string): string {
 
 /**
  * Claims embedded in a mobile access JWT. `sid` is the handle into Redis
- * where the per-user Discord OAuth tokens live; the iOS client never sees them.
+ * where the per-user Fluxer OAuth tokens live; the iOS client never sees them.
  */
 export interface AccessClaims {
   sub: string;
@@ -89,34 +89,34 @@ export function verifyAccessToken(token: string): AccessClaims | null {
   return claims;
 }
 
-const sessionKey = (sid: string) => `${env.DISCORD_CLIENT_ID}_mobile_session:${sid}`;
-const refreshKey = (jti: string) => `${env.DISCORD_CLIENT_ID}_mobile_refresh:${jti}`;
-const familyKey = (fid: string) => `${env.DISCORD_CLIENT_ID}_mobile_family:${fid}`;
+const sessionKey = (sid: string) => `${env.FLUXER_CLIENT_ID}_mobile_session:${sid}`;
+const refreshKey = (jti: string) => `${env.FLUXER_CLIENT_ID}_mobile_refresh:${jti}`;
+const familyKey = (fid: string) => `${env.FLUXER_CLIENT_ID}_mobile_family:${fid}`;
 
 /**
- * Server-only mobile session record. Holds the user's Discord OAuth tokens
+ * Server-only mobile session record. Holds the user's Fluxer OAuth tokens
  * so the dashboard can act on the user's behalf when proxying bot API calls.
  */
 export interface MobileSessionData {
-  user: DiscordUser;
-  discord: {
+  user: FluxerUser;
+  fluxer: {
     accessToken: string;
     refreshToken: string;
     accessExpiry: string;
   };
   createdAt: string;
-  /** Whether this session was minted from a demo code rather than a Discord login. */
+  /** Whether this session was minted from a demo code rather than a Fluxer login. */
   demo?: boolean;
 }
 
 /**
  * Creates a mobile session for the given user and mints the initial
- * access/refresh token pair. Stores Discord OAuth tokens in Redis under
+ * access/refresh token pair. Stores Fluxer OAuth tokens in Redis under
  * a server-only handle.
  */
 export async function createSession(
-  user: DiscordUser,
-  discord: { accessToken: string; refreshToken: string; accessExpiry: Date },
+  user: FluxerUser,
+  fluxer: { accessToken: string; refreshToken: string; accessExpiry: Date },
   options: { demo?: boolean; ttlSeconds?: number } = {},
 ): Promise<{ sid: string; refreshToken: string; accessToken: string; expiresIn: number }> {
   const r = getRedis();
@@ -124,10 +124,10 @@ export async function createSession(
   const family = b64url(randomBytes(16));
   const session: MobileSessionData = {
     user,
-    discord: {
-      accessToken: discord.accessToken,
-      refreshToken: discord.refreshToken,
-      accessExpiry: discord.accessExpiry.toISOString(),
+    fluxer: {
+      accessToken: fluxer.accessToken,
+      refreshToken: fluxer.refreshToken,
+      accessExpiry: fluxer.accessExpiry.toISOString(),
     },
     createdAt: new Date().toISOString(),
     ...(options.demo ? { demo: true } : {}),
@@ -156,20 +156,20 @@ export async function getSession(sid: string): Promise<MobileSessionData | null>
 }
 
 /**
- * Replaces the Discord OAuth tokens stored on a session. Used after the
- * dashboard refreshes the upstream Discord access token.
+ * Replaces the Fluxer OAuth tokens stored on a session. Used after the
+ * dashboard refreshes the upstream Fluxer access token.
  */
-export async function updateSessionDiscordTokens(
+export async function updateSessionFluxerTokens(
   sid: string,
-  discord: { accessToken: string; refreshToken: string; accessExpiry: Date },
+  fluxer: { accessToken: string; refreshToken: string; accessExpiry: Date },
 ): Promise<void> {
   const r = getRedis();
   const existing = await getSession(sid);
   if (!existing) return;
-  existing.discord = {
-    accessToken: discord.accessToken,
-    refreshToken: discord.refreshToken,
-    accessExpiry: discord.accessExpiry.toISOString(),
+  existing.fluxer = {
+    accessToken: fluxer.accessToken,
+    refreshToken: fluxer.refreshToken,
+    accessExpiry: fluxer.accessExpiry.toISOString(),
   };
   await r.setex(sessionKey(sid), REFRESH_TTL, JSON.stringify(existing));
 }
@@ -274,7 +274,7 @@ export async function revokeFamily(family: string): Promise<void> {
 
 /**
  * Drops the server-side mobile session record. Subsequent requests carrying
- * an access token whose `sid` points here will fail to resolve a Discord
+ * an access token whose `sid` points here will fail to resolve a Fluxer
  * token and be rejected by the proxy.
  */
 export async function revokeSession(sid: string): Promise<void> {

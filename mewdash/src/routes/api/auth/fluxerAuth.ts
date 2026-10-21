@@ -1,23 +1,38 @@
-// routes/api/discord/discordAuth.ts
+// routes/api/auth/fluxerAuth.ts
 import { env } from "$env/dynamic/private";
 import type { Cookies } from "@sveltejs/kit";
 import CryptoJS from "crypto-js";
 import { logger } from "$lib/logger";
 import { sessionManager } from "$lib/server/redisSession";
-import type { DiscordUser } from "$lib/types/discord";
+import { toFluxerUser, type FluxerUser } from "$lib/types/fluxer";
 
-const ACCESS_TOKEN_COOKIE = "discord_access_token",
-  REFRESH_TOKEN_COOKIE = "discord_refresh_token",
-  ACCESS_EXPIRY_COOKIE = "discord_access_expiry",
-  SESSION_ID_COOKIE = "discord_session_id",
+const ACCESS_TOKEN_COOKIE = "fluxer_access_token",
+  REFRESH_TOKEN_COOKIE = "fluxer_refresh_token",
+  ACCESS_EXPIRY_COOKIE = "fluxer_access_expiry",
+  SESSION_ID_COOKIE = "fluxer_session_id",
   TOKEN_REFRESH_THRESHOLD = 0.8; // Refresh when 80% of token lifetime has passed
 
-export const requestDiscordToken = async (
+/** Lifetime of a Fluxer access token in milliseconds (7 days). */
+export const ACCESS_TOKEN_LIFETIME_MS = 604800 * 1000;
+
+/** How long the refresh token cookie and session cookie are kept (30 days). */
+export const REFRESH_TOKEN_LIFETIME_MS = 30 * 24 * 60 * 60 * 1000;
+
+const DEFAULT_API_URL = "https://api.fluxer.app/v1",
+  DEFAULT_AUTHORIZE_URL = "https://web.fluxer.app/oauth2/authorize";
+
+export const fluxerApiUrl = (): string => env.FLUXER_API_URL || DEFAULT_API_URL;
+
+export const fluxerAuthorizeUrl = (): string => env.FLUXER_AUTHORIZE_URL || DEFAULT_AUTHORIZE_URL;
+
+export const fluxerScopes = (): string => env.FLUXER_SCOPES || "identify";
+
+export const requestFluxerToken = async (
   searchParams: URLSearchParams,
   cookies?: Cookies, // Make cookies optional
 ): Promise<Tokens> => {
-  // performing a Fetch request to Discord's token endpoint
-  const request = await fetch(`${env.DISCORD_API_URL}/oauth2/token`, {
+  // performing a Fetch request to Fluxer's token endpoint
+  const request = await fetch(`${fluxerApiUrl()}/oauth2/token`, {
     method: "POST",
     body: searchParams,
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
@@ -47,8 +62,8 @@ export const requestDiscordToken = async (
   }
 
   // Calculate expiry times
-  const access_expire = new Date(Date.now() + (response.expires_in * 1000)); // Discord returns seconds
-  const refresh_expire = new Date(Date.now() + 30 * 24 * 60 * 60 * 1000); // 30 days
+  const access_expire = new Date(Date.now() + (response.expires_in * 1000)); // Fluxer returns seconds
+  const refresh_expire = new Date(Date.now() + REFRESH_TOKEN_LIFETIME_MS);
 
   return {
     access_token: response.access_token,
@@ -58,8 +73,8 @@ export const requestDiscordToken = async (
   };
 };
 
-export async function getUserData(accessToken: string): Promise<any> {
-  const response = await fetch(`${env.DISCORD_API_URL}/users/@me`, {
+export async function getUserData(accessToken: string): Promise<FluxerUser> {
+  const response = await fetch(`${fluxerApiUrl()}/users/@me`, {
     headers: {
       Authorization: `Bearer ${accessToken}`
     }
@@ -69,7 +84,27 @@ export async function getUserData(accessToken: string): Promise<any> {
     throw new Error(`Failed to fetch user data: ${response.statusText}`);
   }
 
-  return response.json();
+  return toFluxerUser(await response.json());
+}
+
+/**
+ * Revokes a refresh token at Fluxer so it cannot be used again.
+ */
+export async function revokeRefreshToken(refreshToken: string): Promise<void> {
+  const response = await fetch(`${fluxerApiUrl()}/oauth2/token/revoke`, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: new URLSearchParams({
+      client_id: env.FLUXER_CLIENT_ID,
+      client_secret: env.FLUXER_CLIENT_SECRET,
+      token: refreshToken,
+      token_type_hint: "refresh_token",
+    }),
+  });
+
+  if (!response.ok) {
+    throw new Error(`Token revocation failed: ${response.status}`);
+  }
 }
 
 export function buildSearchParams(
@@ -77,19 +112,20 @@ export function buildSearchParams(
   code: string,
 ): URLSearchParams {
   const searchParams = new URLSearchParams();
-  searchParams.append("client_id", env.DISCORD_CLIENT_ID);
-  searchParams.append("client_secret", env.DISCORD_CLIENT_SECRET);
+  searchParams.append("client_id", env.FLUXER_CLIENT_ID);
+  searchParams.append("client_secret", env.FLUXER_CLIENT_SECRET);
   searchParams.append(
     "grant_type",
     type == "callback" ? "authorization_code" : "refresh_token",
   );
   searchParams.append(type == "callback" ? "code" : "refresh_token", code);
-  searchParams.append("redirect_uri", env.DISCORD_REDIRECT_URI);
-  searchParams.append("scope", env.DISCORD_SCOPES);
+  if (type == "callback") {
+    searchParams.append("redirect_uri", env.FLUXER_REDIRECT_URI);
+  }
   return searchParams;
 }
 
-export async function setCookies(tokens: Tokens, cookies: Cookies, user?: DiscordUser) {
+export async function setCookies(tokens: Tokens, cookies: Cookies, user?: FluxerUser) {
   try {
     const encryptedAccessToken = CryptoJS.AES.encrypt(
       tokens.access_token,
@@ -167,6 +203,27 @@ export async function setCookies(tokens: Tokens, cookies: Cookies, user?: Discor
   }
 }
 
+/**
+ * Revokes the refresh token held in the cookies at Fluxer. Failures are logged and ignored so
+ * signing out always completes locally.
+ */
+export async function revokeStoredRefreshToken(cookies: Cookies): Promise<void> {
+  const encrypted = cookies.get(REFRESH_TOKEN_COOKIE);
+  if (!encrypted) return;
+
+  try {
+    const refreshToken = CryptoJS.AES.decrypt(
+      encrypted,
+      env.COOKIE_ENCRYPTION_PASSWORD,
+    ).toString(CryptoJS.enc.Utf8);
+    if (refreshToken) {
+      await revokeRefreshToken(refreshToken);
+    }
+  } catch (e) {
+    logger.warn("Could not revoke refresh token:", e instanceof Error ? e.message : String(e));
+  }
+}
+
 export async function deleteCookies(cookies: Cookies) {
   try {
     // Delete session from Redis if exists
@@ -212,7 +269,7 @@ export function shouldRefreshToken(cookies: Cookies): boolean {
     const expiry = new Date(expiryStr);
     const now = new Date();
     const tokenLifetime = expiry.getTime() - now.getTime();
-    const totalLifetime = 10 * 60 * 1000; // 10 minutes in ms
+    const totalLifetime = ACCESS_TOKEN_LIFETIME_MS;
     
     // Refresh if we've used 80% of the token lifetime
     return tokenLifetime < (totalLifetime * (1 - TOKEN_REFRESH_THRESHOLD));

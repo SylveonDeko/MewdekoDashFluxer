@@ -6,7 +6,7 @@ import { defaultInstanceURL, resolveInstanceURL, resolveInstanceURLByPort } from
 import { mintBackendToken } from "$lib/server/backendJwt";
 import { getSession, verifyAccessToken } from "$lib/server/mobileJwt";
 import { logger } from "$lib/logger";
-import type { DiscordUser } from "$lib/types/discord";
+import type { FluxerUser } from "$lib/types/fluxer";
 
 /**
  * Live music status for the web player, as Server-Sent Events.
@@ -33,7 +33,7 @@ export const GET: RequestHandler = async ({ url, locals, request }) => {
   const guildId = url.searchParams.get("guildId");
   if (!guildId || !/^\d+$/.test(guildId)) throw error(400, "Missing guildId");
 
-  let user: DiscordUser | null = null;
+  let user: FluxerUser | null = null;
   let backend: string | null = null;
 
   const bearer = (request.headers.get("authorization") ?? "").replace(/^bearer\s+/i, "");

@@ -7,7 +7,7 @@
   import EmojiPicker from "$lib/components/forms/EmojiPicker.svelte";
   import { clientApi } from "$lib/api/client/client";
   import type { GuildEmojiInfo } from "$lib/api/client/models";
-  import type { DiscordUser } from "$lib/types/discord";
+  import type { FluxerUser } from "$lib/types/fluxer";
 
 
   interface Props {
@@ -15,7 +15,7 @@
     component: any;
     triggers?: any[];
     isEditing?: boolean;
-      user?: DiscordUser | null;
+      user?: FluxerUser | null;
       onupdate?: (detail: { component: any }) => void;
       onremove?: (detail: { componentKey: string }) => void;
       onedit?: (detail: { component: any }) => void;

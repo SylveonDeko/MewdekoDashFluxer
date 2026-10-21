@@ -5,7 +5,7 @@ export const load: PageServerLoad = async ({ parent }) => {
   const data = await parent();
 
   if (!data.user) {
-    redirect(302, "/api/discord/login");
+    redirect(302, "/api/auth/login");
   }
 
   return {

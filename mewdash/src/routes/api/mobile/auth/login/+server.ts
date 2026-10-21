@@ -3,7 +3,7 @@ import type { RequestHandler } from "./$types";
 import { env } from "$env/dynamic/private";
 import { logger } from "$lib/logger";
 import { createSession } from "$lib/server/mobileJwt";
-import { getUserData } from "../../../discord/discordAuth";
+import { fluxerApiUrl, getUserData } from "../../../auth/fluxerAuth";
 
 interface LoginBody {
   code?: string;
@@ -12,8 +12,8 @@ interface LoginBody {
 }
 
 /**
- * Exchanges a Discord OAuth2 authorization code (PKCE) for an app-issued
- * access JWT and opaque refresh token. The Discord access and refresh tokens
+ * Exchanges a Fluxer OAuth2 authorization code (PKCE) for an app-issued
+ * access JWT and opaque refresh token. The Fluxer access and refresh tokens
  * are retained server-side under a Redis-backed session handle and never
  * returned to the iOS client.
  *
@@ -33,29 +33,28 @@ export const POST: RequestHandler = async ({ request }) => {
   }
 
   const params = new URLSearchParams();
-  params.append("client_id", env.DISCORD_CLIENT_ID);
-  params.append("client_secret", env.DISCORD_CLIENT_SECRET);
+  params.append("client_id", env.FLUXER_CLIENT_ID);
+  params.append("client_secret", env.FLUXER_CLIENT_SECRET);
   params.append("grant_type", "authorization_code");
   params.append("code", code);
   params.append("redirect_uri", redirectUri);
-  params.append("scope", env.DISCORD_SCOPES);
   params.append("code_verifier", codeVerifier);
 
   let tokenResponse: Response;
   try {
-    tokenResponse = await fetch(`${env.DISCORD_API_URL}/oauth2/token`, {
+    tokenResponse = await fetch(`${fluxerApiUrl()}/oauth2/token`, {
       method: "POST",
       headers: { "Content-Type": "application/x-www-form-urlencoded" },
       body: params,
     });
   } catch (err) {
-    logger.error("Discord token request failed", err);
-    return json({ error: "discord_unreachable" }, { status: 502 });
+    logger.error("Fluxer token request failed", err);
+    return json({ error: "fluxer_unreachable" }, { status: 502 });
   }
 
   if (!tokenResponse.ok) {
     const detail = await tokenResponse.text().catch(() => "");
-    logger.warn(`Mobile login: Discord rejected code (${tokenResponse.status}): ${detail}`);
+    logger.warn(`Mobile login: Fluxer rejected code (${tokenResponse.status}): ${detail}`);
     return json({ error: "invalid_code" }, { status: 401 });
   }
 
@@ -70,7 +69,7 @@ export const POST: RequestHandler = async ({ request }) => {
     user = await getUserData(tokenData.access_token);
   } catch (err) {
     logger.error("Mobile login: failed to fetch /users/@me", err);
-    return json({ error: "discord_user_lookup_failed" }, { status: 502 });
+    return json({ error: "fluxer_user_lookup_failed" }, { status: 502 });
   }
 
   const session = await createSession(user, {
@@ -86,7 +85,7 @@ export const POST: RequestHandler = async ({ request }) => {
     user: {
       id: user.id.toString(),
       username: user.username,
-      globalName: user.display_name ?? user.username,
+      globalName: user.global_name ?? user.username,
       avatar: user.avatar,
     },
   });

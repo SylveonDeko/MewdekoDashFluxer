@@ -1,5 +1,5 @@
 // lib/stores/userStore.ts
 import { persisted } from "svelte-persisted-store";
-import type { DiscordUser } from "$lib/types/discord";
+import type { FluxerUser } from "$lib/types/fluxer";
 
-export const userStore = persisted<DiscordUser | null>("currentUser", null);
+export const userStore = persisted<FluxerUser | null>("currentUser", null);

@@ -5,13 +5,13 @@ import { env } from "$env/dynamic/private";
 import { createSession } from "$lib/server/mobileJwt";
 import { defaultInstanceURL } from "$lib/server/instances";
 import { logger } from "$lib/logger";
-import type { DiscordUser } from "$lib/types/discord";
+import type { FluxerUser } from "$lib/types/fluxer";
 
 /** How long a redeemed demo session stays valid. */
 const DEMO_TTL_SECONDS = 60 * 60 * 24 * 7;
 
 /**
- * Extracts the avatar hash from a Discord CDN URL.
+ * Extracts the avatar hash from a Fluxer CDN URL.
  *
  * @param url A rendered avatar URL, or null.
  * @returns The hash, or null for default avatars.
@@ -23,9 +23,9 @@ function avatarHashFrom(url: string | null): string | null {
 }
 
 /**
- * Resolves the demo account's Discord username and avatar through the bot.
+ * Resolves the demo account's Fluxer username and avatar through the bot.
  *
- * @param userId The demo account's Discord id.
+ * @param userId The demo account's Fluxer id.
  * @returns The profile, or null when it cannot be resolved.
  */
 async function lookupDemoProfile(
@@ -109,21 +109,12 @@ export const POST: RequestHandler = async ({ request }) => {
   const user = {
     id: demoUserId,
     username: displayName,
-    display_name: displayName,
+    global_name: displayName,
     discriminator: "0",
-    avatar: avatarHashFrom(profile?.avatarUrl ?? null) ?? "",
-    email: "",
-    verified: true,
-    flags: 0,
-    premium_type: 0,
-    public_flags: 0,
-    mfa_enabled: false,
-    locale: "en-US",
-    accent_color: "",
-    banner_color: "",
-    banner: "",
-    avatar_decoration: "",
-  } as unknown as DiscordUser;
+    avatar: avatarHashFrom(profile?.avatarUrl ?? null),
+    banner: null,
+    bot: false,
+  } as unknown as FluxerUser;
 
   const session = await createSession(
     user,
@@ -140,7 +131,7 @@ export const POST: RequestHandler = async ({ request }) => {
     user: {
       id: user.id.toString(),
       username: user.username,
-      globalName: user.display_name,
+      globalName: user.global_name,
       avatar: avatarHashFrom(profile?.avatarUrl ?? null),
     },
   });

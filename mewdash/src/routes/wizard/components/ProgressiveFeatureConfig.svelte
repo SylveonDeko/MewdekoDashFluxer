@@ -8,7 +8,7 @@ Each feature gets multiple screens for deeper configuration
   import { colorStore } from "$lib/stores/colorStore";
   import ChannelBulkSelector from "./ChannelBulkSelector.svelte";
   import FullscreenEmbedBuilder from "$lib/components/specialized/FullscreenEmbedBuilder.svelte";
-  import type { DiscordUser } from "$lib/types/discord";
+  import type { FluxerUser } from "$lib/types/fluxer";
 
   interface FeatureStep {
     id: string;
@@ -28,7 +28,7 @@ Each feature gets multiple screens for deeper configuration
     categories?: any[];
     placeholders?: Array<{ category: string; name: string; description: string }>;
     guildId?: string | bigint | null;
-    user?: DiscordUser | null;
+    user?: FluxerUser | null;
     children?: import("svelte").Snippet<[{ step: FeatureStep; config: any }]>;
     /** Blocks navigation and shows progress while the caller saves this step. */
     busy?: boolean;

@@ -1,5 +1,6 @@
 import { redirect } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
+import { fluxerAuthorizeUrl, fluxerScopes } from "../fluxerAuth";
 import { env } from "$env/dynamic/private";
 
 export const GET: RequestHandler = async ({ url, cookies }) => {
@@ -28,11 +29,11 @@ export const GET: RequestHandler = async ({ url, cookies }) => {
     });
   }
 
-  const authorizeUrl = new URL("https://discord.com/api/oauth2/authorize");
-  authorizeUrl.searchParams.append("client_id", env.DISCORD_CLIENT_ID);
-  authorizeUrl.searchParams.append("redirect_uri", env.DISCORD_REDIRECT_URI);
+  const authorizeUrl = new URL(fluxerAuthorizeUrl());
+  authorizeUrl.searchParams.append("client_id", env.FLUXER_CLIENT_ID);
+  authorizeUrl.searchParams.append("redirect_uri", env.FLUXER_REDIRECT_URI);
   authorizeUrl.searchParams.append("response_type", "code");
-  authorizeUrl.searchParams.append("scope", env.DISCORD_SCOPES);
+  authorizeUrl.searchParams.append("scope", fluxerScopes());
   authorizeUrl.searchParams.append("state", state);
 
   redirect(302, authorizeUrl.toString());

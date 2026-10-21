@@ -1,7 +1,7 @@
 import { json } from "@sveltejs/kit";
 import { logger } from "$lib/logger";
 import type { RequestHandler } from "./$types";
-import { getOrRefreshToken } from "$lib/server/discordApi";
+import { getOrRefreshToken } from "$lib/server/fluxerApi";
 
 export const POST: RequestHandler = async (event) => {
   try {

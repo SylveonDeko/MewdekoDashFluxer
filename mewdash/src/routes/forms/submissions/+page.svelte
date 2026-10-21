@@ -95,7 +95,7 @@
 
   onMount(() => {
     if (!data.user) {
-      goto(`/api/discord/login?redirect_to=${encodeURIComponent("/forms/submissions")}`);
+      goto(`/api/auth/login?redirect_to=${encodeURIComponent("/forms/submissions")}`);
       return;
     }
 

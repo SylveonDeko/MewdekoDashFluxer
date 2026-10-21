@@ -11,7 +11,7 @@ export const GET: RequestHandler = async ({}) => {
   if (env.USE_REDIS === "true") {
     const redis = new Redis(env.REDIS_URL);
     try {
-      const data = await redis.get(`${env.DISCORD_CLIENT_ID}_topguilds`);
+      const data = await redis.get(`${env.FLUXER_CLIENT_ID}_topguilds`);
       if (data) {
         redis.disconnect();
         const guilds = JSON.parse(data);

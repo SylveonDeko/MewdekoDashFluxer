@@ -1,12 +1,12 @@
-// src/routes/api/discord/callback/+page.server.ts
+// src/routes/api/auth/callback/+page.server.ts
 import { redirect, type Cookies } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
 import {
   buildSearchParams,
   getUserData,
-  requestDiscordToken,
+  requestFluxerToken,
   setCookies,
-} from "../discordAuth";
+} from "../fluxerAuth";
 import { logger } from "$lib/logger";
 
 // Helper function to validate redirect URLs (prevent open redirects)
@@ -56,7 +56,7 @@ function resolveRedirectTarget(state: string | null, cookies: Cookies): string {
   }
 }
 
-// routes/api/discord/callback/+page.server.ts
+// routes/api/auth/callback/+page.server.ts
 export const load: PageServerLoad = async ({ url, cookies, locals }) => {
   const code = url.searchParams.get("code");
   const state = url.searchParams.get("state");
@@ -78,7 +78,7 @@ export const load: PageServerLoad = async ({ url, cookies, locals }) => {
   }
 
   try {
-    const tokens = await requestDiscordToken(
+    const tokens = await requestFluxerToken(
       buildSearchParams("callback", code),
       cookies,
     );

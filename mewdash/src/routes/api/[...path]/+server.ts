@@ -10,7 +10,7 @@ import {
   resolveInstanceURLByPort,
 } from "$lib/server/instances";
 import { mintBackendToken } from "$lib/server/backendJwt";
-import type { DiscordUser } from "$lib/types/discord";
+import type { FluxerUser } from "$lib/types/fluxer";
 
 /**
  * Resolved backend target plus the dashboard user behind the request, if one
@@ -20,7 +20,7 @@ import type { DiscordUser } from "$lib/types/discord";
  */
 interface ResolvedBackend {
   backend: string;
-  user: DiscordUser | null;
+  user: FluxerUser | null;
 }
 
 /**
@@ -29,7 +29,7 @@ interface ResolvedBackend {
  * Bearer` backend JWT when the user is known, so the bot can attribute the
  * request to a Discord user for the dashboard audit log.
  */
-function botHeaders(user: DiscordUser | null, includeContentType = false): HeadersInit {
+function botHeaders(user: FluxerUser | null, includeContentType = false): HeadersInit {
   const headers: Record<string, string> = { "X-API-Key": env.MEWDEKO_API_KEY };
   if (includeContentType) headers["Content-Type"] = "application/json";
   const backendToken = user ? mintBackendToken(user) : null;

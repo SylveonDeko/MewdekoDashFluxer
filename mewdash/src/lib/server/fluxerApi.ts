@@ -1,14 +1,16 @@
-// lib/server/discordApi.ts
+// lib/server/fluxerApi.ts
 import type { Cookies, RequestEvent } from "@sveltejs/kit";
 import { env } from "$env/dynamic/private";
 import { logger } from "$lib/logger";
-import type { DiscordUser } from "../types/discord";
+import type { FluxerUser } from "../types/fluxer";
 import {
+  REFRESH_TOKEN_LIFETIME_MS,
   buildSearchParams,
-  requestDiscordToken,
+  getUserData,
+  requestFluxerToken,
   setCookies,
   shouldRefreshToken,
-} from "../../routes/api/discord/discordAuth";
+} from "../../routes/api/auth/fluxerAuth";
 import { sessionManager } from "$lib/server/redisSession";
 import CryptoJS from "crypto-js";
 
@@ -18,10 +20,10 @@ const failedRefreshTokens = new Set<string>();
 export async function authenticateUser(
   event: RequestEvent,
   cookies: Cookies,
-): Promise<DiscordUser | null> {
+): Promise<FluxerUser | null> {
   try {
     // Try to get user from Redis session first
-    const sessionId = cookies.get("discord_session_id");
+    const sessionId = cookies.get("fluxer_session_id");
     if (sessionId) {
       const session = await sessionManager.getSession(sessionId);
       if (session && session.user) {
@@ -39,29 +41,18 @@ export async function authenticateUser(
       return null;
     }
 
-    const userResponse = await fetch(`${env.DISCORD_API_URL}/users/@me`, {
-      headers: { Authorization: `Bearer ${token}` },
-    });
-    
-    if (!userResponse.ok) {
-      // If the access token is also invalid, clear everything
-      const { deleteCookies } = await import("../../routes/api/discord/discordAuth");
-      await deleteCookies(cookies);
-      return null;
-    }
-    
-    const user = await userResponse.json();
-    
+    const user = await getUserData(token);
+
     // Try to create session if we got a user
     if (user && user.id) {
-      const encryptedRefreshToken = cookies.get("discord_refresh_token");
+      const encryptedRefreshToken = cookies.get("fluxer_refresh_token");
       if (encryptedRefreshToken) {
         const bytes = CryptoJS.AES.decrypt(
           encryptedRefreshToken,
           env.COOKIE_ENCRYPTION_PASSWORD,
         );
         const refreshToken = bytes.toString(CryptoJS.enc.Utf8);
-        const accessExpiry = cookies.get("discord_access_expiry");
+        const accessExpiry = cookies.get("fluxer_access_expiry");
         
         if (refreshToken && accessExpiry) {
           const newSessionId = await sessionManager.createSession(user, {
@@ -71,9 +62,9 @@ export async function authenticateUser(
           });
           
           if (newSessionId) {
-            cookies.set("discord_session_id", newSessionId, {
+            cookies.set("fluxer_session_id", newSessionId, {
               path: "/",
-              maxAge: 30 * 24 * 60 * 60, // 30 days in seconds
+              maxAge: REFRESH_TOKEN_LIFETIME_MS / 1000,
               httpOnly: true,
               sameSite: "lax",
               secure: process.env.NODE_ENV === "production" || false,
@@ -88,7 +79,7 @@ export async function authenticateUser(
     logger.error("Authentication error:", error);
     // Clear cookies on any authentication error
     try {
-      const { deleteCookies } = await import("../../routes/api/discord/discordAuth");
+      const { deleteCookies } = await import("../../routes/api/auth/fluxerAuth");
       await deleteCookies(cookies);
     } catch (deleteError) {
       logger.error("Failed to delete cookies in auth error:", deleteError);
@@ -101,7 +92,7 @@ export async function getOrRefreshToken(
   event: RequestEvent,
   cookies: Cookies,
 ): Promise<string | null> {
-  let encryptedToken = event.cookies?.get("discord_access_token");
+  let encryptedToken = event.cookies?.get("fluxer_access_token");
   let token = null;
   if (encryptedToken) {
     const bytes = CryptoJS.AES.decrypt(
@@ -127,7 +118,7 @@ export async function getOrRefreshToken(
 
   // if only refresh token is found, access token has expired
   // fetch refresh only if not already on refresh route (otherwise recursion go brrr)
-  let encryptedRefreshToken = event.cookies?.get("discord_refresh_token");
+  let encryptedRefreshToken = event.cookies?.get("fluxer_refresh_token");
   let refreshToken = null;
   if (encryptedRefreshToken) {
     const bytes = CryptoJS.AES.decrypt(
@@ -137,7 +128,7 @@ export async function getOrRefreshToken(
     refreshToken = bytes.toString(CryptoJS.enc.Utf8);
   }
 
-  if (refreshToken && !event.url.pathname.startsWith("/api/discord/refresh")) {
+  if (refreshToken && !event.url.pathname.startsWith("/api/auth/refresh")) {
     return await tryRefreshToken(event, cookies);
   }
 
@@ -149,7 +140,7 @@ async function tryRefreshToken(
   cookies: Cookies,
   retries = 1 // Reduce retries to prevent spam
 ): Promise<string | null> {
-  let encryptedRefreshToken = event.cookies?.get("discord_refresh_token");
+  let encryptedRefreshToken = event.cookies?.get("fluxer_refresh_token");
   if (!encryptedRefreshToken) return null;
   
   const bytes = CryptoJS.AES.decrypt(
@@ -168,9 +159,9 @@ async function tryRefreshToken(
   
   for (let attempt = 0; attempt < retries; attempt++) {
     try {
-      const tokens = await requestDiscordToken(
+      const tokens = await requestFluxerToken(
         buildSearchParams("refresh", refreshToken)
-        // Don't pass cookies to requestDiscordToken to avoid premature deletion
+        // Don't pass cookies to requestFluxerToken to avoid premature deletion
       );
       
       // Remove from failed set if refresh succeeds
@@ -197,7 +188,7 @@ async function tryRefreshToken(
         }
         
         try {
-          const { deleteCookies } = await import("../../routes/api/discord/discordAuth");
+          const { deleteCookies } = await import("../../routes/api/auth/fluxerAuth");
           await deleteCookies(event.cookies);
         } catch (deleteError) {
           logger.error("Failed to delete cookies:", deleteError);

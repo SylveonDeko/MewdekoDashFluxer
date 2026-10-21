@@ -2,7 +2,7 @@
   import { m } from "$lib/i18n";
   import { colorStore } from "$lib/stores/colorStore";
   import PreviewCard from "$lib/components/specialized/PreviewCard.svelte";
-  import type { DiscordUser } from "$lib/types/discord";
+  import type { FluxerUser } from "$lib/types/fluxer";
   import {
     buildDefaultEmbed,
     buildPreviewRows,
@@ -29,7 +29,7 @@
     /** Whether the menu is paused */
     paused?: boolean;
     /** The signed in user, for placeholder previews */
-    user?: DiscordUser | null;
+    user?: FluxerUser | null;
     /** The guild ID, for placeholder previews */
     guildId?: bigint | string | null;
   }

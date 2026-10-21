@@ -885,7 +885,7 @@
         </button>
 
         <!-- Logout -->
-        <form action="/api/discord/logout" method="GET" class="w-full">
+        <form action="/api/auth/logout" method="GET" class="w-full">
           <button
             type="submit"
             class="w-full flex items-center gap-3 px-3 py-2 max-lg:py-2.5 rounded-xl transition-[color,background-color,border-color,transform] duration-200 hover:scale-[1.01] group"

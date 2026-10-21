@@ -11,7 +11,7 @@
     type AchievementLookups,
     type AchievementSettings
   } from "$lib/api/index.ts";
-  import type { DiscordUser } from "$lib/types/discord";
+  import type { FluxerUser } from "$lib/types/fluxer";
   import { logger } from "$lib/logger";
   import DiscordSelector from "$lib/components/forms/DiscordSelector.svelte";
   import ToggleRow from "$lib/components/forms/ToggleRow.svelte";
@@ -24,7 +24,7 @@
     settings: AchievementSettings;
     catalog: AchievementCatalog;
     lookups: AchievementLookups | null;
-    user?: DiscordUser;
+    user?: FluxerUser;
     onsaved: (settings: AchievementSettings) => void;
     onerror: (text: string) => void;
     onsuccess: (text: string) => void;

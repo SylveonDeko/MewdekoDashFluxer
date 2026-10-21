@@ -20,7 +20,7 @@ export const GET: RequestHandler = async ({ request }) => {
     user: {
       id: session.user.id.toString(),
       username: session.user.username,
-      globalName: session.user.display_name ?? session.user.username,
+      globalName: session.user.global_name ?? session.user.username,
       avatar: session.user.avatar,
     },
   });

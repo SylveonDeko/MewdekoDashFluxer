@@ -28,7 +28,7 @@ Wizard layout - minimal layout for focused setup experience
     if (browser && !$userStore && !data?.user) {
       // Redirect to login if not authenticated, preserving the wizard URL
       const currentUrl = page.url.pathname + page.url.search;
-      goto(`/api/discord/login?redirect_to=${encodeURIComponent(currentUrl)}`);
+      goto(`/api/auth/login?redirect_to=${encodeURIComponent(currentUrl)}`);
     }
   });
 

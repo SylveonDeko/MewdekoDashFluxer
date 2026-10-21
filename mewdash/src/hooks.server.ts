@@ -1,5 +1,5 @@
 import { env } from "$env/dynamic/public";
-import { authenticateUser } from "$lib/server/discordApi";
+import { authenticateUser } from "$lib/server/fluxerApi";
 import { logBackendJwtInit } from "$lib/server/backendJwt";
 import { recordPageView } from "$lib/server/analyticsBeacon";
 import * as Sentry from "@sentry/sveltekit";
@@ -33,17 +33,17 @@ const appHandle: Handle = async ({ event, resolve }) => {
     // Skip authentication for auth-related endpoints to prevent interference
     const pathname = event.url.pathname;
     if (
-      pathname.startsWith("/api/discord/callback") ||
-      pathname.startsWith("/api/discord/login") ||
-      pathname.startsWith("/api/discord/logout") ||
-      // Public, cacheable assets Discord itself fetches. Running these through the auth hook would
+      pathname.startsWith("/api/auth/callback") ||
+      pathname.startsWith("/api/auth/login") ||
+      pathname.startsWith("/api/auth/logout") ||
+      // Public, cacheable assets Fluxer itself fetches. Running these through the auth hook would
       // stamp them no-store, and they have no user context to authenticate anyway.
       pathname.startsWith("/cdn/")
     ) {
       return resolve(event);
     }
 
-    // Owner tools moved from /dashboard to /owner. Bookmarks and Discord embeds still carry the
+    // Owner tools moved from /dashboard to /owner. Bookmarks and Fluxer embeds still carry the
     // old paths, so send them on rather than 404.
     const legacyOwnerPath = LEGACY_OWNER_PATHS.find(
       (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)

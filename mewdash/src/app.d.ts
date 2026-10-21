@@ -1,4 +1,4 @@
-import type { DiscordUser } from "$lib/types/discord";
+import type { FluxerUser } from "$lib/types/fluxer";
 
 declare global {
   namespace App {
@@ -11,7 +11,7 @@ declare global {
 
 
     interface PageData {
-      user: DiscordUser | null;
+      user: FluxerUser | null;
     }
 
     interface Error {

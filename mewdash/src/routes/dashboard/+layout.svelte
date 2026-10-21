@@ -295,7 +295,7 @@
     // If no user, redirect to login with current URL
     if (browser && !data.user && !$userStore) {
       const currentUrl = window.location.pathname + window.location.search;
-      const loginUrl = `/api/discord/login?redirect_to=${encodeURIComponent(currentUrl)}`;
+      const loginUrl = `/api/auth/login?redirect_to=${encodeURIComponent(currentUrl)}`;
       window.location.href = loginUrl;
       return;
     }

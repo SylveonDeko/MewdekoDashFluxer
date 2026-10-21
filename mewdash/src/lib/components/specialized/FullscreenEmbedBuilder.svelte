@@ -14,7 +14,7 @@
   import type { ChatTrigger } from "$lib/api/chattriggers/models/ChatTrigger";
   import type { SavedEmbed } from "$lib/api/embeds/models";
   import { logger } from "$lib/logger.ts";
-  import type { DiscordUser } from "$lib/types/discord";
+  import type { FluxerUser } from "$lib/types/fluxer";
   import ConfirmationModal from "$lib/components/ui/ConfirmationModal.svelte";
 
   interface Props {
@@ -39,7 +39,7 @@
     icon?: string; // Icon to show in preview
     // Guild/User context
     guildId?: string | bigint | null;
-    user?: DiscordUser | null;
+    user?: FluxerUser | null;
     id?: string;
     ariaLabelledby?: string;
     // Events

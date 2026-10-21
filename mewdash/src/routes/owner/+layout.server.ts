@@ -10,7 +10,7 @@ export const load: LayoutServerLoad = async ({ locals, url }) => {
   const user = locals.user || null;
   if (!user) {
     const target = encodeURIComponent(url.pathname + url.search);
-    redirect(302, `/api/discord/login?redirect_to=${target}`);
+    redirect(302, `/api/auth/login?redirect_to=${target}`);
   }
 
   return { user };

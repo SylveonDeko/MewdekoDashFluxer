@@ -4,7 +4,7 @@ import type { PageServerLoad } from './$types';
 export const load: PageServerLoad = async ({ url, locals }) => {
   // Ensure user is authenticated
   if (!locals.user) {
-    redirect(302, "/api/discord/login");
+    redirect(302, "/api/auth/login");
   }
 
   // Get guild ID from URL parameters

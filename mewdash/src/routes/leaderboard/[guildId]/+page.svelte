@@ -336,7 +336,7 @@
             {m.public.leaderboardPleaseLogInWithDiscord()}
           </p>
           <a
-            href="/api/discord/login?redirect_to={encodeURIComponent($page.url.pathname)}"
+            href="/api/auth/login?redirect_to={encodeURIComponent($page.url.pathname)}"
             class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all hover:scale-[1.02]"
             style="background: {$colorStore.primary}; color: white;"
           >

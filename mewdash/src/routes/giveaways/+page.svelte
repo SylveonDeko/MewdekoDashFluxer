@@ -70,7 +70,7 @@
 
     if (!data.user) {
       const currentUrl = page.url.pathname + page.url.search;
-      goto(`/api/discord/login?redirect_to=${encodeURIComponent(currentUrl)}`);
+      goto(`/api/auth/login?redirect_to=${encodeURIComponent(currentUrl)}`);
       return;
     }
 

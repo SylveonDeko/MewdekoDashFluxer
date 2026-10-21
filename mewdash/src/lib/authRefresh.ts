@@ -32,7 +32,7 @@ export async function performTokenRefresh(): Promise<boolean> {
   isRefreshing = true;
   
   try {
-    const response = await fetch('/api/discord/refresh', {
+    const response = await fetch('/api/auth/refresh', {
       method: 'POST',
       credentials: 'include'
     });
@@ -49,7 +49,7 @@ export async function performTokenRefresh(): Promise<boolean> {
       if (currentUser) {
         userStore.set(null);
         const currentPath = window.location.pathname + window.location.search;
-        await goto(`/api/discord/login?redirect_to=${encodeURIComponent(currentPath)}`);
+        await goto(`/api/auth/login?redirect_to=${encodeURIComponent(currentPath)}`);
       }
       return false;
     }

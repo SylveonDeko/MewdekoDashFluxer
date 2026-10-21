@@ -1,12 +1,12 @@
 import { createHmac, randomBytes } from "node:crypto";
 import { env } from "$env/dynamic/private";
 import { logger } from "$lib/logger";
-import type { DiscordUser } from "$lib/types/discord";
+import type { FluxerUser } from "$lib/types/fluxer";
 
 /**
  * Shared HS256 secret between the dashboard and every bot instance. Must equal
  * each instance's `credentials.json` `JwtSecret`. The dashboard signs short-lived
- * backend tokens with it; the bot verifies them to learn which Discord user is
+ * backend tokens with it; the bot verifies them to learn which Fluxer user is
  * behind a proxied request.
  */
 const BOT_JWT_SECRET = env.BOT_JWT_SECRET ?? "";
@@ -39,7 +39,7 @@ function hmac(payload: string): string {
 }
 
 /**
- * Claims embedded in a backend token. `sub` is the Discord user id, `name` the
+ * Claims embedded in a backend token. `sub` is the Fluxer user id, `name` the
  * username; the bot records both in the dashboard audit log.
  */
 interface BackendClaims {
@@ -58,7 +58,7 @@ interface BackendClaims {
  * Attached as `Authorization: Bearer` on proxied bot API calls so the bot can
  * verify the user instead of trusting a forwarded header.
  */
-export function mintBackendToken(user: DiscordUser): string | null {
+export function mintBackendToken(user: FluxerUser): string | null {
   if (!canMintBackendToken()) return null;
 
   const now = Math.floor(Date.now() / 1000);

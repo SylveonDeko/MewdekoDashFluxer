@@ -9,7 +9,7 @@
     import StarRating from "$lib/components/display/StarRating.svelte";
     import {marked} from "marked";
     import DOMPurify from "dompurify";
-    import type {DiscordUser} from "$lib/types/discord.ts";
+    import type {FluxerUser} from "$lib/types/fluxer.ts";
     import {colorStore} from "$lib/stores/colorStore";
     import ComponentEmbed from "$lib/components/layout/ComponentEmbed.svelte";
     import { buttons, container, header, linkButton, SITE_ORIGIN, separator } from "$lib/componentEmbed";
@@ -37,7 +37,7 @@
   let previewContent = $state("");
   let reviewsWithParsedContent: (BotReview & { parsedReview?: string })[] = $state([]);
 
-  let user = $derived(data.user as DiscordUser | undefined);
+  let user = $derived(data.user as FluxerUser | undefined);
   let userHasReviewed = $state(false);
   
 

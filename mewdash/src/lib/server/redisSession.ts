@@ -1,7 +1,7 @@
 import Redis from "ioredis";
 import { env } from "$env/dynamic/private";
 import { logger } from "$lib/logger";
-import type { DiscordUser } from "$lib/types/discord";
+import type { FluxerUser } from "$lib/types/fluxer";
 import { nanoid } from "nanoid";
 
 // Session expiry time (24 hours)
@@ -25,10 +25,10 @@ export class RedisSessionManager {
   }
 
   private getSessionKey(sessionId: string): string {
-    return `${env.DISCORD_CLIENT_ID}_session:${sessionId}`;
+    return `${env.FLUXER_CLIENT_ID}_session:${sessionId}`;
   }
 
-  async createSession(user: DiscordUser, tokens: {
+  async createSession(user: FluxerUser, tokens: {
     accessToken: string;
     refreshToken: string;
     accessExpiry: Date;
@@ -61,7 +61,7 @@ export class RedisSessionManager {
   }
 
   async getSession(sessionId: string): Promise<{
-    user: DiscordUser;
+    user: FluxerUser;
     tokens: {
       accessToken: string;
       refreshToken: string;

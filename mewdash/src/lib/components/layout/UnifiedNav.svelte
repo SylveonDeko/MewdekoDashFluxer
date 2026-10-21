@@ -30,7 +30,7 @@ A unified navigation component that provides responsive navigation with server a
 
   import { onDestroy, onMount } from "svelte";
   import type { DiscordGuild } from "$lib/types/discordGuild.ts";
-  import type { DiscordUser } from "$lib/types/discord.ts";
+  import type { FluxerUser } from "$lib/types/fluxer.ts";
   import {
     type BotInstance,
     clientApi,
@@ -72,7 +72,7 @@ A unified navigation component that provides responsive navigation with server a
   // Props
   interface Props {
     items?: NavItem[];
-    data?: { user?: DiscordUser };
+    data?: { user?: FluxerUser };
   }
 
   let { items = [], data = undefined }: Props = $props();
@@ -944,7 +944,7 @@ A unified navigation component that provides responsive navigation with server a
         <i class="fa-solid fa-palette text-sm"></i>
       </button>
       {#if !currentUser}
-        <a href="/api/discord/login"
+        <a href="/api/auth/login"
            data-sveltekit-reload
            class=" rounded-lg px-3 py-1.5 text-sm font-medium transition-all duration-200 ease-in-out hover:scale-[1.02] hover:shadow-lg  border inline-block"
            style="background: linear-gradient(135deg, {$colorStore.primary}80, {$colorStore.secondary}80);
@@ -1152,7 +1152,7 @@ A unified navigation component that provides responsive navigation with server a
               <!-- Logout -->
               <div class="pt-2 border-t border-opacity-30" style="border-color: {$colorStore.primary};">
                 <form
-                  action="/api/discord/logout"
+                  action="/api/auth/logout"
                   method="GET"
                   class="w-full"
                 >
@@ -1477,7 +1477,7 @@ A unified navigation component that provides responsive navigation with server a
       <!-- Mobile Footer -->
       <div class="p-4 border-t border-opacity-30" style="border-color: {$colorStore.primary};">
         <form
-          action="/api/discord/logout"
+          action="/api/auth/logout"
           method="GET"
           class="w-full"
         >
