@@ -1,5 +1,4 @@
 // lib/api/ticket/models/TicketRequests.ts
-import type { ButtonStyle } from "./TicketModels";
 
 /**
  * Create panel request
@@ -28,7 +27,6 @@ export interface UpdateEmbedRequest {
 export interface AddButtonRequest {
   label: string;
   emoji?: string | null;
-  style?: ButtonStyle;
   openMessageJson?: string | null;
   modalJson?: string | null;
   channelFormat?: string | null;
@@ -50,7 +48,6 @@ export interface AddButtonRequest {
 export interface UpdateButtonRequest {
   label?: string | null;
   emoji?: string | null;
-  style?: ButtonStyle | null;
   categoryId?: bigint | null;
   archiveCategoryId?: bigint | null;
   supportRoles?: bigint[] | null;

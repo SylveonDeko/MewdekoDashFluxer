@@ -16007,8 +16007,6 @@ export const m = {
     pageTitle: () => t("tickets", "page_title", "Ticket System"),
     /** Add Menu */
     panelsAddMenu: () => t("tickets", "panels_add_menu", "Add Menu"),
-    /** Add Option ({count}/{max}) */
-    panelsAddOptionCount: (p: { count: P; max: P }) => t("tickets", "panels_add_option_count", "Add Option ({count}/{max})", p),
     /** Allowed Priorities */
     panelsAllowedPriorities: () => t("tickets", "panels_allowed_priorities", "Allowed Priorities"),
     /** Archive Category */
@@ -16019,8 +16017,8 @@ export const m = {
     panelsButtonLabelPlaceholder: () => t("tickets", "panels_button_label_placeholder", "Support Ticket"),
     /** Button configuration sections */
     panelsButtonSectionsAria: () => t("tickets", "panels_button_sections_aria", "Button configuration sections"),
-    /** Style: {style} • Max: {max} */
-    panelsButtonSummary: (p: { max: P; style: P }) => t("tickets", "panels_button_summary", "Style: {style} • Max: {max}", p),
+    /** Max: {max} */
+    panelsButtonSummary: (p: { max: P }) => t("tickets", "panels_button_summary", "Max: {max}", p),
     /** No buttons yet */
     panelsButtonsEmpty: () => t("tickets", "panels_buttons_empty", "No buttons yet"),
     /** Buttons ({count}) */
@@ -16029,14 +16027,8 @@ export const m = {
     panelsCancelOptionAria: () => t("tickets", "panels_cancel_option_aria", "Cancel option"),
     /** Cancel editing placeholder */
     panelsCancelPlaceholderAria: () => t("tickets", "panels_cancel_placeholder_aria", "Cancel editing placeholder"),
-    /** Can add {buttons} more button or {menus} more menu */
-    panelsCapacityButtonOneMenuOne: (p: { buttons: P; menus: P }) => t("tickets", "panels_capacity_button_one_menu_one", "Can add {buttons} more button or {menus} more menu", p),
-    /** Can add {buttons} more button or {menus} more menus */
-    panelsCapacityButtonOneMenuOther: (p: { buttons: P; menus: P }) => t("tickets", "panels_capacity_button_one_menu_other", "Can add {buttons} more button or {menus} more menus", p),
-    /** Can add {buttons} more buttons or {menus} more menu */
-    panelsCapacityButtonOtherMenuOne: (p: { buttons: P; menus: P }) => t("tickets", "panels_capacity_button_other_menu_one", "Can add {buttons} more buttons or {menus} more menu", p),
-    /** Can add {buttons} more buttons or {menus} more menus */
-    panelsCapacityButtonOtherMenuOther: (p: { buttons: P; menus: P }) => t("tickets", "panels_capacity_button_other_menu_other", "Can add {buttons} more buttons or {menus} more menus", p),
+    /** Room for {count} more ticket types, {max} at most */
+    panelsCapacity: (p: { count: P; max: P }) => t("tickets", "panels_capacity", "Room for {count} more ticket types, {max} at most", p),
     /** Available: {username}, {id} • Max {count} characters */
     panelsChannelFormatHint: (p: { count: P; id: P; username: P }) => t("tickets", "panels_channel_format_hint", "Available: {username}, {id} • Max {count} characters", p),
     /** {buttons}B • {menus}M */
@@ -16081,16 +16073,12 @@ export const m = {
     panelsFirstOptionEmoji: () => t("tickets", "panels_first_option_emoji", "First Option Emoji"),
     /** First Option Label */
     panelsFirstOptionLabel: () => t("tickets", "panels_first_option_label", "First Option Label"),
-    /** Component limit reached. Remove buttons or select menus to add more. */
-    panelsLimitReached: () => t("tickets", "panels_limit_reached", "Component limit reached. Remove buttons or select menus to add more."),
-    /** Component limit reached. Need 5 slots for a select menu. Remove components to add more. */
-    panelsLimitReachedMenu: () => t("tickets", "panels_limit_reached_menu", "Component limit reached. Need 5 slots for a select menu. Remove components to add more."),
+    /** A panel holds at most {max} ticket types, one reaction each. Remove one to add more. */
+    panelsLimitReached: (p: { max: P }) => t("tickets", "panels_limit_reached", "A panel holds at most {max} ticket types, one reaction each. Remove one to add more.", p),
     /** Max Active Tickets */
     panelsMaxActiveTickets: () => t("tickets", "panels_max_active_tickets", "Max Active Tickets"),
     /** Max {count} characters */
     panelsMaxCharacters: (p: { count: P }) => t("tickets", "panels_max_characters", "Max {count} characters", p),
-    /** Maximum {max} options per menu */
-    panelsMaxOptions: (p: { max: P }) => t("tickets", "panels_max_options", "Maximum {max} options per menu", p),
     /** Select a ticket type... */
     panelsMenuPlaceholderExample: () => t("tickets", "panels_menu_placeholder_example", "Select a ticket type..."),
     /** No select menus yet */
@@ -16177,14 +16165,6 @@ export const m = {
     panelsSelectPrioritiesPlaceholder: () => t("tickets", "panels_select_priorities_placeholder", "Select priorities..."),
     /** Click "Edit Embed" to customize this panel */
     panelsSettingsHint: () => t("tickets", "panels_settings_hint", "Click \"Edit Embed\" to customize this panel"),
-    /** Danger (Red) */
-    panelsStyleDangerLabel: () => t("tickets", "panels_style_danger_label", "Danger (Red)"),
-    /** Primary (Blue) */
-    panelsStylePrimaryLabel: () => t("tickets", "panels_style_primary_label", "Primary (Blue)"),
-    /** Secondary (Gray) */
-    panelsStyleSecondaryLabel: () => t("tickets", "panels_style_secondary_label", "Secondary (Gray)"),
-    /** Success (Green) */
-    panelsStyleSuccessLabel: () => t("tickets", "panels_style_success_label", "Success (Green)"),
     /** Select Menus */
     panelsTabSelectMenus: () => t("tickets", "panels_tab_select_menus", "Select Menus"),
     /** Panel Settings */

@@ -128,13 +128,6 @@
     { id: "message", label: m.common.message(), icon: "fa-message" }
   ]);
 
-  const buttonStyleOptions = $derived([
-    { id: "1", name: m.common.primary(), label: m.tickets.panelsStylePrimaryLabel() },
-    { id: "2", name: m.common.secondary(), label: m.tickets.panelsStyleSecondaryLabel() },
-    { id: "3", name: m.common.success(), label: m.tickets.panelsStyleSuccessLabel() },
-    { id: "4", name: m.common.danger(), label: m.tickets.panelsStyleDangerLabel() }
-  ]);
-
   // Select menu editing
   let editingMenuId = $state<number | null>(null);
   let editingPlaceholder = $state("");
@@ -246,7 +239,6 @@
       archiveCategoryId: fullButton.archiveCategoryId?.toString() || null,
       supportRoles: fullButton.supportRoles?.map((r: any) => r.toString()) || [],
       viewerRoles: fullButton.viewerRoles?.map((r: any) => r.toString()) || [],
-      style: fullButton.style?.toString() || "1",
       allowedPriorities: fullButton.allowedPriorities || [],
       defaultPriority: fullButton.defaultPriority || null,
       emoji: fullButton.emoji || null,
@@ -422,42 +414,22 @@
     cancelEditingOption();
   }
 
-  // Calculate Discord component limits
-  // 1 button = 1 component, 1 select menu = 5 components, max 25 total
-  let componentCount = $derived(() => {
-    if (!selectedPanel) return { buttons: 0, menus: 0, total: 0, remaining: 25, canAddButtons: 25, canAddMenus: 5 };
-    const buttons = panelButtons.length;
-    const menus = panelSelectMenus.length;
-    const total = buttons + (menus * 5);
-    const remaining = 25 - total;
-    const canAddButtons = remaining; // Each button = 1 slot
-    const canAddMenus = Math.floor(remaining / 5); // Each menu = 5 slots
-    return { buttons, menus, total, remaining, canAddButtons, canAddMenus };
-  });
+  const MAX_PANEL_ENTRIES = 20;
 
-  const capacityText = $derived.by(() => {
-    const { canAddButtons: buttons, canAddMenus: menus } = componentCount();
-    if (buttons === 1) {
-      return menus === 1
-        ? m.tickets.panelsCapacityButtonOneMenuOne({ buttons, menus })
-        : m.tickets.panelsCapacityButtonOneMenuOther({ buttons, menus });
-    }
-    return menus === 1
-      ? m.tickets.panelsCapacityButtonOtherMenuOne({ buttons, menus })
-      : m.tickets.panelsCapacityButtonOtherMenuOther({ buttons, menus });
-  });
+  let panelEntryCount = $derived(
+    selectedPanel
+      ? panelButtons.length + panelSelectMenus.reduce((sum, menu) => sum + (menu.options?.length || 0), 0)
+      : 0
+  );
+  let panelEntriesLeft = $derived(MAX_PANEL_ENTRIES - panelEntryCount);
 
-  let canAddButton = $derived(componentCount().canAddButtons >= 1);
-  let canAddSelectMenu = $derived(componentCount().canAddMenus >= 1);
+  const capacityText = $derived(m.tickets.panelsCapacity({ count: panelEntriesLeft, max: MAX_PANEL_ENTRIES }));
 
-  // Select menu option limits (max 25 per menu)
-  function getOptionCount(menuId: number): number {
-    const menu = panelSelectMenus.find(menu => menu.id === menuId);
-    return menu?.options?.length || 0;
-  }
+  let canAddButton = $derived(panelEntriesLeft >= 1);
+  let canAddSelectMenu = $derived(panelEntriesLeft >= 1);
 
-  function canAddOption(menuId: number): boolean {
-    return getOptionCount(menuId) < 25;
+  function canAddOption(_menuId: number): boolean {
+    return panelEntriesLeft >= 1;
   }
 </script>
 
@@ -657,7 +629,7 @@
           <div class="p-3 rounded-lg" style="background: #f59e0b10; border: 1px solid #f59e0b30;">
             <i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i>
             <span class="ml-2 text-sm" style="color: #f59e0b;">
-              {m.tickets.panelsLimitReached()}
+              {m.tickets.panelsLimitReached({ max: MAX_PANEL_ENTRIES })}
             </span>
           </div>
         {/if}
@@ -709,16 +681,6 @@
                       placeholder={m.common.selectEmojiPlaceholder()}
                       searchable={true}
                       groupByGuild={true}
-                    />
-                  </div>
-                  <div>
-                    <label for="f-PanelsTab-style-698" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.common.style()}</label>
-                    <DiscordSelector id="f-PanelsTab-style-698"
-                      type="custom"
-                      options={buttonStyleOptions}
-                      bind:selected={newButton.style}
-                      placeholder={m.tickets.modalBuilderStylePlaceholder()}
-                      multiple={false}
                     />
                   </div>
                   <div>
@@ -1045,16 +1007,6 @@
                             groupByGuild={true}
                           />
                         </div>
-                        <div>
-                          <label for="f-PanelsTab-style-1042" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.common.style()}</label>
-                          <DiscordSelector id="f-PanelsTab-style-1042"
-                            type="custom"
-                            options={buttonStyleOptions}
-                            bind:selected={editingButtonData.style}
-                            placeholder={m.tickets.modalBuilderStylePlaceholder()}
-                            multiple={false}
-                          />
-                        </div>
                       </div>
 
                     {:else if buttonEditSection === 'permissions'}
@@ -1244,7 +1196,7 @@
                     <div class="min-w-0 flex-1">
                       <p class="font-medium truncate" style="color: {$colorStore.text}">{button.label}</p>
                       <p class="text-xs truncate" style="color: {$colorStore.muted}">
-                        {m.tickets.panelsButtonSummary({ style: button.style, max: button.maxActiveTickets })}
+                        {m.tickets.panelsButtonSummary({ max: button.maxActiveTickets })}
                       </p>
                     </div>
                   </div>
@@ -1301,7 +1253,7 @@
           <div class="p-3 rounded-lg" style="background: #f59e0b10; border: 1px solid #f59e0b30;">
             <i class="fa-solid fa-triangle-exclamation" style="color: #f59e0b;"></i>
             <span class="ml-2 text-sm" style="color: #f59e0b;">
-              {m.tickets.panelsLimitReachedMenu()}
+              {m.tickets.panelsLimitReached({ max: MAX_PANEL_ENTRIES })}
             </span>
           </div>
         {/if}
@@ -1391,8 +1343,7 @@
 
         {#if panelSelectMenus.length > 0}
           {#each panelSelectMenus as menu}
-            {@const optionCount = getOptionCount(menu.id)}
-            {@const atLimit = optionCount >= 25}
+            {@const atLimit = panelEntriesLeft < 1}
             <div class="p-4 rounded-xl"
                  style="background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15); border: 1px solid {$colorStore.accent}20;">
               <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
@@ -1772,7 +1723,7 @@
                 <div class="mt-3 p-3 rounded-lg text-sm text-center"
                      style="background: #f59e0b10; border: 1px solid #f59e0b30; color: #f59e0b;">
                   <i class="fa-solid fa-triangle-exclamation"></i>
-                  <span class="ml-2">{m.tickets.panelsMaxOptions({ max: 25 })}</span>
+                  <span class="ml-2">{m.tickets.panelsLimitReached({ max: MAX_PANEL_ENTRIES })}</span>
                 </div>
               {/if}
 
@@ -2022,7 +1973,7 @@
                   onclick={() => startCreatingOption(menu.id)}
                 >
                   <i class="fa-solid fa-plus"></i>
-                  {m.tickets.panelsAddOptionCount({ count: optionCount, max: 25 })}
+                  {m.common.addOption()}
                 </button>
               {/if}
             </div>
