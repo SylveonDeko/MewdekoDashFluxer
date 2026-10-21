@@ -10499,6 +10499,10 @@ export const m = {
     connectTitle: () => t("migration", "connect_title", "Connect your Discord account"),
     /** Connected to Discord as {name} */
     connectedAs: (p: { name: P }) => t("migration", "connected_as", "Connected to Discord as {name}", p),
+    /** Copy {emojis} emojis and {stickers} stickers this server doesn't have yet */
+    copyExpressions: (p: { emojis: P; stickers: P }) => t("migration", "copy_expressions", "Copy {emojis} emojis and {stickers} stickers this server doesn't have yet", p),
+    /** They keep their names, and reaction roles, triggers and messages that used them switch ... */
+    copyExpressionsHint: () => t("migration", "copy_expressions_hint", "They keep their names, and reaction roles, triggers and messages that used them switch to the copies. Mewdeko needs the Create Expressions permission here. Fluxer can't show Lottie stickers, so those stay behind."),
     /** Disconnect Discord */
     disconnectButton: () => t("migration", "disconnect_button", "Disconnect Discord"),
     /** Mewdeko on Discord did not answer. Try again in a moment. */
@@ -10551,12 +10555,18 @@ export const m = {
     previewStatMembers: (p: { count: P }) => t("migration", "preview_stat_members", "{count} members with data", p),
     /** {count} settings */
     previewStatSettings: (p: { count: P }) => t("migration", "preview_stat_settings", "{count} settings", p),
+    /** {count} stickers */
+    previewStatStickers: (p: { count: P }) => t("migration", "preview_stat_stickers", "{count} stickers", p),
     /** {count} features */
     previewStatTables: (p: { count: P }) => t("migration", "preview_stat_tables", "{count} features", p),
     /** What will be moved from {name} */
     previewTitle: (p: { name: P }) => t("migration", "preview_title", "What will be moved from {name}", p),
     /** Dropped */
     resultDropped: () => t("migration", "result_dropped", "Dropped"),
+    /** {emojis} emojis and {stickers} stickers were copied. {failed} could not be copied. */
+    resultExpressions: (p: { emojis: P; failed: P; stickers: P }) => t("migration", "result_expressions", "{emojis} emojis and {stickers} stickers were copied. {failed} could not be copied.", p),
+    /** Emojis and stickers weren't copied because Mewdeko is missing the Create Expressions pe... */
+    resultExpressionsPermission: () => t("migration", "result_expressions_permission", "Emojis and stickers weren't copied because Mewdeko is missing the Create Expressions permission in this server. Give it the permission and move the server again to copy them."),
     /** Held for members who have not linked yet */
     resultHeld: () => t("migration", "result_held", "Held for members who have not linked yet"),
     /** Members bring their own data over from their profile page with Link Discord. Their XP, ... */

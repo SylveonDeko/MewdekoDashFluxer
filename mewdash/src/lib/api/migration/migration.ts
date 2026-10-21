@@ -44,12 +44,13 @@ export const migrationApi = {
       roleOverrides: idPairs(roleOverrides),
     }),
 
-  apply: (guildId: bigint, code: string, channelOverrides: PairOverrides, roleOverrides: PairOverrides) =>
+  apply: (guildId: bigint, code: string, channelOverrides: PairOverrides, roleOverrides: PairOverrides, copyExpressions: boolean) =>
     apiRequest<MigrationResult>("discord-link/apply", "POST", {
       guildId: guildId.toString(),
       code,
       channelOverrides,
       roleOverrides,
+      copyExpressions,
     }),
 
   getStatus: (guildId: bigint) => apiRequest<MigrationStatus>(`Migration/${guildId}/status`),

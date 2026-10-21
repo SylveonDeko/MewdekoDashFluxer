@@ -54,6 +54,7 @@
   let fluxerChannels = $state<FluxerChannel[]>([]);
   let fluxerRoles = $state<Array<{ id: string; name: string }>>([]);
   let acknowledged = $state(false);
+  let copyExpressions = $state(true);
   let applying = $state(false);
   let result = $state<MigrationResult | null>(null);
   let started = $state(false);
@@ -232,7 +233,7 @@
     applying = true;
     error = "";
     try {
-      result = await migrationApi.apply(guildId, code, channelOverrides, roleOverrides);
+      result = await migrationApi.apply(guildId, code, channelOverrides, roleOverrides, copyExpressions);
       step = "done";
       onmigrated?.();
       loadStatus();
@@ -423,7 +424,8 @@
           m.migration.previewStatSettings({ count: preview.settingRows.toLocaleString() }),
           m.migration.previewStatMembers({ count: preview.members.toLocaleString() }),
           m.migration.previewStatLinked({ count: preview.linkedMembers.toLocaleString() }),
-          m.migration.previewStatEmojis({ matched: preview.emojisMatched.toLocaleString(), total: preview.emojisTotal.toLocaleString() })
+          m.migration.previewStatEmojis({ matched: preview.emojisMatched.toLocaleString(), total: preview.emojisTotal.toLocaleString() }),
+          m.migration.previewStatStickers({ count: preview.stickersTotal.toLocaleString() })
         ] as stat}
           <li class="px-3 py-1.5 rounded-lg"
               style="background: {$colorStore.primary}10; color: {$colorStore.text}; border: 1px solid {$colorStore.primary}20;">
@@ -500,6 +502,19 @@
         </div>
       </div>
 
+      {#if preview.emojisToCopy + preview.stickersToCopy > 0}
+        <label class="p-4 rounded-xl flex items-start gap-3 text-sm cursor-pointer min-h-[44px]"
+               style="background: {$colorStore.primary}08; border: 1px solid {$colorStore.primary}20; color: {$colorStore.text};">
+          <input type="checkbox" class="mt-1" bind:checked={copyExpressions} />
+          <span class="space-y-1">
+            <span class="block font-medium">
+              {m.migration.copyExpressions({ emojis: preview.emojisToCopy.toLocaleString(), stickers: preview.stickersToCopy.toLocaleString() })}
+            </span>
+            <span class="block text-xs" style="color: {$colorStore.muted}">{m.migration.copyExpressionsHint()}</span>
+          </span>
+        </label>
+      {/if}
+
       <div class="p-4 rounded-xl space-y-3" role="alert"
            style="background: #f59e0b15; border: 1px solid #f59e0b50;">
         <p class="font-semibold flex items-center gap-2" style="color: #f59e0b;">
@@ -553,6 +568,17 @@
           </div>
         {/each}
       </dl>
+      {#if result.expressions}
+        <p class="text-sm" style="color: {result.expressions.missingPermission ? '#f59e0b' : $colorStore.text}">
+          {result.expressions.missingPermission
+            ? m.migration.resultExpressionsPermission()
+            : m.migration.resultExpressions({
+                emojis: Number(result.expressions.emojisCopied).toLocaleString(),
+                stickers: Number(result.expressions.stickersCopied).toLocaleString(),
+                failed: (Number(result.expressions.emojisFailed) + Number(result.expressions.stickersFailed)).toLocaleString()
+              })}
+        </p>
+      {/if}
       <p class="text-sm" style="color: {$colorStore.text}">
         {waitingText(Number(result.waitingMembers))}
       </p>

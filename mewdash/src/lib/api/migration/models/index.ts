@@ -34,6 +34,9 @@ export interface MigrationPreview {
   roles: MigrationRolePreview[];
   emojisMatched: number;
   emojisTotal: number;
+  emojisToCopy: number;
+  stickersTotal: number;
+  stickersToCopy: number;
   tables: number;
   settingRows: number;
   memberRows: number;
@@ -48,6 +51,7 @@ export interface MigrationResult {
   failed: number;
   waitingMembers: number;
   reposted: number;
+  expressions: MigrationExpressionResult | null;
 }
 
 export type MigrationStatus =
@@ -74,3 +78,11 @@ export interface LinkResult {
 }
 
 export type PairOverrides = Record<string, string>;
+
+export interface MigrationExpressionResult {
+  emojisCopied: number;
+  emojisFailed: number;
+  stickersCopied: number;
+  stickersFailed: number;
+  missingPermission: boolean;
+}

@@ -24,6 +24,7 @@ export const POST: RequestHandler = async (event) => {
     code?: unknown;
     channelOverrides?: unknown;
     roleOverrides?: unknown;
+    copyExpressions?: unknown;
   } | null;
   const guildId = String(body?.guildId ?? "");
   const code = typeof body?.code === "string" ? body.code : "";
@@ -40,6 +41,7 @@ export const POST: RequestHandler = async (event) => {
       code,
       channelOverrides,
       roleOverrides,
+      copyExpressions: body?.copyExpressions !== false,
       userId: BigInt(user.id.toString()),
     }),
   );
