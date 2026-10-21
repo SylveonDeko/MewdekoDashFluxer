@@ -6791,10 +6791,6 @@ export const m = {
     highlightsDescription: () => t("features", "highlights_description", "Word highlights and notifications"),
     /** Highlights */
     highlightsName: () => t("features", "highlights_name", "Highlights"),
-    /** Bring XP, levels and balances over from other bots */
-    importDescription: () => t("features", "import_description", "Bring XP, levels and balances over from other bots"),
-    /** Import */
-    importName: () => t("features", "import_name", "Import"),
     /** Invite tracking, fake detection, labels and growth analytics */
     invitesDescription: () => t("features", "invites_description", "Invite tracking, fake detection, labels and growth analytics"),
     /** Invites */
@@ -9215,218 +9211,6 @@ export const m = {
     updateNext: () => t("home", "update_next", "Next update"),
     /** Previous update */
     updatePrevious: () => t("home", "update_previous", "Previous update"),
-  },
-  import: {
-    /** and {count} more */
-    flowAndMore: (p: { count: P }) => t("import", "flow_and_more", "and {count} more", p),
-    /** Drag this onto your bookmarks bar, or right-click it and bookmark the link */
-    flowBookmarkletTitle: () => t("import", "flow_bookmarklet_title", "Drag this onto your bookmarks bar, or right-click it and bookmark the link"),
-    /** Brings over: {brings} */
-    flowBringsOver: (p: { brings: P }) => t("import", "flow_brings_over", "Brings over: {brings}", p),
-    /** Copy console script */
-    flowCopyScript: () => t("import", "flow_copy_script", "Copy console script"),
-    /** Every member keeps the exact same level and XP. This server switches from the {curve} c... */
-    flowCurveKeepExact: (p: { curve: P }) => t("import", "flow_curve_keep_exact", "Every member keeps the exact same level and XP. This server switches from the {curve} curve.", p),
-    /** Members keep their levels and progress on the {curve} curve. Their XP numbers change. */
-    flowCurveKeepLevels: (p: { curve: P }) => t("import", "flow_curve_keep_levels", "Members keep their levels and progress on the {curve} curve. Their XP numbers change.", p),
-    /** Drop the file here or choose one */
-    flowDropFile: () => t("import", "flow_drop_file", "Drop the file here or choose one"),
-    /** That key was rejected. Check it was copied in full. */
-    flowErrorBadKey: () => t("import", "flow_error_bad_key", "That key was rejected. Check it was copied in full."),
-    /** Another import is already running on this server. */
-    flowErrorBusy: () => t("import", "flow_error_busy", "Another import is already running on this server."),
-    /** No members were found in that data. */
-    flowErrorEmpty: () => t("import", "flow_error_empty", "No members were found in that data."),
-    /** Choose a file first. */
-    flowErrorFileRequired: () => t("import", "flow_error_file_required", "Choose a file first."),
-    /** Something went wrong. Try again in a moment. */
-    flowErrorGeneric: () => t("import", "flow_error_generic", "Something went wrong. Try again in a moment."),
-    /** This bot shares one balance across every server, so balances cannot be imported into on... */
-    flowErrorGlobalCurrency: () => t("import", "flow_error_global_currency", "This bot shares one balance across every server, so balances cannot be imported into one server."),
-    /** That import expired. Read the data again. */
-    flowErrorJobMissing: () => t("import", "flow_error_job_missing", "That import expired. Read the data again."),
-    /** Paste a key first. */
-    flowErrorKeyRequired: () => t("import", "flow_error_key_required", "Paste a key first."),
-    /** This server's MEE6 leaderboard is private. Make it public in MEE6's dashboard, then try... */
-    flowErrorLeaderboardPrivate: () => t("import", "flow_error_leaderboard_private", "This server's MEE6 leaderboard is private. Make it public in MEE6's dashboard, then try again."),
-    /** The other bot has no data for this server. */
-    flowErrorNotFound: () => t("import", "flow_error_not_found", "The other bot has no data for this server."),
-    /** That import is not ready yet. */
-    flowErrorNotReady: () => t("import", "flow_error_not_ready", "That import is not ready yet."),
-    /** The other bot is limiting requests right now. Try again in a few minutes. */
-    flowErrorRateLimited: () => t("import", "flow_error_rate_limited", "The other bot is limiting requests right now. Try again in a few minutes."),
-    /** The other bot did not answer properly. Try again in a few minutes. */
-    flowErrorSourceFailed: () => t("import", "flow_error_source_failed", "The other bot did not answer properly. Try again in a few minutes."),
-    /** That file could not be read. Use a JSON or CSV export with a user ID and an XP or level... */
-    flowErrorUnreadableFile: () => t("import", "flow_error_unreadable_file", "That file could not be read. Use a JSON or CSV export with a user ID and an XP or level for each member."),
-    /** That data does not match. XP sources need XP or levels, and UnbelievaBoat needs balances. */
-    flowErrorWrongKind: () => t("import", "flow_error_wrong_kind", "That data does not match. XP sources need XP or levels, and UnbelievaBoat needs balances."),
-    /** That file was exported from a different server. Run the export on this server's MEE6 da... */
-    flowErrorWrongServer: () => t("import", "flow_error_wrong_server", "That file was exported from a different server. Run the export on this server's MEE6 dashboard."),
-    /** Export from MEE6 */
-    flowExportFromMee6: () => t("import", "flow_export_from_mee6", "Export from MEE6"),
-    /** {name} ({size} MB) */
-    flowFileSummary: (p: { name: P; size: P }) => t("import", "flow_file_summary", "{name} ({size} MB)", p),
-    /** Already have a balance */
-    flowHaveBalance: () => t("import", "flow_have_balance", "Already have a balance"),
-    /** Already have XP */
-    flowHaveXp: () => t("import", "flow_have_xp", "Already have XP"),
-    /** Import {count} members */
-    flowImportMembers: (p: { count: P }) => t("import", "flow_import_members", "Import {count} members", p),
-    /** Import level roles */
-    flowImportRoles: () => t("import", "flow_import_roles", "Import level roles"),
-    /** Sets the same role for each level here. Existing roles on those levels are replaced. */
-    flowImportRolesHint: () => t("import", "flow_import_roles_hint", "Sets the same role for each level here. Existing roles on those levels are replaced."),
-    /** Import settings */
-    flowImportSettings: () => t("import", "flow_import_settings", "Import settings"),
-    /** Importing */
-    flowImporting: () => t("import", "flow_importing", "Importing"),
-    /** Moving from another bot? Bring your members' XP, levels, level roles and balances with ... */
-    flowIntro: () => t("import", "flow_intro", "Moving from another bot? Bring your members' XP, levels, level roles and balances with you. You see everything before it is written, and an import can be undone for 24 hours."),
-    /** {name} key */
-    flowKeyAria: (p: { name: P }) => t("import", "flow_key_aria", "{name} key", p),
-    /** Paste the key */
-    flowKeyPlaceholder: () => t("import", "flow_key_placeholder", "Paste the key"),
-    /** Level roles */
-    flowLevelRoles: () => t("import", "flow_level_roles", "Level roles"),
-    /** Drag Export from MEE6 onto your bookmarks bar, or right-click it and bookmark the link ... */
-    flowMee6Instructions: () => t("import", "flow_mee6_instructions", "Drag Export from MEE6 onto your bookmarks bar, or right-click it and bookmark the link (Firefox and Vivaldi offer this, Chrome and Edge need the drag). Then click the bookmark while your server is open on mee6.xyz. You can also copy the script and paste it into the console there (Ctrl+Shift+J, or Cmd+Option+J on a Mac). Your MEE6 login stays in your browser and is not part of the file."),
-    /** {cash} cash, {bank} bank */
-    flowMemberCurrency: (p: { bank: P; cash: P }) => t("import", "flow_member_currency", "{cash} cash, {bank} bank", p),
-    /** Level {level}, {xp} XP */
-    flowMemberXpLevel: (p: { level: P; xp: P }) => t("import", "flow_member_xp_level", "Level {level}, {xp} XP", p),
-    /** Members found */
-    flowMembersFound: () => t("import", "flow_members_found", "Members found"),
-    /** {count} members so far */
-    flowMembersSoFar: (p: { count: P }) => t("import", "flow_members_so_far", "{count} members so far", p),
-    /** Add on top */
-    flowMergeAdd: () => t("import", "flow_merge_add", "Add on top"),
-    /** Balances members already have */
-    flowMergeBalances: () => t("import", "flow_merge_balances", "Balances members already have"),
-    /** Keep whichever is higher */
-    flowMergeKeepHigher: () => t("import", "flow_merge_keep_higher", "Keep whichever is higher"),
-    /** Replace what members have */
-    flowMergeReplace: () => t("import", "flow_merge_replace", "Replace what members have"),
-    /** XP members already have */
-    flowMergeXp: () => t("import", "flow_merge_xp", "XP members already have"),
-    /** Skip members below level */
-    flowMinLevel: () => t("import", "flow_min_level", "Skip members below level"),
-    /** Read again */
-    flowReadAgain: () => t("import", "flow_read_again", "Read again"),
-    /** Read data */
-    flowReadData: () => t("import", "flow_read_data", "Read data"),
-    /** Reading */
-    flowReading: () => t("import", "flow_reading", "Reading"),
-    /** Imported balances for {count} members. */
-    flowResultBalances: (p: { count: P }) => t("import", "flow_result_balances", "Imported balances for {count} members.", p),
-    /** The XP curve is now {curve}. */
-    flowResultCurve: (p: { curve: P }) => t("import", "flow_result_curve", "The XP curve is now {curve}.", p),
-    /** Set {count} level roles. */
-    flowResultRoles: (p: { count: P }) => t("import", "flow_result_roles", "Set {count} level roles.", p),
-    /** Skipped {count} members. */
-    flowResultSkipped: (p: { count: P }) => t("import", "flow_result_skipped", "Skipped {count} members.", p),
-    /** Imported XP for {count} members. */
-    flowResultXp: (p: { count: P }) => t("import", "flow_result_xp", "Imported XP for {count} members.", p),
-    /** Level {level}: deleted role, skipped */
-    flowRewardDeleted: (p: { level: P }) => t("import", "flow_reward_deleted", "Level {level}: deleted role, skipped", p),
-    /** Level {level}: {role} */
-    flowRewardRole: (p: { level: P; role: P }) => t("import", "flow_reward_role", "Level {level}: {role}", p),
-    /** Auto-moderation */
-    flowSectionAutomod: () => t("import", "flow_section_automod", "Auto-moderation"),
-    /** Economy */
-    flowSectionEconomy: () => t("import", "flow_section_economy", "Economy"),
-    /** {section}: could not be written */
-    flowSectionFailed: (p: { section: P }) => t("import", "flow_section_failed", "{section}: could not be written", p),
-    /** Levels */
-    flowSectionLevels: () => t("import", "flow_section_levels", "Levels"),
-    /** Twitch alerts */
-    flowSectionTwitch: () => t("import", "flow_section_twitch", "Twitch alerts"),
-    /** Welcome and goodbye */
-    flowSectionWelcome: () => t("import", "flow_section_welcome", "Welcome and goodbye"),
-    /** {section}: {written} written */
-    flowSectionWritten: (p: { section: P; written: P }) => t("import", "flow_section_written", "{section}: {written} written", p),
-    /** {section}: {written} written, {skipped} skipped */
-    flowSectionWrittenSkipped: (p: { section: P; skipped: P; written: P }) => t("import", "flow_section_written_skipped", "{section}: {written} written, {skipped} skipped", p),
-    /** Pick what to bring over. Names already in use and deleted channels or roles are skipped... */
-    flowSettingsIntro: () => t("import", "flow_settings_intro", "Pick what to bring over. Names already in use and deleted channels or roles are skipped. Reaction roles keep working on MEE6's messages, while button menus are posted again by Mewdeko."),
-    /** XP and levels */
-    flowSourceAmariBrings: () => t("import", "flow_source_amari_brings", "XP and levels"),
-    /** Apply for an Amari API key. Amari sends it to you in a DM, usually within a day. Paste ... */
-    flowSourceAmariHow: () => t("import", "flow_source_amari_how", "Apply for an Amari API key. Amari sends it to you in a DM, usually within a day. Paste it below."),
-    /** Get a key */
-    flowSourceAmariLink: () => t("import", "flow_source_amari_link", "Get a key"),
-    /** Arcane has no export. Open your server's leaderboard on arcane.bot, scroll until every ... */
-    flowSourceArcaneHow: () => t("import", "flow_source_arcane_how", "Arcane has no export. Open your server's leaderboard on arcane.bot, scroll until every member is loaded, run the export script in the browser console and upload the JSON it saves."),
-    /** Export script */
-    flowSourceArcaneLink: () => t("import", "flow_source_arcane_link", "Export script"),
-    /** XP, levels or balances */
-    flowSourceFileBrings: () => t("import", "flow_source_file_brings", "XP, levels or balances"),
-    /** Any JSON or CSV with a user ID for each member and an XP, level, cash or bank value. */
-    flowSourceFileHow: () => t("import", "flow_source_file_how", "Any JSON or CSV with a user ID for each member and an XP, level, cash or bank value."),
-    /** Other file */
-    flowSourceFileName: () => t("import", "flow_source_file_name", "Other file"),
-    /** Export your levels from Lurkr and upload the JSON file it gives you. */
-    flowSourceLurkrHow: () => t("import", "flow_source_lurkr_how", "Export your levels from Lurkr and upload the JSON file it gives you."),
-    /** XP, levels and level roles */
-    flowSourceMee6Brings: () => t("import", "flow_source_mee6_brings", "XP, levels and level roles"),
-    /** Make the leaderboard public in MEE6's dashboard (Leveling, Leaderboard), then read it h... */
-    flowSourceMee6How: () => t("import", "flow_source_mee6_how", "Make the leaderboard public in MEE6's dashboard (Leveling, Leaderboard), then read it here. Nothing else is needed."),
-    /** Welcome messages, level settings, custom commands, reaction roles, filters, Twitch aler... */
-    flowSourceMee6settingsBrings: () => t("import", "flow_source_mee6settings_brings", "Welcome messages, level settings, custom commands, reaction roles, filters, Twitch alerts and the shop"),
-    /** On a computer, open your server on MEE6's dashboard and run the export below, either fr... */
-    flowSourceMee6settingsHow: () => t("import", "flow_source_mee6settings_how", "On a computer, open your server on MEE6's dashboard and run the export below, either from your bookmarks bar or pasted into the browser console. It downloads a file with your settings, which you upload here."),
-    /** XP, plus level roles and your curve with the Everything export */
-    flowSourcePolarisBrings: () => t("import", "flow_source_polaris_brings", "XP, plus level roles and your curve with the Everything export"),
-    /** On Polaris' website, open your server and download your XP. Any format works. Pick Ever... */
-    flowSourcePolarisHow: () => t("import", "flow_source_polaris_how", "On Polaris' website, open your server and download your XP. Any format works. Pick Everything to bring level roles too."),
-    /** Run t!apikey create in any channel. Tatsu sends you a key in a DM. Paste it below. */
-    flowSourceTatsuHow: () => t("import", "flow_source_tatsu_how", "Run t!apikey create in any channel. Tatsu sends you a key in a DM. Paste it below."),
-    /** Cash and bank balances */
-    flowSourceUnbelievaboatBrings: () => t("import", "flow_source_unbelievaboat_brings", "Cash and bank balances"),
-    /** Create an application on UnbelievaBoat's site, authorize it on this server from the app... */
-    flowSourceUnbelievaboatHow: () => t("import", "flow_source_unbelievaboat_how", "Create an application on UnbelievaBoat's site, authorize it on this server from the application's page, then paste its token below."),
-    /** Hand out level roles afterwards */
-    flowSyncRoles: () => t("import", "flow_sync_roles", "Hand out level roles afterwards"),
-    /** Gives every imported member the roles for their level. Takes a while on big servers. */
-    flowSyncRolesHint: () => t("import", "flow_sync_roles_hint", "Gives every imported member the roles for their level. Takes a while on big servers."),
-    /** You can undo this for 24 hours. */
-    flowUndoHint: () => t("import", "flow_undo_hint", "You can undo this for 24 hours."),
-    /** Use the {curve} curve */
-    flowUseCurve: (p: { curve: P }) => t("import", "flow_use_curve", "Use the {curve} curve", p),
-    /** Couldn't load past imports. */
-    pageErrorLoadHistory: () => t("import", "page_error_load_history", "Couldn't load past imports."),
-    /** Couldn't undo that import. */
-    pageErrorUndo: () => t("import", "page_error_undo", "Couldn't undo that import."),
-    /** {source}: balances for {count} members */
-    pageHistoryBalances: (p: { count: P; source: P }) => t("import", "page_history_balances", "{source}: balances for {count} members", p),
-    /** {source}: balances for {count} members, {roles} level roles */
-    pageHistoryBalancesRoles: (p: { count: P; roles: P; source: P }) => t("import", "page_history_balances_roles", "{source}: balances for {count} members, {roles} level roles", p),
-    /** Nothing has been imported into this server yet. */
-    pageHistoryEmpty: () => t("import", "page_history_empty", "Nothing has been imported into this server yet."),
-    /** {source}: {count} settings */
-    pageHistorySettings: (p: { count: P; source: P }) => t("import", "page_history_settings", "{source}: {count} settings", p),
-    /** undone {when} */
-    pageHistoryUndone: (p: { when: P }) => t("import", "page_history_undone", "undone {when}", p),
-    /** {source}: XP for {count} members */
-    pageHistoryXp: (p: { count: P; source: P }) => t("import", "page_history_xp", "{source}: XP for {count} members", p),
-    /** {source}: XP for {count} members, {roles} level roles */
-    pageHistoryXpRoles: (p: { count: P; roles: P; source: P }) => t("import", "page_history_xp_roles", "{source}: XP for {count} members, {roles} level roles", p),
-    /** File */
-    pageSourceFile: () => t("import", "page_source_file", "File"),
-    /** MEE6 settings */
-    pageSourceMee6Settings: () => t("import", "page_source_mee6_settings", "MEE6 settings"),
-    /** Undo import */
-    pageUndoConfirm: () => t("import", "page_undo_confirm", "Undo import"),
-    /** That import can no longer be undone. */
-    pageUndoExpired: () => t("import", "page_undo_expired", "That import can no longer be undone."),
-    /** That import no longer exists. */
-    pageUndoJobMissing: () => t("import", "page_undo_job_missing", "That import no longer exists."),
-    /** Every member it changed goes back to what they had before. Anything they earned since t... */
-    pageUndoMessage: () => t("import", "page_undo_message", "Every member it changed goes back to what they had before. Anything they earned since the import is lost."),
-    /** Undo the newer import first. */
-    pageUndoNotLatest: () => t("import", "page_undo_not_latest", "Undo the newer import first."),
-    /** Undo this import? */
-    pageUndoTitle: () => t("import", "page_undo_title", "Undo this import?"),
   },
   invites: {
     /** No invites recorded for this window */
@@ -17621,10 +17405,6 @@ export const m = {
     healthWarning: () => t("wizard", "health_warning", "Needs Attention"),
     /** Some important permissions missing */
     healthWarningDescription: () => t("wizard", "health_warning_description", "Some important permissions missing"),
-    /** Bring your members' XP, levels, level roles and balances with you. Skip this if you're ... */
-    importSubtitle: () => t("wizard", "import_subtitle", "Bring your members' XP, levels, level roles and balances with you. Skip this if you're starting fresh."),
-    /** Coming From Another Bot? */
-    importTitle: () => t("wizard", "import_title", "Coming From Another Bot?"),
     /** Set up Mewdeko for your Fluxer server with our guided setup wizard. */
     layoutMetaDescription: () => t("wizard", "layout_meta_description", "Set up Mewdeko for your Fluxer server with our guided setup wizard."),
     /** Setup Wizard - Mewdeko Dashboard */
@@ -17727,8 +17507,6 @@ export const m = {
     setupCardSkipDescription: () => t("wizard", "setup_card_skip_description", "Configure later"),
     /** Skip */
     setupCardSkipLabel: () => t("wizard", "setup_card_skip_label", "Skip"),
-    /** Bring Your Data */
-    stepTitleImport: () => t("wizard", "step_title_import", "Bring Your Data"),
     /** Select Features */
     stepTitleSelectFeatures: () => t("wizard", "step_title_select_features", "Select Features"),
     /** Automatically assign verification roles */
@@ -18449,4 +18227,4 @@ export const m = {
 } as const;
 
 /** Module names that exist in the source locale, for loading other locales lazily later. */
-export const modules = ["_common","access","achievements","administration","afk","analytics","auditlog","birthday","brand","channel-access","chat-triggers","chatsaver","confessions","counting","currency","customvoice","dashboard","embedbuilder","feature-requests","features","feeds","filter","forms","giveaways","highlights","home","import","invites","layout","legal","liveboards","logging","me","messagestats","minecraft","moderation","monitoring","multigreets","music","owner","patreon","placeholders","polls","public","repeaters","reputation","role-menus","rolegreets","rolestates","serverstats","settings","shared","shortcuts","starboard","statchannels","statroles","statusroles","streams","suggestions","tickets","todo","twitch","utility","votes","widgets","wiki","wizard","wordoftheday","xp"] as const;
+export const modules = ["_common","access","achievements","administration","afk","analytics","auditlog","birthday","brand","channel-access","chat-triggers","chatsaver","confessions","counting","currency","customvoice","dashboard","embedbuilder","feature-requests","features","feeds","filter","forms","giveaways","highlights","home","invites","layout","legal","liveboards","logging","me","messagestats","minecraft","moderation","monitoring","multigreets","music","owner","patreon","placeholders","polls","public","repeaters","reputation","role-menus","rolegreets","rolestates","serverstats","settings","shared","shortcuts","starboard","statchannels","statroles","statusroles","streams","suggestions","tickets","todo","twitch","utility","votes","widgets","wiki","wizard","wordoftheday","xp"] as const;

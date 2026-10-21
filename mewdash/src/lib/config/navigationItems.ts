@@ -501,15 +501,6 @@ export const allDashboardFeatures: NavigationItem[] = [
     description: m.features.xpDescription,
     keywords: ["xp", "experience", "levels", "ranking", "leaderboard"],
   },
-  {
-    label: m.features.importName,
-    icon: "fa-utility-duo fa-regular fa-arrow-right-to-bracket",
-    href: "/dashboard/import",
-    category: "Community",
-    categoryLabel: m.features.categoryCommunity,
-    description: m.features.importDescription,
-    keywords: ["import", "mee6", "lurkr", "polaris", "arcane", "amari", "tatsu", "unbelievaboat", "migrate", "transfer"],
-  },
 ];
 
 // Group features by category
