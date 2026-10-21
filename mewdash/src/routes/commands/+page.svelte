@@ -8,9 +8,7 @@
     import {fade, fly} from "svelte/transition";
     import { page } from "$app/state";
     import {colorStore} from "$lib/stores/colorStore";
-    import { buttons, container, linkButton, plain, SITE_ORIGIN, separator, text, withRows } from "$lib/componentEmbed";
     import DiscordSelector from "$lib/components/forms/DiscordSelector.svelte";
-    import ComponentEmbed from "$lib/components/layout/ComponentEmbed.svelte";
     import type {PageData} from "./$types";
 
     interface Props {
@@ -21,50 +19,6 @@
 
   const requestedCommand = page.url.searchParams.get("command")?.toLowerCase() ?? "";
   const requestedModule = page.url.searchParams.get("module")?.toLowerCase() ?? "";
-
-  const previewEmbed = $derived.by(() => {
-    const url = `${SITE_ORIGIN}/commands${page.url.search}`;
-    const viewAll = buttons(linkButton(m.public.commandsEmbedViewAll(), url));
-    const totalCommands = data.modules.reduce((count, module) => count + module.Commands.length, 0);
-
-    for (const module of data.modules) {
-      const command = module.Commands.find((c) => c.CommandName.toLowerCase() === requestedCommand);
-      if (!command) continue;
-      const details = [
-        command.Example?.length ? m.public.commandsEmbedUsage({ example: command.Example[0] }) : null,
-        command.GuildUserPermissions ? m.public.commandsEmbedRequires({ permissions: command.GuildUserPermissions }) : null,
-        m.public.commandsEmbedModule({ module: module.Name })
-      ].filter(Boolean);
-      return container(
-        text(`## .${plain(command.CommandName)}\n${plain(command.Description)}`),
-        text(details.join("\n")),
-        separator(),
-        viewAll
-      );
-    }
-
-    const module = data.modules.find((mod) => mod.Name.toLowerCase() === requestedModule);
-    if (module) {
-      return withRows(
-        (rows) =>
-          container(
-            text(`## ${plain(module.Name)}\n${m.public.commandsCountOther({ count: module.Commands.length })}`),
-            separator(),
-            text(rows.join("\n")),
-            separator(),
-            viewAll
-          ),
-        module.Commands.map((c) => `\`.${c.CommandName}\` ${plain(c.Description)}`)
-      );
-    }
-
-    return container(
-      text(`## ${m.public.commandsEmbedTitle()}\n${m.public.commandsDescription()}`),
-      text(m.public.commandsEmbedTotals({ commands: totalCommands, modules: data.modules.length })),
-      separator(),
-      viewAll
-    );
-  });
 
   function commandAnchor(name: string): string {
     return `cmd-${name.toLowerCase()}`;
@@ -191,8 +145,6 @@
     }
   });
 </script>
-
-<ComponentEmbed embed={previewEmbed} />
 
 <svelte:head>
   <title>{m.public.commandsMewdekoCommands()}</title>

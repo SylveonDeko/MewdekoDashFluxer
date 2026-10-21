@@ -238,8 +238,6 @@
   "public_edit_link_invalid": "That edit link is not valid any more",
   "public_edit_unavailable": "This response can no longer be changed",
   "public_eligibility_failed": "Failed to verify eligibility. Please try again later.",
-  "public_embed_from": "From **{server}**",
-  "public_embed_open": "Open form",
   "public_embed_question_one": "{count} question",
   "public_embed_question_other": "{count} questions",
   "public_ensure_only_authorized_members_can": "Ensure only authorized members can access this form",

@@ -11,16 +11,7 @@
     import DOMPurify from "dompurify";
     import type {DiscordUser} from "$lib/types/discord.ts";
     import {colorStore} from "$lib/stores/colorStore";
-    import ComponentEmbed from "$lib/components/layout/ComponentEmbed.svelte";
-    import { buttons, container, header, linkButton, SITE_ORIGIN, separator } from "$lib/componentEmbed";
 
-    const previewEmbed = $derived(
-      container(
-        header(`## ${m.common.reviews()}\n${m.public.reviewsEmbedSummary()}`, `${SITE_ORIGIN}/img/Mewdeko.png`),
-        separator(),
-        buttons(linkButton(m.public.reviewsEmbedButton(), `${SITE_ORIGIN}/reviews`))
-      )
-    );
     import {logger} from "$lib/logger";
     import {fade, fly} from "svelte/transition";
 
@@ -168,8 +159,6 @@
     return text;
   }
 </script>
-
-<ComponentEmbed embed={previewEmbed} />
 
 <svelte:head>
   <title>{m.public.reviewsTitle()}</title>

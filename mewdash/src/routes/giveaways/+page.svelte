@@ -10,8 +10,6 @@
   import { Turnstile } from "svelte-turnstile";
   import { colorStore } from "$lib/stores/colorStore";
   import { fade, fly } from "svelte/transition";
-  import ComponentEmbed from "$lib/components/layout/ComponentEmbed.svelte";
-  import { buttons, container, header, linkButton, plain, SITE_ORIGIN, separator, text } from "$lib/componentEmbed";
 
   let guildId: bigint;
   let giveawayId: number;
@@ -170,27 +168,7 @@
     return new Date(giveaway.when).getTime() > Date.now();
   });
 
-  let previewEmbed = $derived.by(() => {
-    const preview = data.preview;
-    if (!preview) return null;
-    const unix = Math.floor(new Date(preview.endsAt).getTime() / 1000);
-    const details = [
-      preview.guildName ? m.public.giveawaysEmbedHosted({ guild: plain(preview.guildName) }) : null,
-      preview.winners === 1 ? m.public.giveawaysEmbedWinnerOne({ count: preview.winners }) : m.public.giveawaysEmbedWinnerOther({ count: preview.winners }),
-      Number.isFinite(unix) ? preview.ended ? m.public.giveawaysEmbedEnded({ time: `<t:${unix}:R>` }) : m.public.giveawaysEmbedEnds({ time: `<t:${unix}:R>` }) : null
-    ].filter(Boolean);
-    return container(
-      header("## " + plain(preview.prize), preview.guildIcon),
-      text(details.join(" · ")),
-      separator(),
-      preview.ended
-        ? null
-        : buttons(linkButton(m.public.giveawaysEmbedEnter(), `${SITE_ORIGIN}/giveaways${page.url.search}`))
-    );
-  });
 </script>
-
-<ComponentEmbed embed={previewEmbed} />
 
 <svelte:head>
   <title>{m.public.giveawaysTitle()}</title>

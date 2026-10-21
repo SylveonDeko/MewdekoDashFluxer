@@ -135,8 +135,6 @@
   "page_clear_filters": "Clear filters",
   "page_copy_code": "Copy {code} to clipboard",
   "page_description": "Placeholders for commands with embeds!",
-  "page_embed_body": "## Placeholders Every placeholder Mewdeko fills in for greets, embeds, chat triggers and other custom messages, with examples.",
-  "page_embed_button": "Browse placeholders",
   "page_feature_dynamic_body": "Generate random content and user-specific information",
   "page_feature_dynamic_title": "Dynamic Content",
   "page_feature_embeds_body": "Perfect for rich embeds and formatted content",

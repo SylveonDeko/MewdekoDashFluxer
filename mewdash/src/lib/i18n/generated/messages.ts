@@ -8309,10 +8309,6 @@ export const m = {
     publicEditUnavailable: () => t("forms", "public_edit_unavailable", "This response can no longer be changed"),
     /** Failed to verify eligibility. Please try again later. */
     publicEligibilityFailed: () => t("forms", "public_eligibility_failed", "Failed to verify eligibility. Please try again later."),
-    /** From **{server}** */
-    publicEmbedFrom: (p: { server: P }) => t("forms", "public_embed_from", "From **{server}**", p),
-    /** Open form */
-    publicEmbedOpen: () => t("forms", "public_embed_open", "Open form"),
     /** {count} question */
     publicEmbedQuestionOne: (p: { count: P }) => t("forms", "public_embed_question_one", "{count} question", p),
     /** {count} questions */
@@ -9141,8 +9137,6 @@ export const m = {
     landingCustomizeNow: () => t("home", "landing_customize_now", "Customize Now"),
     /** Economy Games */
     landingEconomyGames: () => t("home", "landing_economy_games", "Economy Games"),
-    /** 1,082 commands across 34 modules: forms, XP, economy, music, protection, logging and mo... */
-    landingEmbedSummary: () => t("home", "landing_embed_summary", "1,082 commands across 34 modules: forms, XP, economy, music, protection, logging and more. Trusted by 11,400+ servers. Free and open source since 2020."),
     /** Engagement */
     landingEngagement: () => t("home", "landing_engagement", "Engagement"),
     /** Every command, with examples and the permissions it needs. */
@@ -12827,10 +12821,6 @@ export const m = {
     pageCopyCode: (p: { code: P }) => t("placeholders", "page_copy_code", "Copy {code} to clipboard", p),
     /** Placeholders for commands with embeds! */
     pageDescription: () => t("placeholders", "page_description", "Placeholders for commands with embeds!"),
-    /** ## Placeholders Every placeholder Mewdeko fills in for greets, embeds, chat triggers an... */
-    pageEmbedBody: () => t("placeholders", "page_embed_body", "## Placeholders Every placeholder Mewdeko fills in for greets, embeds, chat triggers and other custom messages, with examples."),
-    /** Browse placeholders */
-    pageEmbedButton: () => t("placeholders", "page_embed_button", "Browse placeholders"),
     /** Generate random content and user-specific information */
     pageFeatureDynamicBody: () => t("placeholders", "page_feature_dynamic_body", "Generate random content and user-specific information"),
     /** Dynamic Content */
@@ -13283,18 +13273,6 @@ export const m = {
     commandsCountOther: (p: { count: P }) => t("public", "commands_count_other", "{count} commands", p),
     /** Find out more about Mewdeko's commands and how to use them. */
     commandsDescription: () => t("public", "commands_description", "Find out more about Mewdeko's commands and how to use them."),
-    /** Module: {module} */
-    commandsEmbedModule: (p: { module: P }) => t("public", "commands_embed_module", "Module: {module}", p),
-    /** Requires: {permissions} */
-    commandsEmbedRequires: (p: { permissions: P }) => t("public", "commands_embed_requires", "Requires: {permissions}", p),
-    /** Mewdeko Commands */
-    commandsEmbedTitle: () => t("public", "commands_embed_title", "Mewdeko Commands"),
-    /** {commands} commands · {modules} modules */
-    commandsEmbedTotals: (p: { commands: P; modules: P }) => t("public", "commands_embed_totals", "{commands} commands · {modules} modules", p),
-    /** Usage: `{example}` */
-    commandsEmbedUsage: (p: { example: P }) => t("public", "commands_embed_usage", "Usage: `{example}`", p),
-    /** View all commands */
-    commandsEmbedViewAll: () => t("public", "commands_embed_view_all", "View all commands"),
     /** Explore all available commands and modules */
     commandsExploreAllAvailableCommandsAnd: () => t("public", "commands_explore_all_available_commands_and", "Explore all available commands and modules"),
     /** fun */
@@ -13417,12 +13395,6 @@ export const m = {
     credguideDownloadPostgresqlInstaller: () => t("public", "credguide_download_postgresql_installer", "Download PostgreSQL installer"),
     /** During installation, remember the password you set for the 'postgres' user */
     credguideDuringInstallationRememberThePassword: () => t("public", "credguide_during_installation_remember_the_password", "During installation, remember the password you set for the 'postgres' user"),
-    /** Start the guide */
-    credguideEmbedButton: () => t("public", "credguide_embed_button", "Start the guide"),
-    /** A step-by-step walkthrough for setting up the credentials a self-hosted Mewdeko needs. */
-    credguideEmbedSummary: () => t("public", "credguide_embed_summary", "A step-by-step walkthrough for setting up the credentials a self-hosted Mewdeko needs."),
-    /** Credentials Setup Guide */
-    credguideEmbedTitle: () => t("public", "credguide_embed_title", "Credentials Setup Guide"),
     /** Enable the bot's HTTP API (required for the dashboard) */
     credguideEnableTheBotsHttpApi: () => t("public", "credguide_enable_the_bots_http_api", "Enable the bot's HTTP API (required for the dashboard)"),
     /** Enter the password you set earlier. Use \q to exit psql. */
@@ -13675,18 +13647,6 @@ export const m = {
     giveawaysCompleteTheVerificationBelowTo: () => t("public", "giveaways_complete_the_verification_below_to", "Complete the verification below to secure your entry"),
     /** Enter Mewdeko Discord bot giveaway */
     giveawaysDescription: () => t("public", "giveaways_description", "Enter Mewdeko Discord bot giveaway"),
-    /** Ended {time} */
-    giveawaysEmbedEnded: (p: { time: P }) => t("public", "giveaways_embed_ended", "Ended {time}", p),
-    /** Ends {time} */
-    giveawaysEmbedEnds: (p: { time: P }) => t("public", "giveaways_embed_ends", "Ends {time}", p),
-    /** Enter giveaway */
-    giveawaysEmbedEnter: () => t("public", "giveaways_embed_enter", "Enter giveaway"),
-    /** Hosted in **{guild}** */
-    giveawaysEmbedHosted: (p: { guild: P }) => t("public", "giveaways_embed_hosted", "Hosted in **{guild}**", p),
-    /** {count} winner */
-    giveawaysEmbedWinnerOne: (p: { count: P }) => t("public", "giveaways_embed_winner_one", "{count} winner", p),
-    /** {count} winners */
-    giveawaysEmbedWinnerOther: (p: { count: P }) => t("public", "giveaways_embed_winner_other", "{count} winners", p),
     /** This giveaway ended on {date} */
     giveawaysEndedOn: (p: { date: P }) => t("public", "giveaways_ended_on", "This giveaway ended on {date}", p),
     /** Ends On */
@@ -13753,10 +13713,6 @@ export const m = {
     leaderboardCheckInstancesFailed: () => t("public", "leaderboard_check_instances_failed", "Failed to check bot instances"),
     /** View the XP leaderboard for {server} */
     leaderboardDescription: (p: { server: P }) => t("public", "leaderboard_description", "View the XP leaderboard for {server}", p),
-    /** Open leaderboard */
-    leaderboardEmbedOpen: () => t("public", "leaderboard_embed_open", "Open leaderboard"),
-    /** **#{rank}** {user} · Level {level} */
-    leaderboardEmbedRow: (p: { level: P; rank: P; user: P }) => t("public", "leaderboard_embed_row", "**#{rank}** {user} · Level {level}", p),
     /** Finding which bot has this server... */
     leaderboardFindingBot: () => t("public", "leaderboard_finding_bot", "Finding which bot has this server..."),
     /** {server} Leaderboard */
@@ -13801,10 +13757,6 @@ export const m = {
     reviewsAlreadySubmitted: () => t("public", "reviews_already_submitted", "You have already submitted a review."),
     /** What users think of Mewdeko. */
     reviewsDescription: () => t("public", "reviews_description", "What users think of Mewdeko."),
-    /** Read the reviews */
-    reviewsEmbedButton: () => t("public", "reviews_embed_button", "Read the reviews"),
-    /** What users think of Mewdeko, and where to leave your own review. */
-    reviewsEmbedSummary: () => t("public", "reviews_embed_summary", "What users think of Mewdeko, and where to leave your own review."),
     /** Bot Reviews */
     reviewsHeading: () => t("public", "reviews_heading", "Bot Reviews"),
     /** Failed to load reviews. Please try again later. */
@@ -13851,12 +13803,6 @@ export const m = {
     staffEggCottage: () => t("public", "staff_egg_cottage", "Head of evil science/Catgirl shenanigans"),
     /** LEEEEROY JEEEENKINS */
     staffEggSylveon: () => t("public", "staff_egg_sylveon", "LEEEEROY JEEEENKINS"),
-    /** Meet the team */
-    staffEmbedButton: () => t("public", "staff_embed_button", "Meet the team"),
-    /** Meet the people that make Mewdeko possible. */
-    staffEmbedSummary: () => t("public", "staff_embed_summary", "Meet the people that make Mewdeko possible."),
-    /** Our Team */
-    staffEmbedTitle: () => t("public", "staff_embed_title", "Our Team"),
     /** Major People */
     staffMajorPeople: () => t("public", "staff_major_people", "Major People"),
     /** Meet Our Team */
@@ -17453,18 +17399,6 @@ export const m = {
     calloutTip: () => t("wiki", "callout_tip", "Tip"),
     /** Close wiki panel */
     closeWikiPanel: () => t("wiki", "close_wiki_panel", "Close wiki panel"),
-    /** {count} articles · Start here: {featured} */
-    embedArticles: (p: { count: P; featured: P }) => t("wiki", "embed_articles", "{count} articles · Start here: {featured}", p),
-    /** {category} · {minutes} min read */
-    embedCategoryReading: (p: { category: P; minutes: P }) => t("wiki", "embed_category_reading", "{category} · {minutes} min read", p),
-    /** Commands live in the **{module}** module */
-    embedModule: (p: { module: P }) => t("wiki", "embed_module", "Commands live in the **{module}** module", p),
-    /** Open the wiki */
-    embedOpenWiki: () => t("wiki", "embed_open_wiki", "Open the wiki"),
-    /** Read the article */
-    embedReadArticle: () => t("wiki", "embed_read_article", "Read the article"),
-    /** Related: {articles} */
-    embedRelated: (p: { articles: P }) => t("wiki", "embed_related", "Related: {articles}", p),
     /** Plain language write-ups of every Mewdeko feature: what it does, how to set it up, and ... */
     embedSummary: () => t("wiki", "embed_summary", "Plain language write-ups of every Mewdeko feature: what it does, how to set it up, and how servers use it."),
     /** Every guide is listed A to Z in the sidebar. */

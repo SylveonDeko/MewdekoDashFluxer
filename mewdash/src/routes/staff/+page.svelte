@@ -4,18 +4,8 @@
   import { onMount } from "svelte";
   import { fade, fly } from "svelte/transition";
   import { colorStore } from "$lib/stores/colorStore";
-  import ComponentEmbed from "$lib/components/layout/ComponentEmbed.svelte";
-  import { buttons, container, header, linkButton, SITE_ORIGIN, separator } from "$lib/componentEmbed";
 
   let mounted = $state(false);
-
-  const previewEmbed = $derived(
-    container(
-      header(`## ${m.public.staffEmbedTitle()}\n${m.public.staffEmbedSummary()}`, `${SITE_ORIGIN}/img/Mewdeko.png`),
-      separator(),
-      buttons(linkButton(m.public.staffEmbedButton(), `${SITE_ORIGIN}/staff`))
-    )
-  );
 
   onMount(() => {
     mounted = true;
@@ -55,8 +45,6 @@
     }
   ]);
 </script>
-
-<ComponentEmbed embed={previewEmbed} />
 
 <svelte:head>
   <title>{m.public.staffTitle()}</title>

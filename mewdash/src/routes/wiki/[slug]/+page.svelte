@@ -7,30 +7,8 @@
   import { currentGuild } from "$lib/stores/currentGuild";
   import WikiArticle from "$lib/components/wiki/WikiArticle.svelte";
   import { wikiIconClass } from "$lib/wiki";
-  import ComponentEmbed from "$lib/components/layout/ComponentEmbed.svelte";
-  import { buttons, container, header, linkButton, plain, SITE_ORIGIN, separator, text } from "$lib/componentEmbed";
 
   let { data } = $props();
-
-  const previewEmbed = $derived(
-    container(
-      header(`## ${plain(data.article.title)}\n${plain(data.article.summary)}`, `${SITE_ORIGIN}/img/Mewdeko.png`),
-      text(
-        [
-          m.wiki.embedCategoryReading({ category: plain(data.article.category), minutes: data.article.readingMinutes }),
-          data.article.module ? m.wiki.embedModule({ module: plain(data.article.module) }) : null,
-          data.related.length ? m.wiki.embedRelated({ articles: data.related.map((a) => `[${a.title}](${SITE_ORIGIN}/wiki/${a.slug})`).join(", ") }) : null
-        ]
-          .filter(Boolean)
-          .join("\n")
-      ),
-      separator(),
-      buttons(
-        linkButton(m.wiki.embedReadArticle(), `${SITE_ORIGIN}/wiki/${data.article.slug}`),
-        data.article.dashboardHref ? linkButton(m.wiki.openInDashboard(), `${SITE_ORIGIN}${data.article.dashboardHref}`) : null
-      )
-    )
-  );
 
   let mounted = $state(false);
   let activeHeading = $state("");
@@ -76,8 +54,6 @@
     };
   });
 </script>
-
-<ComponentEmbed embed={previewEmbed} />
 
 <svelte:head>
   <title>{m.wiki.articleTitle({ title: data.article.title })}</title>
