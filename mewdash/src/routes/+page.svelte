@@ -13,7 +13,7 @@
   import { productUpdates } from "$lib/content/productUpdates";
 
   const inviteUrl =
-    cdn.botInviteUrl("752236274261426212", "66186303");
+    cdn.botInviteUrl("1562365248344698880", "66186303");
   let guilds: RedisGuild[] = $state([]);
   let fetched = $state(false);
   let isLoading = $state(true);

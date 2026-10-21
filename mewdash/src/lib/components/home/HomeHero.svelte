@@ -10,7 +10,7 @@
    * commands, and the cat. It takes no inputs.
    */
   const INVITE_URL =
-    cdn.botInviteUrl("752236274261426212", "66186303");
+    cdn.botInviteUrl("1562365248344698880", "66186303");
 
   /** Commands shown as a taste of what the bot does. Each is a real command name. */
   const commands = [".achievements", ".rank", ".ticketpanel", ".play", ".gstart", ".antiraid"];
