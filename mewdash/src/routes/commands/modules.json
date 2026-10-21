@@ -479,45 +479,6 @@
       {
         "BotVersion": "8",
         "IsDragon": false,
-        "CommandName": "setctintertype",
-        "Description": "Sets the interaction type for a chat trigger.",
-        "Example": [
-          ".setctintertype number type"
-        ],
-        "GuildUserPermissions": "Administrator",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "setctintername",
-        "Description": "Sets the interaction name for a chat trigger.",
-        "Example": [
-          ".setctintername number text"
-        ],
-        "GuildUserPermissions": "Administrator",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "setctinterdesc",
-        "Description": "Sets the interaction description for a chat trigger.",
-        "Example": [
-          ".setctinterdesc number text"
-        ],
-        "GuildUserPermissions": "Administrator",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
         "CommandName": "rtt",
         "Description": "Sets a chat trigger to react to the trigger.",
         "Example": [
@@ -705,32 +666,6 @@
         "Description": "Sets a chat trigger to not respond.",
         "Example": [
           ".ctnr number"
-        ],
-        "GuildUserPermissions": "Administrator",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "ctintererrors",
-        "Description": "Displays the interaction errors for chat triggers.",
-        "Example": [
-          ".ctintererrors "
-        ],
-        "GuildUserPermissions": "Administrator",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "ctinterephemeral",
-        "Description": "Sets whether the interaction response should be ephemeral for a chat trigger. To not show others my suffering with docs!",
-        "Example": [
-          ".ctinterephemeral number true|false"
         ],
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
@@ -1502,20 +1437,6 @@
       {
         "BotVersion": "8",
         "IsDragon": false,
-        "CommandName": "prunemembers",
-        "Description": "Prunes members from the server based on their activity or inactivity.",
-        "Example": [
-          ".prunemembers time \u0022no\u0022",
-          ".prunemembers time"
-        ],
-        "GuildUserPermissions": "Administrator",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageGuild"
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
         "CommandName": "nsfwtoggle",
         "Description": "Toggles the NSFW setting of the current text channel.",
         "Example": [
@@ -1929,19 +1850,6 @@
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
         "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "gamevoicechannel",
-        "Description": "Toggles the current voice channel as the game voice channel for the guild.",
-        "Example": [
-          ".gamevoicechannel "
-        ],
-        "GuildUserPermissions": "Administrator",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": "MoveMembers"
       },
       {
         "BotVersion": "8",
@@ -2823,71 +2731,6 @@
         "Description": "Toggles the sending of a bye message.",
         "Example": [
           ".bye "
-        ],
-        "GuildUserPermissions": "ManageGuild",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "boosttest",
-        "Description": "Sends a test message for boosting.",
-        "Example": [
-          ".boosttest "
-        ],
-        "GuildUserPermissions": "ManageGuild",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "boostmsg",
-        "Description": "Displays the current boost message.",
-        "Example": [
-          ".boostmsg "
-        ],
-        "GuildUserPermissions": "ManageGuild",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "boostmsg",
-        "Description": "Displays the current boost message.",
-        "Example": [
-          ".boostmsg "
-        ],
-        "GuildUserPermissions": "ManageGuild",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "boostdel",
-        "Description": "Sets the timer for deleting boost messages.",
-        "Example": [
-          ".boostdel 30"
-        ],
-        "GuildUserPermissions": "ManageGuild",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "boost",
-        "Description": "Enables or disables boost messages.",
-        "Example": [
-          ".boost "
         ],
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
@@ -5310,21 +5153,6 @@
       {
         "BotVersion": "8",
         "IsDragon": false,
-        "CommandName": "suggestmotesmode",
-        "Description": "Sets the mode for suggestion emotes, either as reactions or buttons.",
-        "Example": [
-          ".suggestmotesmode reactions|buttons",
-          ".suggestmotesmode reactions",
-          ".suggestmotesmode buttons"
-        ],
-        "GuildUserPermissions": "Administrator",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
         "CommandName": "suggestmotes",
         "Description": "Configures the custom emotes used for suggestions.",
         "Example": [
@@ -5338,94 +5166,10 @@
       {
         "BotVersion": "8",
         "IsDragon": false,
-        "CommandName": "suggestmotecolor",
-        "Description": "Sets the color of specific emote buttons on suggestions.",
-        "Example": [
-          ".suggestmotecolor number blurple|blue|grey",
-          ".suggestmotecolor blurple",
-          ".suggestmotecolor blue",
-          ".suggestmotecolor grey"
-        ],
-        "GuildUserPermissions": "Administrator",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
         "CommandName": "suggestmessage",
         "Description": "Sets or updates the suggestion message.",
         "Example": [
           ".suggestmessage text"
-        ],
-        "GuildUserPermissions": "Administrator",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "suggestbuttonmessage",
-        "Description": "Sets or updates the suggest button message.",
-        "Example": [
-          ".suggestbuttonmessage text"
-        ],
-        "GuildUserPermissions": "Administrator",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "suggestbuttonlabel",
-        "Description": "Sets the label for the suggest button.",
-        "Example": [
-          ".suggestbuttonlabel text"
-        ],
-        "GuildUserPermissions": "Administrator",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "suggestbuttonemote",
-        "Description": "Sets the emote for the suggest button.",
-        "Example": [
-          ".suggestbuttonemote "
-        ],
-        "GuildUserPermissions": "Administrator",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "suggestbuttoncolor",
-        "Description": "Sets the color of the suggestion button.",
-        "Example": [
-          ".suggestbuttoncolor blurple|blue|grey",
-          ".suggestbuttoncolor blurple",
-          ".suggestbuttoncolor blue",
-          ".suggestbuttoncolor grey"
-        ],
-        "GuildUserPermissions": "Administrator",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "suggestbuttonchannel",
-        "Description": "Sets the suggestion button channel.",
-        "Example": [
-          ".suggestbuttonchannel channel"
         ],
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
@@ -5746,19 +5490,6 @@
   },
   {
     "Commands": [
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "whosplaying",
-        "Description": "Shows a list of users playing a specified game.",
-        "Example": [
-          ".whosplaying text"
-        ],
-        "GuildUserPermissions": "",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
       {
         "BotVersion": "8",
         "IsDragon": false,
@@ -7482,71 +7213,6 @@
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
         "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "streamrolewhitelist",
-        "Description": "Adds or removes a user to/from the whitelist for the stream role feature.",
-        "Example": [
-          ".streamrolewhitelist action @user"
-        ],
-        "GuildUserPermissions": "ManageRoles",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "streamrolekeyword",
-        "Description": "Sets a keyword for the stream role feature. Only users with streams containing this keyword will receive the stream role.",
-        "Example": [
-          ".streamrolekeyword "
-        ],
-        "GuildUserPermissions": "ManageRoles",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "streamroleblacklist",
-        "Description": "Adds or removes a user to/from the blacklist for the stream role feature.",
-        "Example": [
-          ".streamroleblacklist action @user"
-        ],
-        "GuildUserPermissions": "ManageRoles",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "streamrole",
-        "Description": "Sets a stream role for users in the server. When users start streaming, they are automatically assigned a specific role.",
-        "Example": [
-          ".streamrole @role @role"
-        ],
-        "GuildUserPermissions": "ManageRoles",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "streamrole",
-        "Description": "Sets a stream role for users in the server. When users start streaming, they are automatically assigned a specific role.",
-        "Example": [
-          ".streamrole @role @role"
-        ],
-        "GuildUserPermissions": "ManageRoles",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
       },
       {
         "BotVersion": "8",
@@ -11335,19 +11001,6 @@
       {
         "BotVersion": "8",
         "IsDragon": false,
-        "CommandName": "repconfig",
-        "Description": "Shows the current reputation configuration for the server.",
-        "Example": [
-          ".repconfig "
-        ],
-        "GuildUserPermissions": "Administrator",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
         "CommandName": "repcommandreqremove",
         "Description": "Removes reputation requirements from a command.",
         "Example": [
@@ -13103,19 +12756,6 @@
       {
         "BotVersion": "8",
         "IsDragon": false,
-        "CommandName": "shardstats",
-        "Description": "Displays statistics for all shards of the bot, including their statuses, guild counts, and user counts.",
-        "Example": [
-          ".shardstats "
-        ],
-        "GuildUserPermissions": "",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
         "CommandName": "setstream",
         "Description": "Sets the bot\u0027s streaming status.",
         "Example": [
@@ -14466,19 +14106,6 @@
         "Description": "Steals emotes from other servers.",
         "Example": [
           ".steal emotes"
-        ],
-        "GuildUserPermissions": "ManageEmojisAndStickers",
-        "ChannelUserPermissions": "",
-        "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageEmojisAndStickers"
-      },
-      {
-        "BotVersion": "8",
-        "IsDragon": false,
-        "CommandName": "sfr",
-        "Description": "Steals emotes for a specific role.",
-        "Example": [
-          ".sfr role emotes"
         ],
         "GuildUserPermissions": "ManageEmojisAndStickers",
         "ChannelUserPermissions": "",
