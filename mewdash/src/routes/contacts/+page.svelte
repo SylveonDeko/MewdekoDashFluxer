@@ -34,14 +34,14 @@
     </a>
 
     <a
-      href="https://discord.gg/twQw45rBjN"
+      href="https://fluxer.gg/GQuFOiBV"
       target="_new"
       class="contact-card"
     >
-      <i class="fa-brands fa-discord text-5xl mb-4 text-mewd-offwhite"></i>
-      <span class="text-lg font-semibold">{m.public.contactsJoinOurDiscord()}</span>
+      <i class="fa-solid fa-comments text-5xl mb-4 text-mewd-offwhite"></i>
+      <span class="text-lg font-semibold">{m.public.contactsJoinOurFluxer()}</span>
       <span class="text-sm text-mewd-offwhite mt-2"
-      >https://discord.gg/twQw45rBjN</span
+      >https://fluxer.gg/GQuFOiBV</span
       >
     </a>
   </div>

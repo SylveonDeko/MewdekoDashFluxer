@@ -8935,20 +8935,20 @@ export const m = {
     errorBoundaryFallback: () => t("home", "error_boundary_fallback", "The page encountered an unexpected error. Please try refreshing."),
     /** Error {status} */
     errorHeading: (p: { status: P }) => t("home", "error_heading", "Error {status}", p),
-    /** Need help? Join our <a class="hover:underline font-semibold" href="https://discord.gg/t... */
-    errorNeedHelp: (p: { color: P }) => t("home", "error_need_help", "Need help? Join our <a class=\"hover:underline font-semibold\" href=\"https://discord.gg/twQw45rBjN\" style=\"color: {color}\">Discord community</a>", p),
+    /** Need help? Join our <a class="hover:underline font-semibold" href="https://fluxer.gg/GQ... */
+    errorNeedHelp: (p: { color: P }) => t("home", "error_need_help", "Need help? Join our <a class=\"hover:underline font-semibold\" href=\"https://fluxer.gg/GQuFOiBV\" style=\"color: {color}\">Fluxer community</a>", p),
     /** Return Home */
     errorReturnHome: () => t("home", "error_return_home", "Return Home"),
     /** Error {status} - Mewdeko */
     errorTitle: (p: { status: P }) => t("home", "error_title", "Error {status} - Mewdeko", p),
     /** Add to Fluxer */
-    heroAddToDiscord: () => t("home", "hero_add_to_discord", "Add to Fluxer"),
+    heroAddToFluxer: () => t("home", "hero_add_to_fluxer", "Add to Fluxer"),
     /** Mewdeko, the free and open source Fluxer bot */
     heroEyebrow: () => t("home", "hero_eyebrow", "Mewdeko, the free and open source Fluxer bot"),
     /** Open dashboard */
     heroOpenDashboard: () => t("home", "hero_open_dashboard", "Open dashboard"),
-    /** In 11,400+ servers, with every feature free. */
-    heroServers: () => t("home", "hero_servers", "In 11,400+ servers, with every feature free."),
+    /** Every feature free, in every server. */
+    heroServers: () => t("home", "hero_servers", "Every feature free, in every server."),
     /** Moderation, tickets, XP, achievements, music, forms, giveaways and about a thousand oth... */
     heroSubtitle: () => t("home", "hero_subtitle", "Moderation, tickets, XP, achievements, music, forms, giveaways and about a thousand other things. We might have gone a little overboard."),
     /** One bot.<br />Way too many <span style="color: {color}">tails.</span> */
@@ -8957,8 +8957,6 @@ export const m = {
     landing20GamblingGames: () => t("home", "landing_20_gambling_games", "20+ gambling games"),
     /** 30 welcome messages */
     landing30WelcomeMessages: () => t("home", "landing_30_welcome_messages", "30 welcome messages"),
-    /** 35+ tracked events */
-    landing35TrackedEvents: () => t("home", "landing_35_tracked_events", "35+ tracked events"),
     /** A DM when your word is said */
     landingADmWhenYourWordIs: () => t("home", "landing_a_dm_when_your_word_is", "A DM when your word is said"),
     /** A few of the servers running Mewdeko right now */
@@ -8977,8 +8975,8 @@ export const m = {
     landingAnonymousPosts: () => t("home", "landing_anonymous_posts", "Anonymous posts"),
     /** Birthday Tracking */
     landingBirthdayTracking: () => t("home", "landing_birthday_tracking", "Birthday Tracking"),
-    /** Browse All 1,082 Commands */
-    landingBrowseAll1082Commands: () => t("home", "landing_browse_all_1_082_commands", "Browse All 1,082 Commands"),
+    /** Browse All 1,400+ Commands */
+    landingBrowseAllCommands: () => t("home", "landing_browse_all_commands", "Browse All 1,400+ Commands"),
     /** Build a form on the dashboard and share the link for people to fill in. */
     landingBuildAFormOnTheDashboard: () => t("home", "landing_build_a_form_on_the_dashboard", "Build a form on the dashboard and share the link for people to fill in."),
     /** Build embeds without writing JSON */
@@ -9023,10 +9021,10 @@ export const m = {
     landingGithubStars: (p: { count: P }) => t("home", "landing_github_stars", "{count} stars", p),
     /** Give the bot its own avatar, banner and bio in your server. */
     landingGiveTheBotItsOwnAvatar: () => t("home", "landing_give_the_bot_its_own_avatar", "Give the bot its own avatar, banner and bio in your server."),
-    /** Hide All 30 Modules */
-    landingHideAllModules: () => t("home", "landing_hide_all_modules", "Hide All 30 Modules"),
-    /** Join Discord */
-    landingJoinDiscord: () => t("home", "landing_join_discord", "Join Discord"),
+    /** Hide All Modules */
+    landingHideAllModules: () => t("home", "landing_hide_all_modules", "Hide All Modules"),
+    /** Join Fluxer */
+    landingJoinFluxer: () => t("home", "landing_join_fluxer", "Join Fluxer"),
     /** Levels for chatting and voice, with a rank card you can redesign. */
     landingLevelsForChattingAndVoiceWith: () => t("home", "landing_levels_for_chatting_and_voice_with", "Levels for chatting and voice, with a rank card you can redesign."),
     /** Loading servers... */
@@ -9037,12 +9035,12 @@ export const m = {
     landingMembersGetTheirOwnVoiceChannel: () => t("home", "landing_members_get_their_own_voice_channel", "Members get their own voice channel"),
     /** Members thank each other */
     landingMembersThankEachOther: () => t("home", "landing_members_thank_each_other", "Members thank each other"),
-    /** 1,082 commands across 34 modules - Forms, XP/Leveling, Economy, Music, Protection, Logg... */
-    landingMetaDescription: () => t("home", "landing_meta_description", "1,082 commands across 34 modules - Forms, XP/Leveling, Economy, Music, Protection, Logging, and more. Trusted by 11,400+ servers. Completely free and open source since 2020."),
-    /** Fluxer bot, free Fluxer bot, open source Fluxer bot, 1082 commands, forms builder, ban ... */
-    landingMetaKeywords: () => t("home", "landing_meta_keywords", "Fluxer bot, free Fluxer bot, open source Fluxer bot, 1082 commands, forms builder, ban appeals, XP leveling bot, Fluxer economy bot, Fluxer music bot, Fluxer moderation bot, anti-raid protection, anti-spam, server logging, chat triggers, embed builder, ticket system, giveaway bot, suggestion bot, starboard, custom commands, role states, multi-purpose bot, Fluxer reputation system, stream alerts, invite tracking, automated moderation, Mewdeko"),
-    /** Mewdeko - 1,082 Commands. Free & Open Source Fluxer Bot */
-    landingMetaTitle: () => t("home", "landing_meta_title", "Mewdeko - 1,082 Commands. Free & Open Source Fluxer Bot"),
+    /** 1,400+ commands across 40+ modules: Forms, XP/Leveling, Economy, Music, Protection, Log... */
+    landingMetaDescription: () => t("home", "landing_meta_description", "1,400+ commands across 40+ modules: Forms, XP/Leveling, Economy, Music, Protection, Logging, and more. Completely free and open source since 2020."),
+    /** Fluxer bot, free Fluxer bot, open source Fluxer bot, 1400+ commands, forms builder, ban... */
+    landingMetaKeywords: () => t("home", "landing_meta_keywords", "Fluxer bot, free Fluxer bot, open source Fluxer bot, 1400+ commands, forms builder, ban appeals, XP leveling bot, Fluxer economy bot, Fluxer music bot, Fluxer moderation bot, anti-raid protection, anti-spam, server logging, chat triggers, embed builder, ticket system, giveaway bot, suggestion bot, starboard, custom commands, role states, multi-purpose bot, Fluxer reputation system, stream alerts, invite tracking, automated moderation, Mewdeko"),
+    /** Mewdeko - 1,400+ Commands. Free & Open Source Fluxer Bot */
+    landingMetaTitle: () => t("home", "landing_meta_title", "Mewdeko - 1,400+ Commands. Free & Open Source Fluxer Bot"),
     /** Mewdeko Bot Customization */
     landingMewdekoBotCustomization: () => t("home", "landing_mewdeko_bot_customization", "Mewdeko Bot Customization"),
     /** Mewdeko Forms Builder Interface */
@@ -9055,16 +9053,16 @@ export const m = {
     landingMusicBot: () => t("home", "landing_music_bot", "Music Bot"),
     /** No servers to show right now. */
     landingNoServersToShowRightNow: () => t("home", "landing_no_servers_to_show_right_now", "No servers to show right now."),
-    /** Or just hop in Discord for quick questions and help */
-    landingOrJustHopInDiscordFor: () => t("home", "landing_or_just_hop_in_discord_for", "Or just hop in Discord for quick questions and help"),
+    /** Or just hop in our Fluxer server for quick questions and help */
+    landingOrJustHopInFluxerFor: () => t("home", "landing_or_just_hop_in_fluxer_for", "Or just hop in our Fluxer server for quick questions and help"),
     /** Our Top Servers */
     landingOurTopServers: () => t("home", "landing_our_top_servers", "Our Top Servers"),
     /** Per-Server */
     landingPerServer: () => t("home", "landing_per_server", "Per-Server"),
     /** Per-Server Bot Profile */
     landingPerServerBotProfile: () => t("home", "landing_per_server_bot_profile", "Per-Server Bot Profile"),
-    /** Polls with buttons */
-    landingPollsWithButtons: () => t("home", "landing_polls_with_buttons", "Polls with buttons"),
+    /** Polls you vote on with reactions */
+    landingPollsWithReactions: () => t("home", "landing_polls_with_reactions", "Polls you vote on with reactions"),
     /** Posts new items from a feed */
     landingPostsNewItemsFromAFeed: () => t("home", "landing_posts_new_items_from_a_feed", "Posts new items from a feed"),
     /** Private channels for support */
@@ -9095,8 +9093,8 @@ export const m = {
     landingServersMore: (p: { count: P }) => t("home", "landing_servers_more", "And {count} more.", p),
     /** Shared and personal lists */
     landingSharedAndPersonalLists: () => t("home", "landing_shared_and_personal_lists", "Shared and personal lists"),
-    /** Show All 30 Modules */
-    landingShowAllModules: () => t("home", "landing_show_all_modules", "Show All 30 Modules"),
+    /** Show All Modules */
+    landingShowAllModules: () => t("home", "landing_show_all_modules", "Show All Modules"),
     /** Tell us what Mewdeko is missing. */
     landingTellUsWhatMewdekoIsMissing: () => t("home", "landing_tell_us_what_mewdeko_is_missing", "Tell us what Mewdeko is missing."),
     /** Tells people you're away */
@@ -9105,14 +9103,16 @@ export const m = {
     landingTimedWithRandomWinners: () => t("home", "landing_timed_with_random_winners", "Timed, with random winners"),
     /** Top server communities */
     landingTopServerCommunities: () => t("home", "landing_top_server_communities", "Top server communities"),
+    /** 25+ tracked events */
+    landingTrackedEvents: () => t("home", "landing_tracked_events", "25+ tracked events"),
     /** Trivia, hangman, TicTacToe */
     landingTriviaHangmanTictactoe: () => t("home", "landing_trivia_hangman_tictactoe", "Trivia, hangman, TicTacToe"),
     /** Twitch/YouTube */
     landingTwitchYoutube: () => t("home", "landing_twitch_youtube", "Twitch/YouTube"),
-    /** Free & open source Fluxer bot with 1,082 commands. Forms builder, XP/leveling, economy,... */
-    landingTwitterDescription: () => t("home", "landing_twitter_description", "Free & open source Fluxer bot with 1,082 commands. Forms builder, XP/leveling, economy, music, protection systems, and more. No limitations, no subscriptions."),
-    /** Mewdeko - 1,082 Commands. Ridiculously Over-Engineered. */
-    landingTwitterTitle: () => t("home", "landing_twitter_title", "Mewdeko - 1,082 Commands. Ridiculously Over-Engineered."),
+    /** Free & open source Fluxer bot with 1,400+ commands. Forms builder, XP/leveling, economy... */
+    landingTwitterDescription: () => t("home", "landing_twitter_description", "Free & open source Fluxer bot with 1,400+ commands. Forms builder, XP/leveling, economy, music, protection systems, and more. No limitations, no subscriptions."),
+    /** Mewdeko - 1,400+ Commands. Ridiculously Over-Engineered. */
+    landingTwitterTitle: () => t("home", "landing_twitter_title", "Mewdeko - 1,400+ Commands. Ridiculously Over-Engineered."),
     /** View Complete Feature List */
     landingViewCompleteFeatureList: () => t("home", "landing_view_complete_feature_list", "View Complete Feature List"),
     /** View Dashboard */
@@ -9203,8 +9203,8 @@ export const m = {
     tailsStarTitle: () => t("home", "tails_star_title", "XP and achievements"),
     /** Every tail has more than one job. */
     tailsSubheading: () => t("home", "tails_subheading", "Every tail has more than one job."),
-    /** Let members pick their own roles from buttons or a dropdown. */
-    tailsTagText: () => t("home", "tails_tag_text", "Let members pick their own roles from buttons or a dropdown."),
+    /** Let members pick their own roles by reacting to a message. */
+    tailsTagText: () => t("home", "tails_tag_text", "Let members pick their own roles by reacting to a message."),
     /** Write your own commands and replies, and change how the bot looks in your server. */
     tailsWrenchText: () => t("home", "tails_wrench_text", "Write your own commands and replies, and change how the bot looks in your server."),
     /** Make it yours */
@@ -13181,8 +13181,8 @@ export const m = {
     contactsConnectWithUs: () => t("public", "contacts_connect_with_us", "Connect with Us"),
     /** Ways to contact us! */
     contactsDescription: () => t("public", "contacts_description", "Ways to contact us!"),
-    /** Join Our Discord */
-    contactsJoinOurDiscord: () => t("public", "contacts_join_our_discord", "Join Our Discord"),
+    /** Join Our Fluxer */
+    contactsJoinOurFluxer: () => t("public", "contacts_join_our_fluxer", "Join Our Fluxer"),
     /** Mewdeko - Ways to contact us! */
     contactsTitle: () => t("public", "contacts_title", "Mewdeko - Ways to contact us!"),
     /** Add it to your credentials.json file */
@@ -17479,8 +17479,8 @@ export const m = {
     configStatusrolesText: () => t("wizard", "config_statusroles_text", "Status Text"),
     /** Members whose custom status contains this text get the roles below */
     configStatusrolesTextHint: () => t("wizard", "config_statusroles_text_hint", "Members whose custom status contains this text get the roles below"),
-    /** discord.gg/yourserver */
-    configStatusrolesTextPlaceholder: () => t("wizard", "config_statusroles_text_placeholder", "discord.gg/yourserver"),
+    /** fluxer.gg/yourserver */
+    configStatusrolesTextPlaceholder: () => t("wizard", "config_statusroles_text_placeholder", "fluxer.gg/yourserver"),
     /** Add Another Stream */
     configStreamsAdd: () => t("wizard", "config_streams_add", "Add Another Stream"),
     /** Announce going live in... */

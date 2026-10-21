@@ -12,7 +12,7 @@ related: [administration, afk]
 
 ## What it does
 
-Staff add one or more pieces of text to watch for, such as `discord.gg/yourserver` or `playing minecraft`. The bot watches presence updates. When a member's custom status starts containing that text, the bot removes the roles you listed under **Roles to Remove**, adds the roles under **Roles to Add**, and, if a channel and message are set, posts a notification there.
+Staff add one or more pieces of text to watch for, such as `fluxer.gg/yourserver` or `playing minecraft`. The bot watches presence updates. When a member's custom status starts containing that text, the bot removes the roles you listed under **Roles to Remove**, adds the roles under **Roles to Add**, and, if a channel and message are set, posts a notification there.
 
 When the text disappears from their status again, two toggles decide what happens. **Remove Added** takes back the roles that were given. **Readd Removed** gives back the roles that were taken. Both are off by default, so with no changes the member simply keeps whatever roles they ended up with.
 

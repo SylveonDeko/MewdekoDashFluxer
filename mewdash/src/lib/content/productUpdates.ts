@@ -11,20 +11,6 @@ export type ProductUpdate = {
 // Keep the newest public update first. The landing page intentionally features one item at a time.
 export const productUpdates: ProductUpdate[] = [
   {
-    id: "import-from-other-bots",
-    label: "New page",
-    title: "Bring Your Levels Over From Other Bots",
-    summary: "Moving to Mewdeko no longer means starting everyone at level zero. Import XP, levels, level roles and balances from the bot you used before.",
-    details: [
-      "Works with MEE6, Lurkr, Polaris, Arcane, Amari, Tatsu and UnbelievaBoat, plus any JSON or CSV file with a user ID and XP or levels.",
-      "MEE6 needs nothing but a public leaderboard. Switch to the MEE6, Lurkr or Amari curve and every member keeps the exact same level, or keep your own curve and they keep their level and progress.",
-      "MEE6 settings come over too. Run the export from your bookmarks bar on MEE6's dashboard, upload the file, and pick which parts to bring: welcome messages, level settings, custom commands, reaction roles, filters, Twitch alerts and the shop.",
-      "You see the top members and level roles before anything is written, and an import can be undone for 24 hours. It's also a step in the setup wizard and on /import in Discord."
-    ],
-    href: "/dashboard/import",
-    action: "Import your data"
-  },
-  {
     id: "nine-tailed-cat",
     label: "New look",
     title: "Meet The Nine-Tailed Cat",
@@ -171,7 +157,7 @@ export const productUpdates: ProductUpdate[] = [
   {
     id: "tickets-tab",
     label: "New in tickets",
-    title: "Work Tickets Without Opening Discord",
+    title: "Work Tickets From The Dashboard",
     summary: "The tickets page can now browse and act on every ticket, not just configure panels.",
     details: [
       "Filter by open, closed or archived and search by ticket, creator, channel, claimer or tag, sorted by last activity.",
@@ -250,7 +236,7 @@ export const productUpdates: ProductUpdate[] = [
     id: "stat-channel-counters",
     label: "New in stat channels",
     title: "Counters That Keep Up",
-    summary: "Stat channels can count almost anything now, and you pick how each one updates so Discord's rate limits stop holding them back.",
+    summary: "Stat channels can count almost anything now, and you pick how each one updates so rate limits stop holding them back.",
     details: [
       "Nearly sixty counters, including presence and join counts, boost tiers and emoji slots, Twitch viewers, subs and chat counters, Minecraft players, open tickets, giveaways and XP.",
       "Choose how the number reads: grouped, compact, zero padded, ordinal, percent, progress bar, emoji digits or roman numerals.",
@@ -278,7 +264,7 @@ export const productUpdates: ProductUpdate[] = [
     title: "Vote People Into Locked Channels",
     summary: "Members apply for a private channel, and the people already inside vote on whether to let them in.",
     details: [
-      "Post an apply button anywhere and ask up to five questions on the application form.",
+      "Post an apply panel anywhere. Members react to it to apply and answer up to five questions.",
       "Approve at a threshold of votes, hand out a role or add the applicant to the channel directly, and set a deadline for the vote.",
       "Hide the applicant's name until the vote closes, require a minimum account age, and block repeat applicants."
     ],

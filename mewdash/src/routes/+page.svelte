@@ -31,14 +31,14 @@
 
     async function fetchGitHubStats() {
       try {
-        const response = await fetch("https://api.github.com/repos/SylveonDeko/Mewdeko");
+        const response = await fetch("https://api.github.com/repos/SylveonDeko/MewdekoFluxer");
         if (response.ok) {
           const data = await response.json();
           githubStars = data.stargazers_count || 50;
           githubForks = data.forks_count || 10;
 
           // Fetch contributors count
-          const contributorsResponse = await fetch("https://api.github.com/repos/SylveonDeko/Mewdeko/contributors?per_page=1");
+          const contributorsResponse = await fetch("https://api.github.com/repos/SylveonDeko/MewdekoFluxer/contributors?per_page=1");
           if (contributorsResponse.ok) {
             const linkHeader = contributorsResponse.headers.get("Link");
             if (linkHeader) {
@@ -118,7 +118,7 @@
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     "name": "Mewdeko",
-    "description": "Free and open source Fluxer bot with 1,082 commands across 34 modules. Features include forms builder, XP/leveling, economy games, music bot, automated moderation, and more.",
+    "description": "Free and open source Fluxer bot with 1,400+ commands across 40+ modules. Features include forms builder, XP/leveling, economy games, music bot, automated moderation, and more.",
     "applicationCategory": "CommunicationApplication",
     "operatingSystem": "Fluxer",
     "offers": {
@@ -142,23 +142,23 @@
     "url": "https://mewdeko.tech",
     "screenshot": "https://mewdeko.tech/img/hero-dashboard.png",
     "featureList": [
-      "1,082 commands across 34 modules",
+      "1,400+ commands across 40+ modules",
       "Visual forms builder with ban appeals and join applications",
       "XP and leveling system with competitions",
       "20+ economy and gambling games",
       "Music bot with Lavalink support",
       "7 automated protection systems (anti-raid, anti-spam, anti-alt)",
-      "35+ server logging event types",
+      "25+ server logging event types",
       "Chat triggers with regex and custom text commands",
       "Visual embed builder",
       "Role persistence and management",
       "Server analytics and invite tracking"
     ],
-    "codeRepository": "https://github.com/SylveonDeko/Mewdeko",
+    "codeRepository": "https://github.com/SylveonDeko/MewdekoFluxer",
     "license": "https://www.gnu.org/licenses/agpl-3.0.html",
     "sameAs": [
-      "https://github.com/SylveonDeko/Mewdeko",
-      "https://discord.gg/twQw45rBjN"
+      "https://github.com/SylveonDeko/MewdekoFluxer",
+      "https://fluxer.gg/GQuFOiBV"
     ]
   }
   <\/script>`}
@@ -512,7 +512,7 @@
               <div
                 class="text-6xl sm:text-7xl lg:text-8xl font-extrabold mb-4 bg-gradient-to-r bg-clip-text text-transparent"
                 style="background-image: linear-gradient(135deg, {$colorStore.primary}, {$colorStore.secondary}, {$colorStore.accent});">
-                1,082
+                1,400+
               </div>
               <h3 class="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3" style="color: {$colorStore.text}">
                 {m.common.commandReference()}
@@ -526,7 +526,7 @@
             <!-- Mini module breakdown -->
             <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 mb-8 max-w-2xl mx-auto">
               <div class="p-3 rounded-lg" style="background: {$colorStore.primary}15;">
-                <div class="text-xl sm:text-2xl font-bold" style="color: {$colorStore.primary}">34</div>
+                <div class="text-xl sm:text-2xl font-bold" style="color: {$colorStore.primary}">40+</div>
                 <div class="text-xs sm:text-sm" style="color: {$colorStore.muted}">{m.common.modules()}</div>
               </div>
               <div class="p-3 rounded-lg" style="background: {$colorStore.secondary}15;">
@@ -538,7 +538,7 @@
                 <div class="text-xs sm:text-sm" style="color: {$colorStore.muted}">{m.common.protection()}</div>
               </div>
               <div class="p-3 rounded-lg" style="background: {$colorStore.primary}15;">
-                <div class="text-xl sm:text-2xl font-bold" style="color: {$colorStore.primary}">35+</div>
+                <div class="text-xl sm:text-2xl font-bold" style="color: {$colorStore.primary}">25+</div>
                 <div class="text-xs sm:text-sm" style="color: {$colorStore.muted}">{m.home.landingLogEvents()}</div>
               </div>
             </div>
@@ -546,7 +546,7 @@
             <a class="inline-flex items-center gap-3 px-8 py-4 rounded-xl font-bold text-lg transition-all hover:scale-[1.02]"
                href="/commands"
                style="background: linear-gradient(135deg, {$colorStore.secondary}15, {$colorStore.primary}12); color: {$colorStore.text}; border: 1px solid {$colorStore.secondary}30; box-shadow: 0 8px 32px {$colorStore.secondary}10;">
-              {m.home.landingBrowseAll1082Commands()}
+              {m.home.landingBrowseAllCommands()}
               <i class="fa-solid fa-arrow-right"></i>
             </a>
 
@@ -592,7 +592,7 @@
                      style="background: {$colorStore.accent}10; border: 1px solid {$colorStore.accent}20;">
                   <div class="font-bold text-sm sm:text-base mb-1" style="color: {$colorStore.text}">{m.home.landingServerLogging()}
                   </div>
-                  <div class="text-xs sm:text-sm" style="color: {$colorStore.muted}">{m.home.landing35TrackedEvents()}</div>
+                  <div class="text-xs sm:text-sm" style="color: {$colorStore.muted}">{m.home.landingTrackedEvents()}</div>
                 </div>
                 <div class="p-3 sm:p-4 rounded-lg transition-all hover:scale-[1.02]"
                      style="background: {$colorStore.primary}10; border: 1px solid {$colorStore.primary}20;">
@@ -620,7 +620,7 @@
                 <div class="p-3 sm:p-4 rounded-lg transition-all hover:scale-[1.02]"
                      style="background: {$colorStore.secondary}10; border: 1px solid {$colorStore.secondary}20;">
                   <div class="font-bold text-sm sm:text-base mb-1" style="color: {$colorStore.text}">{m.home.landingVotingSystem()}</div>
-                  <div class="text-xs sm:text-sm" style="color: {$colorStore.muted}">{m.home.landingPollsWithButtons()}</div>
+                  <div class="text-xs sm:text-sm" style="color: {$colorStore.muted}">{m.home.landingPollsWithReactions()}</div>
                 </div>
                 <div class="p-3 sm:p-4 rounded-lg transition-all hover:scale-[1.02]"
                      style="background: {$colorStore.accent}10; border: 1px solid {$colorStore.accent}20;">
@@ -833,7 +833,7 @@
               <!-- CTA -->
               <div class="flex-shrink-0">
                 <a class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-all hover:scale-[1.02]"
-                   href="https://github.com/SylveonDeko/Mewdeko"
+                   href="https://github.com/SylveonDeko/MewdekoFluxer"
                    rel="noreferrer"
                    style="background: linear-gradient(135deg, {$colorStore.primary}15, {$colorStore.secondary}10); color: {$colorStore.text}; border: 1px solid {$colorStore.primary}30; box-shadow: 0 4px 20px {$colorStore.primary}10;"
                    target="_blank">
@@ -875,17 +875,17 @@
                 {m.common.suggestAFeature()}
               </a>
               <a class="group relative px-8 py-4 rounded-xl font-bold transition-all hover:scale-[1.02] flex items-center justify-center gap-3 overflow-hidden"
-                 href="https://discord.gg/twQw45rBjN"
+                 href="https://fluxer.gg/GQuFOiBV"
                  rel="noreferrer"
                  style="background: {$colorStore.primary}08; color: {$colorStore.text}; border: 1px solid {$colorStore.primary}20; box-shadow: 0 2px 12px {$colorStore.primary}05;"
                  target="_blank">
-                <i class="fa-brands fa-discord"></i>
-                {m.home.landingJoinDiscord()}
+                <i class="fa-solid fa-comments"></i>
+                {m.home.landingJoinFluxer()}
               </a>
             </div>
 
             <p class="text-center text-xs sm:text-sm mt-6" style="color: {$colorStore.muted}">
-              {m.home.landingOrJustHopInDiscordFor()}
+              {m.home.landingOrJustHopInFluxerFor()}
             </p>
           </div>
         </div>

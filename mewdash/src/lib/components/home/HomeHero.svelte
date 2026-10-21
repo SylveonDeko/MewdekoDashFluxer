@@ -14,7 +14,7 @@
 
   /** Commands shown as a taste of what the bot does. Each is a real command name. */
   const commands = [".achievements", ".rank", ".ticketpanel", ".play", ".gstart", ".antiraid"];
-  const totalCommands = 1082;
+  const totalCommands = 1400;
 </script>
 
 <div class="w-full max-w-[1400px] mx-auto grid grid-cols-1 lg:grid-cols-2 items-center gap-8 lg:gap-12 px-2 sm:px-6"
@@ -36,8 +36,8 @@
          class="inline-flex items-center justify-center gap-3 px-6 min-h-[52px] rounded-2xl text-base sm:text-lg font-bold transition-all hover:scale-[1.02] active:scale-[0.98]"
          style="background: {$colorStore.primary}30; color: {$colorStore.text}; border: 1px solid {$colorStore.primary}80;
                 box-shadow: 0 8px 28px {$colorStore.primary}25;">
-        <i class="fa-brands fa-discord" aria-hidden="true"></i>
-        {m.home.heroAddToDiscord()}
+        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+        {m.home.heroAddToFluxer()}
       </a>
       <a href="/dashboard"
          class="inline-flex items-center justify-center gap-3 px-5 min-h-[52px] rounded-2xl text-base sm:text-lg font-semibold transition-all hover:scale-[1.02] active:scale-[0.98]"

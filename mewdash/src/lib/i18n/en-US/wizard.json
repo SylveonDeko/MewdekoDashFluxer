@@ -121,7 +121,7 @@
   "config_statusroles_roles_placeholder": "Roles to give while the status matches...",
   "config_statusroles_text": "Status Text",
   "config_statusroles_text_hint": "Members whose custom status contains this text get the roles below",
-  "config_statusroles_text_placeholder": "discord.gg/yourserver",
+  "config_statusroles_text_placeholder": "fluxer.gg/yourserver",
   "config_streams_add": "Add Another Stream",
   "config_streams_channel_placeholder": "Announce going live in...",
   "config_streams_item_title": "Stream #{number}",
