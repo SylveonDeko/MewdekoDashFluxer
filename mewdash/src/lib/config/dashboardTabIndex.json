@@ -243,8 +243,8 @@
       },
       {
         "id": "components",
-        "label": "Components",
-        "icon": "fa-comment"
+        "label": "Link buttons",
+        "icon": "fa-link"
       },
       {
         "id": "json",

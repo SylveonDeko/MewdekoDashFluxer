@@ -249,40 +249,15 @@
       return { url, name };
   }
 
-  function getButtonColorClass(style: number): string {
-    switch (style) {
-      case 1:
-        return "dc-btn dc-btn-blurple"; // Primary/Blurple
-      case 2:
-        return "dc-btn"; // Secondary/Grey (default)
-      case 3:
-        return "dc-btn dc-btn-success"; // Success/Green
-      case 4:
-        return "dc-btn dc-btn-danger"; // Danger/Red
-      case 5:
-        return "dc-btn dc-btn-link"; // Link
-      default:
-        return "dc-btn dc-btn-blurple";
-    }
-  }
+  let linkButtons = $derived(
+    componentRows
+      .flatMap(row => row.components ?? [])
+      .filter(component => !component.isSelect && typeof component.url === "string" && component.url.trim() && component.displayName)
+  );
 
-  // Check if we have any content to display
-    let hasContent = $derived(content.trim() ||
-      embeds.some(e => e.title || e.description || e.fields?.length > 0) ||
-      componentRows.some(row => row.components && row.components.length > 0));
-
-    // State for select menu dropdowns
-    let openSelectMenus = $state<Set<number>>(new Set());
-
-    function toggleSelectMenu(index: number) {
-      const newSet = new Set(openSelectMenus);
-      if (newSet.has(index)) {
-        newSet.delete(index);
-      } else {
-        newSet.add(index);
-      }
-      openSelectMenus = newSet;
-    }
+  let hasContent = $derived(content.trim() ||
+    embeds.some(e => e.title || e.description || e.fields?.length > 0) ||
+    linkButtons.length > 0);
 </script>
 
 <div
@@ -395,94 +370,20 @@
       {/if}
     {/each}
 
-    <!-- Components Preview -->
-    {#if componentRows.length > 0}
-      <div class="dc-msg-components">
-        {#each componentRows as row, rowIndex (row.rowKey)}
-          {#if row.components && row.components.length > 0}
-            <div class="dc-msg-components-btn-row">
-              {#each row.components as component, compIndex (component.componentKey)}
-              {#if component.isSelect}
-                <!-- Select Menu -->
-                {@const selectIndex = rowIndex * 100 + compIndex}
-                {@const isOpen = openSelectMenus.has(selectIndex)}
-                <div class="w-full relative">
-                  <button
-                    class="border border-transparent bg-[#2F3136] text-white font-medium rounded-sm cursor-pointer box-border grid grid-cols-[1fr_auto] items-center w-full text-left hover:bg-[#3a3d44] transition-colors"
-                    onclick={() => toggleSelectMenu(selectIndex)}
-                  >
-                    <span class="placeholder px-3 py-2">
-                      {component.displayName || m.common.selectOptionPlaceholder()}
-                    </span>
-                    <div class="icon-container px-2 transition-transform" class:rotate-180={isOpen}>
-                      <svg
-                        aria-hidden="true"
-                        role="img"
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="18"
-                        height="18"
-                        fill="none"
-                        viewBox="0 0 24 24"
-                        class="text-white"
-                      >
-                        <path
-                          fill="currentColor"
-                          d="M5.3 9.3a1 1 0 0 1 1.4 0l5.3 5.29 5.3-5.3a1 1 0 1 1 1.4 1.42l-6 6a1 1 0 0 1-1.4 0l-6-6a1 1 0 0 1 0-1.42Z"
-                        />
-                      </svg>
-                    </div>
-                  </button>
-
-                  <!-- Options Dropdown -->
-                  {#if isOpen && component.options?.length > 0}
-                    <div
-                      class="absolute top-full left-0 right-0 mt-1 bg-[#2F3136] rounded-sm border border-[#202225] shadow-lg z-10 max-h-60 overflow-y-auto">
-                      {#each component.options as option}
-                        <div
-                          class="px-3 py-2 hover:bg-[#3a3d44] cursor-pointer transition-colors border-b border-[#202225] last:border-b-0">
-                          <div class="flex items-center gap-2">
-                            {#if option.emoji}
-                              {@const parsedEmoji = parseEmojiForDisplay(option.emoji)}
-                              {#if parsedEmoji}
-                                <img src={parsedEmoji.url} alt={parsedEmoji.name} class="w-4 h-4" />
-                              {:else}
-                                <span>{option.emoji}</span>
-                              {/if}
-                            {/if}
-                            <div class="flex-1">
-                              <div class="font-medium text-sm">{option.name}</div>
-                              {#if option.description}
-                                <div class="text-xs text-gray-400">{option.description}</div>
-                              {/if}
-                            </div>
-                          </div>
-                        </div>
-                      {/each}
-                    </div>
-                  {/if}
-                </div>
+    {#if linkButtons.length > 0}
+      <div class="flex flex-col gap-1">
+        {#each linkButtons as link, linkIndex (linkIndex)}
+          <div class="flex items-center gap-1">
+            {#if link.emoji}
+              {@const parsedEmoji = parseEmojiForDisplay(link.emoji)}
+              {#if parsedEmoji}
+                <img src={parsedEmoji.url} alt={parsedEmoji.name} style="width: 1.2em; height: 1.2em; display: inline;" />
               {:else}
-                <!-- Button -->
-                <button
-                  class="{getButtonColorClass(component.style)}"
-                  disabled
-                  aria-label={component.displayName}
-                  style="display: inline-flex; align-items: center; gap: 0.5rem;"
-                >
-                  {#if component.emoji}
-                    {@const parsedEmoji = parseEmojiForDisplay(component.emoji)}
-                    {#if parsedEmoji}
-                      <img src={parsedEmoji.url} alt={parsedEmoji.name} style="width: 1.2em; height: 1.2em;" />
-                    {:else}
-                      <span>{component.emoji}</span>
-                    {/if}
-                  {/if}
-                  <span>{@html processTextWithMentions(component.displayName)}</span>
-                </button>
+                <span>{link.emoji}</span>
               {/if}
-              {/each}
-            </div>
-          {/if}
+            {/if}
+            <span class="text-[#00AFF4]">{@html processTextWithMentions(link.displayName)}</span>
+          </div>
         {/each}
       </div>
     {/if}

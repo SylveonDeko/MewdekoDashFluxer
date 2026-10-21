@@ -5929,66 +5929,18 @@ export const m = {
     setupBannerTitle: () => t("dashboard", "setup_banner_title", "Quick Setup Available"),
   },
   embedbuilder: {
-    /** Click to edit button */
-    componentsButtonPreviewAria: () => t("embedbuilder", "components_button_preview_aria", "Click to edit button"),
-    /** Button Style */
-    componentsButtonStyle: () => t("embedbuilder", "components_button_style", "Button Style"),
-    /** Select button style */
-    componentsButtonStylePlaceholder: () => t("embedbuilder", "components_button_style_placeholder", "Select button style"),
-    /** Button text */
-    componentsButtonTextPlaceholder: () => t("embedbuilder", "components_button_text_placeholder", "Button text"),
     /** Click to edit */
     componentsClickToEdit: () => t("embedbuilder", "components_click_to_edit", "Click to edit"),
     /** Delete component */
     componentsDeleteComponent: () => t("embedbuilder", "components_delete_component", "Delete component"),
     /** Duplicate component */
     componentsDuplicateComponent: () => t("embedbuilder", "components_duplicate_component", "Duplicate component"),
-    /** Duplicate option */
-    componentsDuplicateOption: () => t("embedbuilder", "components_duplicate_option", "Duplicate option"),
-    /** Edit Button */
-    componentsEditButton: () => t("embedbuilder", "components_edit_button", "Edit Button"),
-    /** Edit Select Menu */
-    componentsEditSelect: () => t("embedbuilder", "components_edit_select", "Edit Select Menu"),
     /** Please enter a valid URL for link button */
     componentsErrorLinkUrl: () => t("embedbuilder", "components_error_link_url", "Please enter a valid URL for link button"),
-    /** Option "{name}" needs a description */
-    componentsErrorOptionNeedsDescription: (p: { name: P }) => t("embedbuilder", "components_error_option_needs_description", "Option \"{name}\" needs a description", p),
-    /** Option "{name}" needs a trigger */
-    componentsErrorOptionNeedsTrigger: (p: { name: P }) => t("embedbuilder", "components_error_option_needs_trigger", "Option \"{name}\" needs a trigger", p),
-    /** Please select a trigger for this button */
-    componentsErrorSelectTrigger: () => t("embedbuilder", "components_error_select_trigger", "Please select a trigger for this button"),
-    /** Max Options */
-    componentsMaxOptions: () => t("embedbuilder", "components_max_options", "Max Options"),
-    /** Max */
-    componentsMaxShort: () => t("embedbuilder", "components_max_short", "Max"),
-    /** Min Options */
-    componentsMinOptions: () => t("embedbuilder", "components_min_options", "Min Options"),
-    /** Min */
-    componentsMinShort: () => t("embedbuilder", "components_min_short", "Min"),
-    /** Option description */
-    componentsOptionDescriptionPlaceholder: () => t("embedbuilder", "components_option_description_placeholder", "Option description"),
-    /** Option name */
-    componentsOptionNamePlaceholder: () => t("embedbuilder", "components_option_name_placeholder", "Option name"),
-    /** Options ({count}/25) */
-    componentsOptionsCount: (p: { count: P }) => t("embedbuilder", "components_options_count", "Options ({count}/25)", p),
-    /** No options added yet. Click "Add" to get started. */
-    componentsOptionsEmpty: () => t("embedbuilder", "components_options_empty", "No options added yet. Click \"Add\" to get started."),
-    /** Choose an option... */
-    componentsSelectPlaceholderExample: () => t("embedbuilder", "components_select_placeholder_example", "Choose an option..."),
-    /** Click to edit select menu */
-    componentsSelectPreviewAria: () => t("embedbuilder", "components_select_preview_aria", "Click to edit select menu"),
     /** Has validation errors */
     componentsStatusInvalid: () => t("embedbuilder", "components_status_invalid", "Has validation errors"),
     /** Valid */
     componentsStatusValid: () => t("embedbuilder", "components_status_valid", "Valid"),
-    /** Trigger Action */
-    componentsTriggerAction: () => t("embedbuilder", "components_trigger_action", "Trigger Action"),
-    /** Select a trigger */
-    componentsTriggerPlaceholder: () => t("embedbuilder", "components_trigger_placeholder", "Select a trigger"),
-    /** Unnamed trigger */
-    componentsTriggerUnnamed: () => t("embedbuilder", "components_trigger_unnamed", "Unnamed trigger"),
-    /** Validation Errors: */
-    componentsValidationErrors: () => t("embedbuilder", "components_validation_errors", "Validation Errors:"),
     /** Author name */
     editorAuthorNamePlaceholder: () => t("embedbuilder", "editor_author_name_placeholder", "Author name"),
     /** URL (makes author name clickable) */
@@ -6087,10 +6039,6 @@ export const m = {
     editorUrlTitle: () => t("embedbuilder", "editor_url_title", "URL (makes title clickable)"),
     /** Add Embed */
     fullscreenAddEmbed: () => t("embedbuilder", "fullscreen_add_embed", "Add Embed"),
-    /** Add Row */
-    fullscreenAddRow: () => t("embedbuilder", "fullscreen_add_row", "Add Row"),
-    /** Add Select */
-    fullscreenAddSelect: () => t("embedbuilder", "fullscreen_add_select", "Add Select"),
     /** Back to Editor */
     fullscreenBackToEditor: () => t("embedbuilder", "fullscreen_back_to_editor", "Back to Editor"),
     /** Clear All Embeds */
@@ -6099,12 +6047,6 @@ export const m = {
     fullscreenClearEverything: () => t("embedbuilder", "fullscreen_clear_everything", "Clear everything"),
     /** Close preview */
     fullscreenClosePreview: () => t("embedbuilder", "fullscreen_close_preview", "Close preview"),
-    /** Click "Add Row" to start adding buttons or select menus */
-    fullscreenComponentsEmptyHint: () => t("embedbuilder", "fullscreen_components_empty_hint", "Click \"Add Row\" to start adding buttons or select menus"),
-    /** No components yet */
-    fullscreenComponentsEmptyTitle: () => t("embedbuilder", "fullscreen_components_empty_title", "No components yet"),
-    /** Rows: {rows}/5 • Max 5 buttons per row */
-    fullscreenComponentsLimits: (p: { rows: P }) => t("embedbuilder", "fullscreen_components_limits", "Rows: {rows}/5 • Max 5 buttons per row", p),
     /** Optional message content that appears above the embed. Use % to mention the user or ins... */
     fullscreenContentPlaceholder: () => t("embedbuilder", "fullscreen_content_placeholder", "Optional message content that appears above the embed. Use % to mention the user or insert other placeholders."),
     /** Click to create an embed */
@@ -6135,16 +6077,6 @@ export const m = {
     fullscreenMineEmpty: () => t("embedbuilder", "fullscreen_mine_empty", "No saved embeds yet"),
     /** My Embeds ({count}) */
     fullscreenMineHeading: (p: { count: P }) => t("embedbuilder", "fullscreen_mine_heading", "My Embeds ({count})", p),
-    /** New Select */
-    fullscreenNewSelectLabel: () => t("embedbuilder", "fullscreen_new_select_label", "New Select"),
-    /** Button added */
-    fullscreenNotifyButtonAdded: () => t("embedbuilder", "fullscreen_notify_button_added", "Button added"),
-    /** Button components are not allowed */
-    fullscreenNotifyButtonNotAllowed: () => t("embedbuilder", "fullscreen_notify_button_not_allowed", "Button components are not allowed"),
-    /** Component duplicated */
-    fullscreenNotifyComponentDuplicated: () => t("embedbuilder", "fullscreen_notify_component_duplicated", "Component duplicated"),
-    /** Component removed */
-    fullscreenNotifyComponentRemoved: () => t("embedbuilder", "fullscreen_notify_component_removed", "Component removed"),
     /** Failed to delete embed */
     fullscreenNotifyDeleteFailed: () => t("embedbuilder", "fullscreen_notify_delete_failed", "Failed to delete embed"),
     /** New embed added */
@@ -6173,40 +6105,18 @@ export const m = {
     fullscreenNotifyLoadedNamed: (p: { name: P }) => t("embedbuilder", "fullscreen_notify_loaded_named", "Loaded \"{name}\"", p),
     /** You must be logged in to save embeds */
     fullscreenNotifyLoginRequired: () => t("embedbuilder", "fullscreen_notify_login_required", "You must be logged in to save embeds"),
-    /** Maximum 5 buttons per row */
-    fullscreenNotifyMaxButtons: () => t("embedbuilder", "fullscreen_notify_max_buttons", "Maximum 5 buttons per row"),
-    /** Maximum 25 components allowed */
-    fullscreenNotifyMaxComponents: () => t("embedbuilder", "fullscreen_notify_max_components", "Maximum 25 components allowed"),
     /** Please enter a name for the embed */
     fullscreenNotifyNameRequired: () => t("embedbuilder", "fullscreen_notify_name_required", "Please enter a name for the embed"),
     /** Nothing to save yet */
     fullscreenNotifyNothingToSave: () => t("embedbuilder", "fullscreen_notify_nothing_to_save", "Nothing to save yet"),
-    /** New row added */
-    fullscreenNotifyRowAdded: () => t("embedbuilder", "fullscreen_notify_row_added", "New row added"),
-    /** Cannot add components to a row with a select menu */
-    fullscreenNotifyRowHasSelect: () => t("embedbuilder", "fullscreen_notify_row_has_select", "Cannot add components to a row with a select menu"),
-    /** Row removed */
-    fullscreenNotifyRowRemoved: () => t("embedbuilder", "fullscreen_notify_row_removed", "Row removed"),
     /** Failed to save embed. The name may already be in use. */
     fullscreenNotifySaveFailed: () => t("embedbuilder", "fullscreen_notify_save_failed", "Failed to save embed. The name may already be in use."),
     /** Saved successfully! */
     fullscreenNotifySaved: () => t("embedbuilder", "fullscreen_notify_saved", "Saved successfully!"),
     /** Saved "{name}" */
     fullscreenNotifySavedNamed: (p: { name: P }) => t("embedbuilder", "fullscreen_notify_saved_named", "Saved \"{name}\"", p),
-    /** Select menu added */
-    fullscreenNotifySelectAdded: () => t("embedbuilder", "fullscreen_notify_select_added", "Select menu added"),
-    /** Select menus must be alone in a row */
-    fullscreenNotifySelectAlone: () => t("embedbuilder", "fullscreen_notify_select_alone", "Select menus must be alone in a row"),
-    /** Select menu components are not allowed */
-    fullscreenNotifySelectNotAllowed: () => t("embedbuilder", "fullscreen_notify_select_not_allowed", "Select menu components are not allowed"),
     /** A server must be selected to save a shared embed */
     fullscreenNotifyServerRequired: () => t("embedbuilder", "fullscreen_notify_server_required", "A server must be selected to save a shared embed"),
-    /** This row is empty */
-    fullscreenRowEmpty: () => t("embedbuilder", "fullscreen_row_empty", "This row is empty"),
-    /** Row {number} ({count} component) */
-    fullscreenRowHeaderOne: (p: { count: P; number: P }) => t("embedbuilder", "fullscreen_row_header_one", "Row {number} ({count} component)", p),
-    /** Row {number} ({count} components) */
-    fullscreenRowHeaderOther: (p: { count: P; number: P }) => t("embedbuilder", "fullscreen_row_header_other", "Row {number} ({count} components)", p),
     /** Save Current Embed */
     fullscreenSaveHeading: () => t("embedbuilder", "fullscreen_save_heading", "Save Current Embed"),
     /** Embed name */
@@ -6227,8 +6137,6 @@ export const m = {
     fullscreenValidationAuthorNeedsName: (p: { number: P }) => t("embedbuilder", "fullscreen_validation_author_needs_name", "Embed {number} author needs a name when it has an icon or link", p),
     /** A button needs a label */
     fullscreenValidationButtonNeedsLabel: () => t("embedbuilder", "fullscreen_validation_button_needs_label", "A button needs a label"),
-    /** Button "{name}" needs a trigger */
-    fullscreenValidationButtonNeedsTrigger: (p: { name: P }) => t("embedbuilder", "fullscreen_validation_button_needs_trigger", "Button \"{name}\" needs a trigger", p),
     /** Embed {number} description exceeds 4096 characters */
     fullscreenValidationDescriptionTooLong: (p: { number: P }) => t("embedbuilder", "fullscreen_validation_description_too_long", "Embed {number} description exceeds 4096 characters", p),
     /** Embed {number} is empty and won't be sent */
@@ -6239,28 +6147,30 @@ export const m = {
     fullscreenValidationFooterNeedsText: (p: { number: P }) => t("embedbuilder", "fullscreen_validation_footer_needs_text", "Embed {number} footer needs text when it has an icon", p),
     /** Link button "{name}" needs a URL */
     fullscreenValidationLinkNeedsUrl: (p: { name: P }) => t("embedbuilder", "fullscreen_validation_link_needs_url", "Link button \"{name}\" needs a URL", p),
-    /** Option {number} of "{name}" needs a name */
-    fullscreenValidationOptionNeedsName: (p: { name: P; number: P }) => t("embedbuilder", "fullscreen_validation_option_needs_name", "Option {number} of \"{name}\" needs a name", p),
-    /** Select menu "{name}" needs at least one option */
-    fullscreenValidationSelectNeedsOptions: (p: { name: P }) => t("embedbuilder", "fullscreen_validation_select_needs_options", "Select menu \"{name}\" needs at least one option", p),
-    /** Select menu "{name}" needs a trigger */
-    fullscreenValidationSelectNeedsTrigger: (p: { name: P }) => t("embedbuilder", "fullscreen_validation_select_needs_trigger", "Select menu \"{name}\" needs a trigger", p),
     /** Embed {number} title exceeds 256 characters */
     fullscreenValidationTitleTooLong: (p: { number: P }) => t("embedbuilder", "fullscreen_validation_title_too_long", "Embed {number} title exceeds 256 characters", p),
+    /** Edit link button */
+    linksEditTitle: () => t("embedbuilder", "links_edit_title", "Edit link button"),
+    /** Add a link button to show a clickable link under the message. */
+    linksEmptyHint: () => t("embedbuilder", "links_empty_hint", "Add a link button to show a clickable link under the message."),
+    /** No link buttons yet */
+    linksEmptyTitle: () => t("embedbuilder", "links_empty_title", "No link buttons yet"),
+    /** Link buttons are shown as links under the message. */
+    linksHint: () => t("embedbuilder", "links_hint", "Link buttons are shown as links under the message."),
+    /** Link text */
+    linksLabelPlaceholder: () => t("embedbuilder", "links_label_placeholder", "Link text"),
+    /** Link button duplicated */
+    linksNotifyDuplicated: () => t("embedbuilder", "links_notify_duplicated", "Link button duplicated"),
+    /** Maximum 25 link buttons allowed */
+    linksNotifyMax: () => t("embedbuilder", "links_notify_max", "Maximum 25 link buttons allowed"),
+    /** Link button removed */
+    linksNotifyRemoved: () => t("embedbuilder", "links_notify_removed", "Link button removed"),
     /** Cancel edits */
     pageActionCancelEdits: () => t("embedbuilder", "page_action_cancel_edits", "Cancel edits"),
     /** Copied! */
     pageActionCopied: () => t("embedbuilder", "page_action_copied", "Copied!"),
     /** Copy JSON */
     pageActionCopyJson: () => t("embedbuilder", "page_action_copy_json", "Copy JSON"),
-    /** Row */
-    pageAddRowShort: () => t("embedbuilder", "page_add_row_short", "Row"),
-    /** Button {name} */
-    pageComponentAriaButton: (p: { name: P }) => t("embedbuilder", "page_component_aria_button", "Button {name}", p),
-    /** Select menu {name} */
-    pageComponentAriaSelect: (p: { name: P }) => t("embedbuilder", "page_component_aria_select", "Select menu {name}", p),
-    /** R:{rows}/5 • B:5/row */
-    pageComponentsLimitsShort: (p: { rows: P }) => t("embedbuilder", "page_components_limits_short", "R:{rows}/5 • B:5/row", p),
     /** Click % for placeholders */
     pageContentHint: () => t("embedbuilder", "page_content_hint", "Click % for placeholders"),
     /** Message Content (optional) */
@@ -6279,22 +6189,12 @@ export const m = {
     pageJsonRefreshAria: () => t("embedbuilder", "page_json_refresh_aria", "Refresh JSON from builder"),
     /** Failed to copy JSON */
     pageNotifyCopyFailed: () => t("embedbuilder", "page_notify_copy_failed", "Failed to copy JSON"),
-    /** Cannot duplicate select menu in same row */
-    pageNotifyDuplicateSelect: () => t("embedbuilder", "page_notify_duplicate_select", "Cannot duplicate select menu in same row"),
     /** JSON copied to clipboard! */
     pageNotifyJsonCopied: () => t("embedbuilder", "page_notify_json_copied", "JSON copied to clipboard!"),
-    /** Maximum 5 rows allowed */
-    pageNotifyMaxRows: () => t("embedbuilder", "page_notify_max_rows", "Maximum 5 rows allowed"),
     /** Nothing to send yet */
     pageNotifyNothingToSend: () => t("embedbuilder", "page_notify_nothing_to_send", "Nothing to send yet"),
     /** Pick a channel to send to */
     pageNotifyPickChannel: () => t("embedbuilder", "page_notify_pick_channel", "Pick a channel to send to"),
-    /** Row duplicated */
-    pageNotifyRowDuplicated: () => t("embedbuilder", "page_notify_row_duplicated", "Row duplicated"),
-    /** Row is full (max 5 buttons) */
-    pageNotifyRowFull: () => t("embedbuilder", "page_notify_row_full", "Row is full (max 5 buttons)"),
-    /** Cannot add buttons to a row with a select menu */
-    pageNotifyRowHasSelectButton: () => t("embedbuilder", "page_notify_row_has_select_button", "Cannot add buttons to a row with a select menu"),
     /** Failed to send message */
     pageNotifySendFailed: () => t("embedbuilder", "page_notify_send_failed", "Failed to send message"),
     /** You must be logged in to send messages */
@@ -6307,24 +6207,6 @@ export const m = {
     pageNotifyServerForShared: () => t("embedbuilder", "page_notify_server_for_shared", "Select a guild to save a guild-shared embed"),
     /** Applied template: {name} */
     pageNotifyTemplateApplied: (p: { name: P }) => t("embedbuilder", "page_notify_template_applied", "Applied template: {name}", p),
-    /** Add button to row */
-    pageRowAddButtonAria: () => t("embedbuilder", "page_row_add_button_aria", "Add button to row"),
-    /** Components in row {number} */
-    pageRowComponentsAria: (p: { number: P }) => t("embedbuilder", "page_row_components_aria", "Components in row {number}", p),
-    /** Drag handle for row {number} */
-    pageRowDragAria: (p: { number: P }) => t("embedbuilder", "page_row_drag_aria", "Drag handle for row {number}", p),
-    /** Drag to reorder row */
-    pageRowDragTitle: () => t("embedbuilder", "page_row_drag_title", "Drag to reorder row"),
-    /** Duplicate row */
-    pageRowDuplicateAria: () => t("embedbuilder", "page_row_duplicate_aria", "Duplicate row"),
-    /** Row {number} ({count}) */
-    pageRowHeaderShort: (p: { count: P; number: P }) => t("embedbuilder", "page_row_header_short", "Row {number} ({count})", p),
-    /** Remove row */
-    pageRowRemoveAria: () => t("embedbuilder", "page_row_remove_aria", "Remove row"),
-    /** Drag the handle to reorder rows */
-    pageRowsDragHint: () => t("embedbuilder", "page_rows_drag_hint", "Drag the handle to reorder rows"),
-    /** No rows yet */
-    pageRowsEmptyTitle: () => t("embedbuilder", "page_rows_empty_title", "No rows yet"),
     /** Delete embed */
     pageSavedDeleteAria: () => t("embedbuilder", "page_saved_delete_aria", "Delete embed"),
     /** Load embed */
@@ -6501,10 +6383,10 @@ export const m = {
     previewSampleServer: () => t("embedbuilder", "preview_sample_server", "Example Server"),
     /** ExampleUser */
     previewSampleUser: () => t("embedbuilder", "preview_sample_user", "ExampleUser"),
-    /** Components */
-    tabComponents: () => t("embedbuilder", "tab_components", "Components"),
     /** JSON */
     tabJson: () => t("embedbuilder", "tab_json", "JSON"),
+    /** Link buttons */
+    tabLinks: () => t("embedbuilder", "tab_links", "Link buttons"),
     /** Important information for all members of %server.name%. */
     templatesAnnouncementBasicBody: () => t("embedbuilder", "templates_announcement_basic_body", "Important information for all members of %server.name%."),
     /** Simple server announcement */
