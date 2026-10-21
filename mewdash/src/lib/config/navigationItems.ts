@@ -70,6 +70,15 @@ export const allDashboardFeatures: NavigationItem[] = [
     keywords: ["afk", "away", "status", "idle"],
   },
   {
+    label: m.features.migrateName,
+    icon: "fa-utility-duo fa-regular fa-arrow-right-arrow-left",
+    href: "/dashboard/migrate",
+    category: "Settings",
+    categoryLabel: m.features.categorySettings,
+    description: m.features.migrateDescription,
+    keywords: ["migrate", "migration", "move", "discord", "import", "transfer", "switch", "link"],
+  },
+  {
     label: m.features.auditlogName,
     icon: "fa-utility-duo fa-regular fa-clipboard-check",
     href: "/dashboard/auditlog",

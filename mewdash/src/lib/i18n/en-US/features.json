@@ -86,6 +86,8 @@
   "logging_name": "Logging",
   "messagestats_description": "Message activity statistics",
   "messagestats_name": "Message Stats",
+  "migrate_description": "Bring your Mewdeko setup over from Discord",
+  "migrate_name": "Move from Discord",
   "minecraft_description": "Minecraft server monitoring and status",
   "minecraft_name": "Minecraft",
   "moderation_description": "Moderation tools and settings",

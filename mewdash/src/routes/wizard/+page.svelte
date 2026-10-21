@@ -7,6 +7,7 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
   import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import { goto } from "$app/navigation";
+  import { page } from "$app/state";
   import { onMount, untrack } from "svelte";
   import { logger } from "$lib/logger";
   import { fade, fly, scale } from "svelte/transition";
@@ -19,6 +20,7 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
   // Components
   import WizardProgress from "./components/WizardProgress.svelte";
   import WizardStep from "./components/WizardStep.svelte";
+  import MigrationFlow from "$lib/components/dashboard/migration/MigrationFlow.svelte";
   import FeatureSetupCard from "./components/FeatureSetupCard.svelte";
   import PermissionCheck from "./components/PermissionCheck.svelte";
   import ProgressiveFeatureConfig from "./components/ProgressiveFeatureConfig.svelte";
@@ -272,13 +274,14 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
   /** 1-based step numbers for the fixed screens at the front of the wizard. */
   let permissionsStep = $derived(2);
   let basicsStep = $derived(hasPermissionStep ? 3 : 2);
-  let featureSelectionStep = $derived(basicsStep + 1);
+  let migrationStep = $derived(basicsStep + 1);
+  let featureSelectionStep = $derived(migrationStep + 1);
 
   /** The step index of the bulk quick-enable screen, when there is one. */
   let quickSetupStep = $derived(featureSelectionStep + fullSetupFeatures.length + 1);
 
   let totalSteps = $derived.by(() => {
-    const baseSteps = featureSelectionStep; // Welcome + (Permissions) + Basics + Features
+    const baseSteps = featureSelectionStep; // Welcome + (Permissions) + Basics + Migration + Features
     const configSteps = fullSetupFeatures.length; // One step per full setup feature
     const bulkStep = quickEnableFeatures.length > 0 ? 1 : 0; // One bulk config step
     return baseSteps + configSteps + bulkStep + 1; // +1 for completion
@@ -289,6 +292,7 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
       m.common.welcome(),
       ...(hasPermissionStep ? [m.common.permissions()] : []),
       m.wizard.basicsTitle(),
+      m.migration.wizardStepTitle(),
       m.wizard.stepTitleSelectFeatures(),
       ...fullSetupFeatures.map(id => allFeatures.find(f => f.id === id)?.title || id),
       ...(quickEnableFeatures.length > 0 ? [m.common.quickSetup()] : []),
@@ -332,6 +336,10 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
             await loadAvailableChannels();
             await loadServerBasics();
             await loadExistingConfigurations();
+
+            if (isInitialLoad && page.url.searchParams.get("resume") === "migration") {
+              currentStep = migrationStep;
+            }
           })();
         });
       }
@@ -1674,6 +1682,7 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
     currentStep === 1 ||
     (hasPermissionStep && currentStep === permissionsStep && permissionData?.canFunction) ||
     currentStep === basicsStep ||
+    currentStep === migrationStep ||
     (currentStep === featureSelectionStep && allEnabledFeatures.length > 0) ||
     currentStep === totalSteps
   );
@@ -2030,6 +2039,42 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
             {wizardLoading ? m.common.saving() : m.wizard.continue()}
             <i class="fa-solid {wizardLoading ? 'fa-arrows-rotate fa-spin' : 'fa-arrow-right'}"
                style="font-size: 16px;"></i>
+          </button>
+        </div>
+      </div>
+    </WizardStep>
+
+    <!-- Coming from Discord -->
+    <WizardStep
+      title={m.migration.wizardStepTitle()}
+      subtitle={m.migration.wizardSubtitle()}
+      stepNumber={migrationStep}
+      isActive={currentStep === migrationStep}
+      icon="fa-solid fa-arrow-right-arrow-left"
+      maxWidth="max-w-3xl"
+    >
+      <div class="space-y-6">
+        <MigrationFlow guildId={BigInt(data.guildId)} compact returnParams={{ resume: "migration" }} />
+
+        <p class="text-sm" style="color: {$colorStore.muted}">{m.migration.wizardHint()}</p>
+
+        <div class="flex items-center justify-between gap-3 pt-6 border-t" style="border-color: {$colorStore.primary}20;">
+          <button
+            class="px-4 py-3 rounded-xl font-medium transition-all hover:scale-[1.02] focus:outline-hidden focus:ring-2 focus:ring-offset-2 flex items-center gap-2 min-h-[44px]"
+            style="background: {$colorStore.muted}20; color: {$colorStore.muted}; border: 1px solid {$colorStore.muted}30;"
+            onclick={previousStep}
+          >
+            <i class="fa-solid fa-arrow-left" style="font-size: 16px;"></i>
+            {m.common.back()}
+          </button>
+
+          <button
+            class="px-6 py-3 rounded-xl font-medium transition-all hover:scale-[1.02] focus:outline-hidden focus:ring-2 focus:ring-offset-2 flex items-center gap-2 min-h-[44px]"
+            style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
+            onclick={nextStep}
+          >
+            {m.wizard.continue()}
+            <i class="fa-solid fa-arrow-right" style="font-size: 16px;"></i>
           </button>
         </div>
       </div>

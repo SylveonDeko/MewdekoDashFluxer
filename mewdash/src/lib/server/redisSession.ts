@@ -2,10 +2,14 @@ import Redis from "ioredis";
 import { env } from "$env/dynamic/private";
 import { logger } from "$lib/logger";
 import type { FluxerUser } from "$lib/types/fluxer";
+import type { DiscordLinkIdentity } from "$lib/types/discordLink";
 import { nanoid } from "nanoid";
 
 // Session expiry time (24 hours)
 const SESSION_TTL = 24 * 60 * 60; // seconds
+
+/** How long a Discord sign in made for linking stays usable (15 minutes). */
+export const DISCORD_LINK_TTL = 15 * 60;
 
 export class RedisSessionManager {
   private redis: Redis | null = null;
@@ -21,6 +25,49 @@ export class RedisSessionManager {
         logger.error("Failed to initialize Redis:", error);
         this.enabled = false;
       }
+    }
+  }
+
+  private memoryIdentities = new Map<string, { identity: DiscordLinkIdentity; expires: number }>();
+
+  private getDiscordLinkKey(userId: string): string {
+    return `${env.FLUXER_CLIENT_ID}_discord_link:${userId}`;
+  }
+
+  async setDiscordIdentity(userId: string, identity: DiscordLinkIdentity): Promise<void> {
+    if (!this.enabled || !this.redis) {
+      this.memoryIdentities.set(userId, { identity, expires: Date.parse(identity.expiresAt) });
+      return;
+    }
+    await this.redis.setex(this.getDiscordLinkKey(userId), DISCORD_LINK_TTL, JSON.stringify(identity));
+  }
+
+  async getDiscordIdentity(userId: string): Promise<DiscordLinkIdentity | null> {
+    if (!this.enabled || !this.redis) {
+      const held = this.memoryIdentities.get(userId);
+      if (!held) return null;
+      if (held.expires <= Date.now()) {
+        this.memoryIdentities.delete(userId);
+        return null;
+      }
+      return held.identity;
+    }
+    try {
+      const data = await this.redis.get(this.getDiscordLinkKey(userId));
+      return data ? (JSON.parse(data) as DiscordLinkIdentity) : null;
+    } catch (error) {
+      logger.error("Failed to read Discord link identity:", error);
+      return null;
+    }
+  }
+
+  async clearDiscordIdentity(userId: string): Promise<void> {
+    this.memoryIdentities.delete(userId);
+    if (!this.enabled || !this.redis) return;
+    try {
+      await this.redis.del(this.getDiscordLinkKey(userId));
+    } catch (error) {
+      logger.error("Failed to clear Discord link identity:", error);
     }
   }
 

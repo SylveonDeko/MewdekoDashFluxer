@@ -6811,6 +6811,10 @@ export const m = {
     messagestatsDescription: () => t("features", "messagestats_description", "Message activity statistics"),
     /** Message Stats */
     messagestatsName: () => t("features", "messagestats_name", "Message Stats"),
+    /** Bring your Mewdeko setup over from Discord */
+    migrateDescription: () => t("features", "migrate_description", "Bring your Mewdeko setup over from Discord"),
+    /** Move from Discord */
+    migrateName: () => t("features", "migrate_name", "Move from Discord"),
     /** Minecraft server monitoring and status */
     minecraftDescription: () => t("features", "minecraft_description", "Minecraft server monitoring and status"),
     /** Minecraft */
@@ -10473,6 +10477,136 @@ export const m = {
     subtabUsers: () => t("messagestats", "subtab_users", "Top Users"),
     /** Top Message Senders */
     usersHeading: () => t("messagestats", "users_heading", "Top Message Senders"),
+  },
+  migration: {
+    /** Pick the channel in this server that each Discord channel should map to. Channels that ... */
+    channelsHint: () => t("migration", "channels_hint", "Pick the channel in this server that each Discord channel should map to. Channels that could not be matched by name are highlighted."),
+    /** Replace settings and move */
+    confirmButton: () => t("migration", "confirm_button", "Replace settings and move"),
+    /** I understand that this replaces the current Mewdeko settings in this server. */
+    confirmCheck: () => t("migration", "confirm_check", "I understand that this replaces the current Mewdeko settings in this server."),
+    /** Connect Discord */
+    connectButton: () => t("migration", "connect_button", "Connect Discord"),
+    /** The Discord sign in was cancelled. Connect again to continue. */
+    connectDenied: () => t("migration", "connect_denied", "The Discord sign in was cancelled. Connect again to continue."),
+    /** Discord sign in did not work. Try connecting again. */
+    connectError: () => t("migration", "connect_error", "Discord sign in did not work. Try connecting again."),
+    /** Sign in with Discord so Mewdeko can see which Discord servers you own or administer. No... */
+    connectHint: () => t("migration", "connect_hint", "Sign in with Discord so Mewdeko can see which Discord servers you own or administer. Nothing is changed on Discord."),
+    /** The Discord sign in is kept for 15 minutes and the Discord access token is discarded ri... */
+    connectKeepNote: () => t("migration", "connect_keep_note", "The Discord sign in is kept for 15 minutes and the Discord access token is discarded right away."),
+    /** Connect your Discord account */
+    connectTitle: () => t("migration", "connect_title", "Connect your Discord account"),
+    /** Connected to Discord as {name} */
+    connectedAs: (p: { name: P }) => t("migration", "connected_as", "Connected to Discord as {name}", p),
+    /** Disconnect Discord */
+    disconnectButton: () => t("migration", "disconnect_button", "Disconnect Discord"),
+    /** Mewdeko on Discord did not answer. Try again in a moment. */
+    discordUnavailable: () => t("migration", "discord_unavailable", "Mewdeko on Discord did not answer. Try again in a moment."),
+    /** The export failed. Try again in a moment. */
+    exportFailed: () => t("migration", "export_failed", "The export failed. Try again in a moment."),
+    /** You need to own the Discord server or have Administrator there. */
+    exportNotAdmin: () => t("migration", "export_not_admin", "You need to own the Discord server or have Administrator there."),
+    /** Mewdeko is not in that Discord server. */
+    exportNotFound: () => t("migration", "export_not_found", "Mewdeko is not in that Discord server."),
+    /** Reading your Discord server */
+    exportWorking: () => t("migration", "export_working", "Reading your Discord server"),
+    /** This can take up to a minute for large servers. Keep this page open. */
+    exportWorkingHint: () => t("migration", "export_working_hint", "This can take up to a minute for large servers. Keep this page open."),
+    /** Link Discord */
+    linkButton: () => t("migration", "link_button", "Link Discord"),
+    /** Bring over my data */
+    linkConfirmButton: () => t("migration", "link_confirm_button", "Bring over my data"),
+    /** That Discord account is already linked to another Fluxer account. */
+    linkConflict: () => t("migration", "link_conflict", "That Discord account is already linked to another Fluxer account."),
+    /** Linking did not work. Try again in a moment. */
+    linkFailed: () => t("migration", "link_failed", "Linking did not work. Try again in a moment."),
+    /** Prove your Discord account by signing in with Discord, and the XP, balance, warnings an... */
+    linkHint: () => t("migration", "link_hint", "Prove your Discord account by signing in with Discord, and the XP, balance, warnings and other data you had in Mewdeko servers moves to your Fluxer account."),
+    /** Linked to Discord account {id} */
+    linkLinked: (p: { id: P }) => t("migration", "link_linked", "Linked to Discord account {id}", p),
+    /** No Discord account linked yet */
+    linkNotLinked: () => t("migration", "link_not_linked", "No Discord account linked yet"),
+    /** Signed in with Discord as {name}. Finish linking to bring your data over. */
+    linkReady: (p: { name: P }) => t("migration", "link_ready", "Signed in with Discord as {name}. Finish linking to bring your data over.", p),
+    /** Brought over {rows} entries from {servers} servers. */
+    linkResult: (p: { rows: P; servers: P }) => t("migration", "link_result", "Brought over {rows} entries from {servers} servers.", p),
+    /** This Discord account is linked. There was no data to bring over yet. */
+    linkResultNothing: () => t("migration", "link_result_nothing", "This Discord account is linked. There was no data to bring over yet."),
+    /** Bring your Mewdeko setup from Discord to this server */
+    pageSubtitle: () => t("migration", "page_subtitle", "Bring your Mewdeko setup from Discord to this server"),
+    /** Not paired */
+    pairNonePlaceholder: () => t("migration", "pair_none_placeholder", "Not paired"),
+    /** This export expired. Start again to make a new one. */
+    previewExpired: () => t("migration", "preview_expired", "This export expired. Start again to make a new one."),
+    /** The preview could not be loaded. */
+    previewFailed: () => t("migration", "preview_failed", "The preview could not be loaded."),
+    /** Updating the preview */
+    previewLoading: () => t("migration", "preview_loading", "Updating the preview"),
+    /** {matched} of {total} emojis matched */
+    previewStatEmojis: (p: { matched: P; total: P }) => t("migration", "preview_stat_emojis", "{matched} of {total} emojis matched", p),
+    /** {count} already linked */
+    previewStatLinked: (p: { count: P }) => t("migration", "preview_stat_linked", "{count} already linked", p),
+    /** {count} members with data */
+    previewStatMembers: (p: { count: P }) => t("migration", "preview_stat_members", "{count} members with data", p),
+    /** {count} settings */
+    previewStatSettings: (p: { count: P }) => t("migration", "preview_stat_settings", "{count} settings", p),
+    /** {count} features */
+    previewStatTables: (p: { count: P }) => t("migration", "preview_stat_tables", "{count} features", p),
+    /** What will be moved from {name} */
+    previewTitle: (p: { name: P }) => t("migration", "preview_title", "What will be moved from {name}", p),
+    /** Dropped */
+    resultDropped: () => t("migration", "result_dropped", "Dropped"),
+    /** Held for members who have not linked yet */
+    resultHeld: () => t("migration", "result_held", "Held for members who have not linked yet"),
+    /** Members bring their own data over from their profile page with Link Discord. Their XP, ... */
+    resultNext: () => t("migration", "result_next", "Members bring their own data over from their profile page with Link Discord. Their XP, balance, warnings and more arrive as soon as they link."),
+    /** Messages posted again */
+    resultReposted: () => t("migration", "result_reposted", "Messages posted again"),
+    /** Move another server */
+    resultRestart: () => t("migration", "result_restart", "Move another server"),
+    /** Your setup has been moved */
+    resultTitle: () => t("migration", "result_title", "Your setup has been moved"),
+    /** Written */
+    resultWritten: () => t("migration", "result_written", "Written"),
+    /** Pick the role in this server that each Discord role should map to. */
+    rolesHint: () => t("migration", "roles_hint", "Pick the role in this server that each Discord role should map to."),
+    /** No Discord servers found. You need to own a server or have Administrator in it, with Me... */
+    serversEmpty: () => t("migration", "servers_empty", "No Discord servers found. You need to own a server or have Administrator in it, with Mewdeko in it."),
+    /** Finding your Discord servers */
+    serversLoading: () => t("migration", "servers_loading", "Finding your Discord servers"),
+    /** Choose the Discord server to move */
+    serversTitle: () => t("migration", "servers_title", "Choose the Discord server to move"),
+    /** From {bot} */
+    serversVia: (p: { bot: P }) => t("migration", "servers_via", "From {bot}", p),
+    /** Move again */
+    statusMigrateAgain: () => t("migration", "status_migrate_again", "Move again"),
+    /** Moved from Discord on {date} */
+    statusMigrated: (p: { date: P }) => t("migration", "status_migrated", "Moved from Discord on {date}", p),
+    /** This server has not been moved from Discord yet. */
+    statusNotMigrated: () => t("migration", "status_not_migrated", "This server has not been moved from Discord yet."),
+    /** {count} member still needs to link their Discord account. */
+    statusWaitingOne: (p: { count: P }) => t("migration", "status_waiting_one", "{count} member still needs to link their Discord account.", p),
+    /** {count} members still need to link their Discord account. */
+    statusWaitingOther: (p: { count: P }) => t("migration", "status_waiting_other", "{count} members still need to link their Discord account.", p),
+    /** Announcement */
+    typeAnnouncement: () => t("migration", "type_announcement", "Announcement"),
+    /** Forum */
+    typeForum: () => t("migration", "type_forum", "Forum"),
+    /** Stage */
+    typeStage: () => t("migration", "type_stage", "Stage"),
+    /** Unmatched */
+    unmatchedBadge: () => t("migration", "unmatched_badge", "Unmatched"),
+    /** Moving replaces the Mewdeko settings of this server for every feature that is in the Di... */
+    warningBody: () => t("migration", "warning_body", "Moving replaces the Mewdeko settings of this server for every feature that is in the Discord export. Data your members already have here is kept and added to."),
+    /** Current settings will be replaced */
+    warningTitle: () => t("migration", "warning_title", "Current settings will be replaced"),
+    /** You can skip this and move your setup later from the dashboard. */
+    wizardHint: () => t("migration", "wizard_hint", "You can skip this and move your setup later from the dashboard."),
+    /** Coming from Discord? */
+    wizardStepTitle: () => t("migration", "wizard_step_title", "Coming from Discord?"),
+    /** Bring your Mewdeko setup over instead of configuring it again */
+    wizardSubtitle: () => t("migration", "wizard_subtitle", "Bring your Mewdeko setup over instead of configuring it again"),
   },
   minecraft: {
     /** e.g. play.example.com */
@@ -18227,4 +18361,4 @@ export const m = {
 } as const;
 
 /** Module names that exist in the source locale, for loading other locales lazily later. */
-export const modules = ["_common","access","achievements","administration","afk","analytics","auditlog","birthday","brand","channel-access","chat-triggers","chatsaver","confessions","counting","currency","customvoice","dashboard","embedbuilder","feature-requests","features","feeds","filter","forms","giveaways","highlights","home","invites","layout","legal","liveboards","logging","me","messagestats","minecraft","moderation","monitoring","multigreets","music","owner","patreon","placeholders","polls","public","repeaters","reputation","role-menus","rolegreets","rolestates","serverstats","settings","shared","shortcuts","starboard","statchannels","statroles","statusroles","streams","suggestions","tickets","todo","twitch","utility","votes","widgets","wiki","wizard","wordoftheday","xp"] as const;
+export const modules = ["_common","access","achievements","administration","afk","analytics","auditlog","birthday","brand","channel-access","chat-triggers","chatsaver","confessions","counting","currency","customvoice","dashboard","embedbuilder","feature-requests","features","feeds","filter","forms","giveaways","highlights","home","invites","layout","legal","liveboards","logging","me","messagestats","migration","minecraft","moderation","monitoring","multigreets","music","owner","patreon","placeholders","polls","public","repeaters","reputation","role-menus","rolegreets","rolestates","serverstats","settings","shared","shortcuts","starboard","statchannels","statroles","statusroles","streams","suggestions","tickets","todo","twitch","utility","votes","widgets","wiki","wizard","wordoftheday","xp"] as const;

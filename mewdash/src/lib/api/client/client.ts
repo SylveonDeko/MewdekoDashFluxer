@@ -52,6 +52,16 @@ export const clientApi = {
     ),
 
   /**
+   * Gets every non-thread channel in a guild with its concrete type and category
+   * @param guildId The guild ID
+   * @returns Typed channel list
+   */
+  getGuildChannels: (guildId: bigint) =>
+    apiRequest<Array<{ id: string; name: string; type: string; categoryId: string | null }>>(
+      `ClientOperations/guildchannels/${guildId}`,
+    ),
+
+  /**
    * Gets all text channels in a guild
    * @param guildId The guild ID
    * @returns List of text channels

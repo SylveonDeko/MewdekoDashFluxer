@@ -202,7 +202,35 @@ async function resolveBackend(
   return { backend, user };
 }
 
+/**
+ * Migration calls that take a Discord identity or the confirming user are made by the
+ * `/api/discord-link` endpoints from the server-held Discord sign in, never from the browser.
+ * Only the read-only preview and status calls pass through, after the path is normalised the way
+ * the bot's router would read it.
+ */
+const BROWSER_MIGRATION_PATH = /^migration\/\d{1,20}\/(preview|status)$/i;
+
+const normalisePath = (path: string): string | null => {
+  try {
+    return decodeURIComponent(path).replace(/\\/g, "/").replace(/\/{2,}/g, "/").replace(/^\/|\/$/g, "");
+  } catch {
+    return null;
+  }
+};
+
+const blockedPath = (path: string | undefined) => {
+  if (!path) return null;
+  const normalised = normalisePath(path);
+  if (normalised === null) return json({ error: "forbidden" }, { status: 403 });
+  return /^migration(\/|$)/i.test(normalised) && !BROWSER_MIGRATION_PATH.test(normalised)
+    ? json({ error: "forbidden" }, { status: 403 })
+    : null;
+};
+
 export const GET: RequestHandler = async ({ url, params, request, locals }) => {
+  const blocked = blockedPath(params.path);
+  if (blocked) return blocked;
+
   const resolved = await resolveBackend(request, locals);
   if (resolved instanceof Response) return resolved;
 
@@ -212,6 +240,9 @@ export const GET: RequestHandler = async ({ url, params, request, locals }) => {
 };
 
 export const POST: RequestHandler = async ({ request, params, locals }) => {
+  const blocked = blockedPath(params.path);
+  if (blocked) return blocked;
+
   const resolved = await resolveBackend(request, locals);
   if (resolved instanceof Response) return resolved;
   const url = new URL(request.url);
@@ -249,6 +280,9 @@ export const POST: RequestHandler = async ({ request, params, locals }) => {
 };
 
 export const PUT: RequestHandler = async ({ request, params, locals }) => {
+  const blocked = blockedPath(params.path);
+  if (blocked) return blocked;
+
   const resolved = await resolveBackend(request, locals);
   if (resolved instanceof Response) return resolved;
   const url = new URL(request.url);
@@ -279,6 +313,9 @@ export const PUT: RequestHandler = async ({ request, params, locals }) => {
 };
 
 export const PATCH: RequestHandler = async ({ request, params, locals }) => {
+  const blocked = blockedPath(params.path);
+  if (blocked) return blocked;
+
   const resolved = await resolveBackend(request, locals);
   if (resolved instanceof Response) return resolved;
   const url = new URL(request.url);
@@ -299,6 +336,9 @@ export const PATCH: RequestHandler = async ({ request, params, locals }) => {
 };
 
 export const DELETE: RequestHandler = async ({ request, params, locals }) => {
+  const blocked = blockedPath(params.path);
+  if (blocked) return blocked;
+
   const resolved = await resolveBackend(request, locals);
   if (resolved instanceof Response) return resolved;
   const url = new URL(request.url);
