@@ -16,9 +16,6 @@
   let saving = $state(false);
   let expandedOperation: string | null = $state(null);
 
-  // Prune inactive users
-  let pruneDays = $state(7);
-
   // Mass ban
   let massBanUserIds = $state("");
   let massBanReason = $state("");
@@ -29,23 +26,6 @@
   // Prune to message
   let pruneToChannel: string | null = $state(null);
   let pruneToMessageId = $state("");
-
-  async function performPrune() {
-    if (!$currentGuild?.id || pruneDays <= 0) return;
-
-    try {
-      saving = true;
-      const result = await administrationApi.pruneUsers($currentGuild.id, { days: pruneDays });
-      await fetchAllData();
-      logger.info(`Pruned ${result.pruned} users`);
-      return result;
-    } catch (err) {
-      logger.error("Failed to prune users:", err);
-      throw err;
-    } finally {
-      saving = false;
-    }
-  }
 
   async function performMassBan() {
     if (!$currentGuild?.id || !massBanUserIds.trim()) return;
@@ -128,37 +108,6 @@
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-    <!-- Prune Inactive Users -->
-    <div class="p-4 rounded-xl border"
-         style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}20;">
-      <h3 class="font-semibold mb-3 flex items-center gap-2" style="color: {$colorStore.text}">
-        <i class="fa-solid fa-user-slash"></i>
-        {m.administration.advancedMassPruneTitle()}
-      </h3>
-      <div class="space-y-3">
-        <div>
-          <label class="block text-sm font-medium mb-1" for="prune-days" style="color: {$colorStore.text}">{m.administration.advancedMassPruneDays()}</label>
-          <input bind:value={pruneDays}
-                 class="w-full px-3 py-2 rounded-lg border transition-colors"
-                 id="prune-days"
-                 max="30"
-                 min="1"
-                 placeholder="7"
-                 style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}30; color: {$colorStore.text}"
-                 type="number"
-          />
-        </div>
-        <button
-          class="w-full px-4 py-2 rounded-lg font-medium transition-all hover:scale-[1.02]"
-          disabled={pruneDays <= 0 || saving}
-          onclick={() => showConfirm(m.administration.advancedMassPruneConfirmTitle(), m.administration.advancedMassPruneConfirmMessage({ days: pruneDays }), performPrune)}
-          style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
-        >
-          {m.administration.advancedMassPruneExecute()}
-        </button>
-      </div>
-    </div>
-
     <!-- Mass Ban -->
     <div class="p-4 rounded-xl border"
          style="background: {$colorStore.accent}05; border-color: {$colorStore.accent}30;">

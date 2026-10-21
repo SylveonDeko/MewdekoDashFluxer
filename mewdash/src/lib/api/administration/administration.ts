@@ -20,7 +20,6 @@ import type {
   PermissionOverrideRequest,
   ProtectionStats,
   ProtectionStatus,
-  PruneRequest,
   PruneToMessageRequest,
   ReactionRoleMessage,
   SelfAssignableRole,
@@ -767,19 +766,6 @@ export const administrationApi = {
   massRename: (guildId: bigint, request: MassRenameRequest) =>
     apiRequest<{ renamed: number }>(
       `Administration/${guildId}/mass-rename`,
-      "POST",
-      request,
-    ),
-
-  /**
-   * Prune inactive users
-   * @param guildId The guild ID
-   * @param request Prune configuration
-   * @returns Number of pruned users
-   */
-  pruneUsers: (guildId: bigint, request: PruneRequest) =>
-    apiRequest<{ pruned: number }>(
-      `Administration/${guildId}/prune`,
       "POST",
       request,
     ),

@@ -6,7 +6,7 @@ icon: fa-cog
 category: Security
 dashboard: /dashboard/administration
 module: Administration
-tags: [admin, anti-raid, anti-spam, anti-alt, anti-pattern, anti-mass-mention, anti-mass-post, honeypot, anti-image-hash, scam images, reaction roles, self-assignable roles, auto-assign roles, auto-ban roles, voice channel roles, permission overrides, dpo, mass ban, prune, server recovery, staff role, timezone, cooldowns]
+tags: [admin, anti-raid, anti-spam, anti-alt, anti-pattern, anti-mass-mention, anti-mass-post, honeypot, anti-image-hash, scam images, reaction roles, self-assignable roles, auto-assign roles, auto-ban roles, voice channel roles, permission overrides, dpo, mass ban, server recovery, staff role, timezone, cooldowns]
 related: [moderation, permissions, logging, multigreets, settings, auditlog, rolestates]
 ---
 
@@ -16,7 +16,7 @@ Administration is the module that keeps a server orderly when no moderator is wa
 
 The same module handles role automation: roles given on join, roles members pick up themselves with `iam`, reaction roles, roles tied to being in a voice channel, and tripwire roles that ban whoever receives them. It also lets you change which Discord permission a command needs, set the staff and member roles other features rely on, rate limit commands, and clean up command messages.
 
-For the bad days there are mass operations: ban or kick everyone who joined in the last few minutes, ban by name pattern, by role, or by avatar, prune inactive members, and a server recovery flow that gets an administrator role back to a verified owner.
+For the bad days there are mass operations: ban or kick everyone who joined in the last few minutes, ban by name pattern, by role, or by avatar, and a server recovery flow that gets an administrator role back to a verified owner.
 
 Everything lives on the **Administration** page of the dashboard across five tabs: **Overview**, **Protection Systems**, **Roles & Permissions**, **Automation & Settings** and **Advanced Operations**. Nearly every setting also has a command.
 
@@ -167,7 +167,7 @@ These cards are on the **Automation & Settings** tab.
 | Setting | Default | What it controls |
 | --- | --- | --- |
 | **Staff Role** | none | The role other features treat as staff |
-| **Member Role** | none | The role treated as "member"; `prunemembers` can include people with it |
+| **Member Role** | none | The role treated as "member" |
 | **Server Timezone** | UTC | Timezone used wherever the bot prints local times |
 | **Command Cooldowns** | none | Per command rate limit in seconds, 1 to 90,000 |
 | **Permission Overrides** | none | Discord permission each command requires (see above) |
@@ -200,7 +200,6 @@ The dashboard card can also store keys directly: generate or type a recovery key
 
 | Operation | What it does |
 | --- | --- |
-| **Prune Inactive Users** | Discord's member prune for members inactive for the given number of days (1 to 30) |
 | **Mass Ban Users** | Bans a pasted list of user IDs with one reason; message deletion follows the Moderation ban prune setting |
 | **Mass Rename Users** | Sets every member's nickname to a pattern where `{username}` is replaced with their username, for example `[AFK] {username}`; members the bot cannot rename are skipped |
 | **Prune to Message** | Deletes every message after a given message ID in a channel, one at a time |
@@ -314,7 +313,6 @@ The `autobanrole` commands are also available as `/autobanrole list`, `add`, `re
 | `nameban <regex>` | `nban` | Administrator | Ban members whose username matches, with preview |
 | `baninrole <role> [reason]` | | Administrator | Ban everyone holding a role |
 | `banbyhash <avatarHash>` | `bbh` | Administrator | Ban everyone with a given avatar hash |
-| `prunemembers <time> [yes]` | `memberprune` | Administrator | Prune members inactive for that many days; `yes` includes the member role |
 | `setnick [user] <nickname>` | | Manage Nicknames | Change a member's nickname, or the bot's own |
 | `deafen <users...>` | `deaf` | Deafen Members | Server deafen |
 | `undeafen <users...>` | `undef` | Deafen Members | Undo it |

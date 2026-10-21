@@ -139,18 +139,6 @@ export interface MassRenameRequest {
 }
 
 /**
- * Request model for pruning users
- * Maps to Mewdeko.Controllers.Common.Administration.PruneRequest
- */
-export interface PruneRequest {
-  /** The number of days of inactivity to prune users for */
-  days: number;
-
-  /** The reason for the prune operation */
-  reason?: string | null;
-}
-
-/**
  * Request model for pruning messages to a specific message
  * Maps to Mewdeko.Controllers.Common.Administration.PruneToMessageRequest
  */

@@ -2283,12 +2283,6 @@ export const m = {
     advancedMassBanUserIds: () => t("administration", "advanced_mass_ban_user_ids", "User IDs (one per line or comma-separated)"),
     /** 123456789 987654321 or: 123456789, 987654321 */
     advancedMassBanUserIdsPlaceholder: () => t("administration", "advanced_mass_ban_user_ids_placeholder", "123456789 987654321 or: 123456789, 987654321"),
-    /** Remove users inactive for {days} days? */
-    advancedMassPruneConfirmMessage: (p: { days: P }) => t("administration", "advanced_mass_prune_confirm_message", "Remove users inactive for {days} days?", p),
-    /** Prune Users */
-    advancedMassPruneConfirmTitle: () => t("administration", "advanced_mass_prune_confirm_title", "Prune Users"),
-    /** Days of Inactivity */
-    advancedMassPruneDays: () => t("administration", "advanced_mass_prune_days", "Days of Inactivity"),
     /** Execute Prune */
     advancedMassPruneExecute: () => t("administration", "advanced_mass_prune_execute", "Execute Prune"),
     /** Prune to Message Configuration */
@@ -2305,8 +2299,6 @@ export const m = {
     advancedMassPruneMessageIdPlaceholder: () => t("administration", "advanced_mass_prune_message_id_placeholder", "Enter message ID..."),
     /** Prune to Message */
     advancedMassPruneMessageTitle: () => t("administration", "advanced_mass_prune_message_title", "Prune to Message"),
-    /** Prune Inactive Users */
-    advancedMassPruneTitle: () => t("administration", "advanced_mass_prune_title", "Prune Inactive Users"),
     /** Mass Rename Configuration */
     advancedMassRenameConfig: () => t("administration", "advanced_mass_rename_config", "Mass Rename Configuration"),
     /** This will rename ALL users in the server. Are you sure? */
