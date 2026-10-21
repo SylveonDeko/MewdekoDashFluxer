@@ -1,4 +1,5 @@
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import { page } from "$app/state";
   import { fade, slide } from "svelte/transition";
@@ -60,9 +61,8 @@
 
   let userAvatarUrl = $derived.by(() => {
     const user = $userStore;
-    if (!user?.avatar) return "https://cdn.discordapp.com/embed/avatars/0.png";
-    const ext = user.avatar.startsWith("a_") ? "gif" : "png";
-    return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${ext}`;
+    if (!user?.avatar) return cdn.defaultAvatarUrl();
+    return cdn.userAvatarUrl(user.id, user.avatar);
   });
 
   /**
@@ -229,8 +229,7 @@
 
   let serverIconUrl = $derived.by(() => {
     if ($currentGuild?.icon) {
-      const ext = $currentGuild.icon.startsWith("a_") ? "gif" : "png";
-      return `https://cdn.discordapp.com/icons/${$currentGuild.id}/${$currentGuild.icon}.${ext}?size=128`;
+      return cdn.guildIconUrl($currentGuild.id, $currentGuild.icon, 128);
     }
     return null;
   });
@@ -238,20 +237,18 @@
   let bannerUrl = $derived.by(() => {
     const banner = $currentGuild?.banner;
     if (!banner) return null;
-    if (banner.startsWith("https://cdn.discordapp.com")) return banner;
+    if (banner.startsWith("https://")) return banner;
     if (/^[a-f0-9]{20,}$/i.test(banner) || banner.startsWith("a_")) {
-      const ext = banner.startsWith("a_") ? "gif" : "png";
-      return `https://cdn.discordapp.com/banners/${$currentGuild.id}/${banner}.${ext}?size=480`;
+      return cdn.bannerUrl($currentGuild.id, banner, 480);
     }
     return null;
   });
 
   function guildIconUrl(guild: any): string {
     if (guild.icon) {
-      const ext = guild.icon.startsWith("a_") ? "gif" : "png";
-      return `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.${ext}?size=64`;
+      return cdn.guildIconUrl(guild.id, guild.icon, 64);
     }
-    return "https://cdn.discordapp.com/embed/avatars/0.png";
+    return cdn.defaultAvatarUrl();
   }
 
   async function checkOwnership() {
@@ -500,7 +497,7 @@
                 style="background: {bannerUrl ? 'rgba(255,255,255,0.1)' : $colorStore.primary + '15'};
                        color: {$colorStore.primary};
                        border: 1px solid {bannerUrl ? 'rgba(255,255,255,0.1)' : $colorStore.primary + '20'};"
-                onclick={() => window.open(`https://discord.com/channels/${$currentGuild?.id}`, '_blank')}
+                onclick={() => window.open(cdn.channelUrl($currentGuild?.id), '_blank')}
               >
                 <i class="fa-solid fa-external-link text-[10px]" aria-hidden="true"></i>
                 {m.layout.sidebarViewServer()}

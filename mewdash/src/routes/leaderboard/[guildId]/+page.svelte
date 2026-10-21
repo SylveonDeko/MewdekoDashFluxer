@@ -1,5 +1,6 @@
 <!-- routes/leaderboard/[guildId]/+page.svelte -->
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import { onMount } from "svelte";
   import { page } from "$app/stores";
@@ -559,7 +560,7 @@
                 <!-- User Info -->
                 <div class="flex items-center gap-3 flex-1">
                   <img
-                    src={user.avatarUrl || 'https://cdn.discordapp.com/embed/avatars/0.png'}
+                    src={user.avatarUrl || cdn.defaultAvatarUrl()}
                     alt=""
                     class="w-12 h-12 rounded-xl"
                   >

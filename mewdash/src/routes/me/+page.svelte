@@ -1,5 +1,6 @@
 <!-- routes/me/+page.svelte -->
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import { onMount } from "svelte";
   import { fade, fly } from "svelte/transition";
@@ -495,9 +496,7 @@
   onMount(async () => {
     // Extract colors from user avatar
     if (currentUser?.avatar) {
-      const avatarUrl = currentUser.avatar.startsWith("a_")
-        ? `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.gif`
-        : `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.png`;
+      const avatarUrl = cdn.userAvatarUrl(currentUser.id, currentUser.avatar);
       await colorStore.extractFromImage(avatarUrl);
     }
     
@@ -1242,8 +1241,8 @@
                       >
                         <img
                           src={guild.icon ? 
-                            `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=64` :
-                            'https://cdn.discordapp.com/embed/avatars/0.png'
+                            cdn.guildIconUrl(guild.id, guild.icon, 64) :
+                            cdn.defaultAvatarUrl()
                           }
                           alt=""
                           class="w-10 h-10 rounded-lg"
@@ -1277,8 +1276,8 @@
             <div class="flex items-center gap-4 flex-1">
               <img
                 src={selectedGuild.icon ? 
-                  `https://cdn.discordapp.com/icons/${selectedGuild.id}/${selectedGuild.icon}.png?size=128` :
-                  'https://cdn.discordapp.com/embed/avatars/0.png'
+                  cdn.guildIconUrl(selectedGuild.id, selectedGuild.icon, 128) :
+                  cdn.defaultAvatarUrl()
                 }
                 alt=""
                 class="w-16 h-16 rounded-2xl border-2"

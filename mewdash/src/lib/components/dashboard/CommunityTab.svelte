@@ -1,5 +1,6 @@
 <!-- lib/components/dashboard/CommunityTab.svelte -->
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
     import {fly} from "svelte/transition";
     import {onMount} from "svelte";
@@ -119,7 +120,7 @@
             ...messageUser,
             username: member?.username || m.common.unknownUser(),
             discriminator: '0000', // Discord no longer uses discriminators for most users
-            avatarUrl: member?.avatarUrl || `https://cdn.discordapp.com/embed/avatars/0.png`
+            avatarUrl: member?.avatarUrl || cdn.defaultAvatarUrl()
           };
         });
       }
@@ -242,7 +243,7 @@
               </div>
 
               <!-- Avatar -->
-              <img src={user.avatar || `https://cdn.discordapp.com/embed/avatars/${index % 5}.png`}
+              <img src={user.avatar || cdn.defaultAvatarUrl(index)}
                    alt="" class="w-8 h-8 rounded-full" />
 
               <!-- User Info -->
@@ -301,7 +302,7 @@
                 {#each todaysBirthdays.slice(0, 3) as user (user.userId)}
                     <div class="flex items-center gap-1 px-2 py-1 rounded-sm"
                        style="background: {$colorStore.accent}15;">
-                    <img src={user.avatarUrl || `https://cdn.discordapp.com/embed/avatars/0.png`}
+                    <img src={user.avatarUrl || cdn.defaultAvatarUrl()}
                          alt="" class="w-4 h-4 rounded-full" />
                     <span class="text-xs font-medium" style="color: {$colorStore.text}">
                       {user.nickname || user.username}
@@ -377,7 +378,7 @@
                   {#each topActiveUsers.slice(0, 3) as user (user.userId)}
                       <div class="flex items-center gap-1 px-2 py-1 rounded-sm"
                          style="background: {$colorStore.primary}10;">
-                      <img src={user.avatarUrl || `https://cdn.discordapp.com/embed/avatars/0.png`}
+                      <img src={user.avatarUrl || cdn.defaultAvatarUrl()}
                            alt="" class="w-4 h-4 rounded-full" />
                       <span class="text-xs" style="color: {$colorStore.text}">
                         {user.username?.length > 8 ? user.username.slice(0, 8) + '...' : user.username || m.common.unknownUser()}
@@ -452,7 +453,7 @@
             {#each starboardHighlights.slice(0, 2) as highlight (highlight.messageId)}
               <div class="p-2 rounded-lg" style="background: {$colorStore.primary}08;">
                 <div class="flex items-center gap-2 mb-1">
-                  <img src={highlight.authorAvatarUrl || `https://cdn.discordapp.com/embed/avatars/0.png`}
+                  <img src={highlight.authorAvatarUrl || cdn.defaultAvatarUrl()}
                        alt="" class="w-4 h-4 rounded-full" />
                   <span class="text-xs font-medium" style="color: {$colorStore.text}">
                     {highlight.authorName}

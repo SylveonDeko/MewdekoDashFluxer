@@ -3,6 +3,7 @@
 Wizard layout - minimal layout for focused setup experience
 -->
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
 
 
@@ -42,7 +43,7 @@ Wizard layout - minimal layout for focused setup experience
   // Extract colors from guild icon when available
   $effect(() => {
     if ($currentGuild?.icon) {
-      const guildIconUrl = `https://cdn.discordapp.com/icons/${$currentGuild.id}/${$currentGuild.icon}.png?size=128`;
+      const guildIconUrl = cdn.guildIconUrl($currentGuild.id, $currentGuild.icon, 128);
       colorStore.extractFromServerIcon(guildIconUrl);
     }
   });

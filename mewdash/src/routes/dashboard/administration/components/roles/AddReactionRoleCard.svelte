@@ -1,4 +1,5 @@
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import { slide } from "svelte/transition";
   import { colorStore } from "$lib/stores/colorStore";
@@ -46,7 +47,7 @@
       return {
         type: "custom",
         display: name,
-        url: `https://cdn.discordapp.com/emojis/${id}.${animated === "a" ? "gif" : "webp"}?size=48`
+        url: cdn.emojiUrl(id, 48)
       };
     }
 

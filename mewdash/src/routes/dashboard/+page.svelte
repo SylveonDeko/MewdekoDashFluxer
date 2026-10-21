@@ -1,4 +1,5 @@
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
 
     import { onDestroy, onMount } from "svelte";
@@ -482,12 +483,10 @@
             if (guildInfo?.iconUrl) {
                 void colorStore.extractFromServerIcon(guildInfo.iconUrl);
             } else if ($currentGuild?.icon) {
-                const serverIconUrl = `https://cdn.discordapp.com/icons/${$currentGuild.id}/${$currentGuild.icon}.${$currentGuild.icon.startsWith("a_") ? "gif" : "png"}`;
+                const serverIconUrl = cdn.guildIconUrl($currentGuild.id, $currentGuild.icon);
                 void colorStore.extractFromServerIcon(serverIconUrl);
             } else if (currentUser?.avatar) {
-                const userAvatarUrl = currentUser.avatar.startsWith("a_")
-                    ? `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.gif`
-                    : `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.png`;
+                const userAvatarUrl = cdn.userAvatarUrl(currentUser.id, currentUser.avatar);
                 void colorStore.extractFromImage(userAvatarUrl);
             } else if ($currentInstance?.botAvatar) {
                 void colorStore.extractFromImage($currentInstance.botAvatar);
@@ -555,12 +554,10 @@
         if (guildInfo?.iconUrl) {
             colorStore.extractFromServerIcon(guildInfo.iconUrl);
         } else if ($currentGuild?.icon) {
-            const serverIconUrl = `https://cdn.discordapp.com/icons/${$currentGuild.id}/${$currentGuild.icon}.${$currentGuild.icon.startsWith("a_") ? "gif" : "png"}`;
+            const serverIconUrl = cdn.guildIconUrl($currentGuild.id, $currentGuild.icon);
             colorStore.extractFromServerIcon(serverIconUrl);
         } else if (currentUser?.avatar) {
-            const userAvatarUrl = currentUser.avatar.startsWith("a_")
-                ? `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.gif`
-                : `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.png`;
+            const userAvatarUrl = cdn.userAvatarUrl(currentUser.id, currentUser.avatar);
             colorStore.extractFromImage(userAvatarUrl);
         } else if ($currentInstance?.botAvatar) {
             colorStore.extractFromImage($currentInstance.botAvatar);

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import { onDestroy, onMount, untrack } from "svelte";
   import { afterNavigate } from "$app/navigation";
@@ -172,9 +173,8 @@
   }
 
   function guildIconUrl(guild: any): string {
-    if (!guild.icon) return "https://cdn.discordapp.com/embed/avatars/0.png";
-    const ext = guild.icon.startsWith("a_") ? "gif" : "png";
-    return `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.${ext}`;
+    if (!guild.icon) return cdn.defaultAvatarUrl();
+    return cdn.guildIconUrl(guild.id, guild.icon);
   }
 
   async function selectGuild(guild: any) {
@@ -309,7 +309,7 @@
   // Extract colors from server icon when guild changes, fallback to bot avatar
   $effect(() => {
         if ($currentGuild?.icon) {
-            const iconUrl = `https://cdn.discordapp.com/icons/${$currentGuild.id}/${$currentGuild.icon}.png`;
+            const iconUrl = cdn.guildIconUrl($currentGuild.id, $currentGuild.icon);
             colorStore.extractFromServerIcon(iconUrl);
         } else if ($currentInstance?.botAvatar) {
             colorStore.extractFromImage($currentInstance.botAvatar);

@@ -1,5 +1,6 @@
 <!-- lib/components/TodoPermissionManager.svelte -->
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
 
 
   import { onMount } from "svelte";
@@ -336,7 +337,7 @@
                   <div class="flex items-center gap-4">
                     <!-- Avatar -->
                     <img 
-                      src={member?.avatarUrl || `https://cdn.discordapp.com/embed/avatars/0.png`} 
+                      src={member?.avatarUrl || cdn.defaultAvatarUrl()} 
                       alt="" 
                       class="w-10 h-10 rounded-full"
                     >

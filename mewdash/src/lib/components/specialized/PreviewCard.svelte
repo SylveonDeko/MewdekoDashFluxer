@@ -1,5 +1,6 @@
 <!-- PreviewCard.svelte -->
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import { marked } from "marked";
   import DOMPurify from "dompurify";
@@ -52,13 +53,13 @@
     // Construct avatar URL from hash
     const userAvatarHash = user?.avatar;
     const userAvatar = userAvatarHash
-      ? `https://cdn.discordapp.com/avatars/${userId}/${userAvatarHash}.${userAvatarHash.startsWith("a_") ? "gif" : "png"}?size=256`
-      : "https://cdn.discordapp.com/embed/avatars/0.png";
+      ? cdn.userAvatarUrl(userId, userAvatarHash, 256)
+      : cdn.defaultAvatarUrl();
 
     // Construct banner URL from hash
     const userBannerHash = user?.banner;
     const userBanner = userBannerHash
-      ? `https://cdn.discordapp.com/banners/${userId}/${userBannerHash}.${userBannerHash.startsWith("a_") ? "gif" : "png"}?size=512`
+      ? cdn.bannerUrl(userId, userBannerHash, 512)
       : "";
 
     replaced = replaced.replace(/%user%/g, `<@${userId}>`);
@@ -86,8 +87,8 @@
     replaced = replaced.replace(/%server\.members\.idle%/g, "89");
     replaced = replaced.replace(/%server\.boostlevel%/g, actualGuild?.premiumTier?.toString() || "2");
     replaced = replaced.replace(/%server\.boostcount%/g, actualGuild?.premiumSubscriptionCount?.toString() || "14");
-    replaced = replaced.replace(/%server\.icon%/g, actualGuild?.icon ? `https://cdn.discordapp.com/icons/${guildIdStr}/${actualGuild.icon}.${actualGuild.icon.startsWith("a_") ? "gif" : "png"}?size=256` : "");
-    replaced = replaced.replace(/%server\.banner%/g, actualGuild?.banner ? `https://cdn.discordapp.com/banners/${guildIdStr}/${actualGuild.banner}.png?size=512` : "");
+    replaced = replaced.replace(/%server\.icon%/g, actualGuild?.icon ? cdn.guildIconUrl(guildIdStr, actualGuild.icon, 256) : "");
+    replaced = replaced.replace(/%server\.banner%/g, actualGuild?.banner ? cdn.bannerUrl(guildIdStr, actualGuild.banner, 512) : "");
 
     const nowTimestamp = Math.floor(Date.now() / 1000);
     replaced = replaced.replace(/%server\.time%/g, new Date().toLocaleTimeString("en-US", {
@@ -112,7 +113,7 @@
     // Bot placeholders - use real instance data if available
     const botName = instance?.botName || "Mewdeko";
     const botId = instance?.botId || "752236274261426994";
-    const botAvatar = instance?.botAvatar || "https://cdn.discordapp.com/embed/avatars/0.png";
+    const botAvatar = instance?.botAvatar || cdn.defaultAvatarUrl();
     replaced = replaced.replace(/%bot\.status%/g, m.common.online());
     replaced = replaced.replace(/%bot\.latency%/g, "45");
     replaced = replaced.replace(/%bot\.name%/g, botName);
@@ -244,7 +245,7 @@
 
       const [, animatedFlag, name, id] = match;
       const animated = animatedFlag === "a";
-      const url = `https://cdn.discordapp.com/emojis/${id}.${animated ? "png" : "png"}?size=32&quality=lossless`;
+      const url = cdn.emojiUrl(id, 32);
 
       return { url, name };
   }

@@ -1,3 +1,4 @@
+import * as cdn from "$lib/utils/cdn";
 import { RoleMenuButtonColor, RoleMenuMode, RoleMenuStyle } from "$lib/api/rolemenus/models";
 import { m } from "$lib/i18n";
 
@@ -222,7 +223,7 @@ export function emojiImageUrl(emoji: string | null | undefined): string | null {
   if (!emoji) return null;
   const match = emoji.match(/^<(a?):[^:]+:(\d+)>$/);
   if (!match) return null;
-  return `https://cdn.discordapp.com/emojis/${match[2]}.${match[1] === "a" ? "gif" : "png"}?size=48`;
+  return cdn.emojiUrl(match[2], 48);
 }
 
 /**

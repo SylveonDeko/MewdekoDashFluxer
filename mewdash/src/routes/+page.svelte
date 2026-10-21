@@ -1,5 +1,6 @@
 <!-- routes/+page.svelte -->
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import { onMount } from "svelte";
   import { fade, fly } from "svelte/transition";
@@ -14,7 +15,7 @@
   import { productUpdates } from "$lib/content/productUpdates";
 
   const inviteUrl =
-    "https://discord.com/oauth2/authorize?client_id=752236274261426212&permissions=66186303&response_type=code&redirect_uri=https%3A%2F%2Fmewdeko.tech%2Fapi%2Fdiscord%2Fcallback&integration_type=0&scope=identify+guilds+bot";
+    cdn.botInviteUrl("752236274261426212", "66186303");
   const previewEmbed = $derived(
     container(
       gallery(`${SITE_ORIGIN}/img/hero-dashboard.png`),
