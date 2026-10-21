@@ -8,7 +8,6 @@
   import {
     roleMenusApi,
     RoleMenuMode,
-    RoleMenuStyle,
     type RoleMenu,
     type RoleMenuImportSource,
     type RoleMenuLookups,
@@ -442,7 +441,6 @@
             <p class="text-sm" style="color: {$colorStore.muted}">
               {[
                 channelLabel(menu.channelName),
-                menu.style === RoleMenuStyle.Buttons ? m.common.buttons() : m.common.dropdown(),
                 menu.mode === RoleMenuMode.PickOne ? m.roleMenus.menuModePickOne() : m.roleMenus.menuModePickAny(),
                 m.common.optionsCount({ count: menu.options.length })
               ].join(" · ")}

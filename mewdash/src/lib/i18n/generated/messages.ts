@@ -977,8 +977,6 @@ export const m = {
     rolesCount: (p: { count: P }) => t("_common", "roles_count", "{count} roles", p),
     /** Roles to Grant */
     rolesToGrant: () => t("_common", "roles_to_grant", "Roles to Grant"),
-    /** Row {number} */
-    rowNumber: (p: { number: P }) => t("_common", "row_number", "Row {number}", p),
     /** Rows */
     rows: () => t("_common", "rows", "Rows"),
     /** Rules */
@@ -14145,10 +14143,6 @@ export const m = {
     editorConfirmSubtitle: () => t("role-menus", "editor_confirm_subtitle", "Sends a private note only they can see, listing the roles added and removed."),
     /** Tell members what changed */
     editorConfirmTitle: () => t("role-menus", "editor_confirm_title", "Tell members what changed"),
-    /** Shown in the dropdown before anyone picks. */
-    editorHintTextHelp: () => t("role-menus", "editor_hint_text_help", "Shown in the dropdown before anyone picks."),
-    /** Dropdown hint text */
-    editorHintTextLabel: () => t("role-menus", "editor_hint_text_label", "Dropdown hint text"),
     /** Each role can only be on a menu once */
     editorInvalidDuplicate: () => t("role-menus", "editor_invalid_duplicate", "Each role can only be on a menu once"),
     /** Names can be up to {max} characters */
@@ -14169,8 +14163,8 @@ export const m = {
     editorMessageHint: () => t("role-menus", "editor_message_hint", "Leave empty to post the menu's name and a list of its options."),
     /** Click to write the message, or leave it empty for a simple list of the options */
     editorMessagePlaceholder: () => t("role-menus", "editor_message_placeholder", "Click to write the message, or leave it empty for a simple list of the options"),
-    /** Shown above the dropdown or buttons */
-    editorMessagePreviewDescription: () => t("role-menus", "editor_message_preview_description", "Shown above the dropdown or buttons"),
+    /** Shown above the list of options */
+    editorMessagePreviewDescription: () => t("role-menus", "editor_message_preview_description", "Shown above the list of options"),
     /** Role menu message */
     editorMessagePreviewTitle: () => t("role-menus", "editor_message_preview_title", "Role menu message"),
     /** Must keep at least */
@@ -14193,10 +14187,6 @@ export const m = {
     editorSectionPicking: () => t("role-menus", "editor_section_picking", "Picking"),
     /** This server */
     editorThisServer: () => t("role-menus", "editor_this_server", "This server"),
-    /** A button per role, five to a row. */
-    editorTypeButtonsText: () => t("role-menus", "editor_type_buttons_text", "A button per role, five to a row."),
-    /** One tidy list with room for descriptions. */
-    editorTypeDropdownText: () => t("role-menus", "editor_type_dropdown_text", "One tidy list with room for descriptions."),
     /** Uses the text and embeds from the old message */
     importCopySubtitle: () => t("role-menus", "import_copy_subtitle", "Uses the text and embeds from the old message"),
     /** Copy the original message */
@@ -14206,9 +14196,7 @@ export const m = {
     /** Nothing to move */
     importEmptyTitle: () => t("role-menus", "import_empty_title", "Nothing to move"),
     /** Older setups had members add an emoji under a message to get a role. Move one to a role... */
-    importIntro: () => t("role-menus", "import_intro", "Older setups had members add an emoji under a message to get a role. Move one to a role menu and members pick from a dropdown or buttons instead."),
-    /** Menu type */
-    importMenuType: () => t("role-menus", "import_menu_type", "Menu type"),
+    importIntro: () => t("role-menus", "import_intro", "Older setups had members add an emoji under a message to get a role. Move one to a role menu to manage it here with the same emoji."),
     /** Move to a role menu */
     importMove: () => t("role-menus", "import_move", "Move to a role menu"),
     /** Post in */
@@ -14221,8 +14209,8 @@ export const m = {
     listCount: (p: { count: P; max: P }) => t("role-menus", "list_count", "{count} of {max} menus", p),
     /** Create your first menu */
     listCreateFirst: () => t("role-menus", "list_create_first", "Create your first menu"),
-    /** Post a message with a dropdown or buttons, and members pick their own roles. Pronouns, ... */
-    listEmptyText: () => t("role-menus", "list_empty_text", "Post a message with a dropdown or buttons, and members pick their own roles. Pronouns, colors, pings, regions: one menu each."),
+    /** Post a message and members react to pick their own roles. Pronouns, colors, pings, regi... */
+    listEmptyText: () => t("role-menus", "list_empty_text", "Post a message and members react to pick their own roles. Pronouns, colors, pings, regions: one menu each."),
     /** No role menus yet */
     listEmptyTitle: () => t("role-menus", "list_empty_title", "No role menus yet"),
     /** You have {count} older emoji role setups you can move over. */
@@ -14249,12 +14237,8 @@ export const m = {
     notifyReposted: (p: { channel: P }) => t("role-menus", "notify_reposted", "Posted again in {channel}", p),
     /** Message updated in {channel} */
     notifyUpdated: (p: { channel: P }) => t("role-menus", "notify_updated", "Message updated in {channel}", p),
-    /** Button color */
-    optionButtonColor: () => t("role-menus", "option_button_color", "Button color"),
-    /** Shown in the default message */
-    optionDescriptionHintButtons: () => t("role-menus", "option_description_hint_buttons", "Shown in the default message"),
-    /** Shown under the dropdown option */
-    optionDescriptionHintDropdown: () => t("role-menus", "option_description_hint_dropdown", "Shown under the dropdown option"),
+    /** Shown next to the role in the default message */
+    optionDescriptionHint: () => t("role-menus", "option_description_hint", "Shown next to the role in the default message"),
     /** option {number} */
     optionFallbackName: (p: { number: P }) => t("role-menus", "option_fallback_name", "option {number}", p),
     /** Name on the menu */
@@ -14271,8 +14255,8 @@ export const m = {
     pageSaveFailed: () => t("role-menus", "page_save_failed", "Couldn't save the menu."),
     /** Add an option to see the menu */
     previewEmpty: () => t("role-menus", "preview_empty", "Add an option to see the menu"),
-    /** Paused: the dropdown or buttons are greyed out in Discord. */
-    previewPaused: () => t("role-menus", "preview_paused", "Paused: the dropdown or buttons are greyed out in Discord."),
+    /** Paused: reactions on this menu do nothing until you resume it. */
+    previewPaused: () => t("role-menus", "preview_paused", "Paused: reactions on this menu do nothing until you resume it."),
     /** Channel missing */
     statusChannelMissing: () => t("role-menus", "status_channel_missing", "Channel missing"),
     /** Live */

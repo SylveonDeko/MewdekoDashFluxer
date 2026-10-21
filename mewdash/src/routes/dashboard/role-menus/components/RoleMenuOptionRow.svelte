@@ -4,9 +4,8 @@
   import DiscordSelector from "$lib/components/forms/DiscordSelector.svelte";
   import EmojiPicker from "$lib/components/forms/EmojiPicker.svelte";
   import type { GuildEmojiInfo } from "$lib/api/client/models";
-  import { RoleMenuButtonColor, RoleMenuStyle, type RoleMenuLookupRole } from "$lib/api/rolemenus/models";
+  import type { RoleMenuLookupRole } from "$lib/api/rolemenus/models";
   import {
-    buttonColorOptions,
     DESCRIPTION_LENGTH,
     LABEL_LENGTH,
     type RoleMenuOptionDraft
@@ -20,8 +19,6 @@
     index: number;
     /** Number of options on the menu */
     count: number;
-    /** Dropdown or buttons */
-    style: number;
     /** Roles this row may pick, already filtered to assignable roles not used elsewhere */
     roleOptions: Array<{ id: string; name: string; color: number }>;
     /** Every lookup role, used for names and problems */
@@ -40,7 +37,6 @@
     option = $bindable(),
     index,
     count,
-    style,
     roleOptions,
     roles,
     guildEmojis,
@@ -178,30 +174,9 @@
              style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}30; color: {$colorStore.text};"
       >
       <p class="text-xs mt-2" style="color: {$colorStore.muted}">
-        {style === RoleMenuStyle.Buttons ? m.roleMenus.optionDescriptionHintButtons() : m.roleMenus.optionDescriptionHintDropdown()}
+        {m.roleMenus.optionDescriptionHint()}
       </p>
     </div>
-
-    {#if style === RoleMenuStyle.Buttons}
-      <div class="relative z-[5]">
-        <span id="rm-{option.key}-color" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.roleMenus.optionButtonColor()}</span>
-        <div class="min-h-[44px]">
-          <DiscordSelector
-            type="custom"
-            options={buttonColorOptions()}
-            selected={option.buttonStyle.toString()}
-            placeholder={m.common.colorGrey()}
-            searchable={false}
-            ariaLabelledby="rm-{option.key}-color"
-            onchange={(detail) => {
-              option.buttonStyle = typeof detail.selected === "string" && detail.selected
-                ? parseInt(detail.selected)
-                : RoleMenuButtonColor.Grey;
-            }}
-          />
-        </div>
-      </div>
-    {/if}
   </div>
 
   {#if problem}

@@ -5,7 +5,7 @@
   import type { DiscordUser } from "$lib/types/discord";
   import {
     buildDefaultEmbed,
-    buildPreviewRows,
+    buildOptionsEmbed,
     DEFAULT_NAME,
     hasMessageContent,
     messageParts,
@@ -18,12 +18,6 @@
     message: unknown;
     /** The menu name */
     name: string;
-    /** Dropdown or buttons */
-    style: number;
-    /** Dropdown hint text, blank for the default */
-    placeholder: string;
-    /** Pick any or pick one */
-    mode: number;
     /** Options in display order */
     options: PreviewOption[];
     /** Whether the menu is paused */
@@ -34,24 +28,23 @@
     guildId?: bigint | string | null;
   }
 
-  let { message, name, style, placeholder, mode, options, paused = false, user = null, guildId = null }: Props =
-    $props();
+  let { message, name, options, paused = false, user = null, guildId = null }: Props = $props();
 
-  /** The text and embeds shown above the dropdown or buttons. */
+  /** The text and embeds the bot posts: the custom message followed by the option list, or the default message. */
   let parts = $derived.by(() => {
-    if (hasMessageContent(message)) return messageParts(message);
+    if (hasMessageContent(message)) {
+      const custom = messageParts(message);
+      const embeds = custom.embeds.length < 10 ? [...custom.embeds, buildOptionsEmbed(options)] : custom.embeds;
+      return { content: custom.content, embeds };
+    }
     return { content: "", embeds: [buildDefaultEmbed(name || DEFAULT_NAME, options)] };
   });
-
-  /** The mock dropdown or button rows. */
-  let rows = $derived(buildPreviewRows(style, placeholder, mode, options));
 </script>
 
 <div class:opacity-60={paused}>
   <PreviewCard
     content={parts.content}
     embeds={parts.embeds}
-    componentRows={rows}
     {user}
     {guildId}
     emptyMessage={m.roleMenus.previewEmpty()}

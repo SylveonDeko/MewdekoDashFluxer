@@ -5,7 +5,6 @@
   import { currentGuild } from "$lib/stores/currentGuild";
   import {
     roleMenusApi,
-    RoleMenuStyle,
     type RoleMenu,
     type RoleMenuImportSource,
     type RoleMenuLookups
@@ -31,7 +30,6 @@
 
   /** Per-source move settings. */
   interface MoveSettings {
-    style: number;
     channelId: string | null;
     name: string;
     copyMessage: boolean;
@@ -45,7 +43,6 @@
     for (const source of sources) {
       if (!settings[source.id]) {
         settings[source.id] = {
-          style: RoleMenuStyle.Dropdown,
           channelId: source.channelId.toString(),
           name: "",
           copyMessage: true,
@@ -78,7 +75,6 @@
     try {
       const menu = await roleMenusApi.importSetup($currentGuild.id, {
         sourceId: source.id,
-        style: entry.style,
         channelId: entry.channelId ? BigInt(entry.channelId) : null,
         name: entry.name.trim() || null,
         copyMessage: entry.copyMessage,
@@ -158,26 +154,6 @@
 
         {#if entry}
           <div class="space-y-4">
-            <div>
-              <span class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.roleMenus.importMenuType()}</span>
-              <div class="flex flex-wrap gap-2">
-                {#each [{ value: RoleMenuStyle.Dropdown, label: m.common.dropdown(), icon: "fa-square-caret-down" }, { value: RoleMenuStyle.Buttons, label: m.common.buttons(), icon: "fa-grip" }] as choice (choice.value)}
-                  <button
-                    type="button"
-                    class="flex items-center gap-2 px-4 py-2 rounded-xl border text-sm font-medium min-h-[44px] transition-all hover:scale-[1.02]"
-                    style="background: {entry.style === choice.value ? $colorStore.primary + '20' : $colorStore.primary + '08'};
-                           border-color: {entry.style === choice.value ? $colorStore.primary : $colorStore.primary + '30'};
-                           color: {entry.style === choice.value ? $colorStore.primary : $colorStore.text};"
-                    aria-pressed={entry.style === choice.value}
-                    onclick={() => { entry.style = choice.value; }}
-                  >
-                    <i class="fa-solid {choice.icon}" aria-hidden="true"></i>
-                    {choice.label}
-                  </button>
-                {/each}
-              </div>
-            </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
               <div class="relative z-10">
                 <span id="rm-import-{source.id}-channel" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">

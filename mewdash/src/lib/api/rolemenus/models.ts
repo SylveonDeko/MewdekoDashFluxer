@@ -1,9 +1,3 @@
-/** Whether a menu shows a dropdown or a row of buttons. */
-export enum RoleMenuStyle {
-  Dropdown = 0,
-  Buttons = 1,
-}
-
 /** Whether members can hold any number of the menu's roles or only one at a time. */
 export enum RoleMenuMode {
   PickAny = 0,
@@ -14,14 +8,6 @@ export enum RoleMenuMode {
 export enum RoleMenuReplyMode {
   Private = 0,
   Silent = 1,
-}
-
-/** Color of an option's button when the menu uses buttons. */
-export enum RoleMenuButtonColor {
-  Blurple = 1,
-  Grey = 2,
-  Green = 3,
-  Red = 4,
 }
 
 /** Posting state of a menu, as reported by the bot. */
@@ -52,9 +38,6 @@ export interface RoleMenuOption {
 
   /** Short description */
   description?: string | null;
-
-  /** Button color, see {@link RoleMenuButtonColor} */
-  buttonStyle: number;
 
   /** 0-based position */
   position: number;
@@ -88,12 +71,6 @@ export interface RoleMenu {
 
   /** Raw stored message source: plain text or embed builder JSON. Missing means the default message. */
   message?: string | null;
-
-  /** See {@link RoleMenuStyle} */
-  style: number;
-
-  /** Dropdown hint text, missing for the default */
-  placeholder?: string | null;
 
   /** See {@link RoleMenuMode} */
   mode: number;
@@ -148,9 +125,6 @@ export interface RoleMenuOptionRequest {
 
   /** Short text under the dropdown option and in the default message */
   description?: string | null;
-
-  /** Button color, see {@link RoleMenuButtonColor}. Defaults to grey. */
-  buttonStyle: number;
 }
 
 /**
@@ -166,12 +140,6 @@ export interface RoleMenuRequest {
 
   /** Plain text or embed builder JSON. Empty or null means the default message. */
   message?: string | null;
-
-  /** See {@link RoleMenuStyle} */
-  style: number;
-
-  /** Dropdown hint text. Null means the default for the mode. */
-  placeholder?: string | null;
 
   /** See {@link RoleMenuMode} */
   mode: number;
@@ -275,9 +243,6 @@ export interface RoleMenuLimits {
   /** Most options per menu */
   maxOptions: number;
 
-  /** Buttons per row */
-  buttonsPerRow: number;
-
   /** Longest menu name */
   nameLength: number;
 
@@ -285,10 +250,6 @@ export interface RoleMenuLimits {
   labelLength: number;
 
   /** Longest option description */
-  descriptionLength: number;
-
-  /** Longest dropdown hint text */
-  placeholderLength: number;
 }
 
 /**
@@ -367,9 +328,6 @@ export interface RoleMenuImportSource {
 export interface RoleMenuImportRequest {
   /** ID of the older setup */
   sourceId: number;
-
-  /** See {@link RoleMenuStyle} */
-  style: number;
 
   /** Channel for the new menu. Null or 0 means the older setup's channel. */
   channelId?: bigint | null;
