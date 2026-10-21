@@ -10,25 +10,10 @@
   import LatestProductUpdate from "$lib/components/home/LatestProductUpdate.svelte";
   import HomeHero from "$lib/components/home/HomeHero.svelte";
   import HomeTails from "$lib/components/home/HomeTails.svelte";
-  import ComponentEmbed from "$lib/components/layout/ComponentEmbed.svelte";
-  import { buttons, container, gallery, linkButton, SITE_ORIGIN, separator, text } from "$lib/componentEmbed";
   import { productUpdates } from "$lib/content/productUpdates";
 
   const inviteUrl =
     cdn.botInviteUrl("752236274261426212", "66186303");
-  const previewEmbed = $derived(
-    container(
-      gallery(`${SITE_ORIGIN}/img/hero-dashboard.png`),
-      text(`## Mewdeko\n${m.home.landingEmbedSummary()}`),
-      separator(),
-      buttons(
-        linkButton(m.home.heroAddToDiscord(), inviteUrl),
-        linkButton(m.common.dashboard(), `${SITE_ORIGIN}/dashboard`),
-        linkButton(m.common.commands(), `${SITE_ORIGIN}/commands`)
-      )
-    )
-  );
-
   let guilds: RedisGuild[] = $state([]);
   let fetched = $state(false);
   let isLoading = $state(true);
@@ -100,8 +85,6 @@
   }
 
 </script>
-
-<ComponentEmbed embed={previewEmbed} />
 
 <svelte:head>
   <title>{m.home.landingMetaTitle()}</title>

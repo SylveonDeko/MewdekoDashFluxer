@@ -5,13 +5,21 @@
   import Portal from "$lib/components/ui/Portal.svelte";
   import PreviewCard from "./PreviewCard.svelte";
   import EmbedEditor from "./EmbedEditor.svelte";
-  import ComponentEditor from "./ComponentEditor.svelte";
+  import LinkButtonEditor from "./LinkButtonEditor.svelte";
+  import {
+    isValidLinkUrl,
+    linkButtonsFromComponents,
+    linkButtonsToComponents,
+    linkButtonsToPreviewRows,
+    MAX_LINK_BUTTONS,
+    newLinkButton,
+    type LinkButton
+  } from "$lib/utils/linkButtons";
   import ValidationCard from "./ValidationCard.svelte";
   import Notification from "$lib/components/ui/Notification.svelte";
   import PlaceholderPicker from "$lib/components/forms/PlaceholderPicker.svelte";
   import { fade, slide } from "svelte/transition";
-  import { chatTriggersApi, embedsApi } from "$lib/api/index.ts";
-  import type { ChatTrigger } from "$lib/api/chattriggers/models/ChatTrigger";
+  import { embedsApi } from "$lib/api/index.ts";
   import type { SavedEmbed } from "$lib/api/embeds/models";
   import { logger } from "$lib/logger.ts";
   import type { FluxerUser } from "$lib/types/fluxer";
@@ -33,7 +41,6 @@
     additionalPlaceholders?: Placeholder[];
     // Restrictions
     restrictedFields?: string[]; // Fields to hide in embed editor
-    restrictedComponentTypes?: string[]; // Component types to restrict
     // Appearance
     placeholder?: string; // Placeholder text when empty
     icon?: string; // Icon to show in preview
@@ -91,32 +98,6 @@
     fields: Field[];
   }
 
-  interface NewEmbedSelectOption {
-    id: string | null;
-    name: string;
-    emoji: string;
-    description: string;
-  }
-
-  interface NewEmbedComponent {
-    componentKey: string;
-    id: string | null;
-    rowIndex: number;
-    displayName: string;
-    style: number;
-    url: string;
-    emoji: string;
-    isSelect: boolean;
-    maxOptions: number;
-    minOptions: number;
-    options: NewEmbedSelectOption[];
-  }
-
-  interface ComponentRow {
-    componentKey: string;
-    rowKey: string;
-    components: NewEmbedComponent[];
-  }
 
 
   let {
@@ -130,7 +111,6 @@
     placeholders = [],
     additionalPlaceholders = [],
     restrictedFields = [],
-    restrictedComponentTypes = [],
     placeholder = m.embedbuilder.fullscreenDefaultPlaceholder(),
     icon = "fa-layer-group",
     guildId = null,
@@ -149,7 +129,7 @@
   let showContentPlaceholders = $state(false);
   let contentPlaceholderSearch = $state("");
   let contentTextarea: HTMLTextAreaElement | null = $state(null);
-  let componentRows: ComponentRow[] = $state([]);
+  let linkButtons: LinkButton[] = $state([]);
 
   /**
    * Inserts a placeholder token into the message content at the caret,
@@ -170,7 +150,6 @@
       });
     }
   }
-  let chatTriggers: ChatTrigger[] = $state([]);
   let validationErrors: any[] = $state([]);
   let validationWarnings: any[] = $state([]);
   let showNotification = $state(false);
@@ -178,7 +157,6 @@
   let notificationType: "success" | "error" = $state("success");
   let showMobilePreview = $state(false);
   let hasInitialized = $state(false);
-  let editingComponentKey = $state<string | null>(null);
   let editHistory = $state<string[]>([]);
   let historyIndex = $state(-1);
   let initialSnapshot = $state("");
@@ -230,8 +208,6 @@
     { category: "Server", name: "%server.members.offline%", description: m.placeholders.serverMembersOffline() },
     { category: "Server", name: "%server.members.dnd%", description: m.placeholders.serverMembersDnd() },
     { category: "Server", name: "%server.members.idle%", description: m.placeholders.serverMembersIdle() },
-    { category: "Server", name: "%server.boostlevel%", description: m.placeholders.serverBoostlevel() },
-    { category: "Server", name: "%server.boostcount%", description: m.placeholders.serverBoostcount() },
     { category: "Server", name: "%server.time%", description: m.placeholders.serverTime() },
     { category: "Server", name: "%server.timestamp.longdatetime%", description: m.placeholders.serverTimestampLongdatetime() },
     { category: "Server", name: "%server.timestamp.longtime%", description: m.placeholders.serverTimestampLongtime() },
@@ -365,60 +341,15 @@
       hasInitialized = true;
     }
 
-    // Parse components
-    if (value?.components && Array.isArray(value.components)) {
-      // Group components by row
-      const rowsMap = new Map<number, NewEmbedComponent[]>();
-      value.components.forEach((comp: any) => {
-        const rowIndex = comp.row || 0;
-        if (!rowsMap.has(rowIndex)) {
-          rowsMap.set(rowIndex, []);
-        }
-        rowsMap.get(rowIndex)!.push({
-          componentKey: `component-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
-          id: comp.id || null,
-          rowIndex,
-          displayName: comp.displayName || "",
-          style: comp.style || 1,
-          url: comp.url || "",
-          emoji: comp.emoji || "",
-          isSelect: comp.isSelect || false,
-          maxOptions: comp.maxOptions || 1,
-          minOptions: comp.minOptions || 1,
-          options: comp.options || []
-        });
-      });
-
-      // Convert to ComponentRow array
-      componentRows = Array.from(rowsMap.entries()).map(([rowIndex, components]) => ({
-        componentKey: `row-${rowIndex}-${Date.now()}`,
-        rowKey: `row-${rowIndex}-${Date.now()}`,
-        components
-      }));
-    } else {
-      componentRows = [];
-    }
+    linkButtons = allowComponents ? linkButtonsFromComponents(value?.components) : [];
   });
 
-  // Load chat triggers
-  async function loadChatTriggers() {
-    if (!guildId) return;
-    try {
-      const guildIdBigInt = typeof guildId === "string" ? BigInt(guildId) : guildId;
-      chatTriggers = await chatTriggersApi.getChatTriggers(guildIdBigInt);
-    } catch (error) {
-      logger.error("Failed to load chat triggers:", error);
-    }
-  }
-
-  // Open/Close handlers
   function open() {
     if (historyDebounce) clearTimeout(historyDebounce);
     initialSnapshot = serializeDraft();
     editHistory = [initialSnapshot];
     historyIndex = 0;
     isOpen = true;
-    loadChatTriggers();
     loadSavedEmbeds();
     validateEmbeds();
     validateComponents();
@@ -478,16 +409,10 @@
     }
 
     // Clean and flatten components if allowed
-    if (allowComponents && componentRows.length > 0) {
-      const cleanedComponents: any[] = [];
-      componentRows.forEach(row => {
-        row.components.forEach(component => {
-          cleanedComponents.push(cleanComponent(component));
-        });
-      });
-
-      if (cleanedComponents.length > 0) {
-        exportData.components = cleanedComponents;
+    if (allowComponents) {
+      const components = linkButtonsToComponents(linkButtons);
+      if (components.length > 0) {
+        exportData.components = components;
       }
     }
 
@@ -511,7 +436,7 @@
     if (!snapshot) {
       content = "";
       embeds = [];
-      componentRows = [];
+      linkButtons = [];
       validateEmbeds();
       validateComponents();
     } else {
@@ -536,7 +461,7 @@
   }
 
   $effect(() => {
-    JSON.stringify({ content, embeds, componentRows });
+    JSON.stringify({ content, embeds, linkButtons });
 
     if (!isOpen || restoringHistory) return;
 
@@ -596,48 +521,6 @@
     return cleaned;
   }
 
-  function cleanComponent(component: NewEmbedComponent) {
-    const cleaned: any = {
-      row: component.rowIndex,
-      displayName: component.displayName,
-      style: component.style,
-      isSelect: component.isSelect
-    };
-
-    if (component.id) {
-      cleaned.id = component.id;
-    }
-
-    if (component.style === 5 && component.url?.trim()) {
-      cleaned.url = component.url;
-    }
-
-    if (component.emoji?.trim()) {
-      cleaned.emoji = component.emoji;
-    }
-
-    if (component.isSelect) {
-      cleaned.minOptions = component.minOptions;
-      cleaned.maxOptions = component.maxOptions;
-
-      if (component.options?.length > 0) {
-        cleaned.options = component.options.map(opt => {
-          const cleanedOpt: any = {
-            name: opt.name
-          };
-
-          if (opt.id) cleanedOpt.id = opt.id;
-          if (opt.description?.trim()) cleanedOpt.description = opt.description;
-          if (opt.emoji?.trim()) cleanedOpt.emoji = opt.emoji;
-
-          return cleanedOpt;
-        });
-      }
-    }
-
-    return cleaned;
-  }
-
   // Refreshes the editable JSON textarea from the current builder state
   function refreshJsonPreview() {
     const data = cleanOutput();
@@ -647,7 +530,7 @@
 
   // Parses embed JSON (either { content, embeds, components } or a bare embed) and loads it into
   // the builder. Respects the same restrictions manual editing is subject to: allowContent,
-  // allowMultipleEmbeds/maxEmbeds, and allowComponents/restrictedComponentTypes.
+  // allowMultipleEmbeds/maxEmbeds, and allowComponents.
   function applyImportedJson(text: string, notify = true) {
     let parsed: any;
     try {
@@ -686,78 +569,10 @@
     }
     hasInitialized = true;
 
-    const hasImportedComponents = isFullPayload && Array.isArray(parsed.components) && parsed.components.length > 0;
-    let componentsSkipped = false;
-
-    if (allowComponents && !restrictedComponentTypes.includes("all") && hasImportedComponents) {
-      const rowsByIndex = new Map<number, ComponentRow>();
-      let totalAdded = 0;
-
-      parsed.components.forEach((c: any, componentIndex: number) => {
-        if (totalAdded >= 25) {
-          componentsSkipped = true;
-          return;
-        }
-
-        const type = c.isSelect ? "select" : "button";
-        if (restrictedComponentTypes.includes(type)) {
-          componentsSkipped = true;
-          return;
-        }
-
-        const rowIndex = typeof c.row === "number" ? c.row : 0;
-        let row = rowsByIndex.get(rowIndex);
-        if (!row) {
-          if (rowsByIndex.size >= 5) {
-            componentsSkipped = true;
-            return;
-          }
-          const rowKey = `row-${Date.now()}-${rowIndex}-${Math.random().toString(36).substr(2, 9)}`;
-          row = { componentKey: rowKey, rowKey, components: [] };
-          rowsByIndex.set(rowIndex, row);
-        }
-
-        if (type === "select" && row.components.length > 0) {
-          componentsSkipped = true;
-          return;
-        }
-        if (type === "button" && row.components.length >= 5) {
-          componentsSkipped = true;
-          return;
-        }
-        if (row.components.some(existing => existing.isSelect)) {
-          componentsSkipped = true;
-          return;
-        }
-
-        row.components.push({
-          componentKey: `comp-${Date.now()}-${componentIndex}-${Math.random().toString(36).substr(2, 9)}`,
-          id: c.id ?? null,
-          rowIndex,
-          displayName: c.displayName ?? "",
-          style: c.style ?? 1,
-          url: c.url ?? "",
-          emoji: c.emoji ?? "",
-          isSelect: !!c.isSelect,
-          maxOptions: c.maxOptions ?? 1,
-          minOptions: c.minOptions ?? 1,
-          options: (c.options ?? []).map((o: any) => ({
-            id: o.id ?? null,
-            name: o.name ?? "",
-            emoji: o.emoji ?? "",
-            description: o.description ?? ""
-          }))
-        });
-        totalAdded++;
-      });
-
-      componentRows = Array.from(rowsByIndex.keys())
-        .sort((a, b) => a - b)
-        .map(key => rowsByIndex.get(key)!);
-    } else {
-      if (hasImportedComponents) componentsSkipped = true;
-      componentRows = [];
-    }
+    const importedComponents = isFullPayload && Array.isArray(parsed.components) ? parsed.components : [];
+    const importedButtons = allowComponents ? linkButtonsFromComponents(importedComponents) : [];
+    linkButtons = importedButtons;
+    const componentsSkipped = importedComponents.length > importedButtons.length;
 
     jsonParseError = "";
     validateEmbeds();
@@ -895,7 +710,7 @@
     // Clear everything
     content = "";
     embeds = [];
-    componentRows = [];
+    linkButtons = [];
 
     // Set the bound value to empty string
     value = "";
@@ -920,154 +735,35 @@
     validateEmbeds();
   }
 
-  // Component Row management
-  function addRow() {
-    if (getTotalComponentCount() >= 25) return;
-
-    const rowKey = `row-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    const newRow: ComponentRow = {
-      componentKey: rowKey,
-      rowKey,
-      components: []
-    };
-
-    componentRows = [...componentRows, newRow];
-    showNotificationMessage(m.embedbuilder.fullscreenNotifyRowAdded());
-  }
-
-  function addComponentToRow(rowKey: string, type: "button" | "select") {
-    if (restrictedComponentTypes.includes(type)) {
-      showNotificationMessage(type === "button" ? m.embedbuilder.fullscreenNotifyButtonNotAllowed() : m.embedbuilder.fullscreenNotifySelectNotAllowed(), "error");
+  function addLinkButton() {
+    if (linkButtons.length >= MAX_LINK_BUTTONS) {
+      showNotificationMessage(m.embedbuilder.linksNotifyMax(), "error");
       return;
     }
+    linkButtons = [...linkButtons, newLinkButton()];
+  }
 
-    const rowIndex = componentRows.findIndex(r => r.rowKey === rowKey);
-    if (rowIndex === -1) return;
+  function handleLinkButtonUpdate(detail: { button: LinkButton }) {
+    linkButtons = linkButtons.map(b => (b.key === detail.button.key ? detail.button : b));
+    validateComponents();
+  }
 
-    const row = componentRows[rowIndex];
+  function handleLinkButtonRemove(detail: { key: string }) {
+    linkButtons = linkButtons.filter(b => b.key !== detail.key);
+    validateComponents();
+    showNotificationMessage(m.embedbuilder.linksNotifyRemoved());
+  }
 
-    if (getTotalComponentCount() >= 25) {
-      showNotificationMessage(m.embedbuilder.fullscreenNotifyMaxComponents(), "error");
+  function handleLinkButtonDuplicate(detail: { key: string }) {
+    if (linkButtons.length >= MAX_LINK_BUTTONS) {
+      showNotificationMessage(m.embedbuilder.linksNotifyMax(), "error");
       return;
     }
-
-    if (type === "button" && row.components.length >= 5) {
-      showNotificationMessage(m.embedbuilder.fullscreenNotifyMaxButtons(), "error");
-      return;
-    }
-
-    if (type === "select" && row.components.length > 0) {
-      showNotificationMessage(m.embedbuilder.fullscreenNotifySelectAlone(), "error");
-      return;
-    }
-
-    if (row.components.some(c => c.isSelect)) {
-      showNotificationMessage(m.embedbuilder.fullscreenNotifyRowHasSelect(), "error");
-      return;
-    }
-
-    const componentKey = `component-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
-    const newComponent: NewEmbedComponent = {
-      componentKey,
-      id: null,
-      rowIndex,
-      displayName: type === "button" ? m.common.newButton() : m.embedbuilder.fullscreenNewSelectLabel(),
-      style: type === "button" ? 1 : 0,
-      url: "",
-      emoji: "",
-      isSelect: type === "select",
-      maxOptions: 1,
-      minOptions: 1,
-      options: type === "select" ? [] : []
-    };
-
-    row.components = [...row.components, newComponent];
-    componentRows = [...componentRows];
-    // Automatically open edit mode for the new component
-    editingComponentKey = componentKey;
-    showNotificationMessage(type === "button" ? m.embedbuilder.fullscreenNotifyButtonAdded() : m.embedbuilder.fullscreenNotifySelectAdded());
-  }
-
-  function removeRow(rowKey: string) {
-    componentRows = componentRows.filter(r => r.rowKey !== rowKey);
-
-    componentRows = componentRows.map((r, idx) => ({
-      ...r,
-      components: r.components.map(c => ({
-        ...c,
-        rowIndex: idx
-      }))
-    }));
-
-    showNotificationMessage(m.embedbuilder.fullscreenNotifyRowRemoved());
-  }
-
-  function handleComponentUpdate(detail: { component: NewEmbedComponent }) {
-    const { component } = detail;
-
-    for (const row of componentRows) {
-      const index = row.components.findIndex(c => c.componentKey === component.componentKey);
-      if (index !== -1) {
-        row.components[index] = component;
-        componentRows = [...componentRows];
-        validateComponents();
-        return;
-      }
-    }
-  }
-
-  function handleComponentRemove(detail: { componentKey: string }) {
-    const { componentKey } = detail;
-
-    for (const row of componentRows) {
-      const initialLength = row.components.length;
-      row.components = row.components.filter(c => c.componentKey !== componentKey);
-
-      if (row.components.length !== initialLength) {
-        componentRows = [...componentRows];
-        // Clear editing state if we're removing the component being edited
-        if (editingComponentKey === componentKey) {
-          editingComponentKey = null;
-        }
-        showNotificationMessage(m.embedbuilder.fullscreenNotifyComponentRemoved());
-        return;
-      }
-    }
-  }
-
-  function handleComponentEdit(detail: { component: NewEmbedComponent }) {
-    const { component } = detail;
-    // Toggle edit mode: if already editing this component, close it; otherwise open it
-    if (editingComponentKey === component.componentKey) {
-      editingComponentKey = null;
-    } else {
-      editingComponentKey = component.componentKey;
-    }
-  }
-
-  function handleComponentDuplicate(detail: { componentKey: string }) {
-    const { componentKey } = detail;
-
-    for (const row of componentRows) {
-      const componentIndex = row.components.findIndex(c => c.componentKey === componentKey);
-      if (componentIndex !== -1) {
-        const originalComponent = row.components[componentIndex];
-        const newComponent: NewEmbedComponent = {
-          ...originalComponent,
-          componentKey: `comp_${Date.now()}_${Math.random()}`,
-          id: null // Clear ID for duplicated component
-        };
-
-        row.components.splice(componentIndex + 1, 0, newComponent);
-        componentRows = [...componentRows];
-        showNotificationMessage(m.embedbuilder.fullscreenNotifyComponentDuplicated());
-        return;
-      }
-    }
-  }
-
-  function getTotalComponentCount(): number {
-    return componentRows.reduce((sum, row) => sum + row.components.length, 0);
+    const index = linkButtons.findIndex(b => b.key === detail.key);
+    if (index === -1) return;
+    const copy = { ...linkButtons[index], key: newLinkButton().key };
+    linkButtons = [...linkButtons.slice(0, index + 1), copy, ...linkButtons.slice(index + 1)];
+    showNotificationMessage(m.embedbuilder.linksNotifyDuplicated());
   }
 
   // Validation
@@ -1131,60 +827,28 @@
   function validateComponents() {
     validationErrors = validationErrors.filter(err => !err.id.startsWith("component-"));
 
-    componentRows.forEach(row => {
-      row.components.forEach((component, index) => {
-        if (!component.isSelect && component.style !== 5 && !component.id) {
-          validationErrors.push({
-            id: `component-${component.componentKey}-trigger`,
-            message: component.isSelect ? m.embedbuilder.fullscreenValidationSelectNeedsTrigger({ name: component.displayName }) : m.embedbuilder.fullscreenValidationButtonNeedsTrigger({ name: component.displayName }),
-            field: `components[${index}]`
-          });
-        }
+    linkButtons.forEach((button, index) => {
+      if (!button.displayName.trim()) {
+        validationErrors.push({
+          id: `component-${button.key}-label`,
+          message: m.embedbuilder.fullscreenValidationButtonNeedsLabel(),
+          field: `components[${index}]`
+        });
+      }
 
-        if (!component.isSelect && !component.displayName?.trim()) {
-          validationErrors.push({
-            id: `component-${component.componentKey}-label`,
-            message: m.embedbuilder.fullscreenValidationButtonNeedsLabel(),
-            field: `components[${index}]`
-          });
-        }
-
-        if (!component.isSelect && component.style === 5 && !component.url?.trim()) {
-          validationErrors.push({
-            id: `component-${component.componentKey}-url`,
-            message: m.embedbuilder.fullscreenValidationLinkNeedsUrl({ name: component.displayName }),
-            field: `components[${index}].url`
-          });
-        }
-
-        if (component.isSelect && component.options.length === 0) {
-          validationErrors.push({
-            id: `component-${component.componentKey}-options`,
-            message: m.embedbuilder.fullscreenValidationSelectNeedsOptions({ name: component.displayName }),
-            field: `components[${index}].options`
-          });
-        }
-
-        if (component.isSelect) {
-          component.options.forEach((option, optIndex) => {
-            if (!option.name?.trim()) {
-              validationErrors.push({
-                id: `component-${component.componentKey}-option-${optIndex}-name`,
-                message: m.embedbuilder.fullscreenValidationOptionNeedsName({ number: optIndex + 1, name: component.displayName }),
-                field: `components[${index}].options[${optIndex}].name`
-              });
-            }
-
-            if (!option.id) {
-              validationErrors.push({
-                id: `component-${component.componentKey}-option-${optIndex}-trigger`,
-                message: m.embedbuilder.componentsErrorOptionNeedsTrigger({ name: option.name }),
-                field: `components[${index}].options[${optIndex}]`
-              });
-            }
-          });
-        }
-      });
+      if (!button.url.trim()) {
+        validationErrors.push({
+          id: `component-${button.key}-url`,
+          message: m.embedbuilder.fullscreenValidationLinkNeedsUrl({ name: button.displayName }),
+          field: `components[${index}].url`
+        });
+      } else if (!isValidLinkUrl(button.url)) {
+        validationErrors.push({
+          id: `component-${button.key}-url`,
+          message: m.embedbuilder.componentsErrorLinkUrl(),
+          field: `components[${index}].url`
+        });
+      }
     });
   }
 
@@ -1202,7 +866,7 @@
   let hasContent = $derived(
     (allowContent && typeof content === "string" && content.trim()) ||
     embeds.some(e => e.title || e.description || e.fields?.length > 0) ||
-    (allowComponents && componentRows.some(row => row.components && row.components.length > 0))
+    (allowComponents && linkButtons.length > 0)
   );
 
   // Mobile detection
@@ -1241,7 +905,7 @@
             <PreviewCard
               {content}
               {embeds}
-              {componentRows}
+              componentRows={linkButtonsToPreviewRows(linkButtons)}
               {user}
               {guildId}
               showEmpty={false}
@@ -1366,15 +1030,15 @@
                 </button>
               {/if}
 
-              {#if allowComponents && !restrictedComponentTypes.includes('all')}
+              {#if allowComponents}
                 <button
                   class="px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-sm font-medium transition-all hover:scale-[1.02]"
                   style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30; {activeTab === 'components' ? 'filter: brightness(0.9);' : ''}"
                   onclick={() => activeTab = 'components'}
                   type="button"
                 >
-                  <i class="fa-solid fa-comment mr-2"></i>
-                  {m.embedbuilder.tabComponents()}
+                  <i class="fa-solid fa-link mr-2"></i>
+                  {m.embedbuilder.tabLinks()}
                 </button>
               {/if}
 
@@ -1511,125 +1175,58 @@
                 </div>
 
               {:else if activeTab === 'components'}
-                <!-- Components Tab -->
                 <div class="space-y-4">
                   <div class="flex justify-between items-center">
                     <div>
                       <h3 class="text-base md:text-lg font-semibold" style="color: {$colorStore.text};">
-                        {m.embedbuilder.tabComponents()} <span class="text-sm font-normal">({getTotalComponentCount()}/25)</span>
+                        {m.embedbuilder.tabLinks()} <span class="text-sm font-normal">({linkButtons.length}/{MAX_LINK_BUTTONS})</span>
                       </h3>
                       <p class="text-xs md:text-sm" style="color: {$colorStore.muted};">
-                        {m.embedbuilder.fullscreenComponentsLimits({ rows: componentRows.length })}
+                        {m.embedbuilder.linksHint()}
                       </p>
                     </div>
 
                     <button
                       class="px-3 md:px-4 py-1.5 md:py-2 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] flex items-center gap-2 disabled:opacity-50"
                       style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
-                      disabled={componentRows.length >= 5 || getTotalComponentCount() >= 25}
-                      onclick={addRow}
+                      disabled={linkButtons.length >= MAX_LINK_BUTTONS}
+                      onclick={addLinkButton}
                       type="button"
                     >
                       <i class="fa-solid fa-plus"></i>
-                      {m.embedbuilder.fullscreenAddRow()}
+                      {m.common.addButton()}
                     </button>
                   </div>
 
-                  {#if componentRows.length === 0}
+                  {#if linkButtons.length === 0}
                     <div class="text-center py-12">
-                      <i class="fa-solid fa-comment"
-                         style="font-size: 48px; opacity: 0.3; display: block; margin: 0 auto 16px; color: {$colorStore.muted};"></i>
-                      <h4 class="text-lg font-semibold mb-2" style="color: {$colorStore.text};">{m.embedbuilder.fullscreenComponentsEmptyTitle()}</h4>
-                      <p class="text-sm mb-4" style="color: {$colorStore.muted};">
-                        {m.embedbuilder.fullscreenComponentsEmptyHint()}
+                      <i class="fa-solid fa-link text-4xl mb-4" style="color: {$colorStore.muted}; opacity: 0.5;"></i>
+                      <h4 class="text-lg font-semibold mb-2" style="color: {$colorStore.text};">{m.embedbuilder.linksEmptyTitle()}</h4>
+                      <p class="text-sm" style="color: {$colorStore.muted};">
+                        {m.embedbuilder.linksEmptyHint()}
                       </p>
                     </div>
                   {:else}
-                    {#each componentRows as row, rowIndex (row.componentKey)}
-                      <div class="p-4 border rounded-lg"
-                           style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}20;">
-                        <!-- Row Header -->
-                        <div class="flex items-center justify-between mb-3">
-                          <span class="text-sm font-medium" style="color: {$colorStore.text};">
-                            {row.components.length === 1 ? m.embedbuilder.fullscreenRowHeaderOne({ number: rowIndex + 1, count: 1 }) : m.embedbuilder.fullscreenRowHeaderOther({ number: rowIndex + 1, count: row.components.length })}
-                          </span>
-                          <button
-                            class="px-2 py-1 text-xs rounded-lg transition-all hover:scale-[1.02] font-medium"
-                            style="background: #ED424520; color: #ED4245; border: 1px solid #ED424530;"
-                            onclick={() => removeRow(row.rowKey)}
-                            type="button"
-                          >
-                            <i class="fa-solid fa-trash"></i>
-                            {m.embedbuilder.pageRowRemoveAria()}
-                          </button>
+                    <div class="space-y-3" role="list">
+                      {#each linkButtons as button (button.key)}
+                        <div
+                          class="p-3 md:p-4 border rounded-lg"
+                          style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}20;"
+                          role="listitem"
+                        >
+                          <LinkButtonEditor
+                            {button}
+                            {user}
+                            onupdate={handleLinkButtonUpdate}
+                            onremove={handleLinkButtonRemove}
+                            onduplicate={handleLinkButtonDuplicate}
+                          />
                         </div>
-
-                        <!-- Row Components -->
-                        {#if row.components.length === 0}
-                          <div class="text-center py-6">
-                            <p class="text-sm mb-3" style="color: {$colorStore.muted};">
-                              {m.embedbuilder.fullscreenRowEmpty()}
-                            </p>
-                            <div class="flex gap-2 justify-center flex-wrap">
-                              {#if !restrictedComponentTypes.includes('button')}
-                                <button
-                                  class="px-3 py-2 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] flex items-center gap-2"
-                                  style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
-                                  onclick={() => addComponentToRow(row.rowKey, 'button')}
-                                  type="button"
-                                >
-                                  <i class="fa-solid fa-plus"></i>
-                                  {m.common.addButton()}
-                                </button>
-                              {/if}
-                              {#if !restrictedComponentTypes.includes('select')}
-                                <button
-                                  class="px-3 py-2 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] flex items-center gap-2"
-                                  style="background: {$colorStore.secondary}20; color: {$colorStore.secondary}; border: 1px solid {$colorStore.secondary}30;"
-                                  onclick={() => addComponentToRow(row.rowKey, 'select')}
-                                  type="button"
-                                >
-                                  <i class="fa-solid fa-plus"></i>
-                                  {m.embedbuilder.fullscreenAddSelect()}
-                                </button>
-                              {/if}
-                            </div>
-                          </div>
-                        {:else}
-                          <div class="space-y-3">
-                            {#each row.components as component (component.componentKey)}
-                              <ComponentEditor
-                                {component}
-                                triggers={chatTriggers}
-                                isEditing={editingComponentKey === component.componentKey}
-                                {user}
-                                onupdate={handleComponentUpdate}
-                                onremove={handleComponentRemove}
-                                onedit={handleComponentEdit}
-                                onduplicate={handleComponentDuplicate}
-                              />
-                            {/each}
-                          </div>
-
-                          {#if !row.components.some(c => c.isSelect) && row.components.length < 5 && !restrictedComponentTypes.includes('button')}
-                            <div class="flex justify-center pt-3 mt-3 border-t"
-                                 style="border-color: {$colorStore.primary}20;">
-                              <button
-                                class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all hover:scale-[1.02] flex items-center gap-1"
-                                style="background: {$colorStore.primary}15; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}25;"
-                                onclick={() => addComponentToRow(row.rowKey, 'button')}
-                                type="button"
-                              >
-                                <i class="fa-solid fa-plus"></i>
-                                {m.common.addButton()}
-                              </button>
-                            </div>
-                          {/if}
-                        {/if}
-                      </div>
-                    {/each}
+                      {/each}
+                    </div>
                   {/if}
                 </div>
+
               {:else if activeTab === 'json'}
                 <!-- JSON Tab -->
                 <div class="space-y-4">
@@ -1675,7 +1272,7 @@
                     <p class="text-sm" style="color: #ED4245;">{jsonParseError}</p>
                   {/if}
 
-                  {#if !allowComponents || restrictedComponentTypes.includes('all')}
+                  {#if !allowComponents}
                     <p class="text-xs" style="color: {$colorStore.muted};">
                       {@html m.embedbuilder.fullscreenJsonComponentsIgnored()}
                     </p>
@@ -1825,7 +1422,7 @@
               <PreviewCard
                 {content}
                 {embeds}
-                {componentRows}
+                componentRows={linkButtonsToPreviewRows(linkButtons)}
                 {user}
                 {guildId}
                 emptyMessage={m.embedbuilder.previewEmptyMessage()}
@@ -1908,7 +1505,7 @@
             <PreviewCard
               {content}
               {embeds}
-              {componentRows}
+              componentRows={linkButtonsToPreviewRows(linkButtons)}
               {user}
               {guildId}
               emptyMessage={m.embedbuilder.previewEmptyMessage()}

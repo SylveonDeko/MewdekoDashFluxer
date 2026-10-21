@@ -88,15 +88,6 @@ export interface PermissionOverrideRequest {
 }
 
 /**
- * Request model for toggling game voice channel
- * Maps to Mewdeko.Controllers.Common.Administration.ToggleGameVoiceChannelRequest
- */
-export interface ToggleGameVoiceChannelRequest {
-  /** The ID of the voice channel to toggle as game voice channel */
-  channelId: bigint;
-}
-
-/**
  * Request model for server recovery setup
  * Maps to Mewdeko.Controllers.Common.Administration.ServerRecoveryRequest
  */
@@ -136,18 +127,6 @@ export interface MassBanRequest {
 export interface MassRenameRequest {
   /** The naming pattern for mass rename (use {username} placeholder) */
   pattern: string;
-}
-
-/**
- * Request model for pruning users
- * Maps to Mewdeko.Controllers.Common.Administration.PruneRequest
- */
-export interface PruneRequest {
-  /** The number of days of inactivity to prune users for */
-  days: number;
-
-  /** The reason for the prune operation */
-  reason?: string | null;
 }
 
 /**

@@ -16,8 +16,7 @@
     type AutoPublishChannel,
     type CommandAlias,
     type GuildQuote,
-    type RoleMonitorConfig,
-    type StreamRoleSettings
+    type RoleMonitorConfig
   } from "$lib/api/index.ts";
   import { logger } from "$lib/logger";
   import DashboardPageLayout from "$lib/components/layout/DashboardPageLayout.svelte";
@@ -37,7 +36,6 @@
     { id: "aliases", label: m.utility.tabAliases(), icon: "fa-terminal" },
     { id: "quotes", label: m.common.quotes(), icon: "fa-quote-left" },
     { id: "autopublish", label: m.utility.tabAutopublish(), icon: "fa-bullhorn" },
-    { id: "streamrole", label: m.utility.tabStreamrole(), icon: "fa-video" },
     { id: "ai", label: m.utility.tabAi(), icon: "fa-robot" },
     { id: "nsfw", label: m.utility.tabNsfw(), icon: "fa-eye-slash" },
     { id: "rolemonitor", label: m.utility.rmCardTitle(), icon: "fa-user-shield" }
@@ -237,63 +235,6 @@
   async function removePublishWord(channelId: bigint, word: string) {
     if (!$currentGuild?.id) return;
     if (await run(() => utilityApi.unblacklistPublishWord($currentGuild!.id, channelId, word), m.utility.autopublishRemoveWordFailed())) await loadAutoPublish();
-  }
-
-  // ============================================
-  // Stream role
-  // ============================================
-  let streamRole: StreamRoleSettings | null = $state(null);
-  let streamFromRole = $state<string | null>(null);
-  let streamAddRole = $state<string | null>(null);
-  let streamKeyword = $state("");
-  let streamListUser = $state("");
-  let streamListType = $state<"whitelist" | "blacklist">("whitelist");
-
-  async function loadStreamRole() {
-    if (!$currentGuild?.id) return;
-    try {
-      streamRole = await utilityApi.getStreamRole($currentGuild.id);
-      streamFromRole = streamRole.fromRoleId && streamRole.fromRoleId.toString() !== "0" ? streamRole.fromRoleId.toString() : null;
-      streamAddRole = streamRole.addRoleId && streamRole.addRoleId.toString() !== "0" ? streamRole.addRoleId.toString() : null;
-      streamKeyword = streamRole.keyword ?? "";
-    } catch (err) {
-      logger.error("Failed to load stream role:", err);
-    }
-  }
-
-  async function saveStreamRole() {
-    if (!$currentGuild?.id || !streamFromRole || !streamAddRole) {
-      showMessage(m.utility.streamrolePickBoth(), "error");
-      return;
-    }
-    if (await run(() => utilityApi.setStreamRole($currentGuild!.id, BigInt(streamFromRole!), BigInt(streamAddRole!)), m.utility.streamroleEnableFailed())) await loadStreamRole();
-  }
-
-  async function stopStreamRole() {
-    if (!$currentGuild?.id) return;
-    if (!(await requestConfirmation({ message: m.utility.streamroleDisableConfirm(), confirmText: m.common.disable(), variant: "warning" }))) return;
-    if (await run(() => utilityApi.stopStreamRole($currentGuild!.id), m.utility.streamroleDisableFailed())) await loadStreamRole();
-  }
-
-  async function saveStreamKeyword() {
-    if (!$currentGuild?.id) return;
-    if (await run(() => utilityApi.setStreamRoleKeyword($currentGuild!.id, streamKeyword.trim() || null), m.utility.streamroleKeywordFailed())) await loadStreamRole();
-  }
-
-  async function addStreamListUser() {
-    if (!$currentGuild?.id || !/^\d{15,22}$/.test(streamListUser.trim())) {
-      showMessage(m.common.invalidUserId(), "error");
-      return;
-    }
-    if (await run(() => utilityApi.addStreamRoleListUser($currentGuild!.id, streamListType, BigInt(streamListUser.trim())), m.utility.streamroleListFailed())) {
-      streamListUser = "";
-      await loadStreamRole();
-    }
-  }
-
-  async function removeStreamListUser(list: "whitelist" | "blacklist", uid: bigint) {
-    if (!$currentGuild?.id) return;
-    if (await run(() => utilityApi.removeStreamRoleListUser($currentGuild!.id, list, uid), m.utility.streamroleListFailed())) await loadStreamRole();
   }
 
   // ============================================
@@ -505,7 +446,6 @@
       case "aliases": await loadAliases(); break;
       case "quotes": await loadQuotes(1); break;
       case "autopublish": await loadAutoPublish(); break;
-      case "streamrole": await loadStreamRole(); break;
       case "ai": await loadAi(); break;
       case "nsfw": await loadNsfw(); break;
       case "rolemonitor": await loadRoleMonitor(); break;
@@ -746,82 +686,6 @@
         {/if}
       {/snippet}
       {@render card(m.utility.tabAutopublish(), "fa-newspaper", m.utility.autopublishCardSubtitle(), autoPublishBody)}
-    </div>
-
-  {:else if activeTab === 'streamrole'}
-    <div class="w-full space-y-6" in:fade={{ duration: 200 }}>
-      {#snippet streamRoleBody()}
-        {#if streamRole}
-          <div class="flex items-center gap-2 mb-4">
-            <span class="px-3 py-1 rounded-full text-xs font-medium" style="background: {streamRole.enabled ? '#10b98120' : $colorStore.muted + '20'}; color: {streamRole.enabled ? '#10b981' : $colorStore.muted};">
-              {streamRole.enabled ? m.common.enabled() : m.common.disabled()}
-            </span>
-            {#if streamRole.enabled}
-              <span class="text-sm" style="color: {$colorStore.muted}">{m.utility.streamroleSummary({ from: roleName(streamRole.fromRoleId), to: roleName(streamRole.addRoleId) })}</span>
-            {/if}
-          </div>
-        {/if}
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-          <div>
-            <span id="stream-from-label" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.utility.streamroleEligible()}</span>
-            <DiscordSelector type="role" options={roles} selected={streamFromRole} placeholder={m.utility.streamroleEligiblePlaceholder()} ariaLabelledby="stream-from-label"
-                             onchange={(e) => { streamFromRole = typeof e.selected === "string" ? e.selected : null; }} />
-          </div>
-          <div>
-            <span id="stream-add-label" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.utility.streamroleAdded()}</span>
-            <DiscordSelector type="role" options={roles} selected={streamAddRole} placeholder={m.common.roleToAdd()} ariaLabelledby="stream-add-label"
-                             onchange={(e) => { streamAddRole = typeof e.selected === "string" ? e.selected : null; }} />
-          </div>
-        </div>
-        <div class="flex flex-wrap gap-3 mb-6">
-          <button class="px-6 py-3 rounded-xl font-medium transition-all hover:scale-[1.02] min-h-[44px] disabled:opacity-50" style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;" disabled={busy || !streamFromRole || !streamAddRole} onclick={saveStreamRole}>
-            <i class="fa-solid fa-check mr-1"></i>{streamRole?.enabled ? m.utility.streamroleUpdateRoles() : m.common.enabled()}
-          </button>
-          {#if streamRole?.enabled}
-            <button class="px-6 py-3 rounded-xl font-medium transition-all hover:scale-[1.02] min-h-[44px] disabled:opacity-50" style="background: #ef444415; color: #ef4444; border: 1px solid #ef444430;" disabled={busy} onclick={stopStreamRole}>
-              <i class="fa-solid fa-power-off mr-1"></i>{m.common.disable()}
-            </button>
-          {/if}
-        </div>
-        <div>
-          <label for="stream-keyword" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.utility.streamroleKeyword()}</label>
-          <p class="text-xs mb-2" style="color: {$colorStore.muted}">{m.utility.streamroleKeywordHint()}</p>
-          <form class="flex gap-2" onsubmit={(e) => { e.preventDefault(); saveStreamKeyword(); }}>
-            <input id="stream-keyword" type="text" bind:value={streamKeyword} maxlength="100" placeholder={m.utility.streamroleKeywordPlaceholder()}
-                   class="flex-1 p-3 rounded-xl border min-h-[44px]" style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}30; color: {$colorStore.text};">
-            <button type="submit" disabled={busy} class="px-4 py-3 rounded-xl min-h-[44px] disabled:opacity-50" style="background: {$colorStore.secondary}20; color: {$colorStore.secondary};">{m.common.save()}</button>
-          </form>
-        </div>
-      {/snippet}
-      {@render card(m.utility.tabStreamrole(), "fa-video", m.utility.streamroleCardSubtitle(), streamRoleBody)}
-
-      {#snippet streamListBody()}
-        <form class="flex flex-col sm:flex-row gap-2 mb-4" onsubmit={(e) => { e.preventDefault(); addStreamListUser(); }}>
-          <div class="sm:w-44">
-            <DiscordSelector type="custom" options={[{ id: "whitelist", name: m.common.whitelist() }, { id: "blacklist", name: m.common.blacklist() }]} selected={streamListType} searchable={false} ariaLabel={m.utility.streamroleListTypeAria()}
-                             onchange={(e) => { if (e.selected === "whitelist" || e.selected === "blacklist") streamListType = e.selected; }} />
-          </div>
-          <input type="text" inputmode="numeric" bind:value={streamListUser} placeholder={m.common.userId()} aria-label={m.common.userId()}
-                 class="flex-1 p-3 rounded-xl border min-h-[44px]" style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}30; color: {$colorStore.text};">
-          <button type="submit" disabled={busy || !streamListUser.trim()} class="px-6 py-3 rounded-xl font-medium min-h-[44px] disabled:opacity-50" style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;">{m.common.add()}</button>
-        </form>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {#each [{ key: "whitelist", title: m.common.whitelist(), hint: m.utility.streamroleWhitelistHint() }, { key: "blacklist", title: m.common.blacklist(), hint: m.utility.streamroleBlacklistHint() }] as list}
-            <div class="p-4 rounded-xl" style="background: {$colorStore.primary}05;">
-              <div class="font-medium" style="color: {$colorStore.text}">{list.title}</div>
-              <div class="text-xs mb-3" style="color: {$colorStore.muted}">{list.hint}</div>
-              <div class="flex flex-wrap gap-2">
-                {#each (list.key === "whitelist" ? streamRole?.whitelist : streamRole?.blacklist) ?? [] as entry (entry.userId.toString())}
-                  {@render chip(entry.username ?? entry.userId.toString(), () => removeStreamListUser(list.key as "whitelist" | "blacklist", entry.userId), m.utility.streamroleRemoveAria({ user: entry.username ?? entry.userId.toString() }))}
-                {:else}
-                  <span class="text-sm" style="color: {$colorStore.muted}">{m.common.empty()}</span>
-                {/each}
-              </div>
-            </div>
-          {/each}
-        </div>
-      {/snippet}
-      {@render card(m.utility.streamroleExceptionsTitle(), "fa-user-check", m.utility.streamroleExceptionsSubtitle(), streamListBody)}
     </div>
 
   {:else if activeTab === 'ai'}

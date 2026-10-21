@@ -1,27 +1,17 @@
 import * as cdn from "$lib/utils/cdn";
-import { RoleMenuButtonColor, RoleMenuMode, RoleMenuStyle } from "$lib/api/rolemenus/models";
-import { m } from "$lib/i18n";
+import { RoleMenuMode } from "$lib/api/rolemenus/models";
 
 /** Name used when a menu is saved with a blank name. Mirrors rolemenu_default_name. */
 export const DEFAULT_NAME = "Pick your roles";
 
 /** First line of the default message. Mirrors rolemenu_default_description. */
-export const DEFAULT_DESCRIPTION = "Use the menu below to pick your roles.";
-
-/** Dropdown hint text for pick one menus. Mirrors rolemenu_default_placeholder_one. */
-export const DEFAULT_PLACEHOLDER_ONE = "Choose a role";
-
-/** Dropdown hint text for pick any menus. Mirrors rolemenu_default_placeholder_any. */
-export const DEFAULT_PLACEHOLDER_ANY = "Choose roles to add or remove";
+export const DEFAULT_DESCRIPTION = "React below to pick your roles. Take your reaction off to give a role up.";
 
 /** Most menus a server can have. */
 export const MAX_MENUS = 50;
 
 /** Most options a menu can hold. */
-export const MAX_OPTIONS = 25;
-
-/** Buttons Discord fits on one row. */
-export const BUTTONS_PER_ROW = 5;
+export const MAX_OPTIONS = 20;
 
 /** Longest menu name. */
 export const NAME_LENGTH = 100;
@@ -31,19 +21,6 @@ export const LABEL_LENGTH = 80;
 
 /** Longest option description. */
 export const DESCRIPTION_LENGTH = 100;
-
-/** Longest dropdown hint text. */
-export const PLACEHOLDER_LENGTH = 150;
-
-/** Button color choices, in the order the selectors list them. */
-export function buttonColorOptions() {
-  return [
-    { id: RoleMenuButtonColor.Blurple.toString(), name: m.common.blurple() },
-    { id: RoleMenuButtonColor.Grey.toString(), name: m.common.colorGrey() },
-    { id: RoleMenuButtonColor.Green.toString(), name: m.common.colorGreen() },
-    { id: RoleMenuButtonColor.Red.toString(), name: m.common.red() }
-  ];
-}
 
 /** One editable option in the editor. Snowflakes are kept as strings until the request is built. */
 export interface RoleMenuOptionDraft {
@@ -65,8 +42,6 @@ export interface RoleMenuOptionDraft {
   /** Optional description */
   description: string;
 
-  /** Button color, see {@link RoleMenuButtonColor} */
-  buttonStyle: number;
 
   /** Problem reported by the bot for the saved role, cleared when the role changes */
   problem: string | null;
@@ -94,9 +69,6 @@ export interface PreviewOption {
 
   /** Optional description */
   description?: string | null;
-
-  /** Button color, see {@link RoleMenuButtonColor} */
-  buttonStyle: number;
 }
 
 /**
@@ -127,75 +99,53 @@ function effectiveEmoji(option: PreviewOption): string | null {
   return emoji ? emoji : null;
 }
 
+/** Emojis the bot gives to options without one, in the order it hands them out. */
+const NUMBER_EMOJIS = [
+  ...Array.from({ length: 9 }, (_, i) => `${i + 1}️⃣`),
+  "\u{1F51F}",
+  ...Array.from({ length: 26 }, (_, i) => String.fromCodePoint(0x1f1e6 + i))
+];
+
 /**
- * The dropdown hint text the bot uses when none is set.
- * @param mode Pick any or pick one
+ * One line per option with the emoji members react with, filling in the number emojis
+ * the bot hands out when an option has none.
+ * @param options The options in display order
  */
-export function defaultPlaceholder(mode: number): string {
-  return mode === RoleMenuMode.PickOne ? DEFAULT_PLACEHOLDER_ONE : DEFAULT_PLACEHOLDER_ANY;
+function optionLines(options: PreviewOption[]): string {
+  const taken = new Set(options.map(effectiveEmoji).filter((emoji): emoji is string => !!emoji));
+  let next = 0;
+  return options.map((option) => {
+    let emoji = effectiveEmoji(option);
+    if (!emoji) {
+      while (next < NUMBER_EMOJIS.length - 1 && taken.has(NUMBER_EMOJIS[next])) next += 1;
+      emoji = NUMBER_EMOJIS[next];
+      taken.add(emoji);
+      next += 1;
+    }
+    const description = effectiveDescription(option);
+    return emoji + " **" + effectiveLabel(option) + "**" + (description ? ": " + description : "");
+  }).join("\n");
 }
 
 /**
  * Builds the default message the bot posts when a menu has no message of its own:
- * the menu name as the title and one line per option.
+ * the menu name as the title, an intro line and one line per option.
  * @param name The menu name
  * @param options The options in display order
  */
 export function buildDefaultEmbed(name: string, options: PreviewOption[]) {
-  const lines = options.map((option) => {
-    const emoji = effectiveEmoji(option);
-    const description = effectiveDescription(option);
-    return (emoji ? emoji + " " : "") + "**" + effectiveLabel(option) + "**" +
-      (description ? ": " + description : "");
-  });
-
   return {
     title: (name.trim() || DEFAULT_NAME).slice(0, 256),
-    description: (DEFAULT_DESCRIPTION + "\n\n" + lines.join("\n")).slice(0, 4096)
+    description: (DEFAULT_DESCRIPTION + "\n\n" + optionLines(options)).slice(0, 4096)
   };
 }
 
 /**
- * Builds preview rows for PreviewCard: one dropdown, or buttons five to a row.
- * @param style Dropdown or buttons
- * @param placeholder The dropdown hint text, blank for the default
- * @param mode Pick any or pick one
+ * Builds the option list the bot adds after a custom message.
  * @param options The options in display order
  */
-export function buildPreviewRows(style: number, placeholder: string | null | undefined, mode: number,
-                                 options: PreviewOption[]) {
-  if (options.length === 0) return [];
-
-  if (style === RoleMenuStyle.Buttons) {
-    const rows = [];
-    for (let i = 0; i < options.length; i += BUTTONS_PER_ROW) {
-      rows.push({
-        rowKey: `r${i / BUTTONS_PER_ROW}`,
-        components: options.slice(i, i + BUTTONS_PER_ROW).map((option, offset) => ({
-          componentKey: `b${i + offset}`,
-          isSelect: false,
-          displayName: effectiveLabel(option),
-          style: option.buttonStyle >= 1 && option.buttonStyle <= 4 ? option.buttonStyle : RoleMenuButtonColor.Grey,
-          emoji: effectiveEmoji(option)
-        }))
-      });
-    }
-    return rows;
-  }
-
-  return [{
-    rowKey: "r0",
-    components: [{
-      componentKey: "sel",
-      isSelect: true,
-      displayName: placeholder?.trim() || defaultPlaceholder(mode),
-      options: options.map((option) => ({
-        name: effectiveLabel(option),
-        emoji: effectiveEmoji(option),
-        description: effectiveDescription(option)
-      }))
-    }]
-  }];
+export function buildOptionsEmbed(options: PreviewOption[]) {
+  return { description: optionLines(options).slice(0, 4096) };
 }
 
 /**

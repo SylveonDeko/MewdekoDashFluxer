@@ -12,7 +12,7 @@ related: [xp, currency, reputation, statroles]
 
 ## What it does
 
-Achievements are goals members reach by using your server: send their first message, hit 250 messages, join voice, react with lots of different emoji, stay for months, boost. Each one has a grade, each grade is worth points, and points decide a member's achievement rank. Members show off what they earned with up to four badges on their profile card.
+Achievements are goals members reach by using your server: send their first message, hit 250 messages, join voice, react with lots of different emoji, stay for months. Each one has a grade, each grade is worth points, and points decide a member's achievement rank. Members show off what they earned with up to four badges on their profile card.
 
 Turning achievements on counts history straight away. Members unlock everything their stored messages, voice time, reactions, invites, levels and time in the server already earned, quietly, without a single announcement.
 
@@ -61,7 +61,7 @@ Custom achievements can use any grade and override the points.
 
 ## Categories
 
-Built in achievements are grouped into Messages, Voice, Reactions, Invites, Commands, Loyalty, Boosts and Community. Turn a whole category off, or add categories of your own with their own name, description and icon. Drag categories on the Categories tab to change their order everywhere members see them.
+Built in achievements are grouped into Messages, Voice, Reactions, Invites, Commands, Loyalty and Community. Turn a whole category off, or add categories of your own with their own name, description and icon. Drag categories on the Categories tab to change their order everywhere members see them.
 
 ## Custom achievements
 

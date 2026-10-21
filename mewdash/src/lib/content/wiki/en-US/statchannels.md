@@ -1,12 +1,12 @@
 ---
 title: Stat Channels
 slug: statchannels
-summary: Voice channels whose names update themselves to show live numbers such as member count, boosts, open tickets or a Twitch viewer count.
+summary: Voice channels whose names update themselves to show live numbers such as member count, online members, open tickets or a Twitch viewer count.
 icon: fa-chart-simple
 category: Community
 dashboard: /dashboard/statchannels
 module: StatChannels
-tags: [stat channels, counter, member count, live stats, voice channel stats, countdown, member goal, boost count, twitch viewers]
+tags: [stat channels, counter, member count, live stats, voice channel stats, countdown, member goal, twitch viewers]
 related: [counting, twitch, suggestions, xp, afk, starboard]
 ---
 
@@ -14,7 +14,7 @@ related: [counting, twitch, suggestions, xp, afk, starboard]
 
 A stat channel is a locked voice channel that sits at the top of your channel list and shows a number in its name, for example "Members: 12,480". The bot rewrites the name on a schedule so the number stays current. Members cannot join the channel; it exists only to be read.
 
-You choose a counter type, a template for the name, a style for the number and how often it refreshes. The bot supports several dozen counters covering server facts, presence, Nitro boosts, emoji slots, member goals and countdowns, plus values pulled from other Mewdeko features such as tickets, suggestions, giveaways, XP, counting, the starboard, and linked Twitch or Minecraft servers.
+You choose a counter type, a template for the name, a style for the number and how often it refreshes. The bot supports several dozen counters covering server facts, presence, emojis, member goals and countdowns, plus values pulled from other Mewdeko features such as tickets, suggestions, giveaways, XP, counting, the starboard, and linked Twitch or Minecraft servers.
 
 Fluxer only allows a channel to be renamed twice every ten minutes. Stat Channels works around that with a choice of update mechanism, including one that deletes and recreates the channel so it can refresh every minute.
 
@@ -59,20 +59,14 @@ The full catalogue below is what `statchanneltypes` and the dashboard's **Availa
 | `TextChannelCount` | Text channels | `Text: %count%` | |
 | `VoiceChannelCount` | Voice channels | `Voice: %count%` | |
 | `CategoryCount` | Categories | `Categories: %count%` | |
-| `StageChannelCount` | Stage channels | `Stages: %count%` | |
 | `ForumChannelCount` | Forum channels | `Forums: %count%` | |
 | `ThreadCount` | Threads currently cached as active | `Threads: %count%` | |
 | `RoleCount` | Roles | `Roles: %count%` | |
-| `BoostCount` | Active Nitro boosts | `Boosts: %count%` | |
-| `BoostLevel` | Boost tier, 0 to 3 | `Level %count%` | |
-| `NextBoostGoal` | Boosts still needed for the next tier | `%count% to Tier %tier.next%` | `%tier.next%`, `%tier.current%` |
 | `EmojiCount` | All custom emojis | `Emojis: %count%` | |
 | `AnimatedEmojiCount` | Animated custom emojis | `Animated: %count%` | |
 | `StaticEmojiCount` | Static custom emojis | `Static: %count%` | |
 | `StickerCount` | Custom stickers | `Stickers: %count%` | |
-| `EmojiSlotsUsed` | Emoji slots used against the tier cap | `Slots: %count%/%slots.max%` | `%slots.max%`, `%slots.free%` |
 | `ServerAge` | Days since the server was created | `Age: %count% days` | `%years%`, `%created%` |
-| `EventCount` | Scheduled events | `Events: %count%` | |
 | `BotUptime` | How long Mewdeko has been running | `Uptime: %days%d %hours%h` | `%days%`, `%hours%`, `%minutes%` |
 | `InviteCount` | Invites tracked by invite tracking | `Invites: %count%` | |
 
@@ -131,8 +125,6 @@ These read from the Twitch channel linked through the Twitch module.
 | `%server.name%` | Server name |
 | `%server.id%` | Server ID |
 | `%server.members%` | Total member count |
-| `%server.boostcount%` | Boost count |
-| `%server.boostlevel%` | Boost tier |
 
 Channel names are capped at Fluxer's 100 character limit.
 

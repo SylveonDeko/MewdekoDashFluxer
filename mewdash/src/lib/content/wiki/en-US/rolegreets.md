@@ -51,7 +51,6 @@ Role greets support the user, server and bot placeholder groups. Channel placeho
 | `%server.name%`, `%server%` | Server name |
 | `%server.members%` | Cached member count |
 | `%server.icon%`, `%server.banner%` | Server icon and banner URLs |
-| `%server.boostlevel%`, `%server.boostcount%` | Boost tier and count |
 | `%server.time%`, `%time.day%` | Server time and weekday |
 | `%bot.name%`, `%bot.avatar%`, `%bot.id%` | The bot's name, avatar and ID |
 

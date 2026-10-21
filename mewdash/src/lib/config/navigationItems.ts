@@ -310,7 +310,7 @@ export const allDashboardFeatures: NavigationItem[] = [
     category: "Actions",
     categoryLabel: m.features.categoryActions,
     description: m.features.utilityDescription,
-    keywords: ["alias", "quote", "autopublish", "publish", "stream role", "ai", "chatbot", "nsfw", "role monitor"],
+    keywords: ["alias", "quote", "autopublish", "publish", "ai", "chatbot", "nsfw", "role monitor"],
   },
   {
     label: m.features.categoryModeration,

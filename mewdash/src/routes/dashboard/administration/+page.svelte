@@ -45,7 +45,6 @@
   let memberRole: bigint | null = $state(null);
   let guildTimezone: string = $state("UTC");
   let availableTimezones: Array<{ id: string; displayName: string; offset: string }> = $state([]);
-  let gameVoiceChannel: bigint | null = $state(null);
 
   // Auto-assign roles
   let autoAssignRoles: { normalRoles: bigint[]; botRoles: bigint[] } = $state({ normalRoles: [], botRoles: [] });
@@ -128,19 +127,6 @@
       hashCount: 0,
       ignoredRoles: [],
       ignoredChannels: [],
-      counter: 0
-    },
-    antiExternalApp: {
-      enabled: false,
-      action: 10,
-      punishDuration: 60,
-      roleId: null,
-      mentionThreshold: 5,
-      blockInvites: true,
-      maxMessages: 5,
-      timeWindowSeconds: 10,
-      deleteMessages: true,
-      notifyUser: true,
       counter: 0
     }
   });
@@ -266,7 +252,7 @@
         const [
           autoAssignData, protectionData, selfAssignData, rolesData, textChannelsData, voiceChannelsData,
           staffRoleData, memberRoleData, timezoneData, timezonesData,
-          _deleteMsgData, gameVoiceData,
+          _deleteMsgData,
           autoBanRolesData, voiceChannelRolesData, reactionRolesData,
           permissionOverridesData, commandsAndModulesData, commandCooldownsData,
           banMessageData, antiPatternPatternsData
@@ -282,7 +268,6 @@
           administrationApi.getGuildTimezone($currentGuild.id),
           administrationApi.getTimezones($currentGuild.id),
           administrationApi.getDeleteMessageOnCommand($currentGuild.id),
-          administrationApi.getGameVoiceChannel($currentGuild.id),
           administrationApi.getAutoBanRoles($currentGuild.id),
           administrationApi.getVoiceChannelRoles($currentGuild.id),
           administrationApi.getReactionRoles($currentGuild.id),
@@ -317,7 +302,6 @@
           tz.id.includes(guildTimezone)
         );
         newTimezone = currentTimezoneOption ? currentTimezoneOption.id : (guildTimezone || "UTC");
-        gameVoiceChannel = gameVoiceData;
 
         // Auto-assign roles
         autoAssignRoles = autoAssignData || { normalRoles: [], botRoles: [] };
@@ -344,8 +328,7 @@
           antiPattern: { enabled: false },
           antiMassPost: { enabled: false },
           antiPostChannel: { enabled: false },
-          antiImageHash: { enabled: false },
-          antiExternalApp: { enabled: false }
+          antiImageHash: { enabled: false }
         };
 
         if (protectionStatus.antiPostChannel) {
@@ -563,17 +546,6 @@
     }
   }
 
-  async function toggleGameVoiceChannel(channelId: bigint) {
-    if (!$currentGuild?.id) return;
-
-    try {
-      await administrationApi.toggleGameVoiceChannel($currentGuild.id, { channelId });
-      await fetchAllData();
-    } catch (err) {
-      logger.error("Failed to toggle game voice channel:", err);
-    }
-  }
-
   async function addAutoBanRole() {
     if (!$currentGuild?.id || !newAutoBanRole) return;
 
@@ -684,9 +656,6 @@
         case "antiImageHash":
           await protectionApi.configureAntiImageHash($currentGuild.id, config);
           break;
-        case "antiExternalApp":
-          await protectionApi.configureAntiExternalApp($currentGuild.id, config);
-          break;
       }
       await fetchAllData();
     } catch (err) {
@@ -790,18 +759,6 @@
           checkBorders: true,
           usePresetList: true,
           maxImageSizeMb: 8
-        },
-        antiExternalApp: {
-          enabled: true,
-          action: 10,
-          punishDuration: 60,
-          roleId: null,
-          mentionThreshold: 5,
-          blockInvites: true,
-          maxMessages: 5,
-          timeWindowSeconds: 10,
-          deleteMessages: true,
-          notifyUser: true
         }
       };
 
@@ -1107,7 +1064,6 @@
         {staffRole}
         {memberRole}
         {guildTimezone}
-        {gameVoiceChannel}
         {availableRoles}
         {guildChannels}
         bind:activeTab
@@ -1183,7 +1139,6 @@
         {guildTimezone}
         bind:newTimezone
         {availableTimezones}
-        {gameVoiceChannel}
         {commandCooldowns}
         {permissionOverrides}
         bind:expandedRoleCard
@@ -1206,7 +1161,6 @@
         {addPermissionOverride}
         {resetPermissionOverrides}
         {deleteSelectedPermissionOverrides}
-        {toggleGameVoiceChannel}
         {fetchAllData}
       />
     {/if}

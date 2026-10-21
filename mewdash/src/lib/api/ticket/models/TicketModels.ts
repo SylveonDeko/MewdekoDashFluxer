@@ -1,15 +1,5 @@
 // lib/api/ticket/models/TicketModels.ts
 
-/**
- * Button styles
- */
-export enum ButtonStyle {
-  Primary = 1,
-  Secondary = 2,
-  Success = 3,
-  Danger = 4,
-  Link = 5,
-}
 
 /**
  * Ticket
@@ -57,7 +47,6 @@ export interface PanelButton {
   label: string;
   emoji: string | null;
   customId: string;
-  style: number;
   openMessageJson: string | null;
   modalJson: string | null;
   channelNameFormat: string;

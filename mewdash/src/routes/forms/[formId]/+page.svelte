@@ -30,8 +30,6 @@
     sanitizeUrlPath
   } from "$lib/utils/sanitize";
   import DiscordSelector from "$lib/components/forms/DiscordSelector.svelte";
-  import ComponentEmbed from "$lib/components/layout/ComponentEmbed.svelte";
-  import { buttons, container, header, linkButton, plain, SITE_ORIGIN, separator, text } from "$lib/componentEmbed";
 
   interface Props {
     data: PageData;
@@ -172,22 +170,6 @@
 
   let metaTitle = $derived(form?.name || data.preview?.name || m.forms.publicMetaFormFallback());
 
-  let previewEmbed = $derived.by(() => {
-    const preview = data.preview;
-    if (!preview) return null;
-    const details = [
-      preview.guildName ? m.forms.publicEmbedFrom({ server: plain(preview.guildName) }) : null,
-      preview.questionCount !== null
-        ? (preview.questionCount === 1 ? m.forms.publicEmbedQuestionOne({ count: preview.questionCount }) : m.forms.publicEmbedQuestionOther({ count: preview.questionCount }))
-        : null
-    ].filter(Boolean);
-    return container(
-      header("## " + plain(preview.name) + "\n" + plain(metaDescription), preview.guildIcon),
-      details.length ? text(details.join(" · ")) : null,
-      separator(),
-      buttons(linkButton(m.forms.publicEmbedOpen(), `${SITE_ORIGIN}/forms/${$page.params.formId}`))
-    );
-  });
 
   /** How long until a temporary refusal lifts, phrased the way somebody would say it out loud. */
   let retryCountdown = $derived.by(() => {
@@ -1047,8 +1029,6 @@
     };
   });
 </script>
-
-<ComponentEmbed embed={previewEmbed} />
 
 <svelte:head>
   <title>{m.forms.publicTitle({ title: metaTitle })}</title>

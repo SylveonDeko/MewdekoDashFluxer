@@ -93,7 +93,6 @@
   let newButton = $state({
     label: "",
     emoji: null as string | null,
-    style: "1", // Primary
     openMessageJson: null as string | null,
     modalJson: null as string | null,
     channelFormat: "ticket-{username}-{id}",
@@ -457,7 +456,6 @@
       await ticketApi.addPanelButton($currentGuild.id, selectedPanel.messageId, {
         label: newButton.label,
         emoji: newButton.emoji || null,
-        style: typeof newButton.style === "string" ? parseInt(newButton.style) : newButton.style,
         openMessageJson: serializeTicketOpenMessage(newButton.openMessageJson),
         modalJson: newButton.modalJson || null,
         channelFormat: newButton.channelFormat || null,
@@ -527,7 +525,6 @@
       const updateRequest: any = {
         label: button.label || null,
         emoji: button.emoji || null,
-        style: typeof button.style === "string" ? parseInt(button.style) : button.style,
         categoryId: button.categoryId ? BigInt(button.categoryId) : null,
         archiveCategoryId: button.archiveCategoryId ? BigInt(button.archiveCategoryId) : null,
         supportRoles: button.supportRoles?.length > 0 ? button.supportRoles.map((r: string) => BigInt(r)) : null,
@@ -975,7 +972,6 @@
     newButton = {
       label: "",
       emoji: null,
-      style: "1",
       openMessageJson: null,
       modalJson: null,
       channelFormat: "ticket-{username}-{id}",

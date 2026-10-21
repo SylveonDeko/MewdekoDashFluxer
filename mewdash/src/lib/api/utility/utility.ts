@@ -9,11 +9,10 @@ import type {
   GuildQuote,
   QuoteListResponse,
   RoleMonitorConfig,
-  StreamRoleSettings,
 } from "./models";
 
 /**
- * Utility API: aliases, quotes, auto publish, stream roles, NSFW blacklist,
+ * Utility API: aliases, quotes, auto publish, NSFW blacklist,
  * AI assistant, and role monitoring.
  * Maps to Mewdeko.Controllers.UtilityController
  */
@@ -112,48 +111,8 @@ export const utilityApi = {
       `Utility/${guildId}/autopublish/${channelId}/words/${encodeURIComponent(word)}`,
       "DELETE",
     ),
-
-  // ============================================
-  // Stream role
   // ============================================
 
-  getStreamRole: (guildId: bigint) =>
-    apiRequest<StreamRoleSettings>(`Utility/${guildId}/streamrole`),
-
-  setStreamRole: (guildId: bigint, fromRoleId: bigint, addRoleId: bigint) =>
-    apiRequest<void>(`Utility/${guildId}/streamrole`, "POST", {
-      fromRoleId,
-      addRoleId,
-    }),
-
-  stopStreamRole: (guildId: bigint) =>
-    apiRequest<void>(`Utility/${guildId}/streamrole`, "DELETE"),
-
-  setStreamRoleKeyword: (guildId: bigint, keyword: string | null) =>
-    apiRequest<{ keyword: string | null }>(
-      `Utility/${guildId}/streamrole/keyword`,
-      "POST",
-      { word: keyword },
-    ),
-
-  addStreamRoleListUser: (
-    guildId: bigint,
-    list: "whitelist" | "blacklist",
-    userId: bigint,
-  ) =>
-    apiRequest<void>(`Utility/${guildId}/streamrole/${list}/${userId}`, "POST"),
-
-  removeStreamRoleListUser: (
-    guildId: bigint,
-    list: "whitelist" | "blacklist",
-    userId: bigint,
-  ) =>
-    apiRequest<void>(
-      `Utility/${guildId}/streamrole/${list}/${userId}`,
-      "DELETE",
-    ),
-
-  // ============================================
   // NSFW blacklist
   // ============================================
 

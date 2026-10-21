@@ -20,7 +20,6 @@ import type {
   PermissionOverrideRequest,
   ProtectionStats,
   ProtectionStatus,
-  PruneRequest,
   PruneToMessageRequest,
   ReactionRoleMessage,
   SelfAssignableRole,
@@ -31,7 +30,6 @@ import type {
   SetGroupRequest,
   SetTimezoneRequest,
   TimezoneInfo,
-  ToggleGameVoiceChannelRequest,
   VoiceChannelRole,
   VoiceChannelRoleRequest
 } from "./models";
@@ -661,34 +659,6 @@ export const administrationApi = {
     ),
 
   // ============================================
-  // Game Voice Channel
-  // ============================================
-
-  /**
-   * Gets the game voice channel
-   * @param guildId The guild ID
-   * @returns Game voice channel ID or null
-   */
-  getGameVoiceChannel: (guildId: bigint) =>
-    apiRequest<bigint | null>(`Administration/${guildId}/game-voice-channel`),
-
-  /**
-   * Toggles game voice channel
-   * @param guildId The guild ID
-   * @param request Channel configuration
-   * @returns Channel ID or null
-   */
-  toggleGameVoiceChannel: (
-    guildId: bigint,
-    request: ToggleGameVoiceChannelRequest,
-  ) =>
-    apiRequest<bigint | null>(
-      `Administration/${guildId}/game-voice-channel/toggle`,
-      "POST",
-      request,
-    ),
-
-  // ============================================
   // Server Recovery
   // ============================================
 
@@ -767,19 +737,6 @@ export const administrationApi = {
   massRename: (guildId: bigint, request: MassRenameRequest) =>
     apiRequest<{ renamed: number }>(
       `Administration/${guildId}/mass-rename`,
-      "POST",
-      request,
-    ),
-
-  /**
-   * Prune inactive users
-   * @param guildId The guild ID
-   * @param request Prune configuration
-   * @returns Number of pruned users
-   */
-  pruneUsers: (guildId: bigint, request: PruneRequest) =>
-    apiRequest<{ pruned: number }>(
-      `Administration/${guildId}/prune`,
       "POST",
       request,
     ),

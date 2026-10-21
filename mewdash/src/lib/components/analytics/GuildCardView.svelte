@@ -99,10 +99,6 @@
           <p class="tabular-nums" style="color: {$colorStore.text}">{n(card.shape.online)}</p>
         </div>
         <div>
-          <p class="text-xs" style="color: {$colorStore.muted}">{m.features.wizardStatType7Label()}</p>
-          <p class="tabular-nums" style="color: {$colorStore.text}">{m.analytics.guildBoostsTier({ count: n(card.shape.boosts), tier: card.shape.boostTier })}</p>
-        </div>
-        <div>
           <p class="text-xs" style="color: {$colorStore.muted}">{m.analytics.guildChannelsRoles()}</p>
           <p class="tabular-nums" style="color: {$colorStore.text}">{n(card.shape.channels)} / {n(card.shape.roles)}</p>
         </div>

@@ -65,21 +65,6 @@ export interface ChatTrigger {
   /** Valid trigger types (bitfield) */
   validTriggerTypes: number;
 
-  /** Application command ID */
-  applicationCommandId: bigint;
-
-  /** Application command name */
-  applicationCommandName: string | null;
-
-  /** Application command description */
-  applicationCommandDescription: string | null;
-
-  /** Application command type */
-  applicationCommandType: number;
-
-  /** Whether response should be ephemeral */
-  ephemeralResponse: boolean;
-
   /** Crossposting channel ID */
   crosspostingChannelId: bigint;
 

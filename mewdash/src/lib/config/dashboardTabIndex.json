@@ -243,8 +243,8 @@
       },
       {
         "id": "components",
-        "label": "Components",
-        "icon": "fa-comment"
+        "label": "Link buttons",
+        "icon": "fa-link"
       },
       {
         "id": "json",
@@ -937,11 +937,6 @@
         "id": "autopublish",
         "label": "Auto publish",
         "icon": "fa-bullhorn"
-      },
-      {
-        "id": "streamrole",
-        "label": "Stream role",
-        "icon": "fa-video"
       },
       {
         "id": "ai",

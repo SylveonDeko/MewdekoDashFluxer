@@ -977,8 +977,6 @@ export const m = {
     rolesCount: (p: { count: P }) => t("_common", "roles_count", "{count} roles", p),
     /** Roles to Grant */
     rolesToGrant: () => t("_common", "roles_to_grant", "Roles to Grant"),
-    /** Row {number} */
-    rowNumber: (p: { number: P }) => t("_common", "row_number", "Row {number}", p),
     /** Rows */
     rows: () => t("_common", "rows", "Rows"),
     /** Rules */
@@ -2283,12 +2281,6 @@ export const m = {
     advancedMassBanUserIds: () => t("administration", "advanced_mass_ban_user_ids", "User IDs (one per line or comma-separated)"),
     /** 123456789 987654321 or: 123456789, 987654321 */
     advancedMassBanUserIdsPlaceholder: () => t("administration", "advanced_mass_ban_user_ids_placeholder", "123456789 987654321 or: 123456789, 987654321"),
-    /** Remove users inactive for {days} days? */
-    advancedMassPruneConfirmMessage: (p: { days: P }) => t("administration", "advanced_mass_prune_confirm_message", "Remove users inactive for {days} days?", p),
-    /** Prune Users */
-    advancedMassPruneConfirmTitle: () => t("administration", "advanced_mass_prune_confirm_title", "Prune Users"),
-    /** Days of Inactivity */
-    advancedMassPruneDays: () => t("administration", "advanced_mass_prune_days", "Days of Inactivity"),
     /** Execute Prune */
     advancedMassPruneExecute: () => t("administration", "advanced_mass_prune_execute", "Execute Prune"),
     /** Prune to Message Configuration */
@@ -2305,8 +2297,6 @@ export const m = {
     advancedMassPruneMessageIdPlaceholder: () => t("administration", "advanced_mass_prune_message_id_placeholder", "Enter message ID..."),
     /** Prune to Message */
     advancedMassPruneMessageTitle: () => t("administration", "advanced_mass_prune_message_title", "Prune to Message"),
-    /** Prune Inactive Users */
-    advancedMassPruneTitle: () => t("administration", "advanced_mass_prune_title", "Prune Inactive Users"),
     /** Mass Rename Configuration */
     advancedMassRenameConfig: () => t("administration", "advanced_mass_rename_config", "Mass Rename Configuration"),
     /** This will rename ALL users in the server. Are you sure? */
@@ -2407,18 +2397,6 @@ export const m = {
     automationDeleteMessageSubtitle: () => t("administration", "automation_delete_message_subtitle", "Auto-delete command messages"),
     /** Delete Message on Command */
     automationDeleteMessageTitle: () => t("administration", "automation_delete_message_title", "Delete Message on Command"),
-    /** Current Channel: {channel} */
-    automationGameVoiceChannelCurrent: (p: { channel: P }) => t("administration", "automation_game_voice_channel_current", "Current Channel: {channel}", p),
-    /** Automatically move users to matching voice channels based on their game activity */
-    automationGameVoiceChannelDescription: () => t("administration", "automation_game_voice_channel_description", "Automatically move users to matching voice channels based on their game activity"),
-    /** Select voice channel for automatic game-based voice routing */
-    automationGameVoiceChannelHint: () => t("administration", "automation_game_voice_channel_hint", "Select voice channel for automatic game-based voice routing"),
-    /** Set as Game Voice Channel */
-    automationGameVoiceChannelSetButton: () => t("administration", "automation_game_voice_channel_set_button", "Set as Game Voice Channel"),
-    /** Set Game Voice Channel */
-    automationGameVoiceChannelSetLabel: () => t("administration", "automation_game_voice_channel_set_label", "Set Game Voice Channel"),
-    /** Game Voice Channel */
-    automationGameVoiceChannelTitle: () => t("administration", "automation_game_voice_channel_title", "Game Voice Channel"),
     /** Add Override */
     automationPermissionOverridesAdd: () => t("administration", "automation_permission_overrides_add", "Add Override"),
     /** Bot Command ({count} available) */
@@ -2581,8 +2559,6 @@ export const m = {
     automationTimezoneTitle: () => t("administration", "automation_timezone_title", "Timezone Settings"),
     /** Active Rules */
     overviewActiveRules: () => t("administration", "overview_active_rules", "Active Rules"),
-    /** Anti-External App */
-    overviewAntiExternalApp: () => t("administration", "overview_anti_external_app", "Anti-External App"),
     /** Anti-Image-Hash */
     overviewAntiImageHash: () => t("administration", "overview_anti_image_hash", "Anti-Image-Hash"),
     /** Anti-Mass-Post */
@@ -2597,8 +2573,6 @@ export const m = {
     overviewConfigureProtectionHint: () => t("administration", "overview_configure_protection_hint", "Set up anti-raid, anti-spam, and pattern detection"),
     /** Cooldowns */
     overviewCooldowns: () => t("administration", "overview_cooldowns", "Cooldowns"),
-    /** Game Voice Channel: */
-    overviewGameVoiceChannel: () => t("administration", "overview_game_voice_channel", "Game Voice Channel:"),
     /** Configure role assignment and permissions */
     overviewManageRolesHint: () => t("administration", "overview_manage_roles_hint", "Configure role assignment and permissions"),
     /** Member Role: */
@@ -2669,28 +2643,6 @@ export const m = {
     protectionCommonSelectAction: () => t("administration", "protection_common_select_action", "Select action..."),
     /** Time Window (seconds) */
     protectionCommonTimeWindowSeconds: () => t("administration", "protection_common_time_window_seconds", "Time Window (seconds)"),
-    /** App Messages */
-    protectionExternalappAppMessages: () => t("administration", "protection_externalapp_app_messages", "App Messages"),
-    /** App Messages Allowed */
-    protectionExternalappAppMessagesAllowed: () => t("administration", "protection_externalapp_app_messages_allowed", "App Messages Allowed"),
-    /** Delete the app message */
-    protectionExternalappDeleteAppMessage: () => t("administration", "protection_externalapp_delete_app_message", "Delete the app message"),
-    /** Turn it on to remove mass pings, invite links and spam sent through members' own apps */
-    protectionExternalappDisabledHint: () => t("administration", "protection_externalapp_disabled_hint", "Turn it on to remove mass pings, invite links and spam sent through members' own apps"),
-    /** Anti-External App Disabled */
-    protectionExternalappDisabledTitle: () => t("administration", "protection_externalapp_disabled_title", "Anti-External App Disabled"),
-    /** Apps added to the server itself are left alone. A ping of everyone or here always count... */
-    protectionExternalappIntro: () => t("administration", "protection_externalapp_intro", "Apps added to the server itself are left alone. A ping of everyone or here always counts as too many mentions. Set a limit to 0 to turn that check off."),
-    /** Mention Limit */
-    protectionExternalappMentionLimit: () => t("administration", "protection_externalapp_mention_limit", "Mention Limit"),
-    /** Tell the member by DM */
-    protectionExternalappNotifyMember: () => t("administration", "protection_externalapp_notify_member", "Tell the member by DM"),
-    /** Remove invite links */
-    protectionExternalappRemoveInviteLinks: () => t("administration", "protection_externalapp_remove_invite_links", "Remove invite links"),
-    /** Catch abuse of apps members add to their own account */
-    protectionExternalappSubtitle: () => t("administration", "protection_externalapp_subtitle", "Catch abuse of apps members add to their own account"),
-    /** Times Triggered */
-    protectionExternalappTimesTriggered: () => t("administration", "protection_externalapp_times_triggered", "Times Triggered"),
     /** Action {action} */
     protectionImagehashActionFallback: (p: { action: P }) => t("administration", "protection_imagehash_action_fallback", "Action {action}", p),
     /** Action for this image */
@@ -3263,8 +3215,6 @@ export const m = {
     filterUpdatedUtc: (p: { time: P }) => t("analytics", "filter_updated_utc", "{time} UTC", p),
     /** {duration} ago */
     formatAgo: (p: { duration: P }) => t("analytics", "format_ago", "{duration} ago", p),
-    /** {count} · tier {tier} */
-    guildBoostsTier: (p: { count: P; tier: P }) => t("analytics", "guild_boosts_tier", "{count} · tier {tier}", p),
     /** ({pct} bots) */
     guildBotsPct: (p: { pct: P }) => t("analytics", "guild_bots_pct", "({pct} bots)", p),
     /** Channels / roles */
@@ -4557,28 +4507,24 @@ export const m = {
     pageAdvancedRegexTitle: () => t("chat-triggers", "page_advanced_regex_title", "Regular Expression Testing"),
     /** Test your regex pattern against sample text to ensure it matches correctly and prevents... */
     pageAdvancedRegexTooltip: () => t("chat-triggers", "page_advanced_regex_tooltip", "Test your regex pattern against sample text to ensure it matches correctly and prevents unexpected behavior."),
-    /** Click to configure response message with embeds/components */
-    pageAdvancedResponsePlaceholder: () => t("chat-triggers", "page_advanced_response_placeholder", "Click to configure response message with embeds/components"),
-    /** Supports rich content including plain text, JSON embeds with images/fields/colors, inte... */
-    pageAdvancedResponseTooltip: () => t("chat-triggers", "page_advanced_response_tooltip", "Supports rich content including plain text, JSON embeds with images/fields/colors, interactive components, and placeholders like %user.name%. Try the Rich Embeds template!"),
+    /** Click to configure response message with embeds and link buttons */
+    pageAdvancedResponsePlaceholder: () => t("chat-triggers", "page_advanced_response_placeholder", "Click to configure response message with embeds and link buttons"),
+    /** Supports rich content including plain text, JSON embeds with images/fields/colors, link... */
+    pageAdvancedResponseTooltip: () => t("chat-triggers", "page_advanced_response_tooltip", "Supports rich content including plain text, JSON embeds with images/fields/colors, link buttons, and placeholders like %user.name%. Try the Rich Embeds template!"),
     /** Advanced Trigger Creation */
     pageAdvancedTitle: () => t("chat-triggers", "page_advanced_title", "Advanced Trigger Creation"),
     /** Enter trigger text or regex pattern */
     pageAdvancedTriggerPlaceholder: () => t("chat-triggers", "page_advanced_trigger_placeholder", "Enter trigger text or regex pattern"),
-    /** Button interactions */
-    pageAdvancedTypeButton: () => t("chat-triggers", "page_advanced_type_button", "Button interactions"),
-    /** Slash command interactions */
-    pageAdvancedTypeInteraction: () => t("chat-triggers", "page_advanced_type_interaction", "Slash command interactions"),
     /** Message triggers */
     pageAdvancedTypeMessage: () => t("chat-triggers", "page_advanced_type_message", "Message triggers"),
     /** Reaction added */
     pageAdvancedTypeReactionAdded: () => t("chat-triggers", "page_advanced_type_reaction_added", "Reaction added"),
     /** Reaction removed */
     pageAdvancedTypeReactionRemoved: () => t("chat-triggers", "page_advanced_type_reaction_removed", "Reaction removed"),
-    /** Select which types of interactions can trigger this response */
-    pageAdvancedTypesHint: () => t("chat-triggers", "page_advanced_types_hint", "Select which types of interactions can trigger this response"),
-    /** Choose how this trigger activates: Messages (regular chat), Slash Commands (requires se... */
-    pageAdvancedTypesTooltip: () => t("chat-triggers", "page_advanced_types_tooltip", "Choose how this trigger activates: Messages (regular chat), Slash Commands (requires setup), Buttons (interactive), or Reactions (emoji responses). Multiple types can be enabled."),
+    /** Select which types of events can trigger this response */
+    pageAdvancedTypesHint: () => t("chat-triggers", "page_advanced_types_hint", "Select which types of events can trigger this response"),
+    /** Choose how this trigger activates: Messages (regular chat) or Reactions (emoji response... */
+    pageAdvancedTypesTooltip: () => t("chat-triggers", "page_advanced_types_tooltip", "Choose how this trigger activates: Messages (regular chat) or Reactions (emoji responses). Multiple types can be enabled."),
     /** Auto-delete disabled - cannot be used with react to trigger */
     pageAnnounceAutoDeleteDisabled: () => t("chat-triggers", "page_announce_auto_delete_disabled", "Auto-delete disabled - cannot be used with react to trigger"),
     /** Collapsed all cards */
@@ -4595,8 +4541,6 @@ export const m = {
     pageAnnounceDeleted: (p: { name: P }) => t("chat-triggers", "page_announce_deleted", "Trigger {name} deleted", p),
     /** Edit mode activated */
     pageAnnounceEditMode: () => t("chat-triggers", "page_announce_edit_mode", "Edit mode activated"),
-    /** Interaction triggers enabled for slash command */
-    pageAnnounceInteractionEnabled: () => t("chat-triggers", "page_announce_interaction_enabled", "Interaction triggers enabled for slash command"),
     /** Message triggers enabled - at least one trigger type is required */
     pageAnnounceMessageEnabled: () => t("chat-triggers", "page_announce_message_enabled", "Message triggers enabled - at least one trigger type is required"),
     /** Create new trigger focused */
@@ -4683,8 +4627,6 @@ export const m = {
     pageLabelCrosspostWebhook: () => t("chat-triggers", "page_label_crosspost_webhook", "Crossposting Webhook URL"),
     /** Send Response as DM */
     pageLabelDm: () => t("chat-triggers", "page_label_dm", "Send Response as DM"),
-    /** Ephemeral Response */
-    pageLabelEphemeral: () => t("chat-triggers", "page_label_ephemeral", "Ephemeral Response"),
     /** Is Regular Expression */
     pageLabelIsRegex: () => t("chat-triggers", "page_label_is_regex", "Is Regular Expression"),
     /** Don't Respond to Trigger */
@@ -4761,12 +4703,12 @@ export const m = {
     pageQuickPreviewDescription: () => t("chat-triggers", "page_quick_preview_description", "Bot's response to the trigger"),
     /** Quick Response */
     pageQuickPreviewTitle: () => t("chat-triggers", "page_quick_preview_title", "Quick Response"),
-    /** 💡 Supports rich embeds and Fluxer formatting */
-    pageQuickResponseHint: () => t("chat-triggers", "page_quick_response_hint", "💡 Supports rich embeds and Fluxer formatting"),
+    /** 💡 Supports rich embeds, link buttons, and formatting */
+    pageQuickResponseHint: () => t("chat-triggers", "page_quick_response_hint", "💡 Supports rich embeds, link buttons, and formatting"),
     /** Bot responds with: */
     pageQuickResponseLabel: () => t("chat-triggers", "page_quick_response_label", "Bot responds with:"),
-    /** Click to configure response message with rich embeds and components */
-    pageQuickResponsePlaceholder: () => t("chat-triggers", "page_quick_response_placeholder", "Click to configure response message with rich embeds and components"),
+    /** Click to configure response message with rich embeds and link buttons */
+    pageQuickResponsePlaceholder: () => t("chat-triggers", "page_quick_response_placeholder", "Click to configure response message with rich embeds and link buttons"),
     /** Simple text that will trigger the response */
     pageQuickTriggerHint: () => t("chat-triggers", "page_quick_trigger_hint", "Simple text that will trigger the response"),
     /** When someone types: */
@@ -4793,8 +4735,8 @@ export const m = {
     pageStatsTotalOther: (p: { count: P }) => t("chat-triggers", "page_stats_total_other", "Fired {count} times in total.", p),
     /** Create and manage automated responses to messages */
     pageSubtitle: () => t("chat-triggers", "page_subtitle", "Create and manage automated responses to messages"),
-    /** [components] */
-    pageSummaryComponents: () => t("chat-triggers", "page_summary_components", "[components]"),
+    /** [link buttons] */
+    pageSummaryComponents: () => t("chat-triggers", "page_summary_components", "[link buttons]"),
     /** [{count} embed] */
     pageSummaryEmbedsOne: (p: { count: P }) => t("chat-triggers", "page_summary_embeds_one", "[{count} embed]", p),
     /** [{count} embeds] */
@@ -4803,8 +4745,8 @@ export const m = {
     pageTemplateEmbed: () => t("chat-triggers", "page_template_embed", "Rich Embeds"),
     /** Welcome to the server! */
     pageTemplateEmbedContent: () => t("chat-triggers", "page_template_embed_content", "Welcome to the server!"),
-    /** Rich embeds with images, fields, and components */
-    pageTemplateEmbedDesc: () => t("chat-triggers", "page_template_embed_desc", "Rich embeds with images, fields, and components"),
+    /** Rich embeds with images, fields, and link buttons */
+    pageTemplateEmbedDesc: () => t("chat-triggers", "page_template_embed_desc", "Rich embeds with images, fields, and link buttons"),
     /** Thanks for joining %server.name%! */
     pageTemplateEmbedDescription: () => t("chat-triggers", "page_template_embed_description", "Thanks for joining %server.name%!"),
     /** Enjoy your stay! */
@@ -4823,12 +4765,6 @@ export const m = {
     pageTemplateSimpleDesc: () => t("chat-triggers", "page_template_simple_desc", "Bot says X when users type Y"),
     /** Hello there! 👋 */
     pageTemplateSimpleResponse: () => t("chat-triggers", "page_template_simple_response", "Hello there! 👋"),
-    /** Get server information */
-    pageTemplateSlashCommandDescription: () => t("chat-triggers", "page_template_slash_command_description", "Get server information"),
-    /** Create custom slash commands */
-    pageTemplateSlashDesc: () => t("chat-triggers", "page_template_slash_desc", "Create custom slash commands"),
-    /** Server information: %server.name% */
-    pageTemplateSlashResponse: () => t("chat-triggers", "page_template_slash_response", "Server information: %server.name%"),
     /** Or choose a template: */
     pageTemplatesHeading: () => t("chat-triggers", "page_templates_heading", "Or choose a template:"),
     /** Matched, but blocked: {blocker} */
@@ -5975,66 +5911,18 @@ export const m = {
     setupBannerTitle: () => t("dashboard", "setup_banner_title", "Quick Setup Available"),
   },
   embedbuilder: {
-    /** Click to edit button */
-    componentsButtonPreviewAria: () => t("embedbuilder", "components_button_preview_aria", "Click to edit button"),
-    /** Button Style */
-    componentsButtonStyle: () => t("embedbuilder", "components_button_style", "Button Style"),
-    /** Select button style */
-    componentsButtonStylePlaceholder: () => t("embedbuilder", "components_button_style_placeholder", "Select button style"),
-    /** Button text */
-    componentsButtonTextPlaceholder: () => t("embedbuilder", "components_button_text_placeholder", "Button text"),
     /** Click to edit */
     componentsClickToEdit: () => t("embedbuilder", "components_click_to_edit", "Click to edit"),
     /** Delete component */
     componentsDeleteComponent: () => t("embedbuilder", "components_delete_component", "Delete component"),
     /** Duplicate component */
     componentsDuplicateComponent: () => t("embedbuilder", "components_duplicate_component", "Duplicate component"),
-    /** Duplicate option */
-    componentsDuplicateOption: () => t("embedbuilder", "components_duplicate_option", "Duplicate option"),
-    /** Edit Button */
-    componentsEditButton: () => t("embedbuilder", "components_edit_button", "Edit Button"),
-    /** Edit Select Menu */
-    componentsEditSelect: () => t("embedbuilder", "components_edit_select", "Edit Select Menu"),
     /** Please enter a valid URL for link button */
     componentsErrorLinkUrl: () => t("embedbuilder", "components_error_link_url", "Please enter a valid URL for link button"),
-    /** Option "{name}" needs a description */
-    componentsErrorOptionNeedsDescription: (p: { name: P }) => t("embedbuilder", "components_error_option_needs_description", "Option \"{name}\" needs a description", p),
-    /** Option "{name}" needs a trigger */
-    componentsErrorOptionNeedsTrigger: (p: { name: P }) => t("embedbuilder", "components_error_option_needs_trigger", "Option \"{name}\" needs a trigger", p),
-    /** Please select a trigger for this button */
-    componentsErrorSelectTrigger: () => t("embedbuilder", "components_error_select_trigger", "Please select a trigger for this button"),
-    /** Max Options */
-    componentsMaxOptions: () => t("embedbuilder", "components_max_options", "Max Options"),
-    /** Max */
-    componentsMaxShort: () => t("embedbuilder", "components_max_short", "Max"),
-    /** Min Options */
-    componentsMinOptions: () => t("embedbuilder", "components_min_options", "Min Options"),
-    /** Min */
-    componentsMinShort: () => t("embedbuilder", "components_min_short", "Min"),
-    /** Option description */
-    componentsOptionDescriptionPlaceholder: () => t("embedbuilder", "components_option_description_placeholder", "Option description"),
-    /** Option name */
-    componentsOptionNamePlaceholder: () => t("embedbuilder", "components_option_name_placeholder", "Option name"),
-    /** Options ({count}/25) */
-    componentsOptionsCount: (p: { count: P }) => t("embedbuilder", "components_options_count", "Options ({count}/25)", p),
-    /** No options added yet. Click "Add" to get started. */
-    componentsOptionsEmpty: () => t("embedbuilder", "components_options_empty", "No options added yet. Click \"Add\" to get started."),
-    /** Choose an option... */
-    componentsSelectPlaceholderExample: () => t("embedbuilder", "components_select_placeholder_example", "Choose an option..."),
-    /** Click to edit select menu */
-    componentsSelectPreviewAria: () => t("embedbuilder", "components_select_preview_aria", "Click to edit select menu"),
     /** Has validation errors */
     componentsStatusInvalid: () => t("embedbuilder", "components_status_invalid", "Has validation errors"),
     /** Valid */
     componentsStatusValid: () => t("embedbuilder", "components_status_valid", "Valid"),
-    /** Trigger Action */
-    componentsTriggerAction: () => t("embedbuilder", "components_trigger_action", "Trigger Action"),
-    /** Select a trigger */
-    componentsTriggerPlaceholder: () => t("embedbuilder", "components_trigger_placeholder", "Select a trigger"),
-    /** Unnamed trigger */
-    componentsTriggerUnnamed: () => t("embedbuilder", "components_trigger_unnamed", "Unnamed trigger"),
-    /** Validation Errors: */
-    componentsValidationErrors: () => t("embedbuilder", "components_validation_errors", "Validation Errors:"),
     /** Author name */
     editorAuthorNamePlaceholder: () => t("embedbuilder", "editor_author_name_placeholder", "Author name"),
     /** URL (makes author name clickable) */
@@ -6133,10 +6021,6 @@ export const m = {
     editorUrlTitle: () => t("embedbuilder", "editor_url_title", "URL (makes title clickable)"),
     /** Add Embed */
     fullscreenAddEmbed: () => t("embedbuilder", "fullscreen_add_embed", "Add Embed"),
-    /** Add Row */
-    fullscreenAddRow: () => t("embedbuilder", "fullscreen_add_row", "Add Row"),
-    /** Add Select */
-    fullscreenAddSelect: () => t("embedbuilder", "fullscreen_add_select", "Add Select"),
     /** Back to Editor */
     fullscreenBackToEditor: () => t("embedbuilder", "fullscreen_back_to_editor", "Back to Editor"),
     /** Clear All Embeds */
@@ -6145,12 +6029,6 @@ export const m = {
     fullscreenClearEverything: () => t("embedbuilder", "fullscreen_clear_everything", "Clear everything"),
     /** Close preview */
     fullscreenClosePreview: () => t("embedbuilder", "fullscreen_close_preview", "Close preview"),
-    /** Click "Add Row" to start adding buttons or select menus */
-    fullscreenComponentsEmptyHint: () => t("embedbuilder", "fullscreen_components_empty_hint", "Click \"Add Row\" to start adding buttons or select menus"),
-    /** No components yet */
-    fullscreenComponentsEmptyTitle: () => t("embedbuilder", "fullscreen_components_empty_title", "No components yet"),
-    /** Rows: {rows}/5 • Max 5 buttons per row */
-    fullscreenComponentsLimits: (p: { rows: P }) => t("embedbuilder", "fullscreen_components_limits", "Rows: {rows}/5 • Max 5 buttons per row", p),
     /** Optional message content that appears above the embed. Use % to mention the user or ins... */
     fullscreenContentPlaceholder: () => t("embedbuilder", "fullscreen_content_placeholder", "Optional message content that appears above the embed. Use % to mention the user or insert other placeholders."),
     /** Click to create an embed */
@@ -6181,16 +6059,6 @@ export const m = {
     fullscreenMineEmpty: () => t("embedbuilder", "fullscreen_mine_empty", "No saved embeds yet"),
     /** My Embeds ({count}) */
     fullscreenMineHeading: (p: { count: P }) => t("embedbuilder", "fullscreen_mine_heading", "My Embeds ({count})", p),
-    /** New Select */
-    fullscreenNewSelectLabel: () => t("embedbuilder", "fullscreen_new_select_label", "New Select"),
-    /** Button added */
-    fullscreenNotifyButtonAdded: () => t("embedbuilder", "fullscreen_notify_button_added", "Button added"),
-    /** Button components are not allowed */
-    fullscreenNotifyButtonNotAllowed: () => t("embedbuilder", "fullscreen_notify_button_not_allowed", "Button components are not allowed"),
-    /** Component duplicated */
-    fullscreenNotifyComponentDuplicated: () => t("embedbuilder", "fullscreen_notify_component_duplicated", "Component duplicated"),
-    /** Component removed */
-    fullscreenNotifyComponentRemoved: () => t("embedbuilder", "fullscreen_notify_component_removed", "Component removed"),
     /** Failed to delete embed */
     fullscreenNotifyDeleteFailed: () => t("embedbuilder", "fullscreen_notify_delete_failed", "Failed to delete embed"),
     /** New embed added */
@@ -6219,40 +6087,18 @@ export const m = {
     fullscreenNotifyLoadedNamed: (p: { name: P }) => t("embedbuilder", "fullscreen_notify_loaded_named", "Loaded \"{name}\"", p),
     /** You must be logged in to save embeds */
     fullscreenNotifyLoginRequired: () => t("embedbuilder", "fullscreen_notify_login_required", "You must be logged in to save embeds"),
-    /** Maximum 5 buttons per row */
-    fullscreenNotifyMaxButtons: () => t("embedbuilder", "fullscreen_notify_max_buttons", "Maximum 5 buttons per row"),
-    /** Maximum 25 components allowed */
-    fullscreenNotifyMaxComponents: () => t("embedbuilder", "fullscreen_notify_max_components", "Maximum 25 components allowed"),
     /** Please enter a name for the embed */
     fullscreenNotifyNameRequired: () => t("embedbuilder", "fullscreen_notify_name_required", "Please enter a name for the embed"),
     /** Nothing to save yet */
     fullscreenNotifyNothingToSave: () => t("embedbuilder", "fullscreen_notify_nothing_to_save", "Nothing to save yet"),
-    /** New row added */
-    fullscreenNotifyRowAdded: () => t("embedbuilder", "fullscreen_notify_row_added", "New row added"),
-    /** Cannot add components to a row with a select menu */
-    fullscreenNotifyRowHasSelect: () => t("embedbuilder", "fullscreen_notify_row_has_select", "Cannot add components to a row with a select menu"),
-    /** Row removed */
-    fullscreenNotifyRowRemoved: () => t("embedbuilder", "fullscreen_notify_row_removed", "Row removed"),
     /** Failed to save embed. The name may already be in use. */
     fullscreenNotifySaveFailed: () => t("embedbuilder", "fullscreen_notify_save_failed", "Failed to save embed. The name may already be in use."),
     /** Saved successfully! */
     fullscreenNotifySaved: () => t("embedbuilder", "fullscreen_notify_saved", "Saved successfully!"),
     /** Saved "{name}" */
     fullscreenNotifySavedNamed: (p: { name: P }) => t("embedbuilder", "fullscreen_notify_saved_named", "Saved \"{name}\"", p),
-    /** Select menu added */
-    fullscreenNotifySelectAdded: () => t("embedbuilder", "fullscreen_notify_select_added", "Select menu added"),
-    /** Select menus must be alone in a row */
-    fullscreenNotifySelectAlone: () => t("embedbuilder", "fullscreen_notify_select_alone", "Select menus must be alone in a row"),
-    /** Select menu components are not allowed */
-    fullscreenNotifySelectNotAllowed: () => t("embedbuilder", "fullscreen_notify_select_not_allowed", "Select menu components are not allowed"),
     /** A server must be selected to save a shared embed */
     fullscreenNotifyServerRequired: () => t("embedbuilder", "fullscreen_notify_server_required", "A server must be selected to save a shared embed"),
-    /** This row is empty */
-    fullscreenRowEmpty: () => t("embedbuilder", "fullscreen_row_empty", "This row is empty"),
-    /** Row {number} ({count} component) */
-    fullscreenRowHeaderOne: (p: { count: P; number: P }) => t("embedbuilder", "fullscreen_row_header_one", "Row {number} ({count} component)", p),
-    /** Row {number} ({count} components) */
-    fullscreenRowHeaderOther: (p: { count: P; number: P }) => t("embedbuilder", "fullscreen_row_header_other", "Row {number} ({count} components)", p),
     /** Save Current Embed */
     fullscreenSaveHeading: () => t("embedbuilder", "fullscreen_save_heading", "Save Current Embed"),
     /** Embed name */
@@ -6273,8 +6119,6 @@ export const m = {
     fullscreenValidationAuthorNeedsName: (p: { number: P }) => t("embedbuilder", "fullscreen_validation_author_needs_name", "Embed {number} author needs a name when it has an icon or link", p),
     /** A button needs a label */
     fullscreenValidationButtonNeedsLabel: () => t("embedbuilder", "fullscreen_validation_button_needs_label", "A button needs a label"),
-    /** Button "{name}" needs a trigger */
-    fullscreenValidationButtonNeedsTrigger: (p: { name: P }) => t("embedbuilder", "fullscreen_validation_button_needs_trigger", "Button \"{name}\" needs a trigger", p),
     /** Embed {number} description exceeds 4096 characters */
     fullscreenValidationDescriptionTooLong: (p: { number: P }) => t("embedbuilder", "fullscreen_validation_description_too_long", "Embed {number} description exceeds 4096 characters", p),
     /** Embed {number} is empty and won't be sent */
@@ -6285,28 +6129,30 @@ export const m = {
     fullscreenValidationFooterNeedsText: (p: { number: P }) => t("embedbuilder", "fullscreen_validation_footer_needs_text", "Embed {number} footer needs text when it has an icon", p),
     /** Link button "{name}" needs a URL */
     fullscreenValidationLinkNeedsUrl: (p: { name: P }) => t("embedbuilder", "fullscreen_validation_link_needs_url", "Link button \"{name}\" needs a URL", p),
-    /** Option {number} of "{name}" needs a name */
-    fullscreenValidationOptionNeedsName: (p: { name: P; number: P }) => t("embedbuilder", "fullscreen_validation_option_needs_name", "Option {number} of \"{name}\" needs a name", p),
-    /** Select menu "{name}" needs at least one option */
-    fullscreenValidationSelectNeedsOptions: (p: { name: P }) => t("embedbuilder", "fullscreen_validation_select_needs_options", "Select menu \"{name}\" needs at least one option", p),
-    /** Select menu "{name}" needs a trigger */
-    fullscreenValidationSelectNeedsTrigger: (p: { name: P }) => t("embedbuilder", "fullscreen_validation_select_needs_trigger", "Select menu \"{name}\" needs a trigger", p),
     /** Embed {number} title exceeds 256 characters */
     fullscreenValidationTitleTooLong: (p: { number: P }) => t("embedbuilder", "fullscreen_validation_title_too_long", "Embed {number} title exceeds 256 characters", p),
+    /** Edit link button */
+    linksEditTitle: () => t("embedbuilder", "links_edit_title", "Edit link button"),
+    /** Add a link button to show a clickable link under the message. */
+    linksEmptyHint: () => t("embedbuilder", "links_empty_hint", "Add a link button to show a clickable link under the message."),
+    /** No link buttons yet */
+    linksEmptyTitle: () => t("embedbuilder", "links_empty_title", "No link buttons yet"),
+    /** Link buttons are shown as links under the message. */
+    linksHint: () => t("embedbuilder", "links_hint", "Link buttons are shown as links under the message."),
+    /** Link text */
+    linksLabelPlaceholder: () => t("embedbuilder", "links_label_placeholder", "Link text"),
+    /** Link button duplicated */
+    linksNotifyDuplicated: () => t("embedbuilder", "links_notify_duplicated", "Link button duplicated"),
+    /** Maximum 25 link buttons allowed */
+    linksNotifyMax: () => t("embedbuilder", "links_notify_max", "Maximum 25 link buttons allowed"),
+    /** Link button removed */
+    linksNotifyRemoved: () => t("embedbuilder", "links_notify_removed", "Link button removed"),
     /** Cancel edits */
     pageActionCancelEdits: () => t("embedbuilder", "page_action_cancel_edits", "Cancel edits"),
     /** Copied! */
     pageActionCopied: () => t("embedbuilder", "page_action_copied", "Copied!"),
     /** Copy JSON */
     pageActionCopyJson: () => t("embedbuilder", "page_action_copy_json", "Copy JSON"),
-    /** Row */
-    pageAddRowShort: () => t("embedbuilder", "page_add_row_short", "Row"),
-    /** Button {name} */
-    pageComponentAriaButton: (p: { name: P }) => t("embedbuilder", "page_component_aria_button", "Button {name}", p),
-    /** Select menu {name} */
-    pageComponentAriaSelect: (p: { name: P }) => t("embedbuilder", "page_component_aria_select", "Select menu {name}", p),
-    /** R:{rows}/5 • B:5/row */
-    pageComponentsLimitsShort: (p: { rows: P }) => t("embedbuilder", "page_components_limits_short", "R:{rows}/5 • B:5/row", p),
     /** Click % for placeholders */
     pageContentHint: () => t("embedbuilder", "page_content_hint", "Click % for placeholders"),
     /** Message Content (optional) */
@@ -6325,22 +6171,12 @@ export const m = {
     pageJsonRefreshAria: () => t("embedbuilder", "page_json_refresh_aria", "Refresh JSON from builder"),
     /** Failed to copy JSON */
     pageNotifyCopyFailed: () => t("embedbuilder", "page_notify_copy_failed", "Failed to copy JSON"),
-    /** Cannot duplicate select menu in same row */
-    pageNotifyDuplicateSelect: () => t("embedbuilder", "page_notify_duplicate_select", "Cannot duplicate select menu in same row"),
     /** JSON copied to clipboard! */
     pageNotifyJsonCopied: () => t("embedbuilder", "page_notify_json_copied", "JSON copied to clipboard!"),
-    /** Maximum 5 rows allowed */
-    pageNotifyMaxRows: () => t("embedbuilder", "page_notify_max_rows", "Maximum 5 rows allowed"),
     /** Nothing to send yet */
     pageNotifyNothingToSend: () => t("embedbuilder", "page_notify_nothing_to_send", "Nothing to send yet"),
     /** Pick a channel to send to */
     pageNotifyPickChannel: () => t("embedbuilder", "page_notify_pick_channel", "Pick a channel to send to"),
-    /** Row duplicated */
-    pageNotifyRowDuplicated: () => t("embedbuilder", "page_notify_row_duplicated", "Row duplicated"),
-    /** Row is full (max 5 buttons) */
-    pageNotifyRowFull: () => t("embedbuilder", "page_notify_row_full", "Row is full (max 5 buttons)"),
-    /** Cannot add buttons to a row with a select menu */
-    pageNotifyRowHasSelectButton: () => t("embedbuilder", "page_notify_row_has_select_button", "Cannot add buttons to a row with a select menu"),
     /** Failed to send message */
     pageNotifySendFailed: () => t("embedbuilder", "page_notify_send_failed", "Failed to send message"),
     /** You must be logged in to send messages */
@@ -6353,24 +6189,6 @@ export const m = {
     pageNotifyServerForShared: () => t("embedbuilder", "page_notify_server_for_shared", "Select a guild to save a guild-shared embed"),
     /** Applied template: {name} */
     pageNotifyTemplateApplied: (p: { name: P }) => t("embedbuilder", "page_notify_template_applied", "Applied template: {name}", p),
-    /** Add button to row */
-    pageRowAddButtonAria: () => t("embedbuilder", "page_row_add_button_aria", "Add button to row"),
-    /** Components in row {number} */
-    pageRowComponentsAria: (p: { number: P }) => t("embedbuilder", "page_row_components_aria", "Components in row {number}", p),
-    /** Drag handle for row {number} */
-    pageRowDragAria: (p: { number: P }) => t("embedbuilder", "page_row_drag_aria", "Drag handle for row {number}", p),
-    /** Drag to reorder row */
-    pageRowDragTitle: () => t("embedbuilder", "page_row_drag_title", "Drag to reorder row"),
-    /** Duplicate row */
-    pageRowDuplicateAria: () => t("embedbuilder", "page_row_duplicate_aria", "Duplicate row"),
-    /** Row {number} ({count}) */
-    pageRowHeaderShort: (p: { count: P; number: P }) => t("embedbuilder", "page_row_header_short", "Row {number} ({count})", p),
-    /** Remove row */
-    pageRowRemoveAria: () => t("embedbuilder", "page_row_remove_aria", "Remove row"),
-    /** Drag the handle to reorder rows */
-    pageRowsDragHint: () => t("embedbuilder", "page_rows_drag_hint", "Drag the handle to reorder rows"),
-    /** No rows yet */
-    pageRowsEmptyTitle: () => t("embedbuilder", "page_rows_empty_title", "No rows yet"),
     /** Delete embed */
     pageSavedDeleteAria: () => t("embedbuilder", "page_saved_delete_aria", "Delete embed"),
     /** Load embed */
@@ -6547,10 +6365,10 @@ export const m = {
     previewSampleServer: () => t("embedbuilder", "preview_sample_server", "Example Server"),
     /** ExampleUser */
     previewSampleUser: () => t("embedbuilder", "preview_sample_user", "ExampleUser"),
-    /** Components */
-    tabComponents: () => t("embedbuilder", "tab_components", "Components"),
     /** JSON */
     tabJson: () => t("embedbuilder", "tab_json", "JSON"),
+    /** Link buttons */
+    tabLinks: () => t("embedbuilder", "tab_links", "Link buttons"),
     /** Important information for all members of %server.name%. */
     templatesAnnouncementBasicBody: () => t("embedbuilder", "templates_announcement_basic_body", "Important information for all members of %server.name%."),
     /** Simple server announcement */
@@ -7097,8 +6915,8 @@ export const m = {
     twitchDescription: () => t("features", "twitch_description", "Chat bot for your own Twitch channel (commands, timers, events)"),
     /** Twitch Bot */
     twitchName: () => t("features", "twitch_name", "Twitch Bot"),
-    /** Aliases, quotes, auto publish, stream roles, AI, NSFW filters */
-    utilityDescription: () => t("features", "utility_description", "Aliases, quotes, auto publish, stream roles, AI, NSFW filters"),
+    /** Aliases, quotes, auto publish, AI, NSFW filters */
+    utilityDescription: () => t("features", "utility_description", "Aliases, quotes, auto publish, AI, NSFW filters"),
     /** Utilities */
     utilityName: () => t("features", "utility_name", "Utilities"),
     /** Voting and polls */
@@ -7547,10 +7365,8 @@ export const m = {
     wizardStatType5Description: () => t("features", "wizard_stat_type_5_description", "Total channel count"),
     /** Total role count */
     wizardStatType6Description: () => t("features", "wizard_stat_type_6_description", "Total role count"),
-    /** Boosts */
-    wizardStatType7Label: () => t("features", "wizard_stat_type_7_label", "Boosts"),
-    /** Member, human, bot and boost counters */
-    wizardStatchannelsBenefit1: () => t("features", "wizard_statchannels_benefit_1", "Member, human, bot and boost counters"),
+    /** Member, human, bot and online counters */
+    wizardStatchannelsBenefit1: () => t("features", "wizard_statchannels_benefit_1", "Member, human, bot and online counters"),
     /** Channels are created for you */
     wizardStatchannelsBenefit2: () => t("features", "wizard_statchannels_benefit_2", "Channels are created for you"),
     /** Updates automatically as numbers change */
@@ -8355,10 +8171,6 @@ export const m = {
     publicEditUnavailable: () => t("forms", "public_edit_unavailable", "This response can no longer be changed"),
     /** Failed to verify eligibility. Please try again later. */
     publicEligibilityFailed: () => t("forms", "public_eligibility_failed", "Failed to verify eligibility. Please try again later."),
-    /** From **{server}** */
-    publicEmbedFrom: (p: { server: P }) => t("forms", "public_embed_from", "From **{server}**", p),
-    /** Open form */
-    publicEmbedOpen: () => t("forms", "public_embed_open", "Open form"),
     /** {count} question */
     publicEmbedQuestionOne: (p: { count: P }) => t("forms", "public_embed_question_one", "{count} question", p),
     /** {count} questions */
@@ -9187,8 +8999,6 @@ export const m = {
     landingCustomizeNow: () => t("home", "landing_customize_now", "Customize Now"),
     /** Economy Games */
     landingEconomyGames: () => t("home", "landing_economy_games", "Economy Games"),
-    /** 1,082 commands across 34 modules: forms, XP, economy, music, protection, logging and mo... */
-    landingEmbedSummary: () => t("home", "landing_embed_summary", "1,082 commands across 34 modules: forms, XP, economy, music, protection, logging and more. Trusted by 11,400+ servers. Free and open source since 2020."),
     /** Engagement */
     landingEngagement: () => t("home", "landing_engagement", "Engagement"),
     /** Every command, with examples and the permissions it needs. */
@@ -12873,10 +12683,6 @@ export const m = {
     pageCopyCode: (p: { code: P }) => t("placeholders", "page_copy_code", "Copy {code} to clipboard", p),
     /** Placeholders for commands with embeds! */
     pageDescription: () => t("placeholders", "page_description", "Placeholders for commands with embeds!"),
-    /** ## Placeholders Every placeholder Mewdeko fills in for greets, embeds, chat triggers an... */
-    pageEmbedBody: () => t("placeholders", "page_embed_body", "## Placeholders Every placeholder Mewdeko fills in for greets, embeds, chat triggers and other custom messages, with examples."),
-    /** Browse placeholders */
-    pageEmbedButton: () => t("placeholders", "page_embed_button", "Browse placeholders"),
     /** Generate random content and user-specific information */
     pageFeatureDynamicBody: () => t("placeholders", "page_feature_dynamic_body", "Generate random content and user-specific information"),
     /** Dynamic Content */
@@ -12943,10 +12749,6 @@ export const m = {
     server: () => t("placeholders", "server", "Server name"),
     /** Server banner URL */
     serverBanner: () => t("placeholders", "server_banner", "Server banner URL"),
-    /** Server boost count */
-    serverBoostcount: () => t("placeholders", "server_boostcount", "Server boost count"),
-    /** Server boost level (0-3) */
-    serverBoostlevel: () => t("placeholders", "server_boostlevel", "Server boost level (0-3)"),
     /** Server ID */
     serverId: () => t("placeholders", "server_id", "Server ID"),
     /** Number of server members */
@@ -13329,18 +13131,6 @@ export const m = {
     commandsCountOther: (p: { count: P }) => t("public", "commands_count_other", "{count} commands", p),
     /** Find out more about Mewdeko's commands and how to use them. */
     commandsDescription: () => t("public", "commands_description", "Find out more about Mewdeko's commands and how to use them."),
-    /** Module: {module} */
-    commandsEmbedModule: (p: { module: P }) => t("public", "commands_embed_module", "Module: {module}", p),
-    /** Requires: {permissions} */
-    commandsEmbedRequires: (p: { permissions: P }) => t("public", "commands_embed_requires", "Requires: {permissions}", p),
-    /** Mewdeko Commands */
-    commandsEmbedTitle: () => t("public", "commands_embed_title", "Mewdeko Commands"),
-    /** {commands} commands · {modules} modules */
-    commandsEmbedTotals: (p: { commands: P; modules: P }) => t("public", "commands_embed_totals", "{commands} commands · {modules} modules", p),
-    /** Usage: `{example}` */
-    commandsEmbedUsage: (p: { example: P }) => t("public", "commands_embed_usage", "Usage: `{example}`", p),
-    /** View all commands */
-    commandsEmbedViewAll: () => t("public", "commands_embed_view_all", "View all commands"),
     /** Explore all available commands and modules */
     commandsExploreAllAvailableCommandsAnd: () => t("public", "commands_explore_all_available_commands_and", "Explore all available commands and modules"),
     /** fun */
@@ -13463,12 +13253,6 @@ export const m = {
     credguideDownloadPostgresqlInstaller: () => t("public", "credguide_download_postgresql_installer", "Download PostgreSQL installer"),
     /** During installation, remember the password you set for the 'postgres' user */
     credguideDuringInstallationRememberThePassword: () => t("public", "credguide_during_installation_remember_the_password", "During installation, remember the password you set for the 'postgres' user"),
-    /** Start the guide */
-    credguideEmbedButton: () => t("public", "credguide_embed_button", "Start the guide"),
-    /** A step-by-step walkthrough for setting up the credentials a self-hosted Mewdeko needs. */
-    credguideEmbedSummary: () => t("public", "credguide_embed_summary", "A step-by-step walkthrough for setting up the credentials a self-hosted Mewdeko needs."),
-    /** Credentials Setup Guide */
-    credguideEmbedTitle: () => t("public", "credguide_embed_title", "Credentials Setup Guide"),
     /** Enable the bot's HTTP API (required for the dashboard) */
     credguideEnableTheBotsHttpApi: () => t("public", "credguide_enable_the_bots_http_api", "Enable the bot's HTTP API (required for the dashboard)"),
     /** Enter the password you set earlier. Use \q to exit psql. */
@@ -13721,18 +13505,6 @@ export const m = {
     giveawaysCompleteTheVerificationBelowTo: () => t("public", "giveaways_complete_the_verification_below_to", "Complete the verification below to secure your entry"),
     /** Enter Mewdeko Fluxer bot giveaway */
     giveawaysDescription: () => t("public", "giveaways_description", "Enter Mewdeko Fluxer bot giveaway"),
-    /** Ended {time} */
-    giveawaysEmbedEnded: (p: { time: P }) => t("public", "giveaways_embed_ended", "Ended {time}", p),
-    /** Ends {time} */
-    giveawaysEmbedEnds: (p: { time: P }) => t("public", "giveaways_embed_ends", "Ends {time}", p),
-    /** Enter giveaway */
-    giveawaysEmbedEnter: () => t("public", "giveaways_embed_enter", "Enter giveaway"),
-    /** Hosted in **{guild}** */
-    giveawaysEmbedHosted: (p: { guild: P }) => t("public", "giveaways_embed_hosted", "Hosted in **{guild}**", p),
-    /** {count} winner */
-    giveawaysEmbedWinnerOne: (p: { count: P }) => t("public", "giveaways_embed_winner_one", "{count} winner", p),
-    /** {count} winners */
-    giveawaysEmbedWinnerOther: (p: { count: P }) => t("public", "giveaways_embed_winner_other", "{count} winners", p),
     /** This giveaway ended on {date} */
     giveawaysEndedOn: (p: { date: P }) => t("public", "giveaways_ended_on", "This giveaway ended on {date}", p),
     /** Ends On */
@@ -13799,10 +13571,6 @@ export const m = {
     leaderboardCheckInstancesFailed: () => t("public", "leaderboard_check_instances_failed", "Failed to check bot instances"),
     /** View the XP leaderboard for {server} */
     leaderboardDescription: (p: { server: P }) => t("public", "leaderboard_description", "View the XP leaderboard for {server}", p),
-    /** Open leaderboard */
-    leaderboardEmbedOpen: () => t("public", "leaderboard_embed_open", "Open leaderboard"),
-    /** **#{rank}** {user} · Level {level} */
-    leaderboardEmbedRow: (p: { level: P; rank: P; user: P }) => t("public", "leaderboard_embed_row", "**#{rank}** {user} · Level {level}", p),
     /** Finding which bot has this server... */
     leaderboardFindingBot: () => t("public", "leaderboard_finding_bot", "Finding which bot has this server..."),
     /** {server} Leaderboard */
@@ -13847,10 +13615,6 @@ export const m = {
     reviewsAlreadySubmitted: () => t("public", "reviews_already_submitted", "You have already submitted a review."),
     /** What users think of Mewdeko. */
     reviewsDescription: () => t("public", "reviews_description", "What users think of Mewdeko."),
-    /** Read the reviews */
-    reviewsEmbedButton: () => t("public", "reviews_embed_button", "Read the reviews"),
-    /** What users think of Mewdeko, and where to leave your own review. */
-    reviewsEmbedSummary: () => t("public", "reviews_embed_summary", "What users think of Mewdeko, and where to leave your own review."),
     /** Bot Reviews */
     reviewsHeading: () => t("public", "reviews_heading", "Bot Reviews"),
     /** Failed to load reviews. Please try again later. */
@@ -13897,12 +13661,6 @@ export const m = {
     staffEggCottage: () => t("public", "staff_egg_cottage", "Head of evil science/Catgirl shenanigans"),
     /** LEEEEROY JEEEENKINS */
     staffEggSylveon: () => t("public", "staff_egg_sylveon", "LEEEEROY JEEEENKINS"),
-    /** Meet the team */
-    staffEmbedButton: () => t("public", "staff_embed_button", "Meet the team"),
-    /** Meet the people that make Mewdeko possible. */
-    staffEmbedSummary: () => t("public", "staff_embed_summary", "Meet the people that make Mewdeko possible."),
-    /** Our Team */
-    staffEmbedTitle: () => t("public", "staff_embed_title", "Our Team"),
     /** Major People */
     staffMajorPeople: () => t("public", "staff_major_people", "Major People"),
     /** Meet Our Team */
@@ -14377,10 +14135,6 @@ export const m = {
     editorConfirmSubtitle: () => t("role-menus", "editor_confirm_subtitle", "Sends a private note only they can see, listing the roles added and removed."),
     /** Tell members what changed */
     editorConfirmTitle: () => t("role-menus", "editor_confirm_title", "Tell members what changed"),
-    /** Shown in the dropdown before anyone picks. */
-    editorHintTextHelp: () => t("role-menus", "editor_hint_text_help", "Shown in the dropdown before anyone picks."),
-    /** Dropdown hint text */
-    editorHintTextLabel: () => t("role-menus", "editor_hint_text_label", "Dropdown hint text"),
     /** Each role can only be on a menu once */
     editorInvalidDuplicate: () => t("role-menus", "editor_invalid_duplicate", "Each role can only be on a menu once"),
     /** Names can be up to {max} characters */
@@ -14401,8 +14155,8 @@ export const m = {
     editorMessageHint: () => t("role-menus", "editor_message_hint", "Leave empty to post the menu's name and a list of its options."),
     /** Click to write the message, or leave it empty for a simple list of the options */
     editorMessagePlaceholder: () => t("role-menus", "editor_message_placeholder", "Click to write the message, or leave it empty for a simple list of the options"),
-    /** Shown above the dropdown or buttons */
-    editorMessagePreviewDescription: () => t("role-menus", "editor_message_preview_description", "Shown above the dropdown or buttons"),
+    /** Shown above the list of options */
+    editorMessagePreviewDescription: () => t("role-menus", "editor_message_preview_description", "Shown above the list of options"),
     /** Role menu message */
     editorMessagePreviewTitle: () => t("role-menus", "editor_message_preview_title", "Role menu message"),
     /** Must keep at least */
@@ -14425,10 +14179,6 @@ export const m = {
     editorSectionPicking: () => t("role-menus", "editor_section_picking", "Picking"),
     /** This server */
     editorThisServer: () => t("role-menus", "editor_this_server", "This server"),
-    /** A button per role, five to a row. */
-    editorTypeButtonsText: () => t("role-menus", "editor_type_buttons_text", "A button per role, five to a row."),
-    /** One tidy list with room for descriptions. */
-    editorTypeDropdownText: () => t("role-menus", "editor_type_dropdown_text", "One tidy list with room for descriptions."),
     /** Uses the text and embeds from the old message */
     importCopySubtitle: () => t("role-menus", "import_copy_subtitle", "Uses the text and embeds from the old message"),
     /** Copy the original message */
@@ -14438,9 +14188,7 @@ export const m = {
     /** Nothing to move */
     importEmptyTitle: () => t("role-menus", "import_empty_title", "Nothing to move"),
     /** Older setups had members add an emoji under a message to get a role. Move one to a role... */
-    importIntro: () => t("role-menus", "import_intro", "Older setups had members add an emoji under a message to get a role. Move one to a role menu and members pick from a dropdown or buttons instead."),
-    /** Menu type */
-    importMenuType: () => t("role-menus", "import_menu_type", "Menu type"),
+    importIntro: () => t("role-menus", "import_intro", "Older setups had members add an emoji under a message to get a role. Move one to a role menu to manage it here with the same emoji."),
     /** Move to a role menu */
     importMove: () => t("role-menus", "import_move", "Move to a role menu"),
     /** Post in */
@@ -14453,8 +14201,8 @@ export const m = {
     listCount: (p: { count: P; max: P }) => t("role-menus", "list_count", "{count} of {max} menus", p),
     /** Create your first menu */
     listCreateFirst: () => t("role-menus", "list_create_first", "Create your first menu"),
-    /** Post a message with a dropdown or buttons, and members pick their own roles. Pronouns, ... */
-    listEmptyText: () => t("role-menus", "list_empty_text", "Post a message with a dropdown or buttons, and members pick their own roles. Pronouns, colors, pings, regions: one menu each."),
+    /** Post a message and members react to pick their own roles. Pronouns, colors, pings, regi... */
+    listEmptyText: () => t("role-menus", "list_empty_text", "Post a message and members react to pick their own roles. Pronouns, colors, pings, regions: one menu each."),
     /** No role menus yet */
     listEmptyTitle: () => t("role-menus", "list_empty_title", "No role menus yet"),
     /** You have {count} older emoji role setups you can move over. */
@@ -14481,12 +14229,8 @@ export const m = {
     notifyReposted: (p: { channel: P }) => t("role-menus", "notify_reposted", "Posted again in {channel}", p),
     /** Message updated in {channel} */
     notifyUpdated: (p: { channel: P }) => t("role-menus", "notify_updated", "Message updated in {channel}", p),
-    /** Button color */
-    optionButtonColor: () => t("role-menus", "option_button_color", "Button color"),
-    /** Shown in the default message */
-    optionDescriptionHintButtons: () => t("role-menus", "option_description_hint_buttons", "Shown in the default message"),
-    /** Shown under the dropdown option */
-    optionDescriptionHintDropdown: () => t("role-menus", "option_description_hint_dropdown", "Shown under the dropdown option"),
+    /** Shown next to the role in the default message */
+    optionDescriptionHint: () => t("role-menus", "option_description_hint", "Shown next to the role in the default message"),
     /** option {number} */
     optionFallbackName: (p: { number: P }) => t("role-menus", "option_fallback_name", "option {number}", p),
     /** Name on the menu */
@@ -14503,8 +14247,8 @@ export const m = {
     pageSaveFailed: () => t("role-menus", "page_save_failed", "Couldn't save the menu."),
     /** Add an option to see the menu */
     previewEmpty: () => t("role-menus", "preview_empty", "Add an option to see the menu"),
-    /** Paused: the menu is inactive in Fluxer. */
-    previewPaused: () => t("role-menus", "preview_paused", "Paused: the menu is inactive in Fluxer."),
+    /** Paused: reactions on this menu do nothing until you resume it. */
+    previewPaused: () => t("role-menus", "preview_paused", "Paused: reactions on this menu do nothing until you resume it."),
     /** Channel missing */
     statusChannelMissing: () => t("role-menus", "status_channel_missing", "Channel missing"),
     /** Live */
@@ -16239,8 +15983,6 @@ export const m = {
     pageTitle: () => t("tickets", "page_title", "Ticket System"),
     /** Add Menu */
     panelsAddMenu: () => t("tickets", "panels_add_menu", "Add Menu"),
-    /** Add Option ({count}/{max}) */
-    panelsAddOptionCount: (p: { count: P; max: P }) => t("tickets", "panels_add_option_count", "Add Option ({count}/{max})", p),
     /** Allowed Priorities */
     panelsAllowedPriorities: () => t("tickets", "panels_allowed_priorities", "Allowed Priorities"),
     /** Archive Category */
@@ -16251,8 +15993,8 @@ export const m = {
     panelsButtonLabelPlaceholder: () => t("tickets", "panels_button_label_placeholder", "Support Ticket"),
     /** Button configuration sections */
     panelsButtonSectionsAria: () => t("tickets", "panels_button_sections_aria", "Button configuration sections"),
-    /** Style: {style} • Max: {max} */
-    panelsButtonSummary: (p: { max: P; style: P }) => t("tickets", "panels_button_summary", "Style: {style} • Max: {max}", p),
+    /** Max: {max} */
+    panelsButtonSummary: (p: { max: P }) => t("tickets", "panels_button_summary", "Max: {max}", p),
     /** No buttons yet */
     panelsButtonsEmpty: () => t("tickets", "panels_buttons_empty", "No buttons yet"),
     /** Buttons ({count}) */
@@ -16261,14 +16003,8 @@ export const m = {
     panelsCancelOptionAria: () => t("tickets", "panels_cancel_option_aria", "Cancel option"),
     /** Cancel editing placeholder */
     panelsCancelPlaceholderAria: () => t("tickets", "panels_cancel_placeholder_aria", "Cancel editing placeholder"),
-    /** Can add {buttons} more button or {menus} more menu */
-    panelsCapacityButtonOneMenuOne: (p: { buttons: P; menus: P }) => t("tickets", "panels_capacity_button_one_menu_one", "Can add {buttons} more button or {menus} more menu", p),
-    /** Can add {buttons} more button or {menus} more menus */
-    panelsCapacityButtonOneMenuOther: (p: { buttons: P; menus: P }) => t("tickets", "panels_capacity_button_one_menu_other", "Can add {buttons} more button or {menus} more menus", p),
-    /** Can add {buttons} more buttons or {menus} more menu */
-    panelsCapacityButtonOtherMenuOne: (p: { buttons: P; menus: P }) => t("tickets", "panels_capacity_button_other_menu_one", "Can add {buttons} more buttons or {menus} more menu", p),
-    /** Can add {buttons} more buttons or {menus} more menus */
-    panelsCapacityButtonOtherMenuOther: (p: { buttons: P; menus: P }) => t("tickets", "panels_capacity_button_other_menu_other", "Can add {buttons} more buttons or {menus} more menus", p),
+    /** Room for {count} more ticket types, {max} at most */
+    panelsCapacity: (p: { count: P; max: P }) => t("tickets", "panels_capacity", "Room for {count} more ticket types, {max} at most", p),
     /** Available: {username}, {id} • Max {count} characters */
     panelsChannelFormatHint: (p: { count: P; id: P; username: P }) => t("tickets", "panels_channel_format_hint", "Available: {username}, {id} • Max {count} characters", p),
     /** {buttons}B • {menus}M */
@@ -16313,16 +16049,12 @@ export const m = {
     panelsFirstOptionEmoji: () => t("tickets", "panels_first_option_emoji", "First Option Emoji"),
     /** First Option Label */
     panelsFirstOptionLabel: () => t("tickets", "panels_first_option_label", "First Option Label"),
-    /** Component limit reached. Remove buttons or select menus to add more. */
-    panelsLimitReached: () => t("tickets", "panels_limit_reached", "Component limit reached. Remove buttons or select menus to add more."),
-    /** Component limit reached. Need 5 slots for a select menu. Remove components to add more. */
-    panelsLimitReachedMenu: () => t("tickets", "panels_limit_reached_menu", "Component limit reached. Need 5 slots for a select menu. Remove components to add more."),
+    /** A panel holds at most {max} ticket types, one reaction each. Remove one to add more. */
+    panelsLimitReached: (p: { max: P }) => t("tickets", "panels_limit_reached", "A panel holds at most {max} ticket types, one reaction each. Remove one to add more.", p),
     /** Max Active Tickets */
     panelsMaxActiveTickets: () => t("tickets", "panels_max_active_tickets", "Max Active Tickets"),
     /** Max {count} characters */
     panelsMaxCharacters: (p: { count: P }) => t("tickets", "panels_max_characters", "Max {count} characters", p),
-    /** Maximum {max} options per menu */
-    panelsMaxOptions: (p: { max: P }) => t("tickets", "panels_max_options", "Maximum {max} options per menu", p),
     /** Select a ticket type... */
     panelsMenuPlaceholderExample: () => t("tickets", "panels_menu_placeholder_example", "Select a ticket type..."),
     /** No select menus yet */
@@ -16409,14 +16141,6 @@ export const m = {
     panelsSelectPrioritiesPlaceholder: () => t("tickets", "panels_select_priorities_placeholder", "Select priorities..."),
     /** Click "Edit Embed" to customize this panel */
     panelsSettingsHint: () => t("tickets", "panels_settings_hint", "Click \"Edit Embed\" to customize this panel"),
-    /** Danger (Red) */
-    panelsStyleDangerLabel: () => t("tickets", "panels_style_danger_label", "Danger (Red)"),
-    /** Primary (Blue) */
-    panelsStylePrimaryLabel: () => t("tickets", "panels_style_primary_label", "Primary (Blue)"),
-    /** Secondary (Gray) */
-    panelsStyleSecondaryLabel: () => t("tickets", "panels_style_secondary_label", "Secondary (Gray)"),
-    /** Success (Green) */
-    panelsStyleSuccessLabel: () => t("tickets", "panels_style_success_label", "Success (Green)"),
     /** Select Menus */
     panelsTabSelectMenus: () => t("tickets", "panels_tab_select_menus", "Select Menus"),
     /** Panel Settings */
@@ -17245,8 +16969,8 @@ export const m = {
     nsfwTagPlaceholder: () => t("utility", "nsfw_tag_placeholder", "Tag to block, e.g. gore"),
     /** Unblock {tag} */
     nsfwUnblockAria: (p: { tag: P }) => t("utility", "nsfw_unblock_aria", "Unblock {tag}", p),
-    /** Aliases, quotes, auto publish, stream roles, AI, NSFW filters, and role monitoring */
-    pageSubtitle: () => t("utility", "page_subtitle", "Aliases, quotes, auto publish, stream roles, AI, NSFW filters, and role monitoring"),
+    /** Aliases, quotes, auto publish, AI, NSFW filters, and role monitoring */
+    pageSubtitle: () => t("utility", "page_subtitle", "Aliases, quotes, auto publish, AI, NSFW filters, and role monitoring"),
     /** Manage Events */
     permManageEvents: () => t("utility", "perm_manage_events", "Manage Events"),
     /** Manage Threads */
@@ -17345,48 +17069,6 @@ export const m = {
     rmWhitelistRoleFailed: () => t("utility", "rm_whitelist_role_failed", "Failed to whitelist role"),
     /** Failed to whitelist user */
     rmWhitelistUserFailed: () => t("utility", "rm_whitelist_user_failed", "Failed to whitelist user"),
-    /** Role while streaming */
-    streamroleAdded: () => t("utility", "streamrole_added", "Role while streaming"),
-    /** Never given the stream role */
-    streamroleBlacklistHint: () => t("utility", "streamrole_blacklist_hint", "Never given the stream role"),
-    /** Give members a role automatically while they are live on Discord. */
-    streamroleCardSubtitle: () => t("utility", "streamrole_card_subtitle", "Give members a role automatically while they are live on Discord."),
-    /** Disable the stream role? Members keep the role until they stop streaming. */
-    streamroleDisableConfirm: () => t("utility", "streamrole_disable_confirm", "Disable the stream role? Members keep the role until they stop streaming."),
-    /** Failed to disable stream role */
-    streamroleDisableFailed: () => t("utility", "streamrole_disable_failed", "Failed to disable stream role"),
-    /** Eligible role */
-    streamroleEligible: () => t("utility", "streamrole_eligible", "Eligible role"),
-    /** Members with this role */
-    streamroleEligiblePlaceholder: () => t("utility", "streamrole_eligible_placeholder", "Members with this role"),
-    /** Failed to enable stream role */
-    streamroleEnableFailed: () => t("utility", "streamrole_enable_failed", "Failed to enable stream role"),
-    /** Fine-tune who can receive the stream role. */
-    streamroleExceptionsSubtitle: () => t("utility", "streamrole_exceptions_subtitle", "Fine-tune who can receive the stream role."),
-    /** Exceptions */
-    streamroleExceptionsTitle: () => t("utility", "streamrole_exceptions_title", "Exceptions"),
-    /** Stream title keyword */
-    streamroleKeyword: () => t("utility", "streamrole_keyword", "Stream title keyword"),
-    /** Failed to save keyword */
-    streamroleKeywordFailed: () => t("utility", "streamrole_keyword_failed", "Failed to save keyword"),
-    /** Only streams whose title contains this word count. Leave empty to match any stream. */
-    streamroleKeywordHint: () => t("utility", "streamrole_keyword_hint", "Only streams whose title contains this word count. Leave empty to match any stream."),
-    /** Any stream */
-    streamroleKeywordPlaceholder: () => t("utility", "streamrole_keyword_placeholder", "Any stream"),
-    /** Failed to update list */
-    streamroleListFailed: () => t("utility", "streamrole_list_failed", "Failed to update list"),
-    /** List type */
-    streamroleListTypeAria: () => t("utility", "streamrole_list_type_aria", "List type"),
-    /** Pick both roles first */
-    streamrolePickBoth: () => t("utility", "streamrole_pick_both", "Pick both roles first"),
-    /** Remove {user} */
-    streamroleRemoveAria: (p: { user: P }) => t("utility", "streamrole_remove_aria", "Remove {user}", p),
-    /** @{from} streamers get @{to} */
-    streamroleSummary: (p: { from: P; to: P }) => t("utility", "streamrole_summary", "@{from} streamers get @{to}", p),
-    /** Update roles */
-    streamroleUpdateRoles: () => t("utility", "streamrole_update_roles", "Update roles"),
-    /** Always eligible, even without the role */
-    streamroleWhitelistHint: () => t("utility", "streamrole_whitelist_hint", "Always eligible, even without the role"),
     /** AI assistant */
     tabAi: () => t("utility", "tab_ai", "AI assistant"),
     /** Aliases */
@@ -17395,8 +17077,6 @@ export const m = {
     tabAutopublish: () => t("utility", "tab_autopublish", "Auto publish"),
     /** NSFW Filter */
     tabNsfw: () => t("utility", "tab_nsfw", "NSFW Filter"),
-    /** Stream role */
-    tabStreamrole: () => t("utility", "tab_streamrole", "Stream role"),
   },
   votes: {
     /** API Password (for webhooks) */
@@ -17543,18 +17223,6 @@ export const m = {
     calloutTip: () => t("wiki", "callout_tip", "Tip"),
     /** Close wiki panel */
     closeWikiPanel: () => t("wiki", "close_wiki_panel", "Close wiki panel"),
-    /** {count} articles · Start here: {featured} */
-    embedArticles: (p: { count: P; featured: P }) => t("wiki", "embed_articles", "{count} articles · Start here: {featured}", p),
-    /** {category} · {minutes} min read */
-    embedCategoryReading: (p: { category: P; minutes: P }) => t("wiki", "embed_category_reading", "{category} · {minutes} min read", p),
-    /** Commands live in the **{module}** module */
-    embedModule: (p: { module: P }) => t("wiki", "embed_module", "Commands live in the **{module}** module", p),
-    /** Open the wiki */
-    embedOpenWiki: () => t("wiki", "embed_open_wiki", "Open the wiki"),
-    /** Read the article */
-    embedReadArticle: () => t("wiki", "embed_read_article", "Read the article"),
-    /** Related: {articles} */
-    embedRelated: (p: { articles: P }) => t("wiki", "embed_related", "Related: {articles}", p),
     /** Plain language write-ups of every Mewdeko feature: what it does, how to set it up, and ... */
     embedSummary: () => t("wiki", "embed_summary", "Plain language write-ups of every Mewdeko feature: what it does, how to set it up, and how servers use it."),
     /** Every guide is listed A to Z in the sidebar. */

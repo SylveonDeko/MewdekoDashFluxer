@@ -32,7 +32,7 @@ Each button and each select option is its own ticket type with its own category,
 
 A panel is one message in one channel. The panel ID is that message's ID. A panel can hold buttons, select menus, or both.
 
-- **Buttons**: one ticket type per button. Each has a label, an optional emoji and a style (Primary, Secondary, Success or Danger).
+- **Buttons**: one ticket type per button. Each has a label and an optional emoji.
 - **Select menus**: one menu with a placeholder and a list of options. Each option is a ticket type with a label, description and emoji. A menu must keep at least one option.
 
 If the panel message is deleted, `checkpanels` lists which panels are missing and `recreatepanel` or `recreateallpanels` posts them again and updates the stored message ID. The bot also watches for deletions of panel messages.
@@ -169,7 +169,7 @@ The **Tickets** tab lists open and closed tickets with search by ticket, user, c
 2. Open **Tickets** in the dashboard, go to **Configuration**, and set **Transcript Channel** and **Log Channel**.
 3. Still on **Configuration**, create at least one priority (for example `urgent`, level 5, Notify staff on) and any tags you want.
 4. Go to **Ticket Panels** and **Create New Panel**. Choose the channel and design the **Panel Embed**.
-5. Select the panel and add a **New Button**. Set the label, style, **Ticket Category**, **Archive Category**, **Support Roles**, and turn on **Save Transcript**. Decide between keeping closed channels in the archive category or **Delete on Close** with a delay.
+5. Select the panel and add a **New Button**. Set the label, **Ticket Category**, **Archive Category**, **Support Roles**, and turn on **Save Transcript**. Decide between keeping closed channels in the archive category or **Delete on Close** with a delay.
 6. Optionally open the modal builder to add form fields, and the open message editor to customise the welcome.
 7. For several ticket types in one dropdown, add a **New Select Menu** instead and add an option per type with the same settings.
 8. Open a test ticket from another account, claim it, set a priority, close it, and check the transcript channel.
@@ -195,7 +195,7 @@ Run these with your server's prefix (`.` unless you changed it). Panel IDs are m
 | `recreatepanel <panelId>` | `trecreate` | Administrator | Repost a missing panel |
 | `recreateallpanels` | `trecreateall` | Administrator | Repost every missing panel |
 | `setpaneltranscripts <panelId> <true or false>` | `sptranscripts` | Administrator | Toggle transcripts for every button on a panel |
-| `ticketaddbutton <panelId> <label> [style] [emoji]` | `taddbtn` | Administrator | Add a button |
+| `ticketaddbutton <panelId> <label> [emoji]` | `taddbtn` | Administrator | Add a button |
 | `buttoninfo <buttonId>` | `binfo` | Administrator | Show a button's settings |
 | `deletebutton <buttonId>` | `delbtn` | Administrator | Remove a button |
 | `ticketcategory <buttonId> [category]` | `tcat` | Administrator | Set or clear the ticket category |

@@ -6,7 +6,7 @@ icon: fa-cog
 category: Security
 dashboard: /dashboard/administration
 module: Administration
-tags: [admin, anti-raid, anti-spam, anti-alt, anti-pattern, anti-mass-mention, anti-mass-post, honeypot, anti-image-hash, scam images, external apps, user apps, reaction roles, self-assignable roles, auto-assign roles, auto-ban roles, voice channel roles, permission overrides, dpo, mass ban, prune, server recovery, staff role, timezone, cooldowns]
+tags: [admin, anti-raid, anti-spam, anti-alt, anti-pattern, anti-mass-mention, anti-mass-post, honeypot, anti-image-hash, scam images, reaction roles, self-assignable roles, auto-assign roles, auto-ban roles, voice channel roles, permission overrides, dpo, mass ban, server recovery, staff role, timezone, cooldowns]
 related: [moderation, permissions, logging, multigreets, settings, auditlog, rolestates]
 ---
 
@@ -16,7 +16,7 @@ Administration is the module that keeps a server orderly when no moderator is wa
 
 The same module handles role automation: roles given on join, roles members pick up themselves with `iam`, reaction roles, roles tied to being in a voice channel, and tripwire roles that ban whoever receives them. It also lets you change which Fluxer permission a command needs, set the staff and member roles other features rely on, rate limit commands, and clean up command messages.
 
-For the bad days there are mass operations: ban or kick everyone who joined in the last few minutes, ban by name pattern, by role, or by avatar, prune inactive members, and a server recovery flow that gets an administrator role back to a verified owner.
+For the bad days there are mass operations: ban or kick everyone who joined in the last few minutes, ban by name pattern, by role, or by avatar, and a server recovery flow that gets an administrator role back to a verified owner.
 
 Everything lives on the **Administration** page of the dashboard across five tabs: **Overview**, **Protection Systems**, **Roles & Permissions**, **Automation & Settings** and **Advanced Operations**. Nearly every setting also has a command.
 
@@ -128,21 +128,6 @@ To block your own image on the dashboard, drop or upload the file, or paste its 
 > [!TIP]
 > Turn on Anti-Post-Channel and the known scam image list first. Neither produces false positives in normal chat, and together they catch most automated scam activity.
 
-### Anti-External App
-
-Members can add apps to their own Fluxer account and use them in any server, even one the app was never added to. Messages from those apps post under the app's name, so the other protections, which look at who sent a message, never see the member behind them. Anti-External App reads which member ran the app and acts on them.
-
-A message counts as a violation when it:
-
-- mentions at least the **mention limit** of users and roles (default 5), or pings everyone or here,
-- contains a Fluxer invite link, while **remove invite links** is on,
-- or comes from a member who has run apps more than **app messages allowed** times within the window (default 5 in 10 seconds).
-
-Setting a limit to 0 turns that check off. When a message breaks a rule it is deleted, and the member who ran the app gets the punishment, a one hour timeout by default. **Delete only** removes the message without punishing anyone. Apps that were added to the server itself are left alone, and so are server administrators.
-
-> [!TIP]
-> Fluxer's **Use External Apps** permission is a good partner for this. Members without it can still use their apps, but only they see the replies. Deny it for `@everyone` and allow it for a trusted or levelled role, and new or throwaway accounts can't post through apps at all.
-
 ## Roles
 
 These cards are on the **Roles & Permissions** tab.
@@ -182,11 +167,10 @@ These cards are on the **Automation & Settings** tab.
 | Setting | Default | What it controls |
 | --- | --- | --- |
 | **Staff Role** | none | The role other features treat as staff |
-| **Member Role** | none | The role treated as "member"; `prunemembers` can include people with it |
+| **Member Role** | none | The role treated as "member" |
 | **Server Timezone** | UTC | Timezone used wherever the bot prints local times |
 | **Command Cooldowns** | none | Per command rate limit in seconds, 1 to 90,000 |
 | **Permission Overrides** | none | Fluxer permission each command requires (see above) |
-| **Game Voice Channel** | none | When a member in this voice channel starts playing a game, the bot moves them to the voice channel whose name matches the game |
 | **Delete Message On Command** | off | Delete the invoking message after a command runs, with per channel overrides of Enable, Disable or Inherit |
 | **Stats opt-out** | opted in | Stop command usage statistics for this server; **Delete Stats** wipes what is stored |
 
@@ -215,7 +199,6 @@ The dashboard card can also store keys directly: generate or type a recovery key
 
 | Operation | What it does |
 | --- | --- |
-| **Prune Inactive Users** | Fluxer's member prune for members inactive for the given number of days (1 to 30) |
 | **Mass Ban Users** | Bans a pasted list of user IDs with one reason; message deletion follows the Moderation ban prune setting |
 | **Mass Rename Users** | Sets every member's nickname to a pattern where `{username}` is replaced with their username, for example `[AFK] {username}`; members the bot cannot rename are skipped |
 | **Prune to Message** | Deletes every message after a given message ID in a channel, one at a time |
@@ -256,7 +239,6 @@ Run these with your server's prefix (`.` unless you changed it). Protection comm
 | `antipostchanneladd <#channel>` | | Administrator | Add a honeypot channel |
 | `antipostchannelremove <#channel>` | | Administrator | Remove a honeypot channel |
 | `antiimagehash [action] [tolerance] [duration]` | `aih` | Administrator | Configure or disable Anti-Image-Hash |
-| `antiexternalapp [action] [mentions] [messages] [duration]` | `aea`, `antiuserapp` | Administrator | Configure or disable Anti-External App |
 | `blockimage [action] [name]` | `banimage` | Administrator | Block the attached, replied to or linked image |
 | `unblockimage <id>` | `unbanimage` | Administrator | Remove a blocked image |
 | `blockedimages` | `blockedimagelist` | Administrator | List blocked images with hit counts |
@@ -309,7 +291,6 @@ Run these with your server's prefix (`.` unless you changed it). Protection comm
 | `staffroledisable` | | Administrator | Clear the staff role |
 | `memberrole <role>` | | Administrator | Show or set the member role |
 | `delmsgoncmd [list, server, or channel <enable, disable, inherit> [#channel]]` | `dmc` | Administrator | Show, toggle, or override command message deletion |
-| `gamevoicechannel` | `gvc` | Administrator | Toggle your current voice channel as the game voice channel |
 | `timezone [id]` | | Nobody to view, Administrator to set | Show or set the server timezone |
 | `timezones` | | Nobody | List available timezone IDs |
 | `prefix [new]` | | Nobody to view, Administrator to set | Show or change the command prefix |
@@ -328,7 +309,6 @@ Run these with your server's prefix (`.` unless you changed it). Protection comm
 | `nameban <regex>` | `nban` | Administrator | Ban members whose username matches, with preview |
 | `baninrole <role> [reason]` | | Administrator | Ban everyone holding a role |
 | `banbyhash <avatarHash>` | `bbh` | Administrator | Ban everyone with a given avatar hash |
-| `prunemembers <time> [yes]` | `memberprune` | Administrator | Prune members inactive for that many days; `yes` includes the member role |
 | `setnick [user] <nickname>` | | Manage Nicknames | Change a member's nickname, or the bot's own |
 | `deafen <users...>` | `deaf` | Deafen Members | Server deafen |
 | `undeafen <users...>` | `undef` | Deafen Members | Undo it |

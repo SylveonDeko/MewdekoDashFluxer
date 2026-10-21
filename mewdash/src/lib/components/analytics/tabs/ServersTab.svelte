@@ -64,7 +64,6 @@
     { key: "humans", label: m.common.humans(), num: true, format: (r) => n(r.shape.humans), sortValue: (r) => r.shape.humans },
     { key: "bots", label: m.common.bots(), num: true, format: (r) => `${n(r.shape.bots)} · ${pct(r.shape.memberCount ? (r.shape.bots / r.shape.memberCount) * 100 : 0, 0)}`, sortValue: (r) => r.shape.bots, tone: botTone },
     { key: "online", label: m.common.online(), num: true, format: (r) => n(r.shape.online), sortValue: (r) => r.shape.online },
-    { key: "boosts", label: m.features.wizardStatType7Label(), num: true, format: (r) => (r.shape.boosts ? `${n(r.shape.boosts)} · T${r.shape.boostTier}` : "—"), sortValue: (r) => r.shape.boosts },
     { key: "commands", label: m.common.commands(), num: true, format: (r) => compact(r.commands) },
     { key: "events", label: m.common.events(), num: true, format: (r) => compact(r.events) },
     { key: "featuresUsed", label: m.common.features(), num: true, format: (r) => m.analytics.tabServersFeaturesSummary({ used: r.featuresUsed, enabled: r.featuresEnabled, configured: r.featuresConfigured }), title: (r) => r.features.join(", ") || m.analytics.tabServersFeaturesNone() },

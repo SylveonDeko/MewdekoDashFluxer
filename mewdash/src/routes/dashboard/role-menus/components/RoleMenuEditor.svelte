@@ -6,10 +6,8 @@
   import { currentGuild } from "$lib/stores/currentGuild";
   import {
     roleMenusApi,
-    RoleMenuButtonColor,
     RoleMenuMode,
     RoleMenuReplyMode,
-    RoleMenuStyle,
     type RoleMenu,
     type RoleMenuLookups,
     type RoleMenuRequest
@@ -23,15 +21,12 @@
   import RoleMenuOptionRow from "./RoleMenuOptionRow.svelte";
   import RoleMenuPreview from "./RoleMenuPreview.svelte";
   import {
-    BUTTONS_PER_ROW,
     clampLimits,
-    defaultPlaceholder,
     LABEL_LENGTH,
     MAX_OPTIONS,
     NAME_LENGTH,
     newOptionKey,
     parseMessageSource,
-    PLACEHOLDER_LENGTH,
     serializeMessage,
     type PreviewOption,
     type RoleMenuOptionDraft
@@ -73,8 +68,6 @@
     name: string;
     channelId: string | null;
     message: string | Record<string, any>;
-    style: number;
-    placeholder: string;
     mode: number;
     minRoles: number;
     maxRoles: number;
@@ -92,7 +85,6 @@
       label: "",
       emoji: null,
       description: "",
-      buttonStyle: RoleMenuButtonColor.Grey,
       problem: null
     };
   }
@@ -108,8 +100,6 @@
         name: "",
         channelId: null,
         message: {},
-        style: RoleMenuStyle.Dropdown,
-        placeholder: "",
         mode: RoleMenuMode.PickAny,
         minRoles: 0,
         maxRoles: 0,
@@ -126,8 +116,6 @@
       name: source.name,
       channelId: channelExists ? channelId : null,
       message: parseMessageSource(source.message),
-      style: source.style,
-      placeholder: source.placeholder ?? "",
       mode: source.mode,
       minRoles: source.minRoles,
       maxRoles: source.maxRoles,
@@ -140,7 +128,6 @@
         label: o.label ?? "",
         emoji: o.emoji ?? null,
         description: o.description ?? "",
-        buttonStyle: o.buttonStyle || RoleMenuButtonColor.Grey,
         problem: o.problem ?? null
       }))
     };
@@ -155,14 +142,12 @@
       name: value.name,
       channelId: value.channelId,
       message: serializeMessage(value.message),
-      style: value.style,
-      placeholder: value.placeholder,
       mode: value.mode,
       minRoles: value.minRoles,
       maxRoles: value.maxRoles,
       requiredRoleId: value.requiredRoleId,
       replyMode: value.replyMode,
-      options: value.options.map((o) => [o.id, o.roleId, o.label, o.emoji, o.description, o.buttonStyle])
+      options: value.options.map((o) => [o.id, o.roleId, o.label, o.emoji, o.description])
     });
   }
 
@@ -241,8 +226,7 @@
         label: o.label,
         roleName: lookups?.roles.find((r) => r.id.toString() === o.roleId)?.name ?? null,
         emoji: o.emoji,
-        description: o.description,
-        buttonStyle: o.buttonStyle
+        description: o.description
       }))
       .filter((o) => o.label.trim() || o.roleName)
   );
@@ -323,13 +307,10 @@
   /** Builds the full request the bot expects. */
   function buildRequest(): RoleMenuRequest {
     const message = serializeMessage(draft.message);
-    const placeholder = draft.placeholder.trim();
     return {
       name: draft.name.trim(),
       channelId: BigInt(draft.channelId ?? "0"),
       message,
-      style: draft.style,
-      placeholder: placeholder || null,
       mode: draft.mode,
       minRoles: draft.minRoles,
       maxRoles: draft.mode === RoleMenuMode.PickOne ? 1 : draft.maxRoles,
@@ -341,8 +322,7 @@
         roleId: BigInt(o.roleId ?? "0"),
         label: o.label.trim(),
         emoji: o.emoji?.trim() || null,
-        description: o.description.trim() || null,
-        buttonStyle: o.buttonStyle
+        description: o.description.trim() || null
       }))
     };
   }
@@ -483,35 +463,6 @@
       </div>
 
       <div class="relative rounded-2xl border p-6 md:p-8 shadow-2xl"
-           style="z-index: 50; background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15, {$colorStore.gradientEnd}10);
-                  border-color: {$colorStore.primary}30;">
-        {@render sectionHeading("fa-layer-group", m.roleMenus.importMenuType())}
-        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-          {@render choiceCard(draft.style === RoleMenuStyle.Dropdown, "fa-square-caret-down", m.common.dropdown(),
-            m.roleMenus.editorTypeDropdownText(), () => { draft.style = RoleMenuStyle.Dropdown; })}
-          {@render choiceCard(draft.style === RoleMenuStyle.Buttons, "fa-grip", m.common.buttons(),
-            m.roleMenus.editorTypeButtonsText(), () => { draft.style = RoleMenuStyle.Buttons; })}
-        </div>
-
-        {#if draft.style === RoleMenuStyle.Dropdown}
-          <div class="mt-6">
-            <label for="rm-placeholder" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">
-              {m.roleMenus.editorHintTextLabel()}
-            </label>
-            <input id="rm-placeholder"
-                   type="text"
-                   bind:value={draft.placeholder}
-                   maxlength={PLACEHOLDER_LENGTH}
-                   placeholder={defaultPlaceholder(draft.mode)}
-                   class="w-full p-3 rounded-xl border transition-all min-h-[44px] text-base"
-                   style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}30; color: {$colorStore.text};"
-            >
-            <p class="text-xs mt-2" style="color: {$colorStore.muted}">{m.roleMenus.editorHintTextHelp()}</p>
-          </div>
-        {/if}
-      </div>
-
-      <div class="relative rounded-2xl border p-6 md:p-8 shadow-2xl"
            style="z-index: 40; background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15, {$colorStore.gradientEnd}10);
                   border-color: {$colorStore.primary}30;">
         {@render sectionHeading("fa-hand", m.roleMenus.editorSectionPicking())}
@@ -623,20 +574,11 @@
 
         <div class="space-y-3">
           {#each draft.options as option, index (option.key)}
-            {#if draft.style === RoleMenuStyle.Buttons && index % BUTTONS_PER_ROW === 0}
-              <div class="flex items-center gap-3 pt-2">
-                <span class="text-xs font-medium uppercase tracking-wide" style="color: {$colorStore.muted}">
-                  {m.common.rowNumber({ number: index / BUTTONS_PER_ROW + 1 })}
-                </span>
-                <span class="flex-1 h-px" style="background: {$colorStore.muted}30;"></span>
-              </div>
-            {/if}
             <div class="relative" style="z-index: {draft.options.length - index};">
               <RoleMenuOptionRow
                 bind:option={draft.options[index]}
                 {index}
                 count={draft.options.length}
-                style={draft.style}
                 roleOptions={roleOptionsFor(index)}
                 roles={lookups?.roles ?? []}
                 {guildEmojis}
@@ -711,9 +653,6 @@
         <RoleMenuPreview
           message={draft.message}
           name={draft.name}
-          style={draft.style}
-          placeholder={draft.placeholder}
-          mode={draft.mode}
           options={previewOptions}
           paused={menu ? !menu.enabled : false}
           {user}
