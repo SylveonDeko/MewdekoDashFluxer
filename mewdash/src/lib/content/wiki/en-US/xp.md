@@ -149,7 +149,7 @@ Add prizes with `addcompetitionreward <id> <position> <type> <reward>` where the
 
 ## Exclusions
 
-`xpexclude` and `xpinclude` accept a user, a role or a text channel. Excluded users and anyone holding an excluded role never earn XP; excluded channels earn nothing for anyone. This applies to voice channels too. `xpexcludelist users|roles|channels` shows the lists. The slash versions are `/xp admin exclude`, `/xp admin include` (pass a `user`, `role` or `channel` option) and `/xp exclude-list`. The dashboard's **Server XP Exclusion** toggle disables XP gain for the whole server at once.
+`xpexclude` and `xpinclude` accept a user, a role or a text channel. Excluded users and anyone holding an excluded role never earn XP; excluded channels earn nothing for anyone. This applies to voice channels too. `xpexcludelist users|roles|channels` shows the lists. The dashboard's **Server XP Exclusion** toggle disables XP gain for the whole server at once.
 
 ## Rank cards
 

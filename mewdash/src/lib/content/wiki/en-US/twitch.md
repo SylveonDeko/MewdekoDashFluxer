@@ -71,7 +71,7 @@ A chatter's rank comes from their Twitch badges. Broadcaster is highest, then Mo
 
 ## Custom commands
 
-Custom commands are added on the dashboard under **Commands**, **Custom Commands**, or with `/twitch commands add`. Names are lowercased, may be up to 32 characters, and can contain letters, digits, hyphens and underscores. Each command has a **Permission** (Everyone, Subscriber, Vip, Mod, Broadcaster), a **Cooldown seconds** value from 0 to 86400, an **Enabled** toggle and a **Response**. The cooldown is shared by the whole channel, not per user. Use counts are tracked and shown in the list.
+Custom commands are added on the dashboard under **Commands**, **Custom Commands**, or with `.twitchcommandadd`. Names are lowercased, may be up to 32 characters, and can contain letters, digits, hyphens and underscores. Each command has a **Permission** (Everyone, Subscriber, Vip, Mod, Broadcaster), a **Cooldown seconds** value from 0 to 86400, an **Enabled** toggle and a **Response**. The cooldown is shared by the whole channel, not per user. Use counts are tracked and shown in the list.
 
 The dashboard also has a **Test args** field and a preview so you can see the rendered response before saving.
 
@@ -94,7 +94,7 @@ The dashboard also has a **Test args** field and a preview so you can see the re
 
 ## Timers
 
-Timers post a message into Twitch chat on a schedule. Manage them under **Commands**, **Timers**, or with `/twitch timers`.
+Timers post a message into Twitch chat on a schedule. Manage them under **Commands**, **Timers**, or with `.twitchtimerlist` and the other timer commands.
 
 | Setting | Default | What it controls |
 | --- | --- | --- |
@@ -106,11 +106,11 @@ Timers post a message into Twitch chat on a schedule. Manage them under **Comman
 | Enabled | on | Whether the timer runs |
 | Messages | | One message per line |
 
-The scheduler checks timers every 30 seconds. Timer lines support `%channel%`, `%url%`, `%stream%`, `%count:name%` and `%random:a|b|c%`. `/twitch timers test` (or the test button on the dashboard) posts a timer immediately.
+The scheduler checks timers every 30 seconds. Timer lines support `%channel%`, `%url%`, `%stream%`, `%count:name%` and `%random:a|b|c%`. `.twitchtimertest` (or the test button on the dashboard) posts a timer immediately.
 
 ## Quotes and counters
 
-Quotes are stored with their text, optional author and who added them. The dashboard **Quotes** sub-tab lets staff add, search and remove them; viewers use `!quote`. Counters are simple named integers that mods bump from chat; staff can set values with `/twitch commands counter-set` and list them with `counter-list`.
+Quotes are stored with their text, optional author and who added them. The dashboard **Quotes** sub-tab lets staff add, search and remove them; viewers use `!quote`. Counters are simple named integers that mods bump from chat; staff can set values with `.twitchcounterset` and list them with `counter-list`.
 
 ## Events into Fluxer
 
@@ -145,14 +145,14 @@ Under **Channel point actions**, map a **Reward title** (matched case-insensitiv
 
 ### Stream recap
 
-`/twitch events recap-channel` sets a channel that receives an embed when the stream ends: duration, peak viewers, chat messages, subs, raids, and the last title and category. Recaps are not on the dashboard.
+`.twitchrecapchannel` sets a channel that receives an embed when the stream ends: duration, peak viewers, chat messages, subs, raids, and the last title and category. Recaps are not on the dashboard.
 
 ## Account linking and role sync
 
 There are two ways to link a Fluxer member to a Twitch login:
 
-1. Self-service: the viewer types `!link` in Twitch chat, gets a six-digit code, and runs `/twitch claim <code>` in Fluxer within ten minutes.
-2. Staff: the **Account Links** tab or `/twitch links add @user twitchlogin`.
+1. Self-service: the viewer types `!link` in Twitch chat, gets a six-digit code, and runs `.twitchclaim <code>` in Fluxer within ten minutes.
+2. Staff: the **Account Links** tab or `.twitchlink @user twitchlogin`.
 
 One Twitch login per Fluxer member per server. Once linked, `%discord%` fills in for that viewer and role sync applies.
 
@@ -160,7 +160,7 @@ Role sync maps a Twitch rank to a Fluxer role with the `twitch rolesync add` com
 
 ## Live Tools
 
-The **Events** tab, **Live Tools** sub-tab exposes stream operator actions that use your channel authorisation: send a chat message as the bot, create a stream marker, create a clip, start a poll (one choice per line, default 60 seconds), and time out (default 600 seconds), ban, unban or delete a message by ID. `/twitch stream-info` and `/twitch clip` do the title, category and clip parts from Fluxer.
+The **Events** tab, **Live Tools** sub-tab exposes stream operator actions that use your channel authorisation: send a chat message as the bot, create a stream marker, create a clip, start a poll (one choice per line, default 60 seconds), and time out (default 600 seconds), ban, unban or delete a message by ID. `.twitchstreaminfo` and `.twitchclip` do the title, category and clip parts from Fluxer.
 
 ## Settings
 
@@ -184,61 +184,61 @@ Under **Events**, **Alerts**: **Sub Fluxer channel**, **Sub message**, **Raid Fl
 3. In **Bot Settings**, set the prefix, turn on **Enable Twitch chat bot for this server**, pick a **Go-live Fluxer channel** and save.
 4. In **Commands**, add a couple of custom commands and a socials timer. Use **Test args** and the preview to check placeholders.
 5. In **Events**, **Alerts**, choose sub and raid channels and press **Send test** for each.
-6. Type `!ping` in your Twitch chat to confirm the bot is listening, then `!link` and `/twitch claim` to link yourself.
-7. Optionally run `/twitch rolesync add Subscriber @Subs` so linked subscribers get a role.
+6. Type `!ping` in your Twitch chat to confirm the bot is listening, then `!link` and `.twitchclaim` to link yourself.
+7. Optionally run `.twitchrolesyncadd Subscriber @Subs` so linked subscribers get a role.
 
 ## Commands
 
-Run the `twitch` command in Fluxer to see the available commands.
+Run these with your server prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
-| `/twitch set <channel> [prefix]` | | Manage Server | Set the Twitch channel and prefix, and enable the integration |
-| `/twitch remove` | | Manage Server | Disable the integration and leave the channel |
-| `/twitch enable` | | Manage Server | Turn the integration back on |
-| `/twitch disable` | | Manage Server | Turn it off without deleting settings |
-| `/twitch config` | | Nobody | Show channel, prefix, enabled state, go-live channel and language |
-| `/twitch claim <code>` | | Nobody | Claim a link code from `!link` |
-| `/twitch stream-info [title] [category]` | | Manage Server | Update the stream title or category |
-| `/twitch clip` | | Manage Server | Create a clip of the current stream |
-| `/twitch status` | | Manage Server | Health summary: accounts, tokens, EventSub state |
-| `/twitch language <tag>` | | Manage Server | Language for chat replies; empty resets |
-| `/twitch prefix <prefix>` | | Manage Server | Change the chat command prefix |
-| `/twitch commands add <name> <response> [permission] [cooldown]` | | Manage Server | Add or update a custom command |
-| `/twitch commands remove <name>` | | Manage Server | Delete a custom command |
-| `/twitch commands list` | | Nobody | List custom commands with permission, cooldown and use count |
-| `/twitch commands counter-set <name> <value>` | | Manage Server | Set a counter |
-| `/twitch commands counter-list` | | Nobody | List counters |
-| `/twitch commands schedule-set <message>` | | Manage Server | Set the `!schedule` reply |
-| `/twitch commands schedule-clear` | | Manage Server | Clear it |
-| `/twitch commands socials-set <message>` | | Manage Server | Set the `!socials` reply |
-| `/twitch commands socials-clear` | | Manage Server | Clear it |
-| `/twitch timers add <name> <messages> [interval] [minchat] [onlineonly] [randomize]` | | Manage Server | Add or update a timer |
-| `/twitch timers remove <name>` | | Manage Server | Delete a timer |
-| `/twitch timers list` | | Nobody | List timers |
-| `/twitch timers enable <name>` | | Manage Server | Enable a timer |
-| `/twitch timers disable <name>` | | Manage Server | Disable a timer |
-| `/twitch timers test <name>` | | Manage Server | Post a timer now |
-| `/twitch events golive-channel <channel> [message]` | | Manage Server | Set the go-live channel and template |
-| `/twitch events golive-clear` | | Manage Server | Clear the go-live channel |
-| `/twitch events sub-channel <channel> [message]` | | Manage Server | Set the sub channel and template |
-| `/twitch events sub-clear` | | Manage Server | Disable sub posts |
-| `/twitch events raid-channel <channel> [message]` | | Manage Server | Set the raid channel and template |
-| `/twitch events raid-clear` | | Manage Server | Disable raid posts |
-| `/twitch events recap-channel <channel>` | | Manage Server | Set the stream recap channel |
-| `/twitch events recap-clear` | | Manage Server | Disable recaps |
-| `/twitch links add <@user> <twitchlogin>` | | Manage Server | Link a member to a Twitch login |
-| `/twitch links remove <@user>` | | Manage Server | Remove a member's link |
-| `/twitch links list` | | Nobody | List all links |
-| `/twitch rolesync add <rank> <@role>` | | Manage Server | Give a role to linked viewers at or above a rank |
-| `/twitch rolesync remove <rank> <@role>` | | Manage Server | Remove a mapping |
-| `/twitch rolesync list` | | Nobody | List mappings |
-| `/twitch redemptions add <reward> [twitchreply] [channel] [discordmessage]` | | Manage Server | Add or update a channel point action |
-| `/twitch redemptions remove <reward>` | | Manage Server | Remove one |
-| `/twitch redemptions list` | | Nobody | List actions |
-| `/twitch raidtargets add <twitchlogin> [note]` | | Manage Server | Add a channel to the `!raidtarget` pool |
-| `/twitch raidtargets remove <twitchlogin>` | | Manage Server | Remove one |
-| `/twitch raidtargets list` | | Nobody | List raid targets |
+| `.twitchset <channel> [prefix]` | | Manage Server | Set the Twitch channel and prefix, and enable the integration |
+| `.twitchremove` | | Manage Server | Disable the integration and leave the channel |
+| `.twitchenable` | | Manage Server | Turn the integration back on |
+| `.twitchdisable` | | Manage Server | Turn it off without deleting settings |
+| `.twitchconfig` | | Nobody | Show channel, prefix, enabled state, go-live channel and language |
+| `.twitchclaim <code>` | | Nobody | Claim a link code from `!link` |
+| `.twitchstreaminfo [title] [category]` | | Manage Server | Update the stream title or category |
+| `.twitchclip` | | Manage Server | Create a clip of the current stream |
+| `.twitchstatus` | | Manage Server | Health summary: accounts, tokens, EventSub state |
+| `.twitchlanguage <tag>` | | Manage Server | Language for chat replies; empty resets |
+| `.twitchprefix <prefix>` | | Manage Server | Change the chat command prefix |
+| `.twitchcommandadd <name> <response> [permission] [cooldown]` | | Manage Server | Add or update a custom command |
+| `.twitchcommandremove <name>` | | Manage Server | Delete a custom command |
+| `.twitchcommandlist` | | Nobody | List custom commands with permission, cooldown and use count |
+| `.twitchcounterset <name> <value>` | | Manage Server | Set a counter |
+| `.twitchcounterlist` | | Nobody | List counters |
+| `.twitchscheduleset <message>` | | Manage Server | Set the `!schedule` reply |
+| `.twitchscheduleclear` | | Manage Server | Clear it |
+| `.twitchsocialsset <message>` | | Manage Server | Set the `!socials` reply |
+| `.twitchsocialsclear` | | Manage Server | Clear it |
+| `.twitchtimeradd <name> <messages> [interval] [minchat] [onlineonly] [randomize]` | | Manage Server | Add or update a timer |
+| `.twitchtimerremove <name>` | | Manage Server | Delete a timer |
+| `.twitchtimerlist` | | Nobody | List timers |
+| `.twitchtimerenable <name>` | | Manage Server | Enable a timer |
+| `.twitchtimerdisable <name>` | | Manage Server | Disable a timer |
+| `.twitchtimertest <name>` | | Manage Server | Post a timer now |
+| `.twitchgolive <channel> [message]` | | Manage Server | Set the go-live channel and template |
+| `.twitchgoliveclear` | | Manage Server | Clear the go-live channel |
+| `.twitchsubchannel <channel> [message]` | | Manage Server | Set the sub channel and template |
+| `.twitchsubclear` | | Manage Server | Disable sub posts |
+| `.twitchraidchannel <channel> [message]` | | Manage Server | Set the raid channel and template |
+| `.twitchraidclear` | | Manage Server | Disable raid posts |
+| `.twitchrecapchannel <channel>` | | Manage Server | Set the stream recap channel |
+| `.twitchrecapclear` | | Manage Server | Disable recaps |
+| `.twitchlink <@user> <twitchlogin>` | | Manage Server | Link a member to a Twitch login |
+| `.twitchunlink <@user>` | | Manage Server | Remove a member's link |
+| `.twitchlinks` | | Nobody | List all links |
+| `.twitchrolesyncadd <rank> <@role>` | | Manage Server | Give a role to linked viewers at or above a rank |
+| `.twitchrolesyncremove <rank> <@role>` | | Manage Server | Remove a mapping |
+| `.twitchrolesynclist` | | Nobody | List mappings |
+| `.twitchredemptionadd <reward> [twitchreply] [channel] [discordmessage]` | | Manage Server | Add or update a channel point action |
+| `.twitchredemptionremove <reward>` | | Manage Server | Remove one |
+| `.twitchredemptionlist` | | Nobody | List actions |
+| `.twitchraidtargetadd <twitchlogin> [note]` | | Manage Server | Add a channel to the `!raidtarget` pool |
+| `.twitchraidtargetremove <twitchlogin>` | | Manage Server | Remove one |
+| `.twitchraidtargetlist` | | Nobody | List raid targets |
 
 ## Tips and gotchas
 
@@ -248,7 +248,7 @@ Run the `twitch` command in Fluxer to see the available commands.
 - Custom command cooldowns are per channel, not per viewer. A 30 second cooldown means one use every 30 seconds for everyone.
 - Role sync runs when a linked viewer chats, not on a schedule. A subscriber who never types in chat never gets the role, and a lapsed subscriber keeps it until they chat again.
 - Role changes need the bot's role above the synced role and Manage Roles.
-- Unknown ranks passed to `rolesync` fall back to Subscriber, and unknown permissions passed to `commands add` fall back to Everyone.
+- Unknown ranks passed to `.twitchrolesyncadd` fall back to Subscriber, and unknown permissions passed to `.twitchcommandadd` fall back to Everyone.
 - Link codes expire after ten minutes and generating a new one invalidates the old.
 - Timeouts and bans from Live Tools use your channel's moderation scopes, so they appear in Twitch as actions taken by the authorised account.
 - Language override changes only Twitch chat replies. Fluxer replies keep the server locale.

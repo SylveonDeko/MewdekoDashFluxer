@@ -78,7 +78,7 @@ Random pictures: `randomcat`, `randomdog`, `randomfood`, `randombird`, `randomne
 
 ## Reaction commands
 
-These post an anime GIF for the action. Ones aimed at someone take a mention: `hug`, `kiss`, `pat`, `cuddle`, `poke`, `tickle`, `slap`, `punch`, `shoot`, `bite`, `feed`, `baka`, `handhold` and `highfive`. Ones about yourself take optional text: `blush`, `bored`, `cry`, `dance`, `facepalm`, `happy`, `laugh`, `pout`, `shrug`, `sleep`, `smile`, `smug`, `stare`, `think`, `thumbsup`, `wave` and `wink`. All of them are also available as slash commands.
+These post an anime GIF for the action. Ones aimed at someone take a mention: `hug`, `kiss`, `pat`, `cuddle`, `poke`, `tickle`, `slap`, `punch`, `shoot`, `bite`, `feed`, `baka`, `handhold` and `highfive`. Ones about yourself take optional text: `blush`, `bored`, `cry`, `dance`, `facepalm`, `happy`, `laugh`, `pout`, `shrug`, `sleep`, `smile`, `smug`, `stare`, `think`, `thumbsup`, `wave` and `wink`.
 
 `ship @user [@user2]` scores the compatibility of two members (or you and one member) and posts a ship image with a comment.
 

@@ -30,7 +30,7 @@ Polls can be closed by hand, can expire on their own after a set duration, and c
 
 | Type | How it votes |
 | --- | --- |
-| Yes / No | Two fixed options, Yes and No. Created by `poll` and `/poll yesno`. |
+| Yes / No | Two fixed options, Yes and No. Created by `poll`. |
 | Single choice | One option per member. The default for `pollc`, templates and the dashboard. |
 | Multiple choice | Members may pick several options. With six or more options the select menu allows multi-select. |
 | Anonymous | Votes are stored without showing the voter in stats or exports. |
@@ -49,7 +49,7 @@ Every poll also has these per-poll switches, all on by default: **Allow changing
 
 ## Templates
 
-A template stores a name, a question and its options. `polltemplate <name>` posts it as a single choice poll. Templates are listed with `polltemplates`, created and deleted with `/poll create-template` and `/poll delete-template`, or managed on the dashboard's **Templates** tab, which also supports exporting and importing them as a file. A template holds at most twenty-five options.
+A template stores a name, a question and its options. `polltemplate <name>` posts it as a single choice poll. Templates are listed with `polltemplates` and managed on the dashboard's **Templates** tab, which also supports exporting and importing them as a file. A template holds at most twenty-five options.
 
 ## Settings
 

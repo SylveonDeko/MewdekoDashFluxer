@@ -3,7 +3,7 @@
   "basics_language_hint": "The language Mewdeko replies in for this server.",
   "basics_language_placeholder": "Choose a language...",
   "basics_loading": "Loading server settings...",
-  "basics_prefix_hint": "What members type before a command, for example <code>.help</code>. Slash commands work regardless.",
+  "basics_prefix_hint": "What members type before a command, for example <code>.help</code>.",
   "basics_prefix_placeholder": "Leave blank to keep the default",
   "basics_subtitle": "A few server-wide settings that everything else builds on.",
   "basics_timezone_hint": "Used for birthdays, repeating messages, timestamps and every other scheduled feature. Worth setting even if you skip everything else.",

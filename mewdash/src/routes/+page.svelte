@@ -149,7 +149,7 @@
       "Music bot with Lavalink support",
       "7 automated protection systems (anti-raid, anti-spam, anti-alt)",
       "35+ server logging event types",
-      "Chat triggers with regex and custom slash commands",
+      "Chat triggers with regex and custom text commands",
       "Visual embed builder",
       "Role persistence and management",
       "Server analytics and invite tracking"

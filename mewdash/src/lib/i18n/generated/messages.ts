@@ -1087,8 +1087,6 @@ export const m = {
     showErrorDetails: () => t("_common", "show_error_details", "Show Error Details"),
     /** Mewdeko - The most customizable Fluxer bot. */
     siteTagline: () => t("_common", "site_tagline", "Mewdeko - The most customizable Fluxer bot."),
-    /** Slash Commands */
-    slashCommands: () => t("_common", "slash_commands", "Slash Commands"),
     /** Something went wrong */
     somethingWentWrong: () => t("_common", "something_went_wrong", "Something went wrong"),
     /** Sort by */
@@ -16409,16 +16407,16 @@ export const m = {
     commandEditorTitle: () => t("twitch", "command_editor_title", "Custom command editor"),
     /** No custom commands yet. */
     commandEmpty: () => t("twitch", "command_empty", "No custom commands yet."),
+    /** Manage the Twitch integration from Fluxer with text commands that start with your serve... */
+    commandListHint: () => t("twitch", "command_list_hint", "Manage the Twitch integration from Fluxer with text commands that start with your server prefix (<code style=\"font-family:monospace;font-size:0.85em\">.</code> by default), for example <code style=\"font-family:monospace;font-size:0.85em\">.twitchset</code>."),
+    /** Fluxer commands */
+    commandListTitle: () => t("twitch", "command_list_title", "Fluxer commands"),
     /** Response */
     commandResponse: () => t("twitch", "command_response", "Response"),
     /** Hey %display%, welcome in. */
     commandResponsePlaceholder: () => t("twitch", "command_response_placeholder", "Hey %display%, welcome in."),
     /** Save command */
     commandSave: () => t("twitch", "command_save", "Save command"),
-    /** Manage the Twitch integration from Fluxer with the <code style="font-family:monospace;f... */
-    commandSlashHint: () => t("twitch", "command_slash_hint", "Manage the Twitch integration from Fluxer with the <code style=\"font-family:monospace;font-size:0.85em\">twitch</code> command group."),
-    /** Fluxer commands */
-    commandSlashTitle: () => t("twitch", "command_slash_title", "Fluxer commands"),
     /** {permission} · {cooldown}s · used {count} time */
     commandStatsOne: (p: { cooldown: P; count: P; permission: P }) => t("twitch", "command_stats_one", "{permission} · {cooldown}s · used {count} time", p),
     /** {permission} · {cooldown}s · used {count} times */
@@ -16735,26 +16733,6 @@ export const m = {
     setupReconnectBot: () => t("twitch", "setup_reconnect_bot", "Reconnect bot"),
     /** Reconnect channel */
     setupReconnectChannel: () => t("twitch", "setup_reconnect_channel", "Reconnect channel"),
-    /** Show the current Twitch configuration for this server. */
-    slashConfigDescription: () => t("twitch", "slash_config_description", "Show the current Twitch configuration for this server."),
-    /** Set the Fluxer channel and optional message template for go-live notifications. */
-    slashGoliveChannelDescription: () => t("twitch", "slash_golive_channel_description", "Set the Fluxer channel and optional message template for go-live notifications."),
-    /** Clear the go-live notification channel. */
-    slashGoliveClearDescription: () => t("twitch", "slash_golive_clear_description", "Clear the go-live notification channel."),
-    /** Override the language used for Twitch chat responses. */
-    slashLanguageDescription: () => t("twitch", "slash_language_description", "Override the language used for Twitch chat responses."),
-    /** Link a Fluxer user to their Twitch account. */
-    slashLinkDescription: () => t("twitch", "slash_link_description", "Link a Fluxer user to their Twitch account."),
-    /** List all Twitch account links for this server. */
-    slashLinksDescription: () => t("twitch", "slash_links_description", "List all Twitch account links for this server."),
-    /** Change the Twitch chat command prefix. */
-    slashPrefixDescription: () => t("twitch", "slash_prefix_description", "Change the Twitch chat command prefix."),
-    /** Remove the Twitch channel configuration and leave the channel. */
-    slashRemoveDescription: () => t("twitch", "slash_remove_description", "Remove the Twitch channel configuration and leave the channel."),
-    /** Set the Twitch channel this server's bot should join and enable chat commands. */
-    slashSetDescription: () => t("twitch", "slash_set_description", "Set the Twitch channel this server's bot should join and enable chat commands."),
-    /** Remove a Fluxer user's Twitch account link. */
-    slashUnlinkDescription: () => t("twitch", "slash_unlink_description", "Remove a Fluxer user's Twitch account link."),
     /** Checking */
     statusChecking: () => t("twitch", "status_checking", "Checking"),
     /** Missing */
@@ -16769,6 +16747,26 @@ export const m = {
     subtabTimers: () => t("twitch", "subtab_timers", "Timers"),
     /** Account links */
     tabLinks: () => t("twitch", "tab_links", "Account links"),
+    /** Show the current Twitch configuration for this server. */
+    textConfigDescription: () => t("twitch", "text_config_description", "Show the current Twitch configuration for this server."),
+    /** Set the Fluxer channel and optional message template for go-live notifications. */
+    textGoliveChannelDescription: () => t("twitch", "text_golive_channel_description", "Set the Fluxer channel and optional message template for go-live notifications."),
+    /** Clear the go-live notification channel. */
+    textGoliveClearDescription: () => t("twitch", "text_golive_clear_description", "Clear the go-live notification channel."),
+    /** Override the language used for Twitch chat responses. */
+    textLanguageDescription: () => t("twitch", "text_language_description", "Override the language used for Twitch chat responses."),
+    /** Link a Fluxer user to their Twitch account. */
+    textLinkDescription: () => t("twitch", "text_link_description", "Link a Fluxer user to their Twitch account."),
+    /** List all Twitch account links for this server. */
+    textLinksDescription: () => t("twitch", "text_links_description", "List all Twitch account links for this server."),
+    /** Change the Twitch chat command prefix. */
+    textPrefixDescription: () => t("twitch", "text_prefix_description", "Change the Twitch chat command prefix."),
+    /** Remove the Twitch channel configuration and leave the channel. */
+    textRemoveDescription: () => t("twitch", "text_remove_description", "Remove the Twitch channel configuration and leave the channel."),
+    /** Set the Twitch channel this server's bot should join and enable chat commands. */
+    textSetDescription: () => t("twitch", "text_set_description", "Set the Twitch channel this server's bot should join and enable chat commands."),
+    /** Remove a Fluxer user's Twitch account link. */
+    textUnlinkDescription: () => t("twitch", "text_unlink_description", "Remove a Fluxer user's Twitch account link."),
     /** always */
     timerAlways: () => t("twitch", "timer_always", "always"),
     /** No repeating messages yet. */
@@ -17245,8 +17243,8 @@ export const m = {
     basicsLanguagePlaceholder: () => t("wizard", "basics_language_placeholder", "Choose a language..."),
     /** Loading server settings... */
     basicsLoading: () => t("wizard", "basics_loading", "Loading server settings..."),
-    /** What members type before a command, for example <code>.help</code>. Slash commands work... */
-    basicsPrefixHint: () => t("wizard", "basics_prefix_hint", "What members type before a command, for example <code>.help</code>. Slash commands work regardless."),
+    /** What members type before a command, for example <code>.help</code>. */
+    basicsPrefixHint: () => t("wizard", "basics_prefix_hint", "What members type before a command, for example <code>.help</code>."),
     /** Leave blank to keep the default */
     basicsPrefixPlaceholder: () => t("wizard", "basics_prefix_placeholder", "Leave blank to keep the default"),
     /** A few server-wide settings that everything else builds on. */

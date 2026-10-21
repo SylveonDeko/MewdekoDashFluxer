@@ -201,8 +201,7 @@
           label={m.common.commands()}
           tooltipData={[
             { label: m.common.modules(), value: botStatus?.modulesCount || 0 },
-            { label: m.dashboard.overviewTextCommands(), value: botStatus?.textCommandsCount || 0 },
-            { label: m.common.slashCommands(), value: botStatus?.slashCommandsCount || 0 }
+            { label: m.dashboard.overviewTextCommands(), value: botStatus?.textCommandsCount || 0 }
           ]}
           value={botStatus?.commandsCount || 0}
         />

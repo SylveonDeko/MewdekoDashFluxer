@@ -129,7 +129,7 @@ Closing publishes a **Ticket closed** event to chat triggers.
 
 ## Cases
 
-A case groups tickets that belong together, for example several reports about the same person. Create one with `ticketcreatecase <title> <description>` or on the **Cases** tab, then link the current ticket with `ticketlinkcase <caseId>` and unlink with `ticketunlinkcase`. Cases have their own notes, can be closed and reopened, and can be edited from the dashboard or the `/tickets cases` slash commands.
+A case groups tickets that belong together, for example several reports about the same person. Create one with `ticketcreatecase <title> <description>` or on the **Cases** tab, then link the current ticket with `ticketlinkcase <caseId>` and unlink with `ticketunlinkcase`. Cases have their own notes, can be closed and reopened, and can be edited from the dashboard or with `ticketviewcase`, `ticketnotecase`, `ticketclosecase`, `ticketreopencase` and `ticketupdatecase`.
 
 ## Blacklist
 
@@ -173,8 +173,6 @@ The **Tickets** tab lists open and closed tickets with search by ticket, user, c
 6. Optionally open the modal builder to add form fields, and the open message editor to customise the welcome.
 7. For several ticket types in one dropdown, add a **New Select Menu** instead and add an option per type with the same settings.
 8. Open a test ticket from another account, claim it, set a priority, close it, and check the transcript channel.
-
-In Fluxer, `/tickets setup wizard #channel` walks through the same steps with templates (Basic Support, Department Support, Gaming Server, Business, Mod Applications).
 
 ## Commands
 

@@ -47,17 +47,17 @@
     ),
   });
 
-  const slashCommands = $derived([
-    { name: "/twitch set", usage: "<channel> [prefix]", description: m.twitch.slashSetDescription(), permission: m.common.manageServer() },
-    { name: "/twitch remove", usage: "", description: m.twitch.slashRemoveDescription(), permission: m.common.manageServer() },
-    { name: "/twitch config", usage: "", description: m.twitch.slashConfigDescription(), permission: m.common.everyone() },
-    { name: "/twitch golive-channel", usage: "<channel> [message]", description: m.twitch.slashGoliveChannelDescription(), permission: m.common.manageServer() },
-    { name: "/twitch golive-clear", usage: "", description: m.twitch.slashGoliveClearDescription(), permission: m.common.manageServer() },
-    { name: "/twitch link", usage: "<user> <twitchUsername>", description: m.twitch.slashLinkDescription(), permission: m.common.manageServer() },
-    { name: "/twitch unlink", usage: "<user>", description: m.twitch.slashUnlinkDescription(), permission: m.common.manageServer() },
-    { name: "/twitch links", usage: "", description: m.twitch.slashLinksDescription(), permission: m.common.everyone() },
-    { name: "/twitch language", usage: "<languageTag>", description: m.twitch.slashLanguageDescription(), permission: m.common.manageServer() },
-    { name: "/twitch prefix", usage: "<prefix>", description: m.twitch.slashPrefixDescription(), permission: m.common.manageServer() },
+  const textCommands = $derived([
+    { name: ".twitchset", usage: "<channel> [prefix]", description: m.twitch.textSetDescription(), permission: m.common.manageServer() },
+    { name: ".twitchremove", usage: "", description: m.twitch.textRemoveDescription(), permission: m.common.manageServer() },
+    { name: ".twitchconfig", usage: "", description: m.twitch.textConfigDescription(), permission: m.common.everyone() },
+    { name: ".twitchgolive", usage: "<channel> [message]", description: m.twitch.textGoliveChannelDescription(), permission: m.common.manageServer() },
+    { name: ".twitchgoliveclear", usage: "", description: m.twitch.textGoliveClearDescription(), permission: m.common.manageServer() },
+    { name: ".twitchlink", usage: "<user> <twitchUsername>", description: m.twitch.textLinkDescription(), permission: m.common.manageServer() },
+    { name: ".twitchunlink", usage: "<user>", description: m.twitch.textUnlinkDescription(), permission: m.common.manageServer() },
+    { name: ".twitchlinks", usage: "", description: m.twitch.textLinksDescription(), permission: m.common.everyone() },
+    { name: ".twitchlanguage", usage: "<languageTag>", description: m.twitch.textLanguageDescription(), permission: m.common.manageServer() },
+    { name: ".twitchprefix", usage: "<prefix>", description: m.twitch.textPrefixDescription(), permission: m.common.manageServer() },
   ]);
 
   const goLivePlaceholders = $derived([
@@ -1212,10 +1212,10 @@
           </summary>
 
           <div class="mt-4">
-            <h3 class="text-base font-bold m-0" style="color: {$colorStore.text}">{m.twitch.commandSlashTitle()}</h3>
-            <p class="mt-1 mb-2.5 leading-relaxed" style="color: {$colorStore.muted}">{@html m.twitch.commandSlashHint()}</p>
+            <h3 class="text-base font-bold m-0" style="color: {$colorStore.text}">{m.twitch.commandListTitle()}</h3>
+            <p class="mt-1 mb-2.5 leading-relaxed" style="color: {$colorStore.muted}">{@html m.twitch.commandListHint()}</p>
             <ul class="grid gap-2.5 list-none m-0 p-0">
-              {#each slashCommands as command (command.name)}
+              {#each textCommands as command (command.name)}
                 <li class="p-3.5 border rounded-xl" style="border-color: {$colorStore.primary}30; background: {$colorStore.primary}08">
                   <div class="font-extrabold font-mono" style="color: {$colorStore.primary}">
                     {command.name} <span style="color: {$colorStore.muted}">{command.usage}</span>

@@ -75,7 +75,7 @@ The dashboard lists the same rules with move up and move down arrows and a delet
 
 ## Verbose mode
 
-`verbose` toggles whether a blocked text command gets an error message naming the blocking rule, such as "permission 4 (`.chnlmdl nsfw disable #general`) prevents this". It is off by default. With it off, blocked commands are ignored silently, which is right for most servers and avoids members poking at what they cannot run. Slash commands always reply with the reason, ephemerally, whatever this setting is.
+`verbose` toggles whether a blocked text command gets an error message naming the blocking rule, such as "permission 4 (`.chnlmdl nsfw disable #general`) prevents this". It is off by default. With it off, blocked commands are ignored silently, which is right for most servers and avoids members poking at what they cannot run.
 
 ## Who can change rules
 

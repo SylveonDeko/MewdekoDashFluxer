@@ -128,7 +128,7 @@ The bye, boost and greet DM messages are not on this page. Set them with the com
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). Multi greet commands are also available as `/multigreets add`, `/multigreets remove` and so on.
+Run these with your server's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |

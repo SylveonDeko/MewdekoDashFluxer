@@ -29,7 +29,7 @@ Most of these settings have a matching text command, so staff can change them fr
 
 ## Prefix
 
-The prefix is the text a member types before a command. It defaults to `.`. Anyone can run `prefix` with no argument to see the current prefix. Administrators change it with `prefix <new>` or, from the dashboard, the **Command Prefix** box. Slash commands are not affected by the prefix.
+The prefix is the text a member types before a command. It defaults to `.`. Anyone can run `prefix` with no argument to see the current prefix. Administrators change it with `prefix <new>` or, from the dashboard, the **Command Prefix** box.
 
 ## Language
 
