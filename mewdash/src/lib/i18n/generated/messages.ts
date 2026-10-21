@@ -10481,6 +10481,8 @@ export const m = {
   migration: {
     /** Moving everything over, copying emojis can take a few minutes... */
     applyRunning: () => t("migration", "apply_running", "Moving everything over, copying emojis can take a few minutes..."),
+    /** You can close this page, the move keeps going. Come back here to see the result. */
+    applyRunningHint: () => t("migration", "apply_running_hint", "You can close this page, the move keeps going. Come back here to see the result."),
     /** Pick the channel in this server that each Discord channel should map to. Channels that ... */
     channelsHint: () => t("migration", "channels_hint", "Pick the channel in this server that each Discord channel should map to. Channels that could not be matched by name are highlighted."),
     /** Replace settings and move */
@@ -10563,24 +10565,50 @@ export const m = {
     previewStatTables: (p: { count: P }) => t("migration", "preview_stat_tables", "{count} features", p),
     /** What will be moved from {name} */
     previewTitle: (p: { name: P }) => t("migration", "preview_title", "What will be moved from {name}", p),
-    /** Dropped */
-    resultDropped: () => t("migration", "result_dropped", "Dropped"),
+    /** {done} / {total} */
+    progressCount: (p: { done: P; total: P }) => t("migration", "progress_count", "{done} / {total}", p),
+    /** Downloading emojis from Discord */
+    progressStageEmojiDownload: () => t("migration", "progress_stage_emoji_download", "Downloading emojis from Discord"),
+    /** Uploading emojis */
+    progressStageEmojiUpload: () => t("migration", "progress_stage_emoji_upload", "Uploading emojis"),
+    /** Posting panels again */
+    progressStagePanels: () => t("migration", "progress_stage_panels", "Posting panels again"),
+    /** Loading the new settings */
+    progressStageRefreshing: () => t("migration", "progress_stage_refreshing", "Loading the new settings"),
+    /** Copying settings */
+    progressStageSettings: () => t("migration", "progress_stage_settings", "Copying settings"),
+    /** Getting ready */
+    progressStageStarting: () => t("migration", "progress_stage_starting", "Getting ready"),
+    /** Copying stickers */
+    progressStageStickers: () => t("migration", "progress_stage_stickers", "Copying stickers"),
+    /** Skipped */
+    resultDropped: () => t("migration", "result_dropped", "Skipped"),
+    /** Needed a channel or role this server doesn't have */
+    resultDroppedHint: () => t("migration", "result_dropped_hint", "Needed a channel or role this server doesn't have"),
     /** {emojis} emojis and {stickers} stickers were copied. {failed} could not be copied. */
     resultExpressions: (p: { emojis: P; failed: P; stickers: P }) => t("migration", "result_expressions", "{emojis} emojis and {stickers} stickers were copied. {failed} could not be copied.", p),
     /** Emojis and stickers weren't copied because Mewdeko is missing the Create Expressions pe... */
     resultExpressionsPermission: () => t("migration", "result_expressions_permission", "Emojis and stickers weren't copied because Mewdeko is missing the Create Expressions permission in this server. Give it the permission and move the server again to copy them."),
-    /** Held for members who have not linked yet */
-    resultHeld: () => t("migration", "result_held", "Held for members who have not linked yet"),
+    /** Refused when saving, usually a duplicate */
+    resultFailedHint: () => t("migration", "result_failed_hint", "Refused when saving, usually a duplicate"),
+    /** Member records waiting */
+    resultHeld: () => t("migration", "result_held", "Member records waiting"),
+    /** XP, balances, warnings and more for members who haven't linked yet */
+    resultHeldHint: () => t("migration", "result_held_hint", "XP, balances, warnings and more for members who haven't linked yet"),
     /** Members bring their own data over from their profile page with Link Discord. Their XP, ... */
     resultNext: () => t("migration", "result_next", "Members bring their own data over from their profile page with Link Discord. Their XP, balance, warnings and more arrive as soon as they link."),
-    /** Messages posted again */
-    resultReposted: () => t("migration", "result_reposted", "Messages posted again"),
+    /** Panels posted again */
+    resultReposted: () => t("migration", "result_reposted", "Panels posted again"),
+    /** Ticket panels, role menus and apply panels */
+    resultRepostedHint: () => t("migration", "result_reposted_hint", "Ticket panels, role menus and apply panels"),
     /** Move another server */
     resultRestart: () => t("migration", "result_restart", "Move another server"),
     /** Your setup has been moved */
     resultTitle: () => t("migration", "result_title", "Your setup has been moved"),
-    /** Written */
-    resultWritten: () => t("migration", "result_written", "Written"),
+    /** Settings copied */
+    resultWritten: () => t("migration", "result_written", "Settings copied"),
+    /** Each greet, trigger, panel, level reward or setting counts once */
+    resultWrittenHint: () => t("migration", "result_written_hint", "Each greet, trigger, panel, level reward or setting counts once"),
     /** Pick the role in this server that each Discord role should map to. */
     rolesHint: () => t("migration", "roles_hint", "Pick the role in this server that each Discord role should map to."),
     /** No Discord servers found. You need to own a server or have Administrator in it, with Me... */

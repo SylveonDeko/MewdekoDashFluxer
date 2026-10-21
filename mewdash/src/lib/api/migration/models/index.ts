@@ -89,6 +89,6 @@ export interface MigrationExpressionResult {
 
 export type MigrationApplyStatus =
   | { state: "none" }
-  | { state: "running"; startedAt: string }
+  | { state: "running"; startedAt: string; stage: string; done: number; total: number }
   | { state: "done"; outcome: MigrationResult }
   | { state: "failed"; error: string };

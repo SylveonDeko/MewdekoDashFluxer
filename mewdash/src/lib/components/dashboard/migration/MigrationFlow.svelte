@@ -32,7 +32,7 @@
 
   let { guildId, compact = false, returnParams = {}, onmigrated }: Props = $props();
 
-  type Step = "connect" | "servers" | "exporting" | "preview" | "done";
+  type Step = "connect" | "servers" | "exporting" | "preview" | "applying" | "done";
 
   interface FluxerChannel {
     id: string;
@@ -55,6 +55,7 @@
   let fluxerRoles = $state<Array<{ id: string; name: string }>>([]);
   let acknowledged = $state(false);
   let copyExpressions = $state(true);
+  let progress = $state<{ stage: string; done: number; total: number } | null>(null);
   let applying = $state(false);
   let result = $state<MigrationResult | null>(null);
   let started = $state(false);
@@ -233,13 +234,25 @@
    * request may stay open, so the bot runs it on its own and this checks on it every two seconds.
    */
   async function waitForApply(): Promise<MigrationResult> {
+    progress = null;
     while (true) {
       await new Promise((resolve) => setTimeout(resolve, 2000));
       const status = await migrationApi.getApplyStatus(guildId);
       if (status.state === "done") return status.outcome;
       if (status.state === "failed" || status.state === "none") throw new Error(status.state);
+      progress = { stage: status.stage, done: Number(status.done), total: Number(status.total) };
     }
   }
+
+  const stageLabels: Record<string, () => string> = {
+    starting: m.migration.progressStageStarting,
+    emoji_download: m.migration.progressStageEmojiDownload,
+    emoji_upload: m.migration.progressStageEmojiUpload,
+    stickers: m.migration.progressStageStickers,
+    settings: m.migration.progressStageSettings,
+    refreshing: m.migration.progressStageRefreshing,
+    panels: m.migration.progressStagePanels
+  };
 
   async function apply() {
     if (!acknowledged || applying) return;
@@ -247,15 +260,37 @@
     error = "";
     try {
       await migrationApi.apply(guildId, code, channelOverrides, roleOverrides, copyExpressions);
+    } catch (err) {
+      applying = false;
+      if (err instanceof ApiError && err.status === 409) {
+        await followApply();
+        return;
+      }
+      logger.error("Failed to apply the move:", err);
+      error = err instanceof ApiError && err.status === 404 ? m.migration.previewExpired() : m.migration.exportFailed();
+      return;
+    }
+    applying = false;
+    await followApply();
+  }
+
+  /**
+   * Shows a move that is running in the bot and waits for its result. The move keeps going in the
+   * bot when the page is closed, so this is also how a reopened page picks it up again.
+   */
+  async function followApply() {
+    started = true;
+    error = "";
+    step = "applying";
+    try {
       result = await waitForApply();
       step = "done";
       onmigrated?.();
       loadStatus();
     } catch (err) {
-      logger.error("Failed to apply the move:", err);
-      error = err instanceof ApiError && err.status === 404 ? m.migration.previewExpired() : m.migration.exportFailed();
-    } finally {
-      applying = false;
+      logger.error("Failed to follow the move:", err);
+      error = m.migration.exportFailed();
+      step = "servers";
     }
   }
 
@@ -274,6 +309,15 @@
     else if (outcome === "error") error = m.migration.connectError();
 
     loadStatus();
+    try {
+      const running = await migrationApi.getApplyStatus(guildId);
+      if (running.state === "running") {
+        followApply();
+        return;
+      }
+    } catch (err) {
+      logger.error("Failed to check for a running move:", err);
+    }
     try {
       identity = await migrationApi.getIdentity();
     } catch (err) {
@@ -414,6 +458,32 @@
       <i class="fa-solid fa-spinner fa-spin text-2xl" style="color: {$colorStore.primary};" aria-hidden="true"></i>
       <p class="font-medium" style="color: {$colorStore.text}">{m.migration.exportWorking()}</p>
       <p class="text-sm" style="color: {$colorStore.muted}">{m.migration.exportWorkingHint()}</p>
+    </section>
+  {/if}
+
+  {#if flowVisible && step === "applying"}
+    <section class="rounded-2xl border p-8 flex flex-col items-center gap-3 text-center" in:fly={{ y: 10, duration: 200 }}
+             style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}30;" aria-live="polite">
+      <i class="fa-solid fa-spinner fa-spin text-2xl" style="color: {$colorStore.primary};" aria-hidden="true"></i>
+      <p class="font-medium" style="color: {$colorStore.text}">{m.migration.applyRunning()}</p>
+      {#if progress}
+        <div class="w-full max-w-md space-y-1">
+          <div class="flex justify-between text-sm" style="color: {$colorStore.text}">
+            <span>{stageLabels[progress.stage]?.() ?? progress.stage}</span>
+            {#if progress.total > 1}
+              <span class="tabular-nums" style="color: {$colorStore.muted}">
+                {m.migration.progressCount({ done: progress.done.toLocaleString(), total: progress.total.toLocaleString() })}
+              </span>
+            {/if}
+          </div>
+          <div class="h-2 w-full rounded-full overflow-hidden" style="background: {$colorStore.primary}15;"
+               role="progressbar" aria-valuemin={0} aria-valuemax={progress.total} aria-valuenow={progress.done}>
+            <div class="h-full rounded-full transition-all duration-500"
+                 style="width: {progress.total > 0 ? Math.min(100, (progress.done / progress.total) * 100) : 100}%; background: {$colorStore.primary};"></div>
+          </div>
+        </div>
+      {/if}
+      <p class="text-sm" style="color: {$colorStore.muted}">{m.migration.applyRunningHint()}</p>
     </section>
   {/if}
 
@@ -570,15 +640,16 @@
       </h3>
       <dl class="grid grid-cols-2 md:grid-cols-5 gap-3">
         {#each [
-          { label: m.migration.resultWritten(), value: result.written },
-          { label: m.migration.resultHeld(), value: result.held },
-          { label: m.migration.resultDropped(), value: result.dropped },
-          { label: m.common.failed(), value: result.failed },
-          { label: m.migration.resultReposted(), value: result.reposted }
+          { label: m.migration.resultWritten(), hint: m.migration.resultWrittenHint(), value: result.written },
+          { label: m.migration.resultHeld(), hint: m.migration.resultHeldHint(), value: result.held },
+          { label: m.migration.resultDropped(), hint: m.migration.resultDroppedHint(), value: result.dropped },
+          { label: m.common.failed(), hint: m.migration.resultFailedHint(), value: result.failed },
+          { label: m.migration.resultReposted(), hint: m.migration.resultRepostedHint(), value: result.reposted }
         ] as item}
           <div class="p-3 rounded-xl" style="background: {$colorStore.primary}08; border: 1px solid {$colorStore.primary}20;">
-            <dt class="text-xs" style="color: {$colorStore.muted}">{item.label}</dt>
+            <dt class="text-xs font-medium" style="color: {$colorStore.muted}">{item.label}</dt>
             <dd class="text-xl font-bold" style="color: {$colorStore.text}">{Number(item.value).toLocaleString()}</dd>
+            <dd class="text-xs mt-1" style="color: {$colorStore.muted}">{item.hint}</dd>
           </div>
         {/each}
       </dl>
