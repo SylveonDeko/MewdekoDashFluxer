@@ -9919,8 +9919,8 @@ export const m = {
     privacySomeFeaturesDoKeepMessage: () => t("legal", "privacy_some_features_do_keep_message", "Some features do keep message text:"),
     /** Some features keep their own history and expose their own retention setting, which serv... */
     privacySomeFeaturesKeepTheirOwn: () => t("legal", "privacy_some_features_keep_their_own", "Some features keep their own history and expose their own retention setting, which server administrators control. Others, such as XP and reputation, reduce scores over a period of inactivity rather than deleting the record."),
-    /** Some features read your Fluxer status and activities, such as the game you are playing,... */
-    privacySomeFeaturesReadYourDiscord: () => t("legal", "privacy_some_features_read_your_discord", "Some features read your Fluxer status and activities, such as the game you are playing, whether you are streaming, and your custom status. They are used by Status Roles to give or remove roles and to show how many members are online. If a server turns on activity tracking in Server Stats, the bot also records which activities members spend time on so that server's staff can see what is popular. Your custom status text is read by Status Roles but never stored."),
+    /** Some features read your Fluxer status and activities, such as the game you are playing ... */
+    privacySomeFeaturesReadYourDiscord: () => t("legal", "privacy_some_features_read_your_discord", "Some features read your Fluxer status and activities, such as the game you are playing and your custom status. They are used by Status Roles to give or remove roles and to show how many members are online. If a server turns on activity tracking in Server Stats, the bot also records which activities members spend time on so that server's staff can see what is popular. Your custom status text is read by Status Roles but never stored."),
     /** Starboard: a copy of messages that reach a server's starboard. */
     privacyStarboardACopyOfMessages: () => t("legal", "privacy_starboard_a_copy_of_messages", "Starboard: a copy of messages that reach a server's starboard."),
     /** Status and activities */
