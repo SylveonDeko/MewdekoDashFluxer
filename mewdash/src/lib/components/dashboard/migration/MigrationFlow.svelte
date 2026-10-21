@@ -228,12 +228,26 @@
     runPreview();
   }
 
+  /**
+   * Waits for the background move to finish. Copying emojis can take a few minutes, longer than one
+   * request may stay open, so the bot runs it on its own and this checks on it every two seconds.
+   */
+  async function waitForApply(): Promise<MigrationResult> {
+    while (true) {
+      await new Promise((resolve) => setTimeout(resolve, 2000));
+      const status = await migrationApi.getApplyStatus(guildId);
+      if (status.state === "done") return status.outcome;
+      if (status.state === "failed" || status.state === "none") throw new Error(status.state);
+    }
+  }
+
   async function apply() {
     if (!acknowledged || applying) return;
     applying = true;
     error = "";
     try {
-      result = await migrationApi.apply(guildId, code, channelOverrides, roleOverrides, copyExpressions);
+      await migrationApi.apply(guildId, code, channelOverrides, roleOverrides, copyExpressions);
+      result = await waitForApply();
       step = "done";
       onmigrated?.();
       loadStatus();
@@ -541,7 +555,7 @@
                 disabled={!acknowledged || applying || previewLoading}
                 onclick={apply}>
           <i class="fa-solid {applying ? 'fa-spinner fa-spin' : 'fa-arrow-right-arrow-left'}" aria-hidden="true"></i>
-          {m.migration.confirmButton()}
+          {applying ? m.migration.applyRunning() : m.migration.confirmButton()}
         </button>
       </div>
     </section>

@@ -86,3 +86,9 @@ export interface MigrationExpressionResult {
   stickersFailed: number;
   missingPermission: boolean;
 }
+
+export type MigrationApplyStatus =
+  | { state: "none" }
+  | { state: "running"; startedAt: string }
+  | { state: "done"; outcome: MigrationResult }
+  | { state: "failed"; error: string };

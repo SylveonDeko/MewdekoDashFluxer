@@ -1,4 +1,5 @@
 {
+  "apply_running": "Moving everything over, copying emojis can take a few minutes...",
   "channels_hint": "Pick the channel in this server that each Discord channel should map to. Channels that could not be matched by name are highlighted.",
   "confirm_button": "Replace settings and move",
   "confirm_check": "I understand that this replaces the current Mewdeko settings in this server.",

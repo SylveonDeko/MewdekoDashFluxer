@@ -5,8 +5,8 @@ import type {
   DiscordServer,
   LinkResult,
   LinkState,
+  MigrationApplyStatus,
   MigrationPreview,
-  MigrationResult,
   MigrationStatus,
   PairOverrides,
 } from "./models";
@@ -45,7 +45,7 @@ export const migrationApi = {
     }),
 
   apply: (guildId: bigint, code: string, channelOverrides: PairOverrides, roleOverrides: PairOverrides, copyExpressions: boolean) =>
-    apiRequest<MigrationResult>("discord-link/apply", "POST", {
+    apiRequest<{ started: boolean }>("discord-link/apply", "POST", {
       guildId: guildId.toString(),
       code,
       channelOverrides,
@@ -54,6 +54,8 @@ export const migrationApi = {
     }),
 
   getStatus: (guildId: bigint) => apiRequest<MigrationStatus>(`Migration/${guildId}/status`),
+
+  getApplyStatus: (guildId: bigint) => apiRequest<MigrationApplyStatus>(`Migration/${guildId}/apply-status`),
 
   getLink: () => apiRequest<LinkState>("discord-link/link"),
 

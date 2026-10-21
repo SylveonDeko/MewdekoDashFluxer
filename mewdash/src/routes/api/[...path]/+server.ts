@@ -208,7 +208,7 @@ async function resolveBackend(
  * Only the read-only preview and status calls pass through, after the path is normalised the way
  * the bot's router would read it.
  */
-const BROWSER_MIGRATION_PATH = /^migration\/\d{1,20}\/(preview|status)$/i;
+const BROWSER_MIGRATION_PATH = /^migration\/\d{1,20}\/(preview|status|apply-status)$/i;
 
 const normalisePath = (path: string): string | null => {
   try {

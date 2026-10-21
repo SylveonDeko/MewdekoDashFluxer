@@ -10479,6 +10479,8 @@ export const m = {
     usersHeading: () => t("messagestats", "users_heading", "Top Message Senders"),
   },
   migration: {
+    /** Moving everything over, copying emojis can take a few minutes... */
+    applyRunning: () => t("migration", "apply_running", "Moving everything over, copying emojis can take a few minutes..."),
     /** Pick the channel in this server that each Discord channel should map to. Channels that ... */
     channelsHint: () => t("migration", "channels_hint", "Pick the channel in this server that each Discord channel should map to. Channels that could not be matched by name are highlighted."),
     /** Replace settings and move */
