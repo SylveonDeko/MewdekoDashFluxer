@@ -1,0 +1,79 @@
+<!--
+@component
+Wizard progress indicator showing current step and completion status
+-->
+<script lang="ts">
+  import { m } from "$lib/i18n";
+  import { colorStore } from "$lib/stores/colorStore";
+
+  interface Props {
+    currentStep: number;
+    totalSteps: number;
+    stepTitles?: string[];
+    completedSteps?: number[];
+  }
+
+  let {
+    currentStep,
+    totalSteps,
+    stepTitles = [],
+    completedSteps = []
+  }: Props = $props();
+
+  // Default step titles if not provided
+  const defaultStepTitles = $derived([
+    m.common.welcome(),
+    m.common.permissions(),
+    m.common.features(),
+    m.common.configuration(),
+    m.common.complete()
+  ]);
+
+  let displayTitles = $derived(stepTitles.length > 0 ? stepTitles : defaultStepTitles.slice(0, totalSteps));
+  let progressPercent = $derived((currentStep / totalSteps) * 100);
+</script>
+
+<div class="wizard-progress mb-6">
+  <!-- Simple progress bar with step info -->
+  <div class="flex items-center justify-between mb-3">
+    <span class="text-sm font-medium" style="color: {$colorStore.muted};">
+      {m.common.stepCurrentOfTotal({ current: currentStep, total: totalSteps })}
+    </span>
+    <span class="text-sm font-medium" style="color: {$colorStore.primary};">
+      {m.wizard.progressPercentComplete({ percent: Math.round(progressPercent) })}
+    </span>
+  </div>
+  
+  <!-- Progress bar -->
+  <div class="relative mb-4">
+    <div class="w-full h-2 rounded-full" style="background: {$colorStore.primary}15;"></div>
+    <div 
+      class="absolute top-0 left-0 h-2 rounded-full transition-all duration-500 ease-out"
+      style="background: linear-gradient(90deg, {$colorStore.primary}, {$colorStore.secondary}); 
+             width: {progressPercent}%"
+    ></div>
+  </div>
+  
+  <!-- Current step title -->
+  <div class="text-center mt-2">
+    <h3 class="text-lg font-semibold" style="color: {$colorStore.text};">
+      {displayTitles[currentStep - 1]}
+    </h3>
+  </div>
+</div>
+
+<style>
+  .wizard-progress {
+    user-select: none;
+  }
+  
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.8;
+    }
+  }
+  
+</style>

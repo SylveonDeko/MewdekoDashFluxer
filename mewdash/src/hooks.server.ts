@@ -1,0 +1,119 @@
+import { env } from "$env/dynamic/public";
+import { authenticateUser } from "$lib/server/discordApi";
+import { logBackendJwtInit } from "$lib/server/backendJwt";
+import { recordPageView } from "$lib/server/analyticsBeacon";
+import * as Sentry from "@sentry/sveltekit";
+import { sequence } from "@sveltejs/kit/hooks";
+import type { Handle } from "@sveltejs/kit";
+import { resolveLocale, runWithLocale } from "$lib/i18n/server";
+
+const dsn = env.PUBLIC_SENTRY_DSN;
+
+Sentry.init({
+  dsn,
+  enabled: Boolean(dsn),
+  environment: env.PUBLIC_SENTRY_ENVIRONMENT ?? "production",
+  tracesSampleRate: 0.1,
+});
+
+logBackendJwtInit();
+
+/**
+ * Dashboard paths the bot owner tools lived under before they moved to /owner.
+ */
+const LEGACY_OWNER_PATHS = [
+  "/dashboard/analytics",
+  "/dashboard/performance",
+  "/dashboard/process-logs",
+  "/dashboard/leave-feedback",
+];
+
+const appHandle: Handle = async ({ event, resolve }) => {
+  try {
+    // Skip authentication for auth-related endpoints to prevent interference
+    const pathname = event.url.pathname;
+    if (
+      pathname.startsWith("/api/discord/callback") ||
+      pathname.startsWith("/api/discord/login") ||
+      pathname.startsWith("/api/discord/logout") ||
+      // Public, cacheable assets Discord itself fetches. Running these through the auth hook would
+      // stamp them no-store, and they have no user context to authenticate anyway.
+      pathname.startsWith("/cdn/")
+    ) {
+      return resolve(event);
+    }
+
+    // Owner tools moved from /dashboard to /owner. Bookmarks and Discord embeds still carry the
+    // old paths, so send them on rather than 404.
+    const legacyOwnerPath = LEGACY_OWNER_PATHS.find(
+      (prefix) => pathname === prefix || pathname.startsWith(`${prefix}/`)
+    );
+    if (legacyOwnerPath) {
+      const target = `/owner${pathname.slice("/dashboard".length)}${event.url.search}`;
+      return new Response(null, { status: 301, headers: { Location: target } });
+    }
+
+    // Get user authentication
+
+    event.locals.user = await authenticateUser(event, event.cookies);
+
+    const startedAt = Date.now();
+    const response = await resolve(event);
+    recordPageView(event, response, startedAt);
+
+    // Content-Security-Policy for defense-in-depth
+    // Helps mitigate XSS attacks even if output encoding fails
+    const cspDirectives = [
+      "default-src 'self'",
+      // Note: 'unsafe-inline' for scripts is needed for Svelte's generated hydration code
+      // Consider implementing nonce-based CSP for stronger security in the future
+      "script-src 'self' 'unsafe-inline' 'wasm-unsafe-eval' challenges.cloudflare.com",
+      "style-src 'self' 'unsafe-inline'", // unsafe-inline needed for Svelte component styles
+      "img-src 'self' data: https: blob:", // Allow images from CDNs and data URLs
+      "font-src 'self' data:",
+      "connect-src 'self' ws: wss: https:", // Allow WebSocket connections to bot API
+      "frame-src 'self' challenges.cloudflare.com", // Allow Turnstile CAPTCHA
+      "object-src 'none'", // Block plugins
+      "base-uri 'self'", // Prevent base tag hijacking
+      "form-action 'self'", // Restrict form submissions
+      "frame-ancestors 'self' https://top.gg", // Prevent clickjacking, allow top.gg
+    ].join("; ");
+
+    response.headers.set("Content-Security-Policy", cspDirectives);
+
+    // Additional security headers
+    response.headers.set("X-Frame-Options", "DENY"); // Prevent clickjacking
+    response.headers.set("X-Content-Type-Options", "nosniff"); // Prevent MIME sniffing
+    response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin"); // Privacy
+    response.headers.set(
+      "Permissions-Policy",
+      "geolocation=(), microphone=(), camera=()",
+    ); // Restrict permissions
+
+    // Ensure auth headers aren't cached
+    response.headers.set("Cache-Control", "no-store");
+
+    return response;
+  } catch (error) {
+    event.locals.user = null;
+    return resolve(event);
+  }
+};
+
+/** Sentry request tracing runs first, then the app's auth/CSP handler. */
+/**
+ * Serves the whole request in the viewer's locale: the message accessors read it during SSR and
+ * the <html lang> attribute follows it.
+ */
+const localeHandle: Handle = async ({ event, resolve }) => {
+  const locale = resolveLocale(event.cookies, event.request.headers.get("accept-language"));
+  event.locals.locale = locale;
+  return runWithLocale(locale, async () =>
+    resolve(event, { transformPageChunk: ({ html }) => html.replace("%lang%", locale) })
+  );
+};
+
+export const handle = sequence(Sentry.sentryHandle(), localeHandle, appHandle);
+
+/** Reports uncaught server-side errors to Sentry. */
+export const handleError = Sentry.handleErrorWithSentry();

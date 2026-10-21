@@ -1,0 +1,219 @@
+<!-- lib/components/SystemInfoMonitor.svelte -->
+<script lang="ts">
+  import { m } from "$lib/i18n";
+  import { onDestroy, onMount } from "svelte";
+  import { systemInfoApi } from "$lib/api/index.ts";
+  import { logger } from "$lib/logger.ts";
+  import { colorStore } from "$lib/stores/colorStore";
+
+  let { data } = $props();
+
+  type SystemInfo = {
+    cpuUsage: number;
+    memoryUsageMb: number;
+    totalMemoryMb: number;
+    uptime: string;
+    processStartTime: string;
+    threadCount: number;
+    topMethods: Array<{
+      name: string;
+      avgTime: number;
+    }>;
+  };
+
+  let systemInfo: SystemInfo | null = $state(null);
+  let loading = $state(true);
+  let error: string | null = $state(null);
+  let refreshInterval: number;
+  let refreshInProgress = $state(false);
+  let userId = $derived(data?.user?.id ? BigInt(data.user.id) : null);
+
+  const fetchSystemInfo = async () => {
+    if (!userId || refreshInProgress) return;
+
+    try {
+      refreshInProgress = true;
+      error = null;
+      systemInfo = await systemInfoApi.getSystemInfo(userId);
+    } catch (err) {
+      logger.error("Error fetching system info:", err);
+      error = m.monitoring.systemInfoLoadFailed();
+    } finally {
+      loading = false;
+      refreshInProgress = false;
+    }
+  };
+
+  const formatTime = (ms: number) => {
+    if (ms < 1) return m.monitoring.performanceTimeMicroseconds({ value: (ms * 1000).toFixed(2) });
+    if (ms < 1000) return m.monitoring.performanceTimeMilliseconds({ value: ms.toFixed(2) });
+    return m.monitoring.performanceTimeSeconds({ value: (ms / 1000).toFixed(2) });
+  };
+
+  const formatMemory = (mb: number) => {
+    if (mb < 1024) return m.monitoring.systemInfoMemoryMb({ value: mb.toFixed(2) });
+    return m.monitoring.systemInfoMemoryGb({ value: (mb / 1024).toFixed(2) });
+  };
+
+  const getCpuColor = (usage: number) => {
+    if (usage > 80) return $colorStore.accent;
+    if (usage > 50) return '#f59e0b';
+    return '#10b981';
+  };
+
+  onMount(async () => {
+    if (userId) {
+      await fetchSystemInfo();
+      refreshInterval = window.setInterval(fetchSystemInfo, 5000); // Refresh every 5 seconds
+    }
+  });
+
+  onDestroy(() => {
+    if (refreshInterval) {
+      clearInterval(refreshInterval);
+    }
+  });
+</script>
+
+<div class="w-full">
+  <div class=" rounded-2xl border p-6 md:p-8 shadow-2xl transition-all"
+       style="background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15, {$colorStore.gradientEnd}10);
+              border-color: {$colorStore.primary}30;">
+    <div class="flex justify-between items-center mb-6">
+      <div class="flex items-center gap-3">
+        <div class="p-2 rounded-lg"
+             style="background: linear-gradient(135deg, {$colorStore.primary}20, {$colorStore.secondary}20);">
+          <i class="fa-utility-duo fa-regular fa-circle"
+             style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 20px;"></i>
+        </div>
+        <h2 class="text-xl font-bold" style="color: {$colorStore.text}">{m.monitoring.systemInfoTitle()}</h2>
+      </div>
+      <button aria-label={m.common.refresh()}
+              class="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all hover:scale-[1.02] disabled:opacity-50"
+        style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
+        disabled={refreshInProgress}
+        onclick={fetchSystemInfo}
+      >
+        <div class:animate-spin={refreshInProgress}>
+          <i class="fa-solid fa-arrows-rotate" style="font-size: 16px;"></i>
+        </div>
+        {refreshInProgress ? m.common.refreshing() : m.common.refresh()}
+      </button>
+    </div>
+
+    {#if error}
+      <div class="p-4 rounded-xl mb-6 border"
+           style="background: {$colorStore.accent}15; color: {$colorStore.accent}; border-color: {$colorStore.accent}30;">
+        {error}
+      </div>
+    {/if}
+
+    {#if loading && !systemInfo}
+      <div class="flex justify-center items-center h-64">
+        <div class="animate-spin rounded-full h-12 w-12 border-2"
+             style="border-color: {$colorStore.primary}30; border-top-color: {$colorStore.primary};"></div>
+      </div>
+    {:else if systemInfo}
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
+        <!-- CPU Usage -->
+        <div class=" rounded-xl p-4 transition-all hover:scale-[1.01]"
+             style="background: {$colorStore.primary}08; border: 1px solid {$colorStore.primary}15;">
+          <div class="flex items-center gap-2 mb-3">
+            <i class="fa-utility-duo fa-regular fa-circle"
+               style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 20px;"></i>
+            <h3 class="text-base font-semibold" style="color: {$colorStore.text}">{m.monitoring.systemInfoCpuUsage()}</h3>
+          </div>
+          <div class="w-full rounded-full h-3 mb-2"
+               style="background: {$colorStore.primary}10;">
+            <div
+              class="h-3 rounded-full transition-all duration-500"
+              style="width: {systemInfo.cpuUsage}%; background: {getCpuColor(systemInfo.cpuUsage)};"
+            ></div>
+          </div>
+          <div class="text-right text-lg font-bold" style="color: {$colorStore.text}">{systemInfo.cpuUsage.toFixed(1)}%</div>
+        </div>
+
+        <!-- Memory Usage -->
+        <div class=" rounded-xl p-4 transition-all hover:scale-[1.01]"
+             style="background: {$colorStore.primary}08; border: 1px solid {$colorStore.primary}15;">
+          <div class="flex items-center gap-2 mb-3">
+            <i class="fa-utility-duo fa-regular fa-square"
+               style="--fa-primary-color: {$colorStore.secondary}; --fa-secondary-color: {$colorStore.accent}; font-size: 20px;"></i>
+            <h3 class="text-base font-semibold" style="color: {$colorStore.text}">{m.monitoring.systemInfoMemoryUsage()}</h3>
+          </div>
+          <div class="w-full rounded-full h-3 mb-2"
+               style="background: {$colorStore.primary}10;">
+            <div
+              class="h-3 rounded-full transition-all duration-500"
+              style="width: {(systemInfo.memoryUsageMb / systemInfo.totalMemoryMb) * 100}%; background: {$colorStore.secondary};"
+            ></div>
+          </div>
+          <div class="text-right text-sm font-medium" style="color: {$colorStore.text}">
+            {formatMemory(systemInfo.memoryUsageMb)} / {formatMemory(systemInfo.totalMemoryMb)}
+          </div>
+        </div>
+
+        <!-- Uptime -->
+        <div class=" rounded-xl p-4 transition-all hover:scale-[1.01]"
+             style="background: {$colorStore.primary}08; border: 1px solid {$colorStore.primary}15;">
+          <div class="flex items-center gap-2 mb-3">
+            <i class="fa-utility-duo fa-regular fa-clock"
+               style="--fa-primary-color: {$colorStore.accent}; --fa-secondary-color: {$colorStore.primary}; font-size: 20px;"></i>
+            <h3 class="text-base font-semibold" style="color: {$colorStore.text}">{m.common.uptime()}</h3>
+          </div>
+          <div class="text-xl font-mono text-center" style="color: {$colorStore.text}">
+            {systemInfo.uptime}
+          </div>
+        </div>
+
+        <!-- Thread Count -->
+        <div class=" rounded-xl p-4 transition-all hover:scale-[1.01]"
+             style="background: {$colorStore.primary}08; border: 1px solid {$colorStore.primary}15;">
+          <div class="flex items-center gap-2 mb-3">
+            <i class="fa-utility-duo fa-regular fa-square"
+               style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 20px;"></i>
+            <h3 class="text-base font-semibold" style="color: {$colorStore.text}">{m.monitoring.systemInfoThreadCount()}</h3>
+          </div>
+          <div class="text-xl font-mono text-center" style="color: {$colorStore.text}">
+            {systemInfo.threadCount}
+          </div>
+        </div>
+
+        <!-- Top Methods -->
+        <div class=" rounded-xl p-4 transition-all hover:scale-[1.01] md:col-span-2"
+             style="background: {$colorStore.primary}08; border: 1px solid {$colorStore.primary}15;">
+          <div class="flex items-center gap-2 mb-4">
+            <i class="fa-utility-duo fa-regular fa-bell"
+               style="--fa-primary-color: {$colorStore.accent}; --fa-secondary-color: {$colorStore.primary}; font-size: 20px;"></i>
+            <h3 class="text-base font-semibold" style="color: {$colorStore.text}">{m.monitoring.systemInfoTopMethods()}</h3>
+          </div>
+          <div class="overflow-x-auto rounded-lg" style="background: {$colorStore.primary}05;">
+            <table class="w-full">
+              <thead>
+                <tr style="background: {$colorStore.primary}15; border-bottom: 1px solid {$colorStore.primary}20;">
+                  <th class="px-4 py-3 text-left font-bold" style="color: {$colorStore.text}">{m.monitoring.performanceColMethod()}</th>
+                  <th class="px-4 py-3 text-right font-bold" style="color: {$colorStore.text}">{m.monitoring.performanceColAvgTime()}</th>
+                </tr>
+              </thead>
+              <tbody>
+                {#each systemInfo.topMethods as method, i}
+                  <tr class="border-b" style="border-color: {$colorStore.primary}10;">
+                    <td class="px-4 py-3 font-mono text-sm" style="color: {$colorStore.text}">{method.name}</td>
+                    <td class="px-4 py-3 text-right font-mono" style="color: {$colorStore.primary}">{formatTime(method.avgTime)}</td>
+                  </tr>
+                {/each}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    {:else}
+      <div class="text-center p-8">
+        <i class="fa-utility-duo fa-regular fa-circle"
+           style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 48px; opacity: 0.5; display: block; margin: 0 auto 16px;"></i>
+        <p class="font-medium mb-2" style="color: {$colorStore.text}">{m.monitoring.systemInfoEmpty()}</p>
+        <p class="text-sm" style="color: {$colorStore.muted}">{m.monitoring.systemInfoEmptyHint()}</p>
+      </div>
+    {/if}
+  </div>
+</div>

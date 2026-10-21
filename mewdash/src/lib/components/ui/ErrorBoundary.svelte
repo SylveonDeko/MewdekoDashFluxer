@@ -1,0 +1,136 @@
+<script lang="ts">
+  import { m } from "$lib/i18n";
+
+
+  import { browser } from "$app/environment";
+  import { logger } from "$lib/logger";
+    import {onMount} from "svelte";
+
+    interface Props {
+    fallback?: string;
+    showDetails?: boolean;
+    children?: import('svelte').Snippet;
+  }
+
+  let { fallback = undefined, showDetails = false, children }: Props = $props();
+
+  const fallbackText = $derived(fallback ?? m.common.errorUnexpected());
+  let hasError = $state(false);
+  let errorDetails: any = $state(null);
+  let showErrorDetails = $state(false);
+
+  // Reset error state when component props change
+  $effect(() => {
+    if (!hasError) {
+      errorDetails = null;
+    }
+  });
+
+  onMount(() => {
+    if (browser) {
+      // Global error handler for unhandled JavaScript errors
+      const handleError = (event: ErrorEvent) => {
+        logger.error("Global error caught:", event.error);
+
+        // Prevent error propagation to avoid page freeze
+        event.preventDefault();
+
+        hasError = true;
+        errorDetails = {
+          message: event.error?.message || event.message,
+          filename: event.filename,
+          lineno: event.lineno,
+          colno: event.colno,
+          stack: event.error?.stack
+        };
+      };
+
+      // Global handler for unhandled promise rejections
+      const handleUnhandledRejection = (event: PromiseRejectionEvent) => {
+        logger.error("Unhandled promise rejection:", event.reason);
+
+        // Prevent default handling to avoid page freeze
+        event.preventDefault();
+
+        hasError = true;
+        errorDetails = {
+          message: event.reason?.message || "Unhandled promise rejection",
+          reason: event.reason,
+          stack: event.reason?.stack
+        };
+      };
+
+      window.addEventListener("error", handleError);
+      window.addEventListener("unhandledrejection", handleUnhandledRejection);
+
+      return () => {
+        window.removeEventListener("error", handleError);
+        window.removeEventListener("unhandledrejection", handleUnhandledRejection);
+      };
+    }
+    return () => {};
+  });
+
+  function retry() {
+    hasError = false;
+    errorDetails = null;
+    showErrorDetails = false;
+  }
+
+  function reload() {
+    window.location.reload();
+  }
+</script>
+
+{#if hasError}
+  <div
+    class="min-h-64 flex items-center justify-center bg-red-50 dark:bg-red-900/20 p-6 rounded-lg border border-red-200 dark:border-red-800">
+    <div class="text-center max-w-md mx-auto">
+      <div class="mb-4">
+        <div class="text-4xl mb-2">💥</div>
+        <h3 class="text-lg font-semibold text-red-800 dark:text-red-200 mb-2">
+          {m.common.somethingWentWrong()}
+        </h3>
+        <p class="text-red-600 dark:text-red-300 text-sm mb-4">
+          {fallbackText}
+        </p>
+      </div>
+
+      <div class="space-x-2 mb-4">
+        <button
+          onclick={retry}
+          class="px-4 py-2 bg-red-600 text-white rounded-sm hover:bg-red-700 transition-colors text-sm"
+        >
+          {m.common.tryAgain()}
+        </button>
+        <button
+          onclick={reload}
+          class="px-4 py-2 bg-gray-600 text-white rounded-sm hover:bg-gray-700 transition-colors text-sm"
+        >
+          {m.layout.errorBoundaryReload()}
+        </button>
+      </div>
+
+      {#if showDetails && errorDetails}
+        <div class="mt-4">
+          <button
+            onclick={() => showErrorDetails = !showErrorDetails}
+            class="text-red-600 dark:text-red-400 hover:text-red-800 dark:hover:text-red-200 text-xs transition-colors"
+          >
+            {showErrorDetails ? m.common.hideErrorDetails() : m.common.showErrorDetails()}
+          </button>
+
+          {#if showErrorDetails}
+              <div class="mt-2 p-3 bg-red-100 dark:bg-red-900/40 rounded-sm text-left">
+              <pre class="text-xs text-red-800 dark:text-red-200 whitespace-pre-wrap break-words">
+                {JSON.stringify(errorDetails, null, 2)}
+              </pre>
+            </div>
+          {/if}
+        </div>
+      {/if}
+    </div>
+  </div>
+{:else}
+  {@render children?.()}
+{/if}

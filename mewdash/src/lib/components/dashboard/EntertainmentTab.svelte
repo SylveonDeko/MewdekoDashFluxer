@@ -1,0 +1,234 @@
+<!-- lib/components/dashboard/EntertainmentTab.svelte -->
+<script lang="ts">
+  import { m } from "$lib/i18n";
+    import {fly} from "svelte/transition";
+    import {onMount} from "svelte";
+    import {colorStore} from "$lib/stores/colorStore";
+    import {currentGuild} from "$lib/stores/currentGuild";
+    import {musicStore} from "$lib/stores/musicStore";
+    import { giveawaysApi, customVoiceApi } from "$lib/api/index.ts";
+    import {logger} from "$lib/logger";
+
+    import MusicPlayer from "$lib/components/music/MusicPlayer.svelte";
+
+    // Props from parent
+
+
+  // Derived state
+  let musicStatus = $derived($musicStore.status);
+  let hasActiveMusic = $derived(musicStatus?.CurrentTrack);
+
+  // Entertainment data
+  let giveaways: any[] = $state([]);
+  let customVoiceConfig: any = $state(null);
+  let loading = true;
+
+  async function fetchContentData() {
+    if (!$currentGuild?.id) return;
+
+    try {
+      // Fetch giveaways and custom voice data
+      const [giveawaysData, customVoiceData] = await Promise.all([
+        giveawaysApi.getGiveaways($currentGuild.id).catch(() => []),
+        customVoiceApi.getCustomVoiceConfig($currentGuild.id).catch(() => null)
+      ]);
+
+      giveaways = (giveawaysData || []).slice(0, 3); // Show active 3
+      customVoiceConfig = customVoiceData;
+
+    } catch (err) {
+      logger.error("Failed to fetch content data:", err);
+      giveaways = [];
+      customVoiceConfig = null;
+    } finally {
+      loading = false;
+    }
+  }
+
+  onMount(() => {
+    fetchContentData();
+  });
+
+  $effect(() => {
+    if ($currentGuild) {
+      fetchContentData();
+    }
+  });
+
+  // Music control helpers
+  function formatDuration(seconds: number): string {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+    return `${mins}:${secs.toString().padStart(2, "0")}`;
+  }
+</script>
+
+<div class="space-y-4" in:fly={{ y: 20, duration: 300 }}>
+  <!-- 2-Column Layout: Music Player | Entertainment Features -->
+  <div class="grid grid-cols-1 lg:grid-cols-12 gap-4">
+
+    <!-- Column 1: Music Player (6 columns) -->
+    <div class="lg:col-span-6 space-y-4">
+
+      <!-- Main Music Player -->
+      <div class=" rounded-xl p-4 transition-all hover:shadow-lg hover:-translate-y-px border"
+           style="background: {$colorStore.primary}05;
+                  border-color: {$colorStore.primary}15;">
+        <div class="flex items-center gap-3 mb-4">
+          <div class="p-2 rounded-lg"
+               style="background: linear-gradient(135deg, {$colorStore.primary}20, {$colorStore.secondary}20);">
+            <i class="fa-utility-duo fa-regular fa-music text-xl"
+               style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary};"></i>
+          </div>
+          <h2 class="text-lg font-bold" style="color: {$colorStore.text}">{m.common.musicPlayer()}</h2>
+        </div>
+
+        {#if hasActiveMusic}
+          <MusicPlayer {musicStatus} />
+        {:else}
+          <!-- No Music State -->
+          <div class="text-center py-12">
+            <div class="w-20 h-20 rounded-full mb-6 flex items-center justify-center mx-auto"
+                 style="background: linear-gradient(135deg, {$colorStore.primary}20, {$colorStore.secondary}20);">
+              <i class="fa-utility-duo fa-regular fa-music text-5xl"
+                 style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary};"></i>
+            </div>
+            <h3 class="text-xl font-semibold mb-3" style="color: {$colorStore.text}">
+              {m.dashboard.entertainmentNoMusic()}
+            </h3>
+            <p class="mb-6" style="color: {$colorStore.muted}">
+              {m.dashboard.entertainmentNoMusicHint()}
+            </p>
+            <a href="/dashboard/music"
+               class="inline-flex items-center gap-2 py-3 px-6 rounded-xl transition-all hover:scale-[1.02]"
+               style="background: {$colorStore.primary}; color: white; box-shadow: 0 4px 12px {$colorStore.primary}30;">
+              <i class="fa-utility-duo fa-regular fa-play"
+                 style="--fa-primary-color: white; --fa-secondary-color: white; --fa-secondary-opacity: 0.7;"></i>
+              {m.common.openMusicDashboard()}
+            </a>
+          </div>
+        {/if}
+      </div>
+
+      <!-- Music Queue Preview (if music is playing) -->
+      {#if hasActiveMusic && musicStatus?.Queue?.length > 0}
+        <div class=" rounded-lg p-4 transition-all hover:shadow-md border"
+             style="background: {$colorStore.primary}05;
+                    border-color: {$colorStore.primary}15;">
+          <h3 class="text-lg font-semibold mb-3" style="color: {$colorStore.text}">{m.dashboard.entertainmentComingUp()}</h3>
+          <div class="space-y-2">
+            {#each musicStatus.Queue.slice(0, 3) as track, index (index)}
+              <div class="flex items-center gap-3 p-2 rounded-lg"
+                   style="background: {$colorStore.primary}08;">
+                <div class="w-6 h-6 rounded-sm flex items-center justify-center text-xs font-semibold"
+                     style="background: {$colorStore.primary}20; color: {$colorStore.primary}">
+                  {index + 1}
+                </div>
+                <div class="flex-1 min-w-0">
+                  <div class="font-medium truncate text-sm" style="color: {$colorStore.text}">
+                    {track.Title}
+                  </div>
+                  <div class="text-xs" style="color: {$colorStore.muted}">
+                    {track.Author} • {formatDuration(track.Duration)}
+                  </div>
+                </div>
+              </div>
+            {/each}
+          </div>
+          {#if musicStatus.Queue.length > 3}
+            <div class="mt-4 text-center">
+              <a href="/dashboard/music"
+                 class="text-sm" style="color: {$colorStore.primary}">
+                {m.common.moreTracksCount({ count: musicStatus.Queue.length - 3 })}
+              </a>
+            </div>
+          {/if}
+        </div>
+      {/if}
+    </div>
+
+    <!-- Column 2: Entertainment Features (6 columns) -->
+    <div class="lg:col-span-6 space-y-4">
+
+      <!-- Entertainment Features -->
+      <div class="space-y-3">
+        <!-- Custom Voice Channels -->
+        <div class=" rounded-lg p-3 transition-all hover:scale-[1.01] hover:shadow-md border"
+             style="background: {$colorStore.primary}05;
+                    border-color: {$colorStore.primary}15;">
+          <div class="flex items-center gap-3">
+            <div class="p-2 rounded-lg"
+                 style="background: {$colorStore.primary}20;">
+              <i class="fa-utility-duo fa-regular fa-microphone text-xl"
+                 style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary};"></i>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-baseline gap-3">
+                <span class="text-lg font-bold" style="color: {$colorStore.text}">
+                  {customVoiceConfig?.enabled ? m.common.active() : m.common.inactive()}
+                </span>
+                <span class="text-sm font-medium" style="color: {$colorStore.text}">{m.features.customvoiceName()}</span>
+              </div>
+              <div class="text-xs" style="color: {$colorStore.muted}">{m.dashboard.entertainmentCustomVoiceDesc()}</div>
+            </div>
+            <a class="px-2 py-1 rounded-sm text-xs transition-all hover:scale-[1.02]"
+               href="/dashboard/customvoice"
+               style="background: {$colorStore.primary}20; color: {$colorStore.primary};">
+              {m.common.configure()}
+            </a>
+          </div>
+        </div>
+
+        <!-- Giveaways -->
+        <div class=" rounded-lg p-3 transition-all hover:scale-[1.01] hover:shadow-md border"
+             style="background: {$colorStore.primary}05;
+                    border-color: {$colorStore.primary}15;">
+          <div class="flex items-center gap-3">
+            <div class="p-2 rounded-lg"
+                 style="background: {$colorStore.accent}20;">
+              <i class="fa-utility-duo fa-regular fa-gift text-xl"
+                 style="--fa-primary-color: {$colorStore.accent}; --fa-secondary-color: {$colorStore.secondary};"></i>
+            </div>
+            <div class="flex-1">
+              <div class="flex items-baseline gap-3">
+                <span class="text-lg font-bold" style="color: {$colorStore.text}">{giveaways.length}</span>
+                <span class="text-sm font-medium" style="color: {$colorStore.text}">{m.common.activeGiveaways()}</span>
+              </div>
+              <div class="text-xs" style="color: {$colorStore.muted}">
+                {giveaways.length > 0 ? m.dashboard.entertainmentParticipants({ count: giveaways[0]?.participants || 0 }) : m.dashboard.entertainmentGiveawaysDesc()}
+              </div>
+            </div>
+            <a class="px-2 py-1 rounded-sm text-xs transition-all hover:scale-[1.02]"
+               href="/dashboard/giveaways"
+               style="background: {$colorStore.accent}20; color: {$colorStore.accent};">
+              {m.common.manage()}
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Active Giveaways Details -->
+      {#if giveaways.length > 0}
+        <div class=" rounded-lg p-4 transition-all hover:shadow-md border"
+             style="background: {$colorStore.primary}05;
+                    border-color: {$colorStore.primary}15;">
+          <h3 class="text-base font-semibold mb-3" style="color: {$colorStore.text}">{m.common.activeGiveaways()}</h3>
+
+          <div class="space-y-2">
+            {#each giveaways as giveaway}
+              <div class="p-2 rounded-lg" style="background: {$colorStore.primary}08;">
+                <div class="font-medium text-sm" style="color: {$colorStore.text}">
+                  {giveaway.prize || giveaway.title}
+                </div>
+                <div class="text-xs mt-1" style="color: {$colorStore.muted}">
+                  {m.dashboard.entertainmentParticipants({ count: giveaway.participants || 0 })}
+                </div>
+              </div>
+            {/each}
+          </div>
+        </div>
+      {/if}
+
+    </div>
+  </div>
+</div>

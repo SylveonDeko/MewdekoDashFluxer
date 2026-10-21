@@ -1,0 +1,1036 @@
+<script lang="ts">
+  import { m } from "$lib/i18n";
+  import { page } from "$app/state";
+  import { fade, slide } from "svelte/transition";
+  import { browser } from "$app/environment";
+  import Mascot from "$lib/components/brand/Mascot.svelte";
+  import LocaleSwitcher from "$lib/components/layout/LocaleSwitcher.svelte";
+  import { onMount } from "svelte";
+  import { colorStore } from "$lib/stores/colorStore";
+  import { currentGuild } from "$lib/stores/currentGuild";
+  import { currentInstance } from "$lib/stores/instanceStore";
+  import { allDashboardFeatures } from "$lib/config/navigationItems";
+  import { type BotInstance, clientApi, instanceManagementApi, ownershipApi } from "$lib/api/index";
+  import { userStore } from "$lib/stores/userStore";
+  import { switchingServer } from "$lib/stores/guildSwitchStore";
+  import { userAdminGuilds } from "$lib/stores/adminGuildsStore";
+  import { clickOutside } from "$lib/clickOutside";
+  import { musicPlaying, musicStore } from "$lib/stores/musicStore";
+  import MiniMusicPlayer from "$lib/components/music/MiniMusicPlayer.svelte";
+  import { dyslexicFontStore } from "$lib/stores/accessibilityStore.ts";
+  import { themeStore } from "$lib/stores/themeStore.ts";
+  import { openProductUpdates, unreadUpdateCount } from "$lib/stores/productUpdateStore";
+  import { matchesSearchTerms, openSearch } from "$lib/stores/searchStore";
+  import { safeLocalStorage } from "$lib/safeStorage";
+
+  interface Props {
+    collapsed?: boolean;
+    mobileOpen?: boolean;
+  }
+
+  let { collapsed = $bindable(false), mobileOpen = $bindable(false) }: Props = $props();
+  let isOwner = $state(false);
+  let searchTerm = $state("");
+  let searchInputRef = $state<HTMLInputElement>();
+  let hoveringItem = $state<string | null>(null);
+  let tooltipPosition = $state<{ top: number } | null>(null);
+  let isMobile = $state(browser ? window.innerWidth < 1024 : false);
+  let isToggling = $state(false);
+  let toggleTimer: ReturnType<typeof setTimeout> | null = null;
+
+  let showServerPicker = $state(false);
+  let serverSearchTerm = $state("");
+  let showInstancePicker = $state(false);
+  let instances = $state<BotInstance[]>([]);
+  let instancesLoading = $state(true);
+  let instanceStates = $state<Record<string, { loading: boolean; hasMutualGuild: boolean; checked: boolean }>>({});
+
+  let visibleInstances = $derived(instances.filter(inst => {
+    const state = instanceStates[inst.botId.toString()];
+    return state?.checked && state?.hasMutualGuild;
+  }));
+  let stillCheckingInstances = $derived(Object.values(instanceStates).some(s => s.loading));
+
+  let currentPath = $derived(page.url.pathname);
+  let isDashboardHome = $derived(currentPath === "/dashboard" || currentPath === "/dashboard/");
+  let musicStatus = $derived($musicStore.status);
+  let showMusicPlayer = $derived(musicStatus?.CurrentTrack && currentPath !== "/dashboard/music");
+  let noGuild = $derived(!$currentGuild);
+  let showUserMenu = $state(false);
+
+  let userAvatarUrl = $derived.by(() => {
+    const user = $userStore;
+    if (!user?.avatar) return "https://cdn.discordapp.com/embed/avatars/0.png";
+    const ext = user.avatar.startsWith("a_") ? "gif" : "png";
+    return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${ext}`;
+  });
+
+  /**
+   * Every feature the viewer may reach, in alphabetical order.
+   *
+   * Sorted here rather than relying on the order of the source array, which had drifted out of
+   * alphabetical in several places as features were appended next to related ones.
+   */
+  let filteredFeatures = $derived.by(() => {
+    // Dashboard Access is pinned above this list alongside the Dashboard Home link. Owner tools
+    // are not in this list at all: they live under /owner behind the Owner Panel link below.
+    let features = allDashboardFeatures.filter(item => item.href !== "/dashboard/access");
+
+    if (searchTerm.trim()) {
+      features = features.filter(f =>
+        matchesSearchTerms(
+          { title: f.label(), description: f.description?.() ?? "", category: f.category, keywords: f.keywords },
+          searchTerm
+        )
+      );
+    }
+
+    return [...features].sort((a, b) => a.label().localeCompare(b.label()));
+  });
+
+  /**
+   * The letter to show above an entry, when it is the first of its letter. Gives the eye something
+   * to jump between in a long list without reintroducing groups that have to be opened.
+   */
+  function letterFor(index: number): string | null {
+    const letter = filteredFeatures[index].label()[0].toUpperCase();
+
+    if (index === 0) return letter;
+
+    return filteredFeatures[index - 1].label()[0].toUpperCase() === letter ? null : letter;
+  }
+
+  let filteredGuilds = $derived(
+    ($userAdminGuilds || [])
+      .filter(guild => guild.name.toLowerCase().includes(serverSearchTerm.toLowerCase()))
+      .sort((a, b) => a.name.localeCompare(b.name))
+  );
+
+  function isActive(href: string): boolean {
+    if (href === "/dashboard") {
+      return isDashboardHome;
+    }
+    return currentPath === href || currentPath.startsWith(href + "/");
+  }
+
+  function toggleSidebar() {
+    collapsed = !collapsed;
+    if (browser) {
+      safeLocalStorage.setItem("sidebar-collapsed", collapsed.toString());
+      window.dispatchEvent(new CustomEvent("sidebar-toggle", { detail: collapsed }));
+    }
+    isToggling = true;
+    if (toggleTimer) {
+      clearTimeout(toggleTimer);
+    }
+    toggleTimer = setTimeout(() => {
+      isToggling = false;
+      toggleTimer = null;
+    }, 320);
+  }
+
+  function toggleServerPicker() {
+    showServerPicker = !showServerPicker;
+    if (!showServerPicker) {
+      serverSearchTerm = "";
+    }
+  }
+
+  async function handleServerSelect(guild: any) {
+    if ($switchingServer) return;
+
+    showServerPicker = false;
+    serverSearchTerm = "";
+
+    switchingServer.set(true);
+
+    if (browser) {
+      await new Promise(resolve => requestAnimationFrame(() => resolve(null)));
+    }
+
+    currentGuild.set(guild);
+
+    if (browser) {
+      try {
+        safeLocalStorage.setItem("lastSelectedGuild", JSON.stringify({
+          id: guild.id.toString(),
+          name: guild.name,
+          icon: guild.icon,
+          owner: guild.owner,
+          permissions: guild.permissions,
+          features: guild.features
+        }));
+      } catch {}
+    }
+
+    setTimeout(() => {
+      switchingServer.set(false);
+    }, 600);
+  }
+
+  function handleSearchKeydown(event: KeyboardEvent) {
+    if (event.key === "Escape") {
+      searchTerm = "";
+      searchInputRef?.blur();
+    }
+  }
+
+  function closeMobile() {
+    mobileOpen = false;
+    if (browser) {
+      document.body.style.overflow = "";
+    }
+  }
+
+  // Close mobile sidebar on route change
+  let prevPath = $state("");
+  $effect(() => {
+    if (currentPath !== prevPath) {
+      prevPath = currentPath;
+      if (mobileOpen) {
+        closeMobile();
+      }
+    }
+  });
+
+  // Lock body scroll when mobile sidebar is open
+  $effect(() => {
+    if (browser) {
+      document.body.style.overflow = mobileOpen ? "hidden" : "";
+    }
+  });
+
+  function handleGlobalKeydown(event: KeyboardEvent) {
+    const target = event.target as HTMLElement;
+    if (target.tagName === "INPUT" || target.tagName === "TEXTAREA" || target.isContentEditable) return;
+
+    if ((event.ctrlKey || event.metaKey) && event.key === "b") {
+      event.preventDefault();
+      toggleSidebar();
+    }
+
+    if (event.key === "/" && !collapsed) {
+      event.preventDefault();
+      searchInputRef?.focus();
+    }
+  }
+
+  function showTooltip(event: MouseEvent, label: string) {
+    if (!collapsed) return;
+    const rect = (event.currentTarget as HTMLElement).getBoundingClientRect();
+    tooltipPosition = { top: rect.top + rect.height / 2 };
+    hoveringItem = label;
+  }
+
+  function hideTooltip() {
+    hoveringItem = null;
+    tooltipPosition = null;
+  }
+
+  let serverIconUrl = $derived.by(() => {
+    if ($currentGuild?.icon) {
+      const ext = $currentGuild.icon.startsWith("a_") ? "gif" : "png";
+      return `https://cdn.discordapp.com/icons/${$currentGuild.id}/${$currentGuild.icon}.${ext}?size=128`;
+    }
+    return null;
+  });
+
+  let bannerUrl = $derived.by(() => {
+    const banner = $currentGuild?.banner;
+    if (!banner) return null;
+    if (banner.startsWith("https://cdn.discordapp.com")) return banner;
+    if (/^[a-f0-9]{20,}$/i.test(banner) || banner.startsWith("a_")) {
+      const ext = banner.startsWith("a_") ? "gif" : "png";
+      return `https://cdn.discordapp.com/banners/${$currentGuild.id}/${banner}.${ext}?size=480`;
+    }
+    return null;
+  });
+
+  function guildIconUrl(guild: any): string {
+    if (guild.icon) {
+      const ext = guild.icon.startsWith("a_") ? "gif" : "png";
+      return `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.${ext}?size=64`;
+    }
+    return "https://cdn.discordapp.com/embed/avatars/0.png";
+  }
+
+  async function checkOwnership() {
+    const userData = $userStore;
+    if (!userData?.id) return;
+    try {
+      isOwner = await ownershipApi.isOwner(BigInt(userData.id));
+    } catch {
+      isOwner = false;
+    }
+  }
+
+  async function checkInstanceMutualGuilds(instance: BotInstance) {
+    const userData = $userStore;
+    if (!userData?.id) return;
+    const id = instance.botId.toString();
+    instanceStates[id] = { loading: true, hasMutualGuild: false, checked: false };
+    instanceStates = { ...instanceStates };
+    try {
+      const guilds = await clientApi.getMutualGuilds(userData.id, true, fetch, {
+        "X-Instance-Port": instance.port.toString()
+      });
+      instanceStates[id] = { loading: false, hasMutualGuild: !!(guilds?.length), checked: true };
+    } catch {
+      instanceStates[id] = { loading: false, hasMutualGuild: false, checked: true };
+    }
+    instanceStates = { ...instanceStates };
+  }
+
+  async function loadInstances() {
+    try {
+      instancesLoading = true;
+      const response = await instanceManagementApi.getBotInstances();
+      instances = response || [];
+      if (instances.length > 0) {
+        await Promise.all(instances.map(checkInstanceMutualGuilds));
+      }
+    } catch {
+      instances = [];
+    } finally {
+      instancesLoading = false;
+    }
+  }
+
+  async function handleInstanceSelect(instance: BotInstance) {
+    if ($currentInstance?.botId === instance.botId) {
+      showInstancePicker = false;
+      return;
+    }
+    currentGuild.set(null);
+    if (browser) {
+      if ($currentInstance) {
+        safeLocalStorage.removeItem(`lastSelectedGuild_${$currentInstance.botId}`);
+      }
+      safeLocalStorage.removeItem("lastSelectedGuild");
+    }
+    currentInstance.set(instance);
+    if (browser) {
+      safeLocalStorage.setItem("selectedInstance", JSON.stringify(instance));
+    }
+    showInstancePicker = false;
+  }
+
+  function handleWindowResize() {
+    isMobile = window.innerWidth < 1024;
+  }
+
+  onMount(() => {
+    if (browser) {
+      collapsed = safeLocalStorage.getItem("sidebar-collapsed") === "true";
+
+      // Left over from when the sidebar grouped features into collapsible categories.
+      safeLocalStorage.removeItem("sidebar-collapsed-categories");
+
+      window.addEventListener("keydown", handleGlobalKeydown);
+      window.addEventListener("resize", handleWindowResize);
+    }
+
+    checkOwnership();
+    loadInstances();
+
+    return () => {
+      if (browser) {
+        window.removeEventListener("keydown", handleGlobalKeydown);
+        window.removeEventListener("resize", handleWindowResize);
+      }
+      if (toggleTimer) {
+        clearTimeout(toggleTimer);
+      }
+    };
+  });
+
+  $effect(() => {
+    if ($userStore) {
+      checkOwnership();
+    }
+  });
+</script>
+
+<aside
+  class="flex flex-col shrink-0 fixed top-0 z-40 transition-[width,transform] duration-300 ease-out h-dvh overflow-hidden lg:left-0 lg:border-r max-lg:right-0 max-lg:border-l"
+  class:max-lg:translate-x-0={mobileOpen}
+  class:max-lg:translate-x-full={!mobileOpen}
+  class:sidebar-switching={$switchingServer}
+  style="width: {isMobile ? 'min(85vw, 320px)' : collapsed ? '68px' : '280px'};
+         background: linear-gradient(180deg, {$colorStore.primary}15, {$colorStore.secondary}10, {$colorStore.accent}08);
+         border-color: {$colorStore.primary}15;"
+  aria-label={m.layout.sidebarAria()}
+>
+<div class="flex flex-col h-full shrink-0" style="width: {isMobile ? 'min(85vw, 320px)' : collapsed ? '68px' : '280px'};">
+  <!-- Bot instance branding -->
+  <div class="border-b shrink-0 flex items-center px-3 py-3 gap-2"
+       class:justify-center={collapsed}
+       style="border-color: {$colorStore.primary}15;">
+    <a href="/dashboard" class="flex items-center gap-3 overflow-hidden min-w-0"
+       class:flex-1={!collapsed}
+       class:justify-center={collapsed}>
+      <Mascot variant="head" label={null} expression={$musicPlaying ? "vibing" : "neutral"} class="w-9 h-9 shrink-0" />
+      {#if !collapsed}
+        <span class="text-lg font-semibold whitespace-nowrap" style="color: {$colorStore.text};">
+          Mewdeko
+        </span>
+      {/if}
+    </a>
+    {#if !collapsed}
+      <a
+        href="/"
+        class="flex items-center justify-center w-8 h-8 rounded-lg transition-transform duration-200 hover:scale-[1.05] shrink-0"
+        style="color: {$colorStore.muted}; background: {$colorStore.primary}08;"
+        title={m.layout.sidebarBackToHome()}
+        aria-label={m.layout.sidebarBackToHome()}
+      >
+        <i class="fa-solid fa-arrow-up-right-from-square text-xs" aria-hidden="true"></i>
+      </a>
+    {/if}
+  </div>
+
+  <!-- Mobile instance selector -->
+  {#if visibleInstances.length > 1 || instancesLoading || stillCheckingInstances}
+    <div class="lg:hidden border-b shrink-0 px-3 py-2" style="border-color: {$colorStore.primary}15;">
+      <button
+        class="w-full flex items-center gap-3 px-3 py-2 rounded-xl transition-colors duration-200"
+        style="background: {$colorStore.primary}08; border: 1px solid {$colorStore.primary}15; color: {$colorStore.text};"
+        onclick={() => showInstancePicker = !showInstancePicker}
+      >
+        {#if $currentInstance}
+          <img src={$currentInstance.botAvatar} alt="" class="w-7 h-7 rounded-full shrink-0">
+          <span class="flex-1 text-sm font-medium truncate text-left">{$currentInstance.botName}</span>
+          <span class="w-2 h-2 rounded-full shrink-0" style="background: {$currentInstance.isActive ? '#10B981' : $colorStore.accent};"></span>
+        {:else}
+          <i class="fa-solid fa-robot text-sm" style="color: {$colorStore.muted};" aria-hidden="true"></i>
+          <span class="flex-1 text-sm text-left" style="color: {$colorStore.muted};">{m.layout.sidebarSelectInstance()}</span>
+        {/if}
+        <i class="fa-solid fa-chevron-down text-xs transition-transform duration-200"
+           style="color: {$colorStore.muted}; transform: rotate({showInstancePicker ? '180deg' : '0deg'});"
+           aria-hidden="true"></i>
+      </button>
+
+      {#if showInstancePicker}
+        <div class="mt-2 space-y-1" transition:slide={{ duration: 200, axis: 'y' }}>
+          {#if instancesLoading || stillCheckingInstances}
+            <div class="flex items-center gap-2 px-3 py-2 text-xs" style="color: {$colorStore.muted};">
+              <div class="animate-spin h-3 w-3 border-2 rounded-full"
+                   style="border-color: {$colorStore.primary}30; border-top-color: {$colorStore.primary};"></div>
+              {instancesLoading ? 'Loading...' : 'Checking access...'}
+            </div>
+          {:else}
+            {#each visibleInstances as instance (instance.botId)}
+              <button
+                class="w-full flex items-center gap-3 px-3 py-2 rounded-lg transition-colors duration-200 text-left"
+                style="background: {$currentInstance?.botId === instance.botId ? $colorStore.primary + '15' : 'transparent'};
+                       color: {$colorStore.text};"
+                onclick={() => handleInstanceSelect(instance)}
+              >
+                <img src={instance.botAvatar} alt="" class="w-6 h-6 rounded-full shrink-0">
+                <span class="flex-1 text-sm truncate">{instance.botName}</span>
+                {#if $currentInstance?.botId === instance.botId}
+                  <div class="w-1.5 h-1.5 rounded-full" style="background: {$colorStore.primary};"></div>
+                {/if}
+              </button>
+            {/each}
+          {/if}
+        </div>
+      {/if}
+    </div>
+  {/if}
+
+  <div class="border-b shrink-0 relative"
+       style="border-color: {$colorStore.primary}15;">
+    {#key $currentGuild?.id}
+      {#if $currentGuild}
+        {#if bannerUrl && !collapsed}
+          <div class="absolute inset-0 z-0 overflow-hidden rounded-b-lg"
+               in:fade={{ duration: 400, delay: 150 }}
+               out:fade={{ duration: 150 }}>
+            <img src={bannerUrl} alt="" class="w-full h-full object-cover">
+            <div class="absolute inset-0 bg-gradient-to-b from-black/50 to-black/70"></div>
+          </div>
+        {/if}
+
+        <div class="relative z-10 p-3">
+          <button
+            class="flex items-center gap-3 rounded-xl p-2 transition-[color,background-color,border-color,transform] duration-200 hover:scale-[1.02] min-w-0 w-full overflow-hidden text-left"
+            class:justify-center={collapsed}
+            style="background: {bannerUrl && !collapsed ? 'rgba(0,0,0,0.3)' : $colorStore.primary + '08'};
+                   border: 1px solid {bannerUrl && !collapsed ? 'rgba(255,255,255,0.15)' : $colorStore.primary + '15'};
+                   backdrop-filter: {!isToggling && bannerUrl && !collapsed ? 'blur(4px)' : 'none'};"
+            onclick={toggleServerPicker}
+            in:fade={{ duration: 300, delay: 200 }}
+            out:fade={{ duration: 150 }}
+          >
+            <div class="w-9 h-9 rounded-xl overflow-hidden shrink-0 transition-colors duration-200 ring-2 ring-opacity-30"
+                 style="background: {$colorStore.primary}20; ring-color: {$colorStore.primary};">
+              {#if serverIconUrl}
+                <img src={serverIconUrl} alt="" class="w-full h-full object-cover" loading="lazy">
+              {:else}
+                <div class="w-full h-full flex items-center justify-center">
+                  <i class="fa-solid fa-server" style="color: {$colorStore.primary};"></i>
+                </div>
+              {/if}
+            </div>
+            {#if !collapsed}
+              <div class="min-w-0 flex-1">
+                <div class="text-base font-semibold truncate" style="color: {$colorStore.text};">
+                  {$currentGuild.name}
+                </div>
+                <div class="flex items-center gap-1.5 text-xs" style="color: {$colorStore.muted};">
+                  {#if $currentGuild.owner}
+                    <span class="px-1.5 py-0.5 rounded-md text-xs font-medium"
+                          style="background: {$colorStore.accent}25; color: {$colorStore.accent};">{m.common.owner()}</span>
+                  {:else}
+                    <span>{m.common.admin()}</span>
+                  {/if}
+                </div>
+              </div>
+              <i class="fa-solid fa-chevron-down text-xs shrink-0 transition-transform duration-200"
+                 style="color: {$colorStore.muted}; transform: rotate({showServerPicker ? '180deg' : '0deg'});"
+                 aria-hidden="true"></i>
+            {/if}
+          </button>
+
+          {#if !collapsed}
+            <div class="flex items-center gap-2 mt-2 px-1">
+              <button
+                class="flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-medium transition-[color,background-color,border-color,transform] duration-200 hover:scale-[1.02] flex-1"
+                style="background: {bannerUrl ? 'rgba(255,255,255,0.1)' : $colorStore.primary + '15'};
+                       color: {$colorStore.primary};
+                       border: 1px solid {bannerUrl ? 'rgba(255,255,255,0.1)' : $colorStore.primary + '20'};"
+                onclick={() => window.open(`https://discord.com/channels/${$currentGuild?.id}`, '_blank')}
+              >
+                <i class="fa-solid fa-external-link text-[10px]" aria-hidden="true"></i>
+                {m.layout.sidebarViewServer()}
+              </button>
+            </div>
+          {/if}
+        </div>
+      {:else}
+        <div class="p-3">
+          <div class="flex items-center gap-3 p-2 min-w-0 w-full" class:justify-center={collapsed}>
+            <div class="w-9 h-9 rounded-xl flex items-center justify-center shrink-0"
+                 style="background: {$colorStore.primary}15;">
+              <i class="fa-solid fa-server text-sm" style="color: {$colorStore.muted};"></i>
+            </div>
+            {#if !collapsed}
+              <div class="min-w-0 flex-1">
+                <div class="text-sm font-medium" style="color: {$colorStore.muted};">
+                  {m.layout.sidebarNoServerSelected()}
+                </div>
+              </div>
+            {/if}
+          </div>
+        </div>
+      {/if}
+    {/key}
+
+    {#if showServerPicker && !collapsed}
+      <div
+        class="absolute left-2 right-2 top-full mt-1 rounded-xl shadow-2xl border overflow-hidden z-50"
+        style="border-color: {$colorStore.primary}30;
+               background: linear-gradient(135deg, {$colorStore.background}f8, {$colorStore.background}f0);
+               backdrop-filter: blur(12px);"
+        transition:slide={{ duration: 200, axis: 'y' }}
+        use:clickOutside
+        onclickoutside={() => { showServerPicker = false; serverSearchTerm = ''; }}
+      >
+        <div class="p-2 border-b" style="border-color: {$colorStore.primary}15;">
+          <input
+            type="text"
+            placeholder={m.common.searchServersPlaceholder()}
+            bind:value={serverSearchTerm}
+            onclick={(e) => e.stopPropagation()}
+            class="w-full px-3 py-2 rounded-lg border text-xs"
+            style="border-color: {$colorStore.primary}20;
+                   color: {$colorStore.text};
+                   background: {$colorStore.primary}08;"
+          >
+        </div>
+        <div class="max-h-52 overflow-y-auto sidebar-scrollbar">
+          {#each filteredGuilds as guild (guild.id)}
+            <button
+              class="w-full flex items-center gap-3 px-3 py-2.5 transition-colors text-left"
+              style="background: {guild.id === $currentGuild?.id ? $colorStore.primary + '15' : 'transparent'}"
+              onmouseenter={(e) => e.currentTarget.style.background = $colorStore.primary + '10'}
+              onmouseleave={(e) => e.currentTarget.style.background = guild.id === $currentGuild?.id ? $colorStore.primary + '15' : 'transparent'}
+              onclick={() => handleServerSelect(guild)}
+            >
+              <img
+                src={guildIconUrl(guild)}
+                alt=""
+                class="w-8 h-8 rounded-lg object-cover"
+              >
+              <div class="flex-1 min-w-0">
+                <div class="text-sm font-medium truncate" style="color: {$colorStore.text};">
+                  {guild.name}
+                </div>
+                <div class="text-xs" style="color: {$colorStore.muted};">
+                  {guild.owner ? m.common.owner() : m.common.admin()}
+                </div>
+              </div>
+              {#if guild.id === $currentGuild?.id}
+                <div class="w-2 h-2 rounded-full shrink-0" style="background: {$colorStore.primary};"></div>
+              {/if}
+            </button>
+          {:else}
+            <div class="p-4 text-center text-xs" style="color: {$colorStore.muted};">
+              {m.layout.sidebarNoServersFound()}
+            </div>
+          {/each}
+        </div>
+      </div>
+    {/if}
+  </div>
+
+  {#if !collapsed}
+  <div class="px-3 pt-3 pb-1 shrink-0">
+    <div class="relative">
+      <i class="fa-solid fa-search absolute left-3 top-1/2 -translate-y-1/2 text-xs"
+         style="color: {$colorStore.muted};" aria-hidden="true"></i>
+      <input
+        bind:this={searchInputRef}
+        type="text"
+        placeholder={m.layout.sidebarSearchFeaturesPlaceholder()}
+        bind:value={searchTerm}
+        onkeydown={handleSearchKeydown}
+        class="w-full pl-8 pr-3 py-2 rounded-lg text-sm border transition-colors duration-200"
+        style="background: {$colorStore.primary}08;
+               border-color: {$colorStore.primary}15;
+               color: {$colorStore.text};"
+      >
+      {#if searchTerm}
+        <button
+          class="absolute right-2 top-1/2 -translate-y-1/2 p-1 rounded transition-[color,background-color,border-color,transform] hover:scale-110"
+          style="color: {$colorStore.muted};"
+          onclick={() => { searchTerm = ""; }}
+          aria-label={m.common.ariaClearSearch()}
+        >
+          <i class="fa-solid fa-xmark text-xs"></i>
+        </button>
+      {:else}
+        <button
+          class="absolute right-2 top-1/2 -translate-y-1/2 px-1.5 py-0.5 rounded-sm text-xs transition-colors"
+          style="background: {$colorStore.primary}20; color: {$colorStore.primary};"
+          onclick={() => openSearch()}
+          title={m.layout.sidebarOpenFullSearchTitle()}
+          aria-label={m.layout.sidebarOpenFullSearch()}
+        >
+          ⌘K
+        </button>
+      {/if}
+    </div>
+  </div>
+  {/if}
+
+  <nav class="flex-1 overflow-y-auto overflow-x-hidden py-2 sidebar-scrollbar" aria-label={m.layout.sidebarFeatureNavAria()}>
+    <div class="px-2 mb-1">
+        {#if !isDashboardHome}
+        <a
+          href={noGuild ? undefined : "/dashboard"}
+          class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-[color,background-color,border-color,transform] duration-200 group"
+          class:hover:scale-[1.01]={!noGuild}
+          class:opacity-40={noGuild}
+          class:pointer-events-none={noGuild}
+          style="background: transparent;
+                 color: {$colorStore.muted};
+                 border: 1px solid transparent;"
+          onmouseenter={(e) => showTooltip(e, noGuild ? m.common.selectAServerFirstPlaceholder() : m.layout.sidebarDashboardHome())}
+          onmouseleave={hideTooltip}
+        >
+          <i class="fa-utility-duo fa-regular fa-home text-base shrink-0"
+             style="--fa-primary-color: {$colorStore.muted};
+                    --fa-secondary-color: {$colorStore.muted};
+                    --fa-secondary-opacity: 0.4;
+                    width: 20px; text-align: center;"
+             aria-hidden="true"></i>
+          {#if !collapsed}
+            <span class="text-[15px] font-medium">{m.common.dashboard()}</span>
+          {/if}
+        </a>
+        {/if}
+
+        <a
+          href={noGuild ? undefined : "/dashboard/access"}
+          class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-[color,background-color,border-color,transform] duration-200 group"
+          class:hover:scale-[1.01]={!noGuild}
+          class:opacity-40={noGuild}
+          class:pointer-events-none={noGuild}
+          style="background: {isActive('/dashboard/access') ? $colorStore.primary + '12' : 'transparent'};
+                 color: {isActive('/dashboard/access') ? $colorStore.text : $colorStore.muted};
+                 border: 1px solid {isActive('/dashboard/access') ? $colorStore.primary + '20' : 'transparent'};"
+          aria-current={isActive('/dashboard/access') ? 'page' : undefined}
+          aria-disabled={noGuild}
+          onmouseenter={(e) => showTooltip(e, noGuild ? m.common.selectAServerFirstPlaceholder() : m.features.accessName())}
+          onmouseleave={hideTooltip}
+        >
+          <i class="fa-utility-duo fa-regular fa-key text-base shrink-0"
+             style="--fa-primary-color: {isActive('/dashboard/access') ? $colorStore.primary : $colorStore.muted};
+                    --fa-secondary-color: {isActive('/dashboard/access') ? $colorStore.secondary : $colorStore.muted};
+                    --fa-secondary-opacity: 0.4;
+                    width: 20px; text-align: center;"
+             aria-hidden="true"></i>
+          {#if !collapsed}
+            <span class="text-[15px] font-medium">{m.features.accessName()}</span>
+          {/if}
+        </a>
+
+        {#if isOwner}
+          <a
+            href="/owner"
+            class="flex items-center gap-3 px-3 py-2.5 rounded-xl transition-[color,background-color,border-color,transform] duration-200 hover:scale-[1.01] group"
+            style="background: transparent; color: {$colorStore.muted}; border: 1px solid transparent;"
+            onmouseenter={(e) => showTooltip(e, m.layout.ownerSidebarTitle())}
+            onmouseleave={hideTooltip}
+          >
+            <i class="fa-utility-duo fa-regular fa-crown text-base shrink-0"
+               style="--fa-primary-color: {$colorStore.accent};
+                      --fa-secondary-color: {$colorStore.accent};
+                      --fa-secondary-opacity: 0.4;
+                      width: 20px; text-align: center;"
+               aria-hidden="true"></i>
+            {#if !collapsed}
+              <span class="text-[15px] font-medium flex-1">{m.layout.ownerSidebarTitle()}</span>
+              <i class="fa-solid fa-arrow-right text-[10px]" style="color: {$colorStore.muted};" aria-hidden="true"></i>
+            {/if}
+          </a>
+        {/if}
+
+        <button
+          type="button"
+          class="w-full flex items-center gap-3 px-3 py-2.5 rounded-xl transition-[color,background-color,border-color,transform] duration-200 hover:scale-[1.01] group"
+          style="background: transparent; color: {$colorStore.muted}; border: 1px solid transparent;"
+          onclick={() => openProductUpdates()}
+          onmouseenter={(e) => showTooltip(e, m.layout.sidebarWhatsNew())}
+          onmouseleave={hideTooltip}
+        >
+          <span class="relative shrink-0" style="width: 20px; text-align: center;">
+            <i class="fa-utility-duo fa-regular fa-sparkles text-base"
+               style="--fa-primary-color: {$unreadUpdateCount > 0 ? $colorStore.primary : $colorStore.muted};
+                      --fa-secondary-color: {$unreadUpdateCount > 0 ? $colorStore.secondary : $colorStore.muted};
+                      --fa-secondary-opacity: 0.4;"
+               aria-hidden="true"></i>
+            {#if $unreadUpdateCount > 0}
+              <span class="absolute -top-0.5 -right-0.5 h-2 w-2 rounded-full"
+                    style="background: {$colorStore.primary};"></span>
+            {/if}
+          </span>
+          {#if !collapsed}
+            <span class="text-[15px] font-medium">{m.layout.sidebarWhatsNew()}</span>
+          {/if}
+        </button>
+      </div>
+
+      <div class="mx-3 my-2 h-px" style="background: {$colorStore.primary}10;"></div>
+
+    <div class="px-2 space-y-0.5">
+      {#each filteredFeatures as feature, index (feature.href)}
+        {@const active = isActive(feature.href)}
+        {@const letter = collapsed || searchTerm.trim() ? null : letterFor(index)}
+
+        {#if letter}
+          <div class="px-3 pt-2 pb-0.5 text-[11px] font-semibold uppercase tracking-wider"
+               style="color: {$colorStore.muted}; opacity: 0.5;"
+               aria-hidden="true">
+            {letter}
+          </div>
+        {/if}
+
+        <a
+          href={noGuild ? undefined : feature.href}
+                  class="flex items-center gap-3 px-3 py-2 max-lg:py-3 rounded-xl transition-[color,background-color,border-color,transform] duration-200 group relative"
+                  class:justify-center={collapsed}
+                  class:hover:scale-[1.01]={!noGuild}
+                  class:opacity-40={noGuild}
+                  class:pointer-events-none={noGuild}
+                  style="background: {active ? $colorStore.primary + '12' : 'transparent'};
+                         color: {active ? $colorStore.text : $colorStore.muted};
+                         border: 1px solid {active ? $colorStore.primary + '20' : 'transparent'};"
+                  aria-current={active ? 'page' : undefined}
+                  aria-disabled={noGuild}
+                  onmouseenter={(e) => showTooltip(e, noGuild ? m.common.selectAServerFirstPlaceholder() : feature.label())}
+                  onmouseleave={hideTooltip}
+                >
+                  {#if active}
+                    <div class="absolute left-0 top-1/2 -translate-y-1/2 w-[3px] h-5 rounded-r-full"
+                         style="background: linear-gradient(180deg, {$colorStore.primary}, {$colorStore.secondary});"
+                         transition:fade={{ duration: 150 }}></div>
+                  {/if}
+
+                  <i class="{feature.icon} text-sm shrink-0 transition-colors duration-200"
+                     style="--fa-primary-color: {active ? $colorStore.primary : $colorStore.muted};
+                            --fa-secondary-color: {active ? $colorStore.secondary : $colorStore.muted};
+                            --fa-secondary-opacity: {active ? 0.5 : 0.3};
+                            width: 20px; text-align: center;"
+                     aria-hidden="true"></i>
+
+                  {#if !collapsed}
+                    <span class="text-[15px] max-lg:text-base truncate flex-1 transition-colors duration-200"
+                          style="color: {active ? $colorStore.text : $colorStore.muted};">
+                      {feature.label()}
+                    </span>
+                  {/if}
+        </a>
+      {/each}
+    </div>
+
+    {#if searchTerm && filteredFeatures.length === 0}
+      <div class="px-4 py-8 text-center">
+        <i class="fa-solid fa-search text-2xl mb-2 block" style="color: {$colorStore.muted}; opacity: 0.3;"></i>
+        <p class="text-xs" style="color: {$colorStore.muted};">{m.layout.sidebarNoFeaturesMatch({ term: searchTerm })}</p>
+        <button
+          class="mt-3 rounded-lg px-3 py-2 text-xs font-medium min-h-[44px] w-full transition-colors"
+          style="background: {$colorStore.primary}15; color: {$colorStore.primary};"
+          onclick={() => openSearch(searchTerm)}
+        >
+          {m.layout.sidebarSearchInsidePages()}
+        </button>
+      </div>
+    {/if}
+  </nav>
+
+  {#if showMusicPlayer && !collapsed}
+    <div class="px-2 py-2 border-t shrink-0" style="border-color: {$colorStore.primary}10;"
+         transition:slide={{ duration: 200, axis: 'y' }}>
+      <MiniMusicPlayer {musicStatus} isVisible={true} />
+    </div>
+  {/if}
+
+  <!-- User profile & controls -->
+  <div class="border-t shrink-0 relative" style="border-color: {$colorStore.primary}10;">
+    <!-- Expandable menu (opens upward) -->
+    {#if showUserMenu && !collapsed}
+      <div class="border-b p-2 space-y-1" style="border-color: {$colorStore.primary}10;"
+           transition:slide={{ duration: 200, axis: 'y' }}>
+        <!-- Instance selector -->
+        {#if visibleInstances.length > 1 || instancesLoading || stillCheckingInstances}
+          <div class="px-2 py-1.5">
+            <div class="text-[11px] font-semibold uppercase tracking-wider mb-1.5" style="color: {$colorStore.muted}; opacity: 0.7;">{m.layout.sidebarBotInstance()}</div>
+            {#if instancesLoading || stillCheckingInstances}
+              <div class="flex items-center gap-2 px-2 py-1 text-xs" style="color: {$colorStore.muted};">
+                <div class="animate-spin h-3 w-3 border-2 rounded-full"
+                     style="border-color: {$colorStore.primary}30; border-top-color: {$colorStore.primary};"></div>
+                {m.common.loading()}
+              </div>
+            {:else}
+              {#each visibleInstances as instance (instance.botId)}
+                <button
+                  class="w-full flex items-center gap-2 px-2 py-1.5 rounded-lg transition-colors duration-200 text-left text-sm"
+                  style="background: {$currentInstance?.botId === instance.botId ? $colorStore.primary + '15' : 'transparent'};
+                         color: {$colorStore.text};"
+                  onclick={() => handleInstanceSelect(instance)}
+                >
+                  <img src={instance.botAvatar} alt="" class="w-5 h-5 rounded-full shrink-0">
+                  <span class="flex-1 truncate text-xs">{instance.botName}</span>
+                  {#if $currentInstance?.botId === instance.botId}
+                    <div class="w-1.5 h-1.5 rounded-full" style="background: {$colorStore.primary};"></div>
+                  {/if}
+                </button>
+              {/each}
+            {/if}
+          </div>
+          <div class="mx-2 h-px" style="background: {$colorStore.primary}10;"></div>
+        {/if}
+
+        <!-- My Settings -->
+        <a
+          href="/me"
+          class="flex items-center gap-3 px-3 py-2 max-lg:py-2.5 rounded-xl transition-[color,background-color,border-color,transform] duration-200 hover:scale-[1.01] group"
+          style="color: {$colorStore.text};"
+        >
+          <i class="fa-solid fa-gear text-sm shrink-0" style="color: {$colorStore.primary}; width: 20px; text-align: center;" aria-hidden="true"></i>
+          <span class="text-sm">{m.common.mySettings()}</span>
+        </a>
+
+        <LocaleSwitcher />
+
+        <!-- Dyslexia-friendly font -->
+        <button
+          type="button"
+          class="w-full flex items-center gap-3 px-3 py-2 max-lg:py-2.5 rounded-xl transition-[color,background-color,border-color,transform] duration-200 hover:scale-[1.01] group"
+          style="color: {$colorStore.text};"
+          onclick={() => dyslexicFontStore.toggle()}
+          aria-pressed={$dyslexicFontStore}
+        >
+          <i class="fa-solid fa-universal-access text-sm shrink-0" style="color: {$colorStore.primary}; width: 20px; text-align: center;" aria-hidden="true"></i>
+          <span class="text-sm flex-1 text-left">{m.common.dyslexiaFriendlyFont()}</span>
+          <span class="w-9 h-5 rounded-full transition-colors relative shadow-inner block shrink-0"
+                style="background: {$dyslexicFontStore ? $colorStore.primary : '#374151'};">
+            <span
+              class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow-sm transition-transform block"
+              class:translate-x-4={$dyslexicFontStore}>
+            </span>
+          </span>
+        </button>
+
+        <!-- Frutiger Aero theme -->
+        <button
+          type="button"
+          class="w-full flex items-center gap-3 px-3 py-2 max-lg:py-2.5 rounded-xl transition-[color,background-color,border-color,transform] duration-200 hover:scale-[1.01] group"
+          style="color: {$colorStore.text};"
+          onclick={() => themeStore.toggleAero()}
+          aria-pressed={$themeStore === "aero"}
+        >
+          <i class="fa-solid fa-palette text-sm shrink-0" style="color: {$colorStore.primary}; width: 20px; text-align: center;" aria-hidden="true"></i>
+          <span class="text-sm flex-1 text-left">{m.layout.navAeroTheme()}</span>
+          <span class="w-9 h-5 rounded-full transition-colors relative shadow-inner block shrink-0"
+                style="background: {$themeStore === 'aero' ? $colorStore.primary : '#374151'};">
+            <span
+              class="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full shadow-sm transition-transform block"
+              class:translate-x-4={$themeStore === "aero"}>
+            </span>
+          </span>
+        </button>
+
+        <!-- Logout -->
+        <form action="/api/discord/logout" method="GET" class="w-full">
+          <button
+            type="submit"
+            class="w-full flex items-center gap-3 px-3 py-2 max-lg:py-2.5 rounded-xl transition-[color,background-color,border-color,transform] duration-200 hover:scale-[1.01] group"
+            style="color: {$colorStore.accent};"
+          >
+            <i class="fa-solid fa-right-from-bracket text-sm shrink-0" style="width: 20px; text-align: center;" aria-hidden="true"></i>
+            <span class="text-sm">{m.layout.sidebarLogout()}</span>
+          </button>
+        </form>
+      </div>
+    {/if}
+
+    <div class="p-2 flex items-center gap-1" class:justify-center={collapsed}>
+      <!-- User profile button -->
+      {#if $userStore}
+        <button
+          class="flex items-center gap-3 px-2 py-2 rounded-xl transition-[color,background-color,border-color,transform] duration-200 hover:scale-[1.01] min-w-0"
+          class:flex-1={!collapsed}
+          class:justify-center={collapsed}
+          style="background: {showUserMenu ? $colorStore.primary + '10' : 'transparent'}; color: {$colorStore.text};"
+          onclick={() => { if (collapsed) { toggleSidebar(); } else { showUserMenu = !showUserMenu; } }}
+          onmouseenter={(e) => collapsed && showTooltip(e, m.layout.sidebarExpandTooltip())}
+          onmouseleave={hideTooltip}
+          aria-label={collapsed ? m.layout.sidebarExpand() : m.layout.navUserMenu()}
+          aria-expanded={showUserMenu}
+        >
+          <div class="relative shrink-0">
+            <img
+              src={userAvatarUrl}
+              alt={$userStore.username}
+              class="w-9 h-9 rounded-full shrink-0"
+            >
+            {#if collapsed}
+              <span
+                class="absolute -bottom-0.5 -right-0.5 flex items-center justify-center w-4 h-4 rounded-full border-2"
+                style="background: {$colorStore.primary}; border-color: {$colorStore.gradientStart};"
+              >
+                <i class="fa-solid fa-angles-right text-[7px]" style="color: {$colorStore.text};" aria-hidden="true"></i>
+              </span>
+            {/if}
+          </div>
+          {#if !collapsed}
+            <div class="flex-1 min-w-0 text-left">
+              <div class="text-sm font-medium truncate">{$userStore.username}</div>
+              {#if $currentInstance}
+                <div class="flex items-center gap-1">
+                  <span class="w-1.5 h-1.5 rounded-full" style="background: {$currentInstance.isActive ? '#10B981' : $colorStore.accent};"></span>
+                  <span class="text-[11px] truncate" style="color: {$colorStore.muted};">{$currentInstance.botName}</span>
+                </div>
+              {/if}
+            </div>
+            <i class="fa-solid fa-chevron-up text-xs shrink-0 transition-transform duration-200"
+               style="color: {$colorStore.muted}; transform: rotate({showUserMenu ? '180deg' : '0deg'});"
+               aria-hidden="true"></i>
+          {/if}
+        </button>
+      {/if}
+
+      {#if !collapsed}
+        <!-- Collapse toggle (desktop only) -->
+        <button
+          class="hidden lg:flex items-center justify-center w-8 h-8 rounded-lg transition-[color,background-color,border-color,transform] duration-200 hover:scale-[1.05] shrink-0"
+          style="color: {$colorStore.muted}; background: {$colorStore.primary}08;"
+          onclick={toggleSidebar}
+          title={m.layout.sidebarCollapseTitle()}
+          aria-label={m.layout.sidebarCollapse()}
+        >
+          <i class="fa-solid fa-angles-left text-xs" aria-hidden="true"></i>
+        </button>
+
+        <!-- Close (mobile only) -->
+        <button
+          class="lg:hidden flex items-center justify-center w-8 h-8 rounded-lg transition-[color,background-color,border-color,transform] duration-200 hover:scale-[1.05] shrink-0"
+          style="color: {$colorStore.muted}; background: {$colorStore.primary}08;"
+          onclick={closeMobile}
+          aria-label={m.layout.sidebarClose()}
+        >
+          <i class="fa-solid fa-xmark text-xs" aria-hidden="true"></i>
+        </button>
+      {/if}
+    </div>
+  </div>
+</div>
+</aside>
+
+<!-- Mobile backdrop -->
+{#if mobileOpen}
+  <div
+    class="fixed inset-0 z-30 bg-black/60 backdrop-blur-sm lg:hidden"
+    onclick={closeMobile}
+    transition:fade={{ duration: 200 }}
+    aria-hidden="true"
+  ></div>
+{/if}
+
+{#if collapsed && hoveringItem && tooltipPosition}
+  <div
+    class="fixed z-50 pointer-events-none px-3 py-1.5 rounded-lg shadow-lg text-sm font-medium whitespace-nowrap"
+    style="left: 76px;
+           top: {tooltipPosition.top}px;
+           transform: translateY(-50%);
+           background: {$colorStore.gradientStart}f5;
+           color: {$colorStore.text};
+           border: 1px solid {$colorStore.primary}25;
+           backdrop-filter: blur(8px);"
+    transition:fade={{ duration: 100 }}
+  >
+    {hoveringItem}
+  </div>
+{/if}
+
+<style>
+  .sidebar-scrollbar {
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+  }
+
+  .sidebar-scrollbar:hover {
+    scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
+  }
+
+  .sidebar-scrollbar::-webkit-scrollbar {
+    width: 4px;
+  }
+
+  .sidebar-scrollbar::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  .sidebar-scrollbar::-webkit-scrollbar-thumb {
+    background: transparent;
+    border-radius: 4px;
+  }
+
+  .sidebar-scrollbar:hover::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .sidebar-scrollbar::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  .sidebar-switching {
+    opacity: 0.75;
+    filter: blur(0.5px);
+    transform: scale(0.99);
+  }
+</style>

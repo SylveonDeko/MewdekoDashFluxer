@@ -1,0 +1,454 @@
+<!-- lib/components/forms/ResponseStatusChecker.svelte -->
+<script lang="ts">
+  import { m } from "$lib/i18n";
+  import { onMount } from "svelte";
+  import { formsApi, RESPONSE_STATUS_LABELS, type ResponseStatusResponse } from "$lib/api/index.ts";
+  import { colorStore } from "$lib/stores/colorStore";
+  import { responseStatusLabel } from "./formLabels";
+  import { loadingStore } from "$lib/stores/loadingStore";
+  import { fade, fly, slide } from "svelte/transition";
+
+  interface Props {
+    token: string | undefined;
+  }
+
+  let { token }: Props = $props();
+
+  let status = $state<ResponseStatusResponse | null>(null);
+  let loading = $state(true);
+  let error = $state<string | null>(null);
+  let autoRefreshEnabled = $state(false);
+  let refreshInterval: number | null = null;
+
+  async function loadStatus() {
+    if (!token) {
+      error = m.forms.statusCheckerMissingToken();
+      return;
+    }
+    return await loadingStore.wrap("load-status", async () => {
+      try {
+        loading = true;
+        error = null;
+        status = await formsApi.getResponseStatus(token!);
+      } catch (err) {
+        error = err instanceof Error ? err.message : m.forms.statusCheckerLoadFailed();
+      } finally {
+        loading = false;
+      }
+    }, "api", m.forms.statusCheckerLoadingOverlay());
+  }
+
+  /** Transient feedback shown under the copy button after a clipboard attempt */
+  let copyFeedback = $state<{ text: string; ok: boolean } | null>(null);
+  let copyFeedbackTimer: ReturnType<typeof setTimeout> | null = null;
+
+  function showCopyFeedback(text: string, ok: boolean) {
+    copyFeedback = { text, ok };
+    if (copyFeedbackTimer) clearTimeout(copyFeedbackTimer);
+    copyFeedbackTimer = setTimeout(() => { copyFeedback = null; }, 4000);
+  }
+
+  function copyInviteToClipboard() {
+    if (!status?.inviteCode) return;
+    const inviteUrl = `https://discord.gg/${status.inviteCode}`;
+    navigator.clipboard.writeText(inviteUrl).then(() => {
+      showCopyFeedback(m.forms.statusCheckerLinkCopied(), true);
+    }).catch(() => {
+      showCopyFeedback(m.forms.statusCheckerCopyFailed({ url: inviteUrl }), false);
+    });
+  }
+
+  function openInvite() {
+    if (!status?.inviteCode) return;
+    window.open(`https://discord.gg/${status.inviteCode}`, "_blank");
+  }
+
+  function formatDate(dateString: string | undefined): string {
+    if (!dateString) return m.common.notAvailable();
+    const date = new Date(dateString);
+    return date.toLocaleString();
+  }
+
+  function toggleAutoRefresh() {
+    autoRefreshEnabled = !autoRefreshEnabled;
+
+    if (autoRefreshEnabled) {
+      // Refresh every 30 seconds
+      refreshInterval = window.setInterval(() => {
+        loadStatus();
+      }, 30000);
+    } else {
+      if (refreshInterval !== null) {
+        clearInterval(refreshInterval);
+        refreshInterval = null;
+      }
+    }
+  }
+
+  onMount(() => {
+    loadStatus();
+
+    // Cleanup on unmount
+    return () => {
+      if (refreshInterval !== null) {
+        clearInterval(refreshInterval);
+      }
+    };
+  });
+</script>
+
+<div class="min-h-screen py-8 px-4"
+     style="background: linear-gradient(135deg, {$colorStore.primary}08 0%, {$colorStore.secondary}05 100%);">
+  <div class="container mx-auto max-w-2xl">
+    {#if loading && !status}
+      <div
+        class=" rounded-xl border p-12 text-center"
+        style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}30;"
+        in:fade
+      >
+        <div
+          class="w-12 h-12 border-4 rounded-full animate-spin mx-auto mb-4"
+          style="border-color: {$colorStore.primary}20; border-top-color: {$colorStore.primary};"
+        ></div>
+        <p style="color: {$colorStore.muted};">{m.forms.statusCheckerLoading()}</p>
+      </div>
+    {:else if error}
+      <div
+        class=" rounded-xl border p-8 text-center"
+        style="background: #ef444410; border-color: #ef444430;"
+        in:fly={{ y: 20, duration: 300 }}
+      >
+        <i class="fa-solid fa-triangle-exclamation mb-4" style="color: #ef4444; font-size: 48px; display: block;"></i>
+        <h2 class="text-2xl font-bold mb-4" style="color: #ef4444;">{m.common.error()}</h2>
+        <p class="text-lg" style="color: {$colorStore.text};">{error}</p>
+      </div>
+    {:else if status}
+      <div class="space-y-6">
+        <!-- Header -->
+        <div
+          class=" rounded-xl border p-8 text-center"
+          style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}30;"
+          in:fade
+        >
+          <div
+            class="w-16 h-16 mx-auto mb-4 rounded-full flex items-center justify-center"
+            style="background: linear-gradient(135deg, {$colorStore.primary}30, {$colorStore.secondary}40);"
+          >
+            <i class="fa-solid fa-clipboard-check" style="color: {$colorStore.primary}; font-size: 32px;"></i>
+          </div>
+          <h1 class="text-3xl font-bold mb-3" style="color: {$colorStore.text};">
+            {m.forms.statusCheckerTitle()}
+          </h1>
+          <p class="text-xs font-mono" style="color: {$colorStore.muted};">
+            {token}
+          </p>
+        </div>
+
+        <!-- Status Card -->
+        <div
+          class=" rounded-xl border p-6"
+          style="background: {RESPONSE_STATUS_LABELS[status.status].color}10; border-color: {RESPONSE_STATUS_LABELS[status.status].color}30;"
+          in:slide
+        >
+          <div class="flex items-start gap-4">
+            <div
+              class="flex-shrink-0 w-16 h-16 rounded-full flex items-center justify-center"
+              style="background: {RESPONSE_STATUS_LABELS[status.status].color}20;"
+            >
+              <i
+                class="fa-solid {RESPONSE_STATUS_LABELS[status.status].icon}"
+                style="color: {RESPONSE_STATUS_LABELS[status.status].color}; font-size: 32px;"
+              ></i>
+            </div>
+            <div class="flex-1">
+              <h2 class="text-2xl font-bold mb-2" style="color: {RESPONSE_STATUS_LABELS[status.status].color};">
+                {responseStatusLabel(status.status)}
+              </h2>
+              <div class="space-y-2 text-sm" style="color: {$colorStore.text};">
+                {#if status.status === "Pending"}
+                  <p>{m.forms.statusCheckerPendingBody()}</p>
+                  <p class="text-xs" style="color: {$colorStore.muted};">
+                    {m.forms.statusCheckerPendingTip()}
+                  </p>
+                {:else if status.status === "UnderReview"}
+                  <p>{m.forms.statusCheckerUnderReviewBody()}</p>
+                {:else if status.status === "Approved"}
+                  <p>{m.forms.statusCheckerApprovedBody()}</p>
+                  {#if status.reviewedAt}
+                    <p class="text-xs" style="color: {$colorStore.muted};">
+                      <i class="fa-solid fa-clock mr-1"></i>
+                      {m.forms.statusCheckerReviewedOn({ date: formatDate(status.reviewedAt) })}
+                    </p>
+                  {/if}
+                  {#if status.reviewNotes}
+                    <div class="mt-2 p-3 rounded-lg" style="background: {$colorStore.primary}10;">
+                      <div class="font-semibold mb-1" style="color: {$colorStore.text};">{m.forms.statusCheckerModeratorNotes()}</div>
+                      <p class="whitespace-pre-wrap">{status.reviewNotes}</p>
+                    </div>
+                  {/if}
+                {:else if status.status === "Rejected"}
+                  <p>{m.forms.statusCheckerRejectedBody()}</p>
+                  {#if status.reviewedAt}
+                    <p class="text-xs" style="color: {$colorStore.muted};">
+                      <i class="fa-solid fa-clock mr-1"></i>
+                      {m.forms.statusCheckerReviewedOn({ date: formatDate(status.reviewedAt) })}
+                    </p>
+                  {/if}
+                  {#if status.reviewNotes}
+                    <div class="mt-2 p-3 rounded-lg" style="background: #ef444410; border: 1px solid #ef444430;">
+                      <div class="font-semibold mb-1" style="color: #ef4444;">{m.forms.statusCheckerRejectionReason()}</div>
+                      <p class="whitespace-pre-wrap">{status.reviewNotes}</p>
+                    </div>
+                  {/if}
+                {/if}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Which server this went to. A status link is often the only thing somebody still has,
+             so the page has to carry that context on its own. -->
+        {#if status.guildName}
+          <div
+            class=" rounded-xl border p-4 flex items-center gap-3"
+            style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}20;"
+            in:slide
+          >
+            {#if status.guildIconUrl}
+              <img src={status.guildIconUrl} alt="" class="w-10 h-10 rounded-full flex-shrink-0" />
+            {:else}
+              <span
+                class="w-10 h-10 rounded-full flex-shrink-0 flex items-center justify-center"
+                style="background: {$colorStore.primary}15;"
+              >
+                <i class="fa-solid fa-server" style="color: {$colorStore.muted};"></i>
+              </span>
+            {/if}
+            <div class="min-w-0">
+              {#if status.formName}
+                <div class="font-medium truncate" style="color: {$colorStore.text};">
+                  {status.formName}
+                </div>
+              {/if}
+              <div class="text-sm truncate" style="color: {$colorStore.muted};">
+                {status.guildName}
+              </div>
+            </div>
+          </div>
+        {/if}
+
+        <!-- Correcting an answer. A reviewer asking somebody to clarify something is the ordinary
+             case, and this keeps the conversation on the response already under review rather than
+             pushing them into filing a second one. -->
+        {#if status.canEdit && status.shareCode}
+          <div
+            class=" rounded-xl border p-6"
+            style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}30;"
+            in:slide
+          >
+            <div class="font-semibold mb-1" style="color: {$colorStore.text};">
+              <i class="fa-solid fa-pen mr-2" style="color: {$colorStore.primary};"></i>
+              {m.forms.statusCheckerChangeAnswerTitle()}
+            </div>
+            <p class="text-sm mb-4" style="color: {$colorStore.muted};">
+              {m.forms.statusCheckerChangeAnswerBody()}
+            </p>
+
+            {#if status.editedAt}
+              <p class="text-xs mb-4" style="color: {$colorStore.muted};">
+                {m.forms.statusCheckerLastChanged({ date: formatDate(status.editedAt) })}
+              </p>
+            {/if}
+
+            <a
+              href="/forms/{status.shareCode}?edit={token}"
+              class="inline-block px-4 py-2.5 rounded-lg font-medium transition-all hover:scale-[1.02]"
+              style="background: {$colorStore.primary}15; color: {$colorStore.text}; border: 1px solid {$colorStore.primary}30;"
+            >
+              <i class="fa-solid fa-pen-to-square mr-2"></i>
+              {m.forms.statusCheckerEditAnswers()}
+            </a>
+          </div>
+        {:else if status.editedAt}
+          <div
+            class=" rounded-xl border p-4 text-sm"
+            style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}20; color: {$colorStore.muted};"
+            in:slide
+          >
+            <i class="fa-solid fa-pen mr-2"></i>
+            {m.forms.statusCheckerChangedAnswers({ date: formatDate(status.editedAt) })}
+          </div>
+        {/if}
+
+        <!-- Invite Link (for approved join applications) -->
+        {#if status.status === "Approved" && status.inviteCode}
+          <div
+            class=" rounded-xl border p-6"
+            style="background: #10B98110; border-color: #10B98130;"
+            in:slide
+          >
+            <h3 class="text-xl font-bold mb-4 flex items-center gap-2" style="color: #10B981;">
+              <i class="fa-solid fa-ticket"></i>
+              {m.forms.statusCheckerInviteTitle()}
+            </h3>
+
+            <p class="mb-4 text-sm" style="color: {$colorStore.text};">
+              {m.forms.statusCheckerInviteBody()}
+            </p>
+
+            <div class="mb-4">
+              <input
+                type="text"
+                readonly
+                value="https://discord.gg/{status.inviteCode}"
+                onclick={(e) => e.currentTarget.select()}
+                class="w-full p-3 rounded-lg font-mono text-sm"
+                style="background: {$colorStore.primary}10; border: 1px solid {$colorStore.primary}30; color: {$colorStore.text};"
+              />
+            </div>
+
+            {#if status.inviteExpiresAt}
+              {@const timeRemaining = new Date(status.inviteExpiresAt).getTime() - Date.now()}
+              {@const isExpired = timeRemaining <= 0}
+              <div
+                class="mb-4 p-3 rounded-lg text-sm"
+                style="background: {isExpired ? '#ef444410' : $colorStore.primary + '10'}; border: 1px solid {isExpired ? '#ef444430' : $colorStore.primary + '30'};"
+              >
+                <i class="fa-solid fa-clock mr-1" style="color: {isExpired ? '#ef4444' : $colorStore.primary};"></i>
+                {#if isExpired}
+                  <span
+                    style="color: #ef4444;">{m.forms.statusCheckerInviteExpired()}</span>
+                {:else if timeRemaining < 3600000}
+                  <span style="color: {$colorStore.text};">{m.forms.statusCheckerExpiresMinutes({ count: Math.floor(timeRemaining / 60000) })}</span>
+                {:else if timeRemaining < 86400000}
+                  <span style="color: {$colorStore.text};">{m.forms.statusCheckerExpiresHours({ count: Math.floor(timeRemaining / 3600000) })}</span>
+                {:else}
+                  <span style="color: {$colorStore.text};">{m.forms.statusCheckerExpiresOn({ date: formatDate(status.inviteExpiresAt) })}</span>
+                {/if}
+              </div>
+            {/if}
+
+            <div class="flex gap-3">
+              <button
+                onclick={copyInviteToClipboard}
+                class="flex-1 py-3 rounded-lg font-medium transition-all hover:scale-[1.02]"
+                style="background: {$colorStore.primary}20; color: {$colorStore.text}; border: 1px solid {$colorStore.primary}30;"
+              >
+                <i class="fa-solid fa-copy mr-2"></i>
+                {m.common.copyLink()}
+              </button>
+              <button
+                onclick={openInvite}
+                class="flex-1 py-3 rounded-lg font-medium transition-all hover:scale-[1.02] border"
+                style="background: linear-gradient(135deg, {$colorStore.secondary}15, {$colorStore.accent}10); color: {$colorStore.text}; border-color: {$colorStore.secondary}30; box-shadow: 0 4px 20px {$colorStore.secondary}10;"
+              >
+                <i class="fa-brands fa-discord mr-2"></i>
+                {m.forms.statusCheckerJoinServer()}
+              </button>
+            </div>
+            {#if copyFeedback}
+              <div class="mt-3 p-3 rounded-lg flex items-center gap-2 text-sm break-all"
+                   style="background: {copyFeedback.ok ? '#10b98120' : '#ef444420'}; border: 1px solid {copyFeedback.ok ? '#10b981' : '#ef4444'}30; color: {copyFeedback.ok ? '#10b981' : '#ef4444'};"
+                   role="status"
+                   transition:slide>
+                <i class="fa-solid {copyFeedback.ok ? 'fa-circle-check' : 'fa-circle-exclamation'}"></i>
+                <span>{copyFeedback.text}</span>
+              </div>
+            {/if}
+          </div>
+        {/if}
+
+        <!-- Action Taken (for ban appeals) -->
+        {#if status.status === "Approved" && status.actionTaken.includes("Unbanned")}
+          <div
+            class=" rounded-xl border p-6"
+            style="background: #10B98110; border-color: #10B98130;"
+            in:slide
+          >
+            <div class="flex items-start gap-3">
+              <i class="fa-solid fa-gavel flex-shrink-0 mt-1" style="color: #10B981; font-size: 24px;"></i>
+              <div>
+                <h3 class="text-lg font-bold mb-2" style="color: #10B981;">
+                  {m.forms.statusCheckerUnbannedTitle()}
+                </h3>
+                <p class="text-sm mb-3" style="color: {$colorStore.text};">
+                  {m.forms.statusCheckerUnbannedBody()}
+                </p>
+                <p class="text-xs" style="color: {$colorStore.muted};">
+                  {m.forms.statusCheckerUnbannedHelp()}
+                </p>
+              </div>
+            </div>
+          </div>
+        {/if}
+
+        <!-- Auto-Refresh Toggle -->
+        <div
+          class=" rounded-xl border p-4"
+          style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}30;"
+          in:slide
+        >
+          <div class="flex items-center justify-between">
+            <div>
+              <div class="font-semibold" style="color: {$colorStore.text};">
+                <i class="fa-solid fa-rotate mr-2" style="color: {$colorStore.primary};"></i>
+                {m.forms.statusCheckerAutoRefresh()}
+              </div>
+              <p class="text-xs" style="color: {$colorStore.muted};">
+                {m.forms.statusCheckerAutoRefreshHint()}
+              </p>
+            </div>
+            <label class="relative inline-flex items-center cursor-pointer">
+              <input type="checkbox" class="sr-only peer" checked={autoRefreshEnabled} onchange={toggleAutoRefresh} />
+              <span
+                class="w-11 h-6 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all block"
+                style:background-color={autoRefreshEnabled ? $colorStore.primary : "#4b5563"}
+              ></span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Manual Refresh Button -->
+        <div class="text-center">
+          <button
+            onclick={loadStatus}
+            class="px-6 py-3 rounded-lg font-medium transition-all hover:scale-[1.02]"
+            style="background: {$colorStore.primary}20; color: {$colorStore.text}; border: 1px solid {$colorStore.primary}30;"
+          >
+            <i class="fa-solid fa-sync mr-2"></i>
+            {m.forms.statusCheckerRefreshStatus()}
+          </button>
+        </div>
+
+        <!-- Somewhere to go that is not this one link. An anonymous response is stored without a
+             submitter, so it will not be in that list and this link really is the only way back. -->
+        <div
+          class=" rounded-xl border p-4 text-center"
+          style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}30;"
+        >
+          <p class="text-sm mb-3" style="color: {$colorStore.muted};">
+            {m.forms.statusCheckerSubmissionsIntro()}
+          </p>
+          <a
+            href="/forms/submissions"
+            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all"
+            style="background: {$colorStore.primary}15; color: {$colorStore.text}; border: 1px solid {$colorStore.primary}30;"
+          >
+            <i class="fa-solid fa-clipboard-list"></i>
+            {m.forms.submissionsHeading()}
+          </a>
+        </div>
+
+        <!-- Informational Footer -->
+        <div
+          class=" rounded-xl border p-4 text-center"
+          style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}30;"
+        >
+          <p class="text-xs" style="color: {$colorStore.muted};">
+            {m.forms.statusCheckerBookmarkTip()}
+          </p>
+        </div>
+      </div>
+    {/if}
+  </div>
+</div>

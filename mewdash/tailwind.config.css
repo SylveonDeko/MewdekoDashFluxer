@@ -1,0 +1,38 @@
+@import "tailwindcss";
+
+/* Custom theme configuration for Tailwind v4 */
+@theme {
+    /* Custom colors */
+    --color-mewd-transparent: rgba(255, 255, 255, 0.55);
+    --color-mewd-light-transparent: rgba(255, 255, 255, 0.1);
+    --color-mewd-white: #ffffff;
+    --color-mewd-offwhite: #b0bdd3;
+    --color-mewd-dark-grey: #27262e;
+    --color-mewd-light-grey: #2d2c38;
+    --color-mewd-yellow: #938018;
+    --color-mewd-dark-yellow: #6b5e14;
+    --color-mewd-green: #19f5aa;
+
+    /* Custom breakpoint */
+    --breakpoint-xs: 330px;
+}
+
+/* Import typography plugin */
+@plugin "@tailwindcss/typography";
+
+/* Safe area utilities */
+@utility pb-safe {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+}
+
+@utility pt-safe {
+    padding-top: env(safe-area-inset-top, 0);
+}
+
+@utility pl-safe {
+    padding-left: env(safe-area-inset-left, 0);
+}
+
+@utility pr-safe {
+    padding-right: env(safe-area-inset-right, 0);
+}

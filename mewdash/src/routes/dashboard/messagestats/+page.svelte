@@ -1,0 +1,819 @@
+<!-- routes/dashboard/messagestats/+page.svelte -->
+<script lang="ts">
+
+  import { m } from "$lib/i18n";
+
+  import { browser } from "$app/environment";
+  import { untrack } from "svelte";
+  import {
+    messageCountApi,
+    clientApi,
+    guildApi,
+    type MessageStatsResponse
+  } from "$lib/api/index.ts";
+    import {currentGuild} from "$lib/stores/currentGuild";
+    import {colorStore} from "$lib/stores/colorStore";
+    import {fade, slide} from "svelte/transition";
+    import type {PageData} from "./$types";
+    import StatCard from "$lib/components/monitoring/StatCard.svelte";
+    import StatsGraph from "$lib/components/monitoring/StatsGraph.svelte";
+    import Notification from "$lib/components/ui/Notification.svelte";
+    import SkeletonLoader from "$lib/components/ui/SkeletonLoader.svelte";
+    import DashboardPageLayout from "$lib/components/layout/DashboardPageLayout.svelte";
+    import {currentInstance} from "$lib/stores/instanceStore";
+    import DiscordSelector from "$lib/components/forms/DiscordSelector.svelte";
+    import { requestConfirmation } from "$lib/stores/confirmationStore";
+
+    interface Props {
+        data: PageData;
+    }
+
+    let {data}: Props = $props();
+
+  // States
+    let activeTab: "stats" | "manage" = $state("stats");
+    let activeSubTab: "overview" | "users" | "channels" | "settings" | "export" = $state("overview");
+    let loading = $state(true);
+    let error: string | null = $state(null);
+    let showNotification = $state(false);
+    let notificationMessage = $state("");
+    let notificationType: "success" | "error" = $state("success");
+
+  // Data
+    let messageStats: MessageStatsResponse | null = $state(null);
+  let topUsers: any[] = $state([]);
+  let topChannels: any[] = $state([]);
+  let leastActiveUser: any | null = $state(null);
+  let leastActiveChannel: any | null = $state(null);
+
+  // Export settings
+    let exportStartDate = $state("");
+    let exportEndDate = $state("");
+    let exportFormat: "csv" | "json" = $state("csv");
+    let includeUsers = $state(true);
+    let includeChannels = $state(true);
+    let includeHourly = $state(false);
+    let isExporting = $state(false);
+
+  // Settings state
+    let messageCountEnabled = $state(false);
+    let minMessageLength = $state(0);
+    let settingsLoading = $state(false);
+    let resetLoading = $state(false);
+    let activeLoadKey = "";
+    let loadedContextKey = "";
+    let loadRequestId = 0;
+
+  function toGraphStats(points: { label: string; count: number }[]) {
+    if (!points.length) return null;
+    const total = points.reduce((sum, p) => sum + p.count, 0);
+    const peak = points.reduce((best, p) => p.count > best.count ? p : best, points[0]);
+    return {
+      dailyStats: points.map(p => ({ date: p.label, count: p.count })),
+      summary: {
+        total,
+        average: total / points.length,
+        peakDate: peak.label,
+        peakCount: peak.count
+      }
+    };
+  }
+
+  // Computed values
+  let chartData = $derived.by(() => {
+    const stats = messageStats as any;
+    const hours = stats?.busiestHours || stats?.hourlyStats;
+    if (!hours?.length) return null;
+    return toGraphStats(hours.map((s: any) => ({
+      label: `${s.hour}:00`,
+      count: s.messageCount
+    })));
+  });
+
+  let weeklyChartData = $derived.by(() => {
+    const stats = messageStats as any;
+    const days = stats?.busiestDays || stats?.weeklyTrend;
+    if (!days?.length) return null;
+    return toGraphStats(days.map((d: any) => ({
+      label: d.day || d.date,
+      count: d.messageCount
+    })));
+  });
+
+  // Helper Functions
+  function showNotificationMessage(message: string, type: "success" | "error" = "success") {
+    notificationMessage = message;
+    notificationType = type;
+    showNotification = true;
+    setTimeout(() => showNotification = false, 3000);
+  }
+
+  function formatNumber(num: number | undefined): string {
+    if (num === undefined || num === null) return '0';
+    if (num >= 1000000) return `${(num / 1000000).toFixed(1)}M`;
+    if (num >= 1000) return `${(num / 1000).toFixed(1)}K`;
+    return num.toString();
+  }
+
+  function getRankBadgeColor(rank: number): string {
+    if (rank === 1) return "#ffd700"; // Gold
+    if (rank === 2) return "#c0c0c0"; // Silver
+    if (rank === 3) return "#cd7f32"; // Bronze
+    return $colorStore.primary;
+  }
+
+  function csvEscape(value: unknown): string {
+    if (value === null || value === undefined) return "";
+    const text = String(value);
+    return /[",\n\r]/.test(text) ? `"${text.replaceAll('"', '""')}"` : text;
+  }
+
+  function toCsv(rows: Record<string, unknown>[]): string {
+    if (!rows.length) return "";
+    const headers = Object.keys(rows[0]);
+    return [
+      headers.map(csvEscape).join(","),
+      ...rows.map(row => headers.map(header => csvEscape(row[header])).join(","))
+    ].join("\n");
+  }
+
+  function downloadTextFile(content: string, filename: string, mimeType: string) {
+    if (!browser) return;
+
+    const blob = new Blob([content], { type: mimeType });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = filename;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(url);
+  }
+
+  function buildExportPayload() {
+    return {
+      guildId: $currentGuild?.id?.toString() ?? "",
+      guildName: $currentGuild?.name ?? "Unknown Guild",
+      exportedAt: new Date().toISOString(),
+      startDate: exportStartDate || null,
+      endDate: exportEndDate || null,
+      summary: messageStats
+        ? {
+            enabled: messageStats.enabled,
+            totalMessages: messageStats.totalMessages,
+            dailyMessages: messageStats.dailyMessages,
+            lastUpdated: messageStats.lastUpdated
+          }
+        : null,
+      users: includeUsers ? topUsers.map(user => ({
+        rank: user.rank,
+        userId: user.userId,
+        username: user.username,
+        totalMessages: user.totalMessages,
+        dailyMessages: user.dailyMessages,
+        percentage: user.percentage ?? 0
+      })) : [],
+      channels: includeChannels ? topChannels.map(channel => ({
+        channelId: channel.channelId,
+        channelName: channel.channelName,
+        totalMessages: channel.totalMessages,
+        dailyMessages: channel.dailyMessages,
+        percentage: channel.percentage ?? 0
+      })) : [],
+      leastActiveUser,
+      leastActiveChannel,
+      hourlyStats: includeHourly ? (((messageStats as any)?.busiestHours ?? (messageStats as any)?.hourlyStats) ?? []) : [],
+      busiestDays: includeHourly ? (((messageStats as any)?.busiestDays ?? (messageStats as any)?.weeklyTrend) ?? []) : []
+    };
+  }
+
+  // API Functions
+  async function loadData(force = false) {
+    if (!$currentGuild) return;
+
+    const loadKey = `${$currentInstance?.port ?? "default"}:${$currentGuild.id}`;
+    if (!force && loading && activeLoadKey === loadKey) return;
+
+    const requestId = ++loadRequestId;
+    activeLoadKey = loadKey;
+    
+    loading = true;
+    error = null;
+
+    try {
+      // Fetch both message stats and guild members
+      const [statsData, guildMembers] = await Promise.all([
+        messageCountApi.getMessageStats($currentGuild.id),
+        clientApi.getMembers($currentGuild.id)
+      ]);
+
+      if (requestId !== loadRequestId || activeLoadKey !== loadKey) return;
+      
+      messageStats = statsData;
+      
+      // Enhance topUsers with user data from guild members
+      topUsers = (statsData?.topUsers || []).map((messageUser, index) => {
+        const member = guildMembers?.find(member0 => member0?.id?.toString() === messageUser.userId);
+        return {
+          ...messageUser,
+          rank: index + 1,
+          username: member?.username || m.common.unknownUser(),
+          discriminator: '0000', // Discord no longer uses discriminators for most users
+          avatarUrl: member?.avatarUrl || `https://cdn.discordapp.com/embed/avatars/0.png`,
+          messageCount: messageUser.totalMessages,
+          averageMessageLength: 0, // Not provided by API
+          lastMessageAt: new Date().toISOString() // Not provided by API
+        };
+      });
+      
+      topChannels = statsData?.topChannels || [];
+      if (statsData?.leastActiveUser) {
+        const member = guildMembers?.find(member0 => member0?.id?.toString() === statsData.leastActiveUser?.userId);
+        leastActiveUser = {
+          ...statsData.leastActiveUser,
+          username: member?.username || m.common.unknownUser()
+        };
+      } else {
+        leastActiveUser = null;
+      }
+
+      leastActiveChannel = statsData?.leastActiveChannel || null;
+      
+      // Update enabled state for settings
+      messageCountEnabled = statsData?.enabled || false;
+
+      // Set default export dates
+      if (!exportStartDate) {
+        const weekAgo = new Date();
+        weekAgo.setDate(weekAgo.getDate() - 7);
+        exportStartDate = weekAgo.toISOString().split('T')[0];
+      }
+      if (!exportEndDate) {
+        exportEndDate = new Date().toISOString().split('T')[0];
+      }
+
+    } catch (err) {
+      if (requestId !== loadRequestId || activeLoadKey !== loadKey) return;
+      error = err instanceof Error ? err.message : m.messagestats.errorLoad();
+      showNotificationMessage(m.messagestats.errorLoad(), "error");
+    } finally {
+      if (requestId === loadRequestId && activeLoadKey === loadKey) {
+        loading = false;
+      }
+    }
+  }
+
+  async function exportStats() {
+    if (!$currentGuild || isExporting) return;
+
+    isExporting = true;
+    try {
+      if (!messageStats) {
+        await loadData(true);
+      }
+
+      if (!messageStats) {
+        throw new Error("No message stats loaded");
+      }
+
+      const payload = buildExportPayload();
+      const date = new Date().toISOString().split("T")[0];
+      const guildName = ($currentGuild.name || "guild").replace(/[^a-z0-9]+/gi, "-").replace(/^-|-$/g, "").toLowerCase();
+
+      if (exportFormat === "json") {
+        downloadTextFile(
+          JSON.stringify(payload, null, 2),
+          `${guildName}-message-stats-${date}.json`,
+          "application/json;charset=utf-8"
+        );
+      } else {
+        const sections = [
+          toCsv([payload.summary ? {
+            guildId: payload.guildId,
+            guildName: payload.guildName,
+            enabled: payload.summary.enabled,
+            totalMessages: payload.summary.totalMessages,
+            dailyMessages: payload.summary.dailyMessages,
+            lastUpdated: payload.summary.lastUpdated,
+            exportedAt: payload.exportedAt,
+            startDate: payload.startDate ?? "",
+            endDate: payload.endDate ?? ""
+          } : {
+            guildId: payload.guildId,
+            guildName: payload.guildName,
+            enabled: false,
+            totalMessages: 0,
+            dailyMessages: 0,
+            lastUpdated: "",
+            exportedAt: payload.exportedAt,
+            startDate: payload.startDate ?? "",
+            endDate: payload.endDate ?? ""
+          }]),
+          includeUsers && payload.users.length ? `\nTop Users\n${toCsv(payload.users)}` : "",
+          includeChannels && payload.channels.length ? `\nTop Channels\n${toCsv(payload.channels)}` : "",
+          includeHourly && payload.hourlyStats.length ? `\nBusiest Hours\n${toCsv(payload.hourlyStats)}` : "",
+          includeHourly && payload.busiestDays.length ? `\nBusiest Days\n${toCsv(payload.busiestDays)}` : ""
+        ].filter(Boolean).join("\n");
+
+        downloadTextFile(
+          sections,
+          `${guildName}-message-stats-${date}.csv`,
+          "text/csv;charset=utf-8"
+        );
+      }
+
+      showNotificationMessage(m.messagestats.notifyExported(), "success");
+    } catch (err) {
+      showNotificationMessage(m.messagestats.errorExport(), "error");
+    } finally {
+      isExporting = false;
+    }
+  }
+
+  // Settings functions
+  async function loadSettings() {
+    if (!$currentGuild) return;
+
+    settingsLoading = true;
+    try {
+      // Load guild config for min message length
+      const guildConfig = await guildApi.getGuildConfig($currentGuild.id);
+      minMessageLength = guildConfig?.minMessageLength || 0;
+    } catch (err) {
+      showNotificationMessage(m.common.notifyLoadSettingsFailed(), "error");
+    } finally {
+      settingsLoading = false;
+    }
+  }
+
+  async function toggleMessageCount() {
+    if (!$currentGuild) return;
+
+    settingsLoading = true;
+    try {
+      const result = await messageCountApi.toggleMessageCount($currentGuild.id);
+      messageCountEnabled = result.enabled;
+      messageStats = messageStats ? { ...messageStats, enabled: result.enabled } : messageStats;
+      showNotificationMessage(result.message || m.messagestats.notifyCountUpdated(), "success");
+      await loadData(true);
+    } catch (err) {
+      showNotificationMessage(m.common.notifyUpdateFailed(), "error");
+    } finally {
+      settingsLoading = false;
+    }
+  }
+
+  async function updateMinMessageLength() {
+    if (!$currentGuild) return;
+
+    settingsLoading = true;
+    try {
+      const guildConfig = await guildApi.getGuildConfig($currentGuild.id);
+      guildConfig.minMessageLength = minMessageLength;
+      await guildApi.updateGuildConfig($currentGuild.id, guildConfig);
+      showNotificationMessage(m.messagestats.notifyMinLengthUpdated(), "success");
+    } catch (err) {
+      showNotificationMessage(m.common.notifyUpdateFailed(), "error");
+    } finally {
+      settingsLoading = false;
+    }
+  }
+
+  async function resetMessageCounts(type: "all" | "user" | "channel") {
+    if (!$currentGuild || !(await requestConfirmation({ message: m.messagestats.confirmReset(), confirmText: m.common.reset() }))) return;
+
+    resetLoading = true;
+    try {
+      const result = await messageCountApi.resetMessageCounts($currentGuild.id);
+      showNotificationMessage(result.message || m.messagestats.notifyReset(), "success");
+      await loadData(true);
+    } catch (err) {
+      showNotificationMessage(m.messagestats.errorReset(), "error");
+    } finally {
+      resetLoading = false;
+    }
+  }
+
+  $effect(() => {
+    const guild = $currentGuild;
+    const instance = $currentInstance;
+    const contextKey = guild ? `${instance?.port ?? "default"}:${guild.id}` : "";
+
+    if (!contextKey || contextKey === loadedContextKey) return;
+    loadedContextKey = contextKey;
+
+    untrack(() => {
+      loadData(true);
+      loadSettings();
+    });
+  });
+
+  // Tab configuration
+  const tabs = $derived([
+    { id: "stats", label: m.common.statistics(), icon: "fa-chart-column" },
+    { id: "manage", label: m.common.management(), icon: "fa-bullseye" }
+  ]);
+
+  const subTabs = $derived([
+    // Statistics subtabs
+    { id: "overview", label: m.common.overview(), icon: "fa-message", parentTab: "stats" },
+    { id: "users", label: m.messagestats.subtabUsers(), icon: "fa-users", parentTab: "stats" },
+    { id: "channels", label: m.common.topChannels(), icon: "fa-hashtag", parentTab: "stats" },
+    
+    // Management subtabs
+    { id: "settings", label: m.common.settings(), icon: "fa-circle-check", parentTab: "manage" },
+    { id: "export", label: m.messagestats.exportButton(), icon: "fa-download", parentTab: "manage" }
+  ]);
+
+  // Action buttons configuration
+    let actionButtons = $derived([
+    {
+      label: m.common.refresh(),
+      icon: "fa-arrows-rotate",
+      action: () => loadData(true),
+      loading: loading
+    }
+    ]);
+
+  // Handle sub-tab change
+  function handleSubTabChange(detail: { tabId: string }) {
+    activeSubTab = detail.tabId as "overview" | "users" | "channels" | "settings" | "export";
+  }
+
+  // Handle export format change
+  function handleExportFormatChange(detail: any) {
+    if (detail.selected && typeof detail.selected === "string") {
+      exportFormat = detail.selected as "csv" | "json";
+    }
+  }
+</script>
+
+
+<DashboardPageLayout 
+  title={m.messagestats.pageTitle()}
+  subtitle={m.messagestats.pageSubtitle()}
+  icon="fa-chart-simple"
+  {tabs}
+  {subTabs}
+  bind:activeTab
+  {activeSubTab}
+  {actionButtons}
+  guildName="Dashboard"
+  onsubTabChange={handleSubTabChange}
+>
+
+    {#if showNotification}
+      <div class="fixed top-4 right-4 z-50" transition:fade>
+        <Notification message={notificationMessage} type={notificationType} />
+      </div>
+    {/if}
+
+    <!-- Content -->
+    {#if loading}
+      <SkeletonLoader />
+    {:else if error}
+      <div class="rounded-xl border p-6" style="border-color: #ef4444; background: #ef444410;">
+        <div class="flex items-center gap-3">
+          <i class="fa-utility-duo fa-regular fa-circle-exclamation" style="--fa-primary-color: #ef4444; --fa-secondary-color: #dc2626; font-size: 20px;"></i>
+          <span style="color: #ef4444">{error}</span>
+        </div>
+      </div>
+    {:else if activeSubTab === 'overview'}
+      <div class="space-y-6" transition:fade>
+        <!-- Stats Cards -->
+        {#if messageStats}
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+            <StatCard
+              label={m.messagestats.statDaily()}
+              value={formatNumber(messageStats.dailyMessages)}
+              icon="fa-envelope"
+              iconColor="primary"
+            />
+            <StatCard
+              label={m.messagestats.statTotal()}
+              value={formatNumber(messageStats.totalMessages)}
+              icon="fa-envelope"
+              iconColor="secondary"
+            />
+            <StatCard
+              label={m.messagestats.statLastUpdated()}
+              value={new Date(messageStats.lastUpdated).toLocaleDateString()}
+              icon="fa-clock"
+              iconColor="accent"
+            />
+            <StatCard
+              label={m.common.status()}
+              value={messageStats.enabled ? m.common.enabled() : m.common.disabled()}
+              icon="fa-circle"
+              iconColor={messageStats.enabled ? "primary" : "secondary"}
+            />
+            {#if leastActiveUser}
+              <StatCard
+                label={m.messagestats.statLeastActiveUser()}
+                value={leastActiveUser.username}
+                subtitle={m.common.messagesCount({ count: formatNumber(leastActiveUser.totalMessages) })}
+                icon="fa-clock"
+                iconColor="secondary"
+              />
+            {/if}
+            {#if leastActiveChannel}
+              <StatCard
+                label={m.messagestats.statLeastActiveChannel()}
+                value={`#${leastActiveChannel.channelName}`}
+                subtitle={m.common.messagesCount({ count: formatNumber(leastActiveChannel.totalMessages) })}
+                icon="fa-square"
+                iconColor="secondary"
+              />
+            {/if}
+          </div>
+        {/if}
+
+        <!-- Charts -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+          <!-- Hourly Activity -->
+          {#if chartData}
+            <div class=" rounded-xl border p-6 transition-all"
+                   style="border-color: {$colorStore.primary}30; background: {$colorStore.primary}05;">
+              <h3 class="text-xl font-bold mb-4" style="color: {$colorStore.text}">{m.messagestats.chartHourlyTitle()}</h3>
+              <StatsGraph
+                data={chartData}
+                totalLabel={m.messagestats.statTotal()}
+                averageLabel={m.messagestats.chartAverageHour()}
+                peakLabel={m.common.peakHour()}
+                valueLabel={m.common.messages()}
+                formatLabelsAsDates={false}
+              />
+            </div>
+          {/if}
+
+          <!-- Weekly Trend -->
+          {#if weeklyChartData}
+            <div class=" rounded-xl border p-6 transition-all"
+                   style="border-color: {$colorStore.primary}30; background: {$colorStore.primary}05;">
+              <h3 class="text-xl font-bold mb-4" style="color: {$colorStore.text}">{m.messagestats.chartWeeklyTitle()}</h3>
+              <StatsGraph
+                data={weeklyChartData}
+                totalLabel={m.messagestats.statTotal()}
+                averageLabel={m.common.averagePerDay()}
+                peakLabel={m.common.peakDay()}
+                valueLabel={m.common.messages()}
+                formatLabelsAsDates={false}
+              />
+            </div>
+          {/if}
+        </div>
+      </div>
+
+    {:else if activeSubTab === 'users'}
+      <div class="space-y-6" transition:fade>
+        <div class=" rounded-xl border p-6 transition-all"
+               style="border-color: {$colorStore.primary}30; background: {$colorStore.primary}05;">
+          <h3 class="text-xl font-bold mb-6" style="color: {$colorStore.text}">{m.messagestats.usersHeading()}</h3>
+          
+          <div class="space-y-4">
+            {#each topUsers as user (user.userId)}
+              <div 
+                class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 rounded-lg"
+                style="background: {$colorStore.primary}08;"
+                transition:slide
+              >
+                <!-- Mobile: Top row with rank, avatar, and main stats -->
+                <div class="flex items-center gap-3 flex-1">
+                    <div
+                            class="w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold shrink-0"
+                    style="background: {getRankBadgeColor(user.rank)}; color: #000;"
+                  >
+                    {user.rank}
+                  </div>
+                  
+                  <img 
+                    src={user.avatarUrl} 
+                    alt={user.username}
+                    class="w-10 h-10 rounded-full shrink-0"
+                  >
+                  
+                  <div class="flex-1 min-w-0">
+                    <div class="font-medium truncate" style="color: {$colorStore.text}">
+                      {user.username}
+                    </div>
+                    <div class="text-sm sm:hidden" style="color: {$colorStore.muted}">
+                      {m.messagestats.rowSummary({ count: formatNumber(user.totalMessages), percent: user.percentage ?? 0, daily: formatNumber(user.dailyMessages) })}
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Desktop: Right-aligned stats -->
+                <div class="hidden sm:block text-right">
+                  <div class="font-bold" style="color: {$colorStore.text}">
+                    {m.common.messagesCount({ count: formatNumber(user.totalMessages) })}
+                  </div>
+                  <div class="text-sm" style="color: {$colorStore.muted}">
+                    {m.messagestats.rowShare({ percent: user.percentage ?? 0, daily: formatNumber(user.dailyMessages) })}
+                  </div>
+                </div>
+              </div>
+            {/each}
+          </div>
+        </div>
+      </div>
+
+    {:else if activeSubTab === 'channels'}
+      <div class="space-y-6" transition:fade>
+        <div class=" rounded-xl border p-6 transition-all"
+               style="border-color: {$colorStore.primary}30; background: {$colorStore.primary}05;">
+          <h3 class="text-xl font-bold mb-6" style="color: {$colorStore.text}">{m.messagestats.channelsHeading()}</h3>
+          
+          <div class="space-y-4">
+            {#each topChannels as channel (channel.channelId)}
+              <div 
+                class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4 p-4 rounded-lg"
+                style="background: {$colorStore.primary}08;"
+                transition:slide
+              >
+                <!-- Mobile: Top row with icon and channel info -->
+                <div class="flex items-center gap-3 flex-1">
+                    <div class="shrink-0">
+                    <i class="fa-utility-duo fa-regular fa-square" style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 20px;"></i>
+                  </div>
+                  
+                  <div class="flex-1 min-w-0">
+                    <div class="font-medium truncate" style="color: {$colorStore.text}">
+                      #{channel.channelName}
+                    </div>
+                    <div class="text-sm sm:hidden" style="color: {$colorStore.muted}">
+                      {m.messagestats.rowSummary({ count: formatNumber(channel.totalMessages), percent: channel.percentage ?? 0, daily: formatNumber(channel.dailyMessages) })}
+                    </div>
+                  </div>
+                </div>
+                
+                <!-- Desktop: Right-aligned stats -->
+                <div class="hidden sm:block text-right">
+                  <div class="font-bold" style="color: {$colorStore.text}">
+                    {m.common.messagesCount({ count: formatNumber(channel.totalMessages) })}
+                  </div>
+                  <div class="text-sm" style="color: {$colorStore.muted}">
+                    {m.messagestats.rowShare({ percent: channel.percentage ?? 0, daily: formatNumber(channel.dailyMessages) })}
+                  </div>
+                </div>
+              </div>
+            {/each}
+          </div>
+        </div>
+      </div>
+
+    {:else if activeSubTab === 'export'}
+      <div class="space-y-6" transition:fade>
+        <div class=" rounded-xl border p-6 transition-all"
+               style="border-color: {$colorStore.primary}30; background: {$colorStore.primary}05;">
+          <h3 class="text-xl font-bold mb-6" style="color: {$colorStore.text}">{m.messagestats.exportHeading()}</h3>
+          
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label for="input-3605" class="block mb-2" style="color: {$colorStore.text}">{m.messagestats.exportStart()}</label>
+              <input id="input-3605"
+                type="date"
+                bind:value={exportStartDate}
+                class="w-full p-3 rounded-lg border"
+                style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}30; color: {$colorStore.text};"
+              >
+            </div>
+            
+            <div>
+              <span id="end-date-label" class="block mb-2" style="color: {$colorStore.text}">{m.messagestats.exportEnd()}</span>
+              <input
+                type="date"
+                bind:value={exportEndDate}
+                class="w-full p-3 rounded-lg border"
+                style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}30; color: {$colorStore.text};"
+              >
+            </div>
+            
+            <div>
+              <label for="message-limit" class="block mb-2" style="color: {$colorStore.text}">{m.messagestats.exportFormat()}</label>
+              <DiscordSelector
+                type="custom"
+                selected={exportFormat}
+                onchange={handleExportFormatChange}
+                options={[
+                  { id: "csv", name: "CSV" },
+                  { id: "json", name: "JSON" }
+                ]}
+                placeholder={m.messagestats.exportFormatPlaceholder()} />
+            </div>
+          </div>
+          
+          <div class="mt-6 space-y-3">
+            <label class="flex items-center gap-3">
+              <input type="checkbox" bind:checked={includeUsers} class="w-4 h-4">
+              <span style="color: {$colorStore.text}">{m.messagestats.exportIncludeUsers()}</span>
+            </label>
+            
+            <label class="flex items-center gap-3">
+              <input type="checkbox" bind:checked={includeChannels} class="w-4 h-4">
+              <span style="color: {$colorStore.text}">{m.messagestats.exportIncludeChannels()}</span>
+            </label>
+            
+            <label class="flex items-center gap-3">
+              <input type="checkbox" bind:checked={includeHourly} class="w-4 h-4">
+              <span style="color: {$colorStore.text}">{m.messagestats.exportIncludeHourly()}</span>
+            </label>
+          </div>
+          
+          <div class="mt-6">
+            <button
+              class="px-6 py-3 rounded-lg font-medium transition-all flex items-center gap-2"
+              style="background: {$colorStore.primary}; color: {$colorStore.text};"
+              disabled={isExporting}
+              onclick={exportStats}
+            >
+              {#if isExporting}
+                <div class="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
+                {m.messagestats.exporting()}
+              {:else}
+                <i class="fa-solid fa-download" style="font-size: 16px;"></i>
+                {m.messagestats.exportButton()}
+              {/if}
+            </button>
+          </div>
+        </div>
+      </div>
+
+    {:else if activeSubTab === 'settings'}
+      <div class="space-y-6" transition:fade>
+        <div class=" rounded-xl border p-6 transition-all"
+               style="border-color: {$colorStore.primary}30; background: {$colorStore.primary}05;">
+          <h3 class="text-xl font-bold mb-6" style="color: {$colorStore.text}">{m.messagestats.settingsHeading()}</h3>
+          
+          {#if settingsLoading}
+            <SkeletonLoader />
+          {:else}
+            <div class="space-y-6">
+              <!-- Enable/Disable Toggle -->
+              <div class="flex items-center justify-between p-4 rounded-lg" style="background: {$colorStore.primary}10;">
+                <div>
+                  <h4 class="font-semibold" style="color: {$colorStore.text}">{m.messagestats.enableLabel()}</h4>
+                  <p class="text-sm mt-1" style="color: {$colorStore.muted}">{m.messagestats.enableHint()}</p>
+                </div>
+                <button aria-label={m.messagestats.enableAria()}
+                        class="relative inline-flex h-6 w-11 items-center rounded-full transition-colors focus:outline-hidden focus:ring-2 focus:ring-offset-2"
+                  style="background: {messageCountEnabled ? $colorStore.primary : $colorStore.muted}40; focus:ring-color: {$colorStore.primary};"
+                  onclick={toggleMessageCount}
+                  disabled={settingsLoading}
+                >
+                  <span class="inline-block h-4 w-4 transform rounded-full bg-white transition-transform {messageCountEnabled ? 'translate-x-6' : 'translate-x-1'}"></span>
+                </button>
+              </div>
+
+              <!-- Minimum Message Length -->
+              <div class="p-4 rounded-lg" style="background: {$colorStore.primary}10;">
+                <div class="block mb-3">
+                  <label for="include-channels" class="font-semibold" style="color: {$colorStore.text}">{m.messagestats.minLengthLabel()}</label>
+                  <div class="text-sm mt-1" style="color: {$colorStore.muted}">{m.messagestats.minLengthHint()}</div>
+                </div>
+                <div class="flex items-center gap-4">
+                  <input id="include-channels"
+                    type="range"
+                    min="0"
+                    max="4098"
+                    step="1"
+                    bind:value={minMessageLength}
+                    onchange={updateMinMessageLength}
+                    class="flex-1 h-2 rounded-lg appearance-none cursor-pointer"
+                    style="background: {$colorStore.primary}20;"
+                    disabled={settingsLoading}
+                  >
+                    <div class="text-sm font-mono px-2 py-1 rounded-sm"
+                         style="background: {$colorStore.primary}20; color: {$colorStore.text}; min-width: 60px; text-align: center;">
+                    {minMessageLength}
+                  </div>
+                </div>
+              </div>
+
+              <!-- Reset Options -->
+              <div class="p-4 rounded-lg border" style="border-color: #ef4444; background: #ef444410;">
+                <h4 class="font-semibold mb-3" style="color: #ef4444">{m.messagestats.resetHeading()}</h4>
+                <p class="text-sm mb-4" style="color: {$colorStore.muted}">{m.messagestats.resetHint()}</p>
+                
+                <div class="space-y-3">
+                  <button
+                    class="flex items-center gap-2 px-4 py-2 rounded-lg border transition-colors"
+                    style="border-color: #ef4444; color: #ef4444; background: transparent;"
+                    onclick={() => resetMessageCounts('all')}
+                    disabled={resetLoading}
+                  >
+                    {#if resetLoading}
+                      <div class="w-4 h-4 border-2 border-current border-t-transparent rounded-full animate-spin"></div>
+                    {:else}
+                      <i class="fa-solid fa-triangle-exclamation" style="font-size: 16px;"></i>
+                    {/if}
+                    {m.messagestats.resetAll()}
+                  </button>
+                </div>
+              </div>
+            </div>
+          {/if}
+        </div>
+      </div>
+    {/if}
+</DashboardPageLayout>

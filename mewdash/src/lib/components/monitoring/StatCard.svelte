@@ -1,0 +1,221 @@
+<!-- lib/components/StatCard.svelte -->
+<script lang="ts">
+  import { m } from "$lib/i18n";
+
+
+  import { onMount } from "svelte";
+  import { fade, slide } from "svelte/transition";
+  import { colorStore } from "$lib/stores/colorStore";
+
+
+  interface Props {
+    // Props
+    icon: string;
+    label: string;
+    value: string | number;
+    subtitle?: string;
+    iconColor?: "primary" | "secondary" | "accent";
+    trend?: "up" | "down" | "neutral" | null;
+    trendValue?: string;
+    previousValue?: string | number | null;
+    isLoading?: boolean;
+    animationDelay?: number;
+    tooltipData?: Array<{ label: string; value: string | number }>;
+    clickable?: boolean; // New prop to control if the card should appear clickable
+  }
+
+  let {
+    icon,
+    label,
+    value,
+    subtitle = "",
+    iconColor = "primary",
+    trend = null,
+    trendValue = "",
+    previousValue = null,
+    isLoading = false,
+    animationDelay = 0,
+    tooltipData = [],
+    clickable = false
+  }: Props = $props();
+
+  // State
+  let animatedValue: number = $state(0);
+  let showTooltip = $state(false);
+  let mounted = $state(false);
+
+  // Handle numeric value animation
+  function animateValue(target: number) {
+    const duration = 1500;
+    const stepTime = 20;
+    const steps = duration / stepTime;
+    const increment = target / steps;
+    let current = 0;
+
+    function step() {
+      current += increment;
+      animatedValue = Math.min(current, target);
+
+      if (current < target) {
+        window.requestAnimationFrame(step);
+      }
+    }
+
+    window.requestAnimationFrame(step);
+  }
+
+  function toggleTooltip() {
+    if (tooltipData.length > 0) {
+      showTooltip = !showTooltip;
+    }
+  }
+
+  function closeTooltip() {
+    showTooltip = false;
+  }
+
+  function handleKeyDown(event: KeyboardEvent) {
+    if (event.key === "Enter" || event.key === " ") {
+      toggleTooltip();
+      event.preventDefault();
+    } else if (event.key === "Escape" && showTooltip) {
+      closeTooltip();
+      event.preventDefault();
+    }
+  }
+
+  onMount(() => {
+    mounted = true;
+
+    // Animate numeric values
+    if (typeof value === "number" && !isNaN(value)) {
+      // Add a slight delay before starting animation for staggered effect
+      setTimeout(() => {
+        animateValue(value as number);
+      }, animationDelay);
+    }
+  });
+
+  // React to value changes after mount
+  $effect(() => {
+    if (mounted && typeof value === "number" && !isNaN(value)) {
+      animateValue(value as number);
+    }
+  });
+
+  // Format trend value
+  function getTrendColor() {
+    if (trend === "up") return $colorStore.accent;
+    if (trend === "down") return "#ef4444"; // red-500
+    return $colorStore.muted;
+  }
+
+  // Format number with commas
+  function formatNumber(num: number): string {
+    return new Intl.NumberFormat().format(num);
+  }
+
+  // Get the right icon for the trend
+  function getTrendIcon() {
+    if (trend === "up") return "fa-arrow-trend-up";
+    if (trend === "down") return "fa-arrow-trend-down";
+    return "fa-arrow-right";
+  }
+</script>
+
+<div
+  aria-expanded={tooltipData.length > 0 ? (showTooltip ? "true" : "false") : undefined}
+  aria-haspopup={tooltipData.length > 0 ? "dialog" : undefined}
+  class="flex items-center justify-center gap-4 p-2 rounded-lg transition-all duration-300 group relative"
+  class:cursor-pointer={clickable}
+  class:hover-bg-gray={clickable}
+  in:fade={{ delay: animationDelay, duration: 300 }}
+  onkeydown={clickable && tooltipData.length > 0 ? handleKeyDown : undefined}
+  onmouseenter={tooltipData.length > 0 ? toggleTooltip : undefined}
+  onmouseleave={tooltipData.length > 0 ? closeTooltip : undefined}
+  role={clickable && tooltipData.length > 0 ? "button" : "region"}
+>
+  <div
+          class="w-10 h-10 rounded-lg flex items-center justify-center shrink-0"
+    style="background: {$colorStore[iconColor]}20"
+  >
+      <i class="fa-utility-duo fa-regular {icon} text-xl"
+         style="--fa-primary-color: {$colorStore[iconColor]}; --fa-secondary-color: {$colorStore.secondary}; --fa-secondary-opacity: 0.5;"></i>
+  </div>
+
+  <div class="flex-1 min-w-0 flex flex-col items-center justify-center">
+    <div class="text-sm" style="color: {$colorStore.muted}">{label}</div>
+
+    {#if isLoading}
+        <div class="h-6 bg-gray-700 animate-pulse rounded-sm w-16 mt-1"></div>
+    {:else}
+      <div class="font-semibold text-lg flex items-center justify-center gap-2" style="color: {$colorStore.text}">
+        {#if typeof value === 'number' && !isNaN(value) && mounted}
+          <span class="tabular-nums">
+            {formatNumber(Math.round(animatedValue))}
+          </span>
+        {:else}
+          <span>{value}</span>
+        {/if}
+
+        {#if trend && trend !== "neutral"}
+          <div
+            class="flex items-center gap-1 text-sm bg-opacity-20 px-1.5 py-0.5 rounded-full"
+            style="background: {getTrendColor()}20; color: {getTrendColor()}"
+            in:slide={{ delay: animationDelay + 300, duration: 300 }}
+          >
+            <i class="fa-solid {getTrendIcon()}" style="font-size: 14px;"></i>
+            {#if trendValue}
+              <span class="text-xs">{trendValue}</span>
+            {/if}
+          </div>
+        {/if}
+      </div>
+    {/if}
+
+    {#if subtitle}
+      <div class="text-xs mt-1" style="color: {$colorStore.muted}">{subtitle}</div>
+    {/if}
+  </div>
+
+  <!-- Tooltip -->
+  {#if showTooltip && tooltipData.length > 0}
+    <div
+      class="absolute z-20 bottom-full left-0 mb-2 bg-gray-800/95  rounded-lg p-3 shadow-xl min-w-[200px]"
+      transition:fade={{ duration: 200 }}
+      role="dialog"
+      aria-labelledby="tooltip-title"
+    >
+      <div id="tooltip-title" class="text-sm font-medium mb-2 text-center" style="color: {$colorStore.text}">{m.monitoring.statCardDetailsTitle({ label })}
+      </div>
+
+      <div class="space-y-2">
+        {#each tooltipData as item}
+          <div class="flex justify-between text-xs">
+            <span style="color: {$colorStore.muted}">{item.label}</span>
+            <span style="color: {$colorStore.text}">{item.value}</span>
+          </div>
+        {/each}
+      </div>
+
+      {#if previousValue !== null}
+        <div class="mt-3 pt-2 border-t border-gray-700">
+          <div class="flex justify-between text-xs">
+            <span style="color: {$colorStore.muted}">{m.common.previous()}</span>
+            <span style="color: {$colorStore.text}">{previousValue}</span>
+          </div>
+        </div>
+      {/if}
+
+      <div
+        class="absolute -bottom-2 left-4 w-4 h-4 bg-gray-800/95 rotate-45"
+      ></div>
+    </div>
+  {/if}
+</div>
+
+<style>
+    .hover-bg-gray:hover {
+        background-color: rgba(31, 41, 55, 0.5); /* gray-800/50 */
+    }
+</style>

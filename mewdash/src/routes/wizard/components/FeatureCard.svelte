@@ -1,0 +1,159 @@
+<!--
+@component
+Feature card for selecting features during wizard setup
+-->
+<script lang="ts">
+  import { m } from "$lib/i18n";
+  import { colorStore } from "$lib/stores/colorStore";
+
+  interface Props {
+    id: string;
+    title: string;
+    description: string;
+      icon: string;
+    selected?: boolean;
+    recommended?: boolean;
+    setupTime?: string;
+    difficulty?: 'easy' | 'medium' | 'advanced';
+    disabled?: boolean;
+      ontoggle?: (detail: { id: string; selected: boolean }) => void;
+  }
+
+  let {
+    id,
+    title,
+    description,
+    icon,
+    selected = false,
+    recommended = false,
+    setupTime = "",
+    difficulty = 'easy',
+    disabled = false,
+    ontoggle
+  }: Props = $props();
+
+  function handleClick() {
+    if (disabled) return;
+    ontoggle?.({ id, selected: !selected });
+  }
+
+  let difficultyLabel = $derived({
+    'easy': m.wizard.difficultyEasy(),
+    'medium': m.common.medium(),
+    'advanced': m.common.advanced()
+  }[difficulty]);
+
+  let difficultyColor = $derived({
+    'easy': $colorStore.accent + '60',
+    'medium': '#f59e0b',
+    'advanced': '#ef4444'
+  }[difficulty]);
+</script>
+
+<button
+        class="feature-card group w-full text-left p-4 sm:p-6 rounded-xl border-2 transition-all duration-200 hover:scale-[1.02] focus:outline-hidden focus:ring-2 focus:ring-offset-2 min-h-[160px] sm:min-h-[180px] relative overflow-hidden"
+  class:disabled
+  style="
+    background: {selected 
+      ? `linear-gradient(135deg, ${$colorStore.primary}15, ${$colorStore.secondary}15)` 
+      : `linear-gradient(135deg, ${$colorStore.gradientStart}05, ${$colorStore.gradientMid}08)`};
+    border-color: {selected ? $colorStore.primary + '60' : disabled ? $colorStore.muted + '20' : $colorStore.primary + '25'};
+    focus:ring-color: {$colorStore.primary};
+  "
+  onclick={handleClick}
+  {disabled}
+  aria-pressed={selected}
+>
+  <!-- Background decoration -->
+  <span class="absolute top-0 right-0 w-20 h-20 opacity-5 transform rotate-12 translate-x-6 -translate-y-6 block">
+    <i class="{icon}" style="font-size: 80px;"></i>
+  </span>
+
+  <!-- Selected indicator -->
+  {#if selected}
+    <span class="absolute top-3 right-3 w-6 h-6 rounded-full flex items-center justify-center block"
+         style="background: {$colorStore.primary};">
+      <i class="fa-solid fa-check text-white" style="font-size: 16px;"></i>
+    </span>
+  {/if}
+
+  <!-- Recommended badge -->
+  {#if recommended}
+    <span class="absolute top-3 left-3 px-2 py-1 rounded-full text-xs font-medium flex items-center gap-1"
+         style="background: {$colorStore.secondary}20; color: {$colorStore.secondary};">
+      <i class="fa-solid fa-star" style="font-size: 12px;"></i>
+      {m.wizard.recommended()}
+    </span>
+  {/if}
+
+  <!-- Icon and header -->
+  <span class="flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4" class:mt-6={recommended} class:sm:mt-8={recommended}>
+      <span
+        class="flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-lg border transition-colors shrink-0 block"
+      style="
+        background: {selected ? $colorStore.primary + '20' : $colorStore.primary + '08'};
+        border-color: {selected ? $colorStore.primary + '40' : $colorStore.primary + '20'};
+        color: {selected ? $colorStore.primary : $colorStore.muted};
+      "
+    >
+        <i class="{icon}" style="font-size: 24px;"></i>
+    </span>
+
+    <span class="flex-1 min-w-0 block">
+      <h3 class="text-base sm:text-lg font-bold mb-1 leading-tight"
+          style="color: {disabled ? $colorStore.muted : $colorStore.text};">
+        {title}
+      </h3>
+      <p class="text-xs sm:text-sm leading-relaxed"
+         style="color: {disabled ? $colorStore.muted : $colorStore.text + 'c0'};">
+        {description}
+      </p>
+    </span>
+  </span>
+
+  <!-- Feature metadata -->
+  <span
+    class="flex flex-col sm:flex-row sm:items-center sm:justify-between mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-opacity-20 gap-2 sm:gap-4"
+       style="border-color: {$colorStore.primary}30;">
+    <span class="flex items-center gap-3 sm:gap-4">
+      <!-- Setup time -->
+      {#if setupTime}
+        <span class="flex items-center gap-1 text-xs"
+             style="color: {$colorStore.muted};">
+          <i class="fa-solid fa-clock" style="font-size: 12px;"></i>
+          {setupTime}
+        </span>
+      {/if}
+
+      <!-- Difficulty indicator -->
+      <span class="flex items-center gap-1 text-xs">
+        <span class="w-2 h-2 rounded-full block" style="background: {difficultyColor};"></span>
+        <span style="color: {difficultyColor};">
+          {difficultyLabel}
+        </span>
+      </span>
+    </span>
+
+    <!-- Selection indicator -->
+    <span class="text-xs font-medium sm:text-right"
+         style="color: {selected ? $colorStore.primary : $colorStore.muted};">
+      {selected ? m.common.selected() : m.wizard.featureCardClickToSelect()}
+    </span>
+  </span>
+
+  <!-- Hover effect overlay -->
+  <span
+    class="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-5 transition-opacity duration-200 pointer-events-none block"
+    style="background: linear-gradient(135deg, {$colorStore.primary}, {$colorStore.secondary});"></span>
+</button>
+
+<style>
+  .feature-card.disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+  
+  .feature-card.disabled:hover {
+    transform: none;
+  }
+</style>

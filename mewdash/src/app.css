@@ -1,0 +1,125 @@
+@import '../tailwind.config.css';
+@import 'discord.css/dist/css/discord.min.css';
+@import '@fontsource/opendyslexic/400.css';
+@import '@fontsource/opendyslexic/400-italic.css';
+@import '@fontsource/opendyslexic/700.css';
+@import '@fontsource/opendyslexic/700-italic.css';
+@import './lib/styles/aero.css';
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+    *,
+    ::after,
+    ::before,
+    ::backdrop,
+    ::file-selector-button {
+        border-color: var(--color-gray-200, currentcolor);
+    }
+
+    /* Restore cursor pointer for interactive elements */
+    button:not(:disabled),
+    [role="button"]:not(:disabled),
+    [type="button"]:not(:disabled),
+    [type="submit"]:not(:disabled),
+    [type="reset"]:not(:disabled),
+    a[href],
+    input[type="checkbox"]:not(:disabled),
+    input[type="radio"]:not(:disabled),
+    select:not(:disabled),
+    label:has(input:not(:disabled)) {
+        cursor: pointer;
+    }
+
+    /* Global scrollbar styling */
+    *::-webkit-scrollbar {
+        width: 0.5rem;
+    }
+
+    *::-webkit-scrollbar-track {
+        background: rgba(var(--color-primary-rgb, 59, 130, 246), 0.1);
+        border-radius: 9999px;
+    }
+
+    *::-webkit-scrollbar-thumb {
+        background: rgba(var(--color-primary-rgb, 59, 130, 246), 0.3);
+        border-radius: 9999px;
+    }
+
+    *::-webkit-scrollbar-thumb:hover {
+        background: rgba(var(--color-primary-rgb, 59, 130, 246), 0.5);
+    }
+
+    /* Dark mode form controls */
+    body {
+        background-color: #1a202c;
+        color: #ffffff;
+    }
+
+    select,
+    input,
+    textarea {
+        color-scheme: dark;
+    }
+
+    /* FontAwesome utility duo theming */
+    .fa-utility-duo {
+        --fa-primary-color: var(--color-primary);
+        --fa-secondary-color: var(--color-secondary);
+        --fa-primary-opacity: 1.0;
+        --fa-secondary-opacity: 0.5;
+    }
+
+    /* Card utility classes */
+    .card-grid {
+        gap: 1rem;
+    }
+
+    .card {
+        padding: 1.5rem;
+    }
+
+    @media (max-width: 640px) {
+        .card-grid {
+            gap: 1rem;
+        }
+
+        .card {
+            padding: 1rem;
+        }
+    }
+
+    /* Prose/content styles */
+    .scrollbar-thin {
+        scrollbar-width: thin;
+    }
+
+    .scrollbar-track-transparent {
+        scrollbar-color: transparent transparent;
+    }
+
+    .scrollbar-thumb-white\/20 {
+        scrollbar-color: rgba(255, 255, 255, 0.2) transparent;
+    }
+
+    /* OpenDyslexic accessibility toggle. !important is required because
+       app.html sets an unlayered `body { font-family: Arial }` style, and
+       unlayered CSS always beats @layer rules regardless of specificity. */
+    html.dyslexic-font body {
+        font-family: 'OpenDyslexic', sans-serif !important;
+    }
+
+    /* Halloween color transition */
+    body.halloween-color-transition * {
+        transition: background-color 1.5s ease-in-out,
+        color 1.5s ease-in-out,
+        border-color 1.5s ease-in-out,
+        box-shadow 1.5s ease-in-out !important;
+    }
+}

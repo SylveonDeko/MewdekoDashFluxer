@@ -1,0 +1,26 @@
+import { writable } from "svelte/store";
+import type { BotInstance } from "$lib/api/instancemanagement/models/BotInstance";
+
+function createInstanceStore(): {
+  subscribe: (
+    this: void,
+    run: (value: BotInstance | null) => void,
+  ) => () => void;
+  set: (this: void, value: BotInstance | null) => void;
+  reset: () => void;
+  update: (
+    this: void,
+    updater: (value: BotInstance | null) => BotInstance | null,
+  ) => void;
+} {
+  const { subscribe, set, update } = writable<BotInstance | null>(null);
+
+  return {
+    subscribe,
+    set,
+    reset: () => set(null),
+    update,
+  };
+}
+
+export const currentInstance = createInstanceStore();
