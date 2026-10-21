@@ -1,5 +1,6 @@
 <!-- routes/+page.svelte -->
 <script lang="ts">
+  import FluxerIcon from "$lib/components/brand/FluxerIcon.svelte";
   import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import { onMount } from "svelte";
@@ -879,7 +880,7 @@
                  rel="noreferrer"
                  style="background: {$colorStore.primary}08; color: {$colorStore.text}; border: 1px solid {$colorStore.primary}20; box-shadow: 0 2px 12px {$colorStore.primary}05;"
                  target="_blank">
-                <i class="fa-solid fa-comments"></i>
+                <FluxerIcon />
                 {m.home.landingJoinFluxer()}
               </a>
             </div>

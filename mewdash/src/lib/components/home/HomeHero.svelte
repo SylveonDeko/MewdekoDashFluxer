@@ -1,4 +1,5 @@
 <script lang="ts">
+  import FluxerIcon from "$lib/components/brand/FluxerIcon.svelte";
   import * as cdn from "$lib/utils/cdn";
   import { fade, fly } from "svelte/transition";
   import { m } from "$lib/i18n";
@@ -36,7 +37,7 @@
          class="inline-flex items-center justify-center gap-3 px-6 min-h-[52px] rounded-2xl text-base sm:text-lg font-bold transition-all hover:scale-[1.02] active:scale-[0.98]"
          style="background: {$colorStore.primary}30; color: {$colorStore.text}; border: 1px solid {$colorStore.primary}80;
                 box-shadow: 0 8px 28px {$colorStore.primary}25;">
-        <i class="fa-solid fa-plus" aria-hidden="true"></i>
+        <FluxerIcon />
         {m.home.heroAddToFluxer()}
       </a>
       <a href="/dashboard"

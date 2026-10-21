@@ -1,4 +1,5 @@
 <script lang="ts">
+  import FluxerIcon from "$lib/components/brand/FluxerIcon.svelte";
   import { m } from "$lib/i18n";
   import { onMount } from "svelte";
   import { page } from "$app/stores";
@@ -1066,7 +1067,7 @@
           class="w-20 h-20 mx-auto mb-6 rounded-full flex items-center justify-center"
           style="background: linear-gradient(135deg, {$colorStore.primary}30, {$colorStore.secondary}40);"
         >
-          <i class="fa-brands fa-discord" style="color: {$colorStore.primary}; font-size: 40px;"></i>
+          <span class="inline-flex" style="color: {$colorStore.primary};"><FluxerIcon class="w-10 h-10" /></span>
         </div>
 
         <h1 class="text-3xl font-bold mb-4" style="color: {$colorStore.text};">
@@ -1110,7 +1111,7 @@
           class="px-8 py-4 rounded-xl font-bold text-lg transition-all hover:scale-[1.02] shadow-lg border"
           style="background: linear-gradient(135deg, {$colorStore.primary}15, {$colorStore.secondary}10); color: {$colorStore.text}; border-color: {$colorStore.primary}30; box-shadow: 0 4px 20px {$colorStore.primary}10;"
         >
-          <i class="fa-brands fa-discord mr-2"></i>
+          <FluxerIcon class="w-[1em] h-[1em] mr-2" />
           {m.common.loginWithDiscord()}
         </button>
 

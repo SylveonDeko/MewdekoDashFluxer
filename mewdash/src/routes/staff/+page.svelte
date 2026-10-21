@@ -1,5 +1,6 @@
 <!-- routes/staff/+page.svelte -->
 <script lang="ts">
+  import FluxerIcon from "$lib/components/brand/FluxerIcon.svelte";
   import { m } from "$lib/i18n";
   import { onMount } from "svelte";
   import { fade, fly } from "svelte/transition";
@@ -177,7 +178,7 @@
              style="background: linear-gradient(135deg, {$colorStore.gradientStart}80, {$colorStore.gradientMid}90); color: white; border: 1px solid {$colorStore.primary}50;"
              target="_blank"
              rel="noopener noreferrer">
-            <i class="fa-solid fa-comments" aria-hidden="true"></i>
+            <FluxerIcon class="w-5 h-5" />
             {m.public.contactsJoinOurFluxer()}
           </a>
         </div>

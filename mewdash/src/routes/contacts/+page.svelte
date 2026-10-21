@@ -1,5 +1,6 @@
 <!-- routes/contacts/+page.svelte -->
 <script lang="ts">
+  import FluxerIcon from "$lib/components/brand/FluxerIcon.svelte";
   import { m } from "$lib/i18n";
 </script>
 
@@ -38,7 +39,7 @@
       target="_new"
       class="contact-card"
     >
-      <i class="fa-solid fa-comments text-5xl mb-4 text-mewd-offwhite"></i>
+      <FluxerIcon class="w-12 h-12 mb-4 text-mewd-offwhite" />
       <span class="text-lg font-semibold">{m.public.contactsJoinOurFluxer()}</span>
       <span class="text-sm text-mewd-offwhite mt-2"
       >https://fluxer.gg/GQuFOiBV</span

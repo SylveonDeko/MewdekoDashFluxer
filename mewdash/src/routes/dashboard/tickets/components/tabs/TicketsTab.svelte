@@ -1,4 +1,5 @@
 <script lang="ts">
+  import FluxerIcon from "$lib/components/brand/FluxerIcon.svelte";
   import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import { fade, slide } from "svelte/transition";
@@ -233,7 +234,7 @@
                     <a href={cdn.channelUrl($currentGuild?.id, ticket.channelId)} target="_blank" rel="noopener"
                        class="px-4 py-2 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] min-h-[40px] inline-flex items-center"
                        style="background: {$colorStore.primary}15; color: {$colorStore.primary};">
-                      <i class="fa-brands fa-discord mr-1"></i>{m.tickets.ticketsOpenChannel()}
+                      <FluxerIcon class="w-[1em] h-[1em] mr-1" />{m.tickets.ticketsOpenChannel()}
                     </a>
                   </div>
 

@@ -20,6 +20,7 @@
 </script>
 
 <script lang="ts">
+  import FluxerIcon from "$lib/components/brand/FluxerIcon.svelte";
   import { colorStore } from "$lib/stores/colorStore";
   import { fly } from "svelte/transition";
   import reducedMotion from "$lib/reducedMotion";
@@ -654,8 +655,8 @@
                color: {$colorStore.text};"
         onclick={() => switchTab('discord')}
       >
-        <i class="fa-brands fa-discord mr-2"></i>
-        Discord
+        <FluxerIcon class="w-[1em] h-[1em] mr-2" />
+        Fluxer
       </button>
       <button
         type="button"

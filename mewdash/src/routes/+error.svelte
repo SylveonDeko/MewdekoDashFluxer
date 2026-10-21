@@ -1,4 +1,5 @@
 <script lang="ts">
+  import FluxerIcon from "$lib/components/brand/FluxerIcon.svelte";
   import { m } from "$lib/i18n";
   import { page } from "$app/state";
   import { logger } from "$lib/logger";
@@ -110,7 +111,7 @@
           {/if}
           <div class="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                style="background: linear-gradient(135deg, {$colorStore.primary}20, {$colorStore.secondary}15);"></div>
-          <i class="fa-brands fa-discord text-xl relative z-10" style="color: {$colorStore.text}"></i>
+          <span class="relative z-10 text-xl inline-flex" style="color: {$colorStore.text}"><FluxerIcon /></span>
           <span class="relative z-10" style="color: {$colorStore.text}">{m.common.loginWithDiscord()}</span>
         </a>
       {:else}
