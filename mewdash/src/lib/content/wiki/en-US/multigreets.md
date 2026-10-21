@@ -69,7 +69,6 @@ Greets are built with the user, server and bot placeholder sets. Inviter placeho
 | `%server.id%`, `%sid%` | Server ID |
 | `%server.icon%`, `%server.banner%` | Icon and banner URLs |
 | `%server.members%`, `%members%` | Member count |
-| `%server.boostlevel%`, `%server.boostcount%` | Boost tier and number of boosts |
 | `%server.time%`, `%server.timestamp.longdatetime%` | Current time, plain or as a Discord timestamp |
 | `%bot.name%`, `%bot.id%`, `%bot.avatar%` | About the bot itself |
 | `%inviter.username%`, `%inviter.mention%`, `%inviter.id%`, `%inviter.avatar%` | The person whose invite was used, or `Unknown` |

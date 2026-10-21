@@ -29,7 +29,7 @@
   let errorMessage = $state("");
   let warningMessage = $state("");
 
-  const DISCORD_MAX_REACTIONS = 20;
+  const MAX_REACTIONS = 30;
 
   // Parse Discord emoji format to get preview
   function parseEmojiForPreview(emoji: string | null): {
@@ -116,10 +116,10 @@
 
     const total = totalEmojisOnMessage();
 
-    if (total > DISCORD_MAX_REACTIONS) {
-      errorMessage = m.administration.rolesAddReactionRoleErrorTotalExceeds({ total, max: DISCORD_MAX_REACTIONS });
-    } else if (total >= DISCORD_MAX_REACTIONS - 2) {
-      warningMessage = m.administration.rolesAddReactionRoleWarningApproaching({ max: DISCORD_MAX_REACTIONS, total });
+    if (total > MAX_REACTIONS) {
+      errorMessage = m.administration.rolesAddReactionRoleErrorTotalExceeds({ total, max: MAX_REACTIONS });
+    } else if (total >= MAX_REACTIONS - 2) {
+      warningMessage = m.administration.rolesAddReactionRoleWarningApproaching({ max: MAX_REACTIONS, total });
     }
 
     const existing = existingMessage();
@@ -129,8 +129,8 @@
   });
 
   function addReaction() {
-    if (reactions.length >= DISCORD_MAX_REACTIONS) {
-      errorMessage = m.administration.rolesAddReactionRoleErrorMaxReactions({ max: DISCORD_MAX_REACTIONS });
+    if (reactions.length >= MAX_REACTIONS) {
+      errorMessage = m.administration.rolesAddReactionRoleErrorMaxReactions({ max: MAX_REACTIONS });
       return;
     }
     reactions = [...reactions, { emoji: null, roleId: null }];
@@ -161,8 +161,8 @@
     }
 
     // Check final emoji count
-    if (totalEmojisOnMessage() > DISCORD_MAX_REACTIONS) {
-      errorMessage = m.administration.rolesAddReactionRoleErrorWouldExceed({ max: DISCORD_MAX_REACTIONS });
+    if (totalEmojisOnMessage() > MAX_REACTIONS) {
+      errorMessage = m.administration.rolesAddReactionRoleErrorWouldExceed({ max: MAX_REACTIONS });
       return;
     }
 
@@ -296,14 +296,14 @@
           <span class="text-sm font-medium" style="color: {$colorStore.text}">
             {m.administration.rolesAddReactionRoleReactionsAndRoles()}
             <span class="text-xs ml-2" style="color: {$colorStore.muted}">
-              {m.administration.rolesAddReactionRoleEmojiCount({ total: totalEmojisOnMessage(), max: DISCORD_MAX_REACTIONS })}
+              {m.administration.rolesAddReactionRoleEmojiCount({ total: totalEmojisOnMessage(), max: MAX_REACTIONS })}
             </span>
           </span>
           <button
             class="px-2 py-1 rounded-lg text-xs"
             style="background: {$colorStore.primary}20; color: {$colorStore.primary};"
             onclick={addReaction}
-            disabled={reactions.length >= DISCORD_MAX_REACTIONS || totalEmojisOnMessage() >= DISCORD_MAX_REACTIONS}
+            disabled={reactions.length >= MAX_REACTIONS || totalEmojisOnMessage() >= MAX_REACTIONS}
           >
             <i class="fa-solid fa-plus mr-1"></i>
             {m.administration.rolesAddReactionRoleAddPair()}

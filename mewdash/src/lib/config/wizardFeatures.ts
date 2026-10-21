@@ -1460,8 +1460,7 @@ export const wizardStatChannelTypes = [
   { type: 2, get label() { return m.common.bots(); }, get description() { return m.features.wizardStatType2Description(); } },
   { type: 3, get label() { return m.features.wizardStatType3Label(); }, get description() { return m.features.wizardStatType3Description(); } },
   { type: 5, get label() { return m.common.channels(); }, get description() { return m.features.wizardStatType5Description(); } },
-  { type: 6, get label() { return m.common.roles(); }, get description() { return m.features.wizardStatType6Description(); } },
-  { type: 7, get label() { return m.features.wizardStatType7Label(); }, get description() { return m.placeholders.serverBoostcount(); } }
+  { type: 6, get label() { return m.common.roles(); }, get description() { return m.features.wizardStatType6Description(); } }
 ];
 
 /** Punishment options offered by the protection setup steps. */

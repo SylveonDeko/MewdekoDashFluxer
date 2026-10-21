@@ -9,8 +9,6 @@ export type DiscordGuild = {
   banner?: string;
   description?: string;
   memberCount?: number;
-  premiumTier?: number;
-  premiumSubscriptionCount?: number;
 };
 
 export type GuildInfo = {
@@ -22,7 +20,6 @@ export type GuildInfo = {
   bannerUrl?: string;
   description?: string;
   memberCount: number;
-  premiumTier: number;
   ownerId: bigint;
   createdAt: string;
 };

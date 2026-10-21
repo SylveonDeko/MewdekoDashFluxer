@@ -31,7 +31,6 @@
   "filter_to_utc": "to (UTC)",
   "filter_updated_utc": "{time} UTC",
   "format_ago": "{duration} ago",
-  "guild_boosts_tier": "{count} · tier {tier}",
   "guild_bots_pct": "({pct} bots)",
   "guild_channels_roles": "Channels / roles",
   "guild_commands_in_range": "Commands in range",

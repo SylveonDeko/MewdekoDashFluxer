@@ -208,8 +208,6 @@
     { category: "Server", name: "%server.members.offline%", description: m.placeholders.serverMembersOffline() },
     { category: "Server", name: "%server.members.dnd%", description: m.placeholders.serverMembersDnd() },
     { category: "Server", name: "%server.members.idle%", description: m.placeholders.serverMembersIdle() },
-    { category: "Server", name: "%server.boostlevel%", description: m.placeholders.serverBoostlevel() },
-    { category: "Server", name: "%server.boostcount%", description: m.placeholders.serverBoostcount() },
     { category: "Server", name: "%server.time%", description: m.placeholders.serverTime() },
     { category: "Server", name: "%server.timestamp.longdatetime%", description: m.placeholders.serverTimestampLongdatetime() },
     { category: "Server", name: "%server.timestamp.longtime%", description: m.placeholders.serverTimestampLongtime() },

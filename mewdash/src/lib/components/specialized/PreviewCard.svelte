@@ -84,8 +84,6 @@
     replaced = replaced.replace(/%server\.members\.offline%/g, "711");
     replaced = replaced.replace(/%server\.members\.dnd%/g, "45");
     replaced = replaced.replace(/%server\.members\.idle%/g, "89");
-    replaced = replaced.replace(/%server\.boostlevel%/g, actualGuild?.premiumTier?.toString() || "2");
-    replaced = replaced.replace(/%server\.boostcount%/g, actualGuild?.premiumSubscriptionCount?.toString() || "14");
     replaced = replaced.replace(/%server\.icon%/g, actualGuild?.icon ? `https://cdn.discordapp.com/icons/${guildIdStr}/${actualGuild.icon}.${actualGuild.icon.startsWith("a_") ? "gif" : "png"}?size=256` : "");
     replaced = replaced.replace(/%server\.banner%/g, actualGuild?.banner ? `https://cdn.discordapp.com/banners/${guildIdStr}/${actualGuild.banner}.png?size=512` : "");
 

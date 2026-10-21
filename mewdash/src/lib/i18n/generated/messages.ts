@@ -2877,10 +2877,10 @@ export const m = {
     rolesAddReactionRoleErrorMaxReactions: (p: { max: P }) => t("administration", "roles_add_reaction_role_error_max_reactions", "Cannot add more than {max} reactions!", p),
     /** Please select at least one emoji and role pair. */
     rolesAddReactionRoleErrorNeedPair: () => t("administration", "roles_add_reaction_role_error_need_pair", "Please select at least one emoji and role pair."),
-    /** Total emoji count ({total}) exceeds Discord's limit of {max} reactions per message! */
-    rolesAddReactionRoleErrorTotalExceeds: (p: { max: P; total: P }) => t("administration", "roles_add_reaction_role_error_total_exceeds", "Total emoji count ({total}) exceeds Discord's limit of {max} reactions per message!", p),
-    /** Cannot add reactions: total would exceed Discord's {max} emoji limit. */
-    rolesAddReactionRoleErrorWouldExceed: (p: { max: P }) => t("administration", "roles_add_reaction_role_error_would_exceed", "Cannot add reactions: total would exceed Discord's {max} emoji limit.", p),
+    /** Total emoji count ({total}) exceeds the limit of {max} reactions per message! */
+    rolesAddReactionRoleErrorTotalExceeds: (p: { max: P; total: P }) => t("administration", "roles_add_reaction_role_error_total_exceeds", "Total emoji count ({total}) exceeds the limit of {max} reactions per message!", p),
+    /** Cannot add reactions: total would exceed the {max} emoji limit. */
+    rolesAddReactionRoleErrorWouldExceed: (p: { max: P }) => t("administration", "roles_add_reaction_role_error_would_exceed", "Cannot add reactions: total would exceed the {max} emoji limit.", p),
     /** Exclusive (users can only have one role from this message) */
     rolesAddReactionRoleExclusive: () => t("administration", "roles_add_reaction_role_exclusive", "Exclusive (users can only have one role from this message)"),
     /** This message already has {count} reaction role. Your new reactions will be added to it. */
@@ -2897,8 +2897,8 @@ export const m = {
     rolesAddReactionRoleSetUp: () => t("administration", "roles_add_reaction_role_set_up", "Set Up New Reaction Roles"),
     /** Add Reaction Role */
     rolesAddReactionRoleTitle: () => t("administration", "roles_add_reaction_role_title", "Add Reaction Role"),
-    /** Warning: You're approaching Discord's limit of {max} reactions per message (currently a... */
-    rolesAddReactionRoleWarningApproaching: (p: { max: P; total: P }) => t("administration", "roles_add_reaction_role_warning_approaching", "Warning: You're approaching Discord's limit of {max} reactions per message (currently at {total}).", p),
+    /** Warning: You're approaching the limit of {max} reactions per message (currently at {tot... */
+    rolesAddReactionRoleWarningApproaching: (p: { max: P; total: P }) => t("administration", "roles_add_reaction_role_warning_approaching", "Warning: You're approaching the limit of {max} reactions per message (currently at {total}).", p),
     /** This message already has {count} reaction role. Adding to existing setup. */
     rolesAddReactionRoleWarningExistingOne: (p: { count: P }) => t("administration", "roles_add_reaction_role_warning_existing_one", "This message already has {count} reaction role. Adding to existing setup.", p),
     /** This message already has {count} reaction roles. Adding to existing setup. */
@@ -3215,8 +3215,6 @@ export const m = {
     filterUpdatedUtc: (p: { time: P }) => t("analytics", "filter_updated_utc", "{time} UTC", p),
     /** {duration} ago */
     formatAgo: (p: { duration: P }) => t("analytics", "format_ago", "{duration} ago", p),
-    /** {count} · tier {tier} */
-    guildBoostsTier: (p: { count: P; tier: P }) => t("analytics", "guild_boosts_tier", "{count} · tier {tier}", p),
     /** ({pct} bots) */
     guildBotsPct: (p: { pct: P }) => t("analytics", "guild_bots_pct", "({pct} bots)", p),
     /** Channels / roles */
@@ -7367,10 +7365,8 @@ export const m = {
     wizardStatType5Description: () => t("features", "wizard_stat_type_5_description", "Total channel count"),
     /** Total role count */
     wizardStatType6Description: () => t("features", "wizard_stat_type_6_description", "Total role count"),
-    /** Boosts */
-    wizardStatType7Label: () => t("features", "wizard_stat_type_7_label", "Boosts"),
-    /** Member, human, bot and boost counters */
-    wizardStatchannelsBenefit1: () => t("features", "wizard_statchannels_benefit_1", "Member, human, bot and boost counters"),
+    /** Member, human, bot and online counters */
+    wizardStatchannelsBenefit1: () => t("features", "wizard_statchannels_benefit_1", "Member, human, bot and online counters"),
     /** Channels are created for you */
     wizardStatchannelsBenefit2: () => t("features", "wizard_statchannels_benefit_2", "Channels are created for you"),
     /** Updates automatically as numbers change */
@@ -12753,10 +12749,6 @@ export const m = {
     server: () => t("placeholders", "server", "Server name"),
     /** Server banner URL */
     serverBanner: () => t("placeholders", "server_banner", "Server banner URL"),
-    /** Server boost count */
-    serverBoostcount: () => t("placeholders", "server_boostcount", "Server boost count"),
-    /** Server boost level (0-3) */
-    serverBoostlevel: () => t("placeholders", "server_boostlevel", "Server boost level (0-3)"),
     /** Server ID */
     serverId: () => t("placeholders", "server_id", "Server ID"),
     /** Number of server members */

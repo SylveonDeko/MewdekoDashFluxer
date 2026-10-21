@@ -234,8 +234,6 @@ export interface GuildShape {
   humans: number;
   bots: number;
   online: number;
-  boosts: number;
-  boostTier: number;
   channels: number;
   roles: number;
   ownerId: string;

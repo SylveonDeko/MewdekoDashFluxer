@@ -168,8 +168,6 @@
   "role_name": "Role name",
   "server": "Server name",
   "server_banner": "Server banner URL",
-  "server_boostcount": "Server boost count",
-  "server_boostlevel": "Server boost level (0-3)",
   "server_id": "Server ID",
   "server_membercount": "Number of server members",
   "server_members": "Total member count",

@@ -76,8 +76,6 @@
         { code: "%server.members.offline%", description: m.placeholders.serverMembersOffline(), example: "711" },
         { code: "%server.members.dnd%", description: m.placeholders.serverMembersDnd(), example: "45" },
         { code: "%server.members.idle%", description: m.placeholders.serverMembersIdle(), example: "89" },
-        { code: "%server.boostlevel%", description: m.placeholders.serverBoostlevel(), example: "2" },
-        { code: "%server.boostcount%", description: m.placeholders.serverBoostcount(), example: "14" },
         { code: "%server.time%", description: m.placeholders.serverTime(), example: "14:30 PST" },
         {
           code: "%server.timestamp.longdatetime%",
