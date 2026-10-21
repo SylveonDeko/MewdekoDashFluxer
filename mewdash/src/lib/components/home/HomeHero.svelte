@@ -1,4 +1,5 @@
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { fade, fly } from "svelte/transition";
   import { m } from "$lib/i18n";
   import { colorStore } from "$lib/stores/colorStore";
@@ -9,7 +10,7 @@
    * commands, and the cat. It takes no inputs.
    */
   const INVITE_URL =
-    "https://discord.com/oauth2/authorize?client_id=752236274261426212&permissions=66186303&response_type=code&redirect_uri=https%3A%2F%2Fmewdeko.tech%2Fapi%2Fdiscord%2Fcallback&integration_type=0&scope=identify+guilds+bot";
+    cdn.botInviteUrl("752236274261426212", "66186303");
 
   /** Commands shown as a taste of what the bot does. Each is a real command name. */
   const commands = [".achievements", ".rank", ".ticketpanel", ".play", ".gstart", ".antiraid"];

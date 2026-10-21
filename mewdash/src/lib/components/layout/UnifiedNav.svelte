@@ -19,6 +19,7 @@ A unified navigation component that provides responsive navigation with server a
 ```
 -->
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import { page } from "$app/state";
   import { fade, slide } from "svelte/transition";
@@ -969,10 +970,8 @@ A unified navigation component that provides responsive navigation with server a
             <!-- User Avatar -->
             <img
               src={currentUser.avatar
-                ? (currentUser.avatar.startsWith("a_")
-                  ? `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.gif`
-                  : `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.png`)
-                : `https://cdn.discordapp.com/embed/avatars/0.png`}
+                ? (cdn.userAvatarUrl(currentUser.id, currentUser.avatar))
+                : cdn.defaultAvatarUrl()}
               alt={currentUser.username}
               class="w-8 h-8 rounded-full"
               style:background="{$colorStore.primary}20"
@@ -1040,10 +1039,8 @@ A unified navigation component that provides responsive navigation with server a
                   <div class="relative">
                     <img
                       src={currentUser.avatar
-                        ? (currentUser.avatar.startsWith("a_")
-                          ? `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.gif`
-                          : `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.png`)
-                        : `https://cdn.discordapp.com/embed/avatars/0.png`}
+                        ? (cdn.userAvatarUrl(currentUser.id, currentUser.avatar))
+                        : cdn.defaultAvatarUrl()}
                       alt={currentUser.username}
                       class="w-10 h-10 rounded-lg border-2"
                       style="border-color: {$colorStore.primary}50;"
@@ -1176,10 +1173,8 @@ A unified navigation component that provides responsive navigation with server a
         <div class="md:hidden flex items-center gap-2">
           <img
             src={currentUser.avatar
-              ? (currentUser.avatar.startsWith("a_")
-                ? `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.gif`
-                : `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.png`)
-              : `https://cdn.discordapp.com/embed/avatars/0.png`}
+              ? (cdn.userAvatarUrl(currentUser.id, currentUser.avatar))
+              : cdn.defaultAvatarUrl()}
             alt={currentUser.username}
             class="w-7 h-7 rounded-full"
             style:background="{$colorStore.primary}20"
@@ -1265,10 +1260,8 @@ A unified navigation component that provides responsive navigation with server a
               <div class="relative">
                 <img
                   src={currentUser.avatar
-                    ? (currentUser.avatar.startsWith("a_")
-                      ? `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.gif`
-                      : `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.png`)
-                    : `https://cdn.discordapp.com/embed/avatars/0.png`}
+                    ? (cdn.userAvatarUrl(currentUser.id, currentUser.avatar))
+                    : cdn.defaultAvatarUrl()}
                   alt={currentUser.username}
                   class="w-10 h-10 rounded-lg border-2"
                   style="border-color: {$colorStore.primary}50;"

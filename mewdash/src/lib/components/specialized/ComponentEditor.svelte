@@ -1,5 +1,6 @@
 <!-- ComponentEditor.svelte -->
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import { colorStore } from "$lib/stores/colorStore";
   import { logger } from "$lib/logger";
@@ -183,7 +184,7 @@
 
       const [, animatedFlag, name, id] = match;
       const animated = animatedFlag === "a";
-      const url = `https://cdn.discordapp.com/emojis/${id}.${animated ? "png" : "png"}?size=32&quality=lossless`;
+      const url = cdn.emojiUrl(id, 32);
 
       return { url, name };
     }

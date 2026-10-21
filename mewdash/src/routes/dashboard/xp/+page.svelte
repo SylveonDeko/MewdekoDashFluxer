@@ -1,5 +1,6 @@
 <!-- routes/dashboard/xp/+page.svelte -->
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import { onDestroy, onMount } from "svelte";
   import { clientApi, xpApi } from "$lib/api/index.ts";
@@ -232,7 +233,7 @@
   // Enhanced sample data for preview with realistic information
     let sampleData = $state({
     username: "QuantumViper42",
-    avatarUrl: "https://cdn.discordapp.com/avatars/123456789012345678/a_1234567890abcdef1234567890abcdef.gif",
+    avatarUrl: cdn.userAvatarUrl("123456789012345678", "a_1234567890abcdef1234567890abcdef"),
     discriminator: "0001",
     displayName: "Quantum Viper",
     level: 47,

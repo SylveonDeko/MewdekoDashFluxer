@@ -1,5 +1,6 @@
 <!-- routes/dashboard/birthday/+page.svelte -->
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
 
 
@@ -858,7 +859,7 @@
                             {#each upcomingBirthdays as user}
                                 <div class="flex items-center gap-4 p-3 rounded-xl transition-all hover:scale-[1.02]"
                                      style="background: {$colorStore.primary}08;">
-                                    <img src={user.avatarUrl || `https://cdn.discordapp.com/embed/avatars/0.png`}
+                                    <img src={user.avatarUrl || cdn.defaultAvatarUrl()}
                                          alt="" class="w-12 h-12 rounded-full" />
                                     <div class="flex-1">
                                         <div class="font-semibold" style="color: {$colorStore.text}">
@@ -906,7 +907,7 @@
                             {#each birthdayUsers as user}
                                 <div class="flex items-center gap-4 p-3 rounded-xl transition-all hover:scale-[1.02]"
                                      style="background: {$colorStore.primary}08;">
-                                    <img src={user.avatarUrl || `https://cdn.discordapp.com/embed/avatars/0.png`}
+                                    <img src={user.avatarUrl || cdn.defaultAvatarUrl()}
                                          alt="" class="w-10 h-10 rounded-full" />
                                     <div class="flex-1">
                                         <div class="font-medium" style="color: {$colorStore.text}">

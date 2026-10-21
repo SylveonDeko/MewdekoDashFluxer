@@ -1,5 +1,6 @@
 <!-- routes/dashboard/messagestats/+page.svelte -->
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
 
   import { m } from "$lib/i18n";
 
@@ -220,7 +221,7 @@
           rank: index + 1,
           username: member?.username || m.common.unknownUser(),
           discriminator: '0000', // Discord no longer uses discriminators for most users
-          avatarUrl: member?.avatarUrl || `https://cdn.discordapp.com/embed/avatars/0.png`,
+          avatarUrl: member?.avatarUrl || cdn.defaultAvatarUrl(),
           messageCount: messageUser.totalMessages,
           averageMessageLength: 0, // Not provided by API
           lastMessageAt: new Date().toISOString() // Not provided by API

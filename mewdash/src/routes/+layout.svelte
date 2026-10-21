@@ -1,5 +1,6 @@
 <!-- routes/+layout.svelte -->
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
 
 
@@ -39,9 +40,7 @@
 
     try {
       if (user?.avatar) {
-          const avatarUrl = user.avatar.startsWith("a_")
-              ? `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.gif`
-              : `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.png`;
+          const avatarUrl = cdn.userAvatarUrl(user.id, user.avatar);
 
           await colorStore.extractFromImage(avatarUrl);
       } else if (!user) {

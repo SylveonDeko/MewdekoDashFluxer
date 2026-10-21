@@ -1,4 +1,5 @@
 <script lang="ts" module>
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import type { EmojiInfo, GuildEmojiInfo } from "$lib/api/client/models";
 
@@ -226,7 +227,7 @@
 
   // Get emoji URL using WebP like Discord does
   function getEmojiUrl(emoji: EmojiOption): string {
-    const baseUrl = `https://cdn.discordapp.com/emojis/${emoji.id}.webp?size=48`;
+    const baseUrl = cdn.emojiUrl(emoji.id, 48);
     return emoji.animated ? `${baseUrl}&animated=true` : baseUrl;
   }
 
@@ -485,7 +486,7 @@
       isAvailable: true,
       roleIds: [],
       requireColons: true,
-      url: `https://cdn.discordapp.com/emojis/${id}.${animated ? "gif" : "png"}?size=256&quality=lossless`,
+      url: cdn.emojiUrl(id, 256),
       guildId: "custom",
       guildName: m.widgets.emojiCustomInput()
     };
@@ -635,7 +636,7 @@
     }
     return {
       type: "url",
-      value: `https://cdn.discordapp.com/emojis/${emoji.id}.png?size=32&quality=lossless`
+      value: cdn.emojiUrl(emoji.id, 32)
     };
   }
 </script>

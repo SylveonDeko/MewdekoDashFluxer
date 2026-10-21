@@ -17,8 +17,8 @@ const MAX_BYTES = 10 * 1024 * 1024;
  * otherwise bounce the request to an internal address.
  */
 const ALLOWED_HOSTS = [
-  "cdn.discordapp.com",
-  "media.discordapp.net",
+  "fluxerusercontent.com",
+  "fluxerstatic.com",
   "i.ytimg.com",
   "img.youtube.com",
   "i.scdn.co",

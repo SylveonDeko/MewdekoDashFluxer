@@ -1,4 +1,5 @@
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import { fade, slide } from "svelte/transition";
   import { colorStore } from "$lib/stores/colorStore";
@@ -229,7 +230,7 @@
                         <i class="fa-solid fa-hand mr-1"></i>{m.tickets.ticketsClaim()}
                       </button>
                     {/if}
-                    <a href={`https://discord.com/channels/${$currentGuild?.id}/${ticket.channelId}`} target="_blank" rel="noopener"
+                    <a href={cdn.channelUrl($currentGuild?.id, ticket.channelId)} target="_blank" rel="noopener"
                        class="px-4 py-2 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] min-h-[40px] inline-flex items-center"
                        style="background: {$colorStore.primary}15; color: {$colorStore.primary};">
                       <i class="fa-brands fa-discord mr-1"></i>{m.tickets.ticketsOpenChannel()}

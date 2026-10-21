@@ -2,6 +2,7 @@
 <svelte:options css="injected" />
 
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
     import {onMount} from "svelte";
     import { reviewsApi, type BotReview } from "$lib/api/index.ts";
@@ -130,7 +131,7 @@
     text = text.replace(
       customEmojiPattern,
       (match, name, id) =>
-        `<img class="inline-emoji" src="https://cdn.discordapp.com/emojis/${id}.png" alt="${name}" title="${name}">`,
+        `<img class="inline-emoji" src="${cdn.emojiUrl(id)}" alt="${name}" title="${name}">`,
     );
 
     // Parse Unicode emojis

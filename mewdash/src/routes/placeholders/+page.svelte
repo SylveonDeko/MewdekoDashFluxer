@@ -60,8 +60,8 @@
         { code: "%user.name%", description: m.placeholders.userName(), example: "Username" },
         { code: "%user.fullname%", description: m.placeholders.userFullname(), example: "Username#1234" },
         { code: "%user.discrim%", description: m.placeholders.userDiscrim(), example: "1234" },
-        { code: "%user.avatar%", description: m.placeholders.userAvatar(), example: "https://cdn.discordapp.com/avatars/..." },
-        { code: "%user.banner%", description: m.placeholders.userBanner(), example: "https://cdn.discordapp.com/banners/..." },
+        { code: "%user.avatar%", description: m.placeholders.userAvatar(), example: "https://fluxerusercontent.com/avatars/..." },
+        { code: "%user.banner%", description: m.placeholders.userBanner(), example: "https://fluxerusercontent.com/banners/..." },
         { code: "%user.created_time%", description: m.placeholders.userCreatedTime(), example: "14:30" },
         { code: "%user.created_date%", description: m.placeholders.userCreatedDate(), example: "15.06.2020" },
         { code: "%user.joined_time%", description: m.placeholders.userJoinedTime(), example: "09:45" },
@@ -76,11 +76,11 @@
         { code: "%server%", description: m.placeholders.server(), example: "My Cool Server" },
         { code: "%server.name%", description: m.placeholders.serverName(), example: "My Cool Server" },
         { code: "%server.id%", description: m.placeholders.serverId(), example: "987654321098765432" },
-        { code: "%server.icon%", description: m.placeholders.mcFavicon(), example: "https://cdn.discordapp.com/icons/..." },
+        { code: "%server.icon%", description: m.placeholders.mcFavicon(), example: "https://fluxerusercontent.com/icons/..." },
         {
           code: "%server.banner%",
           description: m.placeholders.serverBanner(),
-          example: "https://cdn.discordapp.com/banners/..."
+          example: "https://fluxerusercontent.com/banners/..."
         },
         { code: "%server.members%", description: m.placeholders.serverMembers(), example: "1,234" },
         { code: "%server.members.online%", description: m.placeholders.serverMembersOnline(), example: "523" },
@@ -137,7 +137,7 @@
         { code: "%bot.fullname%", description: m.placeholders.botFullname(), example: "Mewdeko#0000" },
         { code: "%bot.discrim%", description: m.placeholders.botDiscrim(), example: "0000" },
         { code: "%bot.id%", description: m.placeholders.botId(), example: "752236274261426994" },
-        { code: "%bot.avatar%", description: m.placeholders.botAvatar(), example: "https://cdn.discordapp.com/avatars/..." },
+        { code: "%bot.avatar%", description: m.placeholders.botAvatar(), example: "https://fluxerusercontent.com/avatars/..." },
         { code: "%bot.time%", description: m.placeholders.botTime(), example: "14:30 PST" }
       ]
     },

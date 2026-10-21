@@ -4,6 +4,7 @@ Complete Setup Wizard with Progressive Disclosure, Templates, Real-Time Previews
 Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selection
 -->
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import { goto } from "$app/navigation";
   import { onMount, untrack } from "svelte";
@@ -1739,8 +1740,8 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
              style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}25;">
           <img
             src={guild.icon ?
-            `https://cdn.discordapp.com/icons/${guild.id}/${guild.icon}.png?size=128` :
-            'https://cdn.discordapp.com/embed/avatars/0.png'
+            cdn.guildIconUrl(guild.id, guild.icon, 128) :
+            cdn.defaultAvatarUrl()
           }
             alt={guild.name}
             class="w-16 h-16 rounded-xl"

@@ -1,5 +1,6 @@
 <!-- lib/components/layout/OwnerSidebar.svelte -->
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import { onMount } from "svelte";
   import { browser } from "$app/environment";
@@ -41,9 +42,8 @@
 
   let userAvatarUrl = $derived.by(() => {
     const user = $userStore;
-    if (!user?.avatar) return "https://cdn.discordapp.com/embed/avatars/0.png";
-    const ext = user.avatar.startsWith("a_") ? "gif" : "png";
-    return `https://cdn.discordapp.com/avatars/${user.id}/${user.avatar}.${ext}`;
+    if (!user?.avatar) return cdn.defaultAvatarUrl();
+    return cdn.userAvatarUrl(user.id, user.avatar);
   });
 
   function isActive(href: string): boolean {

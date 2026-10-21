@@ -1,5 +1,6 @@
 <!-- routes/dashboard/multigreets/+page.svelte -->
 <script lang="ts">
+  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
 
 
@@ -250,7 +251,7 @@
             fetchChannels();
             // Extract colors from server icon if available, otherwise use bot avatar as fallback
             if ($currentGuild.icon) {
-                const serverIconUrl = `https://cdn.discordapp.com/icons/${$currentGuild.id}/${$currentGuild.icon}.${$currentGuild.icon.startsWith("a_") ? "gif" : "png"}`;
+                const serverIconUrl = cdn.guildIconUrl($currentGuild.id, $currentGuild.icon);
                 colorStore.extractFromServerIcon(serverIconUrl);
             } else if ($currentInstance?.botAvatar) {
                 colorStore.extractFromImage($currentInstance.botAvatar);
