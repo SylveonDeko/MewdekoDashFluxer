@@ -129,19 +129,6 @@
       ignoredRoles: [],
       ignoredChannels: [],
       counter: 0
-    },
-    antiExternalApp: {
-      enabled: false,
-      action: 10,
-      punishDuration: 60,
-      roleId: null,
-      mentionThreshold: 5,
-      blockInvites: true,
-      maxMessages: 5,
-      timeWindowSeconds: 10,
-      deleteMessages: true,
-      notifyUser: true,
-      counter: 0
     }
   });
 
@@ -344,8 +331,7 @@
           antiPattern: { enabled: false },
           antiMassPost: { enabled: false },
           antiPostChannel: { enabled: false },
-          antiImageHash: { enabled: false },
-          antiExternalApp: { enabled: false }
+          antiImageHash: { enabled: false }
         };
 
         if (protectionStatus.antiPostChannel) {
@@ -684,9 +670,6 @@
         case "antiImageHash":
           await protectionApi.configureAntiImageHash($currentGuild.id, config);
           break;
-        case "antiExternalApp":
-          await protectionApi.configureAntiExternalApp($currentGuild.id, config);
-          break;
       }
       await fetchAllData();
     } catch (err) {
@@ -790,18 +773,6 @@
           checkBorders: true,
           usePresetList: true,
           maxImageSizeMb: 8
-        },
-        antiExternalApp: {
-          enabled: true,
-          action: 10,
-          punishDuration: 60,
-          roleId: null,
-          mentionThreshold: 5,
-          blockInvites: true,
-          maxMessages: 5,
-          timeWindowSeconds: 10,
-          deleteMessages: true,
-          notifyUser: true
         }
       };
 

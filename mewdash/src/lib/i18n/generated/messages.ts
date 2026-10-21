@@ -2581,8 +2581,6 @@ export const m = {
     automationTimezoneTitle: () => t("administration", "automation_timezone_title", "Timezone Settings"),
     /** Active Rules */
     overviewActiveRules: () => t("administration", "overview_active_rules", "Active Rules"),
-    /** Anti-External App */
-    overviewAntiExternalApp: () => t("administration", "overview_anti_external_app", "Anti-External App"),
     /** Anti-Image-Hash */
     overviewAntiImageHash: () => t("administration", "overview_anti_image_hash", "Anti-Image-Hash"),
     /** Anti-Mass-Post */
@@ -2669,28 +2667,6 @@ export const m = {
     protectionCommonSelectAction: () => t("administration", "protection_common_select_action", "Select action..."),
     /** Time Window (seconds) */
     protectionCommonTimeWindowSeconds: () => t("administration", "protection_common_time_window_seconds", "Time Window (seconds)"),
-    /** App Messages */
-    protectionExternalappAppMessages: () => t("administration", "protection_externalapp_app_messages", "App Messages"),
-    /** App Messages Allowed */
-    protectionExternalappAppMessagesAllowed: () => t("administration", "protection_externalapp_app_messages_allowed", "App Messages Allowed"),
-    /** Delete the app message */
-    protectionExternalappDeleteAppMessage: () => t("administration", "protection_externalapp_delete_app_message", "Delete the app message"),
-    /** Turn it on to remove mass pings, invite links and spam sent through members' own apps */
-    protectionExternalappDisabledHint: () => t("administration", "protection_externalapp_disabled_hint", "Turn it on to remove mass pings, invite links and spam sent through members' own apps"),
-    /** Anti-External App Disabled */
-    protectionExternalappDisabledTitle: () => t("administration", "protection_externalapp_disabled_title", "Anti-External App Disabled"),
-    /** Apps added to the server itself are left alone. A ping of everyone or here always count... */
-    protectionExternalappIntro: () => t("administration", "protection_externalapp_intro", "Apps added to the server itself are left alone. A ping of everyone or here always counts as too many mentions. Set a limit to 0 to turn that check off."),
-    /** Mention Limit */
-    protectionExternalappMentionLimit: () => t("administration", "protection_externalapp_mention_limit", "Mention Limit"),
-    /** Tell the member by DM */
-    protectionExternalappNotifyMember: () => t("administration", "protection_externalapp_notify_member", "Tell the member by DM"),
-    /** Remove invite links */
-    protectionExternalappRemoveInviteLinks: () => t("administration", "protection_externalapp_remove_invite_links", "Remove invite links"),
-    /** Catch abuse of apps members add to their own account */
-    protectionExternalappSubtitle: () => t("administration", "protection_externalapp_subtitle", "Catch abuse of apps members add to their own account"),
-    /** Times Triggered */
-    protectionExternalappTimesTriggered: () => t("administration", "protection_externalapp_times_triggered", "Times Triggered"),
     /** Action {action} */
     protectionImagehashActionFallback: (p: { action: P }) => t("administration", "protection_imagehash_action_fallback", "Action {action}", p),
     /** Action for this image */

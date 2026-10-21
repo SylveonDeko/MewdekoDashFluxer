@@ -39,7 +39,6 @@
       case "antiMassPost": return m.administration.overviewAntiMassPost();
       case "antiPostChannel": return m.administration.overviewAntiPostChannel();
       case "antiImageHash": return m.administration.overviewAntiImageHash();
-      case "antiExternalApp": return m.administration.overviewAntiExternalApp();
       default: return key;
     }
   }
