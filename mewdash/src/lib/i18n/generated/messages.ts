@@ -4511,28 +4511,24 @@ export const m = {
     pageAdvancedRegexTitle: () => t("chat-triggers", "page_advanced_regex_title", "Regular Expression Testing"),
     /** Test your regex pattern against sample text to ensure it matches correctly and prevents... */
     pageAdvancedRegexTooltip: () => t("chat-triggers", "page_advanced_regex_tooltip", "Test your regex pattern against sample text to ensure it matches correctly and prevents unexpected behavior."),
-    /** Click to configure response message with embeds/components */
-    pageAdvancedResponsePlaceholder: () => t("chat-triggers", "page_advanced_response_placeholder", "Click to configure response message with embeds/components"),
-    /** Supports rich content including plain text, JSON embeds with images/fields/colors, inte... */
-    pageAdvancedResponseTooltip: () => t("chat-triggers", "page_advanced_response_tooltip", "Supports rich content including plain text, JSON embeds with images/fields/colors, interactive components, and placeholders like %user.name%. Try the Rich Embeds template!"),
+    /** Click to configure response message with embeds and link buttons */
+    pageAdvancedResponsePlaceholder: () => t("chat-triggers", "page_advanced_response_placeholder", "Click to configure response message with embeds and link buttons"),
+    /** Supports rich content including plain text, JSON embeds with images/fields/colors, link... */
+    pageAdvancedResponseTooltip: () => t("chat-triggers", "page_advanced_response_tooltip", "Supports rich content including plain text, JSON embeds with images/fields/colors, link buttons, and placeholders like %user.name%. Try the Rich Embeds template!"),
     /** Advanced Trigger Creation */
     pageAdvancedTitle: () => t("chat-triggers", "page_advanced_title", "Advanced Trigger Creation"),
     /** Enter trigger text or regex pattern */
     pageAdvancedTriggerPlaceholder: () => t("chat-triggers", "page_advanced_trigger_placeholder", "Enter trigger text or regex pattern"),
-    /** Button interactions */
-    pageAdvancedTypeButton: () => t("chat-triggers", "page_advanced_type_button", "Button interactions"),
-    /** Slash command interactions */
-    pageAdvancedTypeInteraction: () => t("chat-triggers", "page_advanced_type_interaction", "Slash command interactions"),
     /** Message triggers */
     pageAdvancedTypeMessage: () => t("chat-triggers", "page_advanced_type_message", "Message triggers"),
     /** Reaction added */
     pageAdvancedTypeReactionAdded: () => t("chat-triggers", "page_advanced_type_reaction_added", "Reaction added"),
     /** Reaction removed */
     pageAdvancedTypeReactionRemoved: () => t("chat-triggers", "page_advanced_type_reaction_removed", "Reaction removed"),
-    /** Select which types of interactions can trigger this response */
-    pageAdvancedTypesHint: () => t("chat-triggers", "page_advanced_types_hint", "Select which types of interactions can trigger this response"),
-    /** Choose how this trigger activates: Messages (regular chat), Slash Commands (requires se... */
-    pageAdvancedTypesTooltip: () => t("chat-triggers", "page_advanced_types_tooltip", "Choose how this trigger activates: Messages (regular chat), Slash Commands (requires setup), Buttons (interactive), or Reactions (emoji responses). Multiple types can be enabled."),
+    /** Select which types of events can trigger this response */
+    pageAdvancedTypesHint: () => t("chat-triggers", "page_advanced_types_hint", "Select which types of events can trigger this response"),
+    /** Choose how this trigger activates: Messages (regular chat) or Reactions (emoji response... */
+    pageAdvancedTypesTooltip: () => t("chat-triggers", "page_advanced_types_tooltip", "Choose how this trigger activates: Messages (regular chat) or Reactions (emoji responses). Multiple types can be enabled."),
     /** Auto-delete disabled - cannot be used with react to trigger */
     pageAnnounceAutoDeleteDisabled: () => t("chat-triggers", "page_announce_auto_delete_disabled", "Auto-delete disabled - cannot be used with react to trigger"),
     /** Collapsed all cards */
@@ -4549,8 +4545,6 @@ export const m = {
     pageAnnounceDeleted: (p: { name: P }) => t("chat-triggers", "page_announce_deleted", "Trigger {name} deleted", p),
     /** Edit mode activated */
     pageAnnounceEditMode: () => t("chat-triggers", "page_announce_edit_mode", "Edit mode activated"),
-    /** Interaction triggers enabled for slash command */
-    pageAnnounceInteractionEnabled: () => t("chat-triggers", "page_announce_interaction_enabled", "Interaction triggers enabled for slash command"),
     /** Message triggers enabled - at least one trigger type is required */
     pageAnnounceMessageEnabled: () => t("chat-triggers", "page_announce_message_enabled", "Message triggers enabled - at least one trigger type is required"),
     /** Create new trigger focused */
@@ -4637,8 +4631,6 @@ export const m = {
     pageLabelCrosspostWebhook: () => t("chat-triggers", "page_label_crosspost_webhook", "Crossposting Webhook URL"),
     /** Send Response as DM */
     pageLabelDm: () => t("chat-triggers", "page_label_dm", "Send Response as DM"),
-    /** Ephemeral Response */
-    pageLabelEphemeral: () => t("chat-triggers", "page_label_ephemeral", "Ephemeral Response"),
     /** Is Regular Expression */
     pageLabelIsRegex: () => t("chat-triggers", "page_label_is_regex", "Is Regular Expression"),
     /** Don't Respond to Trigger */
@@ -4715,12 +4707,12 @@ export const m = {
     pageQuickPreviewDescription: () => t("chat-triggers", "page_quick_preview_description", "Bot's response to the trigger"),
     /** Quick Response */
     pageQuickPreviewTitle: () => t("chat-triggers", "page_quick_preview_title", "Quick Response"),
-    /** 💡 Supports rich embeds, interactive buttons, select menus, and Discord formatting */
-    pageQuickResponseHint: () => t("chat-triggers", "page_quick_response_hint", "💡 Supports rich embeds, interactive buttons, select menus, and Discord formatting"),
+    /** 💡 Supports rich embeds, link buttons, and formatting */
+    pageQuickResponseHint: () => t("chat-triggers", "page_quick_response_hint", "💡 Supports rich embeds, link buttons, and formatting"),
     /** Bot responds with: */
     pageQuickResponseLabel: () => t("chat-triggers", "page_quick_response_label", "Bot responds with:"),
-    /** Click to configure response message with rich embeds and components */
-    pageQuickResponsePlaceholder: () => t("chat-triggers", "page_quick_response_placeholder", "Click to configure response message with rich embeds and components"),
+    /** Click to configure response message with rich embeds and link buttons */
+    pageQuickResponsePlaceholder: () => t("chat-triggers", "page_quick_response_placeholder", "Click to configure response message with rich embeds and link buttons"),
     /** Simple text that will trigger the response */
     pageQuickTriggerHint: () => t("chat-triggers", "page_quick_trigger_hint", "Simple text that will trigger the response"),
     /** When someone types: */
@@ -4747,8 +4739,8 @@ export const m = {
     pageStatsTotalOther: (p: { count: P }) => t("chat-triggers", "page_stats_total_other", "Fired {count} times in total.", p),
     /** Create and manage automated responses to messages */
     pageSubtitle: () => t("chat-triggers", "page_subtitle", "Create and manage automated responses to messages"),
-    /** [components] */
-    pageSummaryComponents: () => t("chat-triggers", "page_summary_components", "[components]"),
+    /** [link buttons] */
+    pageSummaryComponents: () => t("chat-triggers", "page_summary_components", "[link buttons]"),
     /** [{count} embed] */
     pageSummaryEmbedsOne: (p: { count: P }) => t("chat-triggers", "page_summary_embeds_one", "[{count} embed]", p),
     /** [{count} embeds] */
@@ -4757,8 +4749,8 @@ export const m = {
     pageTemplateEmbed: () => t("chat-triggers", "page_template_embed", "Rich Embeds"),
     /** Welcome to the server! */
     pageTemplateEmbedContent: () => t("chat-triggers", "page_template_embed_content", "Welcome to the server!"),
-    /** Rich embeds with images, fields, and components */
-    pageTemplateEmbedDesc: () => t("chat-triggers", "page_template_embed_desc", "Rich embeds with images, fields, and components"),
+    /** Rich embeds with images, fields, and link buttons */
+    pageTemplateEmbedDesc: () => t("chat-triggers", "page_template_embed_desc", "Rich embeds with images, fields, and link buttons"),
     /** Thanks for joining %server.name%! */
     pageTemplateEmbedDescription: () => t("chat-triggers", "page_template_embed_description", "Thanks for joining %server.name%!"),
     /** Enjoy your stay! */
@@ -4777,12 +4769,6 @@ export const m = {
     pageTemplateSimpleDesc: () => t("chat-triggers", "page_template_simple_desc", "Bot says X when users type Y"),
     /** Hello there! 👋 */
     pageTemplateSimpleResponse: () => t("chat-triggers", "page_template_simple_response", "Hello there! 👋"),
-    /** Get server information */
-    pageTemplateSlashCommandDescription: () => t("chat-triggers", "page_template_slash_command_description", "Get server information"),
-    /** Create custom slash commands */
-    pageTemplateSlashDesc: () => t("chat-triggers", "page_template_slash_desc", "Create custom slash commands"),
-    /** Server information: %server.name% */
-    pageTemplateSlashResponse: () => t("chat-triggers", "page_template_slash_response", "Server information: %server.name%"),
     /** Or choose a template: */
     pageTemplatesHeading: () => t("chat-triggers", "page_templates_heading", "Or choose a template:"),
     /** Matched, but blocked: {blocker} */

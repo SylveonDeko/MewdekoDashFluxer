@@ -66,19 +66,11 @@
    */
   const ChatTriggerType = {
     Message: 1,
-    Interaction: 2,
-    Button: 4,
     Reactions: 8,
     ReactionsRemoved: 16,
     Event: 32
   };
 
-  const CtApplicationCommandType = {
-    None: 0,
-    Slash: 1,
-    Message: 2,
-    User: 3,
-  };
 
   /**
    * Defaults for the settings shared with the editor panel, so a trigger can be fully configured
@@ -123,8 +115,6 @@
     grantedRoles: string[] | string | null;
     removedRoles: string[] | string | null;
     validTriggerTypesMessage: boolean;
-    validTriggerTypesInteraction: boolean;
-    validTriggerTypesButton: boolean;
     validTriggerTypesReactions: boolean;
     validTriggerTypesReactionsRemoved: boolean;
   } = $state({
@@ -135,8 +125,6 @@
     isRegex: false,
     isValidRegex: true,
     validTriggerTypesMessage: true,
-    validTriggerTypesInteraction: false,
-    validTriggerTypesButton: false,
     validTriggerTypesReactions: false,
     validTriggerTypesReactionsRemoved: false,
     // Initialize other properties with sensible defaults
@@ -147,7 +135,6 @@
     allowTarget: false,
     noRespond: false,
     ownerOnly: false,
-    applicationCommandType: CtApplicationCommandType.None,
     prefixType: RequirePrefixType.None,
     roleGrantType: CtRoleGrantType.Sender,
     ...newTriggerDefaults()
@@ -223,8 +210,6 @@
           isValidRegex: trigger.isRegex && trigger.trigger ? validateRegex(trigger.trigger) : true,
           // Add frontend-only boolean properties for trigger types
           validTriggerTypesMessage: !!(trigger.validTriggerTypes & ChatTriggerType.Message),
-          validTriggerTypesInteraction: !!(trigger.validTriggerTypes & ChatTriggerType.Interaction),
-          validTriggerTypesButton: !!(trigger.validTriggerTypes & ChatTriggerType.Button),
           validTriggerTypesReactions: !!(trigger.validTriggerTypes & ChatTriggerType.Reactions),
           validTriggerTypesReactionsRemoved: !!(trigger.validTriggerTypes & ChatTriggerType.ReactionsRemoved)
         } as any;
@@ -281,8 +266,6 @@
       // Convert boolean trigger types to bitwise integer
       let validTriggerTypes = 0;
       if (newTrigger.validTriggerTypesMessage) validTriggerTypes |= ChatTriggerType.Message;
-      if (newTrigger.validTriggerTypesInteraction) validTriggerTypes |= ChatTriggerType.Interaction;
-      if (newTrigger.validTriggerTypesButton) validTriggerTypes |= ChatTriggerType.Button;
       if (newTrigger.validTriggerTypesReactions) validTriggerTypes |= ChatTriggerType.Reactions;
       if (newTrigger.validTriggerTypesReactionsRemoved) validTriggerTypes |= ChatTriggerType.ReactionsRemoved;
 
@@ -315,8 +298,6 @@
         isRegex: false,
         isValidRegex: true,
         validTriggerTypesMessage: true,
-        validTriggerTypesInteraction: false,
-        validTriggerTypesButton: false,
         validTriggerTypesReactions: false,
         validTriggerTypesReactionsRemoved: false,
         ...newTriggerDefaults(),
@@ -327,7 +308,6 @@
         allowTarget: false,
         noRespond: false,
         ownerOnly: false,
-        applicationCommandType: CtApplicationCommandType.None,
         prefixType: RequirePrefixType.None,
         roleGrantType: CtRoleGrantType.Sender
       };
@@ -368,8 +348,6 @@
       if (trigger.validTriggerTypesMessage !== undefined) {
         validTriggerTypes = 0;
         if (trigger.validTriggerTypesMessage) validTriggerTypes |= ChatTriggerType.Message;
-        if (trigger.validTriggerTypesInteraction) validTriggerTypes |= ChatTriggerType.Interaction;
-        if (trigger.validTriggerTypesButton) validTriggerTypes |= ChatTriggerType.Button;
         if (trigger.validTriggerTypesReactions) validTriggerTypes |= ChatTriggerType.Reactions;
         if (trigger.validTriggerTypesReactionsRemoved) validTriggerTypes |= ChatTriggerType.ReactionsRemoved;
       }
@@ -491,7 +469,6 @@
       "prefixType",
       "roleGrantType",
       "validTriggerTypes",
-      "applicationCommandType",
     ].includes(key);
   }
 
@@ -507,8 +484,6 @@
         return CtRoleGrantType;
       case "validTriggerTypes":
         return ChatTriggerType;
-      case "applicationCommandType":
-        return CtApplicationCommandType;
       default:
         return {};
     }
@@ -917,22 +892,7 @@
         newTrigger.trigger = "getrole";
         newTrigger.response = { content: m.chatTriggers.pageTemplateRoleResponse() };
         newTrigger.validTriggerTypesMessage = true;
-        newTrigger.validTriggerTypesInteraction = false;
-        newTrigger.validTriggerTypesButton = false;
         newTrigger.validTriggerTypesReactions = false;
-        break;
-      case 'slash':
-        activeTab = "advanced";
-        newTrigger.trigger = "info";
-        newTrigger.response = { content: m.chatTriggers.pageTemplateSlashResponse() };
-        newTrigger.validTriggerTypesMessage = false;
-        newTrigger.validTriggerTypesInteraction = true;
-        newTrigger.validTriggerTypesButton = false;
-        newTrigger.validTriggerTypesReactions = false;
-        // Set application command properties for slash command
-        newTrigger.applicationCommandType = CtApplicationCommandType.Slash;
-        newTrigger.applicationCommandName = "info";
-        newTrigger.applicationCommandDescription = m.chatTriggers.pageTemplateSlashCommandDescription();
         break;
       case 'embed':
         activeTab = "advanced";
@@ -954,7 +914,7 @@
         newTrigger.validTriggerTypesMessage = true;
         break;
     }
-    announceAction(m.chatTriggers.pageAnnounceTemplateApplied({ template: templateType === 'simple' ? m.chatTriggers.pageTemplateSimple() : templateType === 'role' ? m.chatTriggers.pageTemplateRole() : templateType === 'slash' ? m.common.slashCommands() : m.chatTriggers.pageTemplateEmbed() }));
+    announceAction(m.chatTriggers.pageAnnounceTemplateApplied({ template: templateType === 'simple' ? m.chatTriggers.pageTemplateSimple() : templateType === 'role' ? m.chatTriggers.pageTemplateRole() : m.chatTriggers.pageTemplateEmbed() }));
   }
   
   // Validation functions
@@ -967,19 +927,10 @@
     
     // If no trigger types are selected, default to message
     if (!newTrigger.validTriggerTypesMessage &&
-        !newTrigger.validTriggerTypesInteraction &&
-        !newTrigger.validTriggerTypesButton &&
         !newTrigger.validTriggerTypesReactions &&
         !newTrigger.validTriggerTypesReactionsRemoved) {
       newTrigger.validTriggerTypesMessage = true;
       announceAction(m.chatTriggers.pageAnnounceMessageEnabled());
-    }
-    
-    // Slash commands require interaction trigger type
-    if (newTrigger.applicationCommandType === CtApplicationCommandType.Slash && 
-        !newTrigger.validTriggerTypesInteraction) {
-      newTrigger.validTriggerTypesInteraction = true;
-      announceAction(m.chatTriggers.pageAnnounceInteractionEnabled());
     }
     
     // Reaction triggers should use emoji-like patterns
@@ -1185,7 +1136,7 @@
             {m.chatTriggers.pageTemplatesHeading()}
           </h3>
           
-          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
             <button
               class="template-card p-4 rounded-xl border-2 transition-all duration-200 text-left hover:scale-[1.02] focus:scale-105"
               style="border-color: {colors.primary}30; background: linear-gradient(135deg, {colors.primary}10, {colors.secondary}10);"
@@ -1215,22 +1166,6 @@
               </div>
               <p id="template-role-desc" class="text-sm" style="color: {colors.muted}">
                 {m.chatTriggers.pageTemplateRoleDesc()}
-              </p>
-            </button>
-
-            <button
-              class="template-card p-4 rounded-xl border-2 transition-all duration-200 text-left hover:scale-[1.02] focus:scale-105"
-              style="border-color: {colors.accent}30; background: linear-gradient(135deg, {colors.accent}15, {colors.secondary}10);"
-              onclick={() => useTemplate('slash')}
-
-              aria-describedby="template-slash-desc"
-            >
-              <div class="flex items-center gap-3 mb-2">
-                <i class="fa-utility-duo fa-regular fa-code" style="--fa-primary-color: {colors.accent}; --fa-secondary-color: {colors.primary}; font-size: 20px;"></i>
-                <span class="font-medium" style="color: {colors.text}">{m.common.slashCommands()}</span>
-              </div>
-              <p id="template-slash-desc" class="text-sm" style="color: {colors.muted}">
-                {m.chatTriggers.pageTemplateSlashDesc()}
               </p>
             </button>
 
@@ -1743,36 +1678,6 @@
                        style="background: {newTrigger.validTriggerTypesMessage ? colors.primary : `${colors.primary}20`};">
                   </div>
                   <span style="color: {colors.text}">{m.chatTriggers.pageAdvancedTypeMessage()}</span>
-                </label>
-
-                <label class="flex items-center gap-3 p-3 rounded-lg cursor-pointer" style="background: {colors.primary}08;">
-                  <input type="checkbox" 
-                         bind:checked={newTrigger.validTriggerTypesInteraction}
-                         onchange={validateTriggerOptions}
-                         class="sr-only peer" />
-                  <div class="w-11 h-6 rounded-full peer-focus:ring-2 
-                            after:content-[''] after:absolute after:top-[2px]
-                            after:left-[2px] after:bg-white after:rounded-full
-                            after:h-5 after:w-5 after:transition-all
-                            peer-checked:after:translate-x-full relative"
-                       style="background: {newTrigger.validTriggerTypesInteraction ? colors.primary : `${colors.primary}20`};">
-                  </div>
-                  <span style="color: {colors.text}">{m.chatTriggers.pageAdvancedTypeInteraction()}</span>
-                </label>
-
-                <label class="flex items-center gap-3 p-3 rounded-lg cursor-pointer" style="background: {colors.primary}08;">
-                  <input type="checkbox" 
-                         bind:checked={newTrigger.validTriggerTypesButton}
-                         onchange={validateTriggerOptions}
-                         class="sr-only peer" />
-                  <div class="w-11 h-6 rounded-full peer-focus:ring-2 
-                            after:content-[''] after:absolute after:top-[2px]
-                            after:left-[2px] after:bg-white after:rounded-full
-                            after:h-5 after:w-5 after:transition-all
-                            peer-checked:after:translate-x-full relative"
-                       style="background: {newTrigger.validTriggerTypesButton ? colors.primary : `${colors.primary}20`};">
-                  </div>
-                  <span style="color: {colors.text}">{m.chatTriggers.pageAdvancedTypeButton()}</span>
                 </label>
 
                 <label class="flex items-center gap-3 p-3 rounded-lg cursor-pointer" style="background: {colors.primary}08;">

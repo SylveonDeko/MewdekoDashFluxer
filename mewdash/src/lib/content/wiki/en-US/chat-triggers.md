@@ -1,7 +1,7 @@
 ---
 title: Triggers
 slug: chat-triggers
-summary: Automatic responses to messages, reactions, slash commands and bot events, with conditions, costs, counters, role grants and a full placeholder set.
+summary: Automatic responses to messages, reactions and bot events, with conditions, costs, counters, role grants and a full placeholder set.
 icon: fa-comments
 category: Actions
 dashboard: /dashboard/chat-triggers
@@ -14,7 +14,7 @@ related: [administration, xp, currency, tickets, giveaways]
 
 A trigger is a piece of text the bot watches for and a response it sends when it sees it. In the simplest form, a member types `hello` and the bot replies `hi there`. From there a trigger can match anywhere in a message or by regular expression, respond with an embed, react with emoji, send the reply as a DM, delete the member's message, grant or remove roles, post a copy to another channel or webhook, and run a second trigger when it finishes.
 
-Triggers do not have to be messages. The same trigger can be registered as a slash, message or user context command, fire when someone adds or removes a specific reaction, or fire on a bot event such as a level up, a member joining, a boost starting, a ticket opening or a giveaway being won.
+Triggers do not have to be messages. The same trigger can fire when someone adds or removes a specific reaction, or fire on a bot event such as a level up, a member joining, a boost starting, a ticket opening or a giveaway being won.
 
 Each trigger carries its own conditions: a cooldown per user, channel or server, a required XP level, a currency cost or reward, active hours and days, an expiry date, a use limit, a minimum account age or time in the server, and a counter that has to be within a range. If a condition fails the trigger stays quiet, or shows a message you wrote. The dashboard tester tells you exactly which rule would block a sample message.
 
@@ -37,8 +37,6 @@ A trigger has a set of enabled types. A type controls what can fire it. Message 
 | Type | Fires when |
 | --- | --- |
 | Message | A message matches the trigger text |
-| Interaction | Someone runs the slash, message or user command registered for it |
-| Button | A button component whose ID matches the trigger is pressed |
 | Reactions | Someone adds the trigger emoji to a message |
 | ReactionsRemoved | Someone removes the trigger emoji from a message |
 | Event | One of the bot events below happens |
@@ -63,10 +61,6 @@ A **prefix requirement** decides whether the message must start with a prefix be
 | A custom prefix | Must start with the prefix set by `ctprefix` |
 
 If several triggers match one message, one of them is picked at random. Messages from bots and webhooks are ignored unless a trigger has **Bots only** (`ctallowbots`) on, and such a trigger then responds only to bot messages. The bot never responds to its own messages.
-
-### Interaction triggers
-
-`setctintertype` registers the trigger as a Slash, Message or User application command. `setctintername` and `setctinterdesc` set its name and description; names must follow Discord's command naming rules. `ctinterephemeral` makes the reply visible only to the person who ran it. `ctintererrors` lists why registration failed, such as duplicate names or too many subcommands.
 
 ### Reaction triggers
 
@@ -94,7 +88,7 @@ The response goes to the channel set with `cteventchannel`, or to the channel wh
 
 ## Responses
 
-The primary response is the text given when the trigger is created. It goes through the embed parser, so it can be plain text, an embed, several embeds, or components built in the dashboard's embed editor. Extra responses can be added with `ctaddresponse`, and the **Response mode** decides which are sent:
+The primary response is the text given when the trigger is created. It goes through the embed parser, so it can be plain text, an embed, several embeds, or link buttons built in the dashboard's embed editor. Extra responses can be added with `ctaddresponse`, and the **Response mode** decides which are sent:
 
 | Mode | Behaviour |
 | --- | --- |
@@ -274,11 +268,6 @@ Run these with your server's prefix (`.` unless you changed it). Trigger IDs are
 | `chattriggerrolegranttype <id> <type>` | `ctrolegranttype`, `ctrgt` | Administrator | `Sender`, `Mentioned` or `Both` |
 | `chattriggerscrosspostchannel <id> <#channel>` | `ctcpch`, `ctcpchannel`, `ctcrosspostchannel`, `ctcrosspostch` | Administrator | Crosspost to a channel |
 | `chattriggerscrosspostwebhook <id> <url>` | `ctcpwh`, `ctcpwebhook`, `ctcrosspostwebhook`, `ctcrosspostwh` | Administrator | Crosspost through a webhook |
-| `setctintertype <id> <type>` | `ctitype`, `ctintertype` | Administrator | `None`, `Slash`, `Message` or `User` |
-| `setctintername <id> <name>` | `ctiname`, `ctrealname` | Administrator | Application command name |
-| `setctinterdesc <id> <description>` | `ctidesc`, `ctinterdesc` | Administrator | Application command description |
-| `ctinterephemeral <id> <true or false>` | `ctieph` | Administrator | Ephemeral interaction reply |
-| `ctintererrors` | `ctierrors`, `ctie` | Administrator | Show command registration errors |
 | `ctevent <id> <event>` | `chattriggerevent` | Administrator | Fire on an event, or `None` to stop |
 | `cteventchannel <id> [#channel]` | `chattriggereventchannel` | Administrator | Channel for event responses |
 | `ctcooldown <id> <seconds> [scope]` | `chattriggercooldown` | Administrator | Per-trigger cooldown |
@@ -317,6 +306,5 @@ Run these with your server's prefix (`.` unless you changed it). Trigger IDs are
 - Cooldowns live in memory and reset when the bot restarts. Use limits and expiry are stored and survive restarts.
 - Round robin order is shared by everyone in the server, not tracked per member.
 - The permission system's entries for the module `ActualChatTriggers` and any `permoverride` for the trigger text are checked before the trigger's own conditions.
-- Interaction triggers register real application commands, so Discord's limits on command counts and names apply. Check `ctintererrors` when one does not show up.
 - Reactions on the response are paced one per second, so six emoji take six seconds to appear.
 - Event triggers for joins, leaves, voice and boosts silently do nothing until you set **Respond in**.
