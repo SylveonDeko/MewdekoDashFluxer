@@ -28,9 +28,22 @@
     returnParams?: Record<string, string>;
     /** Called after a server was moved over. */
     onmigrated?: () => void;
+    /** Whether a server has been moved over, before or during this visit. */
+    migrated?: boolean;
   }
 
-  let { guildId, compact = false, returnParams = {}, onmigrated }: Props = $props();
+  let {
+    guildId,
+    compact = false,
+    returnParams = {},
+    onmigrated,
+    migrated = $bindable(false)
+  }: Props = $props();
+
+  const frame = $derived(compact ? "" : "rounded-2xl border p-6");
+  const frameStyle = $derived(
+    compact ? "" : `background: ${$colorStore.primary}05; border-color: ${$colorStore.primary}30;`
+  );
 
   type Step = "connect" | "servers" | "exporting" | "preview" | "applying" | "done";
 
@@ -119,6 +132,7 @@
   async function loadStatus() {
     try {
       status = await migrationApi.getStatus(guildId);
+      if (status?.migrated) migrated = true;
     } catch (err) {
       logger.error("Failed to load migration status:", err);
       status = null;
@@ -285,6 +299,7 @@
     try {
       result = await waitForApply();
       step = "done";
+      migrated = true;
       onmigrated?.();
       loadStatus();
     } catch (err) {
@@ -367,8 +382,8 @@
   {/if}
 
   {#if flowVisible && step === "connect"}
-    <section class="rounded-2xl border p-6 space-y-4" in:fly={{ y: 10, duration: 200 }}
-             style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}30;">
+    <section class="{frame} space-y-4" in:fly={{ y: 10, duration: 200 }}
+             style={frameStyle}>
       <h3 class="text-lg font-bold flex items-center gap-2" style="color: {$colorStore.text}">
         <i class="fa-brands fa-discord" style="color: {$colorStore.primary};" aria-hidden="true"></i>
         {m.migration.connectTitle()}
@@ -390,8 +405,8 @@
   {/if}
 
   {#if flowVisible && step === "servers"}
-    <section class="rounded-2xl border p-6 space-y-4" in:fly={{ y: 10, duration: 200 }}
-             style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}30;">
+    <section class="{frame} space-y-4" in:fly={{ y: 10, duration: 200 }}
+             style={frameStyle}>
       <div class="flex items-center justify-between gap-3 flex-wrap">
         <h3 class="text-lg font-bold" style="color: {$colorStore.text}">{m.migration.serversTitle()}</h3>
         {#if identity}
@@ -453,8 +468,8 @@
   {/if}
 
   {#if flowVisible && step === "exporting"}
-    <section class="rounded-2xl border p-8 flex flex-col items-center gap-3 text-center" in:fly={{ y: 10, duration: 200 }}
-             style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}30;" aria-live="polite">
+    <section class="{compact ? 'py-8' : 'rounded-2xl border p-8'} flex flex-col items-center gap-3 text-center" in:fly={{ y: 10, duration: 200 }}
+             style={frameStyle} aria-live="polite">
       <i class="fa-solid fa-spinner fa-spin text-2xl" style="color: {$colorStore.primary};" aria-hidden="true"></i>
       <p class="font-medium" style="color: {$colorStore.text}">{m.migration.exportWorking()}</p>
       <p class="text-sm" style="color: {$colorStore.muted}">{m.migration.exportWorkingHint()}</p>
@@ -462,8 +477,8 @@
   {/if}
 
   {#if flowVisible && step === "applying"}
-    <section class="rounded-2xl border p-8 flex flex-col items-center gap-3 text-center" in:fly={{ y: 10, duration: 200 }}
-             style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}30;" aria-live="polite">
+    <section class="{compact ? 'py-8' : 'rounded-2xl border p-8'} flex flex-col items-center gap-3 text-center" in:fly={{ y: 10, duration: 200 }}
+             style={frameStyle} aria-live="polite">
       <i class="fa-solid fa-spinner fa-spin text-2xl" style="color: {$colorStore.primary};" aria-hidden="true"></i>
       <p class="font-medium" style="color: {$colorStore.text}">{m.migration.applyRunning()}</p>
       {#if progress}
@@ -488,8 +503,8 @@
   {/if}
 
   {#if flowVisible && step === "preview" && preview}
-    <section class="rounded-2xl border p-6 space-y-6" in:fly={{ y: 10, duration: 200 }}
-             style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}30;">
+    <section class="{frame} space-y-6" in:fly={{ y: 10, duration: 200 }}
+             style={frameStyle}>
       <div class="flex items-center justify-between gap-3">
         <h3 class="text-lg font-bold" style="color: {$colorStore.text}">
           {m.migration.previewTitle({ name: preview.discordGuildName })}
@@ -524,7 +539,7 @@
           {#if !compact}
             <p class="text-xs" style="color: {$colorStore.muted}">{m.migration.channelsHint()}</p>
           {/if}
-          <ul class="space-y-2 max-h-96 overflow-y-auto pr-1">
+          <ul class="space-y-2 max-h-[32rem] overflow-y-auto pr-1">
             {#each preview.channels as channel (channel.id)}
               {@const paired = channelOverrides[channel.id] ?? channel.fluxerId}
               <li class="p-3 rounded-xl flex flex-col sm:flex-row sm:items-center gap-2"
@@ -558,7 +573,7 @@
           {#if !compact}
             <p class="text-xs" style="color: {$colorStore.muted}">{m.migration.rolesHint()}</p>
           {/if}
-          <ul class="space-y-2 max-h-96 overflow-y-auto pr-1">
+          <ul class="space-y-2 max-h-[32rem] overflow-y-auto pr-1">
             {#each preview.roles as role (role.id)}
               {@const paired = roleOverrides[role.id] ?? role.fluxerId}
               {@const color = roleColor(role.color)}
@@ -632,13 +647,13 @@
   {/if}
 
   {#if step === "done" && result}
-    <section class="rounded-2xl border p-6 space-y-4" in:fly={{ y: 10, duration: 200 }}
-             style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}30;">
+    <section class="{frame} space-y-4" in:fly={{ y: 10, duration: 200 }}
+             style={frameStyle}>
       <h3 class="text-lg font-bold flex items-center gap-2" style="color: {$colorStore.text}">
         <i class="fa-solid fa-circle-check" style="color: {$colorStore.primary};" aria-hidden="true"></i>
         {m.migration.resultTitle()}
       </h3>
-      <dl class="grid grid-cols-2 md:grid-cols-5 gap-3">
+      <dl class="grid grid-cols-1 md:grid-cols-2 gap-3">
         {#each [
           { label: m.migration.resultWritten(), hint: m.migration.resultWrittenHint(), value: result.written },
           { label: m.migration.resultHeld(), hint: m.migration.resultHeldHint(), value: result.held },
@@ -646,10 +661,15 @@
           { label: m.common.failed(), hint: m.migration.resultFailedHint(), value: result.failed },
           { label: m.migration.resultReposted(), hint: m.migration.resultRepostedHint(), value: result.reposted }
         ] as item}
-          <div class="p-3 rounded-xl" style="background: {$colorStore.primary}08; border: 1px solid {$colorStore.primary}20;">
-            <dt class="text-xs font-medium" style="color: {$colorStore.muted}">{item.label}</dt>
-            <dd class="text-xl font-bold" style="color: {$colorStore.text}">{Number(item.value).toLocaleString()}</dd>
-            <dd class="text-xs mt-1" style="color: {$colorStore.muted}">{item.hint}</dd>
+          <div class="p-3 rounded-xl flex items-center gap-4"
+               style="background: {$colorStore.primary}08; border: 1px solid {$colorStore.primary}20;">
+            <dd class="text-2xl font-bold tabular-nums min-w-[5ch] text-right" style="color: {$colorStore.text}">
+              {Number(item.value).toLocaleString()}
+            </dd>
+            <div class="min-w-0">
+              <dt class="text-sm font-semibold" style="color: {$colorStore.text}">{item.label}</dt>
+              <dd class="text-xs" style="color: {$colorStore.muted}">{item.hint}</dd>
+            </div>
           </div>
         {/each}
       </dl>

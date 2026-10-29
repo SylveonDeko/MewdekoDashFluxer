@@ -10641,8 +10641,14 @@ export const m = {
     warningBody: () => t("migration", "warning_body", "Moving replaces the Mewdeko settings of this server for every feature that is in the Discord export. Data your members already have here is kept and added to."),
     /** Current settings will be replaced */
     warningTitle: () => t("migration", "warning_title", "Current settings will be replaced"),
+    /** Finish setup */
+    wizardFinish: () => t("migration", "wizard_finish", "Finish setup"),
     /** You can skip this and move your setup later from the dashboard. */
     wizardHint: () => t("migration", "wizard_hint", "You can skip this and move your setup later from the dashboard."),
+    /** Everything you moved is already set up. Finish here, or set up features you didn't use ... */
+    wizardMigratedHint: () => t("migration", "wizard_migrated_hint", "Everything you moved is already set up. Finish here, or set up features you didn't use on Discord."),
+    /** Set up more features */
+    wizardMoreFeatures: () => t("migration", "wizard_more_features", "Set up more features"),
     /** Coming from Discord? */
     wizardStepTitle: () => t("migration", "wizard_step_title", "Coming from Discord?"),
     /** Bring your Mewdeko setup over instead of configuring it again */

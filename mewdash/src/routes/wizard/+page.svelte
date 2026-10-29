@@ -140,6 +140,7 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
   let dataLoading = $state(true);
   let dataError: string | null = $state(null);
   let actionError: string | null = $state(null);
+  let migrated = $state(false);
 
   // Feature states
   type FeatureState = WizardFeatureState;
@@ -1482,6 +1483,20 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
     allEnabledFeatures.filter((id) => !failedFeatures.includes(id))
   );
 
+  async function finishAfterMigration() {
+    try {
+      wizardLoading = true;
+      actionError = null;
+      await wizardApi.completeWizard(BigInt(data.user.id), BigInt(data.guildId), []);
+      goto(`/dashboard?guild=${data.guildId}`);
+    } catch (error: any) {
+      logger.error("Error finishing wizard after migration:", error);
+      actionError = m.wizard.notifyFinishFailed({ error: error?.message || m.common.unknownError() });
+    } finally {
+      wizardLoading = false;
+    }
+  }
+
   // Complete wizard
   async function completeWizard() {
     try {
@@ -2051,14 +2066,17 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
       stepNumber={migrationStep}
       isActive={currentStep === migrationStep}
       icon="fa-solid fa-arrow-right-arrow-left"
-      maxWidth="max-w-3xl"
+      maxWidth="max-w-6xl"
     >
       <div class="space-y-6">
-        <MigrationFlow guildId={BigInt(data.guildId)} compact returnParams={{ resume: "migration" }} />
+        <MigrationFlow guildId={BigInt(data.guildId)} compact returnParams={{ resume: "migration" }}
+                       bind:migrated />
 
-        <p class="text-sm" style="color: {$colorStore.muted}">{m.migration.wizardHint()}</p>
+        <p class="text-sm" style="color: {$colorStore.muted}">
+          {migrated ? m.migration.wizardMigratedHint() : m.migration.wizardHint()}
+        </p>
 
-        <div class="flex items-center justify-between gap-3 pt-6 border-t" style="border-color: {$colorStore.primary}20;">
+        <div class="flex flex-wrap items-center justify-between gap-3 pt-6 border-t" style="border-color: {$colorStore.primary}20;">
           <button
             class="px-4 py-3 rounded-xl font-medium transition-all hover:scale-[1.02] focus:outline-hidden focus:ring-2 focus:ring-offset-2 flex items-center gap-2 min-h-[44px]"
             style="background: {$colorStore.muted}20; color: {$colorStore.muted}; border: 1px solid {$colorStore.muted}30;"
@@ -2068,15 +2086,39 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
             {m.common.back()}
           </button>
 
-          <button
-            class="px-6 py-3 rounded-xl font-medium transition-all hover:scale-[1.02] focus:outline-hidden focus:ring-2 focus:ring-offset-2 flex items-center gap-2 min-h-[44px]"
-            style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
-            onclick={nextStep}
-          >
-            {m.wizard.continue()}
-            <i class="fa-solid fa-arrow-right" style="font-size: 16px;"></i>
-          </button>
+          {#if migrated}
+            <div class="flex flex-wrap items-center gap-3">
+              <button
+                class="px-4 py-3 rounded-xl font-medium transition-all hover:scale-[1.02] focus:outline-hidden focus:ring-2 focus:ring-offset-2 flex items-center gap-2 min-h-[44px]"
+                style="background: {$colorStore.muted}20; color: {$colorStore.text}; border: 1px solid {$colorStore.muted}30;"
+                onclick={nextStep}
+              >
+                {m.migration.wizardMoreFeatures()}
+              </button>
+              <button
+                class="px-6 py-3 rounded-xl font-medium transition-all hover:scale-[1.02] focus:outline-hidden focus:ring-2 focus:ring-offset-2 flex items-center gap-2 min-h-[44px] disabled:opacity-60"
+                style="background: {$colorStore.primary}; color: white;"
+                disabled={wizardLoading}
+                onclick={finishAfterMigration}
+              >
+                {m.migration.wizardFinish()}
+                <i class="fa-solid fa-check" style="font-size: 16px;"></i>
+              </button>
+            </div>
+          {:else}
+            <button
+              class="px-6 py-3 rounded-xl font-medium transition-all hover:scale-[1.02] focus:outline-hidden focus:ring-2 focus:ring-offset-2 flex items-center gap-2 min-h-[44px]"
+              style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
+              onclick={nextStep}
+            >
+              {m.wizard.continue()}
+              <i class="fa-solid fa-arrow-right" style="font-size: 16px;"></i>
+            </button>
+          {/if}
         </div>
+        {#if migrated && actionError}
+          <p class="text-sm" role="alert" style="color: #ef4444;">{actionError}</p>
+        {/if}
       </div>
     </WizardStep>
 

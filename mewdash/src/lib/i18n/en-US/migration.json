@@ -80,7 +80,10 @@
   "unmatched_badge": "Unmatched",
   "warning_body": "Moving replaces the Mewdeko settings of this server for every feature that is in the Discord export. Data your members already have here is kept and added to.",
   "warning_title": "Current settings will be replaced",
+  "wizard_finish": "Finish setup",
   "wizard_hint": "You can skip this and move your setup later from the dashboard.",
+  "wizard_migrated_hint": "Everything you moved is already set up. Finish here, or set up features you didn't use on Discord.",
+  "wizard_more_features": "Set up more features",
   "wizard_step_title": "Coming from Discord?",
   "wizard_subtitle": "Bring your Mewdeko setup over instead of configuring it again"
 }
