@@ -655,7 +655,7 @@
       </h3>
       <dl class="grid grid-cols-1 md:grid-cols-2 gap-3">
         {#each [
-          { label: m.migration.resultWritten(), hint: m.migration.resultWrittenHint(), value: result.written },
+          { label: m.migration.resultWritten(), hint: "", value: result.written },
           { label: m.migration.resultHeld(), hint: m.migration.resultHeldHint(), value: result.held },
           { label: m.migration.resultDropped(), hint: m.migration.resultDroppedHint(), value: result.dropped },
           { label: m.common.failed(), hint: m.migration.resultFailedHint(), value: result.failed },
@@ -668,7 +668,9 @@
             </dd>
             <div class="min-w-0">
               <dt class="text-sm font-semibold" style="color: {$colorStore.text}">{item.label}</dt>
-              <dd class="text-xs" style="color: {$colorStore.muted}">{item.hint}</dd>
+              {#if item.hint}
+                <dd class="text-xs" style="color: {$colorStore.muted}">{item.hint}</dd>
+              {/if}
             </div>
           </div>
         {/each}

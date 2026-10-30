@@ -10483,8 +10483,8 @@ export const m = {
     applyRunning: () => t("migration", "apply_running", "Moving everything over, copying emojis can take a few minutes..."),
     /** You can close this page, the move keeps going. Come back here to see the result. */
     applyRunningHint: () => t("migration", "apply_running_hint", "You can close this page, the move keeps going. Come back here to see the result."),
-    /** Pick the channel in this server that each Discord channel should map to. Channels that ... */
-    channelsHint: () => t("migration", "channels_hint", "Pick the channel in this server that each Discord channel should map to. Channels that could not be matched by name are highlighted."),
+    /** Pick the matching channel for each Discord channel. Unmatched ones are highlighted. */
+    channelsHint: () => t("migration", "channels_hint", "Pick the matching channel for each Discord channel. Unmatched ones are highlighted."),
     /** Replace settings and move */
     confirmButton: () => t("migration", "confirm_button", "Replace settings and move"),
     /** I understand that this replaces the current Mewdeko settings in this server. */
@@ -10495,18 +10495,18 @@ export const m = {
     connectDenied: () => t("migration", "connect_denied", "The Discord sign in was cancelled. Connect again to continue."),
     /** Discord sign in did not work. Try connecting again. */
     connectError: () => t("migration", "connect_error", "Discord sign in did not work. Try connecting again."),
-    /** Sign in with Discord so Mewdeko can see which Discord servers you own or administer. No... */
-    connectHint: () => t("migration", "connect_hint", "Sign in with Discord so Mewdeko can see which Discord servers you own or administer. Nothing is changed on Discord."),
-    /** The Discord sign in is kept for 15 minutes and the Discord access token is discarded ri... */
-    connectKeepNote: () => t("migration", "connect_keep_note", "The Discord sign in is kept for 15 minutes and the Discord access token is discarded right away."),
+    /** Sign in with Discord to see the servers you own or manage. Nothing changes on Discord. */
+    connectHint: () => t("migration", "connect_hint", "Sign in with Discord to see the servers you own or manage. Nothing changes on Discord."),
+    /** The Discord sign in lasts 15 minutes and the access token is discarded right away. */
+    connectKeepNote: () => t("migration", "connect_keep_note", "The Discord sign in lasts 15 minutes and the access token is discarded right away."),
     /** Connect your Discord account */
     connectTitle: () => t("migration", "connect_title", "Connect your Discord account"),
     /** Connected to Discord as {name} */
     connectedAs: (p: { name: P }) => t("migration", "connected_as", "Connected to Discord as {name}", p),
     /** Copy {emojis} emojis and {stickers} stickers this server doesn't have yet */
     copyExpressions: (p: { emojis: P; stickers: P }) => t("migration", "copy_expressions", "Copy {emojis} emojis and {stickers} stickers this server doesn't have yet", p),
-    /** They keep their names, and reaction roles, triggers and messages that used them switch ... */
-    copyExpressionsHint: () => t("migration", "copy_expressions_hint", "They keep their names, and reaction roles, triggers and messages that used them switch to the copies. Mewdeko needs the Create Expressions permission here. Fluxer can't show Lottie stickers, so those stay behind."),
+    /** Anything that used them switches to the copies. Needs the Create Expressions permission... */
+    copyExpressionsHint: () => t("migration", "copy_expressions_hint", "Anything that used them switches to the copies. Needs the Create Expressions permission. Lottie stickers can't be copied."),
     /** Disconnect Discord */
     disconnectButton: () => t("migration", "disconnect_button", "Disconnect Discord"),
     /** Mewdeko on Discord did not answer. Try again in a moment. */
@@ -10529,8 +10529,8 @@ export const m = {
     linkConflict: () => t("migration", "link_conflict", "That Discord account is already linked to another Fluxer account."),
     /** Linking did not work. Try again in a moment. */
     linkFailed: () => t("migration", "link_failed", "Linking did not work. Try again in a moment."),
-    /** Prove your Discord account by signing in with Discord, and the XP, balance, warnings an... */
-    linkHint: () => t("migration", "link_hint", "Prove your Discord account by signing in with Discord, and the XP, balance, warnings and other data you had in Mewdeko servers moves to your Fluxer account."),
+    /** Sign in with Discord to bring your XP, balance, warnings and other Mewdeko data to Fluxer. */
+    linkHint: () => t("migration", "link_hint", "Sign in with Discord to bring your XP, balance, warnings and other Mewdeko data to Fluxer."),
     /** Linked to Discord account {id} */
     linkLinked: (p: { id: P }) => t("migration", "link_linked", "Linked to Discord account {id}", p),
     /** No Discord account linked yet */
@@ -10583,36 +10583,34 @@ export const m = {
     progressStageStickers: () => t("migration", "progress_stage_stickers", "Copying stickers"),
     /** Skipped */
     resultDropped: () => t("migration", "result_dropped", "Skipped"),
-    /** Needed a channel or role this server doesn't have */
-    resultDroppedHint: () => t("migration", "result_dropped_hint", "Needed a channel or role this server doesn't have"),
+    /** Channel or role not on this server */
+    resultDroppedHint: () => t("migration", "result_dropped_hint", "Channel or role not on this server"),
     /** {emojis} emojis and {stickers} stickers were copied. {failed} could not be copied. */
     resultExpressions: (p: { emojis: P; failed: P; stickers: P }) => t("migration", "result_expressions", "{emojis} emojis and {stickers} stickers were copied. {failed} could not be copied.", p),
-    /** Emojis and stickers weren't copied because Mewdeko is missing the Create Expressions pe... */
-    resultExpressionsPermission: () => t("migration", "result_expressions_permission", "Emojis and stickers weren't copied because Mewdeko is missing the Create Expressions permission in this server. Give it the permission and move the server again to copy them."),
-    /** Refused when saving, usually a duplicate */
-    resultFailedHint: () => t("migration", "result_failed_hint", "Refused when saving, usually a duplicate"),
+    /** Emojis and stickers weren't copied. Give Mewdeko the Create Expressions permission and ... */
+    resultExpressionsPermission: () => t("migration", "result_expressions_permission", "Emojis and stickers weren't copied. Give Mewdeko the Create Expressions permission and move the server again."),
+    /** Couldn't be saved */
+    resultFailedHint: () => t("migration", "result_failed_hint", "Couldn't be saved"),
     /** Member records waiting */
     resultHeld: () => t("migration", "result_held", "Member records waiting"),
-    /** XP, balances, warnings and more for members who haven't linked yet */
-    resultHeldHint: () => t("migration", "result_held_hint", "XP, balances, warnings and more for members who haven't linked yet"),
-    /** Members bring their own data over from their profile page with Link Discord. Their XP, ... */
-    resultNext: () => t("migration", "result_next", "Members bring their own data over from their profile page with Link Discord. Their XP, balance, warnings and more arrive as soon as they link."),
+    /** For members who haven't linked yet */
+    resultHeldHint: () => t("migration", "result_held_hint", "For members who haven't linked yet"),
+    /** Members bring their own data over by linking Discord on their profile. */
+    resultNext: () => t("migration", "result_next", "Members bring their own data over by linking Discord on their profile."),
     /** Panels posted again */
     resultReposted: () => t("migration", "result_reposted", "Panels posted again"),
-    /** Ticket panels, role menus and apply panels */
-    resultRepostedHint: () => t("migration", "result_reposted_hint", "Ticket panels, role menus and apply panels"),
+    /** Tickets, role menus and apply panels */
+    resultRepostedHint: () => t("migration", "result_reposted_hint", "Tickets, role menus and apply panels"),
     /** Move another server */
     resultRestart: () => t("migration", "result_restart", "Move another server"),
     /** Your setup has been moved */
     resultTitle: () => t("migration", "result_title", "Your setup has been moved"),
     /** Settings copied */
     resultWritten: () => t("migration", "result_written", "Settings copied"),
-    /** Each greet, trigger, panel, level reward or setting counts once */
-    resultWrittenHint: () => t("migration", "result_written_hint", "Each greet, trigger, panel, level reward or setting counts once"),
     /** Pick the role in this server that each Discord role should map to. */
     rolesHint: () => t("migration", "roles_hint", "Pick the role in this server that each Discord role should map to."),
-    /** No Discord servers found. You need to own a server or have Administrator in it, with Me... */
-    serversEmpty: () => t("migration", "servers_empty", "No Discord servers found. You need to own a server or have Administrator in it, with Mewdeko in it."),
+    /** No Discord servers found. You need to own or administer a server that has Mewdeko. */
+    serversEmpty: () => t("migration", "servers_empty", "No Discord servers found. You need to own or administer a server that has Mewdeko."),
     /** Finding your Discord servers */
     serversLoading: () => t("migration", "servers_loading", "Finding your Discord servers"),
     /** Choose the Discord server to move */
@@ -10637,16 +10635,16 @@ export const m = {
     typeStage: () => t("migration", "type_stage", "Stage"),
     /** Unmatched */
     unmatchedBadge: () => t("migration", "unmatched_badge", "Unmatched"),
-    /** Moving replaces the Mewdeko settings of this server for every feature that is in the Di... */
-    warningBody: () => t("migration", "warning_body", "Moving replaces the Mewdeko settings of this server for every feature that is in the Discord export. Data your members already have here is kept and added to."),
+    /** Replaces this server's settings for every feature in the export. Member data already he... */
+    warningBody: () => t("migration", "warning_body", "Replaces this server's settings for every feature in the export. Member data already here is kept."),
     /** Current settings will be replaced */
     warningTitle: () => t("migration", "warning_title", "Current settings will be replaced"),
     /** Finish setup */
     wizardFinish: () => t("migration", "wizard_finish", "Finish setup"),
     /** You can skip this and move your setup later from the dashboard. */
     wizardHint: () => t("migration", "wizard_hint", "You can skip this and move your setup later from the dashboard."),
-    /** Everything you moved is already set up. Finish here, or set up features you didn't use ... */
-    wizardMigratedHint: () => t("migration", "wizard_migrated_hint", "Everything you moved is already set up. Finish here, or set up features you didn't use on Discord."),
+    /** Your moved setup is ready. Finish, or set up features you didn't use on Discord. */
+    wizardMigratedHint: () => t("migration", "wizard_migrated_hint", "Your moved setup is ready. Finish, or set up features you didn't use on Discord."),
     /** Set up more features */
     wizardMoreFeatures: () => t("migration", "wizard_more_features", "Set up more features"),
     /** Coming from Discord? */
