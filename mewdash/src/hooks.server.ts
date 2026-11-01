@@ -4,8 +4,9 @@ import { logBackendJwtInit } from "$lib/server/backendJwt";
 import { recordPageView } from "$lib/server/analyticsBeacon";
 import * as Sentry from "@sentry/sveltekit";
 import { sequence } from "@sveltejs/kit/hooks";
-import type { Handle } from "@sveltejs/kit";
+import type { Handle, ServerInit } from "@sveltejs/kit";
 import { resolveLocale, runWithLocale } from "$lib/i18n/server";
+import { resolveFluxerInstance } from "$lib/server/fluxerInstance";
 
 const dsn = env.PUBLIC_SENTRY_DSN;
 
@@ -17,6 +18,10 @@ Sentry.init({
 });
 
 logBackendJwtInit();
+
+export const init: ServerInit = async () => {
+  await resolveFluxerInstance();
+};
 
 /**
  * Dashboard paths the bot owner tools lived under before they moved to /owner.

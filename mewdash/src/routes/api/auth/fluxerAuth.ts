@@ -4,6 +4,7 @@ import type { Cookies } from "@sveltejs/kit";
 import CryptoJS from "crypto-js";
 import { logger } from "$lib/logger";
 import { sessionManager } from "$lib/server/redisSession";
+import { fluxerInstance } from "$lib/server/fluxerInstance";
 import { toFluxerUser, type FluxerUser } from "$lib/types/fluxer";
 
 const ACCESS_TOKEN_COOKIE = "fluxer_access_token",
@@ -18,12 +19,9 @@ export const ACCESS_TOKEN_LIFETIME_MS = 604800 * 1000;
 /** How long the refresh token cookie and session cookie are kept (30 days). */
 export const REFRESH_TOKEN_LIFETIME_MS = 30 * 24 * 60 * 60 * 1000;
 
-const DEFAULT_API_URL = "https://api.fluxer.app/v1",
-  DEFAULT_AUTHORIZE_URL = "https://web.fluxer.app/oauth2/authorize";
+export const fluxerApiUrl = (): string => env.FLUXER_API_URL || fluxerInstance().api;
 
-export const fluxerApiUrl = (): string => env.FLUXER_API_URL || DEFAULT_API_URL;
-
-export const fluxerAuthorizeUrl = (): string => env.FLUXER_AUTHORIZE_URL || DEFAULT_AUTHORIZE_URL;
+export const fluxerAuthorizeUrl = (): string => env.FLUXER_AUTHORIZE_URL || `${fluxerInstance().web}/oauth2/authorize`;
 
 export const fluxerScopes = (): string => env.FLUXER_SCOPES || "identify";
 

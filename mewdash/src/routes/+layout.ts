@@ -1,5 +1,6 @@
 import { browser } from "$app/environment";
 import { getLocale, setLocale } from "$lib/i18n";
+import { setFluxerHosts } from "$lib/utils/cdn";
 import type { LayoutLoad } from "./$types";
 
 /**
@@ -7,6 +8,7 @@ import type { LayoutLoad } from "./$types";
  * on the client before the first client render, so hydration produces identical text.
  */
 export const load: LayoutLoad = async ({ data }) => {
+  setFluxerHosts(data.fluxerHosts);
   if (browser && data.locale !== getLocale()) {
     await setLocale(data.locale);
   }

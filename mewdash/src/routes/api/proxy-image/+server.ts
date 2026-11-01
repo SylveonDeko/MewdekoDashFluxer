@@ -1,5 +1,6 @@
 import type { RequestHandler } from "@sveltejs/kit";
 import { logger } from "$lib/logger";
+import { fluxerHosts } from "$lib/server/fluxerInstance";
 
 /**
  * Largest image we are willing to relay, so the proxy cannot be pointed at a huge
@@ -42,9 +43,10 @@ function isAllowed(candidate: string): URL | null {
   if (parsed.protocol !== "https:") return null;
 
   const host = parsed.hostname.toLowerCase();
-  const allowed = ALLOWED_HOSTS.some(
-    (entry) => host === entry || host.endsWith(`.${entry}`)
-  );
+  const { media, static: staticHost } = fluxerHosts();
+  const allowed =
+    ALLOWED_HOSTS.some((entry) => host === entry || host.endsWith(`.${entry}`)) ||
+    [media, staticHost].some((entry) => new URL(entry).hostname.toLowerCase() === host);
 
   return allowed ? parsed : null;
 }
