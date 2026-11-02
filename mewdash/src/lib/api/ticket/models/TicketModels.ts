@@ -52,6 +52,7 @@ export interface PanelButton {
   channelNameFormat: string;
   categoryId: bigint | null;
   archiveCategoryId: bigint | null;
+  threadChannelId?: bigint | null;
   supportRoles: bigint[];
   viewerRoles: bigint[];
   autoCloseTime: string | null;

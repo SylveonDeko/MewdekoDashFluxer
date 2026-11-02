@@ -27,6 +27,7 @@
     newSelectMenu: any;
     textChannels: any[];
     categories: any[];
+    threadChannels: any[];
     availableRoles: any[];
     priorities: any[];
     guildEmojis: any[];
@@ -74,6 +75,7 @@
     newSelectMenu = $bindable(),
     textChannels,
     categories,
+    threadChannels,
     availableRoles,
     priorities,
     guildEmojis,
@@ -141,6 +143,7 @@
     emoji: null as string | null,
     categoryId: null as string | null,
     archiveCategoryId: null as string | null,
+    threadChannelId: null as string | null,
     supportRoles: [] as string[],
     viewerRoles: [] as string[],
     channelNameFormat: "ticket-{username}-{id}",
@@ -238,6 +241,7 @@
       ...fullButton,
       categoryId: fullButton.categoryId?.toString() || null,
       archiveCategoryId: fullButton.archiveCategoryId?.toString() || null,
+      threadChannelId: fullButton.threadChannelId?.toString() || null,
       supportRoles: fullButton.supportRoles?.map((r: any) => r.toString()) || [],
       viewerRoles: fullButton.viewerRoles?.map((r: any) => r.toString()) || [],
       allowedPriorities: fullButton.allowedPriorities || [],
@@ -311,6 +315,7 @@
         emoji: null,
         categoryId: null,
         archiveCategoryId: null,
+        threadChannelId: null,
         supportRoles: [],
         viewerRoles: [],
         channelNameFormat: "ticket-{username}-{id}",
@@ -345,6 +350,7 @@
       emoji: null,
       categoryId: null,
       archiveCategoryId: null,
+      threadChannelId: null,
       supportRoles: [],
       viewerRoles: [],
       channelNameFormat: "ticket-{username}-{id}",
@@ -377,6 +383,7 @@
       ...fullOption,
       categoryId: fullOption.categoryId?.toString() || null,
       archiveCategoryId: fullOption.archiveCategoryId?.toString() || null,
+      threadChannelId: fullOption.threadChannelId?.toString() || null,
       supportRoles: fullOption.supportRoles?.map((r: any) => r.toString()) || [],
       viewerRoles: fullOption.viewerRoles?.map((r: any) => r.toString()) || [],
       allowedPriorities: fullOption.allowedPriorities || [],
@@ -723,6 +730,17 @@
                     />
                   </div>
                   <div>
+                    <label for="f-PanelsTab-thread-channel-new-button" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.tickets.panelsThreadChannel()}</label>
+                    <DiscordSelector id="f-PanelsTab-thread-channel-new-button"
+                      type="channel"
+                      options={threadChannels}
+                      bind:selected={newButton.threadChannelId}
+                      placeholder={m.common.pickChannelPlaceholder()}
+                      multiple={false}
+                    />
+                    <p class="text-xs mt-1" style="color: {$colorStore.muted}">{m.tickets.panelsThreadChannelHint()}</p>
+                  </div>
+                  <div>
                     <label for="f-PanelsTab-support-roles-749" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.common.supportRoles()}</label>
                     <DiscordSelector id="f-PanelsTab-support-roles-749"
                       type="role"
@@ -1031,6 +1049,17 @@
                             placeholder={m.common.selectCategoryPlaceholder()}
                             multiple={false}
                           />
+                        </div>
+                        <div>
+                          <label for="f-PanelsTab-thread-channel-edit-button" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.tickets.panelsThreadChannel()}</label>
+                          <DiscordSelector id="f-PanelsTab-thread-channel-edit-button"
+                            type="channel"
+                            options={threadChannels}
+                            bind:selected={editingButtonData.threadChannelId}
+                            placeholder={m.common.pickChannelPlaceholder()}
+                            multiple={false}
+                          />
+                          <p class="text-xs mt-1" style="color: {$colorStore.muted}">{m.tickets.panelsThreadChannelHint()}</p>
                         </div>
                         <div>
                           <label for="f-PanelsTab-support-roles-1078" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.common.supportRoles()}</label>
@@ -1507,6 +1536,17 @@
                                   />
                                 </div>
                                 <div>
+                                  <label for="f-PanelsTab-thread-channel-edit-option" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.tickets.panelsThreadChannel()}</label>
+                                  <DiscordSelector id="f-PanelsTab-thread-channel-edit-option"
+                                    type="channel"
+                                    options={threadChannels}
+                                    bind:selected={editingOptionData.threadChannelId}
+                                    placeholder={m.common.pickChannelPlaceholder()}
+                                    multiple={false}
+                                  />
+                                  <p class="text-xs mt-1" style="color: {$colorStore.muted}">{m.tickets.panelsThreadChannelHint()}</p>
+                                </div>
+                                <div>
                                   <label for="f-PanelsTab-support-roles-1565" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.common.supportRoles()}</label>
                                   <DiscordSelector id="f-PanelsTab-support-roles-1565"
                                     type="role"
@@ -1826,6 +1866,17 @@
                             placeholder={m.common.selectCategoryPlaceholder()}
                             multiple={false}
                           />
+                        </div>
+                        <div>
+                          <label for="f-PanelsTab-thread-channel-new-option" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.tickets.panelsThreadChannel()}</label>
+                          <DiscordSelector id="f-PanelsTab-thread-channel-new-option"
+                            type="channel"
+                            options={threadChannels}
+                            bind:selected={newOption.threadChannelId}
+                            placeholder={m.common.pickChannelPlaceholder()}
+                            multiple={false}
+                          />
+                          <p class="text-xs mt-1" style="color: {$colorStore.muted}">{m.tickets.panelsThreadChannelHint()}</p>
                         </div>
                         <div>
                           <label for="f-PanelsTab-support-roles-1894" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.common.supportRoles()}</label>
