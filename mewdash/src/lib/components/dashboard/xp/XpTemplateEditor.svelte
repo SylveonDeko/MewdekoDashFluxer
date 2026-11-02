@@ -1,5 +1,6 @@
 <!-- lib/components/dashboard/xp/XpTemplateEditor.svelte -->
 <script lang="ts">
+  import { corsSafeImageUrl } from "$lib/utils/corsImage";
   import { m } from "$lib/i18n";
   import { onDestroy, onMount } from "svelte";
   import { colorStore } from "$lib/stores/colorStore";
@@ -441,7 +442,7 @@
       loadingCanvasImages.delete(url);
       redrawCanvas();
     };
-    img.src = url;
+    img.src = corsSafeImageUrl(url);
 
     return null;
   }

@@ -1,5 +1,6 @@
 <!-- routes/dashboard/xp/+page.svelte -->
 <script lang="ts">
+  import { corsSafeImageUrl } from "$lib/utils/corsImage";
   import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
   import { onDestroy, onMount } from "svelte";
@@ -912,7 +913,7 @@
         } else if (element.type === "image") {
           let image = customPreviewImages.get(element.url);
           if (!image && element.url) {
-            image = new Image(); image.crossOrigin = "anonymous"; image.onload = renderPreview; image.src = element.url; customPreviewImages.set(element.url, image);
+            image = new Image(); image.crossOrigin = "anonymous"; image.onload = renderPreview; image.src = corsSafeImageUrl(element.url); customPreviewImages.set(element.url, image);
           }
           if (image?.complete) ctx.drawImage(image, element.x, element.y, element.width, element.height);
         } else if (element.type === "progress") {
@@ -1085,7 +1086,7 @@
                     avatar = new Image();
                     avatar.crossOrigin = "anonymous";
                     avatar.onload = renderPreview;
-                    avatar.src = avatarUrl;
+                    avatar.src = corsSafeImageUrl(avatarUrl);
                     customPreviewImages.set(avatarUrl, avatar);
                 }
                 if (avatar.complete && avatar.naturalWidth > 0) {

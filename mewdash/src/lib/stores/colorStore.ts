@@ -4,6 +4,7 @@ import { safeLocalStorage } from "$lib/safeStorage";
 import { themeStore } from "$lib/stores/themeStore";
 // @ts-ignore - ColorThief doesn't have proper types
 import ColorThief from "colorthief";
+import { corsSafeImageUrl } from "$lib/utils/corsImage";
 
 // Types
 type RGB = [number, number, number];
@@ -594,7 +595,7 @@ function createColorStore() {
       const loadImage = new Promise<void>((resolve, reject) => {
         img.onload = () => resolve();
         img.onerror = () => reject(new Error("Failed to load image"));
-        img.src = imageUrl;
+        img.src = corsSafeImageUrl(imageUrl);
       });
 
       const timeout = new Promise<never>((_, reject) => {
