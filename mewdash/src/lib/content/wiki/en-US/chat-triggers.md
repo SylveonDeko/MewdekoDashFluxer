@@ -178,6 +178,7 @@ A response can use the general placeholder set (user, server, channel, bot and t
 | `%regex.1%`, `%regex.name%` | Capture groups of a regex trigger |
 | `%img:tag%` | A random Imgur image for that tag |
 | `%rng%` | A random number from the general placeholder set |
+| `%choose{a\|b\|c}%` | One of the options at random, picked fresh each time. Options can hold `%` and other placeholders, and `\\|` is a literal pipe |
 | `%xp.level%`, `%xp.rank%`, `%xp.total%`, `%xp.current%`, `%xp.required%`, `%xp.remaining%`, `%xp.bonus%` | The member's XP stats |
 | `%targetuser.xp.level%`, `%targetuser.xp.rank%`, `%targetuser.xp.total%` | The mentioned person's XP stats |
 | `%currency.balance%`, `%currency.bank%`, `%currency.total%`, `%currency.emote%` | The member's currency |
