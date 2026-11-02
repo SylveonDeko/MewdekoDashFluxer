@@ -86,10 +86,10 @@ export async function callBot<T = unknown>(
  */
 export async function userAdministersGuild(event: RequestEvent, guildId: string): Promise<boolean> {
   const user = event.locals.user;
-  if (!user) return false;
+  if (!user || !/^\d{1,20}$/.test(guildId)) return false;
   const response = await callBot<Array<{ id: unknown }>>(
     event,
-    `ClientOperations/mutualguilds/${user.id}?adminOnly=true`,
+    `ClientOperations/mutualguilds/${user.id}?adminOnly=true&candidates=${guildId}`,
     "GET",
   );
   if (!response.ok || !Array.isArray(response.data)) return false;

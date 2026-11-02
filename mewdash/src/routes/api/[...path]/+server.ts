@@ -11,6 +11,7 @@ import {
 } from "$lib/server/instances";
 import { mintBackendToken } from "$lib/server/backendJwt";
 import type { FluxerUser } from "$lib/types/fluxer";
+import { userGuildIds } from "$lib/server/userGuilds";
 
 /**
  * Resolved backend target plus the dashboard user behind the request, if one
@@ -227,14 +228,26 @@ const blockedPath = (path: string | undefined) => {
     : null;
 };
 
-export const GET: RequestHandler = async ({ url, params, request, locals }) => {
+const MUTUAL_GUILDS_PATH = /^ClientOperations\/mutualguilds\/(\d{1,20})$/i;
+
+export const GET: RequestHandler = async (event) => {
+  const { url, params, request, locals } = event;
   const blocked = blockedPath(params.path);
   if (blocked) return blocked;
 
   const resolved = await resolveBackend(request, locals);
   if (resolved instanceof Response) return resolved;
 
-  const finalUrl = `${resolved.backend}/${params.path}${url.search || ""}`;
+  const search = new URLSearchParams(url.search);
+  search.delete("candidates");
+  const mutual = MUTUAL_GUILDS_PATH.exec(normalisePath(params.path ?? "") ?? "");
+  if (mutual && resolved.user && String(resolved.user.id) === mutual[1]) {
+    const ids = await userGuildIds(event, String(resolved.user.id));
+    if (ids?.length) search.set("candidates", ids.join(","));
+  }
+
+  const query = search.toString();
+  const finalUrl = `${resolved.backend}/${params.path}${query ? `?${query}` : ""}`;
 
   return makeRequest(finalUrl, "GET", botHeaders(resolved.user));
 };

@@ -4,6 +4,8 @@ import { logger } from "$lib/logger";
 import { defaultInstanceURL, resolveInstanceURL } from "$lib/server/instances";
 import { mintBackendToken } from "$lib/server/backendJwt";
 import type { LayoutServerLoad } from "./$types";
+import type { RequestEvent } from "@sveltejs/kit";
+import { userGuildIds } from "$lib/server/userGuilds";
 
 /**
  * Resolves which bot instance to ask, preferring the one the browser last selected.
@@ -28,7 +30,7 @@ async function resolveInstance(botId: string | undefined): Promise<string | null
  * itself. Failure is not fatal: the client fetches the list on mount regardless,
  * and this only removes the wait when it works.
  */
-async function loadGuilds(user: App.Locals["user"], botId: string | undefined) {
+async function loadGuilds(event: RequestEvent, user: App.Locals["user"], botId: string | undefined) {
   if (!user) return null;
 
   try {
@@ -39,8 +41,10 @@ async function loadGuilds(user: App.Locals["user"], botId: string | undefined) {
     const token = mintBackendToken(user);
     if (token) headers["Authorization"] = `Bearer ${token}`;
 
+    const candidates = await userGuildIds(event, String(user.id));
+    const query = candidates?.length ? `&candidates=${candidates.join(",")}` : "";
     const response = await fetch(
-      `${instanceUrl}/ClientOperations/mutualguilds/${user.id}?adminOnly=true`,
+      `${instanceUrl}/ClientOperations/mutualguilds/${user.id}?adminOnly=true${query}`,
       { headers }
     );
     if (!response.ok) return null;
@@ -53,9 +57,10 @@ async function loadGuilds(user: App.Locals["user"], botId: string | undefined) {
   }
 }
 
-export const load: LayoutServerLoad = async ({ locals, cookies }) => {
+export const load: LayoutServerLoad = async (event) => {
+  const { locals, cookies } = event;
   const user = locals.user || null;
-  const guilds = await loadGuilds(user, cookies.get("selectedInstanceId"));
+  const guilds = await loadGuilds(event, user, cookies.get("selectedInstanceId"));
 
   return {
     // Always allow access - let client-side handle authentication with user store

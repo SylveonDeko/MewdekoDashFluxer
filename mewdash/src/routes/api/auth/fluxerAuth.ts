@@ -23,7 +23,7 @@ export const fluxerApiUrl = (): string => env.FLUXER_API_URL || fluxerInstance()
 
 export const fluxerAuthorizeUrl = (): string => env.FLUXER_AUTHORIZE_URL || `${fluxerInstance().web}/oauth2/authorize`;
 
-export const fluxerScopes = (): string => env.FLUXER_SCOPES || "identify";
+export const fluxerScopes = (): string => env.FLUXER_SCOPES || "identify guilds";
 
 export const requestFluxerToken = async (
   searchParams: URLSearchParams,
