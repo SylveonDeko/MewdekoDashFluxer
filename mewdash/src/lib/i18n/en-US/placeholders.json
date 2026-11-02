@@ -67,7 +67,7 @@
   "channel_name": "Channel name",
   "channel_nsfw": "Whether channel is NSFW",
   "channel_topic": "Channel topic",
-  "choose": "Choose randomly from pipe-separated options",
+  "choose": "One of the options picked at random. Separate options with |, and write \\| for a literal pipe",
   "date": "Current date",
   "gif_baka": "Random baka reaction GIF",
   "gif_bite": "Random bite reaction GIF",

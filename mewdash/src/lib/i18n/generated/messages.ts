@@ -12507,8 +12507,8 @@ export const m = {
     channelNsfw: () => t("placeholders", "channel_nsfw", "Whether channel is NSFW"),
     /** Channel topic */
     channelTopic: () => t("placeholders", "channel_topic", "Channel topic"),
-    /** Choose randomly from pipe-separated options */
-    choose: () => t("placeholders", "choose", "Choose randomly from pipe-separated options"),
+    /** One of the options picked at random. Separate options with |, and write \| for a litera... */
+    choose: () => t("placeholders", "choose", "One of the options picked at random. Separate options with |, and write \\| for a literal pipe"),
     /** Current date */
     date: () => t("placeholders", "date", "Current date"),
     /** Random baka reaction GIF */

@@ -817,8 +817,8 @@
     
     // Random placeholders
     { category: "Random", name: "%rng%", description: m.placeholders.rng() },
-    { category: "Random", name: "%rng(1,10)%", description: m.placeholders.rngRange() },
-    { category: "Random", name: "%choose(a|b|c)%", description: m.placeholders.choose() },
+    { category: "Random", name: "%rng1-10%", description: m.placeholders.rngRange() },
+    { category: "Random", name: "%choose{a|b|c}%", description: m.placeholders.choose() },
     { category: "Random", name: "%target%", description: m.placeholders.target() },
     { category: "Random", name: "%img:stuff%", description: m.placeholders.img() }
   ]);

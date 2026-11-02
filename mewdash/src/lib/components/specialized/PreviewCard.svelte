@@ -136,8 +136,10 @@
 
     // Random placeholders (use static examples for preview)
     replaced = replaced.replace(/%rng%/g, "7");
-    replaced = replaced.replace(/%rng\((\d+),(\d+)\)%/g, "42");
-    replaced = replaced.replace(/%choose\([^)]+\)%/g, "[random option]");
+    replaced = replaced.replace(/%rng-?\d+--?\d+%/g, "42");
+    replaced = replaced.replace(/%choose\{([\s\S]*?)\}%/gi, (_, options: string) =>
+      options.split(/(?<!\\)\|/)[0].replace(/\\\|/g, "|"));
+    replaced = replaced.replace(/%choose\(([^)]*)\)%/gi, (_, options: string) => options.split("|")[0]);
     replaced = replaced.replace(/%target%/g, "example text");
     replaced = replaced.replace(/%img:([^%]+)%/g, "https://i.imgur.com/example.png");
 

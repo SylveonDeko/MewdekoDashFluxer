@@ -123,8 +123,8 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
     { category: "Inviter", name: "%inviter.count%", description: m.placeholders.inviterCount() },
     // Random placeholders
     { category: "Random", name: "%rng%", description: m.placeholders.rng() },
-    { category: "Random", name: "%rng(1,10)%", description: m.placeholders.rngRange() },
-    { category: "Random", name: "%choose(a|b|c)%", description: m.placeholders.choose() }
+    { category: "Random", name: "%rng1-10%", description: m.placeholders.rngRange() },
+    { category: "Random", name: "%choose{a|b|c}%", description: m.placeholders.choose() }
   ]);
 
   // Wizard state

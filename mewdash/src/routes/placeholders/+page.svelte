@@ -153,8 +153,8 @@
       description: m.placeholders.categoryRandomDescription(),
       placeholders: [
         { code: "%rng%", description: m.placeholders.rng(), example: "7" },
-        { code: "%rng(1,100)%", description: m.placeholders.rngRange(), example: "42" },
-        { code: "%choose(a|b|c)%", description: m.placeholders.choose(), example: "b" },
+        { code: "%rng1-100%", description: m.placeholders.rngRange(), example: "42" },
+        { code: "%choose{hi|hey|hello}%", description: m.placeholders.choose(), example: "hey" },
         { code: "%target%", description: m.placeholders.target(), example: "user input text" },
         { code: "%img:query%", description: m.placeholders.img(), example: "https://imgur.com/..." }
       ]
