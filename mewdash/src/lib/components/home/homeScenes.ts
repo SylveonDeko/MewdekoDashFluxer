@@ -1,14 +1,16 @@
-import { defaultAvatarUrl } from "$lib/utils/cdn";
+import { defaultAvatarUrl, userAvatarStillUrl } from "$lib/utils/cdn";
 import { ago, type ChatScene, type ChatUser } from "$lib/components/chat-mock/fluxer/types";
 
 const TIME = "Today at 6:12 PM";
 const OK = "#00e584";
 
+const MEWDEKO_AVATAR = userAvatarStillUrl("1562365248344698880", "4aafb5f1", 128);
+
 const users = {
-  mewdeko: { name: "Mewdeko", avatar: "/img/Mewdeko.png", bot: true },
-  renamed: { name: "Deko", avatar: "/img/Mewdeko.png", bot: true },
-  deko: { name: "Deko", avatar: "/img/mascot.svg", color: "#2b2233", bot: true },
-  hazel: { name: "Hazel", avatar: defaultAvatarUrl(2) },
+  mewdeko: { name: "Mewdeko", avatar: MEWDEKO_AVATAR, bot: true },
+  renamed: { name: "Deko", avatar: MEWDEKO_AVATAR, bot: true },
+  deko: { name: "Deko", avatar: "/img/Mewdeko.png", bot: true },
+  sylveon: { name: "SylveonDeko", avatar: userAvatarStillUrl("1521568983961042944", "a_186936e0", 128) },
   biscuit: { name: "Biscuit", avatar: defaultAvatarUrl(0) },
 } satisfies Record<string, ChatUser>;
 
@@ -39,7 +41,7 @@ export const formsScene: ChatScene = {
         { emoji: "❌", count: 1 },
       ],
     },
-    { author: "mewdeko", time: TIME, text: "<@hazel> Approved response #128." },
+    { author: "mewdeko", time: TIME, text: "<@sylveon> Approved response #128." },
   ],
 };
 
@@ -76,9 +78,9 @@ export const profileScene: ChatScene = {
   channel: "bot-commands",
   users,
   messages: [
-    { author: "hazel", time: TIME, text: ".setnick Deko" },
+    { author: "sylveon", time: TIME, text: ".setnick Deko" },
     { author: "renamed", time: TIME, embeds: [{ color: OK, description: "Bot's nickname changed to **Deko**" }] },
-    { author: "hazel", time: TIME, text: ".setguildavatar https://mewdeko.tech/img/mascot.svg" },
+    { author: "sylveon", time: TIME, text: ".setguildavatar https://mewdeko.tech/img/Mewdeko.png" },
     { author: "deko", time: TIME, embeds: [{ color: OK, description: "Successfully set the bot's guild avatar!" }] },
   ],
 };

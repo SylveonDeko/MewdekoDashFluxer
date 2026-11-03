@@ -13161,12 +13161,18 @@ export const m = {
     commandsOgTitle: () => t("public", "commands_og_title", "Mewdeko - All the commands! Searchable!"),
     /** Options Available */
     commandsOptionsAvailable: () => t("public", "commands_options_available", "Options Available"),
+    /** Close the reply */
+    commandsReplyClose: () => t("public", "commands_reply_close", "Close the reply"),
+    /** Mewdeko's reply to {command} */
+    commandsReplyLabel: (p: { command: P }) => t("public", "commands_reply_label", "Mewdeko's reply to {command}", p),
     /** Search commands and modules */
     commandsSearchCommandsAndModules: () => t("public", "commands_search_commands_and_modules", "Search commands and modules"),
     /** Search modules or commands... */
     commandsSearchModulesOrCommands: () => t("public", "commands_search_modules_or_commands", "Search modules or commands..."),
     /** Select Module: */
     commandsSelectModule: () => t("public", "commands_select_module", "Select Module:"),
+    /** Show the reply */
+    commandsShowReply: () => t("public", "commands_show_reply", "Show the reply"),
     /** Showing {commands} across {modules} */
     commandsShowingCounts: (p: { commands: P; modules: P }) => t("public", "commands_showing_counts", "Showing {commands} across {modules}", p),
     /** Try searching for: */

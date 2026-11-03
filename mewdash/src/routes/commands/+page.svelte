@@ -10,12 +10,16 @@
     import {colorStore} from "$lib/stores/colorStore";
     import DiscordSelector from "$lib/components/forms/DiscordSelector.svelte";
     import type {PageData} from "./$types";
+    import ReplyModal from "./ReplyModal.svelte";
+    import { PREFIX, previews } from "./previews";
 
     interface Props {
         data: PageData;
     }
 
     let {data}: Props = $props();
+
+  let previewing = $state<string | null>(null);
 
   const requestedCommand = page.url.searchParams.get("command")?.toLowerCase() ?? "";
   const requestedModule = page.url.searchParams.get("module")?.toLowerCase() ?? "";
@@ -501,6 +505,16 @@
                           {m.public.commandsOptionsAvailable()}
                         </span>
                       {/if}
+
+                      {#if previews[command.CommandName.toLowerCase()]}
+                        <button type="button"
+                                class="inline-flex items-center px-2 py-1 text-xs font-medium rounded-md transition-opacity hover:opacity-80"
+                                style="background: {$colorStore.primary}15; color: {$colorStore.text}; border: 1px solid {$colorStore.primary}30;"
+                                onclick={() => (previewing = command.CommandName.toLowerCase())}>
+                          <i class="fa-solid fa-comment mr-1" style="font-size: 12px;"></i>
+                          {m.public.commandsShowReply()}
+                        </button>
+                      {/if}
                     </footer>
                   </article>
                 {/each}
@@ -512,6 +526,10 @@
     </div>
   </div>
 </main>
+
+{#if previewing && previews[previewing]}
+  <ReplyModal command="{PREFIX}{previewing}" scene={previews[previewing]} onclose={() => (previewing = null)} />
+{/if}
 
 <style lang="postcss">
     @reference '../../app.css'; /* Tab focus indicators */

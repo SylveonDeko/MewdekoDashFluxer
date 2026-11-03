@@ -54,6 +54,15 @@ export function userAvatarUrl(userId: Snowflake, hash?: string | null, size?: nu
   return withSize(`${hosts.media}/avatars/${userId}/${hash}.${imageExtension(hash)}`, size);
 }
 
+/**
+ * A user avatar URL showing the first frame of an animated avatar, the way Fluxer shows avatars until hovered.
+ */
+export function userAvatarStillUrl(userId: Snowflake, hash?: string | null, size?: number): string {
+  if (!hash) return defaultAvatarUrl(userId);
+  const url = withSize(`${hosts.media}/avatars/${userId}/${hash}.png`, size);
+  return hash.startsWith("a_") ? `${url}${size ? "&" : "?"}animated=false` : url;
+}
+
 export function guildMemberAvatarUrl(guildId: Snowflake, userId: Snowflake, hash?: string | null, size?: number): string {
   if (!hash) return defaultAvatarUrl(userId);
   return withSize(`${hosts.media}/guilds/${guildId}/users/${userId}/avatars/${hash}.${imageExtension(hash)}`, size);
