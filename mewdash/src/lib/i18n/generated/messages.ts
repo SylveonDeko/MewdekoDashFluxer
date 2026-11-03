@@ -4377,6 +4377,10 @@ export const m = {
     advancedMatchAnywhere: () => t("chat-triggers", "advanced_match_anywhere", "Match anywhere in the message"),
     /** Off means the whole message has to be the trigger. */
     advancedMatchAnywhereHint: () => t("chat-triggers", "advanced_match_anywhere_hint", "Off means the whole message has to be the trigger."),
+    /** Match embed text too */
+    advancedMatchEmbeds: () => t("chat-triggers", "advanced_match_embeds", "Match embed text too"),
+    /** When the message text matches nothing, checks the embed title, description, fields, aut... */
+    advancedMatchEmbedsHint: () => t("chat-triggers", "advanced_match_embeds_hint", "When the message text matches nothing, checks the embed title, description, fields, author and footer. Turn on bots as well to match bot embeds."),
     /** Stop after this many uses */
     advancedMaxUses: () => t("chat-triggers", "advanced_max_uses", "Stop after this many uses"),
     /** Used {count} time so far. 0 means no limit. */

@@ -59,6 +59,8 @@
   "advanced_hours_until": "Until",
   "advanced_match_anywhere": "Match anywhere in the message",
   "advanced_match_anywhere_hint": "Off means the whole message has to be the trigger.",
+  "advanced_match_embeds": "Match embed text too",
+  "advanced_match_embeds_hint": "When the message text matches nothing, checks the embed title, description, fields, author and footer. Turn on bots as well to match bot embeds.",
   "advanced_max_uses": "Stop after this many uses",
   "advanced_max_uses_hint_one": "Used {count} time so far. 0 means no limit.",
   "advanced_max_uses_hint_other": "Used {count} times so far. 0 means no limit.",

@@ -96,6 +96,7 @@
       eventType: 0,
       eventChannelId: 0n,
       allowBots: false,
+      matchEmbeds: false,
       nextTriggerId: null,
       replyToTrigger: false,
       deleteResponseAfter: 0,

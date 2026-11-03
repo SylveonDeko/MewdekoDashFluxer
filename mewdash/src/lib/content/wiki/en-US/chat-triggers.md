@@ -60,7 +60,7 @@ A **prefix requirement** decides whether the message must start with a prefix be
 | Server prefix if one is set | Must start with the server prefix; never matches if the server has none |
 | A custom prefix | Must start with the prefix set by `ctprefix` |
 
-If several triggers match one message, one of them is picked at random. Messages from bots and webhooks are ignored unless a trigger has **Bots only** (`ctallowbots`) on, and such a trigger then responds only to bot messages. The bot never responds to its own messages.
+If several triggers match one message, one of them is picked at random. Messages from bots and webhooks are ignored unless a trigger has **Bots only** (`ctallowbots`) on, and such a trigger then responds only to bot messages. The bot never responds to its own messages. A trigger with **Match embed text too** (`ctmatchembeds`) on also checks the embeds of a message when its text matches nothing. The title, description, author, footer and each field name and value are matched on their own.
 
 ### Reaction triggers
 
@@ -219,7 +219,7 @@ Each trigger card expands to show **Trigger Text**, the **Response Message** edi
 | Costs and rewards | Costs the user, Pays the user, Grants XP, Requires level, Message when they cannot use it |
 | Counter requirement | Counter name, At least, At most |
 | Fire on an event | Fire when, Respond in |
-| Organisation | Category, Then run trigger, Respond to bots instead of people |
+| Organisation | Category, Then run trigger, Respond to bots instead of people, Match embed text too |
 
 The sidebar lists categories, **Counters** and the live **Placeholders** list, and has a search box for triggers and responses.
 
@@ -264,6 +264,7 @@ Run these with your server's prefix (`.` unless you changed it). Trigger IDs are
 | `ctprefix <id> <prefix>` | `chattriggersprefix` | Administrator | Set the custom prefix |
 | `chattriggervalidtype <id> <type> <true or false>` | `ctvalidtype`, `ctvt` | Administrator | Enable or disable a trigger type |
 | `ctallowbots <id>` | `chattriggerallowbots` | Administrator | Toggle responding to bot messages only |
+| `ctmatchembeds <id>` | `chattriggermatchembeds` | Administrator | Toggle also matching the text in message embeds |
 | `ctrgranttoggle <id> @role` | `ctgt`, `ctgranttoggle` | Administrator | Toggle a role to grant |
 | `ctrremovetoggle <id> @role` | `ctrt`, `ctremovetoggle` | Administrator | Toggle a role to remove |
 | `chattriggerrolegranttype <id> <type>` | `ctrolegranttype`, `ctrgt` | Administrator | `Sender`, `Mentioned` or `Both` |

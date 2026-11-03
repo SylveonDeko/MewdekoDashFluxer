@@ -132,7 +132,7 @@
       case "event":
         return trigger.eventType > 0 ? 1 : 0;
       case "organise":
-        return [!!trigger.category, trigger.nextTriggerId != null, trigger.allowBots].filter(Boolean).length;
+        return [!!trigger.category, trigger.nextTriggerId != null, trigger.allowBots, trigger.matchEmbeds].filter(Boolean).length;
       default:
         return 0;
     }
@@ -800,6 +800,14 @@
               title={m.chatTriggers.advancedAllowBots()}
               subtitle={m.chatTriggers.advancedAllowBotsHint()}
               onchange={(v) => { trigger.allowBots = v; onchange?.(); }}
+            />
+
+            <ToggleRow
+              {colors}
+              checked={trigger.matchEmbeds}
+              title={m.chatTriggers.advancedMatchEmbeds()}
+              subtitle={m.chatTriggers.advancedMatchEmbedsHint()}
+              onchange={(v) => { trigger.matchEmbeds = v; onchange?.(); }}
             />
           {/if}
         </div>

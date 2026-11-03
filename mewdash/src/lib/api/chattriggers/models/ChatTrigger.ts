@@ -122,6 +122,9 @@ export interface ChatTrigger {
   /** Whether the trigger responds to bot and webhook messages instead of humans */
   allowBots: boolean;
 
+  /** Whether the trigger also matches the text in message embeds */
+  matchEmbeds: boolean;
+
   /** Trigger run after this one, or null */
   nextTriggerId: number | null;
 
