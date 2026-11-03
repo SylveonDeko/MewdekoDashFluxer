@@ -12,6 +12,8 @@
   import HomeHero from "$lib/components/home/HomeHero.svelte";
   import HomeTails from "$lib/components/home/HomeTails.svelte";
   import { productUpdates } from "$lib/content/productUpdates";
+  import FluxerChatCompact from "$lib/components/chat-mock/FluxerChatCompact.svelte";
+  import { formsScene, profileScene, xpScene } from "$lib/components/home/homeScenes";
 
   const inviteUrl =
     cdn.botInviteUrl("1562365248344698880", "66186303");
@@ -126,13 +128,6 @@
       "@type": "Offer",
       "price": "0",
       "priceCurrency": "USD"
-    },
-    "aggregateRating": {
-      "@type": "AggregateRating",
-      "ratingValue": "4.8",
-      "ratingCount": "11400",
-      "bestRating": "5",
-      "worstRating": "1"
     },
     "creator": {
       "@type": "Person",
@@ -390,14 +385,7 @@
               <!-- Screenshot side -->
               <div class="order-1 lg:order-2 relative bg-gradient-to-br p-4 sm:p-6 flex items-center justify-center"
                    style="background: linear-gradient(135deg, {$colorStore.gradientStart}05, {$colorStore.gradientMid}08);">
-                <img
-                  alt={m.home.landingMewdekoFormsBuilderInterface()}
-                  class="w-full h-auto"
-                  loading="lazy"
-                  src="/img/feature-forms-builder.png"
-                />
-                <div class="absolute inset-0 opacity-10 pointer-events-none"
-                     style="background: radial-gradient(circle at center, {$colorStore.primary}40, transparent 70%);"></div>
+                <FluxerChatCompact scene={formsScene} label={m.home.landingSceneForms()} width={520} class="max-w-[520px]" />
               </div>
             </div>
           </div>
@@ -409,15 +397,9 @@
                       border-color: {$colorStore.secondary}30;">
             <div class="grid grid-cols-1 lg:grid-cols-2 gap-0">
               <!-- Screenshot side (left on desktop) -->
-              <div class="relative">
-                <img
-                  alt={m.home.landingMewdekoXpLeaderboard()}
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                  src="/img/feature-xp-leaderboard.png"
-                />
-                <div class="absolute inset-0 opacity-10 pointer-events-none"
-                     style="background: radial-gradient(circle at center, {$colorStore.secondary}40, transparent 70%);"></div>
+              <div class="relative p-4 sm:p-6 flex items-center justify-center"
+                   style="background: linear-gradient(135deg, {$colorStore.gradientStart}05, {$colorStore.gradientMid}08);">
+                <FluxerChatCompact scene={xpScene} label={m.home.landingSceneXp()} width={520} class="max-w-[520px]" />
               </div>
 
               <!-- Text side (right on desktop) -->
@@ -487,14 +469,7 @@
               <!-- Screenshot side -->
               <div class="order-1 lg:order-2 relative bg-gradient-to-br p-4 sm:p-6 flex items-center justify-center"
                    style="background: linear-gradient(135deg, {$colorStore.gradientStart}05, {$colorStore.gradientMid}08);">
-                <img
-                  alt={m.home.landingMewdekoBotCustomization()}
-                  class="w-full h-auto"
-                  loading="lazy"
-                  src="/img/feature-bot-customization.png"
-                />
-                <div class="absolute inset-0 opacity-10 pointer-events-none"
-                     style="background: radial-gradient(circle at center, {$colorStore.accent}40, transparent 70%);"></div>
+                <FluxerChatCompact scene={profileScene} label={m.home.landingSceneProfile()} width={520} class="max-w-[520px]" />
               </div>
             </div>
           </div>

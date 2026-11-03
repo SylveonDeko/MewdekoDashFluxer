@@ -9049,12 +9049,6 @@ export const m = {
     landingMetaKeywords: () => t("home", "landing_meta_keywords", "Fluxer bot, free Fluxer bot, open source Fluxer bot, 1400+ commands, forms builder, ban appeals, XP leveling bot, Fluxer economy bot, Fluxer music bot, Fluxer moderation bot, anti-raid protection, anti-spam, server logging, chat triggers, embed builder, ticket system, giveaway bot, suggestion bot, starboard, custom commands, role states, multi-purpose bot, Fluxer reputation system, stream alerts, invite tracking, automated moderation, Mewdeko"),
     /** Mewdeko - 1,400+ Commands. Free & Open Source Fluxer Bot */
     landingMetaTitle: () => t("home", "landing_meta_title", "Mewdeko - 1,400+ Commands. Free & Open Source Fluxer Bot"),
-    /** Mewdeko Bot Customization */
-    landingMewdekoBotCustomization: () => t("home", "landing_mewdeko_bot_customization", "Mewdeko Bot Customization"),
-    /** Mewdeko Forms Builder Interface */
-    landingMewdekoFormsBuilderInterface: () => t("home", "landing_mewdeko_forms_builder_interface", "Mewdeko Forms Builder Interface"),
-    /** Mewdeko XP Leaderboard */
-    landingMewdekoXpLeaderboard: () => t("home", "landing_mewdeko_xp_leaderboard", "Mewdeko XP Leaderboard"),
     /** Multi-Greets */
     landingMultiGreets: () => t("home", "landing_multi_greets", "Multi-Greets"),
     /** Music Bot */
@@ -9083,6 +9077,12 @@ export const m = {
     landingRolesFromCustomStatuses: () => t("home", "landing_roles_from_custom_statuses", "Roles from custom statuses"),
     /** Roles handed out when members reach a level */
     landingRolesHandedOutWhenMembersReach: () => t("home", "landing_roles_handed_out_when_members_reach", "Roles handed out when members reach a level"),
+    /** Mewdeko posting a ban appeal to the staff channel, where staff approve it with a reaction */
+    landingSceneForms: () => t("home", "landing_scene_forms", "Mewdeko posting a ban appeal to the staff channel, where staff approve it with a reaction"),
+    /** Mewdeko taking a new nickname and avatar in one server */
+    landingSceneProfile: () => t("home", "landing_scene_profile", "Mewdeko taking a new nickname and avatar in one server"),
+    /** Mewdeko announcing that a member reached level 12 */
+    landingSceneXp: () => t("home", "landing_scene_xp", "Mewdeko announcing that a member reached level 12"),
     /** Scheduled messages */
     landingScheduledMessages: () => t("home", "landing_scheduled_messages", "Scheduled messages"),
     /** See full list → */
