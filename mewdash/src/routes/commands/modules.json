@@ -1778,7 +1778,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AiCommands"
       },
       {
         "BotVersion": "8",
@@ -1791,7 +1792,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AiCommands"
       },
       {
         "BotVersion": "8",
@@ -1804,7 +1806,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AiCommands"
       },
       {
         "BotVersion": "8",
@@ -1818,7 +1821,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AiCommands"
       },
       {
         "BotVersion": "8",
@@ -1831,7 +1835,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AiCommands"
       },
       {
         "BotVersion": "8",
@@ -1844,7 +1849,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AiCommands"
       },
       {
         "BotVersion": "8",
@@ -1857,7 +1863,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AiCommands"
       },
       {
         "BotVersion": "8",
@@ -1870,7 +1877,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AiCommands"
       },
       {
         "BotVersion": "8",
@@ -1883,7 +1891,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AutoPublish"
       },
       {
         "BotVersion": "8",
@@ -1896,7 +1905,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AutoPublish"
       },
       {
         "BotVersion": "8",
@@ -1909,7 +1919,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AutoPublish"
       },
       {
         "BotVersion": "8",
@@ -1922,7 +1933,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AutoPublish"
       },
       {
         "BotVersion": "8",
@@ -1935,7 +1947,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AutoPublish"
       },
       {
         "BotVersion": "8",
@@ -1948,7 +1961,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AutoPublish"
       },
       {
         "BotVersion": "8",
@@ -1961,7 +1975,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AutoPublish"
       },
       {
         "BotVersion": "8",
@@ -1974,7 +1989,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CalcCommands"
       },
       {
         "BotVersion": "8",
@@ -1987,7 +2003,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CalcCommands"
       },
       {
         "BotVersion": "8",
@@ -2000,7 +2017,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CalcCommands"
       },
       {
         "BotVersion": "8",
@@ -2013,7 +2031,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CalcCommands"
       },
       {
         "BotVersion": "8",
@@ -2026,7 +2045,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CommandMapCommands"
       },
       {
         "BotVersion": "8",
@@ -2039,7 +2059,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CommandMapCommands"
       },
       {
         "BotVersion": "8",
@@ -2053,7 +2074,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CommandMapCommands"
       },
       {
         "BotVersion": "8",
@@ -2067,7 +2089,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "EmbedCommands"
       },
       {
         "BotVersion": "8",
@@ -2080,7 +2103,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "EmbedCommands"
       },
       {
         "BotVersion": "8",
@@ -2093,7 +2117,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "EmbedCommands"
       },
       {
         "BotVersion": "8",
@@ -2107,7 +2132,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "EmbedCommands"
       },
       {
         "BotVersion": "8",
@@ -2120,7 +2146,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "EmbedCommands"
       },
       {
         "BotVersion": "8",
@@ -2133,7 +2160,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "EmbedCommands"
       },
       {
         "BotVersion": "8",
@@ -2146,7 +2174,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "EmbedCommands"
       },
       {
         "BotVersion": "8",
@@ -2159,7 +2188,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InfoCommands"
       },
       {
         "BotVersion": "8",
@@ -2172,7 +2202,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InfoCommands"
       },
       {
         "BotVersion": "8",
@@ -2185,7 +2216,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InfoCommands"
       },
       {
         "BotVersion": "8",
@@ -2198,7 +2230,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InfoCommands"
       },
       {
         "BotVersion": "8",
@@ -2211,7 +2244,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InfoCommands"
       },
       {
         "BotVersion": "8",
@@ -2224,7 +2258,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InfoCommands"
       },
       {
         "BotVersion": "8",
@@ -2237,7 +2272,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InfoCommands"
       },
       {
         "BotVersion": "8",
@@ -2250,7 +2286,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2263,7 +2300,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2276,7 +2314,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2289,7 +2328,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2302,7 +2342,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2315,7 +2356,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageGuild"
+        "GuildBotPermissions": "ManageGuild",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2328,7 +2370,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2343,7 +2386,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2358,7 +2402,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2371,7 +2416,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2384,7 +2430,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2397,7 +2444,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2411,7 +2459,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageGuild"
+        "GuildBotPermissions": "ManageGuild",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2425,7 +2474,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2438,7 +2488,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2452,7 +2503,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2465,7 +2517,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "BanMembers"
+        "GuildBotPermissions": "BanMembers",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2478,7 +2531,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "BanMembers"
+        "GuildBotPermissions": "BanMembers",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2491,7 +2545,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2504,7 +2559,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2517,7 +2573,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "CreateInstantInvite"
+        "GuildBotPermissions": "CreateInstantInvite",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2531,7 +2588,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2544,7 +2602,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2557,7 +2616,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2571,7 +2631,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2584,7 +2645,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2597,7 +2659,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2610,7 +2673,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2623,7 +2687,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2636,7 +2701,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2649,7 +2715,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2662,7 +2729,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2675,7 +2743,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2688,7 +2757,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageGuild"
+        "GuildBotPermissions": "ManageGuild",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2702,7 +2772,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2716,7 +2787,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2729,7 +2801,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageGuild"
+        "GuildBotPermissions": "ManageGuild",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2742,7 +2815,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2755,7 +2829,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2768,7 +2843,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "InviteCommands"
       },
       {
         "BotVersion": "8",
@@ -2781,7 +2857,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "JoinLeaveStats"
       },
       {
         "BotVersion": "8",
@@ -2794,7 +2871,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "JoinLeaveStats"
       },
       {
         "BotVersion": "8",
@@ -2807,7 +2885,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "JoinLeaveStats"
       },
       {
         "BotVersion": "8",
@@ -2820,7 +2899,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "JoinLeaveStats"
       },
       {
         "BotVersion": "8",
@@ -2833,7 +2913,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "JoinLeaveStats"
       },
       {
         "BotVersion": "8",
@@ -2846,7 +2927,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "JoinLeaveStats"
       },
       {
         "BotVersion": "8",
@@ -2859,7 +2941,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LinkCommands"
       },
       {
         "BotVersion": "8",
@@ -2873,7 +2956,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LinkFixCommands"
       },
       {
         "BotVersion": "8",
@@ -2886,7 +2970,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LinkFixCommands"
       },
       {
         "BotVersion": "8",
@@ -2900,7 +2985,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LinkFixCommands"
       },
       {
         "BotVersion": "8",
@@ -2914,7 +3000,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LinkFixCommands"
       },
       {
         "BotVersion": "8",
@@ -2928,7 +3015,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MessageCountCommands"
       },
       {
         "BotVersion": "8",
@@ -2941,7 +3029,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MessageCountCommands"
       },
       {
         "BotVersion": "8",
@@ -2954,7 +3043,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MessageCountCommands"
       },
       {
         "BotVersion": "8",
@@ -2967,7 +3057,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MessageCountCommands"
       },
       {
         "BotVersion": "8",
@@ -2980,7 +3071,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MessageCountCommands"
       },
       {
         "BotVersion": "8",
@@ -2993,7 +3085,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MessageCountCommands"
       },
       {
         "BotVersion": "8",
@@ -3006,7 +3099,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MessageCountCommands"
       },
       {
         "BotVersion": "8",
@@ -3019,7 +3113,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MessageCountCommands"
       },
       {
         "BotVersion": "8",
@@ -3032,7 +3127,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MessageCountCommands"
       },
       {
         "BotVersion": "8",
@@ -3046,7 +3142,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "NetworkUtilities"
       },
       {
         "BotVersion": "8",
@@ -3059,7 +3156,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "QuoteCommands"
       },
       {
         "BotVersion": "8",
@@ -3072,7 +3170,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "QuoteCommands"
       },
       {
         "BotVersion": "8",
@@ -3085,7 +3184,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "QuoteCommands"
       },
       {
         "BotVersion": "8",
@@ -3096,7 +3196,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "QuoteCommands"
       },
       {
         "BotVersion": "8",
@@ -3109,7 +3210,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "QuoteCommands"
       },
       {
         "BotVersion": "8",
@@ -3120,7 +3222,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "QuoteCommands"
       },
       {
         "BotVersion": "8",
@@ -3133,7 +3236,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "QuoteCommands"
       },
       {
         "BotVersion": "8",
@@ -3146,7 +3250,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "QuoteCommands"
       },
       {
         "BotVersion": "8",
@@ -3159,7 +3264,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "QuoteCommands"
       },
       {
         "BotVersion": "8",
@@ -3172,7 +3278,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "QuoteCommands"
       },
       {
         "BotVersion": "8",
@@ -3185,7 +3292,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "QuoteCommands"
       },
       {
         "BotVersion": "8",
@@ -3198,7 +3306,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RemindCommands"
       },
       {
         "BotVersion": "8",
@@ -3211,7 +3320,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RemindCommands"
       },
       {
         "BotVersion": "8",
@@ -3226,7 +3336,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RemindCommands"
       },
       {
         "BotVersion": "8",
@@ -3241,7 +3352,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RemindCommands"
       },
       {
         "BotVersion": "8",
@@ -3254,7 +3366,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3267,7 +3380,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3280,7 +3394,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3293,7 +3408,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3306,7 +3422,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3319,7 +3436,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3332,7 +3450,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3345,7 +3464,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3358,7 +3478,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3372,7 +3493,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3385,7 +3507,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3398,7 +3521,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3411,7 +3535,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3424,7 +3549,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3438,7 +3564,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3451,7 +3578,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3464,7 +3592,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3477,7 +3606,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3490,7 +3620,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3503,7 +3634,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RepeatCommands"
       },
       {
         "BotVersion": "8",
@@ -3516,7 +3648,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UnitConverterCommands"
       },
       {
         "BotVersion": "8",
@@ -3529,7 +3662,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UnitConverterCommands"
       },
       {
         "BotVersion": "8",
@@ -3542,7 +3676,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "VerboseErrorCommands"
       }
     ],
     "Name": "Utility"
@@ -5357,7 +5492,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5370,7 +5506,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5384,7 +5521,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5397,7 +5535,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5410,7 +5549,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5423,7 +5563,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5437,7 +5578,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5450,7 +5592,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5463,7 +5606,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5476,7 +5620,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5489,7 +5634,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5502,7 +5648,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5515,7 +5662,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5528,7 +5676,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5541,7 +5690,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5554,7 +5704,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5567,7 +5718,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5580,7 +5732,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5594,7 +5747,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       },
       {
         "BotVersion": "8",
@@ -5608,7 +5762,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicketConfig"
       }
     ],
     "Name": "Tickets"
@@ -5807,7 +5962,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SuggestionsCustomization"
       },
       {
         "BotVersion": "8",
@@ -5820,7 +5976,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SuggestionsCustomization"
       },
       {
         "BotVersion": "8",
@@ -5833,7 +5990,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SuggestionsCustomization"
       },
       {
         "BotVersion": "8",
@@ -5846,7 +6004,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SuggestionsCustomization"
       },
       {
         "BotVersion": "8",
@@ -5859,7 +6018,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SuggestionsCustomization"
       },
       {
         "BotVersion": "8",
@@ -5872,7 +6032,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SuggestionsCustomization"
       },
       {
         "BotVersion": "8",
@@ -5885,7 +6046,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SuggestionsCustomization"
       },
       {
         "BotVersion": "8",
@@ -5898,7 +6060,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SuggestionsCustomization"
       },
       {
         "BotVersion": "8",
@@ -5911,7 +6074,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SuggestionsCustomization"
       },
       {
         "BotVersion": "8",
@@ -5924,7 +6088,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SuggestionsCustomization"
       },
       {
         "BotVersion": "8",
@@ -5937,7 +6102,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SuggestionsCustomization"
       },
       {
         "BotVersion": "8",
@@ -5950,7 +6116,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SuggestionsCustomization"
       },
       {
         "BotVersion": "8",
@@ -5963,7 +6130,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SuggestionsCustomization"
       },
       {
         "BotVersion": "8",
@@ -5976,7 +6144,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SuggestionsCustomization"
       },
       {
         "BotVersion": "8",
@@ -5989,7 +6158,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SuggestionsCustomization"
       },
       {
         "BotVersion": "8",
@@ -6002,7 +6172,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SuggestionsCustomization"
       },
       {
         "BotVersion": "8",
@@ -6015,7 +6186,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SuggestionsCustomization"
       }
     ],
     "Name": "Suggestions"
@@ -7362,7 +7534,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "PermControls"
       },
       {
         "BotVersion": "8",
@@ -7375,7 +7548,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "PermControls"
       },
       {
         "BotVersion": "8",
@@ -7388,7 +7562,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7401,7 +7576,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageMessages"
+        "GuildBotPermissions": "ManageMessages",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7414,7 +7590,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7427,7 +7604,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7440,7 +7618,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7453,7 +7632,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7466,7 +7646,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7479,7 +7660,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7492,7 +7674,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7505,7 +7688,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7518,7 +7702,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageMessages"
+        "GuildBotPermissions": "ManageMessages",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7531,7 +7716,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7544,7 +7730,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7558,7 +7745,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7571,7 +7759,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7584,7 +7773,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7597,7 +7787,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7610,7 +7801,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ChannelCommands"
       },
       {
         "BotVersion": "8",
@@ -7623,7 +7815,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageChannels"
+        "GuildBotPermissions": "ManageChannels",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7636,7 +7829,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageChannels"
+        "GuildBotPermissions": "ManageChannels",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7649,7 +7843,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageChannels"
+        "GuildBotPermissions": "ManageChannels",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7662,7 +7857,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7675,7 +7871,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7688,7 +7885,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7701,7 +7899,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7715,7 +7914,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7728,7 +7928,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7741,7 +7942,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7754,7 +7956,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7767,7 +7970,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7780,7 +7984,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7793,7 +7998,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7806,7 +8012,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7819,7 +8026,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7832,7 +8040,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "ManagePermissions",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7845,7 +8054,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7858,7 +8068,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7872,7 +8083,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7885,7 +8097,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7898,7 +8111,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7911,7 +8125,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7924,7 +8139,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7937,7 +8153,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7950,7 +8167,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -7963,7 +8181,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RoleMonitorCommands"
       },
       {
         "BotVersion": "8",
@@ -7976,7 +8195,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RoleMonitorCommands"
       },
       {
         "BotVersion": "8",
@@ -7989,7 +8209,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RoleMonitorCommands"
       },
       {
         "BotVersion": "8",
@@ -8002,7 +8223,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RoleMonitorCommands"
       },
       {
         "BotVersion": "8",
@@ -8015,7 +8237,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RoleMonitorCommands"
       },
       {
         "BotVersion": "8",
@@ -8028,7 +8251,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RoleMonitorCommands"
       },
       {
         "BotVersion": "8",
@@ -8041,7 +8265,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RoleMonitorCommands"
       },
       {
         "BotVersion": "8",
@@ -8054,7 +8279,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RoleMonitorCommands"
       },
       {
         "BotVersion": "8",
@@ -8068,7 +8294,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RoleMonitorCommands"
       },
       {
         "BotVersion": "8",
@@ -8082,7 +8309,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RoleMonitorCommands"
       }
     ],
     "Name": "ServerManagement"
@@ -8438,7 +8666,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8451,7 +8680,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8464,7 +8694,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8477,7 +8708,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8490,7 +8722,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8503,7 +8736,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8516,7 +8750,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8529,7 +8764,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8542,7 +8778,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8555,7 +8792,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8568,7 +8806,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8581,7 +8820,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8594,7 +8834,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8607,7 +8848,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8620,7 +8862,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8633,7 +8876,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8646,7 +8890,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8659,7 +8904,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8672,7 +8918,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8685,7 +8932,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8698,7 +8946,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8711,7 +8960,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8724,7 +8974,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8737,7 +8988,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8750,7 +9002,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8763,7 +9016,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8776,7 +9030,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8789,7 +9044,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8802,7 +9058,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8815,7 +9072,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8828,7 +9086,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ActionCommands"
       },
       {
         "BotVersion": "8",
@@ -8841,7 +9100,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AnimeCommands"
       },
       {
         "BotVersion": "8",
@@ -8854,7 +9114,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AnimeCommands"
       },
       {
         "BotVersion": "8",
@@ -8867,7 +9128,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AnimeCommands"
       },
       {
         "BotVersion": "8",
@@ -8880,7 +9142,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AnimeCommands"
       },
       {
         "BotVersion": "8",
@@ -8893,7 +9156,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AnimeCommands"
       },
       {
         "BotVersion": "8",
@@ -8906,7 +9170,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AnimeCommands"
       },
       {
         "BotVersion": "8",
@@ -8919,7 +9184,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AnimeCommands"
       },
       {
         "BotVersion": "8",
@@ -8932,7 +9198,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AnimeCommands"
       },
       {
         "BotVersion": "8",
@@ -8945,7 +9212,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AnimeCommands"
       },
       {
         "BotVersion": "8",
@@ -8958,7 +9226,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AnimeCommands"
       },
       {
         "BotVersion": "8",
@@ -8971,7 +9240,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AnimeCommands"
       },
       {
         "BotVersion": "8",
@@ -8984,7 +9254,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FeedCommands"
       },
       {
         "BotVersion": "8",
@@ -8997,7 +9268,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FeedCommands"
       },
       {
         "BotVersion": "8",
@@ -9010,7 +9282,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FeedCommands"
       },
       {
         "BotVersion": "8",
@@ -9023,7 +9296,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FeedCommands"
       },
       {
         "BotVersion": "8",
@@ -9037,7 +9311,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FeedCommands"
       },
       {
         "BotVersion": "8",
@@ -9050,7 +9325,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "JokeCommands"
       },
       {
         "BotVersion": "8",
@@ -9063,7 +9339,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "JokeCommands"
       },
       {
         "BotVersion": "8",
@@ -9076,7 +9353,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "JokeCommands"
       },
       {
         "BotVersion": "8",
@@ -9089,7 +9367,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "JokeCommands"
       },
       {
         "BotVersion": "8",
@@ -9102,7 +9381,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "JokeCommands"
       },
       {
         "BotVersion": "8",
@@ -9115,7 +9395,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MemegenCommands"
       },
       {
         "BotVersion": "8",
@@ -9129,7 +9410,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MemegenCommands"
       },
       {
         "BotVersion": "8",
@@ -9143,7 +9425,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "OsuCommands"
       },
       {
         "BotVersion": "8",
@@ -9157,7 +9440,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "OsuCommands"
       },
       {
         "BotVersion": "8",
@@ -9171,7 +9455,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "OsuCommands"
       },
       {
         "BotVersion": "8",
@@ -9184,7 +9469,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "PokemonCommands"
       },
       {
         "BotVersion": "8",
@@ -9197,7 +9483,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "StreamNotificationCommands"
       },
       {
         "BotVersion": "8",
@@ -9210,7 +9497,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "StreamNotificationCommands"
       },
       {
         "BotVersion": "8",
@@ -9223,7 +9511,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "StreamNotificationCommands"
       },
       {
         "BotVersion": "8",
@@ -9237,7 +9526,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "StreamNotificationCommands"
       },
       {
         "BotVersion": "8",
@@ -9250,7 +9540,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "StreamNotificationCommands"
       },
       {
         "BotVersion": "8",
@@ -9263,7 +9554,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "StreamNotificationCommands"
       },
       {
         "BotVersion": "8",
@@ -9276,7 +9568,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "StreamNotificationCommands"
       },
       {
         "BotVersion": "8",
@@ -9289,7 +9582,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "StreamNotificationCommands"
       },
       {
         "BotVersion": "8",
@@ -9302,7 +9596,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "StreamNotificationCommands"
       },
       {
         "BotVersion": "8",
@@ -9316,7 +9611,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TranslateCommands"
       },
       {
         "BotVersion": "8",
@@ -9329,7 +9625,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TranslateCommands"
       },
       {
         "BotVersion": "8",
@@ -9342,7 +9639,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TranslateCommands"
       },
       {
         "BotVersion": "8",
@@ -9355,7 +9653,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TranslateCommands"
       },
       {
         "BotVersion": "8",
@@ -9368,7 +9667,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "XkcdCommands"
       },
       {
         "BotVersion": "8",
@@ -9381,7 +9681,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "XkcdCommands"
       }
     ],
     "Name": "Searches"
@@ -10154,7 +10455,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10167,7 +10469,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10180,7 +10483,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10193,7 +10497,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10206,7 +10511,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10219,7 +10525,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10232,7 +10539,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10245,7 +10553,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10258,7 +10567,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10271,7 +10581,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10288,7 +10599,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10301,7 +10613,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10314,7 +10627,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10327,7 +10641,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10340,7 +10655,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10353,7 +10669,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10366,7 +10683,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10379,7 +10697,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10392,7 +10711,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10405,7 +10725,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10418,7 +10739,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10431,7 +10753,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10444,7 +10767,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10457,7 +10781,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10470,7 +10795,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10483,7 +10809,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10496,7 +10823,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10509,7 +10837,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10522,7 +10851,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10535,7 +10865,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10548,7 +10879,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10561,7 +10893,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10574,7 +10907,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10587,7 +10921,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10600,7 +10935,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10613,7 +10949,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10628,7 +10965,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10641,7 +10979,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10654,7 +10993,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10667,7 +11007,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10680,7 +11021,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       },
       {
         "BotVersion": "8",
@@ -10693,7 +11035,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ReputationSettings"
       }
     ],
     "Name": "Reputation"
@@ -10998,7 +11341,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "BlacklistCommands"
       },
       {
         "BotVersion": "8",
@@ -11012,7 +11356,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "BlacklistCommands"
       },
       {
         "BotVersion": "8",
@@ -11026,7 +11371,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "BlacklistCommands"
       },
       {
         "BotVersion": "8",
@@ -11040,7 +11386,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "BlacklistCommands"
       },
       {
         "BotVersion": "8",
@@ -11053,7 +11400,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "BlacklistCommands"
       },
       {
         "BotVersion": "8",
@@ -11067,7 +11415,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "BlacklistCommands"
       },
       {
         "BotVersion": "8",
@@ -11081,7 +11430,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CmdCdsCommands"
       },
       {
         "BotVersion": "8",
@@ -11094,7 +11444,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CmdCdsCommands"
       },
       {
         "BotVersion": "8",
@@ -11107,7 +11458,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FilterCommands"
       },
       {
         "BotVersion": "8",
@@ -11120,7 +11472,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FilterCommands"
       },
       {
         "BotVersion": "8",
@@ -11133,7 +11486,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FilterCommands"
       },
       {
         "BotVersion": "8",
@@ -11146,7 +11500,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FilterCommands"
       },
       {
         "BotVersion": "8",
@@ -11159,7 +11514,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FilterCommands"
       },
       {
         "BotVersion": "8",
@@ -11172,7 +11528,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FilterCommands"
       },
       {
         "BotVersion": "8",
@@ -11185,7 +11542,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FilterCommands"
       },
       {
         "BotVersion": "8",
@@ -11198,7 +11556,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FilterCommands"
       },
       {
         "BotVersion": "8",
@@ -11211,7 +11570,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FilterCommands"
       },
       {
         "BotVersion": "8",
@@ -11224,7 +11584,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FilterCommands"
       },
       {
         "BotVersion": "8",
@@ -11237,7 +11598,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FilterCommands"
       },
       {
         "BotVersion": "8",
@@ -11250,7 +11612,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FilterCommands"
       },
       {
         "BotVersion": "8",
@@ -11263,7 +11626,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "FilterCommands"
       },
       {
         "BotVersion": "8",
@@ -11276,7 +11640,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "GlobalPermissionCommands"
       },
       {
         "BotVersion": "8",
@@ -11289,7 +11654,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "GlobalPermissionCommands"
       },
       {
         "BotVersion": "8",
@@ -11302,7 +11668,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "GlobalPermissionCommands"
       },
       {
         "BotVersion": "8",
@@ -11315,7 +11682,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "GlobalPermissionCommands"
       }
     ],
     "Name": "Permissions"
@@ -13309,7 +13677,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicEffects"
       },
       {
         "BotVersion": "8",
@@ -13322,7 +13691,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicEffects"
       },
       {
         "BotVersion": "8",
@@ -13335,7 +13705,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicEffects"
       },
       {
         "BotVersion": "8",
@@ -13348,7 +13719,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicEffects"
       },
       {
         "BotVersion": "8",
@@ -13361,7 +13733,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicEffects"
       },
       {
         "BotVersion": "8",
@@ -13375,7 +13748,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicEffects"
       },
       {
         "BotVersion": "8",
@@ -13388,7 +13762,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicEffects"
       },
       {
         "BotVersion": "8",
@@ -13402,7 +13777,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicEffects"
       },
       {
         "BotVersion": "8",
@@ -13415,7 +13791,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicEffects"
       },
       {
         "BotVersion": "8",
@@ -13428,7 +13805,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicEffects"
       },
       {
         "BotVersion": "8",
@@ -13442,7 +13820,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicEffects"
       },
       {
         "BotVersion": "8",
@@ -13455,7 +13834,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicEffects"
       },
       {
         "BotVersion": "8",
@@ -13468,7 +13848,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicEffects"
       },
       {
         "BotVersion": "8",
@@ -13481,7 +13862,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicEffects"
       },
       {
         "BotVersion": "8",
@@ -13494,7 +13876,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13508,7 +13891,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13522,7 +13906,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13535,7 +13920,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13548,7 +13934,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13562,7 +13949,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13575,7 +13963,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13588,7 +13977,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13601,7 +13991,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13615,7 +14006,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13629,7 +14021,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13643,7 +14036,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13656,7 +14050,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13670,7 +14065,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13683,7 +14079,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13696,7 +14093,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13709,7 +14107,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13722,7 +14121,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13735,7 +14135,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       },
       {
         "BotVersion": "8",
@@ -13748,7 +14149,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MusicTts"
       }
     ],
     "Name": "Music"
@@ -13919,7 +14321,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "BanPruneCommands"
       },
       {
         "BotVersion": "8",
@@ -13932,7 +14335,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "BanPruneCommands"
       },
       {
         "BotVersion": "8",
@@ -13945,7 +14349,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "BanPruneCommands"
       },
       {
         "BotVersion": "8",
@@ -13958,7 +14363,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "BanPruneCommands"
       },
       {
         "BotVersion": "8",
@@ -13971,7 +14377,8 @@
         "GuildUserPermissions": "MuteMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MuteCommands"
       },
       {
         "BotVersion": "8",
@@ -13985,7 +14392,8 @@
         "GuildUserPermissions": "MuteMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MuteCommands"
       },
       {
         "BotVersion": "8",
@@ -13999,7 +14407,8 @@
         "GuildUserPermissions": "MuteMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MuteCommands"
       },
       {
         "BotVersion": "8",
@@ -14012,7 +14421,8 @@
         "GuildUserPermissions": "MuteMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MuteCommands"
       },
       {
         "BotVersion": "8",
@@ -14025,7 +14435,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MuteCommands"
       },
       {
         "BotVersion": "8",
@@ -14038,7 +14449,8 @@
         "GuildUserPermissions": "MuteMembers, ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MuteCommands"
       },
       {
         "BotVersion": "8",
@@ -14052,7 +14464,8 @@
         "GuildUserPermissions": "MuteMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MuteCommands"
       },
       {
         "BotVersion": "8",
@@ -14066,7 +14479,8 @@
         "GuildUserPermissions": "MuteMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MuteCommands"
       },
       {
         "BotVersion": "8",
@@ -14079,7 +14493,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MuteCommands"
       },
       {
         "BotVersion": "8",
@@ -14092,7 +14507,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MuteCommands"
       },
       {
         "BotVersion": "8",
@@ -14105,7 +14521,8 @@
         "GuildUserPermissions": "MuteMembers, ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MuteCommands"
       },
       {
         "BotVersion": "8",
@@ -14118,7 +14535,8 @@
         "GuildUserPermissions": "MuteMembers, ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MuteCommands"
       },
       {
         "BotVersion": "8",
@@ -14131,7 +14549,8 @@
         "GuildUserPermissions": "MuteMembers, ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MuteCommands"
       },
       {
         "BotVersion": "8",
@@ -14144,7 +14563,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MuteCommands"
       },
       {
         "BotVersion": "8",
@@ -14157,7 +14577,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MuteCommands"
       },
       {
         "BotVersion": "8",
@@ -14170,7 +14591,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "MuteCommands"
       },
       {
         "BotVersion": "8",
@@ -14183,7 +14605,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageMessages"
+        "GuildBotPermissions": "ManageMessages",
+        "Submodule": "PurgeCommands"
       },
       {
         "BotVersion": "8",
@@ -14196,7 +14619,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "PurgeCommands"
       },
       {
         "BotVersion": "8",
@@ -14209,7 +14633,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "ManageMessages",
         "ChannelBotPermissions": "ManageMessages",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "PurgeCommands"
       },
       {
         "BotVersion": "8",
@@ -14222,7 +14647,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "ManageMessages",
         "ChannelBotPermissions": "ManageMessages",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "PurgeCommands"
       },
       {
         "BotVersion": "8",
@@ -14235,7 +14661,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "ManageMessages",
         "ChannelBotPermissions": "ManageMessages",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "PurgeCommands"
       },
       {
         "BotVersion": "8",
@@ -14248,7 +14675,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14263,7 +14691,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14278,7 +14707,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14293,7 +14723,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14306,7 +14737,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14319,7 +14751,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14332,7 +14765,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14345,7 +14779,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14358,7 +14793,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14371,7 +14807,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14384,7 +14821,8 @@
         "GuildUserPermissions": "ModerateMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ModerateMembers"
+        "GuildBotPermissions": "ModerateMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14397,7 +14835,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "BanMembers"
+        "GuildBotPermissions": "BanMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14410,7 +14849,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "BanMembers"
+        "GuildBotPermissions": "BanMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14424,7 +14864,8 @@
         "GuildUserPermissions": "ModerateMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ModerateMembers"
+        "GuildBotPermissions": "ModerateMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14437,7 +14878,8 @@
         "GuildUserPermissions": "KickMembers, ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "BanMembers"
+        "GuildBotPermissions": "BanMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14450,7 +14892,8 @@
         "GuildUserPermissions": "KickMembers, ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "BanMembers"
+        "GuildBotPermissions": "BanMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14463,7 +14906,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14476,7 +14920,8 @@
         "GuildUserPermissions": "ManageNicknames",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "Administrator"
+        "GuildBotPermissions": "Administrator",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14489,7 +14934,8 @@
         "GuildUserPermissions": "ManageNicknames",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageNicknames"
+        "GuildBotPermissions": "ManageNicknames",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14502,7 +14948,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14515,7 +14962,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14528,7 +14976,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "BanMembers"
+        "GuildBotPermissions": "BanMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14541,7 +14990,8 @@
         "GuildUserPermissions": "KickMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "KickMembers"
+        "GuildBotPermissions": "KickMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14554,7 +15004,8 @@
         "GuildUserPermissions": "KickMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "KickMembers"
+        "GuildBotPermissions": "KickMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14567,7 +15018,8 @@
         "GuildUserPermissions": "KickMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "KickMembers"
+        "GuildBotPermissions": "KickMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14580,7 +15032,8 @@
         "GuildUserPermissions": "ManageNicknames",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "Administrator"
+        "GuildBotPermissions": "Administrator",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14593,7 +15046,8 @@
         "GuildUserPermissions": "ManageNicknames",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageNicknames"
+        "GuildBotPermissions": "ManageNicknames",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14606,7 +15060,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "BanMembers"
+        "GuildBotPermissions": "BanMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14619,7 +15074,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "BanMembers"
+        "GuildBotPermissions": "BanMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14632,7 +15088,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "BanMembers"
+        "GuildBotPermissions": "BanMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14645,7 +15102,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "BanMembers"
+        "GuildBotPermissions": "BanMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14659,7 +15117,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "BanMembers"
+        "GuildBotPermissions": "BanMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14673,7 +15132,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "BanMembers"
+        "GuildBotPermissions": "BanMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14687,7 +15147,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "BanMembers"
+        "GuildBotPermissions": "BanMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14701,7 +15162,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "BanMembers"
+        "GuildBotPermissions": "BanMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14715,7 +15177,8 @@
         "GuildUserPermissions": "BanMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "BanMembers"
+        "GuildBotPermissions": "BanMembers",
+        "Submodule": "UserPunishCommands"
       },
       {
         "BotVersion": "8",
@@ -14728,7 +15191,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands2"
       },
       {
         "BotVersion": "8",
@@ -14741,7 +15205,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands2"
       },
       {
         "BotVersion": "8",
@@ -14756,7 +15221,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands2"
       },
       {
         "BotVersion": "8",
@@ -14771,7 +15237,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands2"
       },
       {
         "BotVersion": "8",
@@ -14786,7 +15253,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands2"
       },
       {
         "BotVersion": "8",
@@ -14799,7 +15267,8 @@
         "GuildUserPermissions": "MuteMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands2"
       },
       {
         "BotVersion": "8",
@@ -14812,7 +15281,8 @@
         "GuildUserPermissions": "MuteMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands2"
       },
       {
         "BotVersion": "8",
@@ -14825,7 +15295,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands2"
       },
       {
         "BotVersion": "8",
@@ -14838,7 +15309,8 @@
         "GuildUserPermissions": "MuteMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands2"
       },
       {
         "BotVersion": "8",
@@ -14851,7 +15323,8 @@
         "GuildUserPermissions": "MuteMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands2"
       },
       {
         "BotVersion": "8",
@@ -14865,7 +15338,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands2"
       },
       {
         "BotVersion": "8",
@@ -14879,7 +15353,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands2"
       },
       {
         "BotVersion": "8",
@@ -14893,7 +15368,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands2"
       },
       {
         "BotVersion": "8",
@@ -14907,7 +15383,8 @@
         "GuildUserPermissions": "MuteMembers",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "UserPunishCommands2"
       }
     ],
     "Name": "Moderation"
@@ -15454,7 +15931,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AcropobiaCommands"
       },
       {
         "BotVersion": "8",
@@ -15467,7 +15945,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "HangmanCommands"
       },
       {
         "BotVersion": "8",
@@ -15480,7 +15959,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "HangmanCommands"
       },
       {
         "BotVersion": "8",
@@ -15493,7 +15973,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "HangmanCommands"
       },
       {
         "BotVersion": "8",
@@ -15506,7 +15987,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "KaladontCommands"
       },
       {
         "BotVersion": "8",
@@ -15519,7 +16001,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "KaladontCommands"
       },
       {
         "BotVersion": "8",
@@ -15532,7 +16015,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "KaladontCommands"
       },
       {
         "BotVersion": "8",
@@ -15545,7 +16029,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "KaladontCommands"
       },
       {
         "BotVersion": "8",
@@ -15558,7 +16043,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "NunchiCommands"
       },
       {
         "BotVersion": "8",
@@ -15571,7 +16057,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SpeedTypingCommands"
       },
       {
         "BotVersion": "8",
@@ -15584,7 +16071,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SpeedTypingCommands"
       },
       {
         "BotVersion": "8",
@@ -15597,7 +16085,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SpeedTypingCommands"
       },
       {
         "BotVersion": "8",
@@ -15610,7 +16099,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SpeedTypingCommands"
       },
       {
         "BotVersion": "8",
@@ -15623,7 +16113,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SpeedTypingCommands"
       },
       {
         "BotVersion": "8",
@@ -15636,7 +16127,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TicTacToeCommands"
       },
       {
         "BotVersion": "8",
@@ -15649,7 +16141,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TriviaCommands"
       },
       {
         "BotVersion": "8",
@@ -15662,7 +16155,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TriviaCommands"
       },
       {
         "BotVersion": "8",
@@ -15675,7 +16169,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TriviaCommands"
       }
     ],
     "Name": "Games"
@@ -16933,7 +17428,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "HorseRacing"
       }
     ],
     "Name": "Currency"
@@ -17120,7 +17616,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CountingCustomization"
       },
       {
         "BotVersion": "8",
@@ -17133,7 +17630,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CountingCustomization"
       },
       {
         "BotVersion": "8",
@@ -17146,7 +17644,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CountingCustomization"
       },
       {
         "BotVersion": "8",
@@ -17159,7 +17658,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CountingCustomization"
       },
       {
         "BotVersion": "8",
@@ -17172,7 +17672,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CountingCustomization"
       },
       {
         "BotVersion": "8",
@@ -17185,7 +17686,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CountingCustomization"
       },
       {
         "BotVersion": "8",
@@ -17198,7 +17700,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CountingCustomization"
       },
       {
         "BotVersion": "8",
@@ -17211,7 +17714,8 @@
         "GuildUserPermissions": "ManageChannels",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CountingCustomization"
       }
     ],
     "Name": "Counting"
@@ -17536,7 +18040,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CoprMonitoringCustomization"
       },
       {
         "BotVersion": "8",
@@ -17549,7 +18054,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CoprMonitoringCustomization"
       },
       {
         "BotVersion": "8",
@@ -17562,7 +18068,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CoprMonitoringCustomization"
       },
       {
         "BotVersion": "8",
@@ -17575,7 +18082,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CoprMonitoringCustomization"
       },
       {
         "BotVersion": "8",
@@ -17588,7 +18096,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CoprMonitoringCustomization"
       },
       {
         "BotVersion": "8",
@@ -17601,7 +18110,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CoprMonitoringCustomization"
       },
       {
         "BotVersion": "8",
@@ -17614,7 +18124,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CoprMonitoringCustomization"
       },
       {
         "BotVersion": "8",
@@ -17627,7 +18138,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CoprMonitoringCustomization"
       },
       {
         "BotVersion": "8",
@@ -17640,7 +18152,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "CoprMonitoringCustomization"
       }
     ],
     "Name": "CoprMonitoring"
@@ -19456,7 +19969,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AutoAssignRoleCommands"
       },
       {
         "BotVersion": "8",
@@ -19469,7 +19983,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AutoAssignRoleCommands"
       },
       {
         "BotVersion": "8",
@@ -19482,7 +19997,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AutoAssignRoleCommands"
       },
       {
         "BotVersion": "8",
@@ -19495,7 +20011,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AutoAssignRoleCommands"
       },
       {
         "BotVersion": "8",
@@ -19508,7 +20025,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AutoBanRole"
       },
       {
         "BotVersion": "8",
@@ -19522,7 +20040,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AutoBanRole"
       },
       {
         "BotVersion": "8",
@@ -19535,7 +20054,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AutoBanRole"
       },
       {
         "BotVersion": "8",
@@ -19548,7 +20068,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "AutoBanRole"
       },
       {
         "BotVersion": "8",
@@ -19561,7 +20082,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "DiscordPermOverrideCommands"
       },
       {
         "BotVersion": "8",
@@ -19574,7 +20096,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "DiscordPermOverrideCommands"
       },
       {
         "BotVersion": "8",
@@ -19587,7 +20110,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "DiscordPermOverrideCommands"
       },
       {
         "BotVersion": "8",
@@ -19600,7 +20124,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LocalizationCommands"
       },
       {
         "BotVersion": "8",
@@ -19613,7 +20138,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LocalizationCommands"
       },
       {
         "BotVersion": "8",
@@ -19626,7 +20152,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LocalizationCommands"
       },
       {
         "BotVersion": "8",
@@ -19639,7 +20166,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LocalizationCommands"
       },
       {
         "BotVersion": "8",
@@ -19652,7 +20180,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LogCommands"
       },
       {
         "BotVersion": "8",
@@ -19665,7 +20194,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LogCommands"
       },
       {
         "BotVersion": "8",
@@ -19678,7 +20208,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LogCommands"
       },
       {
         "BotVersion": "8",
@@ -19692,7 +20223,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LogCommands"
       },
       {
         "BotVersion": "8",
@@ -19705,7 +20237,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LogCommands"
       },
       {
         "BotVersion": "8",
@@ -19718,7 +20251,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LogCommands"
       },
       {
         "BotVersion": "8",
@@ -19731,7 +20265,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LogCommands"
       },
       {
         "BotVersion": "8",
@@ -19744,7 +20279,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LogCommands"
       },
       {
         "BotVersion": "8",
@@ -19757,7 +20293,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "LogCommands"
       },
       {
         "BotVersion": "8",
@@ -19770,7 +20307,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "PrefixCommands"
       },
       {
         "BotVersion": "8",
@@ -19783,7 +20321,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "PrefixCommands"
       },
       {
         "BotVersion": "8",
@@ -19796,7 +20335,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "PrefixCommands"
       },
       {
         "BotVersion": "8",
@@ -19809,7 +20349,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -19822,7 +20363,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -19835,7 +20377,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -19848,7 +20391,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -19861,7 +20405,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -19875,7 +20420,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -19889,7 +20435,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -19905,7 +20452,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -19921,7 +20469,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -19934,7 +20483,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -19947,7 +20497,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -19960,7 +20511,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -19973,7 +20525,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -19986,7 +20539,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -19999,7 +20553,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20012,7 +20567,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20025,7 +20581,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20039,7 +20596,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20053,7 +20611,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20066,7 +20625,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20079,7 +20639,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20092,7 +20653,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20105,7 +20667,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20118,7 +20681,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20131,7 +20695,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20144,7 +20709,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20157,7 +20723,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20170,7 +20737,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20183,7 +20751,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20196,7 +20765,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20210,7 +20780,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20224,7 +20795,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20240,7 +20812,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20256,7 +20829,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20269,7 +20843,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20282,7 +20857,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20295,7 +20871,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ProtectionCommands"
       },
       {
         "BotVersion": "8",
@@ -20308,7 +20885,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20321,7 +20899,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20334,7 +20913,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20347,7 +20927,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20360,7 +20941,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20373,7 +20955,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20386,7 +20969,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20399,7 +20983,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20412,7 +20997,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20425,7 +21011,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20438,7 +21025,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20451,7 +21039,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20464,7 +21053,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20477,7 +21067,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20490,7 +21081,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20503,7 +21095,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20516,7 +21109,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20529,7 +21123,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20542,7 +21137,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20555,7 +21151,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "RoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20568,7 +21165,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "SelfAssignedRolesCommands"
       },
       {
         "BotVersion": "8",
@@ -20582,7 +21180,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "SelfAssignedRolesCommands"
       },
       {
         "BotVersion": "8",
@@ -20595,7 +21194,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SelfAssignedRolesCommands"
       },
       {
         "BotVersion": "8",
@@ -20608,7 +21208,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "SelfAssignedRolesCommands"
       },
       {
         "BotVersion": "8",
@@ -20621,7 +21222,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SelfAssignedRolesCommands"
       },
       {
         "BotVersion": "8",
@@ -20634,7 +21236,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SelfAssignedRolesCommands"
       },
       {
         "BotVersion": "8",
@@ -20647,7 +21250,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "SelfAssignedRolesCommands"
       },
       {
         "BotVersion": "8",
@@ -20660,7 +21264,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "SelfAssignedRolesCommands"
       },
       {
         "BotVersion": "8",
@@ -20673,7 +21278,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "SelfAssignedRolesCommands"
       },
       {
         "BotVersion": "8",
@@ -20686,7 +21292,8 @@
         "GuildUserPermissions": "ManageMessages",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageMessages"
+        "GuildBotPermissions": "ManageMessages",
+        "Submodule": "SelfAssignedRolesCommands"
       },
       {
         "BotVersion": "8",
@@ -20699,7 +21306,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ServerGreetCommands"
       },
       {
         "BotVersion": "8",
@@ -20712,7 +21320,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ServerGreetCommands"
       },
       {
         "BotVersion": "8",
@@ -20725,7 +21334,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ServerGreetCommands"
       },
       {
         "BotVersion": "8",
@@ -20738,7 +21348,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ServerGreetCommands"
       },
       {
         "BotVersion": "8",
@@ -20751,7 +21362,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ServerGreetCommands"
       },
       {
         "BotVersion": "8",
@@ -20764,7 +21376,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ServerGreetCommands"
       },
       {
         "BotVersion": "8",
@@ -20777,7 +21390,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ServerGreetCommands"
       },
       {
         "BotVersion": "8",
@@ -20790,7 +21404,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ServerGreetCommands"
       },
       {
         "BotVersion": "8",
@@ -20803,7 +21418,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ServerGreetCommands"
       },
       {
         "BotVersion": "8",
@@ -20816,7 +21432,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ServerGreetCommands"
       },
       {
         "BotVersion": "8",
@@ -20829,7 +21446,8 @@
         "GuildUserPermissions": "ManageGuild",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ServerGreetCommands"
       },
       {
         "BotVersion": "8",
@@ -20842,7 +21460,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ServerRecovery"
       },
       {
         "BotVersion": "8",
@@ -20855,7 +21474,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "ServerRecovery"
       },
       {
         "BotVersion": "8",
@@ -20868,7 +21488,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TimeZoneCommands"
       },
       {
         "BotVersion": "8",
@@ -20881,7 +21502,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TimeZoneCommands"
       },
       {
         "BotVersion": "8",
@@ -20894,7 +21516,8 @@
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "TimeZoneCommands"
       },
       {
         "BotVersion": "8",
@@ -20907,7 +21530,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "VcRoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20920,7 +21544,8 @@
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": ""
+        "GuildBotPermissions": "",
+        "Submodule": "VcRoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20934,7 +21559,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "VcRoleCommands"
       },
       {
         "BotVersion": "8",
@@ -20948,7 +21574,8 @@
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
         "ChannelBotPermissions": "",
-        "GuildBotPermissions": "ManageRoles"
+        "GuildBotPermissions": "ManageRoles",
+        "Submodule": "VcRoleCommands"
       }
     ],
     "Name": "Administration"

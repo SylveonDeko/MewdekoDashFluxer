@@ -11,7 +11,7 @@
 
 <script lang="ts">
   interface Props {
-    size: 32 | 40;
+    size: 16 | 32 | 40;
     src?: string;
     /** Background behind `src`, for images with transparency. */
     fill?: string;
@@ -24,7 +24,7 @@
 
   const maskId = $props.id();
   const geometry = $derived(statusGeometry[size]);
-  const statusOffset = $derived(size - geometry.center - geometry.size / 2);
+  const statusOffset = $derived(geometry ? size - geometry.center - geometry.size / 2 : 0);
 </script>
 
 <div class="container {className}" style="width: {size}px; height: {size}px; flex-shrink: 0;" aria-hidden="true">

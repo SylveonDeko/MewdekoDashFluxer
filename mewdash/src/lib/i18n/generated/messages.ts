@@ -13133,6 +13133,8 @@ export const m = {
     commandsExploreAllAvailableCommandsAnd: () => t("public", "commands_explore_all_available_commands_and", "Explore all available commands and modules"),
     /** fun */
     commandsFun: () => t("public", "commands_fun", "fun"),
+    /** General */
+    commandsGeneral: () => t("public", "commands_general", "General"),
     /** Has selectable options */
     commandsHasSelectableOptions: () => t("public", "commands_has_selectable_options", "Has selectable options"),
     /** Link to this command */
@@ -13165,6 +13167,14 @@ export const m = {
     commandsReplyClose: () => t("public", "commands_reply_close", "Close the reply"),
     /** Mewdeko's reply to {command} */
     commandsReplyLabel: (p: { command: P }) => t("public", "commands_reply_label", "Mewdeko's reply to {command}", p),
+    /** Reply style */
+    commandsReplyStyle: () => t("public", "commands_reply_style", "Reply style"),
+    /** Slash command */
+    commandsReplyStyleSlash: () => t("public", "commands_reply_style_slash", "Slash command"),
+    /** Fluxer doesn't have slash commands yet */
+    commandsReplyStyleSlashSoon: () => t("public", "commands_reply_style_slash_soon", "Fluxer doesn't have slash commands yet"),
+    /** Text command */
+    commandsReplyStyleText: () => t("public", "commands_reply_style_text", "Text command"),
     /** Search commands and modules */
     commandsSearchCommandsAndModules: () => t("public", "commands_search_commands_and_modules", "Search commands and modules"),
     /** Search modules or commands... */

@@ -13,9 +13,24 @@
     grouped?: boolean;
     text?: Snippet;
     accessories?: Snippet;
+    /** The slash command this message answers, drawn in the reply slot above it. */
+    interaction?: { name: string; avatar?: string; avatarColor?: string; command: string };
+    ephemeral?: boolean;
   }
 
-  let { name, time, avatar, avatarColor, bot = false, mobile = false, grouped = false, text, accessories }: Props = $props();
+  let {
+    name,
+    time,
+    avatar,
+    avatarColor,
+    bot = false,
+    mobile = false,
+    grouped = false,
+    text,
+    accessories,
+    interaction,
+    ephemeral = false,
+  }: Props = $props();
   const noText = $derived(!text);
 </script>
 
@@ -34,6 +49,14 @@
 {/snippet}
 
 <div class="message" class:messageNoText={noText} class:messageGrouped={grouped} class:mobileLayout={mobile}>
+  {#if interaction}
+    <div class="repliedMessage">
+      <Avatar size={16} src={interaction.avatar} fill={interaction.avatar ? interaction.avatarColor : undefined}
+              defaultColor={interaction.avatarColor} class="repliedAvatar" />
+      <span class="repliedUsername">{interaction.name}</span>
+      <span class="repliedTextPreview">used <span class="repliedCommand">/{interaction.command}</span></span>
+    </div>
+  {/if}
   {#if text}
     <div class="messageContent">
       {#if !grouped}{@render authorHeading()}{/if}
@@ -50,6 +73,9 @@
   <div class="container">
     {#if noText && !grouped}{@render authorHeading()}{/if}
     {@render accessories?.()}
+    {#if ephemeral}
+      <div class="ephemeralNote">Only you can see this <span aria-hidden="true">·</span> <span class="ephemeralDismiss">Dismiss message</span></div>
+    {/if}
   </div>
 </div>
 
@@ -83,6 +109,81 @@
 
   .messageNoText.messageGrouped {
     grid-template-areas: ". . . reply" ". . . ." "gutter-left timestamp gutter-right container";
+  }
+
+  .repliedMessage {
+    --reply-spacing: 4px;
+    --reply-height: 18px;
+    --reply-spine-color: color-mix(in srgb, var(--text-chat-muted) 82%, black);
+    --reply-spine-radius: 10px;
+    --reply-spine-terminal-gap: 3px;
+    grid-area: reply;
+    margin-bottom: var(--reply-spacing);
+    position: relative;
+    display: flex;
+    align-items: center;
+    min-width: 0;
+    max-width: 100%;
+    user-select: none;
+    font-size: 14px;
+    color: var(--text-primary-muted);
+    line-height: var(--reply-height);
+  }
+
+  .repliedMessage::before {
+    content: "";
+    display: block;
+    position: absolute;
+    box-sizing: border-box;
+    top: 50%;
+    bottom: calc(-1 * (var(--reply-spacing) + var(--reply-spine-terminal-gap)));
+    inset-inline-end: calc(100% + var(--reply-spine-terminal-gap));
+    inset-inline-start: calc(-1 * (0.5 * 40px + 12px));
+    margin-block-start: -1px;
+    border-color: var(--reply-spine-color);
+    border-width: 2px 0 0 2px;
+    border-style: solid;
+    border-start-start-radius: var(--reply-spine-radius);
+  }
+
+  .repliedMessage :global(.repliedAvatar) {
+    margin-inline-end: 4px;
+    flex-shrink: 0;
+  }
+
+  .repliedUsername {
+    margin-inline-end: 5px;
+    flex-shrink: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    max-width: 30%;
+    font-weight: 500;
+    color: color-mix(in srgb, var(--text-primary) 64%, transparent);
+  }
+
+  .repliedTextPreview {
+    flex: 1 1 0;
+    min-width: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+
+  .repliedCommand {
+    color: var(--text-link);
+    font-weight: 500;
+  }
+
+  .ephemeralNote {
+    font-size: 12px;
+    line-height: 16px;
+    color: color-mix(in srgb, var(--message-timestamp-color) 60%, transparent);
+    margin-block-start: 2px;
+  }
+
+  .ephemeralDismiss {
+    color: var(--text-link);
   }
 
   .messageGutterLeft {

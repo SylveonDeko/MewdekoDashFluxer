@@ -5,14 +5,42 @@
   import Portal from "$lib/components/ui/Portal.svelte";
   import FluxerChatCompact from "$lib/components/chat-mock/FluxerChatCompact.svelte";
   import type { ChatScene } from "$lib/components/chat-mock/fluxer/types";
+  import { PREFIX, asSlashCommand, asTextCommand } from "./previews";
 
   interface Props {
-    command: string;
+    name: string;
     scene: ChatScene;
     onclose: () => void;
   }
 
-  let { command, scene, onclose }: Props = $props();
+  let { name, scene, onclose }: Props = $props();
+
+  /** Whether Fluxer has shipped slash commands; until then the slash previews stay greyed out. */
+  const SLASH_COMMANDS_LIVE = false;
+
+  let slashMode = $state(false);
+  const command = $derived(slashMode ? `/${name}` : `${PREFIX}${name}`);
+  const preview = $derived(slashMode ? asSlashCommand(scene, name) : asTextCommand(scene));
+
+  /** Switches the preview between text and slash commands and remembers the choice. */
+  function setSlashMode(value: boolean) {
+    if (!SLASH_COMMANDS_LIVE) return;
+    slashMode = value;
+    try {
+      localStorage.setItem("commands-reply-style", value ? "slash" : "text");
+    } catch {
+      return;
+    }
+  }
+
+  $effect(() => {
+    if (!SLASH_COMMANDS_LIVE) return;
+    try {
+      slashMode = localStorage.getItem("commands-reply-style") === "slash";
+    } catch {
+      slashMode = false;
+    }
+  });
 
   let dialogEl = $state<HTMLElement>();
 
@@ -60,8 +88,20 @@
         ><i class="fa-solid fa-xmark" style="font-size: 16px;"></i></button>
       </div>
       <div class="p-4 sm:p-5 overflow-y-auto">
-        <div class="mx-auto w-full max-w-[520px]">
-          <FluxerChatCompact {scene} label={m.public.commandsReplyLabel({ command })} width={520} />
+        <div class="mx-auto w-full max-w-[520px] space-y-3">
+          <div class="inline-flex rounded-lg border p-0.5 text-xs" style="border-color: {$colorStore.primary}20;"
+               role="group" aria-label={m.public.commandsReplyStyle()}>
+            <button type="button" aria-pressed={!slashMode}
+              class="px-3 py-1.5 rounded-md cursor-pointer transition-colors"
+              style="background: {slashMode ? 'transparent' : `${$colorStore.primary}20`}; color: {slashMode ? $colorStore.muted : $colorStore.text};"
+              onclick={() => setSlashMode(false)}>{m.public.commandsReplyStyleText()}</button>
+            <button type="button" aria-pressed={slashMode} disabled={!SLASH_COMMANDS_LIVE}
+              title={SLASH_COMMANDS_LIVE ? undefined : m.public.commandsReplyStyleSlashSoon()}
+              class="px-3 py-1.5 rounded-md transition-colors {SLASH_COMMANDS_LIVE ? 'cursor-pointer' : 'opacity-40 cursor-not-allowed'}"
+              style="background: {slashMode ? `${$colorStore.primary}20` : 'transparent'}; color: {slashMode ? $colorStore.text : $colorStore.muted};"
+              onclick={() => setSlashMode(true)}>{m.public.commandsReplyStyleSlash()}</button>
+          </div>
+          <FluxerChatCompact scene={preview} label={m.public.commandsReplyLabel({ command })} width={520} />
         </div>
       </div>
     </div>

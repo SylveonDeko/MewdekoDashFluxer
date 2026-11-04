@@ -4,6 +4,7 @@
   import Embed from "./Embed.svelte";
   import Markup from "./Markup.svelte";
   import Reactions from "./Reactions.svelte";
+  import Components from "./Components.svelte";
   import PinSystemMessage from "./PinSystemMessage.svelte";
   import { setContext } from "svelte";
   import { chatUsersKey, type ChatMessage, type ChatUser } from "./types";
@@ -24,6 +25,7 @@
       !!previous &&
       message.kind !== "pin" &&
       previous.kind !== "pin" &&
+      !message.interaction &&
       previous.author === message.author &&
       previous.time === message.time
     );
@@ -34,8 +36,9 @@
   <div class="scrollerContainer">
     <div class="scrollerWrap">
       <div class="scroller">
-        <div class="scrollerContent" bind:offsetHeight={contentHeight}>
+        <div class="scrollerContent">
           <div class="scrollerInner" class:scrollerInnerMobile={mobile} role="log">
+            <div class="measured" bind:offsetHeight={contentHeight}>
             {#each messages as message, index (index)}
               {@const user = users[message.author] ?? { name: message.author }}
               {@const grouped = groupedWithPrevious(index)}
@@ -43,7 +46,8 @@
               {#if message.kind === "pin"}
                 <PinSystemMessage name={user.name} time={message.time} {mobile} />
               {:else}
-                {@const hasAccessories = !!message.embeds?.length || !!message.attachments?.length || !!message.reactions?.length}
+                {@const hasAccessories =
+                  !!message.embeds?.length || !!message.attachments?.length || !!message.components?.length || !!message.reactions?.length}
                 <MessageGroup
                   name={user.name}
                   avatar={user.avatar}
@@ -54,6 +58,13 @@
                   {mobile}
                   text={message.text ? textSnippet : undefined}
                   accessories={hasAccessories ? accessorySnippet : undefined}
+                  interaction={message.interaction ? {
+                    name: users[message.interaction.user]?.name ?? message.interaction.user,
+                    avatar: users[message.interaction.user]?.avatar,
+                    avatarColor: users[message.interaction.user]?.color,
+                    command: message.interaction.command,
+                  } : undefined}
+                  ephemeral={message.ephemeral}
                 />
                 {#snippet textSnippet()}<Markup text={message.text ?? ""} />{/snippet}
                 {#snippet accessorySnippet()}
@@ -65,6 +76,9 @@
                   {#each message.embeds ?? [] as embed, e (e)}
                     <Embed {embed} />
                   {/each}
+                  {#if message.components?.length}
+                    <Components rows={message.components} />
+                  {/if}
                   {#if message.reactions?.length}
                     <Reactions reactions={message.reactions} />
                   {/if}
@@ -72,6 +86,7 @@
               {/if}
             {/each}
             <div class="scrollerSpacer"></div>
+            </div>
           </div>
         </div>
       </div>
@@ -145,6 +160,13 @@
   .scrollerInnerMobile {
     padding-inline-start: 12px;
     padding-inline-end: 12px;
+  }
+
+  .measured {
+    display: flex;
+    flex-direction: column;
+    flex: none;
+    padding-block-start: 16px;
   }
 
   .groupSpacer {

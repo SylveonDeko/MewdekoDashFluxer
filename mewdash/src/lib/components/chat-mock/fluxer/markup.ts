@@ -17,7 +17,7 @@ export type Block =
   | { t: "subtext"; c: Inline[] }
   | { t: "list"; ordered: boolean; start: number; items: Inline[][] };
 
-const emoji = String.raw`[0-9#*]️?⃣|\p{Extended_Pictographic}(?:️|‍\p{Extended_Pictographic}️?)*`;
+const emoji = String.raw`[0-9#*]️?⃣|\p{Regional_Indicator}{1,2}|\p{Extended_Pictographic}(?:️|‍\p{Extended_Pictographic}️?)*`;
 const inlinePattern = new RegExp(
   String.raw`\x60\x60\x60([^\x60]+)\x60\x60\x60|(\x60\x60)|(\x60[^\x60]+\x60)|\*\*(.+?)\*\*|__(.+?)__|~~(.+?)~~|\*([^*\s][^*]*?)\*|<t:(-?\d+):R>|<@(\w+)>|<#([^>\s]+)>|(${emoji})|<a?:(\w+):(\d+)>|\[([^\]\n]+)\]\(<?https?:\/\/[^)\s>]+>?\)`,
   "u",

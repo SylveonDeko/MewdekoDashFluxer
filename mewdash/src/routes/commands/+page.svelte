@@ -1,171 +1,292 @@
 <!-- routes/commands/+page.svelte -->
 <script lang="ts">
   import { m } from "$lib/i18n";
-
-
   import { createSearchStore, searchHandler } from "$lib/stores/commandSearch";
-    import {onDestroy, onMount, tick, untrack} from "svelte";
-    import {fade, fly} from "svelte/transition";
-    import { page } from "$app/state";
-    import {colorStore} from "$lib/stores/colorStore";
-    import DiscordSelector from "$lib/components/forms/DiscordSelector.svelte";
-    import type {PageData} from "./$types";
-    import ReplyModal from "./ReplyModal.svelte";
-    import { PREFIX, previews } from "./previews";
+  import { onDestroy, onMount, tick, untrack } from "svelte";
+  import { fade, fly, slide } from "svelte/transition";
+  import Portal from "$lib/components/ui/Portal.svelte";
+  import { page } from "$app/state";
+  import { colorStore } from "$lib/stores/colorStore";
+  import DiscordSelector from "$lib/components/forms/DiscordSelector.svelte";
+  import type { Command, Module } from "$lib/types/mewdekoModules";
+  import type { PageData } from "./$types";
+  import ReplyModal from "./ReplyModal.svelte";
+  import { PREFIX, previews } from "./previews";
+  import { moduleLabel, submoduleLabel } from "./labels";
 
-    interface Props {
-        data: PageData;
-    }
+  interface Props {
+    data: PageData;
+  }
 
-    let {data}: Props = $props();
+  let { data }: Props = $props();
 
-  let previewing = $state<string | null>(null);
+  interface Group {
+    key: string;
+    label: string;
+    commands: Command[];
+  }
 
   const requestedCommand = page.url.searchParams.get("command")?.toLowerCase() ?? "";
   const requestedModule = page.url.searchParams.get("module")?.toLowerCase() ?? "";
+
+  let activeModuleName = $state(untrack(() => data.modules[0]?.Name ?? ""));
+  let expanded = $state(new Set<string>());
+  let openGroups = $state(new Set<string>());
+  let previewing = $state<string | null>(null);
+  let sheet = $state<Command | null>(null);
+  let searchValue = $state("");
+  let showShortcuts = $state(false);
+
+  const searchStore = createSearchStore(untrack(() => data.modules));
+  const unsubscribe = searchStore.subscribe((model) => searchHandler(model));
+
+  const searching = $derived(searchValue.trim().length > 0);
+  const searchResults = $derived(searching ? $searchStore.filtered : []);
+  const searchResultCount = $derived(searchResults.reduce((count, module) => count + module.Commands.length, 0));
+  const activeModule = $derived(data.modules.find((module) => module.Name === activeModuleName) ?? data.modules[0]);
+  const activeGroups = $derived(activeModule ? groupsOf(activeModule) : []);
+
+  $effect(() => {
+    if (searchValue !== $searchStore.search) {
+      searchStore.update((store) => ({ ...store, search: searchValue }));
+    }
+  });
+
+  /** Splits a module's commands into its submodules, with the commands outside any submodule first. */
+  function groupsOf(module: Module): Group[] {
+    const groups = new Map<string, Group>();
+    for (const command of module.Commands) {
+      const key = command.Submodule ?? "";
+      if (!groups.has(key)) {
+        groups.set(key, { key, label: key ? submoduleLabel(key) : m.public.commandsGeneral(), commands: [] });
+      }
+      groups.get(key)!.commands.push(command);
+    }
+    return [...groups.values()].sort((a, b) => (a.key === "" ? -1 : b.key === "" ? 1 : a.label.localeCompare(b.label)));
+  }
 
   function commandAnchor(name: string): string {
     return `cmd-${name.toLowerCase()}`;
   }
 
-  async function openRequested() {
-    const name = requestedCommand || location.hash.replace(/^#cmd-/, "");
-    if (!name) {
-      const moduleIndex = data.modules.findIndex((mod) => mod.Name.toLowerCase() === requestedModule);
-      if (moduleIndex >= 0) activeTabIndex = moduleIndex;
-      return;
-    }
-    const moduleIndex = data.modules.findIndex((mod) => mod.Commands.some((c) => c.CommandName.toLowerCase() === name));
-    if (moduleIndex < 0) return;
-    activeTabIndex = moduleIndex;
-    await tick();
-    document.getElementById(commandAnchor(name))?.scrollIntoView({ behavior: "smooth", block: "center" });
+  /** The description as one line of plain text for the collapsed row. */
+  function summary(command: Command): string {
+    return command.Description.replace(/[*_`~]/g, "").replace(/\s+/g, " ").trim();
+  }
+
+  function isPhone(): boolean {
+    return window.matchMedia("(max-width: 639px)").matches;
+  }
+
+  function toggleGroup(key: string) {
+    const next = new Set(openGroups);
+    if (next.has(key)) next.delete(key);
+    else next.add(key);
+    openGroups = next;
+  }
+
+  function toggle(name: string) {
+    const next = new Set(expanded);
+    if (next.has(name)) next.delete(name);
+    else next.add(name);
+    expanded = next;
+  }
+
+  function selectModule(name: string) {
+    activeModuleName = name;
+    openGroups = new Set();
+    const url = new URL(location.href);
+    url.searchParams.set("module", name.toLowerCase());
+    url.searchParams.delete("command");
+    url.hash = "";
+    history.replaceState(history.state, "", url);
   }
 
   function linkCommand(name: string) {
     const url = new URL(location.href);
     url.searchParams.set("command", name.toLowerCase());
+    url.searchParams.delete("module");
     url.hash = commandAnchor(name);
     history.replaceState(history.state, "", url);
   }
 
-  const searchStore = createSearchStore(untrack(() => data.modules));
-    let mounted = $state(false);
-    let activeTabIndex = $state(0);
-    let searchValue = $state("");
-    let showShortcuts = $state(false);
-    let searchResultCount = $state(0);
-
-  // Reactive variables for tab functionality
-    let filteredModules = $derived(searchValue.trim() ? $searchStore.filtered : data.modules);
-    let activeModule = $derived(filteredModules[activeTabIndex] || filteredModules[0]);
-  $effect(() => {
-    // Update search result count
-    if (searchValue.trim()) {
-      searchResultCount = filteredModules.reduce((count, module) => {
-        return count + (module.Commands ? module.Commands.length : 0);
-      }, 0);
-    } else {
-      searchResultCount = data.modules.reduce((count, module) => {
-        return count + (module.Commands ? module.Commands.length : 0);
-      }, 0);
+  async function openRequested() {
+    const name = requestedCommand || location.hash.replace(/^#cmd-/, "");
+    if (!name) {
+      const module = data.modules.find((mod) => mod.Name.toLowerCase() === requestedModule);
+      if (module) activeModuleName = module.Name;
+      return;
     }
-    });
-
-  // Update search store when search value changes
-  $effect(() => {
-        if (searchValue !== $searchStore.search) {
-            searchStore.update(store => ({...store, search: searchValue}));
-        }
-    });
-
-  // Reset active tab when search changes
-  $effect(() => {
-        if (searchValue.trim()) {
-            activeTabIndex = 0;
-        }
-    });
-
-  const unsubscribe = searchStore.subscribe((model) => searchHandler(model));
-
-  // Keyboard navigation for tabs
-  function handleTabKeydown(event: KeyboardEvent, index: number) {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      activeTabIndex = index;
-    } else if (event.key === "ArrowLeft" && index > 0) {
-      event.preventDefault();
-      activeTabIndex = index - 1;
-      ((event.target as HTMLElement).previousElementSibling as HTMLElement | null)?.focus();
-    } else if (event.key === "ArrowRight" && index < filteredModules.length - 1) {
-      event.preventDefault();
-      activeTabIndex = index + 1;
-      ((event.target as HTMLElement).nextElementSibling as HTMLElement | null)?.focus();
+    const module = data.modules.find((mod) => mod.Commands.some((c) => c.CommandName.toLowerCase() === name));
+    if (!module) return;
+    activeModuleName = module.Name;
+    expanded = new Set([name]);
+    await tick();
+    const command = module.Commands.find((c) => c.CommandName.toLowerCase() === name);
+    openGroups = new Set([command?.Submodule ?? ""]);
+    if (isPhone()) {
+      sheet = command ?? null;
+      return;
     }
+    document.getElementById(commandAnchor(name))?.scrollIntoView({ behavior: "smooth", block: "center" });
   }
 
-  function capitalizeFirstLetter(string: string | undefined): string {
-    if (!string) return "";
-    return string.charAt(0).toUpperCase() + string.slice(1);
-  }
-
-  // Keyboard shortcuts
   function handleGlobalKeydown(event: KeyboardEvent) {
     if ((event.ctrlKey || event.metaKey) && event.key === "k") {
       event.preventDefault();
       document.getElementById("search")?.focus();
     }
-    if (event.key === "Escape") {
+    if (event.key === "Escape" && !previewing && sheet) {
+      sheet = null;
+      return;
+    }
+    if (event.key === "Escape" && !previewing) {
       searchValue = "";
       document.getElementById("search")?.blur();
     }
   }
 
-  function handleSearchFocus() {
-    showShortcuts = true;
-  }
-
-  function handleSearchBlur() {
-    setTimeout(() => showShortcuts = false, 100);
-  }
-
-  function clearSearch() {
-    searchValue = "";
-    activeTabIndex = 0;
-  }
-
   onMount(() => {
-    mounted = true;
-    if (typeof window !== "undefined") {
-      window.addEventListener("keydown", handleGlobalKeydown);
-    }
+    window.addEventListener("keydown", handleGlobalKeydown);
     void openRequested();
   });
 
   onDestroy(() => {
     unsubscribe();
-    if (typeof window !== "undefined") {
-      window.removeEventListener("keydown", handleGlobalKeydown);
-    }
+    if (typeof window !== "undefined") window.removeEventListener("keydown", handleGlobalKeydown);
   });
 </script>
 
 <svelte:head>
   <title>{m.public.commandsMewdekoCommands()}</title>
   <meta content={m.public.commandsOgTitle()} property="og:title" />
-  <meta
-    content={m.public.commandsDescription()}
-    name="description"
-  >
-  <meta
-    content={m.public.commandsDescription()}
-    property="og:description"
-  >
-  <meta
-    content={m.public.commandsDescription()}
-    name="twitter:description"
-  >
+  <meta content={m.public.commandsDescription()} name="description">
+  <meta content={m.public.commandsDescription()} property="og:description">
+  <meta content={m.public.commandsDescription()} name="twitter:description">
 </svelte:head>
+
+{#snippet commandRow(command: Command)}
+  {@const name = command.CommandName.toLowerCase()}
+  {@const open = expanded.has(name)}
+  <div id={commandAnchor(name)} class="scroll-mt-24">
+    <button
+      type="button"
+      class="row-button w-full text-left px-4 py-3 flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4"
+      aria-expanded={open}
+      onclick={() => (isPhone() ? (sheet = command) : toggle(name))}
+    >
+      <span class="flex items-center gap-2 sm:w-56 shrink-0 min-w-0">
+        <i class="fa-solid fa-chevron-right text-[10px] transition-transform {open ? 'rotate-90' : ''}"
+           style="color: {$colorStore.muted};" aria-hidden="true"></i>
+        <span class="font-mono text-sm font-semibold truncate" style="color: {$colorStore.text};">{PREFIX}{name}</span>
+        {#if previews[name]}
+          <i class="fa-solid fa-comment text-[10px] shrink-0" style="color: {$colorStore.muted};"
+             title={m.public.commandsShowReply()} aria-hidden="true"></i>
+        {/if}
+      </span>
+      {#if !open}
+        <span class="text-sm min-w-0 flex-1 line-clamp-1 pl-5 sm:pl-0" style="color: {$colorStore.muted};">
+          {summary(command)}
+        </span>
+      {/if}
+    </button>
+
+    {#if open}
+      <div class="px-4 pb-4 pl-9" transition:slide={{ duration: 150 }}>
+        {@render details(command)}
+      </div>
+    {/if}
+  </div>
+{/snippet}
+
+{#snippet details(command: Command)}
+  {@const name = command.CommandName.toLowerCase()}
+      <div class="space-y-3">
+        <div class="text-sm leading-relaxed prose prose-sm max-w-none overflow-x-auto" style="color: {$colorStore.text};">
+          {@html command.HtmlDescription ?? command.Description}
+        </div>
+
+        {#if command.Example?.length}
+          <div class="space-y-1.5">
+            {#each command.Example as example}
+              <code class="block text-xs p-2 border rounded-lg font-mono whitespace-pre-wrap break-all"
+                    style="background: {$colorStore.primary}10; border-color: {$colorStore.primary}25; color: {$colorStore.text};">
+                {example}
+              </code>
+            {/each}
+          </div>
+        {/if}
+
+        {#if command.GuildUserPermissions || command.ChannelUserPermissions || command.GuildBotPermissions || command.ChannelBotPermissions}
+          <dl class="text-xs grid grid-cols-[auto_1fr] gap-x-3 gap-y-1" style="color: {$colorStore.muted};">
+            {#if command.GuildUserPermissions}
+              <dt class="font-semibold" style="color: {$colorStore.text};">{m.public.commandsUserServer()}</dt>
+              <dd class="break-words">{command.GuildUserPermissions}</dd>
+            {/if}
+            {#if command.ChannelUserPermissions}
+              <dt class="font-semibold" style="color: {$colorStore.text};">{m.public.commandsUserChannel()}</dt>
+              <dd class="break-words">{command.ChannelUserPermissions}</dd>
+            {/if}
+            {#if command.GuildBotPermissions}
+              <dt class="font-semibold" style="color: {$colorStore.text};">{m.public.commandsBotServer()}</dt>
+              <dd class="break-words">{command.GuildBotPermissions}</dd>
+            {/if}
+            {#if command.ChannelBotPermissions}
+              <dt class="font-semibold" style="color: {$colorStore.text};">{m.public.commandsBotChannel()}</dt>
+              <dd class="break-words">{command.ChannelBotPermissions}</dd>
+            {/if}
+          </dl>
+        {/if}
+
+        <div class="flex flex-wrap gap-2">
+          {#if previews[name]}
+            <button type="button"
+                    class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-opacity hover:opacity-80"
+                    style="background: {$colorStore.primary}15; color: {$colorStore.text}; border: 1px solid {$colorStore.primary}30;"
+                    onclick={() => (previewing = name)}>
+              <i class="fa-solid fa-comment" aria-hidden="true"></i>
+              {m.public.commandsShowReply()}
+            </button>
+          {/if}
+          <a href="?command={name}#{commandAnchor(name)}"
+             class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-medium rounded-md transition-opacity hover:opacity-80"
+             style="color: {$colorStore.muted}; border: 1px solid {$colorStore.primary}20;"
+             onclick={(event) => { event.preventDefault(); linkCommand(name); }}>
+            <i class="fa-solid fa-link" aria-hidden="true"></i>
+            {m.public.commandsLinkToThisCommand()}
+          </a>
+        </div>
+      </div>
+{/snippet}
+
+{#snippet group(key: string, label: string, commands: Command[], collapsible: boolean)}
+  {@const collapsed = collapsible && !openGroups.has(key)}
+  <section class="rounded-xl border overflow-hidden"
+           style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}25; --row-divider: {$colorStore.primary}15;">
+    <h3>
+      <button type="button"
+              class="group-button w-full flex items-center gap-3 px-4 py-3 text-left"
+              style="background: {$colorStore.primary}12; color: {$colorStore.text};"
+              aria-expanded={!collapsed}
+              disabled={!collapsible}
+              onclick={() => toggleGroup(key)}>
+        <span class="flex-1 font-semibold">{label}</span>
+        <span class="text-xs px-2 py-0.5 rounded-full" style="background: {$colorStore.primary}20; color: {$colorStore.muted};">{commands.length}</span>
+        {#if collapsible}
+          <i class="fa-solid fa-chevron-down text-xs transition-transform {collapsed ? '' : 'rotate-180'}"
+             style="color: {$colorStore.muted};" aria-hidden="true"></i>
+        {/if}
+      </button>
+    </h3>
+    {#if !collapsed}
+      <div class="rows border-t" style="border-color: {$colorStore.primary}20;" transition:slide={{ duration: 150 }}>
+        {#each commands as command (command.CommandName)}
+          {@render commandRow(command)}
+        {/each}
+      </div>
+    {/if}
+  </section>
+{/snippet}
 
 <main
   class="min-h-screen"
@@ -180,18 +301,13 @@
            {$colorStore.gradientEnd}05 100%
          );"
 >
-  <!-- Header and Search Section -->
   <div class="py-4 backdrop-blur-lg border-b shadow-lg"
        style="background: linear-gradient(135deg, {$colorStore.gradientStart}15 0%, {$colorStore.gradientEnd}10 100%);
               border-color: {$colorStore.primary}30;">
-    <div class="container mx-auto px-3 sm:px-4 lg:px-6 py-2 sm:py-3">
+    <div class="w-full max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-2 sm:py-3">
       <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
-          <h1
-            class="text-lg lg:text-xl font-bold mb-1"
-            in:fade={{ duration: 300 }}
-            style="color: {$colorStore.text};"
-          >
+          <h1 class="text-lg lg:text-xl font-bold mb-1" in:fade={{ duration: 300 }} style="color: {$colorStore.text};">
             {m.common.commandReference()}
           </h1>
           <p class="text-sm opacity-80" style="color: {$colorStore.text};">
@@ -206,10 +322,10 @@
             <input
               aria-label={m.public.commandsSearchCommandsAndModules()}
               bind:value={searchValue}
-              class="block w-full pl-12 pr-12 py-2 sm:py-3 rounded-xl transition-all duration-300 focus:ring-2 focus:outline-hidden "
+              class="block w-full pl-12 pr-12 py-2 sm:py-3 rounded-xl transition-all duration-300 focus:ring-2 focus:outline-hidden"
               id="search"
-              onblur={handleSearchBlur}
-              onfocus={handleSearchFocus}
+              onblur={() => setTimeout(() => (showShortcuts = false), 100)}
+              onfocus={() => (showShortcuts = true)}
               placeholder={m.public.commandsSearchModulesOrCommands()}
               style="background: {$colorStore.primary}20;
                      color: {$colorStore.text};
@@ -221,23 +337,23 @@
               <button aria-label={m.common.ariaClearSearch()}
                 class="absolute inset-y-0 right-0 pr-4 flex items-center text-sm transition-colors duration-200 hover:opacity-70"
                 style="color: {$colorStore.muted};"
-                onclick={clearSearch}
-
+                onclick={() => (searchValue = "")}
               ><i class="fa-solid fa-xmark" style="font-size: 16px;"></i></button>
             {:else if showShortcuts}
-              <div class="absolute inset-y-0 right-0 pr-4 flex items-center text-xs"
-                   style="color: {$colorStore.muted};">
+              <div class="absolute inset-y-0 right-0 pr-4 flex items-center text-xs" style="color: {$colorStore.muted};">
                 <kbd class="px-2 py-1 rounded-sm border"
                      style="background: {$colorStore.primary}10; border-color: {$colorStore.primary}30;">Ctrl+K</kbd>
               </div>
             {/if}
           </div>
 
-          <!-- Search results info -->
-          {#if searchValue.trim()}
+          {#if searching}
             <div class="mt-2 text-sm" style="color: {$colorStore.muted};" in:fade={{ duration: 200 }}>
               {#if searchResultCount > 0}
-                {m.public.commandsShowingCounts({ commands: searchResultCount === 1 ? m.public.commandsCountOne({ count: searchResultCount }) : m.public.commandsCountOther({ count: searchResultCount }), modules: filteredModules.length === 1 ? m.public.commandsModuleCountOne({ count: filteredModules.length }) : m.public.commandsModuleCountOther({ count: filteredModules.length }) })}
+                {m.public.commandsShowingCounts({
+                  commands: searchResultCount === 1 ? m.public.commandsCountOne({ count: searchResultCount }) : m.public.commandsCountOther({ count: searchResultCount }),
+                  modules: searchResults.length === 1 ? m.public.commandsModuleCountOne({ count: searchResults.length }) : m.public.commandsModuleCountOther({ count: searchResults.length })
+                })}
               {:else}
                 {m.public.commandsNoCommandsFor({ query: searchValue })}
               {/if}
@@ -248,351 +364,150 @@
     </div>
   </div>
 
-  <!-- Main Content -->
-  <div class="flex-1 overflow-hidden">
-    <div class="container mx-auto px-4 lg:px-6 h-full flex flex-col">
-      {#if filteredModules.length === 0}
-        <div class="flex items-center justify-center flex-1" in:fade={{ duration: 300 }}>
-          <div class="text-center max-w-md">
-            <div class="mb-6">
-              <i class="fa-utility-duo fa-regular fa-microchip text-7xl mx-auto mb-4 block"
-                 style="--fa-primary-color: {$colorStore.muted}; --fa-secondary-color: {$colorStore.muted}; --fa-primary-opacity: 0.5; --fa-secondary-opacity: 0.3;"></i>
-            </div>
-            <h3 class="text-2xl font-bold mb-3" style="color: {$colorStore.text};">
-              {m.public.commandsNoCommandsFound()}
-            </h3>
-            <p class="text-lg mb-4" style="color: {$colorStore.muted};">
-              {m.placeholders.pageNoResults({ query: searchValue })}
-            </p>
-            <div class="space-y-2 text-sm" style="color: {$colorStore.muted};">
-              <p>{m.public.commandsTrySearchingFor()}</p>
-              <div class="flex flex-wrap gap-2 justify-center">
-                <button
-                  class="px-3 py-1 rounded-full transition-all hover:scale-[1.02]"
-                  style="background: {$colorStore.primary}20; border: 1px solid {$colorStore.primary}30;"
-                  onclick={() => searchValue = 'music'}
-                >
-                  {m.public.commandsMusic()}
-                </button>
-                <button
-                  class="px-3 py-1 rounded-full transition-all hover:scale-[1.02]"
-                  style="background: {$colorStore.primary}20; border: 1px solid {$colorStore.primary}30;"
-                  onclick={() => searchValue = 'moderation'}
-                >
-                  {m.public.commandsModeration()}
-                </button>
-                <button
-                  class="px-3 py-1 rounded-full transition-all hover:scale-[1.02]"
-                  style="background: {$colorStore.primary}20; border: 1px solid {$colorStore.primary}30;"
-                  onclick={() => searchValue = 'fun'}
-                >
-                  {m.public.commandsFun()}
-                </button>
-              </div>
-            </div>
+  <div class="w-full max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-6">
+    {#if searching}
+      {#if searchResults.length === 0}
+        <div class="text-center max-w-md mx-auto py-16" in:fade={{ duration: 200 }}>
+          <h3 class="text-xl font-bold mb-2" style="color: {$colorStore.text};">{m.public.commandsNoCommandsFound()}</h3>
+          <p class="mb-4" style="color: {$colorStore.muted};">{m.placeholders.pageNoResults({ query: searchValue })}</p>
+          <p class="text-sm mb-2" style="color: {$colorStore.muted};">{m.public.commandsTrySearchingFor()}</p>
+          <div class="flex flex-wrap gap-2 justify-center">
+            {#each [m.public.commandsMusic(), m.public.commandsModeration(), m.public.commandsFun()] as suggestion}
+              <button class="px-3 py-1 rounded-full text-sm"
+                      style="background: {$colorStore.primary}20; border: 1px solid {$colorStore.primary}30; color: {$colorStore.text};"
+                      onclick={() => (searchValue = suggestion)}>{suggestion}</button>
+            {/each}
           </div>
         </div>
       {:else}
-        <!-- Tab Navigation -->
-        <div class="py-6">
-          <!-- Mobile: Dropdown for module selection -->
-          <div class="md:hidden mb-4">
-            <label for="module-select" class="block text-sm font-medium mb-2" style="color: {$colorStore.muted};">{m.public.commandsSelectModule()}</label>
-            <DiscordSelector
-              type="custom"
-              id="module-select"
-              options={filteredModules.map((module, index) => ({
-                id: index.toString(),
-                name: m.public.commandsModuleOption({ module: capitalizeFirstLetter(module.Name), count: module.Commands?.length || 0 })
-              }))}
-              selected={activeTabIndex.toString()}
-              ariaLabel="Select module"
-              onchange={(e) => { if (typeof e.selected === "string") activeTabIndex = parseInt(e.selected); }}
-            />
+        <div class="space-y-3 max-w-4xl">
+          {#each searchResults as module (module.Name)}
+            {@render group(module.Name, moduleLabel(module.Name), module.Commands, false)}
+          {/each}
+        </div>
+      {/if}
+    {:else}
+      <div class="lg:grid lg:grid-cols-[220px_minmax(0,1fr)] lg:gap-8">
+        <nav class="hidden lg:block" aria-label={m.public.commandsCommandModules()}>
+          <div class="sticky top-24 max-h-[calc(100vh-7rem)] overflow-y-auto pr-1 space-y-0.5">
+            {#each data.modules as module (module.Name)}
+              {@const active = module.Name === activeModule?.Name}
+              <button type="button"
+                      class="module-button w-full flex items-center justify-between gap-2 px-3 py-1.5 rounded-lg text-sm text-left"
+                      style="{active ? `background: ${$colorStore.primary}20; color: ${$colorStore.text};` : `color: ${$colorStore.muted};`}"
+                      aria-current={active ? "page" : undefined}
+                      onclick={() => selectModule(module.Name)}>
+                <span class="truncate">{moduleLabel(module.Name)}</span>
+                <span class="text-xs shrink-0" style="color: {$colorStore.muted};">{module.Commands.length}</span>
+              </button>
+            {/each}
           </div>
+        </nav>
 
-          <!-- Desktop: Horizontal tabs -->
-          <div class="hidden md:block border-b" style="border-color: {$colorStore.primary}30;">
-            <div
-              class="-mb-px flex space-x-1 overflow-x-auto scrollbar-thin scrollbar-track-transparent scrollbar-thumb-white/20 pb-2"
-              role="tablist"
-              aria-label={m.public.commandsCommandModules()}
-              style="scrollbar-color: {$colorStore.primary}30 transparent;">
-              {#each filteredModules as module, index}
-                <button
-                        class="tab-button group inline-flex items-center px-4 py-3 border-b-2 font-medium text-sm whitespace-nowrap transition-all duration-200 focus:outline-hidden focus:ring-2 focus:ring-offset-2"
-                  style="{index === activeTabIndex 
-                    ? `border-color: ${$colorStore.primary}; color: ${$colorStore.text};` 
-                    : `border-color: transparent; color: ${$colorStore.muted};`}
-                    --tw-ring-color: {$colorStore.primary};
-                    --tw-ring-offset-color: {$colorStore.primary};"
-                  role="tab"
-                  aria-selected={index === activeTabIndex}
-                  aria-controls="tabpanel-{index}"
-                  id="tab-{index}"
-                  tabindex={index === activeTabIndex ? 0 : -1}
-                  onclick={() => activeTabIndex = index}
-                  onkeydown={(e) => handleTabKeydown(e, index)}
-                >
-                  <div
-                    class="shrink-0 w-6 h-6 rounded-md flex items-center justify-center mr-2 text-xs font-bold group-hover:scale-110 transition-transform "
-                    style="{index === activeTabIndex
-                         ? `background: linear-gradient(135deg, ${$colorStore.gradientStart}40, ${$colorStore.gradientMid}50); color: ${$colorStore.text};` 
-                         : `background: ${$colorStore.primary}20; color: ${$colorStore.text};`}">
-                    {module.Name?.charAt(0)?.toUpperCase()}
-                  </div>
-                  <span class="truncate">{capitalizeFirstLetter(module.Name)}</span>
-                  <span class="ml-2 px-2 py-1 text-xs rounded-full"
-                        style="{index === activeTabIndex 
-                          ? `background: ${$colorStore.primary}30; color: ${$colorStore.text};` 
-                          : `background: ${$colorStore.primary}15; color: ${$colorStore.muted};`}">
-                    {module.Commands.length}
-                  </span>
-                </button>
-              {/each}
-            </div>
-          </div>
+        <div class="lg:hidden mb-5">
+          <DiscordSelector
+            type="custom"
+            id="module-select"
+            options={data.modules.map((module) => ({
+              id: module.Name,
+              name: m.public.commandsModuleOption({ module: moduleLabel(module.Name), count: module.Commands.length })
+            }))}
+            selected={activeModule?.Name}
+            ariaLabel={m.public.commandsSelectModule()}
+            onchange={(e) => { if (typeof e.selected === "string") selectModule(e.selected); }}
+          />
         </div>
 
-        <!-- Tab Content -->
         {#if activeModule}
-          <div class="flex-1 overflow-auto">
-            <div class="tab-content pb-8"
-                 role="tabpanel"
-                 aria-labelledby="tab-{activeTabIndex}"
-                 id="tabpanel-{activeTabIndex}"
-                 tabindex="0"
-                 in:fade={{ duration: 200 }}>
-
-              <!-- Module Header -->
-              <div class="mb-6">
-                <div class="flex items-center space-x-4 mb-4">
-                  <div
-                    class="shrink-0 w-12 h-12 rounded-xl flex items-center justify-center shadow-lg "
-                    style="background: linear-gradient(135deg, {$colorStore.gradientStart}40, {$colorStore.gradientMid}50);
-                              border: 1px solid {$colorStore.primary}30;">
-                    <span class="text-xl font-bold" style="color: {$colorStore.text}">
-                      {activeModule.Name?.charAt(0)?.toUpperCase()}
-                    </span>
-                  </div>
-                  <div>
-                    <h2 class="text-2xl font-bold mb-1" style="color: {$colorStore.text};">
-                      {capitalizeFirstLetter(activeModule.Name)}
-                    </h2>
-                    <p class="text-sm opacity-80" style="color: {$colorStore.text};">
-                      {m.public.commandsAvailable({ count: activeModule.Commands.length })}
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <!-- Commands Grid -->
-              <div class="grid gap-4 grid-cols-1 md:grid-cols-2 xl:grid-cols-3">
-                {#each activeModule.Commands as command, cmdIndex}
-                  <article
-                    id={commandAnchor(command.CommandName)}
-                    class="command-card  border rounded-xl p-4 transition-all duration-200 group focus-within:ring-2 overflow-hidden scroll-mt-24"
-                    style="background: {$colorStore.primary}10;
-                              border-color: {$colorStore.primary}20;
-                              --tw-ring-color: {$colorStore.primary};"
-                    in:fly={{ y: 20, duration: 300, delay: mounted ? cmdIndex * 30 : 0 }}>
-
-                    <header class="mb-3">
-                      <h3 class="text-lg font-semibold transition-colors" style="color: {$colorStore.text};">
-                        <a
-                          href="?command={command.CommandName.toLowerCase()}#{commandAnchor(command.CommandName)}"
-                          onclick={(event) => { event.preventDefault(); linkCommand(command.CommandName); }}
-                          title={m.public.commandsLinkToThisCommand()}
-                          class="hover:underline">{capitalizeFirstLetter(command.CommandName)}</a>
-                      </h3>
-                    </header>
-
-                    <div class="mb-4">
-                      <div class="text-sm leading-relaxed prose prose-sm max-w-none overflow-x-auto"
-                           style="color: {$colorStore.text}; opacity: 0.85;">
-                        {@html command.Description}
-                      </div>
-                    </div>
-
-                    <!-- Usage Examples -->
-                    {#if command.Example && command.Example.length > 0}
-                      <div class="mb-4">
-                        <h4 class="text-xs font-semibold uppercase tracking-wide mb-2"
-                            style="color: {$colorStore.muted};">
-                          {m.public.commandsUsageExamples()}
-                        </h4>
-                        <div class="space-y-2">
-                          {#each command.Example.slice(0, 2) as example}
-                            <code
-                              class="block text-xs p-2 border rounded-lg font-mono overflow-x-auto whitespace-pre-wrap break-all"
-                              style="background: {$colorStore.primary}15;
-                                         border-color: {$colorStore.primary}30;
-                                         color: {$colorStore.text};">
-                              {example}
-                            </code>
-                          {/each}
-                          {#if command.Example.length > 2}
-                            <p class="text-xs" style="color: {$colorStore.muted};">
-                              {command.Example.length - 2 === 1 ? m.public.commandsMoreExamplesOne({ count: command.Example.length - 2 }) : m.public.commandsMoreExamplesOther({ count: command.Example.length - 2 })}
-                            </p>
-                          {/if}
-                        </div>
-                      </div>
-                    {/if}
-
-                    <!-- Additional Info -->
-                    <footer class="flex flex-wrap gap-2 mt-auto">
-                      {#if command.BotVersion && command.BotVersion.length > 0 && command.BotVersion.at(0) !== ""}
-                        <span class="inline-flex items-center px-2 py-1 text-xs font-medium rounded-md"
-                              style="background: {$colorStore.secondary}20; color: {$colorStore.secondary};">
-                          <i class="fa-solid fa-lightbulb mr-1" style="font-size: 12px;"></i>
-                          {command.BotVersion}
-                        </span>
-                      {/if}
-
-                      {#if command.GuildUserPermissions || command.ChannelUserPermissions || command.GuildBotPermissions || command.ChannelBotPermissions}
-                        <details class="group/perms">
-                          <summary
-                            class="inline-flex items-center px-2 py-1 text-xs font-medium rounded-md cursor-pointer transition-all "
-                            style="background: linear-gradient(135deg, {$colorStore.gradientStart}20, {$colorStore.gradientMid}25);
-                                          color: {$colorStore.text};
-                                          border: 1px solid {$colorStore.primary}30;">
-                            <i class="fa-solid fa-lock mr-1" style="font-size: 12px;"></i>
-                            {m.common.permissions()}
-                            <i class="fa-solid fa-chevron-down ml-1 transform transition-transform group-open/perms:rotate-180" style="font-size: 12px;"></i>
-                          </summary>
-                          <div class="mt-2 p-2 rounded-lg text-xs space-y-1"
-                               style="background: {$colorStore.primary}10; border: 1px solid {$colorStore.primary}20;">
-                            {#if command.GuildUserPermissions}
-                              <div>
-                                <span class="font-semibold" style="color: {$colorStore.text};">{m.public.commandsUserServer()}</span>
-                                <span
-                                  style="color: {$colorStore.text}; opacity: 0.8;"> {command.GuildUserPermissions}</span>
-                              </div>
-                            {/if}
-                            {#if command.ChannelUserPermissions}
-                              <div>
-                                <span class="font-semibold" style="color: {$colorStore.text};">{m.public.commandsUserChannel()}</span>
-                                <span
-                                  style="color: {$colorStore.text}; opacity: 0.8;"> {command.ChannelUserPermissions}</span>
-                              </div>
-                            {/if}
-                            {#if command.GuildBotPermissions}
-                              <div>
-                                <span class="font-semibold" style="color: {$colorStore.text};">{m.public.commandsBotServer()}</span>
-                                <span
-                                  style="color: {$colorStore.text}; opacity: 0.8;"> {command.GuildBotPermissions}</span>
-                              </div>
-                            {/if}
-                            {#if command.ChannelBotPermissions}
-                              <div>
-                                <span class="font-semibold" style="color: {$colorStore.text};">{m.public.commandsBotChannel()}</span>
-                                <span
-                                  style="color: {$colorStore.text}; opacity: 0.8;"> {command.ChannelBotPermissions}</span>
-                              </div>
-                            {/if}
-                          </div>
-                        </details>
-                      {/if}
-
-                      {#if command.ListOptions && command.ListOptions.length > 0 && command.ListOptions.at(0) !== ""}
-                        <span class="inline-flex items-center px-2 py-1 text-xs font-medium rounded-md"
-                              style="background: linear-gradient(135deg, {$colorStore.gradientStart}15, {$colorStore.gradientMid}20);
-                                     color: {$colorStore.text};
-                                     border: 1px solid {$colorStore.primary}20;"
-                              title={m.public.commandsHasSelectableOptions()}>
-                          <i class="fa-solid fa-terminal mr-1" style="font-size: 12px;"></i>
-                          {m.public.commandsOptionsAvailable()}
-                        </span>
-                      {/if}
-
-                      {#if previews[command.CommandName.toLowerCase()]}
-                        <button type="button"
-                                class="inline-flex items-center px-2 py-1 text-xs font-medium rounded-md transition-opacity hover:opacity-80"
-                                style="background: {$colorStore.primary}15; color: {$colorStore.text}; border: 1px solid {$colorStore.primary}30;"
-                                onclick={() => (previewing = command.CommandName.toLowerCase())}>
-                          <i class="fa-solid fa-comment mr-1" style="font-size: 12px;"></i>
-                          {m.public.commandsShowReply()}
-                        </button>
-                      {/if}
-                    </footer>
-                  </article>
-                {/each}
-              </div>
+          <div class="min-w-0 space-y-3" in:fade={{ duration: 150 }}>
+            <div class="pb-2">
+              <h2 class="text-2xl font-bold" style="color: {$colorStore.text};">{moduleLabel(activeModule.Name)}</h2>
+              <p class="text-sm" style="color: {$colorStore.muted};">
+                {m.public.commandsAvailable({ count: activeModule.Commands.length })}
+              </p>
             </div>
+            {#each activeGroups as entry (entry.key)}
+              {@render group(entry.key, entry.label, entry.commands, activeGroups.length > 1)}
+            {/each}
           </div>
         {/if}
-      {/if}
-    </div>
+      </div>
+    {/if}
   </div>
 </main>
 
+{#if sheet}
+  {@const sheetName = sheet.CommandName.toLowerCase()}
+  <Portal>
+    <div class="fixed inset-0 z-40 flex items-end sm:hidden backdrop-blur-md"
+         onclick={(e) => { if (e.target === e.currentTarget) sheet = null; }}
+         role="presentation"
+         transition:fade={{ duration: 150 }}>
+      <div class="w-full max-h-[85vh] overflow-y-auto rounded-t-2xl border-t p-4 pb-8"
+           style="background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15); border-color: {$colorStore.primary}30;
+                  --color-primary: {$colorStore.primary}; --color-text: {$colorStore.text};"
+           role="dialog"
+           aria-modal="true"
+           aria-labelledby="sheet-title"
+           transition:fly={{ y: 300, duration: 200 }}>
+        <div class="mx-auto mb-3 h-1 w-10 rounded-full" style="background: {$colorStore.muted}60;"></div>
+        <div class="flex items-center justify-between gap-3 mb-3">
+          <h2 id="sheet-title" class="font-mono text-lg font-semibold break-all" style="color: {$colorStore.text};">{PREFIX}{sheetName}</h2>
+          <button type="button" aria-label={m.public.commandsReplyClose()}
+                  class="p-2 rounded-lg shrink-0"
+                  style="background: {$colorStore.primary}10; color: {$colorStore.muted};"
+                  onclick={() => (sheet = null)}><i class="fa-solid fa-xmark"></i></button>
+        </div>
+        {@render details(sheet)}
+      </div>
+    </div>
+  </Portal>
+{/if}
+
 {#if previewing && previews[previewing]}
-  <ReplyModal command="{PREFIX}{previewing}" scene={previews[previewing]} onclose={() => (previewing = null)} />
+  <ReplyModal name={previewing} scene={previews[previewing]} onclose={() => (previewing = null)} />
 {/if}
 
 <style lang="postcss">
-    @reference '../../app.css'; /* Tab focus indicators */
-    .tab-button:focus {
-        outline: 2px solid var(--color-primary);
-        outline-offset: 2px;
-    }
+  @reference '../../app.css';
 
-    .tab-button:not([aria-selected="true"]):hover {
-        color: var(--color-text);
-        border-color: var(--color-primary);
-        opacity: 0.8;
-    }
+  .rows > :global(* + *) {
+    border-top: 1px solid var(--row-divider);
+  }
 
-    /* Command card enhancements */
-    .command-card {
-      transition: all 200ms;
-    }
+  .group-button:disabled {
+    cursor: default;
+  }
 
-    .command-card:hover {
-        transform: translateY(-2px);
-        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.3);
-        background: var(--color-primary, rgba(255, 255, 255, 0.15));
-        border-color: var(--color-primary, rgba(255, 255, 255, 0.3));
-    }
+  .group-button:not(:disabled):hover,
+  .row-button:hover,
+  .module-button:hover,
+  .row-button:active {
+    background: color-mix(in srgb, var(--color-primary) 10%, transparent);
+  }
 
-    /* Improved prose styling for dynamic theme */
-    :global(.prose) code {
-        background: var(--color-primary, rgba(255, 255, 255, 0.1));
-        color: var(--color-text);
-        opacity: 0.9;
-      padding: 0.125rem 0.25rem;
-      border-radius: 0.25rem;
-    }
+  .row-button:focus-visible,
+  .module-button:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+  }
 
-    :global(.prose strong) {
-        color: var(--color-text);
-        font-weight: 600;
-    }
+  :global(.prose) code {
+    background: color-mix(in srgb, var(--color-primary) 15%, transparent);
+    color: var(--color-text);
+    padding: 0.125rem 0.25rem;
+    border-radius: 0.25rem;
+  }
 
-    /* Enhanced accessibility for screen readers */
-    @media (prefers-reduced-motion: reduce) {
-        * {
-            animation-duration: 0.01ms !important;
-            animation-iteration-count: 1 !important;
-            transition-duration: 0.01ms !important;
-        }
-    }
+  :global(.prose strong) {
+    color: var(--color-text);
+    font-weight: 600;
+  }
 
-    /* High contrast mode support */
-    @media (prefers-contrast: more) {
-        .command-card {
-            border: 2px solid var(--color-text);
-        }
-
-        .tab-button[aria-selected="true"] {
-            background: var(--color-text);
-            color: var(--color-primary);
-        }
+  @media (prefers-reduced-motion: reduce) {
+    * {
+      animation-duration: 0.01ms !important;
+      transition-duration: 0.01ms !important;
     }
-
-    /* Focus management for tab panels */
-    .tab-content:focus {
-      outline: none;
-    }
+  }
 </style>

@@ -16,4 +16,6 @@ export type Command = {
   IsDragon: boolean;
   ListOptions: string[];
   BotVersion: string;
+  /** The bot submodule the command sits in, absent when it belongs to the module directly. */
+  Submodule?: string;
 };
