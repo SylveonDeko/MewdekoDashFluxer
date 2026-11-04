@@ -20,7 +20,7 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
-          repository: sylveondeko/mewdash
+          repository: sylveondeko/mewdash-fluxer
           short-description: Self-hostable web dashboard for the Mewdeko Discord bot.
           readme-filepath: ./DOCKER.md
           enable-url-completion: true

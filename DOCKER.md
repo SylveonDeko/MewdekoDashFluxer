@@ -1,6 +1,6 @@
 # Mewdeko Dashboard Docker image
 
-`sylveondeko/mewdash` runs the Mewdeko web dashboard. The image contains no Discord OAuth credentials, bot API key, JWT secret, or Redis password. Pass those values at runtime with an environment file.
+`sylveondeko/mewdash-fluxer` runs the Mewdeko web dashboard. The image contains no Discord OAuth credentials, bot API key, JWT secret, or Redis password. Pass those values at runtime with an environment file.
 
 ## Tags
 
@@ -37,13 +37,13 @@ docker run -d \
   --restart unless-stopped \
   --env-file ./dashboard.env \
   -p 3000:3000 \
-  sylveondeko/mewdash:nightly
+  sylveondeko/mewdash-fluxer:nightly
 ```
 
 Open `http://localhost:3000`. In production, put the dashboard behind an HTTPS reverse proxy and add the same public callback URL to Discord OAuth2 > General > Redirects.
 
 ## Run bot and dashboard together
 
-Use the ready-to-copy four-service Compose setup in the [Mewdeko Docker guide](https://github.com/SylveonDeko/Mewdeko/blob/main/DOCKER.md). It starts PostgreSQL, Redis, `sylveondeko/mewdeko`, and this image on one private network.
+Use the ready-to-copy four-service Compose setup in the [Mewdeko Docker guide](https://github.com/SylveonDeko/Mewdeko/blob/main/DOCKER.md). It starts PostgreSQL, Redis, `sylveondeko/mewdeko-fluxer`, and this image on one private network.
 
 Do not publish the bot's port `5001` unless another trusted service needs direct API access. The dashboard can reach it internally through `http://mewdeko:5001/botapi`.

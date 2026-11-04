@@ -220,7 +220,6 @@ out
 mewdash/mewdash.zip
 .npmrc
 sitemap.xml
-package-lock.json
 
 # Local-only working files
 .DS_Store
