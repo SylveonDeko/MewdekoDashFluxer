@@ -358,7 +358,7 @@
 {#snippet choiceCard(pressed: boolean, icon: string, title: string, text: string, onclick: () => void)}
   <button
     type="button"
-    class="w-full flex items-start gap-3 p-4 rounded-xl border text-left transition-all hover:scale-[1.01] min-h-[44px]"
+    class="w-full flex items-start gap-3 p-4 rounded-xl border text-left transition-all min-h-[44px]"
     style="background: {pressed ? $colorStore.primary + '20' : $colorStore.primary + '08'};
            border-color: {pressed ? $colorStore.primary : $colorStore.primary + '30'};"
     aria-pressed={pressed}
@@ -377,7 +377,7 @@
   <div class="flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-4">
     <button
       type="button"
-      class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl transition-all hover:scale-[1.02] min-h-[44px] font-medium self-start"
+      class="flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl transition-all min-h-[44px] font-medium self-start"
       style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
       onclick={oncancel}
     >
@@ -391,8 +391,8 @@
 
   <div class="grid grid-cols-1 lg:grid-cols-5 gap-6 items-start">
     <div class="lg:col-span-3 space-y-6">
-      <div class="relative rounded-2xl border p-6 md:p-8 shadow-2xl"
-           style="z-index: 70; background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15, {$colorStore.gradientEnd}10);
+      <div class="relative rounded-2xl border p-6 md:p-8"
+           style="z-index: 70; background: {$colorStore.primary}0c;
                   border-color: {$colorStore.primary}30;">
         {@render sectionHeading("fa-circle-info", m.common.basics())}
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6">
@@ -440,8 +440,8 @@
         {/if}
       </div>
 
-      <div class="relative rounded-2xl border p-6 md:p-8 shadow-2xl"
-           style="z-index: 60; background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15, {$colorStore.gradientEnd}10);
+      <div class="relative rounded-2xl border p-6 md:p-8"
+           style="z-index: 60; background: {$colorStore.primary}0c;
                   border-color: {$colorStore.primary}30;">
         {@render sectionHeading("fa-comment", m.common.message())}
         <FullscreenEmbedBuilder id="rolemenu-message"
@@ -462,8 +462,8 @@
         </p>
       </div>
 
-      <div class="relative rounded-2xl border p-6 md:p-8 shadow-2xl"
-           style="z-index: 40; background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15, {$colorStore.gradientEnd}10);
+      <div class="relative rounded-2xl border p-6 md:p-8"
+           style="z-index: 40; background: {$colorStore.primary}0c;
                   border-color: {$colorStore.primary}30;">
         {@render sectionHeading("fa-hand", m.roleMenus.editorSectionPicking())}
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
@@ -517,8 +517,8 @@
         {/if}
       </div>
 
-      <div class="relative rounded-2xl border p-6 md:p-8 shadow-2xl"
-           style="z-index: 30; background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15, {$colorStore.gradientEnd}10);
+      <div class="relative rounded-2xl border p-6 md:p-8"
+           style="z-index: 30; background: {$colorStore.primary}0c;
                   border-color: {$colorStore.primary}30;">
         {@render sectionHeading("fa-lock", m.roleMenus.editorSectionAccess())}
         <span id="rm-required" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.common.requiredRole()}</span>
@@ -539,8 +539,8 @@
         </p>
       </div>
 
-      <div class="relative rounded-2xl border p-6 md:p-8 shadow-2xl"
-           style="z-index: 20; background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15, {$colorStore.gradientEnd}10);
+      <div class="relative rounded-2xl border p-6 md:p-8"
+           style="z-index: 20; background: {$colorStore.primary}0c;
                   border-color: {$colorStore.primary}30;">
         {@render sectionHeading("fa-bell", m.roleMenus.editorSectionConfirmation())}
         <ToggleRow
@@ -557,8 +557,8 @@
         {/if}
       </div>
 
-      <div class="relative rounded-2xl border p-6 md:p-8 shadow-2xl"
-           style="z-index: 10; background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15, {$colorStore.gradientEnd}10);
+      <div class="relative rounded-2xl border p-6 md:p-8"
+           style="z-index: 10; background: {$colorStore.primary}0c;
                   border-color: {$colorStore.primary}30;">
         <div class="flex items-center justify-between gap-3 mb-6">
           <div class="flex items-center gap-3">
@@ -593,7 +593,7 @@
         <div class="mt-4" title={draft.options.length >= MAX_OPTIONS ? m.roleMenus.editorMaxOptionsTitle({ max: MAX_OPTIONS }) : undefined}>
           <button
             type="button"
-            class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl transition-all hover:scale-[1.01] min-h-[44px] font-medium disabled:opacity-50 disabled:hover:scale-100 disabled:pointer-events-none"
+            class="w-full flex items-center justify-center gap-2 px-4 py-3 rounded-xl transition-all min-h-[44px] font-medium disabled:opacity-50 disabled:pointer-events-none"
             style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
             onclick={addOption}
             disabled={draft.options.length >= MAX_OPTIONS}
@@ -608,7 +608,7 @@
         <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3">
           <button
             type="button"
-            class="flex items-center justify-center gap-3 px-6 py-3 rounded-xl transition-all hover:scale-[1.02] min-h-[44px] sm:min-h-[52px] font-medium disabled:opacity-50 disabled:hover:scale-100"
+            class="flex items-center justify-center gap-3 px-6 py-3 rounded-xl transition-all min-h-[44px] sm:min-h-[52px] font-medium disabled:opacity-50"
             style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
             onclick={save}
             disabled={!!invalidReason || saving}
@@ -619,7 +619,7 @@
           </button>
           <button
             type="button"
-            class="flex items-center justify-center gap-2 px-6 py-3 rounded-xl transition-all hover:scale-[1.02] min-h-[44px] sm:min-h-[52px] font-medium"
+            class="flex items-center justify-center gap-2 px-6 py-3 rounded-xl transition-all min-h-[44px] sm:min-h-[52px] font-medium"
             style="background: {$colorStore.muted}20; color: {$colorStore.muted}; border: 1px solid {$colorStore.muted}30;"
             onclick={oncancel}
             disabled={saving}
@@ -629,7 +629,7 @@
           {#if menu}
             <button
               type="button"
-              class="flex items-center justify-center gap-2 px-6 py-3 rounded-xl transition-all hover:scale-[1.02] min-h-[44px] sm:min-h-[52px] font-medium sm:ml-auto"
+              class="flex items-center justify-center gap-2 px-6 py-3 rounded-xl transition-all min-h-[44px] sm:min-h-[52px] font-medium sm:ml-auto"
               style="background: #ef444420; color: #ef4444; border: 1px solid #ef444430;"
               onclick={ondelete}
               disabled={saving}
@@ -646,8 +646,8 @@
     </div>
 
     <div class="lg:col-span-2 lg:sticky lg:top-4">
-      <div class="rounded-2xl border p-6 shadow-2xl"
-           style="background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15, {$colorStore.gradientEnd}10);
+      <div class="rounded-2xl border p-6"
+           style="background: {$colorStore.primary}0c;
                   border-color: {$colorStore.primary}30;">
         {@render sectionHeading("fa-eye", m.common.preview())}
         <RoleMenuPreview

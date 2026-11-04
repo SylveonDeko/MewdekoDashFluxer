@@ -1,7 +1,7 @@
 ---
 title: Suggestions
 slug: suggestions
-summary: Give members a channel or button to submit ideas, let the server vote on them, and have staff accept, deny, consider or implement each one with a reason.
+summary: Give members a channel or button to submit ideas, let the community vote on them, and have staff accept, deny, consider or implement each one with a reason.
 icon: fa-lightbulb
 category: Community
 dashboard: /dashboard/suggestions
@@ -22,7 +22,7 @@ Optionally every suggestion carries a **Join/Create Discussion** button that ope
 
 - Feedback channels where ideas get lost among replies; each suggestion becomes its own message with a vote count.
 - Communities that want members to see what was accepted and what was rejected, and why, without staff writing announcements.
-- Servers that want discussion per idea instead of arguments in the main channel, using threads.
+- Communities that want discussion per idea instead of arguments in the main channel, using threads.
 - Staff who want to triage from the dashboard with a reason box instead of remembering suggestion numbers.
 
 ## How a suggestion is submitted
@@ -32,7 +32,7 @@ There are three ways in, and all of them go through the same length checks and e
 | Method | What happens |
 | --- | --- |
 | `suggest <text>` | The command message is deleted and the suggestion is posted. Works from any channel. |
-| Typing in the suggestion channel | Any non-bot message that does not start with the prefix is turned into a suggestion and the original is deleted. Members holding the server's staff role are skipped, so staff can talk in the channel normally. |
+| Typing in the suggestion channel | Any non-bot message that does not start with the prefix is turned into a suggestion and the original is deleted. Members holding the community's staff role are skipped, so staff can talk in the channel normally. |
 | The suggest button | A message with a button in the **Suggest Button Channel**. Pressing it opens a form whose length limits match your settings. |
 
 If the text is longer than **Maximum Length** or shorter than **Minimum Length** it is rejected. With the command the error shows in the channel and deletes after five seconds; in the suggestion channel the message is deleted and the member is DMed. Mentions inside the suggestion are neutralised in the posted embed, and the member is told the suggestion was sent.
@@ -85,7 +85,7 @@ The default status embed has the suggester as author, a title such as "Suggestio
 
 ## Placeholders
 
-The suggestion message (posted on submit) supports these, plus the general server placeholders from the placeholders page.
+The suggestion message (posted on submit) supports these, plus the general community placeholders from the placeholders page.
 
 | Placeholder | Value |
 | --- | --- |
@@ -95,7 +95,7 @@ The suggestion message (posted on submit) supports these, plus the general serve
 | `%suggest.message%` | The suggestion text, mentions neutralised |
 | `%suggest.number%` | The suggestion number |
 
-The accept, deny, consider and implement messages support all of the above, the general server placeholders, and these extras.
+The accept, deny, consider and implement messages support all of the above, the general community placeholders, and these extras.
 
 | Placeholder | Value |
 | --- | --- |
@@ -161,7 +161,7 @@ The **Suggestions** tab lists every suggestion with its status, vote counts and 
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |

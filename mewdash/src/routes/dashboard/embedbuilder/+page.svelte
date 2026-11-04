@@ -809,11 +809,11 @@
     { category: "User", name: "%user.nick%", description: m.placeholders.userNick() },
     
     // Server placeholders
-    { category: "Server", name: "%server%", description: m.placeholders.server() },
-    { category: "Server", name: "%server.id%", description: m.placeholders.serverId() },
-    { category: "Server", name: "%server.members%", description: m.placeholders.serverMembers() },
-    { category: "Server", name: "%server.owner%", description: m.placeholders.serverOwner() },
-    { category: "Server", name: "%server.icon%", description: m.placeholders.mcFavicon() },
+    { category: "Community", name: "%server%", description: m.placeholders.server() },
+    { category: "Community", name: "%server.id%", description: m.common.ariaGuildId() },
+    { category: "Community", name: "%server.members%", description: m.placeholders.serverMembers() },
+    { category: "Community", name: "%server.owner%", description: m.placeholders.serverOwner() },
+    { category: "Community", name: "%server.icon%", description: m.placeholders.mcFavicon() },
     
     // Random placeholders
     { category: "Random", name: "%rng%", description: m.placeholders.rng() },
@@ -940,12 +940,12 @@
       loading: false
     },
     {
-      label: jsonCopied ? m.embedbuilder.pageActionCopied() : m.embedbuilder.pageActionCopyJson(),
+      label: jsonCopied ? m.common.copied() : m.embedbuilder.pageActionCopyJson(),
       icon: "fa-copy",
       action: copyJson,
       disabled: !canCopyJson,
       loading: false,
-      style: `background: linear-gradient(to right, ${$colorStore.primary}, ${$colorStore.secondary}); color: ${$colorStore.text};`
+      style: `background: ${$colorStore.primary}; color: ${$colorStore.text};`
     }
     ]);
 </script>
@@ -972,8 +972,8 @@
   <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full w-full">
     <!-- Editor Side -->
     <section
-      class="rounded-2xl border shadow-2xl"
-      style="background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15);
+      class="rounded-2xl border"
+      style="background: {$colorStore.primary}0c;
              border-color: {$colorStore.primary}30;"
     >
       <div class="p-6 min-h-[600px]">
@@ -994,7 +994,7 @@
             <div class="text-center pt-6 border-t" style="border-color: {$colorStore.primary}20;">
               <button
                 aria-label={m.embedbuilder.pageStartFromScratch()}
-                class="px-6 py-3 rounded-lg font-medium transition-all hover:scale-[1.02] flex items-center gap-2 mx-auto"
+                class="px-6 py-3 rounded-lg font-medium transition-all flex items-center gap-2 mx-auto"
                 style="background: {$colorStore.primary}20;
                        color: {$colorStore.primary};
                        border: 1px solid {$colorStore.primary}30;"
@@ -1044,7 +1044,7 @@
                 </h3>
                 <button
                   aria-label={m.embedbuilder.fullscreenAddEmbed()}
-                  class="px-4 py-2 rounded-lg font-medium transition-all hover:scale-[1.02] flex items-center gap-2 disabled:opacity-50"
+                  class="px-4 py-2 rounded-lg font-medium transition-all flex items-center gap-2 disabled:opacity-50"
                   style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
                   disabled={embeds.length >= 10}
                   onclick={addEmbed}
@@ -1081,7 +1081,7 @@
 
               <button
                 aria-label={m.common.addButton()}
-                class="px-2 sm:px-4 py-1 sm:py-2 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-all hover:scale-[1.02] flex items-center gap-1 sm:gap-2 disabled:opacity-50"
+                class="px-2 sm:px-4 py-1 sm:py-2 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-all flex items-center gap-1 sm:gap-2 disabled:opacity-50"
                 style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
                 disabled={linkButtons.length >= MAX_LINK_BUTTONS}
                 onclick={addLinkButton}
@@ -1134,7 +1134,7 @@
               <div class="flex gap-2">
                 <button
                   aria-label={m.embedbuilder.pageJsonRefreshAria()}
-                  class="px-3 py-2 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] flex items-center gap-2"
+                  class="px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2"
                   style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
                   onclick={refreshJsonPreview}
                 >
@@ -1143,7 +1143,7 @@
                 </button>
                 <button
                   aria-label={m.embedbuilder.pageJsonApplyAria()}
-                  class="px-3 py-2 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] flex items-center gap-2"
+                  class="px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2"
                   style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
                   onclick={applyJsonText}
                 >
@@ -1190,7 +1190,7 @@
                 />
                 <button
                   aria-label={m.common.saveEmbed()}
-                  class="px-4 py-2 rounded-lg font-medium transition-all hover:scale-[1.02] flex items-center justify-center gap-2 disabled:opacity-50 min-h-[44px]"
+                  class="px-4 py-2 rounded-lg font-medium transition-all flex items-center justify-center gap-2 disabled:opacity-50 min-h-[44px]"
                   style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
                   disabled={savingEmbed || !saveEmbedName.trim()}
                   onclick={saveCurrentEmbed}
@@ -1229,7 +1229,7 @@
                       <div class="flex gap-2 shrink-0">
                         <button
                           aria-label={m.embedbuilder.pageSavedLoadAria()}
-                          class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all hover:scale-[1.02] min-h-[44px]"
+                          class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all min-h-[44px]"
                           style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
                           onclick={() => loadSavedEmbed(saved)}
                         >
@@ -1237,7 +1237,7 @@
                         </button>
                         <button
                           aria-label={m.embedbuilder.pageSavedDeleteAria()}
-                          class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all hover:scale-[1.02] min-h-[44px]"
+                          class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all min-h-[44px]"
                           style="background: #ED424520; color: #ED4245; border: 1px solid #ED424530;"
                           onclick={() => requestDeleteSavedEmbed(saved)}
                         >
@@ -1273,7 +1273,7 @@
                     <div class="flex gap-2 shrink-0">
                       <button
                         aria-label={m.embedbuilder.pageSavedLoadAria()}
-                        class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all hover:scale-[1.02] min-h-[44px]"
+                        class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all min-h-[44px]"
                         style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
                         onclick={() => loadSavedEmbed(saved)}
                       >
@@ -1281,7 +1281,7 @@
                       </button>
                       <button
                         aria-label={m.embedbuilder.pageSavedDeleteAria()}
-                        class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all hover:scale-[1.02] min-h-[44px]"
+                        class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all min-h-[44px]"
                         style="background: #ED424520; color: #ED4245; border: 1px solid #ED424530;"
                         onclick={() => requestDeleteSavedEmbed(saved)}
                       >
@@ -1475,7 +1475,7 @@
               <!-- Send button -->
               <button
                 aria-label={m.embedbuilder.pageSendButton()}
-                class="w-full px-4 py-2 rounded-lg font-medium transition-all hover:scale-[1.02] flex items-center justify-center gap-2 disabled:opacity-50 min-h-[44px]"
+                class="w-full px-4 py-2 rounded-lg font-medium transition-all flex items-center justify-center gap-2 disabled:opacity-50 min-h-[44px]"
                 style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
                 disabled={sending || !selectedSendChannelId || !canCopyJson || !!embedPermissionBlock}
                 onclick={() => (showSendConfirm = true)}
@@ -1532,8 +1532,8 @@
 
     <!-- Preview Side -->
     <section
-      class="hidden lg:block rounded-2xl border shadow-2xl sticky top-4 self-start"
-      style="background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15);
+      class="hidden lg:block rounded-2xl border sticky top-4 self-start"
+      style="background: {$colorStore.primary}0c;
              border-color: {$colorStore.primary}30;"
     >
       <div class="p-4">

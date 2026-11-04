@@ -21,7 +21,7 @@
     >{:else if item.t === "code"}<Code text={item.v}
     />{:else if item.t === "time"}<span class="timestamp">{item.v}</span
     >{:else if item.t === "mention"}<span class="mention">@{mentionName(item.v)}</span
-    >{:else if item.t === "channel"}<span class="mention"><Icon name="textChannel" size={16} class="channelIcon" />{"⁠"}<span
+    >{:else if item.t === "channel"}<span class="mention"><Icon name="textChannel" size={16} class="channelIcon" />&#8288;<span
           class="label">{item.v}</span></span
     >{:else if item.t === "emoji"}<img class="emoji" src={item.src} alt={item.v} draggable="false"
     />{:else if item.t === "link"}<span class="link">{@render inlines(item.c)}</span

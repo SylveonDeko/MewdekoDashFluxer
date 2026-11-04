@@ -50,7 +50,7 @@
   "gate_dm_decision": "DM the applicant on a decision",
   "gate_hide_settings": "Hide settings",
   "gate_log_channel_placeholder": "No logging",
-  "gate_min_server_age": "Min time in server (days)",
+  "gate_min_server_age": "Min time in community (days)",
   "gate_no_time_limit": "no time limit",
   "gate_pick_outcome": "Pick an outcome",
   "gate_ping_placeholder": "No ping",

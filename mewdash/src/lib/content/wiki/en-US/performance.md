@@ -11,7 +11,7 @@ related: [analytics, leave-feedback, administration]
 
 ## What it does
 
-Performance is a monitoring page for whoever runs the bot. It is only visible to bot owners: the sidebar hides it for everyone else, and opening the URL directly sends non owners back to the dashboard home. There is nothing here for server staff to configure.
+Performance is a monitoring page for whoever runs the bot. It is only visible to bot owners: the sidebar hides it for everyone else, and opening the URL directly sends non owners back to the dashboard home. There is nothing here for community staff to configure.
 
 The page reads live numbers from the running bot process. One tab shows system resources, one lists the methods that take the most CPU time, and two break down Fluxer event handling by event type and by bot module, each with counts, average execution time and error rate. Everything refreshes on its own while the page is open.
 
@@ -52,12 +52,12 @@ There are no settings. The only action is the clear button on the Methods tab, w
 
 ## Commands
 
-The Performance page is dashboard only; there is no matching bot module. A few owner commands cover related ground in chat. Run these with your server's prefix (`.` unless you changed it).
+The Performance page is dashboard only; there is no matching bot module. A few owner commands cover related ground in chat. Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
 | `stats` | | Nobody | Bot version, commands run per five seconds, memory, cache counts, shard and uptime |
-| `commandstats` | `cstats` | Bot owner | Most used command, module, server and user |
+| `commandstats` | `cstats` | Bot owner | Most used command, module, community and user |
 | `shardstats` | | Bot owner | Status of every shard |
 
 ## Tips and gotchas

@@ -12,7 +12,7 @@ related: [administration, embedbuilder, rolestates]
 
 ## What it does
 
-A role menu is one message in a channel with a reaction for each option. Each option on the menu gives a role. Members react to get the role and take their reaction off to drop it, so a server can let people choose their pronouns, colors, pings, or regions without asking staff.
+A role menu is one message in a channel with a reaction for each option. Each option on the menu gives a role. Members react to get the role and take their reaction off to drop it, so a community can let people choose their pronouns, colors, pings, or regions without asking staff.
 
 Each menu has a name (only staff see it, and it titles the default message), a channel, a message, and up to 20 options. An option has a role, the name shown on the menu, an optional emoji, and an optional description. The emoji is the reaction members use, and an option without one gets a number or letter emoji. The bot lists every option with its emoji under the message.
 
@@ -27,7 +27,7 @@ The message can be anything the embed builder makes: plain text, one or more emb
 
 | Limit | Value |
 | --- | --- |
-| Menus per server | 50 |
+| Menus per community | 50 |
 | Options per menu | 20 |
 | Menu name | 100 characters |
 | Name on the menu | 80 characters |

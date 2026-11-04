@@ -12,7 +12,7 @@ related: [repeaters, polls, invites, messagestats, embedbuilder, xp, administrat
 
 ## What it does
 
-Utility is the catch-all module for small features that most servers end up wanting. Members get reminders, quotes, dice rolls, a calculator, unit conversion, and info commands for users, roles, channels and the server. Staff get command aliases, repeating messages, auto-publishing for announcement channels, deleted-message sniping, message counting and invite tracking.
+Utility is the catch-all module for small features that most communities end up wanting. Members get reminders, quotes, dice rolls, a calculator, unit conversion, and info commands for users, roles, channels and the community. Staff get command aliases, repeating messages, auto-publishing for announcement channels, deleted-message sniping, message counting and invite tracking.
 
 The dashboard's **Utilities** page collects the parts that benefit from a form: aliases, quotes, auto publish, the AI assistant, the NSFW tag filter and the role monitor. Everything else is command-only.
 
@@ -20,7 +20,7 @@ Because this module is broad, each sub-feature below is described on its own. Th
 
 ## Why you would use it
 
-- Shorten `play youtube` to `yt` for the whole server with an alias.
+- Shorten `play youtube` to `yt` for the whole community with an alias.
 - Keep a shared quote book that members can add to and pull random lines from.
 - Have every post in your announcements channel published to followers automatically.
 - Post rules or a sticky notice every few minutes, or only when the channel is active.
@@ -70,7 +70,7 @@ The **NSFW Filter** tab lists blocked tags for the NSFW module's image searches.
 
 ## Role monitor
 
-The **Role Monitor** tab configures the Server Management module's role monitor, which reacts when a role or permission you have marked as protected is handed out. Choose a **Default punishment** (only revert the change, warn, remove all roles, mute, timeout, kick or ban), add roles and permissions to protect, and list **Trusted roles** and **Trusted members** who are exempt. The commands (`addblacklistedrole`, `addblacklistedpermission`, `whitelistuser`, `whitelistrole`, `setdefaultpunishment`, `listblacklists`) are server-owner only and live in Server Management.
+The **Role Monitor** tab configures the Community Management module's role monitor, which reacts when a role or permission you have marked as protected is handed out. Choose a **Default punishment** (only revert the change, warn, remove all roles, mute, timeout, kick or ban), add roles and permissions to protect, and list **Trusted roles** and **Trusted members** who are exempt. The commands (`addblacklistedrole`, `addblacklistedpermission`, `whitelistuser`, `whitelistrole`, `setdefaultpunishment`, `listblacklists`) are community-owner only and live in Community Management.
 
 ## Reminders
 
@@ -129,7 +129,7 @@ Sniping, message counting, invite tracking, repeaters, reminders and link previe
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -151,11 +151,11 @@ Run these with your server's prefix (`.` unless you changed it).
 | `addpublishblacklist <@user> <#channel>` or `<#channel> <word>` | `addpubbl` | Administrator | Skip a user or word |
 | `removepublishblacklist <@user> <#channel>` or `<#channel> <word>` | `removepubbl` | Administrator | Remove a skip |
 | `getautopublishes` | `getaps` | Administrator | List auto-publish channels |
-| `aichannel [#channel] [enabled]` | `aic` | Manage Server | Set the AI channel |
-| `aimodel <provider> [model]` | `aim` | Manage Server | Provider and model |
+| `aichannel [#channel] [enabled]` | `aic` | Manage Community | Set the AI channel |
+| `aimodel <provider> [model]` | `aim` | Manage Community | Provider and model |
 | `aikey` | `ak` | Administrator | Set the API key |
-| `aiprompt <text>` | `aip` | Manage Server | System prompt |
-| `aiwebsearch <true\|false>` | `aws` | Manage Server | Claude web search |
+| `aiprompt <text>` | `aip` | Manage Community | System prompt |
+| `aiwebsearch <true\|false>` | `aws` | Manage Community | Claude web search |
 | `aiwebhook [name] [avatar]` | `aiw` | Administrator | Reply through a webhook, or disable with no name |
 | `aicustomembed [template]` | `aice` | Administrator | Embed template for replies |
 | `aiconfig` | `ac` | Nobody | Show AI settings |
@@ -186,10 +186,10 @@ Run these with your server's prefix (`.` unless you changed it).
 | `repeatsuppressnotifications <index>` | `repsuppressnotif`, `repsilent`, `repsuppress` | Manage Messages | Send silently |
 | `repeatforumtags <index> <action> [tagType] [tags]` | `repforumtags`, `repftags` | Manage Messages | Forum tag rules |
 | `togglemsgcount` | `togglemessagecount` | Administrator | Turn message counting on or off |
-| `minmsglength [length]` | `mmlength`, `minmlength` | Manage Server | Ignore short messages |
+| `minmsglength [length]` | `mmlength`, `minmlength` | Manage Community | Ignore short messages |
 | `usermessages [@user]` | `usermsg`, `umsg` | Nobody | A member's message stats |
 | `channelmessages [#channel]` | `channelmsg`, `cmsg` | Nobody | A channel's message stats |
-| `servermessages` | `servermsg`, `smsg`, `guildmessages`, `guildmsg`, `gmsg` | Nobody | Server-wide stats |
+| `servermessages` | `servermsg`, `smsg`, `guildmessages`, `guildmsg`, `gmsg` | Nobody | Community-wide stats |
 | `topusers` | `topu` | Nobody | Top ten by message count |
 | `activitygraph [days\|hours]` | `actgraph` | Nobody | Busiest times graph |
 | `resetmessagecounts [@user] [#channel]` | `rmc`, `resetmsgcounts`, `resetmessages`, `resetcounts` | Manage Messages | Reset counts |
@@ -197,38 +197,38 @@ Run these with your server's prefix (`.` unless you changed it).
 | `whoinvited [@user]` | `invitedby` | Nobody | Who invited a member |
 | `invitedusers [@user]` | `userinvites` | Nobody | Members someone invited |
 | `inviteleaderboard` | `inviteslb` | Nobody | Top inviters |
-| `invitesettings` | `inviteconfig` | Manage Server | Show invite settings |
-| `toggleinvitetracking` | | Manage Server | Turn tracking on or off |
-| `toggleremoveinviteonleave` | `triol` | Manage Server | Uncount invites when the invitee leaves |
-| `setminaccountage <days>` | `inviteminage` | Manage Server | Ignore young accounts |
+| `invitesettings` | `inviteconfig` | Manage Community | Show invite settings |
+| `toggleinvitetracking` | | Manage Community | Turn tracking on or off |
+| `toggleremoveinviteonleave` | `triol` | Manage Community | Uncount invites when the invitee leaves |
+| `setminaccountage <days>` | `inviteminage` | Manage Community | Ignore young accounts |
 | `joinstats` | `jstats` | Beta flag (`dragon`) | Join graph |
 | `leavestats` | `lstats` | Beta flag (`dragon`) | Leave graph |
 | `joinstatscolor [r g b]` | `jstatscolor` | Beta flag (`dragon`) | Join graph colour, gold with no values |
 | `leavestatscolor [r g b]` | `lstatscolor` | Beta flag (`dragon`) | Leave graph colour, gold with no values |
 | `userinfo [@user]` | `uinfo` | Nobody | Member details |
-| `serverinfo [name]` | `sinfo` | Nobody | Server details |
+| `serverinfo [name]` | `sinfo` | Nobody | Community details |
 | `channelinfo [#channel]` | `cinfo` | Nobody | Text channel details |
 | `vinfo [channel]` | `voiceinfo` | Nobody | Voice channel details |
 | `rinfo <role>` | `roleinfo` | Nobody | Role details |
 | `fetch <id>` | | Nobody | Look up any user by ID |
-| `avatar [@user]` | `av` | Nobody | Avatar, with a button for the server avatar |
+| `avatar [@user]` | `av` | Nobody | Avatar, with a button for the community avatar |
 | `banner [@user]` | `userbanner` | Nobody | User banner |
 | `userid [@user]` | `uid` | Nobody | User ID |
 | `roleid <role>` | `rid` | Nobody | Role ID |
 | `channelid` | `cid` | Nobody | Channel ID |
-| `serverid` | `sid` | Nobody | Server ID |
-| `roles [@user]` | | Nobody | Server roles, or a member's roles |
+| `serverid` | `sid` | Nobody | Community ID |
+| `roles [@user]` | | Nobody | Community roles, or a member's roles |
 | `inrole <role>` | | Nobody | Members with a role |
 | `inroles <role> <role>` | | Nobody | Members with both roles |
 | `rolepermlist [and\|or] <permissions...>` | `roleperms` | Nobody | Roles holding permissions |
 | `channeltopic [#channel]` | `ct` | Nobody | Channel topic |
 | `whosplaying <game>` | `whpl` | Nobody | Members playing a game |
-| `emotelist [type]` | | Nobody | Server emotes |
+| `emotelist [type]` | | Nobody | Community emotes |
 | `showemojis <emojis>` | `se` | Nobody | Enlarge emojis |
 | `say [#channel] <text or embed JSON>` | | Manage Messages | Speak as the bot |
 | `getjson <messageId> [#channel]` | | Manage Messages | Embed JSON of a message |
 | `embedsave <name> <json>` | `esave` | Nobody | Save a personal embed template |
-| `guildembedsave <name> <json>` | `gesave`, `gembedsave` | Manage Messages | Save a server embed template |
+| `guildembedsave <name> <json>` | `gesave`, `gembedsave` | Manage Messages | Save a community embed template |
 | `embedlist` / `guildembedlist` | `elist` / `gelist`, `gembedlist` | Nobody | List templates |
 | `embeddelete <name>` / `guildembeddelete <name>` | `edel`, `edelete` / `gedel`, `gembeddelete` | Nobody / Manage Messages | Delete a template |
 | `embedpreview <name>` | `epreview`, `eprev` | Nobody | Preview a template |

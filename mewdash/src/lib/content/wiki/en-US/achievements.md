@@ -1,7 +1,7 @@
 ---
 title: Achievements
 slug: achievements
-summary: Members unlock achievements for chatting, voice, reactions, invites, commands, levels and time in the server, earn points that climb a rank of their own, and wear badges on their profile. Separate from XP, with an optional link between the two.
+summary: Members unlock achievements for chatting, voice, reactions, invites, commands, levels and time in the community, earn points that climb a rank of their own, and wear badges on their profile. Separate from XP, with an optional link between the two.
 icon: fa-trophy
 category: Community
 dashboard: /dashboard/achievements
@@ -12,9 +12,9 @@ related: [xp, currency, reputation, statroles]
 
 ## What it does
 
-Achievements are goals members reach by using your server: send their first message, hit 250 messages, join voice, react with lots of different emoji, stay for months. Each one has a grade, each grade is worth points, and points decide a member's achievement rank. Members show off what they earned with up to four badges on their profile card.
+Achievements are goals members reach by using your community: send their first message, hit 250 messages, join voice, react with lots of different emoji, stay for months. Each one has a grade, each grade is worth points, and points decide a member's achievement rank. Members show off what they earned with up to four badges on their profile card.
 
-Turning achievements on counts history straight away. Members unlock everything their stored messages, voice time, reactions, invites, levels and time in the server already earned, quietly, without a single announcement.
+Turning achievements on counts history straight away. Members unlock everything their stored messages, voice time, reactions, invites, levels and time in the community already earned, quietly, without a single announcement.
 
 ## How it fits with XP
 
@@ -67,12 +67,12 @@ Built in achievements are grouped into Messages, Voice, Reactions, Invites, Comm
 
 | Kind | Unlocks when |
 | --- | --- |
-| Goal | A count reaches a number, for example 1000 messages or 30 days in the server |
+| Goal | A count reaches a number, for example 1000 messages or 30 days in the community |
 | Phrase | A member says a phrase |
 | Reaction | A member reacts with an emoji |
 | Manual | Staff hand it out |
 
-Each one gets a name, description, grade, icon (an emoji, a server emoji, a Font Awesome icon or an uploaded image) and optional rewards: a role, currency and XP. Mark one secret to hide its name and goal until it is unlocked.
+Each one gets a name, description, grade, icon (an emoji, a community emoji, a Font Awesome icon or an uploaded image) and optional rewards: a role, currency and XP. Mark one secret to hide its name and goal until it is unlocked.
 
 ## Announcements
 
@@ -84,7 +84,7 @@ Each one gets a name, description, grade, icon (an emoji, a server emoji, a Font
 | DM only | The member's DMs |
 | Silent | Nowhere |
 
-Several unlocks at once share one message. Announcements carry an image card in your server's colors. In channels they delete themselves after 5 seconds unless you pick a longer time or Never. DMs are never deleted. Members can turn unlock DMs, server messages and mentions off for themselves.
+Several unlocks at once share one message. Announcements carry an image card in your community's colors. In channels they delete themselves after 5 seconds unless you pick a longer time or Never. DMs are never deleted. Members can turn unlock DMs, community messages and mentions off for themselves.
 
 Two rules keep unlocks out of channels where they don't belong:
 
@@ -97,7 +97,7 @@ When either rule stops a post, the unlock goes to the log channel if you set one
 
 ## Cards
 
-The **Cards** tab is a designer for the unlock image. Drag and resize the title, icon, grade, progress, avatar and the rest, add shapes, text, images and icons, and use your server colors as tokens so a card follows a new icon. Save up to twenty designs, pick one as the default, and assign others to a category or a single achievement. The most specific one wins.
+The **Cards** tab is a designer for the unlock image. Drag and resize the title, icon, grade, progress, avatar and the rest, add shapes, text, images and icons, and use your community colors as tokens so a card follows a new icon. Save up to twenty designs, pick one as the default, and assign others to a category or a single achievement. The most specific one wins.
 
 ## Member settings
 
@@ -117,7 +117,7 @@ Members choose who can see their profile card, unlocked list, badges and leaderb
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). The same commands exist under `/achievements`.
+Run these with your community's prefix (`.` unless you changed it). The same commands exist under `/achievements`.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -127,23 +127,23 @@ Run these with your server's prefix (`.` unless you changed it). The same comman
 | `achcategory <category> [@user]` | `achcat` | Nobody | One category |
 | `achview [@user] <achievement>` | `achimage` | Nobody | One achievement as an unlock card |
 | `achsearch <query>` | | Nobody | Find an achievement |
-| `achleaderboard [sort]` | `achlb` | Nobody | The server leaderboard |
+| `achleaderboard [sort]` | `achlb` | Nobody | The community leaderboard |
 | `badges [@user]` | `badgeinv` | Nobody | Owned badges |
 | `badgeequip <slot> <badge>` | `equipbadge` | Nobody | Wear a badge in slot 1 to 4 |
 | `achprivacy <area> <everyone or onlyme>` | | Nobody | Profile, achievements, badges or leaderboard visibility |
 | `achnotify <dm, message or mention> <true or false>` | | Nobody | Your unlock notifications |
-| `achtoggle` | | Manage Server | Start or pause earning |
-| `achannounce <mode>` | | Manage Server | Where unlocks are posted |
-| `achlogchannel [#channel]` | `achlog` | Manage Server | The log channel |
-| `achxpperpoint <amount>` | | Manage Server | XP per achievement point, 0 to turn off |
-| `achcreate <metric> <goal> <grade> <name>` | | Manage Server | A goal achievement |
-| `achcreatephrase <phrase> <grade> <name>` | | Manage Server | A phrase achievement |
-| `achcreatereaction <emoji> <grade> <name>` | | Manage Server | A reaction achievement |
-| `achcreatemanual <grade> <name>` | | Manage Server | A manual achievement |
-| `achrewardrole`, `achrewardcurrency`, `achrewardxp` | | Manage Server | Add a reward to an achievement |
-| `achgrant <@user> <achievement>` | | Manage Server | Hand out an achievement |
-| `achrevoke <@user> <achievement>` | | Manage Server | Take one back |
-| `achreset <@user>` | | Manage Server | Clear a member's achievements |
+| `achtoggle` | | Manage Community | Start or pause earning |
+| `achannounce <mode>` | | Manage Community | Where unlocks are posted |
+| `achlogchannel [#channel]` | `achlog` | Manage Community | The log channel |
+| `achxpperpoint <amount>` | | Manage Community | XP per achievement point, 0 to turn off |
+| `achcreate <metric> <goal> <grade> <name>` | | Manage Community | A goal achievement |
+| `achcreatephrase <phrase> <grade> <name>` | | Manage Community | A phrase achievement |
+| `achcreatereaction <emoji> <grade> <name>` | | Manage Community | A reaction achievement |
+| `achcreatemanual <grade> <name>` | | Manage Community | A manual achievement |
+| `achrewardrole`, `achrewardcurrency`, `achrewardxp` | | Manage Community | Add a reward to an achievement |
+| `achgrant <@user> <achievement>` | | Manage Community | Hand out an achievement |
+| `achrevoke <@user> <achievement>` | | Manage Community | Take one back |
+| `achreset <@user>` | | Manage Community | Clear a member's achievements |
 
 ## Tips and gotchas
 

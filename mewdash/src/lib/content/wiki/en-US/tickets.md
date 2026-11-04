@@ -22,7 +22,7 @@ Each button and each select option is its own ticket type with its own category,
 
 ## Why you would use it
 
-- A support server wants private one-on-one channels instead of a public help channel.
+- A support community wants private one-on-one channels instead of a public help channel.
 - You have several teams (billing, moderation, partnerships) and want a select menu that routes to the right one.
 - You need moderator applications with a form, kept separate from general support.
 - You want an audit trail: transcripts, staff notes and cases that group related reports.
@@ -108,9 +108,9 @@ The general placeholder set is not applied to this message; only the ones above 
 
 **Notes**: `ticketnote` adds a staff note to the current ticket. The note is stored with the ticket, shown on the dashboard, and posted in the ticket channel as a blue "note added" embed with the author in the footer.
 
-**Priorities** are server-wide definitions created with `ticketaddpriority` or on the **Configuration** tab. Each has an ID, a display name, an emoji, a level from 1 to 5, a colour, a response time, and a **Notify staff** flag. Setting a priority on a ticket posts an embed in that colour and, when the flag is on, pings the support roles. A ticket type can restrict which priorities are allowed.
+**Priorities** are community-wide definitions created with `ticketaddpriority` or on the **Configuration** tab. Each has an ID, a display name, an emoji, a level from 1 to 5, a colour, a response time, and a **Notify staff** flag. Setting a priority on a ticket posts an embed in that colour and, when the flag is on, pings the support roles. A ticket type can restrict which priorities are allowed.
 
-**Tags** are server-wide labels with an ID, name, description and colour. Add or remove them on a ticket with `ticketaddtags` and `ticketremovetags` using the tag IDs. The dashboard shows them on each ticket and lets you search by tag.
+**Tags** are community-wide labels with an ID, name, description and colour. Add or remove them on a ticket with `ticketaddtags` and `ticketremovetags` using the tag IDs. The dashboard shows them on each ticket and lets you search by tag.
 
 ## Closing, archiving and transcripts
 
@@ -125,7 +125,7 @@ Archiving renames the channel to `archived-...`, moves it to the archive categor
 Closing publishes a **Ticket closed** event to chat triggers.
 
 > [!NOTE]
-> A transcript is only produced when both the type has **Save Transcript** enabled and the server has a transcript channel. Without a transcript channel the close still succeeds but nothing is saved.
+> A transcript is only produced when both the type has **Save Transcript** enabled and the community has a transcript channel. Without a transcript channel the close still succeeds but nothing is saved.
 
 ## Cases
 
@@ -152,8 +152,8 @@ The Tickets page has six tabs: **Overview**, **Tickets**, **Ticket Panels**, **C
 | --- | --- | --- |
 | Transcript Channel | none | Where transcript summaries with links are posted (Configuration) |
 | Log Channel | none | Where ticket creation and blacklist entries are logged (Configuration) |
-| Priorities | none | Server-wide priority definitions (Configuration) |
-| Tags | none | Server-wide tag definitions (Configuration) |
+| Priorities | none | Community-wide priority definitions (Configuration) |
+| Tags | none | Community-wide tag definitions (Configuration) |
 | Panel Embed | title "Support Tickets" | The panel message, built in the embed editor (Ticket Panels) |
 | Per-type settings | see table above | Set on each button or select option (Ticket Panels) |
 | Blacklist | empty | Members who cannot open tickets (Advanced) |
@@ -176,7 +176,7 @@ The **Tickets** tab lists open and closed tickets with search by ticket, user, c
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). Panel IDs are message IDs; button, menu and option IDs come from `panelinfo` or `ticketlistpanel`.
+Run these with your community's prefix (`.` unless you changed it). Panel IDs are message IDs; button, menu and option IDs come from `panelinfo` or `ticketlistpanel`.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -236,7 +236,7 @@ Run these with your server's prefix (`.` unless you changed it). Panel IDs are m
 | `ticketlogchannel [#channel]` | `tlogch` | Administrator | Set or clear the log channel |
 | `ticketcloseinactive <hours>` | `tcloseinactive` | Administrator | Close tickets idle for that long |
 | `ticketmoveall <category> <category>` | `tmoveall` | Administrator | Move all tickets between categories |
-| `ticketstats` | `tstats` | Nobody | Server ticket statistics |
+| `ticketstats` | `tstats` | Nobody | Community ticket statistics |
 | `ticketuserstats [@user]` | `tuserstats` | Nobody | A member's ticket statistics |
 
 ## Tips and gotchas

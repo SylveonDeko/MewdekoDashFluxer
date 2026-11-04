@@ -14,7 +14,7 @@ related: [multigreets, embedbuilder, administration]
 
 A role greet is a message the bot posts when a member receives a role. Staff pick a role and a channel, write the message, and from then on every time that role is added to someone the bot posts the message there. The default message is `Welcome %user.mention%!`.
 
-The message goes through the embed parser, so it can be plain text, a full embed, or an embed with buttons built in the dashboard editor. Placeholders fill in the member's name, avatar, join date and server details. Each greet can post through a webhook with its own name and avatar, and can delete itself after a set number of seconds.
+The message goes through the embed parser, so it can be plain text, a full embed, or an embed with buttons built in the dashboard editor. Placeholders fill in the member's name, avatar, join date and community details. Each greet can post through a webhook with its own name and avatar, and can delete itself after a set number of seconds.
 
 Greets are per role and per channel. One role can have up to ten greets, each in a different channel or with a different message, and a greet can be disabled without deleting it.
 
@@ -36,7 +36,7 @@ With a webhook set, the message is sent under the webhook's name and avatar. Aut
 
 ## Placeholders
 
-Role greets support the user, server and bot placeholder groups. Channel placeholders are not available.
+Role greets support the user, community and bot placeholder groups. Channel placeholders are not available.
 
 | Placeholder | Value |
 | --- | --- |
@@ -47,14 +47,14 @@ Role greets support the user, server and bot placeholder groups. Channel placeho
 | `%user.banner%` | Banner URL |
 | `%user.id%` | User ID |
 | `%user.created_date%`, `%user.created_time%` | Account creation date and time |
-| `%user.joined_date%`, `%user.joined_time%` | Server join date and time |
-| `%server.name%`, `%server%` | Server name |
+| `%user.joined_date%`, `%user.joined_time%` | Community join date and time |
+| `%server.name%`, `%server%` | Community name |
 | `%server.members%` | Cached member count |
-| `%server.icon%`, `%server.banner%` | Server icon and banner URLs |
-| `%server.time%`, `%time.day%` | Server time and weekday |
+| `%server.icon%`, `%server.banner%` | Community icon and banner URLs |
+| `%server.time%`, `%time.day%` | Community time and weekday |
 | `%bot.name%`, `%bot.avatar%`, `%bot.id%` | The bot's name, avatar and ID |
 
-When invite tracking is enabled on the server, the inviter and invite placeholders from Multi Greets (`%inviter.username%`, `%inviter.mention%`, `%inviter.count%`, `%invite.code%`, `%invite.label%` and the rest) are also filled in from the member's inviter. If no inviter is known these read `Unknown`.
+When invite tracking is enabled on the community, the inviter and invite placeholders from Multi Greets (`%inviter.username%`, `%inviter.mention%`, `%inviter.count%`, `%invite.code%`, `%invite.label%` and the rest) are also filled in from the member's inviter. If no inviter is known these read `Unknown`.
 
 > [!EXAMPLE]
 > `Welcome to the team, %user.mention%! You are member number %server.members%. Check the pins in this channel first.`
@@ -87,7 +87,7 @@ The Role Greets page has an **Add New Role Greet** form at the top and a card fo
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). Greets are numbered by their position in `rolegreetlist`.
+Run these with your community's prefix (`.` unless you changed it). Greets are numbered by their position in `rolegreetlist`.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -103,9 +103,9 @@ Run these with your server's prefix (`.` unless you changed it). Greets are numb
 ## Tips and gotchas
 
 - The bot needs Send Messages and Embed Links in the greet channel, Manage Messages there for auto-delete, and Manage Webhooks to create a webhook with `rolegreetwebhook`.
-- The limit is ten greets per role, not per server. The add command refuses an eleventh.
+- The limit is ten greets per role, not per community. The add command refuses an eleventh.
 - Greets fire on any role add, including ones from reaction roles, level rewards and other bots, so a role that is added and removed often will spam the channel.
 - If the embed parser produces nothing, for example a message that is only whitespace, nothing is sent.
 - `rolegreetremove` with a role removes every greet for that role after a yes/no prompt; with a number it removes just that one immediately.
 - Numbers shift when a greet is removed. Run `rolegreetlist` again before editing by number.
-- Role greets are separate from the join greets on the MultiGreets page. Use MultiGreets for people joining the server and role greets for roles gained afterwards.
+- Role greets are separate from the join greets on the MultiGreets page. Use MultiGreets for people joining the community and role greets for roles gained afterwards.

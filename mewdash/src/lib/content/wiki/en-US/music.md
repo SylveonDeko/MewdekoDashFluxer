@@ -44,7 +44,7 @@ You must be in a voice channel for almost every music command. If the bot is alr
 
 `play <number>` jumps to that queue position. `search <query>` lists ten results without queueing anything. `queue` shows a paged view, five per page, with a select menu for per track options. `nowplaying` shows the current track with its requester and provider.
 
-`songremove <number>` removes an entry, `movesong <from> <to>` reorders, `shuffle` shuffles everything after the current track, and `clearqueue` empties the queue and stops. `seek mm:ss` jumps within the current track. `volume 0..100` sets the volume and saves it as the server default.
+`songremove <number>` removes an entry, `movesong <from> <to>` reorders, `shuffle` shuffles everything after the current track, and `clearqueue` empties the queue and stops. `seek mm:ss` jumps within the current track. `volume 0..100` sets the volume and saves it as the community default.
 
 `loop <type>` sets repeat: `none` (also `off`), `track` (also `song`) or `queue` (also `all`). When the queue ends with repeat off, the bot posts a queue empty notice in the music channel.
 
@@ -60,7 +60,7 @@ Set the DJ role with `setdjrole @role` or the dashboard's **DJ Role** selector. 
 
 ## Playlists
 
-`saveplaylist <name>` stores the current queue under a name, per server, with you as the author. `loadplaylist <name> [true]` appends it to the queue, or replaces the queue if you pass `true`, and starts playing if nothing is. Tracks are re-resolved on YouTube when loaded, so entries that no longer exist are skipped silently. `playlists` lists them with track counts and authors, and `deleteplaylist <name>` removes one.
+`saveplaylist <name>` stores the current queue under a name, per community, with you as the author. `loadplaylist <name> [true]` appends it to the queue, or replaces the queue if you pass `true`, and starts playing if nothing is. Tracks are re-resolved on YouTube when loaded, so entries that no longer exist are skipped silently. `playlists` lists them with track counts and authors, and `deleteplaylist <name>` removes one.
 
 ## Audio filters
 
@@ -82,7 +82,7 @@ Filters apply to the running player and are reset when it disconnects.
 
 ## Music link conversion
 
-In channels where it is enabled, posting an Apple Music, Spotify, YouTube Music, YouTube, Amazon Music, Deezer, Tidal, Pandora or SoundCloud link gets a reply embed with the track's title, artist and artwork plus links to the same track on the other providers. Toggle a channel with `musiclinkchannel [#channel]` (Manage Server) and list them with `musiclinkchannels`. On the dashboard this is the **Music Link Conversion** section on the Music Settings tab.
+In channels where it is enabled, posting an Apple Music, Spotify, YouTube Music, YouTube, Amazon Music, Deezer, Tidal, Pandora or SoundCloud link gets a reply embed with the track's title, artist and artwork plus links to the same track on the other providers. Toggle a channel with `musiclinkchannel [#channel]` (Manage Community) and list them with `musiclinkchannels`. On the dashboard this is the **Music Link Conversion** section on the Music Settings tab.
 
 ## Text to speech
 
@@ -92,7 +92,7 @@ Members pick their own voice with `ttsvoice <name>` and browse with `ttsvoices [
 
 ## Last.fm
 
-Members link a Last.fm account from the dashboard's `/me` page (`lastfmlink` posts the button). Once linked, tracks the bot plays for at least 30 seconds are scrobbled to their account; `lastfmtoggle` pauses that and `lastfmstatus` shows the state. The `fm` family of commands then works for anyone with a linked account: recent tracks, top artists, albums and tracks by period, artist and album lookups, who knows leaderboards across the server, crowns, taste comparison and collage charts.
+Members link a Last.fm account from the dashboard's `/me` page (`lastfmlink` posts the button). Once linked, tracks the bot plays for at least 30 seconds are scrobbled to their account; `lastfmtoggle` pauses that and `lastfmstatus` shows the state. The `fm` family of commands then works for anyone with a linked account: recent tracks, top artists, albums and tracks by period, artist and album lookups, who knows leaderboards across the community, crowns, taste comparison and collage charts.
 
 ## Settings
 
@@ -135,7 +135,7 @@ The dashboard page has two tabs, **Music Settings** and **TTS Settings**. The Mu
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -157,10 +157,10 @@ Run these with your server's prefix (`.` unless you changed it).
 | `seek <mm:ss>` | | Nobody | Jump within the current track |
 | `loop <none|track|queue>` | `queuerepeat`, `qrp`, `rpl` | Nobody | Set repeat mode |
 | `autoplay <0..5>` | `ap` | Nobody | Related tracks when the queue empties |
-| `setdjrole [role]` | `djrole` | Manage Server | Set or clear the DJ role |
+| `setdjrole [role]` | `djrole` | Manage Community | Set or clear the DJ role |
 | `setmusicchannel [#channel]` | `smch` | Nobody | Where player notices go |
 | `musicsettings` | `msettings` | Nobody | Show autoplay, volume, repeat and channel |
-| `musiclinkchannel [#channel]` | | Manage Server | Toggle link conversion in a channel |
+| `musiclinkchannel [#channel]` | | Manage Community | Toggle link conversion in a channel |
 | `musiclinkchannels` | | Nobody | List link conversion channels |
 | `saveplaylist <name>` | `saveplist` | Nobody | Save the queue |
 | `loadplaylist <name> [clear]` | `loadplist` | Nobody | Load a playlist, `true` to replace the queue |
@@ -188,37 +188,37 @@ Run these with your server's prefix (`.` unless you changed it).
 | `fmtoptracks [period] [user]` | `fmtt` | Nobody | Top tracks |
 | `fmartist [artist]` | `fma` | Nobody | Artist info and your plays |
 | `fmalbum [query]` | `fmal` | Nobody | Album info |
-| `fmwhoknows [artist]` | `whoknows`, `wk` | Nobody | Server leaderboard for an artist |
-| `fmwhoknowsalbum <query>` | `whoknowsalbum`, `wka` | Nobody | Server leaderboard for an album |
-| `fmwhoknowstrack <query>` | `whoknowstrack`, `wkt` | Nobody | Server leaderboard for a track |
+| `fmwhoknows [artist]` | `whoknows`, `wk` | Nobody | Community leaderboard for an artist |
+| `fmwhoknowsalbum <query>` | `whoknowsalbum`, `wka` | Nobody | Community leaderboard for an album |
+| `fmwhoknowstrack <query>` | `whoknowstrack`, `wkt` | Nobody | Community leaderboard for a track |
 | `fmcrowns [artist]` | `crowns` | Nobody | Artist crowns |
 | `fmtaste <user>` | `taste` | Nobody | Compare taste with someone |
 | `fmchart [size] [period] [user]` | `chart` | Nobody | Album art collage |
-| `ttsenable` | `tts`, `ttson` | Manage Server | Enable TTS in your voice channel |
-| `ttsremove` | `ttsoff` | Manage Server | Disable TTS in your voice channel |
-| `ttslink [#channel]` | `ttschannel` | Manage Server | Link a text channel to the voice channel |
-| `ttsannounce` | `ttsjoinleave` | Manage Server | Toggle join and leave announcements |
-| `ttsjoinformat [text]` | `ttsjoin` | Manage Server | Join announcement text |
-| `ttsleaveformat [text]` | `ttsleave` | Manage Server | Leave announcement text |
-| `ttsvolume <0..100>` | `ttsvol` | Manage Server | TTS loudness |
-| `ttsspeed <0.5..2>` | | Manage Server | TTS speed |
-| `ttsdefaultvoice [voice]` | `ttsdefvoice` | Manage Server | Server default voice |
+| `ttsenable` | `tts`, `ttson` | Manage Community | Enable TTS in your voice channel |
+| `ttsremove` | `ttsoff` | Manage Community | Disable TTS in your voice channel |
+| `ttslink [#channel]` | `ttschannel` | Manage Community | Link a text channel to the voice channel |
+| `ttsannounce` | `ttsjoinleave` | Manage Community | Toggle join and leave announcements |
+| `ttsjoinformat [text]` | `ttsjoin` | Manage Community | Join announcement text |
+| `ttsleaveformat [text]` | `ttsleave` | Manage Community | Leave announcement text |
+| `ttsvolume <0..100>` | `ttsvol` | Manage Community | TTS loudness |
+| `ttsspeed <0.5..2>` | | Manage Community | TTS speed |
+| `ttsdefaultvoice [voice]` | `ttsdefvoice` | Manage Community | Community default voice |
 | `ttsvoice [voice]` | | Nobody | Your own voice |
 | `ttsvoices [search]` | `ttsvoicelist`, `ttsvoicesearch` | Nobody | Browse voices |
-| `ttsblock <user>` | `ttsban` | Manage Server | Toggle a member's TTS block |
-| `ttsblocklist` | `ttsbanlist`, `ttsblocked` | Manage Server | List blocked members |
-| `ttsrole [role]` | | Manage Server | Require a role for TTS |
-| `ttsreplycontext` | `ttsreply` | Manage Server | Toggle reply context |
-| `ttsattachmentnarration` | `ttsattach` | Manage Server | Toggle attachment narration |
-| `ttsconsecutivegrouping` | `ttsgroup` | Manage Server | Toggle name skipping for consecutive messages |
-| `ttsmaxqueue <1..50>` | `ttsqueue` | Manage Server | Pending TTS message limit |
-| `ttssettings` | `ttsinfo` | Manage Server | Show TTS settings |
+| `ttsblock <user>` | `ttsban` | Manage Community | Toggle a member's TTS block |
+| `ttsblocklist` | `ttsbanlist`, `ttsblocked` | Manage Community | List blocked members |
+| `ttsrole [role]` | | Manage Community | Require a role for TTS |
+| `ttsreplycontext` | `ttsreply` | Manage Community | Toggle reply context |
+| `ttsattachmentnarration` | `ttsattach` | Manage Community | Toggle attachment narration |
+| `ttsconsecutivegrouping` | `ttsgroup` | Manage Community | Toggle name skipping for consecutive messages |
+| `ttsmaxqueue <1..50>` | `ttsqueue` | Manage Community | Pending TTS message limit |
+| `ttssettings` | `ttsinfo` | Manage Community | Show TTS settings |
 
 ## Tips and gotchas
 
 - The bot needs Connect and Speak in the voice channel, and Send Messages in the music channel for notices.
 - Most commands check that you are in a voice channel first, and that it is the one the bot is in.
-- Volume from `volume` is saved as the server default, so a late night 10 becomes tomorrow's starting volume.
+- Volume from `volume` is saved as the community default, so a late night 10 becomes tomorrow's starting volume.
 - Spotify playlists are converted track by track through YouTube search, so long playlists take a while and a few matches may be wrong.
 - Saved playlists store links, not audio. If a video is removed from YouTube the entry is skipped on load.
 - Vote skip counts only humans in the channel. In a channel of one, your own vote is enough.

@@ -6,17 +6,17 @@ icon: fa-cog
 category: Security
 dashboard: /dashboard/administration
 module: Administration
-tags: [admin, anti-raid, anti-spam, anti-alt, anti-pattern, anti-mass-mention, anti-mass-post, honeypot, anti-image-hash, scam images, reaction roles, self-assignable roles, auto-assign roles, auto-ban roles, voice channel roles, permission overrides, dpo, mass ban, server recovery, staff role, timezone, cooldowns]
+tags: [admin, anti-raid, anti-spam, anti-alt, anti-pattern, anti-mass-mention, anti-mass-post, honeypot, anti-image-hash, scam images, reaction roles, self-assignable roles, auto-assign roles, auto-ban roles, voice channel roles, permission overrides, dpo, mass ban, community recovery, staff role, timezone, cooldowns]
 related: [moderation, permissions, logging, multigreets, settings, auditlog, rolestates]
 ---
 
 ## What it does
 
-Administration is the module that keeps a server orderly when no moderator is watching. Its protection systems watch joins and messages and punish automatically when something looks like a raid, a spam burst, a throwaway alt, a mass ping, a scam link pasted into every channel, a post in a trap channel, or a known scam image. Each system is independent, has its own punishment, and can be switched on and off on its own.
+Administration is the module that keeps a community orderly when no moderator is watching. Its protection systems watch joins and messages and punish automatically when something looks like a raid, a spam burst, a throwaway alt, a mass ping, a scam link pasted into every channel, a post in a trap channel, or a known scam image. Each system is independent, has its own punishment, and can be switched on and off on its own.
 
 The same module handles role automation: roles given on join, roles members pick up themselves with `iam`, reaction roles, roles tied to being in a voice channel, and tripwire roles that ban whoever receives them. It also lets you change which Fluxer permission a command needs, set the staff and member roles other features rely on, rate limit commands, and clean up command messages.
 
-For the bad days there are mass operations: ban or kick everyone who joined in the last few minutes, ban by name pattern, by role, or by avatar, and a server recovery flow that gets an administrator role back to a verified owner.
+For the bad days there are mass operations: ban or kick everyone who joined in the last few minutes, ban by name pattern, by role, or by avatar, and a community recovery flow that gets an administrator role back to a verified owner.
 
 Everything lives on the **Administration** page of the dashboard across five tabs: **Overview**, **Protection Systems**, **Roles & Permissions**, **Automation & Settings** and **Advanced Operations**. Nearly every setting also has a command.
 
@@ -35,7 +35,7 @@ Every protection system takes a **punishment action**. Some actions also take a 
 
 | Action | What happens |
 | --- | --- |
-| Mute | Applies the server's mute role (text and voice) |
+| Mute | Applies the community's mute role (text and voice) |
 | ChatMute | Mute role for text only |
 | VoiceMute | Server mutes the member in voice |
 | Kick | Removes the member; they can rejoin |
@@ -121,7 +121,7 @@ Blocks specific images by how they look, so a re-upload that was resized, recomp
 - Each blocked image can carry its own action, duration and role, overriding the system default. **Delete only** removes the image without punishing the poster.
 - Ignored roles and channels are skipped; the poster gets a DM by default.
 
-**Block known scam images** switches on a preset list shipped with the bot, currently the fake crypto casino and MrBeast giveaway images circulating on Fluxer. The card shows how many images are on the list and how many posts it has caught in your server.
+**Block known scam images** switches on a preset list shipped with the bot, currently the fake crypto casino and MrBeast giveaway images circulating on Fluxer. The card shows how many images are on the list and how many posts it has caught in your community.
 
 To block your own image on the dashboard, drop or upload the file, or paste its URL, give it a label, optionally pick a per-image action, and save. With commands, run `blockimage [action] [name]` while attaching the image, replying to a message that contains it, or pasting the link. `blockedimages` lists everything with hit counts, `unblockimage <id>` removes one, and `imagehash` shows an image's hash without blocking it.
 
@@ -138,7 +138,7 @@ Roles given to every member the moment they join, with a separate list for bots.
 
 ### Self-assignable roles
 
-Roles members can give themselves with `iam <role>` and drop with `iamnot <role>`. Roles are sorted into numbered **groups** (group 0 is "Ungrouped"), and groups can be named. **Exclusive mode** is a server wide toggle: when it is on, taking a role from a group removes any other role you hold from that group, which is ideal for colours or regions. A role can require a minimum XP **level**. **Remove iam messages** deletes both the command and the reply after three seconds to keep the channel clean.
+Roles members can give themselves with `iam <role>` and drop with `iamnot <role>`. Roles are sorted into numbered **groups** (group 0 is "Ungrouped"), and groups can be named. **Exclusive mode** is a community wide toggle: when it is on, taking a role from a group removes any other role you hold from that group, which is ideal for colours or regions. A role can require a minimum XP **level**. **Remove iam messages** deletes both the command and the reply after three seconds to keep the channel clean.
 
 ### Reaction roles
 
@@ -158,9 +158,9 @@ Any role in this list is a tripwire: the moment a member gains it, they are bann
 
 **Permission overrides** replace the Fluxer permission a command normally checks. Add an override for `ban` requiring Manage Messages and anyone with Manage Messages can run it; add one requiring Administrator and only administrators can. When several permissions are listed the user needs all of them. With commands, `dpo <command> <permission> [permission...]` sets one, `dpo <command>` with no permissions removes it, `dpol` lists them and `dpor` clears everything after a confirmation. Custom chat trigger names are accepted too.
 
-The **Permissions Management** card on the same tab is the rule based command permission system: allow or deny a command, a module or everything for a user, role, channel, category or the whole server, evaluated top to bottom. It has its own article, see `permissions`.
+The **Permissions Management** card on the same tab is the rule based command permission system: allow or deny a command, a module or everything for a user, role, channel, category or the whole community, evaluated top to bottom. It has its own article, see `permissions`.
 
-## Server settings
+## Community settings
 
 These cards are on the **Automation & Settings** tab.
 
@@ -168,11 +168,11 @@ These cards are on the **Automation & Settings** tab.
 | --- | --- | --- |
 | **Staff Role** | none | The role other features treat as staff |
 | **Member Role** | none | The role treated as "member" |
-| **Server Timezone** | UTC | Timezone used wherever the bot prints local times |
+| **Community Timezone** | UTC | Timezone used wherever the bot prints local times |
 | **Command Cooldowns** | none | Per command rate limit in seconds, 1 to 90,000 |
 | **Permission Overrides** | none | Fluxer permission each command requires (see above) |
 | **Delete Message On Command** | off | Delete the invoking message after a command runs, with per channel overrides of Enable, Disable or Inherit |
-| **Stats opt-out** | opted in | Stop command usage statistics for this server; **Delete Stats** wipes what is stored |
+| **Stats opt-out** | opted in | Stop command usage statistics for this community; **Delete Stats** wipes what is stored |
 
 ## Advanced operations
 
@@ -182,11 +182,11 @@ The **Advanced Operations** tab holds three cards. Every mass operation asks for
 
 The message a member receives by DM when they are banned, built in the embed editor. It is the same template the Moderation module's ban command uses.
 
-### Server Recovery
+### Community Recovery
 
-A way to get an Administrator role back to the owner after a compromised admin removes it. Two secrets are stored for the server: a **recovery key** and a **two-factor key**.
+A way to get an Administrator role back to the owner after a compromised admin removes it. Two secrets are stored for the community: a **recovery key** and a **two-factor key**.
 
-- Running `/serverrecovery server-recover` as the server owner when nothing is set up generates both: a recovery key sent to you by DM, and an authenticator secret shown as a QR code. Confirm with a code from your authenticator app to finish.
+- Running `/serverrecovery server-recover` as the community owner when nothing is set up generates both: a recovery key sent to you by DM, and an authenticator secret shown as a QR code. Confirm with a code from your authenticator app to finish.
 - Once set up, anyone who runs `/serverrecovery server-recover`, enters the recovery key and then a valid authenticator code is given a new role called "Recovered Server Owner Role" with Administrator, placed just under the bot's highest role.
 - `/serverrecovery clear-server-recover` deletes the stored keys after a confirmation, as does **Remove recovery setup** on the dashboard.
 
@@ -213,13 +213,13 @@ The commands add ways to pick who gets banned: `banunder 10m` bans everyone who 
 4. Enable **Anti-Image-Hash** and press **Block known scam images**.
 5. Enable **Anti-Mass-Post** with the default three channels in sixty seconds and links only.
 6. Under **Roles & Permissions**, add your member role to **Auto-Assign Roles** for normal users, and set up a colour group with **Add Self-Assignable Role**, then turn on **Exclusive mode**.
-7. Under **Automation & Settings**, set the **Staff Role**, **Member Role** and **Server Timezone**.
-8. Under **Advanced Operations**, set up **Server Recovery** while things are calm.
+7. Under **Automation & Settings**, set the **Staff Role**, **Member Role** and **Community Timezone**.
+8. Under **Advanced Operations**, set up **Community Recovery** while things are calm.
 9. Check **Overview**: it lists every protection system and whether it is active.
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). Protection commands run with no arguments disable that system.
+Run these with your community's prefix (`.` unless you changed it). Protection commands run with no arguments disable that system.
 
 ### Protection
 
@@ -291,13 +291,13 @@ Run these with your server's prefix (`.` unless you changed it). Protection comm
 | `staffroledisable` | | Administrator | Clear the staff role |
 | `memberrole <role>` | | Administrator | Show or set the member role |
 | `delmsgoncmd [list, server, or channel <enable, disable, inherit> [#channel]]` | `dmc` | Administrator | Show, toggle, or override command message deletion |
-| `timezone [id]` | | Nobody to view, Administrator to set | Show or set the server timezone |
+| `timezone [id]` | | Nobody to view, Administrator to set | Show or set the community timezone |
 | `timezones` | | Nobody | List available timezone IDs |
 | `prefix [new]` | | Nobody to view, Administrator to set | Show or change the command prefix |
-| `languageset <name>` | `langset` | Administrator | Set the server language, or `default` |
+| `languageset <name>` | `langset` | Administrator | Set the community language, or `default` |
 | `langsetdefault [name]` | `langsetd` | Nobody to view, Bot owner to set | Show or set the bot wide default language |
 | `languageslist` | `langli` | Nobody | List supported languages |
-| `guildstatsoptout` | `gstatsoptout` | Administrator | Toggle command statistics for this server |
+| `guildstatsoptout` | `gstatsoptout` | Administrator | Toggle command statistics for this community |
 | `deleteguildstatsdata` | `delguildstatsdata` | Administrator | Delete stored statistics, once per hour |
 
 ### Mass operations and utilities
@@ -322,21 +322,21 @@ Run these with your server's prefix (`.` unless you changed it). Protection comm
 | `nsfwtoggle` | `nsfw`, `nsfwtgl` | Manage Channels | Toggle the NSFW flag on the current channel |
 | `edit [#channel] <messageId> <text>` | | Manage Messages in that channel | Edit one of the bot's messages |
 | `delete [#channel] <messageId> [time]` | `del` | Manage Messages in that channel | Delete a message now or after a delay of up to seven days |
-| `setguildavatar [url]` | `sgav`, `setgav` | Manage Server | Set the server icon from a URL or attachment |
-| `setguildbanner [url]` | `sgbanner`, `setgbanner` | Manage Server | Set the server banner |
-| `setguildbio <text>` | `sgbio`, `setgbio` | Manage Server | Set the server description |
+| `setguildavatar [url]` | `sgav`, `setgav` | Manage Community | Set the community icon from a URL or attachment |
+| `setguildbanner [url]` | `sgbanner`, `setgbanner` | Manage Community | Set the community banner |
+| `setguildbio <text>` | `sgbio`, `setgbio` | Manage Community | Set the community description |
 
 ### Logging and greeting commands
 
-The module also contains the logging commands (`log`, `logcategory`, `logevents`, `logignore`, `logignorelist`, `commandlogchannel`, all Administrator,) and the classic greeting commands (`greetdm`, `greetdmmsg`, `greetdmtest`, `bye`, `byemsg`, `byedel`, `byetest`, `leavehook`, `boost`, `boostmsg`, `boostdel`, `boosttest`, all Manage Server). They are documented in the `logging` and `multigreets` articles.
+The module also contains the logging commands (`log`, `logcategory`, `logevents`, `logignore`, `logignorelist`, `commandlogchannel`, all Administrator,) and the classic greeting commands (`greetdm`, `greetdmmsg`, `greetdmtest`, `bye`, `byemsg`, `byedel`, `byetest`, `leavehook`, `boost`, `boostmsg`, `boostdel`, `boosttest`, all Manage Community). They are documented in the `logging` and `multigreets` articles.
 
 ## Tips and gotchas
 
 - The bot's role must sit above any role it hands out, removes or bans across, and it needs Ban Members, Kick Members, Manage Roles or Moderate Members to match the punishments you choose. Mute actions need a mute role, which the bot creates on first use.
 - Commands only accept up to a day (`1d`) for Anti-Raid and Anti-Spam durations, and Timeout can never exceed 28 days.
 - Anti-Spam only counts identical repeats. A member sending ten different messages quickly is not spam to it; that is what Anti-Mass-Post and Anti-Mass-Mention cover.
-- Anti-Mass-Post with **Check links only** on ignores anything without a link. Turn it off to catch copypasta, at the cost of more false positives in busy servers.
-- Anti-Pattern's batch creation check fetches the whole member list on every join, which is slow in very large servers.
+- Anti-Mass-Post with **Check links only** on ignores anything without a link. Turn it off to catch copypasta, at the cost of more false positives in busy communities.
+- Anti-Pattern's batch creation check fetches the whole member list on every join, which is slow in very large communities.
 - A blocked image added from a hash rather than the image itself only catches exact copies; re-add it from the image to cover mirrored and bordered versions.
 - Enabling a protection from the dashboard applies starter values. Open **Configure** and confirm the action, especially before choosing Ban.
 - Auto-assign, self-assign and reaction role commands refuse roles at or above your own highest role unless you are the owner.

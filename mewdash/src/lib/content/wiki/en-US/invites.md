@@ -12,21 +12,21 @@ related: [multigreets, statroles, liveboards, serverstats]
 
 ## What it does
 
-When someone joins, the bot compares the server's invite links before and after the join to work out which one was used, checks the vanity URL if none matched, and records how the member arrived: through a member's invite, the vanity link, as a bot added through OAuth, or unknown. The inviter gets a **regular** invite unless the join is flagged as **fake**. When the invited member leaves, the inviter's **left** count goes up. Staff can hand out **bonus** invites. A member's total is regular minus left minus fake, plus bonus.
+When someone joins, the bot compares the community's invite links before and after the join to work out which one was used, checks the vanity URL if none matched, and records how the member arrived: through a member's invite, the vanity link, as a bot added through OAuth, or unknown. The inviter gets a **regular** invite unless the join is flagged as **fake**. When the invited member leaves, the inviter's **left** count goes up. Staff can hand out **bonus** invites. A member's total is regular minus left minus fake, plus bonus.
 
 Every witnessed join is kept, including after the member leaves, so the page can show retention (how many invited members are still here), rejoins, and which codes bring people who stay.
 
 ## Why you would use it
 
 - Run a recruitment contest and pay out from a leaderboard that cannot be gamed with alt accounts or join-and-leave loops.
-- See whether a Twitter campaign, a partner server or a YouTube link actually brings members who stick around, by labelling each code.
+- See whether a Twitter campaign, a partner community or a YouTube link actually brings members who stick around, by labelling each code.
 - Show the inviter and the code in the welcome message.
 - Find and ban everyone one inviter brought in when a raid arrives through a single link.
 
 ## How joins are attributed
 
-- The bot needs **Manage Server** to read the invite list. Without it nothing is recorded.
-- Joins are processed one at a time per server, and when several people use the same code between two checks the surplus is remembered and credited to the next joins, so bursts are not lost.
+- The bot needs **Manage Community** to read the invite list. Without it nothing is recorded.
+- Joins are processed one at a time per community, and when several people use the same code between two checks the surplus is remembered and credited to the next joins, so bursts are not lost.
 - A join through the vanity URL is recorded as **Vanity** with no inviter. A bot added through OAuth is recorded as **Bot**.
 - A labelled code with an owner credits the owner instead of whoever created the invite. That is how the personal links from `invitelink` work.
 
@@ -50,7 +50,7 @@ Inviters on the **blacklist**, or holding a blacklisted role, still show up as t
 | Overview | Joins, leaves, net growth, retention, fake joins and join sources for the last day, week, month or all time, a joins and leaves chart, top inviters and top codes |
 | Leaderboard | Every inviter with their regular, left, fake, bonus and retention numbers, filtered by window or role, exportable as CSV. Click a row or pick a member to see their breakdown, add or remove regular, bonus or fake invites, or reset them |
 | Members | Every witnessed join filtered by inviter, invite code or label, with how they arrived, whether they were flagged and whether they are still here. Exportable as CSV |
-| Codes & Labels | Every invite code in the server with its creator, channel and uses. Give a code a label and optionally a role that everyone who joins through it receives, or delete the code |
+| Codes & Labels | Every invite code in the community with its creator, channel and uses. Give a code a label and optionally a role that everyone who joins through it receives, or delete the code |
 | Settings | Tracking, remove on leave, count rejoins, flag no avatar, minimum account age, the channel personal links point at, the join and leave log channel, blacklists, hidden members, and the import and reset tools |
 
 ## Settings
@@ -65,7 +65,7 @@ Inviters on the **blacklist**, or holding a blacklisted role, still show up as t
 | Personal link channel | system channel | Where invites created by `invitelink` point |
 | Join and leave log channel | none | Posts an embed on every join and leave saying who invited whom, with the code, account age and any fake flag |
 
-**Import uses from Fluxer** raises each inviter's regular total to the sum of uses across their codes and never lowers it, so it is safe to run again after a restart or a fresh install. **Reset inviters who left** clears the tally of everyone no longer in the server. **Reset everything** clears every tally and the join history.
+**Import uses from Fluxer** raises each inviter's regular total to the sum of uses across their codes and never lowers it, so it is safe to run again after a restart or a fresh install. **Reset inviters who left** clears the tally of everyone no longer in the community. **Reset everything** clears every tally and the join history.
 
 ## Greet placeholders
 
@@ -82,7 +82,7 @@ Any greet can use these once tracking is on. Unknown values fall back to `Unknow
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). Every command also exists under `/invites`.
+Run these with your community's prefix (`.` unless you changed it). Every command also exists under `/invites`.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -95,18 +95,18 @@ Run these with your server's prefix (`.` unless you changed it). Every command a
 | `invitestats [range]` | `growthstats` | Nobody | Joins, leaves, net, retention, fake joins, sources, top inviters and codes |
 | `invitecodes [@user]` | `mycodes` | Nobody | A member's invite codes and their uses |
 | `invitelink` | `findlink`, `mylink` | Nobody | Your personal permanent link, created if you have none |
-| `addinvites`, `removeinvites`, `addbonusinvites`, `removebonusinvites`, `addfakeinvites`, `removefakeinvites <@user> <amount>` | | Manage Server | Adjust a member's tally |
-| `resetinvites <@user>` or `resetinvites Server` or `resetinvites LeftMembers` | | Manage Server, Administrator for server-wide | Reset tallies |
-| `syncinvites [@user]` | | Manage Server | Import uses from Fluxer |
-| `deleteinvite <code>` | `delinvite` | Manage Server | Delete a code |
-| `purgeinvites [maxUses] [#channel]` | | Manage Server | Delete every unlabelled code used at most that many times |
-| `inviteblacklist <@user or @role>` | `invbl` | Manage Server | Toggle whether someone can earn credit |
-| `invitehide <@user>` | `invhide` | Manage Server | Toggle whether someone appears on leaderboards |
-| `inviteexclusions` | | Manage Server | List blacklists and hidden members |
-| `invitelabelset <code> <label>`, `invitelabelrole <code> [@role]`, `invitelabelremove <code>`, `invitelabels` | | Manage Server | Manage labels |
-| `inviteexport [range]`, `invitedexport [@user]` | | Manage Server | CSV exports |
+| `addinvites`, `removeinvites`, `addbonusinvites`, `removebonusinvites`, `addfakeinvites`, `removefakeinvites <@user> <amount>` | | Manage Community | Adjust a member's tally |
+| `resetinvites <@user>` or `resetinvites Server` or `resetinvites LeftMembers` | | Manage Community, Administrator for community-wide | Reset tallies |
+| `syncinvites [@user]` | | Manage Community | Import uses from Fluxer |
+| `deleteinvite <code>` | `delinvite` | Manage Community | Delete a code |
+| `purgeinvites [maxUses] [#channel]` | | Manage Community | Delete every unlabelled code used at most that many times |
+| `inviteblacklist <@user or @role>` | `invbl` | Manage Community | Toggle whether someone can earn credit |
+| `invitehide <@user>` | `invhide` | Manage Community | Toggle whether someone appears on leaderboards |
+| `inviteexclusions` | | Manage Community | List blacklists and hidden members |
+| `invitelabelset <code> <label>`, `invitelabelrole <code> [@role]`, `invitelabelremove <code>`, `invitelabels` | | Manage Community | Manage labels |
+| `inviteexport [range]`, `invitedexport [@user]` | | Manage Community | CSV exports |
 | `invitemassban <@user> [reason]`, `invitemassbancode <code> [reason]` | | Ban Members | Ban everyone still here who was invited by a member or through a code, after confirmation |
-| `invitesettings`, `toggleinvitetracking`, `toggleremoveinviteonleave`, `togglecountrejoins`, `togglefakenoavatar`, `setminaccountage <days>`, `invitelinkchannel [#channel]`, `invitelogchannel [#channel]` | | Manage Server | Settings |
+| `invitesettings`, `toggleinvitetracking`, `toggleremoveinviteonleave`, `togglecountrejoins`, `togglefakenoavatar`, `setminaccountage <days>`, `invitelinkchannel [#channel]`, `invitelogchannel [#channel]` | | Manage Community | Settings |
 
 ## Tips and gotchas
 

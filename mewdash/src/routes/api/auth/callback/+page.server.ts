@@ -1,7 +1,9 @@
 // src/routes/api/auth/callback/+page.server.ts
-import { redirect, type Cookies } from "@sveltejs/kit";
+import { error as kitError, redirect, type Cookies } from "@sveltejs/kit";
 import type { PageServerLoad } from "./$types";
+import { m } from "$lib/i18n";
 import {
+  FluxerRateLimitError,
   buildSearchParams,
   getUserData,
   requestFluxerToken,
@@ -123,7 +125,9 @@ export const load: PageServerLoad = async ({ url, cookies, locals }) => {
       logger.error("Callback error details:", { error });
     }
 
-    // Even on error, try to redirect to the intended destination
-    redirect(303, redirectTo);
+    if (error instanceof FluxerRateLimitError) {
+      kitError(429, m.common.loginRateLimited({ minutes: Math.ceil(error.retryAfterSeconds / 60) }));
+    }
+    kitError(502, m.common.loginFailed());
   }
 };

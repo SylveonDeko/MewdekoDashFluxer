@@ -395,7 +395,7 @@
       <a
         href={discordSignInUrl(signInReturn)}
         data-sveltekit-reload
-        class="inline-flex px-6 py-3 rounded-xl font-medium transition-all hover:scale-[1.02] items-center gap-2 min-h-[44px]"
+        class="inline-flex px-6 py-3 rounded-xl font-medium transition-all items-center gap-2 min-h-[44px]"
         style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
       >
         <i class="fa-brands fa-discord" aria-hidden="true"></i>
@@ -435,7 +435,7 @@
             {@const botIcon = imageUrl("avatars", server.botId, server.botAvatar)}
             <li>
               <button type="button"
-                      class="w-full text-left p-3 rounded-xl flex items-center gap-3 min-h-[44px] transition-all hover:scale-[1.01]"
+                      class="w-full text-left p-3 rounded-xl flex items-center gap-3 min-h-[44px] transition-all"
                       style="background: {$colorStore.primary}08; border: 1px solid {$colorStore.primary}20; color: {$colorStore.text};"
                       onclick={() => startExport(server)}>
                 {#if serverIcon}

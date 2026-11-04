@@ -1,7 +1,7 @@
 ---
 title: Currency
 slug: currency
-summary: A per-server economy with wallets and a bank, daily rewards, work and crime, a role and item shop, and more than twenty betting games, all tunable from the dashboard.
+summary: A per-community economy with wallets and a bank, daily rewards, work and crime, a role and item shop, and more than twenty betting games, all tunable from the dashboard.
 icon: fa-money-bill
 category: Entertainment
 dashboard: /dashboard/currency
@@ -108,7 +108,7 @@ These currency placeholders are available in chat trigger responses and other pl
 | `%currency.total%` | Wallet plus bank |
 | `%targetuser.currency.balance%` | The target user's wallet |
 | `%targetuser.currency.bank%` | The target user's bank balance |
-| `%currency.emote%` | The server's currency emote |
+| `%currency.emote%` | The community's currency emote |
 
 ## Settings
 
@@ -161,7 +161,7 @@ The daily reward amount and its cooldown are set with `setdaily`, not on the das
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -234,4 +234,4 @@ Run these with your server's prefix (`.` unless you changed it).
 - Blackjack keeps one game per member in memory; `hit` and `stand` only work after `blackjack`.
 - Horse races wait ten seconds for other members, then fill the field with AI racers and run.
 - Trivia chain games time out after ten minutes of inactivity, and a member can only have one running at a time.
-- When the bot is hosted with global currency, balances are shared across every server and `modifybalance` is owner-only.
+- When the bot is hosted with global currency, balances are shared across every community and `modifybalance` is owner-only.

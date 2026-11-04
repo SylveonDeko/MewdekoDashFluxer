@@ -6,12 +6,12 @@
   import EmojiPicker from "$lib/components/forms/EmojiPicker.svelte";
   import { clientApi } from "$lib/api/client/client";
   import type { GuildEmojiInfo } from "$lib/api/client/models";
-  import type { DiscordUser } from "$lib/types/discord";
+  import type { FluxerUser } from "$lib/types/fluxer";
   import { isValidLinkUrl, MAX_LINK_LABEL_LENGTH, type LinkButton } from "$lib/utils/linkButtons";
 
   interface Props {
     button: LinkButton;
-    user?: DiscordUser | null;
+    user?: FluxerUser | null;
     onupdate?: (detail: { button: LinkButton }) => void;
     onremove?: (detail: { key: string }) => void;
     onduplicate?: (detail: { key: string }) => void;
@@ -68,7 +68,7 @@
 
       <button
         aria-label={m.embedbuilder.componentsDuplicateComponent()}
-        class="px-2 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs rounded-md sm:rounded-lg transition-all hover:scale-[1.02] font-medium"
+        class="px-2 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs rounded-md sm:rounded-lg transition-all font-medium"
         style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
         onclick={() => onduplicate?.({ key: button.key })}
       >
@@ -78,7 +78,7 @@
 
       <button
         aria-label={m.embedbuilder.componentsDeleteComponent()}
-        class="px-2 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs rounded-md sm:rounded-lg transition-all hover:scale-[1.02] font-medium"
+        class="px-2 sm:px-3 py-1 sm:py-1.5 text-[10px] sm:text-xs rounded-md sm:rounded-lg transition-all font-medium"
         style="background: #ED424520; color: #ED4245; border: 1px solid #ED424530;"
         onclick={() => onremove?.({ key: button.key })}
       >

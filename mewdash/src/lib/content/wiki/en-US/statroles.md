@@ -1,7 +1,7 @@
 ---
 title: Stat Roles
 slug: statroles
-summary: Roles that members earn by being active over a window and lose again when they stop, judged by thresholds, top ranks, top percentages or daily streaks on messages, voice, games, invites, time in the server or account age.
+summary: Roles that members earn by being active over a window and lose again when they stop, judged by thresholds, top ranks, top percentages or daily streaks on messages, voice, games, invites, time in the community or account age.
 icon: fa-trophy
 category: Community
 dashboard: /dashboard/statroles
@@ -24,7 +24,7 @@ Every stat role measures one thing over a window and applies one limit.
 | Voice minutes | Time in voice in the window, honouring the voice states you excluded on Activity Stats |
 | Minutes in a game | Time in one named game or app, or in any, in the window. Needs game tracking on |
 | Invites | The member's net invite total |
-| Days in server | Since the member joined |
+| Days in community | Since the member joined |
 | Account age | Since the account was created |
 
 | Limit | Who qualifies |
@@ -53,13 +53,13 @@ The window is 1 to 90 days, or all time for anything except a streak. Ties share
 
 ## Dashboard
 
-The **Stat Roles** tab lists every rule with its condition, schedule and last run, and lets you enable, disable, edit, delete, **preview** or **run** each one. A preview shows who would gain and lose the role without changing anything. Run applies it immediately; manual runs are limited to one every ten minutes per server.
+The **Stat Roles** tab lists every rule with its condition, schedule and last run, and lets you enable, disable, edit, delete, **preview** or **run** each one. A preview shows who would gain and lose the role without changing anything. Run applies it immediately; manual runs are limited to one every ten minutes per community.
 
 The **Create / Edit** tab is the form for everything above.
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). Every command also exists under `/statrole`.
+Run these with your community's prefix (`.` unless you changed it). Every command also exists under `/statrole`.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -82,4 +82,4 @@ Run these with your server's prefix (`.` unless you changed it). Every command a
 - Each Fluxer role can be managed by one stat role. Delete the old rule before pointing a new one at the same role.
 - A rule with a minimum of 0 and no maximum would match everyone; give it a maximum or use invert on purpose.
 - Members opted out of activity stats have no messages, voice or game time, so they never qualify for those measures.
-- Preview before enabling a rule on a big server. Role edits are spaced out to respect rate limits, so a rule touching thousands of members takes a few minutes to apply.
+- Preview before enabling a rule on a big community. Role edits are spaced out to respect rate limits, so a rule touching thousands of members takes a few minutes to apply.

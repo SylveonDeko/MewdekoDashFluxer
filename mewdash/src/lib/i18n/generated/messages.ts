@@ -99,8 +99,8 @@ export const m = {
     anyStatus: () => t("_common", "any_status", "Any status"),
     /** Applications */
     applications: () => t("_common", "applications", "Applications"),
-    /** Applies to the whole bot, not one server */
-    appliesToWholeBotHint: () => t("_common", "applies_to_whole_bot_hint", "Applies to the whole bot, not one server"),
+    /** Applies to the whole bot, not one community */
+    appliesToWholeBotHint: () => t("_common", "applies_to_whole_bot_hint", "Applies to the whole bot, not one community"),
     /** Apply */
     apply: () => t("_common", "apply", "Apply"),
     /** Approve */
@@ -117,8 +117,8 @@ export const m = {
     ariaDeleteNamed: (p: { name: P }) => t("_common", "aria_delete_named", "Delete {name}", p),
     /** Dismiss notification */
     ariaDismissNotification: () => t("_common", "aria_dismiss_notification", "Dismiss notification"),
-    /** Guild id */
-    ariaGuildId: () => t("_common", "aria_guild_id", "Guild id"),
+    /** Community ID */
+    ariaGuildId: () => t("_common", "aria_guild_id", "Community ID"),
     /** Move {name} down */
     ariaMoveNamedDown: (p: { name: P }) => t("_common", "aria_move_named_down", "Move {name} down", p),
     /** Move {name} up */
@@ -191,8 +191,6 @@ export const m = {
     category: () => t("_common", "category", "Category"),
     /** Category (optional) */
     categoryOptional: () => t("_common", "category_optional", "Category (optional)"),
-    /** Changes save automatically. */
-    changesSaveAutomatically: () => t("_common", "changes_save_automatically", "Changes save automatically."),
     /** Channel */
     channel: () => t("_common", "channel", "Channel"),
     /** Channel {id} */
@@ -423,8 +421,8 @@ export const m = {
     failedToLoadData: () => t("_common", "failed_to_load_data", "Failed to load data"),
     /** Failed to load leaderboard */
     failedToLoadLeaderboard: () => t("_common", "failed_to_load_leaderboard", "Failed to load leaderboard"),
-    /** Failed to load servers */
-    failedToLoadServers: () => t("_common", "failed_to_load_servers", "Failed to load servers"),
+    /** Failed to load communities */
+    failedToLoadServers: () => t("_common", "failed_to_load_servers", "Failed to load communities"),
     /** Failed to remove role reward */
     failedToRemoveRoleReward: () => t("_common", "failed_to_remove_role_reward", "Failed to remove role reward"),
     /** Failed to remove the exclusion */
@@ -451,6 +449,8 @@ export const m = {
     from: () => t("_common", "from", "From"),
     /** Games */
     games: () => t("_common", "games", "Games"),
+    /** General */
+    general: () => t("_common", "general", "General"),
     /** General Settings */
     generalSettings: () => t("_common", "general_settings", "General Settings"),
     /** Generated on {date} */
@@ -587,6 +587,10 @@ export const m = {
     logChannels: () => t("_common", "log_channels", "Log Channels"),
     /** Login */
     login: () => t("_common", "login", "Login"),
+    /** Fluxer didn't accept the sign-in. Try again. */
+    loginFailed: () => t("_common", "login_failed", "Fluxer didn't accept the sign-in. Try again."),
+    /** Fluxer is limiting sign-ins right now. Try again in {minutes} min. */
+    loginRateLimited: (p: { minutes: P }) => t("_common", "login_rate_limited", "Fluxer is limiting sign-ins right now. Try again in {minutes} min.", p),
     /** Login Required */
     loginRequired: () => t("_common", "login_required", "Login Required"),
     /** Login with Fluxer */
@@ -597,8 +601,8 @@ export const m = {
     manage: () => t("_common", "manage", "Manage"),
     /** Manage Nicknames */
     manageNicknames: () => t("_common", "manage_nicknames", "Manage Nicknames"),
-    /** Manage Server */
-    manageServer: () => t("_common", "manage_server", "Manage Server"),
+    /** Manage Community */
+    manageServer: () => t("_common", "manage_server", "Manage Community"),
     /** Manage Webhooks */
     manageWebhooks: () => t("_common", "manage_webhooks", "Manage Webhooks"),
     /** Management */
@@ -697,8 +701,8 @@ export const m = {
     noData: () => t("_common", "no_data", "No data"),
     /** no data */
     noDataLower: () => t("_common", "no_data_lower", "no data"),
-    /** No guild selected */
-    noGuildSelected: () => t("_common", "no_guild_selected", "No guild selected"),
+    /** No community selected */
+    noGuildSelected: () => t("_common", "no_guild_selected", "No community selected"),
     /** No instances registered */
     noInstancesRegistered: () => t("_common", "no_instances_registered", "No instances registered"),
     /** No limit */
@@ -721,8 +725,8 @@ export const m = {
     noRoleSelected: () => t("_common", "no_role_selected", "No role selected"),
     /** No roles */
     noRoles: () => t("_common", "no_roles", "No roles"),
-    /** No servers available */
-    noServersAvailable: () => t("_common", "no_servers_available", "No servers available"),
+    /** No communities available */
+    noServersAvailable: () => t("_common", "no_servers_available", "No communities available"),
     /** No Statistics Available */
     noStatisticsAvailable: () => t("_common", "no_statistics_available", "No Statistics Available"),
     /** None */
@@ -969,6 +973,10 @@ export const m = {
     roleIdLabel: (p: { id: P }) => t("_common", "role_id_label", "Role ID: {id}", p),
     /** @Role */
     roleMention: () => t("_common", "role_mention", "@Role"),
+    /** Role reward added */
+    roleRewardAdded: () => t("_common", "role_reward_added", "Role reward added"),
+    /** Role reward removed */
+    roleRewardRemoved: () => t("_common", "role_reward_removed", "Role reward removed"),
     /** Role to add */
     roleToAdd: () => t("_common", "role_to_add", "Role to add"),
     /** Roles */
@@ -993,8 +1001,6 @@ export const m = {
     saveEmbed: () => t("_common", "save_embed", "Save embed"),
     /** Couldn't save that. */
     saveFailedInline: () => t("_common", "save_failed_inline", "Couldn't save that."),
-    /** Save Message */
-    saveMessage: () => t("_common", "save_message", "Save Message"),
     /** Saved */
     saved: () => t("_common", "saved", "Saved"),
     /** Saving... */
@@ -1011,8 +1017,8 @@ export const m = {
     search: () => t("_common", "search", "Search"),
     /** Search... */
     searchPlaceholder: () => t("_common", "search_placeholder", "Search..."),
-    /** Search servers... */
-    searchServersPlaceholder: () => t("_common", "search_servers_placeholder", "Search servers..."),
+    /** Search communities... */
+    searchServersPlaceholder: () => t("_common", "search_servers_placeholder", "Search communities..."),
     /** Secondary */
     secondary: () => t("_common", "secondary", "Secondary"),
     /** {count} seconds */
@@ -1021,8 +1027,8 @@ export const m = {
     selectAChannelPlaceholder: () => t("_common", "select_a_channel_placeholder", "Select a channel"),
     /** Select a role */
     selectARolePlaceholder: () => t("_common", "select_a_role_placeholder", "Select a role"),
-    /** Select a server first */
-    selectAServerFirstPlaceholder: () => t("_common", "select_a_server_first_placeholder", "Select a server first"),
+    /** Select a community first */
+    selectAServerFirstPlaceholder: () => t("_common", "select_a_server_first_placeholder", "Select a community first"),
     /** Select All ({count}) */
     selectAllCount: (p: { count: P }) => t("_common", "select_all_count", "Select All ({count})", p),
     /** Select category... */
@@ -1059,18 +1065,18 @@ export const m = {
     sendMessages: () => t("_common", "send_messages", "Send messages"),
     /** Sending... */
     sending: () => t("_common", "sending", "Sending..."),
-    /** Server default */
-    serverDefault: () => t("_common", "server_default", "Server default"),
-    /** Server defaults */
-    serverDefaults: () => t("_common", "server_defaults", "Server defaults"),
-    /** Server overview */
-    serverOverview: () => t("_common", "server_overview", "Server overview"),
-    /** Server Settings */
-    serverSettings: () => t("_common", "server_settings", "Server Settings"),
-    /** Server Timezone */
-    serverTimezone: () => t("_common", "server_timezone", "Server Timezone"),
-    /** Servers */
-    servers: () => t("_common", "servers", "Servers"),
+    /** Community default */
+    serverDefault: () => t("_common", "server_default", "Community default"),
+    /** Community defaults */
+    serverDefaults: () => t("_common", "server_defaults", "Community defaults"),
+    /** Community overview */
+    serverOverview: () => t("_common", "server_overview", "Community overview"),
+    /** Community Settings */
+    serverSettings: () => t("_common", "server_settings", "Community Settings"),
+    /** Community Timezone */
+    serverTimezone: () => t("_common", "server_timezone", "Community Timezone"),
+    /** Communities */
+    servers: () => t("_common", "servers", "Communities"),
     /** {count} set */
     setCount: (p: { count: P }) => t("_common", "set_count", "{count} set", p),
     /** Settings */
@@ -1133,8 +1139,8 @@ export const m = {
     text: () => t("_common", "text", "Text"),
     /** 30d */
     thirtyDaysShort: () => t("_common", "thirty_days_short", "30d"),
-    /** this server */
-    thisServer: () => t("_common", "this_server", "this server"),
+    /** this community */
+    thisServer: () => t("_common", "this_server", "this community"),
     /** Threads */
     threads: () => t("_common", "threads", "Threads"),
     /** Threshold */
@@ -1159,6 +1165,8 @@ export const m = {
     toggle: () => t("_common", "toggle", "Toggle"),
     /** Top channels */
     topChannels: () => t("_common", "top_channels", "Top channels"),
+    /** Top communities */
+    topCommunities: () => t("_common", "top_communities", "Top communities"),
     /** Top inviters */
     topInviters: () => t("_common", "top_inviters", "Top inviters"),
     /** Top members */
@@ -1209,8 +1217,8 @@ export const m = {
     unknownLower: () => t("_common", "unknown_lower", "unknown"),
     /** Unknown role */
     unknownRole: () => t("_common", "unknown_role", "Unknown role"),
-    /** Unknown server */
-    unknownServer: () => t("_common", "unknown_server", "Unknown server"),
+    /** Unknown community */
+    unknownServer: () => t("_common", "unknown_server", "Unknown community"),
     /** Unknown User */
     unknownUser: () => t("_common", "unknown_user", "Unknown User"),
     /** Unlink */
@@ -1229,8 +1237,8 @@ export const m = {
     url: () => t("_common", "url", "URL"),
     /** Use */
     use: () => t("_common", "use", "Use"),
-    /** Use server default */
-    useServerDefault: () => t("_common", "use_server_default", "Use server default"),
+    /** Use community default */
+    useServerDefault: () => t("_common", "use_server_default", "Use community default"),
     /** User */
     user: () => t("_common", "user", "User"),
     /** User {id} */
@@ -1305,10 +1313,10 @@ export const m = {
     delegationHint: () => t("access", "delegation_hint", "Owner-only. Controls who besides you may grant or revoke dashboard access for other people."),
     /** Toggle admins can manage access */
     delegationToggleAria: () => t("access", "delegation_toggle_aria", "Toggle admins can manage access"),
-    /** Allow Administrators and Manage Guild members to manage dashboard access */
-    delegationToggleLabel: () => t("access", "delegation_toggle_label", "Allow Administrators and Manage Guild members to manage dashboard access"),
-    /** Only the server owner and users/roles appointed as access managers can grant or revoke ... */
-    deniedHint: () => t("access", "denied_hint", "Only the server owner and users/roles appointed as access managers can grant or revoke restricted dashboard access for this server."),
+    /** Allow Administrators and Manage Community members to manage dashboard access */
+    delegationToggleLabel: () => t("access", "delegation_toggle_label", "Allow Administrators and Manage Community members to manage dashboard access"),
+    /** Only the community owner and users/roles appointed as access managers can grant or revo... */
+    deniedHint: () => t("access", "denied_hint", "Only the community owner and users/roles appointed as access managers can grant or revoke restricted dashboard access for this community."),
     /** You can't manage dashboard access here */
     deniedTitle: () => t("access", "denied_title", "You can't manage dashboard access here"),
     /** Edit grant */
@@ -1330,7 +1338,7 @@ export const m = {
     /** Grant Restricted Access */
     grantHeadingNew: () => t("access", "grant_heading_new", "Grant Restricted Access"),
     /** Give a user or role View or Manage access to specific dashboard sections, without givin... */
-    grantHint: () => t("access", "grant_hint", "Give a user or role View or Manage access to specific dashboard sections, without giving them full server admin."),
+    grantHint: () => t("access", "grant_hint", "Give a user or role View or Manage access to specific dashboard sections, without giving them full community admin."),
     /** {count} section */
     grantSectionsOne: (p: { count: P }) => t("access", "grant_sections_one", "{count} section", p),
     /** {count} sections */
@@ -1343,8 +1351,8 @@ export const m = {
     managersEmpty: () => t("access", "managers_empty", "No appointed managers yet"),
     /** Access Managers ({count}) */
     managersHeading: (p: { count: P }) => t("access", "managers_heading", "Access Managers ({count})", p),
-    /** Administrators and Manage Guild members can now manage access */
-    notifyAdminsCanManage: () => t("access", "notify_admins_can_manage", "Administrators and Manage Guild members can now manage access"),
+    /** Administrators and Manage Community members can now manage access */
+    notifyAdminsCanManage: () => t("access", "notify_admins_can_manage", "Administrators and Manage Community members can now manage access"),
     /** Only you and appointed managers can manage access now */
     notifyAdminsCannotManage: () => t("access", "notify_admins_cannot_manage", "Only you and appointed managers can manage access now"),
     /** Access grant removed */
@@ -1359,8 +1367,8 @@ export const m = {
     notifySelectSection: () => t("access", "notify_select_section", "Select at least one section"),
     /** Select a user or role */
     notifySelectTarget: () => t("access", "notify_select_target", "Select a user or role"),
-    /** Grant restricted dashboard access to specific users and roles, without giving them serv... */
-    pageSubtitle: () => t("access", "page_subtitle", "Grant restricted dashboard access to specific users and roles, without giving them server admin"),
+    /** Grant restricted dashboard access to specific users and roles, without giving them comm... */
+    pageSubtitle: () => t("access", "page_subtitle", "Grant restricted dashboard access to specific users and roles, without giving them community admin"),
     /** Remove grant */
     removeGrantAria: () => t("access", "remove_grant_aria", "Remove grant"),
     /** this target */
@@ -1374,7 +1382,7 @@ export const m = {
     /** this manager */
     removeManagerFallback: () => t("access", "remove_manager_fallback", "this manager"),
     /** Remove {name} from access managers? They will no longer be able to manage dashboard acc... */
-    removeManagerMessage: (p: { name: P }) => t("access", "remove_manager_message", "Remove {name} from access managers? They will no longer be able to manage dashboard access for this server.", p),
+    removeManagerMessage: (p: { name: P }) => t("access", "remove_manager_message", "Remove {name} from access managers? They will no longer be able to manage dashboard access for this community.", p),
     /** Target type */
     targetTypePlaceholder: () => t("access", "target_type_placeholder", "Target type"),
   },
@@ -1567,14 +1575,14 @@ export const m = {
     cardDesignerOutline: () => t("achievements", "card_designer_outline", "Outline"),
     /** Outline width */
     cardDesignerOutlineWidth: () => t("achievements", "card_designer_outline_width", "Outline width"),
-    /** The dashboard's own card look, tinted by the server icon's colors. */
-    cardDesignerPaletteHint: () => t("achievements", "card_designer_palette_hint", "The dashboard's own card look, tinted by the server icon's colors."),
+    /** The dashboard's own card look, tinted by the community icon's colors. */
+    cardDesignerPaletteHint: () => t("achievements", "card_designer_palette_hint", "The dashboard's own card look, tinted by the community icon's colors."),
     /** Palette wash on top */
     cardDesignerPaletteWash: () => t("achievements", "card_designer_palette_wash", "Palette wash on top"),
-    /** Tints the background with the server icon's colors */
-    cardDesignerPaletteWashHint: () => t("achievements", "card_designer_palette_wash_hint", "Tints the background with the server icon's colors"),
-    /** Server color */
-    cardDesignerServerColor: () => t("achievements", "card_designer_server_color", "Server color"),
+    /** Tints the background with the community icon's colors */
+    cardDesignerPaletteWashHint: () => t("achievements", "card_designer_palette_wash_hint", "Tints the background with the community icon's colors"),
+    /** Community color */
+    cardDesignerServerColor: () => t("achievements", "card_designer_server_color", "Community color"),
     /** Shadow under the card */
     cardDesignerShadowUnderCard: () => t("achievements", "card_designer_shadow_under_card", "Shadow under the card"),
     /** Shape */
@@ -1637,8 +1645,8 @@ export const m = {
     cardHelpersKindLabelHint: () => t("achievements", "card_helpers_kind_label_hint", "\"Achievement unlocked\" or \"Locked\""),
     /** State line */
     cardHelpersKindLabelLabel: () => t("achievements", "card_helpers_kind_label_label", "State line"),
-    /** The member's name and the server */
-    cardHelpersKindMemberHint: () => t("achievements", "card_helpers_kind_member_hint", "The member's name and the server"),
+    /** The member's name and the community */
+    cardHelpersKindMemberHint: () => t("achievements", "card_helpers_kind_member_hint", "The member's name and the community"),
     /** Member line */
     cardHelpersKindMemberLabel: () => t("achievements", "card_helpers_kind_member_label", "Member line"),
     /** "+2 more" when several unlock at once */
@@ -1679,14 +1687,14 @@ export const m = {
     cardImageUseThisAria: () => t("achievements", "card_image_use_this_aria", "Use this image"),
     /** Built in */
     cardsTabBuiltIn: () => t("achievements", "cards_tab_built_in", "Built in"),
-    /** Mewdeko's design in your server's colors. */
-    cardsTabBuiltInSubtitle: () => t("achievements", "cards_tab_built_in_subtitle", "Mewdeko's design in your server's colors."),
+    /** Mewdeko's design in your community's colors. */
+    cardsTabBuiltInSubtitle: () => t("achievements", "cards_tab_built_in_subtitle", "Mewdeko's design in your community's colors."),
     /** {name} copy */
     cardsTabCopyName: (p: { name: P }) => t("achievements", "cards_tab_copy_name", "{name} copy", p),
     /** Delete design */
     cardsTabDeleteConfirm: () => t("achievements", "cards_tab_delete_confirm", "Delete design"),
-    /** Categories and achievements using it go back to the server default. If it is the defaul... */
-    cardsTabDeleteMessage: () => t("achievements", "cards_tab_delete_message", "Categories and achievements using it go back to the server default. If it is the default, the built in design takes over."),
+    /** Categories and achievements using it go back to the community default. If it is the def... */
+    cardsTabDeleteMessage: () => t("achievements", "cards_tab_delete_message", "Categories and achievements using it go back to the community default. If it is the default, the built in design takes over."),
     /** Design */
     cardsTabDesignLabel: () => t("achievements", "cards_tab_design_label", "Design"),
     /** Design {number} */
@@ -1701,8 +1709,8 @@ export const m = {
     cardsTabErrorDelete: () => t("achievements", "cards_tab_error_delete", "Couldn't delete the design."),
     /** Couldn't load the card designs. */
     cardsTabErrorLoad: () => t("achievements", "cards_tab_error_load", "Couldn't load the card designs."),
-    /** A server keeps at most {max} designs. Delete one first. */
-    cardsTabErrorMaxDesigns: (p: { max: P }) => t("achievements", "cards_tab_error_max_designs", "A server keeps at most {max} designs. Delete one first.", p),
+    /** A community keeps at most {max} designs. Delete one first. */
+    cardsTabErrorMaxDesigns: (p: { max: P }) => t("achievements", "cards_tab_error_max_designs", "A community keeps at most {max} designs. Delete one first.", p),
     /** The image attached to unlock messages and shown by achview. Every achievement uses the ... */
     cardsTabIntro: (p: { name: P }) => t("achievements", "cards_tab_intro", "The image attached to unlock messages and shown by achview. Every achievement uses the default, <strong>{name}</strong>, unless its category or itself picks another design.", p),
     /** Make default */
@@ -1753,10 +1761,10 @@ export const m = {
     categoriesDeleteConfirm: () => t("achievements", "categories_delete_confirm", "Delete category"),
     /** It has no achievements in it. */
     categoriesDeleteMessageNone: () => t("achievements", "categories_delete_message_none", "It has no achievements in it."),
-    /** Its {count} achievement moves to the Server category. Nobody loses anything. */
-    categoriesDeleteMessageOne: (p: { count: P }) => t("achievements", "categories_delete_message_one", "Its {count} achievement moves to the Server category. Nobody loses anything.", p),
-    /** Its {count} achievements move to the Server category. Nobody loses anything. */
-    categoriesDeleteMessageOther: (p: { count: P }) => t("achievements", "categories_delete_message_other", "Its {count} achievements move to the Server category. Nobody loses anything.", p),
+    /** Its {count} achievement moves to the Community category. Nobody loses anything. */
+    categoriesDeleteMessageOne: (p: { count: P }) => t("achievements", "categories_delete_message_one", "Its {count} achievement moves to the Community category. Nobody loses anything.", p),
+    /** Its {count} achievements move to the Community category. Nobody loses anything. */
+    categoriesDeleteMessageOther: (p: { count: P }) => t("achievements", "categories_delete_message_other", "Its {count} achievements move to the Community category. Nobody loses anything.", p),
     /** What goes in it */
     categoriesDescriptionPlaceholder: () => t("achievements", "categories_description_placeholder", "What goes in it"),
     /** Drag {name} to reorder */
@@ -1843,8 +1851,8 @@ export const m = {
     editorErrorReset: () => t("achievements", "editor_error_reset", "Couldn't reset the achievement."),
     /** Couldn't save the achievement. */
     editorErrorSave: () => t("achievements", "editor_error_save", "Couldn't save the achievement."),
-    /** Global achievements are earned across every server and can't be changed per server. */
-    editorGlobalNotice: () => t("achievements", "editor_global_notice", "Global achievements are earned across every server and can't be changed per server."),
+    /** Global achievements are earned across every community and can't be changed per community. */
+    editorGlobalNotice: () => t("achievements", "editor_global_notice", "Global achievements are earned across every community and can't be changed per community."),
     /** Goal */
     editorGoalLabel: () => t("achievements", "editor_goal_label", "Goal"),
     /** Grade */
@@ -1853,8 +1861,8 @@ export const m = {
     editorIconChange: () => t("achievements", "editor_icon_change", "Change the icon"),
     /** the category's icon */
     editorIconDefaultLabel: () => t("achievements", "editor_icon_default_label", "the category's icon"),
-    /** Shown in its image, here, and in the apps. Pick an icon, one of the server's emojis, or... */
-    editorIconHint: () => t("achievements", "editor_icon_hint", "Shown in its image, here, and in the apps. Pick an icon, one of the server's emojis, or an image."),
+    /** Shown in its image, here, and in the apps. Pick an icon, one of the community's emojis,... */
+    editorIconHint: () => t("achievements", "editor_icon_hint", "Shown in its image, here, and in the apps. Pick an icon, one of the community's emojis, or an image."),
     /** Icon */
     editorIconLabel: () => t("achievements", "editor_icon_label", "Icon"),
     /** Key */
@@ -1909,10 +1917,10 @@ export const m = {
     editorSectionUnlock: () => t("achievements", "editor_section_unlock", "How it unlocks"),
     /** Built in · {criteria} */
     editorSubtitleBuiltIn: (p: { criteria: P }) => t("achievements", "editor_subtitle_built_in", "Built in · {criteria}", p),
-    /** Made by this server · {key} */
-    editorSubtitleCustom: (p: { key: P }) => t("achievements", "editor_subtitle_custom", "Made by this server · {key}", p),
-    /** Made by this server */
-    editorSubtitleNew: () => t("achievements", "editor_subtitle_new", "Made by this server"),
+    /** Made by this community · {key} */
+    editorSubtitleCustom: (p: { key: P }) => t("achievements", "editor_subtitle_custom", "Made by this community · {key}", p),
+    /** Made by this community */
+    editorSubtitleNew: () => t("achievements", "editor_subtitle_new", "Made by this community"),
     /** Unlocks when a message contains the phrase. */
     editorTriggerKeywordText: () => t("achievements", "editor_trigger_keyword_text", "Unlocks when a message contains the phrase."),
     /** Only given with the grant command or from Members. */
@@ -1975,8 +1983,8 @@ export const m = {
     iconErrorSize: () => t("achievements", "icon_error_size", "Images have to be under 4 MB."),
     /** Couldn't upload that image. */
     iconErrorUpload: () => t("achievements", "icon_error_upload", "Couldn't upload that image."),
-    /** Server emoji */
-    iconKindEmoji: () => t("achievements", "icon_kind_emoji", "Server emoji"),
+    /** Community emoji */
+    iconKindEmoji: () => t("achievements", "icon_kind_emoji", "Community emoji"),
     /** Linked image */
     iconKindLinked: () => t("achievements", "icon_kind_linked", "Linked image"),
     /** Uploaded image */
@@ -1987,16 +1995,16 @@ export const m = {
     iconLoading: () => t("achievements", "icon_loading", "Loading icons"),
     /** No emojis match. */
     iconNoEmojiMatch: () => t("achievements", "icon_no_emoji_match", "No emojis match."),
-    /** This server has no emojis of its own. */
-    iconNoEmojis: () => t("achievements", "icon_no_emojis", "This server has no emojis of its own."),
+    /** This community has no emojis of its own. */
+    iconNoEmojis: () => t("achievements", "icon_no_emojis", "This community has no emojis of its own."),
     /** No icons match. */
     iconNoMatch: () => t("achievements", "icon_no_match", "No icons match."),
     /** Search icons, like trophy or star */
     iconSearchPlaceholder: () => t("achievements", "icon_search_placeholder", "Search icons, like trophy or star"),
     /** Icon source */
     iconSourceLabel: () => t("achievements", "icon_source_label", "Icon source"),
-    /** Server emojis */
-    iconTabEmojis: () => t("achievements", "icon_tab_emojis", "Server emojis"),
+    /** Community emojis */
+    iconTabEmojis: () => t("achievements", "icon_tab_emojis", "Community emojis"),
     /** Icons */
     iconTabIcons: () => t("achievements", "icon_tab_icons", "Icons"),
     /** Upload an image (PNG, JPEG, GIF, or WebP, under 4 MB) */
@@ -2015,8 +2023,8 @@ export const m = {
     libraryAnyGrade: () => t("achievements", "library_any_grade", "Any grade"),
     /** Arrange categories */
     libraryArrangeCategories: () => t("achievements", "library_arrange_categories", "Arrange categories"),
-    /** Achievements this server made. */
-    libraryCategoryDefaultDescription: () => t("achievements", "library_category_default_description", "Achievements this server made."),
+    /** Achievements this community made. */
+    libraryCategoryDefaultDescription: () => t("achievements", "library_category_default_description", "Achievements this community made."),
     /** This category is inactive. */
     libraryCategoryInactiveNotice: () => t("achievements", "library_category_inactive_notice", "This category is inactive."),
     /** Made {name}. Members who already qualify get it quietly within a few minutes. */
@@ -2029,8 +2037,8 @@ export const m = {
     libraryDeactivateLabel: (p: { name: P }) => t("achievements", "library_deactivate_label", "Deactivate {name}", p),
     /** Make your own: hit a number, say a phrase, react with an emoji, or something staff hand... */
     libraryEmptyCustomText: () => t("achievements", "library_empty_custom_text", "Make your own: hit a number, say a phrase, react with an emoji, or something staff hand out by hand."),
-    /** No server achievements yet */
-    libraryEmptyCustomTitle: () => t("achievements", "library_empty_custom_title", "No server achievements yet"),
+    /** No community achievements yet */
+    libraryEmptyCustomTitle: () => t("achievements", "library_empty_custom_title", "No community achievements yet"),
     /** Try another filter or search. */
     libraryEmptyText: () => t("achievements", "library_empty_text", "Try another filter or search."),
     /** Nothing matches */
@@ -2153,8 +2161,8 @@ export const m = {
     overviewRecentTitle: () => t("achievements", "overview_recent_title", "Recent unlocks"),
     /** Command stats */
     overviewSourceCommands: () => t("achievements", "overview_source_commands", "Command stats"),
-    /** Command achievements need command stats, which this server opted out of. */
-    overviewSourceCommandsOff: () => t("achievements", "overview_source_commands_off", "Command achievements need command stats, which this server opted out of."),
+    /** Command achievements need command stats, which this community opted out of. */
+    overviewSourceCommandsOff: () => t("achievements", "overview_source_commands_off", "Command achievements need command stats, which this community opted out of."),
     /** Invite achievements need invite tracking. */
     overviewSourceInvitesOff: () => t("achievements", "overview_source_invites_off", "Invite achievements need invite tracking."),
     /** Message counting */
@@ -2167,8 +2175,8 @@ export const m = {
     overviewSourceUnneeded: () => t("achievements", "overview_source_unneeded", "Not tracking, and no active achievement needs it."),
     /** Voice tracking */
     overviewSourceVoice: () => t("achievements", "overview_source_voice", "Voice tracking"),
-    /** Voice hours and channels need voice tracking in Server Stats. */
-    overviewSourceVoiceOff: () => t("achievements", "overview_source_voice_off", "Voice hours and channels need voice tracking in Server Stats."),
+    /** Voice hours and channels need voice tracking in Community Stats. */
+    overviewSourceVoiceOff: () => t("achievements", "overview_source_voice_off", "Voice hours and channels need voice tracking in Community Stats."),
     /** Level achievements need XP gain turned on. */
     overviewSourceXpOff: () => t("achievements", "overview_source_xp_off", "Level achievements need XP gain turned on."),
     /** Achievements read numbers other features already track. Anything not tracking means som... */
@@ -2187,8 +2195,8 @@ export const m = {
     overviewStatActive: () => t("achievements", "overview_stat_active", "Achievements active"),
     /** achievements members can earn */
     overviewStatActiveSub: () => t("achievements", "overview_stat_active_sub", "achievements members can earn"),
-    /** server achievements */
-    overviewStatCustomSub: () => t("achievements", "overview_stat_custom_sub", "server achievements"),
+    /** community achievements */
+    overviewStatCustomSub: () => t("achievements", "overview_stat_custom_sub", "community achievements"),
     /** Members earning */
     overviewStatMembers: () => t("achievements", "overview_stat_members", "Members earning"),
     /** with at least one unlock */
@@ -2203,8 +2211,8 @@ export const m = {
     overviewUnlockLine: (p: { achievement: P; user: P }) => t("achievements", "overview_unlock_line", "{user} unlocked {achievement}", p),
     /** Couldn't load achievements. */
     pageLoadFailed: () => t("achievements", "page_load_failed", "Couldn't load achievements."),
-    /** Earning is paused in this server, so nothing unlocks yet. You can still set everything ... */
-    pagePausedNotice: () => t("achievements", "page_paused_notice", "Earning is paused in this server, so nothing unlocks yet. You can still set everything up first."),
+    /** Earning is paused in this community, so nothing unlocks yet. You can still set everythi... */
+    pagePausedNotice: () => t("achievements", "page_paused_notice", "Earning is paused in this community, so nothing unlocks yet. You can still set everything up first."),
     /** Milestones, badges, and ranks members earn by taking part */
     pageSubtitle: () => t("achievements", "page_subtitle", "Milestones, badges, and ranks members earn by taking part"),
     /** Cleared {count} unlocks. */
@@ -2231,12 +2239,12 @@ export const m = {
     settingsRecheckStarted: () => t("achievements", "settings_recheck_started", "Checking every member again. Anything they qualify for unlocks quietly in the next few minutes."),
     /** Check everyone again */
     settingsRecheckTitle: () => t("achievements", "settings_recheck_title", "Check everyone again"),
-    /** Clears all unlocks and points in this server. Settings and your own achievements stay. */
-    settingsResetAllHint: () => t("achievements", "settings_reset_all_hint", "Clears all unlocks and points in this server. Settings and your own achievements stay."),
+    /** Clears all unlocks and points in this community. Settings and your own achievements stay. */
+    settingsResetAllHint: () => t("achievements", "settings_reset_all_hint", "Clears all unlocks and points in this community. Settings and your own achievements stay."),
     /** Reset every achievement */
     settingsResetAllTitle: () => t("achievements", "settings_reset_all_title", "Reset every achievement"),
-    /** Every member loses every achievement and point in this server. Tracked activity stays, ... */
-    settingsResetMessage: () => t("achievements", "settings_reset_message", "Every member loses every achievement and point in this server. Tracked activity stays, so anything still qualified for comes back quietly. This can't be undone."),
+    /** Every member loses every achievement and point in this community. Tracked activity stay... */
+    settingsResetMessage: () => t("achievements", "settings_reset_message", "Every member loses every achievement and point in this community. Tracked activity stays, so anything still qualified for comes back quietly. This can't be undone."),
     /** Reset every achievement? */
     settingsResetTitle: () => t("achievements", "settings_reset_title", "Reset every achievement?"),
     /** Members see the names and goals of secret achievements before unlocking them. */
@@ -2245,8 +2253,6 @@ export const m = {
     settingsRevealTitle: () => t("achievements", "settings_reveal_title", "Show them before they unlock"),
     /** Secret achievements */
     settingsSecretTitle: () => t("achievements", "settings_secret_title", "Secret achievements"),
-    /** You have unsaved changes. */
-    settingsUnsaved: () => t("achievements", "settings_unsaved", "You have unsaved changes."),
     /** XP per point */
     settingsXpPerPoint: () => t("achievements", "settings_xp_per_point", "XP per point"),
     /** Achievement ranks and XP levels are separate. Set this to have every unlock also pay XP... */
@@ -2297,8 +2303,8 @@ export const m = {
     advancedMassPruneMessageTitle: () => t("administration", "advanced_mass_prune_message_title", "Prune to Message"),
     /** Mass Rename Configuration */
     advancedMassRenameConfig: () => t("administration", "advanced_mass_rename_config", "Mass Rename Configuration"),
-    /** This will rename ALL users in the server. Are you sure? */
-    advancedMassRenameConfirmMessage: () => t("administration", "advanced_mass_rename_confirm_message", "This will rename ALL users in the server. Are you sure?"),
+    /** This will rename ALL users in the community. Are you sure? */
+    advancedMassRenameConfirmMessage: () => t("administration", "advanced_mass_rename_confirm_message", "This will rename ALL users in the community. Are you sure?"),
     /** Execute Mass Rename */
     advancedMassRenameExecute: () => t("administration", "advanced_mass_rename_execute", "Execute Mass Rename"),
     /** Use {placeholder} as placeholder. Example: "[AFK] {placeholder}" */
@@ -2307,20 +2313,20 @@ export const m = {
     advancedMassRenamePattern: () => t("administration", "advanced_mass_rename_pattern", "Nickname Pattern"),
     /** Mass Rename Users */
     advancedMassRenameTitle: () => t("administration", "advanced_mass_rename_title", "Mass Rename Users"),
-    /** This will rename ALL users in the server. Use with caution! */
-    advancedMassRenameWarning: () => t("administration", "advanced_mass_rename_warning", "This will rename ALL users in the server. Use with caution!"),
-    /** Bulk server management actions */
-    advancedMassSubtitle: () => t("administration", "advanced_mass_subtitle", "Bulk server management actions"),
+    /** This will rename ALL users in the community. Use with caution! */
+    advancedMassRenameWarning: () => t("administration", "advanced_mass_rename_warning", "This will rename ALL users in the community. Use with caution!"),
+    /** Bulk community management actions */
+    advancedMassSubtitle: () => t("administration", "advanced_mass_subtitle", "Bulk community management actions"),
     /** Mass Operations */
     advancedMassTitle: () => t("administration", "advanced_mass_title", "Mass Operations"),
     /** Copy recovery key */
     advancedRecoveryCopyKey: () => t("administration", "advanced_recovery_copy_key", "Copy recovery key"),
-    /** No recovery keys are stored. Set them up now so you can recover the server later. */
-    advancedRecoveryEmpty: () => t("administration", "advanced_recovery_empty", "No recovery keys are stored. Set them up now so you can recover the server later."),
+    /** No recovery keys are stored. Set them up now so you can recover the community later. */
+    advancedRecoveryEmpty: () => t("administration", "advanced_recovery_empty", "No recovery keys are stored. Set them up now so you can recover the community later."),
     /** Recovery key must be at least 16 characters. */
     advancedRecoveryErrorKeyShort: () => t("administration", "advanced_recovery_error_key_short", "Recovery key must be at least 16 characters."),
-    /** Failed to set up server recovery. Please try again. */
-    advancedRecoveryErrorSetup: () => t("administration", "advanced_recovery_error_setup", "Failed to set up server recovery. Please try again."),
+    /** Failed to set up community recovery. Please try again. */
+    advancedRecoveryErrorSetup: () => t("administration", "advanced_recovery_error_setup", "Failed to set up community recovery. Please try again."),
     /** Two-factor key must be at least 6 characters. */
     advancedRecoveryErrorTwoFactorShort: () => t("administration", "advanced_recovery_error_two_factor_short", "Two-factor key must be at least 6 characters."),
     /** Generate */
@@ -2335,18 +2341,18 @@ export const m = {
     advancedRecoveryRemove: () => t("administration", "advanced_recovery_remove", "Remove recovery setup"),
     /** The stored recovery and two-factor keys will be deleted. You can set new ones afterwards. */
     advancedRecoveryRemoveMessage: () => t("administration", "advanced_recovery_remove_message", "The stored recovery and two-factor keys will be deleted. You can set new ones afterwards."),
-    /** Remove Server Recovery */
-    advancedRecoveryRemoveTitle: () => t("administration", "advanced_recovery_remove_title", "Remove Server Recovery"),
+    /** Remove Community Recovery */
+    advancedRecoveryRemoveTitle: () => t("administration", "advanced_recovery_remove_title", "Remove Community Recovery"),
     /** Save recovery keys */
     advancedRecoverySave: () => t("administration", "advanced_recovery_save", "Save recovery keys"),
     /** Set up recovery */
     advancedRecoverySetup: () => t("administration", "advanced_recovery_setup", "Set up recovery"),
     /** Show recovery key */
     advancedRecoveryShowKey: () => t("administration", "advanced_recovery_show_key", "Show recovery key"),
-    /** Regain control of the server if the owner account is lost or compromised */
-    advancedRecoverySubtitle: () => t("administration", "advanced_recovery_subtitle", "Regain control of the server if the owner account is lost or compromised"),
-    /** Server Recovery */
-    advancedRecoveryTitle: () => t("administration", "advanced_recovery_title", "Server Recovery"),
+    /** Regain control of the community if the owner account is lost or compromised */
+    advancedRecoverySubtitle: () => t("administration", "advanced_recovery_subtitle", "Regain control of the community if the owner account is lost or compromised"),
+    /** Community Recovery */
+    advancedRecoveryTitle: () => t("administration", "advanced_recovery_title", "Community Recovery"),
     /** Two-factor key */
     advancedRecoveryTwoFactorKey: () => t("administration", "advanced_recovery_two_factor_key", "Two-factor key"),
     /** A second secret only you know */
@@ -2467,8 +2473,8 @@ export const m = {
     automationPermissionsManagementPrimaryChannel: () => t("administration", "automation_permissions_management_primary_channel", "A channel"),
     /** A role */
     automationPermissionsManagementPrimaryRole: () => t("administration", "automation_permissions_management_primary_role", "A role"),
-    /** Whole server */
-    automationPermissionsManagementPrimaryServer: () => t("administration", "automation_permissions_management_primary_server", "Whole server"),
+    /** Whole community */
+    automationPermissionsManagementPrimaryServer: () => t("administration", "automation_permissions_management_primary_server", "Whole community"),
     /** A specific user */
     automationPermissionsManagementPrimaryUser: () => t("administration", "automation_permissions_management_primary_user", "A specific user"),
     /** Remove rule #{index}: allow {summary}? */
@@ -2519,8 +2525,8 @@ export const m = {
     automationPermissionsManagementVerbosePermissions: () => t("administration", "automation_permissions_management_verbose_permissions", "Verbose permissions"),
     /** Member Role */
     automationServerRolesMember: () => t("administration", "automation_server_roles_member", "Member Role"),
-    /** Role assigned to regular server members */
-    automationServerRolesMemberHint: () => t("administration", "automation_server_roles_member_hint", "Role assigned to regular server members"),
+    /** Role assigned to regular community members */
+    automationServerRolesMemberHint: () => t("administration", "automation_server_roles_member_hint", "Role assigned to regular community members"),
     /** Select member role... */
     automationServerRolesMemberPlaceholder: () => t("administration", "automation_server_roles_member_placeholder", "Select member role..."),
     /** Role that grants administrative permissions */
@@ -2529,30 +2535,28 @@ export const m = {
     automationServerRolesStaffPlaceholder: () => t("administration", "automation_server_roles_staff_placeholder", "Select staff role..."),
     /** Statistics Collection */
     automationStatsCollection: () => t("administration", "automation_stats_collection", "Statistics Collection"),
-    /** Opt out to stop collecting server statistics */
-    automationStatsCollectionHint: () => t("administration", "automation_stats_collection_hint", "Opt out to stop collecting server statistics"),
+    /** Opt out to stop collecting community statistics */
+    automationStatsCollectionHint: () => t("administration", "automation_stats_collection_hint", "Opt out to stop collecting community statistics"),
     /** Delete Stats */
     automationStatsDeleteButton: () => t("administration", "automation_stats_delete_button", "Delete Stats"),
-    /** This will permanently delete all statistics data for this server. This action cannot be... */
-    automationStatsDeleteConfirm: () => t("administration", "automation_stats_delete_confirm", "This will permanently delete all statistics data for this server. This action cannot be undone!"),
+    /** This will permanently delete all statistics data for this community. This action cannot... */
+    automationStatsDeleteConfirm: () => t("administration", "automation_stats_delete_confirm", "This will permanently delete all statistics data for this community. This action cannot be undone!"),
     /** Delete All Stats */
     automationStatsDeleteConfirmTitle: () => t("administration", "automation_stats_delete_confirm_title", "Delete All Stats"),
-    /** Permanently remove all collected statistics for this server */
-    automationStatsDeleteHint: () => t("administration", "automation_stats_delete_hint", "Permanently remove all collected statistics for this server"),
+    /** Permanently remove all collected statistics for this community */
+    automationStatsDeleteHint: () => t("administration", "automation_stats_delete_hint", "Permanently remove all collected statistics for this community"),
     /** Delete All Statistics Data */
     automationStatsDeleteTitle: () => t("administration", "automation_stats_delete_title", "Delete All Statistics Data"),
-    /** Manage server statistics collection */
-    automationStatsSubtitle: () => t("administration", "automation_stats_subtitle", "Manage server statistics collection"),
+    /** Manage community statistics collection */
+    automationStatsSubtitle: () => t("administration", "automation_stats_subtitle", "Manage community statistics collection"),
     /** Statistics & Privacy */
     automationStatsTitle: () => t("administration", "automation_stats_title", "Statistics & Privacy"),
     /** Toggle Opt-Out */
     automationStatsToggleOptOut: () => t("administration", "automation_stats_toggle_opt_out", "Toggle Opt-Out"),
     /** Timezone used for time-based features and logging */
     automationTimezoneHint: () => t("administration", "automation_timezone_hint", "Timezone used for time-based features and logging"),
-    /** Select server timezone... */
-    automationTimezonePlaceholder: () => t("administration", "automation_timezone_placeholder", "Select server timezone..."),
-    /** Save Timezone */
-    automationTimezoneSave: () => t("administration", "automation_timezone_save", "Save Timezone"),
+    /** Select community timezone... */
+    automationTimezonePlaceholder: () => t("administration", "automation_timezone_placeholder", "Select community timezone..."),
     /** Timezone Settings */
     automationTimezoneTitle: () => t("administration", "automation_timezone_title", "Timezone Settings"),
     /** Active Rules */
@@ -2579,8 +2583,8 @@ export const m = {
     overviewProtectionStatus: () => t("administration", "overview_protection_status", "Protection Status"),
     /** Self-Assignable */
     overviewSelfAssignable: () => t("administration", "overview_self_assignable", "Self-Assignable"),
-    /** Server Configuration */
-    overviewServerConfiguration: () => t("administration", "overview_server_configuration", "Server Configuration"),
+    /** Community Configuration */
+    overviewServerConfiguration: () => t("administration", "overview_server_configuration", "Community Configuration"),
     /** Configure timezone, channels, and automation */
     overviewServerSettingsHint: () => t("administration", "overview_server_settings_hint", "Configure timezone, channels, and automation"),
     /** Staff Role: */
@@ -2617,8 +2621,8 @@ export const m = {
     pagePermUseExternalEmojis: () => t("administration", "page_perm_use_external_emojis", "Use External Emojis"),
     /** View Channels */
     pagePermViewChannel: () => t("administration", "page_perm_view_channel", "View Channels"),
-    /** Manage all server administration settings and features */
-    pageSubtitle: () => t("administration", "page_subtitle", "Manage all server administration settings and features"),
+    /** Manage all community administration settings and features */
+    pageSubtitle: () => t("administration", "page_subtitle", "Manage all community administration settings and features"),
     /** Delete only */
     protectionActionDeleteOnly: () => t("administration", "protection_action_delete_only", "Delete only"),
     /** Enable to block young accounts */
@@ -2711,10 +2715,10 @@ export const m = {
     protectionImagehashPasteUrlPlaceholder: () => t("administration", "protection_imagehash_paste_url_placeholder", "...or paste an image URL"),
     /** Pending upload preview */
     protectionImagehashPendingPreviewAlt: () => t("administration", "protection_imagehash_pending_preview_alt", "Pending upload preview"),
-    /** Caught {count} post in this server. */
-    protectionImagehashPresetCaughtOne: (p: { count: P }) => t("administration", "protection_imagehash_preset_caught_one", "Caught {count} post in this server.", p),
-    /** Caught {count} posts in this server. */
-    protectionImagehashPresetCaughtOther: (p: { count: P }) => t("administration", "protection_imagehash_preset_caught_other", "Caught {count} posts in this server.", p),
+    /** Caught {count} post in this community. */
+    protectionImagehashPresetCaughtOne: (p: { count: P }) => t("administration", "protection_imagehash_preset_caught_one", "Caught {count} post in this community.", p),
+    /** Caught {count} posts in this community. */
+    protectionImagehashPresetCaughtOther: (p: { count: P }) => t("administration", "protection_imagehash_preset_caught_other", "Caught {count} posts in this community.", p),
     /** ({count} image) */
     protectionImagehashPresetCountOne: (p: { count: P }) => t("administration", "protection_imagehash_preset_count_one", "({count} image)", p),
     /** ({count} images) */
@@ -2827,8 +2831,6 @@ export const m = {
     protectionPostchannelIgnoredUsersHint: () => t("administration", "protection_postchannel_ignored_users_hint", "Specific users who can post in honeypot channels"),
     /** Remove ignored user */
     protectionPostchannelRemoveIgnoredUser: () => t("administration", "protection_postchannel_remove_ignored_user", "Remove ignored user"),
-    /** Save Channels */
-    protectionPostchannelSaveChannels: () => t("administration", "protection_postchannel_save_channels", "Save Channels"),
     /** Save Roles */
     protectionPostchannelSaveRoles: () => t("administration", "protection_postchannel_save_roles", "Save Roles"),
     /** Select honeypot channels... */
@@ -2871,12 +2873,12 @@ export const m = {
     rolesAddReactionRoleEmojiCount: (p: { max: P; total: P }) => t("administration", "roles_add_reaction_role_emoji_count", "({total} / {max} emojis on message)", p),
     /** Failed to add reaction roles. Please check that the message and channel IDs are correct... */
     rolesAddReactionRoleErrorAddFailed: () => t("administration", "roles_add_reaction_role_error_add_failed", "Failed to add reaction roles. Please check that the message and channel IDs are correct and the bot has access."),
-    /** Cannot add more than {max} reactions! */
-    rolesAddReactionRoleErrorMaxReactions: (p: { max: P }) => t("administration", "roles_add_reaction_role_error_max_reactions", "Cannot add more than {max} reactions!", p),
+    /** Cannot add more than {max} reactions */
+    rolesAddReactionRoleErrorMaxReactions: (p: { max: P }) => t("administration", "roles_add_reaction_role_error_max_reactions", "Cannot add more than {max} reactions", p),
     /** Please select at least one emoji and role pair. */
     rolesAddReactionRoleErrorNeedPair: () => t("administration", "roles_add_reaction_role_error_need_pair", "Please select at least one emoji and role pair."),
-    /** Total emoji count ({total}) exceeds Fluxer's limit of {max} reactions per message! */
-    rolesAddReactionRoleErrorTotalExceeds: (p: { max: P; total: P }) => t("administration", "roles_add_reaction_role_error_total_exceeds", "Total emoji count ({total}) exceeds Fluxer's limit of {max} reactions per message!", p),
+    /** Total emoji count ({total}) exceeds Fluxer's limit of {max} reactions per message */
+    rolesAddReactionRoleErrorTotalExceeds: (p: { max: P; total: P }) => t("administration", "roles_add_reaction_role_error_total_exceeds", "Total emoji count ({total}) exceeds Fluxer's limit of {max} reactions per message", p),
     /** Cannot add reactions: total would exceed Fluxer's {max} emoji limit. */
     rolesAddReactionRoleErrorWouldExceed: (p: { max: P }) => t("administration", "roles_add_reaction_role_error_would_exceed", "Cannot add reactions: total would exceed Fluxer's {max} emoji limit.", p),
     /** Exclusive (users can only have one role from this message) */
@@ -2907,20 +2909,20 @@ export const m = {
     rolesAddSelfAssignableRolePlaceholder: () => t("administration", "roles_add_self_assignable_role_placeholder", "Select role to make self-assignable..."),
     /** Add Self-Assignable Role */
     rolesAddSelfAssignableTitle: () => t("administration", "roles_add_self_assignable_title", "Add Self-Assignable Role"),
-    /** Roles automatically assigned to bot users when they join the server. */
-    rolesAutoAssignBotHint: () => t("administration", "roles_auto_assign_bot_hint", "Roles automatically assigned to bot users when they join the server."),
+    /** Roles automatically assigned to bot users when they join the community. */
+    rolesAutoAssignBotHint: () => t("administration", "roles_auto_assign_bot_hint", "Roles automatically assigned to bot users when they join the community."),
     /** Select roles to auto-assign to bot users */
     rolesAutoAssignBotPlaceholder: () => t("administration", "roles_auto_assign_bot_placeholder", "Select roles to auto-assign to bot users"),
     /** Bot Users */
     rolesAutoAssignBotUsers: () => t("administration", "roles_auto_assign_bot_users", "Bot Users"),
-    /** Roles automatically assigned to new users when they join the server. */
-    rolesAutoAssignNormalHint: () => t("administration", "roles_auto_assign_normal_hint", "Roles automatically assigned to new users when they join the server."),
+    /** Roles automatically assigned to new users when they join the community. */
+    rolesAutoAssignNormalHint: () => t("administration", "roles_auto_assign_normal_hint", "Roles automatically assigned to new users when they join the community."),
     /** Select roles to auto-assign to normal users */
     rolesAutoAssignNormalPlaceholder: () => t("administration", "roles_auto_assign_normal_placeholder", "Select roles to auto-assign to normal users"),
     /** Normal Users */
     rolesAutoAssignNormalUsers: () => t("administration", "roles_auto_assign_normal_users", "Normal Users"),
-    /** Users who receive these roles will be automatically banned from the server */
-    rolesAutoBanDescription: () => t("administration", "roles_auto_ban_description", "Users who receive these roles will be automatically banned from the server"),
+    /** Users who receive these roles will be automatically banned from the community */
+    rolesAutoBanDescription: () => t("administration", "roles_auto_ban_description", "Users who receive these roles will be automatically banned from the community"),
     /** Add roles that should trigger automatic bans */
     rolesAutoBanEmptyHint: () => t("administration", "roles_auto_ban_empty_hint", "Add roles that should trigger automatic bans"),
     /** No auto-ban roles configured */
@@ -3089,12 +3091,12 @@ export const m = {
     noMessage: () => t("afk", "no_message", "No message"),
     /** Failed to remove AFK status from user(s): {error} */
     notifyBulkRemoveFailed: (p: { error: P }) => t("afk", "notify_bulk_remove_failed", "Failed to remove AFK status from user(s): {error}", p),
-    /** Successfully removed AFK status from {count} user(s) */
-    notifyBulkRemoved: (p: { count: P }) => t("afk", "notify_bulk_removed", "Successfully removed AFK status from {count} user(s)", p),
+    /** Removed AFK status from {count} user(s) */
+    notifyBulkRemoved: (p: { count: P }) => t("afk", "notify_bulk_removed", "Removed AFK status from {count} user(s)", p),
     /** Failed to clear AFK status: {error} */
     notifyClearFailed: (p: { error: P }) => t("afk", "notify_clear_failed", "Failed to clear AFK status: {error}", p),
-    /** Successfully cleared AFK status for {name} */
-    notifyCleared: (p: { name: P }) => t("afk", "notify_cleared", "Successfully cleared AFK status for {name}", p),
+    /** Cleared AFK status for {name} */
+    notifyCleared: (p: { name: P }) => t("afk", "notify_cleared", "Cleared AFK status for {name}", p),
     /** Couldn't save AFK settings. Your last change was undone. */
     notifySaveFailed: () => t("afk", "notify_save_failed", "Couldn't save AFK settings. Your last change was undone."),
     /** AFK timeout must be between 1 second and 2 hours */
@@ -3185,8 +3187,8 @@ export const m = {
     filterAllBots: () => t("analytics", "filter_all_bots", "all bots"),
     /** all shards */
     filterAllShards: () => t("analytics", "filter_all_shards", "all shards"),
-    /** Clear guild */
-    filterClearGuild: () => t("analytics", "filter_clear_guild", "Clear guild"),
+    /** Clear community */
+    filterClearGuild: () => t("analytics", "filter_clear_guild", "Clear community"),
     /** compare */
     filterCompare: () => t("analytics", "filter_compare", "compare"),
     /** Custom range */
@@ -3199,8 +3201,8 @@ export const m = {
     filterErrMaxDays: () => t("analytics", "filter_err_max_days", "Max 31 days"),
     /** from (UTC) */
     filterFromUtc: () => t("analytics", "filter_from_utc", "from (UTC)"),
-    /** guild id */
-    filterGuildIdPlaceholder: () => t("analytics", "filter_guild_id_placeholder", "guild id"),
+    /** community ID */
+    filterGuildIdPlaceholder: () => t("analytics", "filter_guild_id_placeholder", "community ID"),
     /** Range */
     filterRange: () => t("analytics", "filter_range", "Range"),
     /** Shard */
@@ -3247,8 +3249,6 @@ export const m = {
     pageGuildName: () => t("analytics", "page_guild_name", "Owner analytics"),
     /** AI */
     pageTabAi: () => t("analytics", "page_tab_ai", "AI"),
-    /** Guilds */
-    pageTabGuilds: () => t("analytics", "page_tab_guilds", "Guilds"),
     /** Pipeline */
     pageTabPipeline: () => t("analytics", "page_tab_pipeline", "Pipeline"),
     /** Website */
@@ -3263,8 +3263,6 @@ export const m = {
     tabAiCardRequestsModel: () => t("analytics", "tab_ai_card_requests_model", "Requests by model"),
     /** Tokens by model */
     tabAiCardTokensModel: () => t("analytics", "tab_ai_card_tokens_model", "Tokens by model"),
-    /** Top guilds */
-    tabAiCardTopGuilds: () => t("analytics", "tab_ai_card_top_guilds", "Top guilds"),
     /** Cost */
     tabAiColCost: () => t("analytics", "tab_ai_col_cost", "Cost"),
     /** Err % */
@@ -3279,8 +3277,8 @@ export const m = {
     tabAiColUses: () => t("analytics", "tab_ai_col_uses", "Uses"),
     /** list prices · priced models only */
     tabAiCostSub: () => t("analytics", "tab_ai_cost_sub", "list prices · priced models only"),
-    /** No guild use */
-    tabAiEmptyGuilds: () => t("analytics", "tab_ai_empty_guilds", "No guild use"),
+    /** No community use */
+    tabAiEmptyGuilds: () => t("analytics", "tab_ai_empty_guilds", "No community use"),
     /** No AI requests */
     tabAiEmptyRequests: () => t("analytics", "tab_ai_empty_requests", "No AI requests"),
     /** Est. cost */
@@ -3519,8 +3517,8 @@ export const m = {
     tabCommandsCardTop: () => t("analytics", "tab_commands_card_top", "Top commands"),
     /** row → samples */
     tabCommandsFailingNote: () => t("analytics", "tab_commands_failing_note", "row → samples"),
-    /** UTC hour × server size */
-    tabCommandsHeatmapNote: () => t("analytics", "tab_commands_heatmap_note", "UTC hour × server size"),
+    /** UTC hour × community size */
+    tabCommandsHeatmapNote: () => t("analytics", "tab_commands_heatmap_note", "UTC hour × community size"),
     /** no user ids */
     tabCommandsLogNote: () => t("analytics", "tab_commands_log_note", "no user ids"),
     /** No samples */
@@ -3557,8 +3555,8 @@ export const m = {
     tabFeaturesAxisFeatures: () => t("analytics", "tab_features_axis_features", "features"),
     /** Feature adoption */
     tabFeaturesCardAdoption: () => t("analytics", "tab_features_card_adoption", "Feature adoption"),
-    /** Features per guild */
-    tabFeaturesCardPerGuild: () => t("analytics", "tab_features_card_per_guild", "Features per guild"),
+    /** Features per community */
+    tabFeaturesCardPerGuild: () => t("analytics", "tab_features_card_per_guild", "Features per community"),
     /** Size vs features */
     tabFeaturesCardSize: () => t("analytics", "tab_features_card_size", "Size vs features"),
     /** Active % */
@@ -3577,8 +3575,8 @@ export const m = {
     tabGuildDetailActivityNote: () => t("analytics", "tab_guild_detail_activity_note", "UTC"),
     /** any type */
     tabGuildDetailAnyType: () => t("analytics", "tab_guild_detail_any_type", "any type"),
-    /** Guild card */
-    tabGuildDetailCard: () => t("analytics", "tab_guild_detail_card", "Guild card"),
+    /** Community card */
+    tabGuildDetailCard: () => t("analytics", "tab_guild_detail_card", "Community card"),
     /** No activity in range */
     tabGuildDetailEmptyActivity: () => t("analytics", "tab_guild_detail_empty_activity", "No activity in range"),
     /** No logged events */
@@ -3589,8 +3587,8 @@ export const m = {
     tabGuildDetailUnitEvents: () => t("analytics", "tab_guild_detail_unit_events", "events"),
     /** Minimum events per hour */
     tabGuildsAriaMinEvents: () => t("analytics", "tab_guilds_aria_min_events", "Minimum events per hour"),
-    /** Top guilds by events */
-    tabGuildsCardTop: () => t("analytics", "tab_guilds_card_top", "Top guilds by events"),
+    /** Top communities by events */
+    tabGuildsCardTop: () => t("analytics", "tab_guilds_card_top", "Top communities by events"),
     /** Unusual activity */
     tabGuildsCardUnusual: () => t("analytics", "tab_guilds_card_unusual", "Unusual activity"),
     /** Top types */
@@ -3691,16 +3689,16 @@ export const m = {
     tabOverviewRestReqS: () => t("analytics", "tab_overview_rest_req_s", "REST req / s"),
     /** REST requests / s */
     tabOverviewRestRequestsS: () => t("analytics", "tab_overview_rest_requests_s", "REST requests / s"),
-    /** Servers · daily snapshots */
-    tabOverviewServersDailySnapshots: () => t("analytics", "tab_overview_servers_daily_snapshots", "Servers · daily snapshots"),
+    /** Communities · daily snapshots */
+    tabOverviewServersDailySnapshots: () => t("analytics", "tab_overview_servers_daily_snapshots", "Communities · daily snapshots"),
     /** Worst shard latency */
     tabOverviewWorstShardLatency: () => t("analytics", "tab_overview_worst_shard_latency", "Worst shard latency"),
     /** Heartbeat */
     tabPipelineColHeartbeat: () => t("analytics", "tab_pipeline_col_heartbeat", "Heartbeat"),
     /** Host */
     tabPipelineColHost: () => t("analytics", "tab_pipeline_col_host", "Host"),
-    /** Last guild count */
-    tabPipelineColLastGuildCount: () => t("analytics", "tab_pipeline_col_last_guild_count", "Last guild count"),
+    /** Last community count */
+    tabPipelineColLastGuildCount: () => t("analytics", "tab_pipeline_col_last_guild_count", "Last community count"),
     /** Newest */
     tabPipelineColNewest: () => t("analytics", "tab_pipeline_col_newest", "Newest"),
     /** Table */
@@ -3745,8 +3743,8 @@ export const m = {
     tabPipelineTables: () => t("analytics", "tab_pipeline_tables", "Tables"),
     /** rows */
     tabPipelineUnitRows: () => t("analytics", "tab_pipeline_unit_rows", "rows"),
-    /** Bounced guilds */
-    tabServersBouncedGuilds: () => t("analytics", "tab_servers_bounced_guilds", "Bounced guilds"),
+    /** Bounced communities */
+    tabServersBouncedGuilds: () => t("analytics", "tab_servers_bounced_guilds", "Bounced communities"),
     /** Churn */
     tabServersChurn: () => t("analytics", "tab_servers_churn", "Churn"),
     /** bounced {count} · bounce rate {rate} */
@@ -3759,8 +3757,8 @@ export const m = {
     tabServersColPriorEvents: () => t("analytics", "tab_servers_col_prior_events", "Prior events"),
     /** Stayed */
     tabServersColStayed: () => t("analytics", "tab_servers_col_stayed", "Stayed"),
-    /** Guild {guild} */
-    tabServersDrillTitle: (p: { guild: P }) => t("analytics", "tab_servers_drill_title", "Guild {guild}", p),
+    /** Community {guild} */
+    tabServersDrillTitle: (p: { guild: P }) => t("analytics", "tab_servers_drill_title", "Community {guild}", p),
     /** none used in range */
     tabServersFeaturesNone: () => t("analytics", "tab_servers_features_none", "none used in range"),
     /** {used} used · {enabled}/{configured} on */
@@ -3775,8 +3773,8 @@ export const m = {
     tabServersNet: () => t("analytics", "tab_servers_net", "Net"),
     /** No bounces */
     tabServersNoBounces: () => t("analytics", "tab_servers_no_bounces", "No bounces"),
-    /** No servers */
-    tabServersNoServers: () => t("analytics", "tab_servers_no_servers", "No servers"),
+    /** No communities */
+    tabServersNoServers: () => t("analytics", "tab_servers_no_servers", "No communities"),
     /** Nothing went quiet */
     tabServersNothingWentQuiet: () => t("analytics", "tab_servers_nothing_went_quiet", "Nothing went quiet"),
     /** {shown} of {total} · {humans} humans · {bots} bots · {configured} configured · row → card */
@@ -3845,8 +3843,6 @@ export const m = {
     tableColErrorClass: () => t("analytics", "table_col_error_class", "Error class"),
     /** Failures */
     tableColFailures: () => t("analytics", "table_col_failures", "Failures"),
-    /** Guild */
-    tableColGuild: () => t("analytics", "table_col_guild", "Guild"),
     /** Hour (UTC) */
     tableColHourUtc: () => t("analytics", "table_col_hour_utc", "Hour (UTC)"),
     /** Kind */
@@ -3873,8 +3869,8 @@ export const m = {
     tileOpenBreakdown: (p: { label: P }) => t("analytics", "tile_open_breakdown", "Open breakdown of {label}", p),
     /** errors */
     unitErrors: () => t("analytics", "unit_errors", "errors"),
-    /** guilds */
-    unitGuilds: () => t("analytics", "unit_guilds", "guilds"),
+    /** communities */
+    unitGuilds: () => t("analytics", "unit_guilds", "communities"),
     /** invocations */
     unitInvocations: () => t("analytics", "unit_invocations", "invocations"),
     /** per bucket */
@@ -3943,10 +3939,10 @@ export const m = {
     sectionWebhook: () => t("auditlog", "section_webhook", "Webhooks"),
   },
   birthday: {
-    /** {count} birthday today! */
-    alertTodayOne: (p: { count: P }) => t("birthday", "alert_today_one", "{count} birthday today!", p),
-    /** {count} birthdays today! */
-    alertTodayOther: (p: { count: P }) => t("birthday", "alert_today_other", "{count} birthdays today!", p),
+    /** {count} birthday today */
+    alertTodayOne: (p: { count: P }) => t("birthday", "alert_today_one", "{count} birthday today", p),
+    /** {count} birthdays today */
+    alertTodayOther: (p: { count: P }) => t("birthday", "alert_today_other", "{count} birthdays today", p),
     /** Birthday Channel */
     configChannel: () => t("birthday", "config_channel", "Birthday Channel"),
     /** Ping Role (notifies when announcing) */
@@ -3999,8 +3995,8 @@ export const m = {
     resetConfirm: () => t("birthday", "reset_confirm", "Are you sure you want to reset the birthday configuration to defaults?"),
     /** Birthday statistics will appear here once the system is configured. */
     statsEmpty: () => t("birthday", "stats_empty", "Birthday statistics will appear here once the system is configured."),
-    /** server members */
-    statsMembersSubtitle: () => t("birthday", "stats_members_subtitle", "server members"),
+    /** community members */
+    statsMembersSubtitle: () => t("birthday", "stats_members_subtitle", "community members"),
     /** Public Birthdays */
     statsPublic: () => t("birthday", "stats_public", "Public Birthdays"),
     /** announcements enabled */
@@ -4055,8 +4051,6 @@ export const m = {
     usersPrivate: () => t("birthday", "users_private", "Private"),
     /** Public */
     usersPublic: () => t("birthday", "users_public", "Public"),
-    /** Today! */
-    usersToday: () => t("birthday", "users_today", "Today!"),
     /** Tomorrow */
     usersTomorrow: () => t("birthday", "users_tomorrow", "Tomorrow"),
     /** No birthdays in the next {days} days. */
@@ -4177,8 +4171,8 @@ export const m = {
     gateHideSettings: () => t("channel-access", "gate_hide_settings", "Hide settings"),
     /** No logging */
     gateLogChannelPlaceholder: () => t("channel-access", "gate_log_channel_placeholder", "No logging"),
-    /** Min time in server (days) */
-    gateMinServerAge: () => t("channel-access", "gate_min_server_age", "Min time in server (days)"),
+    /** Min time in community (days) */
+    gateMinServerAge: () => t("channel-access", "gate_min_server_age", "Min time in community (days)"),
     /** no time limit */
     gateNoTimeLimit: () => t("channel-access", "gate_no_time_limit", "no time limit"),
     /** Pick an outcome */
@@ -4259,8 +4253,8 @@ export const m = {
   chatTriggers: {
     /** Only active at certain hours */
     advancedActiveHours: () => t("chat-triggers", "advanced_active_hours", "Only active at certain hours"),
-    /** Uses the server's timezone. An end time before the start time runs overnight. */
-    advancedActiveHoursHint: () => t("chat-triggers", "advanced_active_hours_hint", "Uses the server's timezone. An end time before the start time runs overnight."),
+    /** Uses the community's timezone. An end time before the start time runs overnight. */
+    advancedActiveHoursHint: () => t("chat-triggers", "advanced_active_hours_hint", "Uses the community's timezone. An end time before the start time runs overnight."),
     /** Respond to bots instead of people */
     advancedAllowBots: () => t("chat-triggers", "advanced_allow_bots", "Respond to bots instead of people"),
     /** Only matches messages from other bots and webhooks. Never its own. */
@@ -4279,8 +4273,8 @@ export const m = {
     advancedCooldownAppliesTo: () => t("chat-triggers", "advanced_cooldown_applies_to", "Cooldown applies to"),
     /** Costs the user */
     advancedCost: () => t("chat-triggers", "advanced_cost", "Costs the user"),
-    /** Counters are shared across the server. Read or change one from a response with {read}, ... */
-    advancedCounterHint: (p: { add: P; read: P }) => t("chat-triggers", "advanced_counter_hint", "Counters are shared across the server. Read or change one from a response with {read}, or {add} to add one.", p),
+    /** Counters are shared across the community. Read or change one from a response with {read... */
+    advancedCounterHint: (p: { add: P; read: P }) => t("chat-triggers", "advanced_counter_hint", "Counters are shared across the community. Read or change one from a response with {read}, or {add} to add one.", p),
     /** At most */
     advancedCounterMax: () => t("chat-triggers", "advanced_counter_max", "At most"),
     /** At least */
@@ -4329,10 +4323,10 @@ export const m = {
     advancedEventGiveawayWon: () => t("chat-triggers", "advanced_event_giveaway_won", "Giveaway won"),
     /** Lets this trigger format another feature's announcement, with all the same options. */
     advancedEventHint: () => t("chat-triggers", "advanced_event_hint", "Lets this trigger format another feature's announcement, with all the same options."),
-    /** Member joins the server */
-    advancedEventJoin: () => t("chat-triggers", "advanced_event_join", "Member joins the server"),
-    /** Member leaves the server */
-    advancedEventLeave: () => t("chat-triggers", "advanced_event_leave", "Member leaves the server"),
+    /** Member joins the community */
+    advancedEventJoin: () => t("chat-triggers", "advanced_event_join", "Member joins the community"),
+    /** Member leaves the community */
+    advancedEventLeave: () => t("chat-triggers", "advanced_event_leave", "Member leaves the community"),
     /** Member levels down */
     advancedEventLevelDown: () => t("chat-triggers", "advanced_event_level_down", "Member levels down"),
     /** Member levels up */
@@ -4389,8 +4383,8 @@ export const m = {
     advancedMaxUsesHintOther: (p: { count: P }) => t("chat-triggers", "advanced_max_uses_hint_other", "Used {count} times so far. 0 means no limit.", p),
     /** These keep brand new accounts from using a trigger. Leave at 0 for no restriction. */
     advancedMinAgeHint: () => t("chat-triggers", "advanced_min_age_hint", "These keep brand new accounts from using a trigger. Leave at 0 for no restriction."),
-    /** Minimum time in server (minutes) */
-    advancedMinMembership: () => t("chat-triggers", "advanced_min_membership", "Minimum time in server (minutes)"),
+    /** Minimum time in community (minutes) */
+    advancedMinMembership: () => t("chat-triggers", "advanced_min_membership", "Minimum time in community (minutes)"),
     /** Send all of them */
     advancedModeAll: () => t("chat-triggers", "advanced_mode_all", "Send all of them"),
     /** Always the first response */
@@ -4405,18 +4399,18 @@ export const m = {
     advancedNoMessageHint: () => t("chat-triggers", "advanced_no_message_hint", "Useful when the trigger only exists to hand out roles or run another trigger."),
     /** Bot owner only */
     advancedOwnerOnly: () => t("chat-triggers", "advanced_owner_only", "Bot owner only"),
-    /** Nobody else can use it, including server administrators. */
-    advancedOwnerOnlyHint: () => t("chat-triggers", "advanced_owner_only_hint", "Nobody else can use it, including server administrators."),
+    /** Nobody else can use it, including community administrators. */
+    advancedOwnerOnlyHint: () => t("chat-triggers", "advanced_owner_only_hint", "Nobody else can use it, including community administrators."),
     /** A custom prefix */
     advancedPrefixCustom: () => t("chat-triggers", "advanced_prefix_custom", "A custom prefix"),
     /** Global prefix */
     advancedPrefixGlobal: () => t("chat-triggers", "advanced_prefix_global", "Global prefix"),
     /** No prefix needed */
     advancedPrefixNone: () => t("chat-triggers", "advanced_prefix_none", "No prefix needed"),
-    /** Server prefix if one is set */
-    advancedPrefixServerIfSet: () => t("chat-triggers", "advanced_prefix_server_if_set", "Server prefix if one is set"),
-    /** Server prefix, or global */
-    advancedPrefixServerOrGlobal: () => t("chat-triggers", "advanced_prefix_server_or_global", "Server prefix, or global"),
+    /** Community prefix if one is set */
+    advancedPrefixServerIfSet: () => t("chat-triggers", "advanced_prefix_server_if_set", "Community prefix if one is set"),
+    /** Community prefix, or global */
+    advancedPrefixServerOrGlobal: () => t("chat-triggers", "advanced_prefix_server_or_global", "Community prefix, or global"),
     /** Separate with spaces. Up to six, added one per second. */
     advancedReactEmojiHint: () => t("chat-triggers", "advanced_react_emoji_hint", "Separate with spaces. Up to six, added one per second."),
     /** React to the message instead */
@@ -4449,8 +4443,8 @@ export const m = {
     advancedScopeChannel: () => t("chat-triggers", "advanced_scope_channel", "Everyone in the channel"),
     /** Each member separately */
     advancedScopeMember: () => t("chat-triggers", "advanced_scope_member", "Each member separately"),
-    /** The whole server */
-    advancedScopeServer: () => t("chat-triggers", "advanced_scope_server", "The whole server"),
+    /** The whole community */
+    advancedScopeServer: () => t("chat-triggers", "advanced_scope_server", "The whole community"),
     /** Only fire within a counter range */
     advancedSectionCounterHint: () => t("chat-triggers", "advanced_section_counter_hint", "Only fire within a counter range"),
     /** Counter requirement */
@@ -4533,8 +4527,6 @@ export const m = {
     pageAnnounceCardsCollapsed: () => t("chat-triggers", "page_announce_cards_collapsed", "Collapsed all cards"),
     /** Failed to create trigger */
     pageAnnounceCreateFailed: () => t("chat-triggers", "page_announce_create_failed", "Failed to create trigger"),
-    /** Trigger created successfully */
-    pageAnnounceCreated: () => t("chat-triggers", "page_announce_created", "Trigger created successfully"),
     /** Delete cancelled */
     pageAnnounceDeleteCancelled: () => t("chat-triggers", "page_announce_delete_cancelled", "Delete cancelled"),
     /** Failed to delete trigger */
@@ -4581,8 +4573,8 @@ export const m = {
     pageConfirmDeleteMessage: (p: { name: P }) => t("chat-triggers", "page_confirm_delete_message", "Are you sure you want to delete the trigger \"{name}\"?", p),
     /** Delete counter {name} */
     pageCountersDeleteAria: (p: { name: P }) => t("chat-triggers", "page_counters_delete_aria", "Delete counter {name}", p),
-    /** Counters are shared across the server. A response reads one with {read}, or adds to it ... */
-    pageCountersHint: (p: { add: P; read: P }) => t("chat-triggers", "page_counters_hint", "Counters are shared across the server. A response reads one with {read}, or adds to it with {add}.", p),
+    /** Counters are shared across the community. A response reads one with {read}, or adds to ... */
+    pageCountersHint: (p: { add: P; read: P }) => t("chat-triggers", "page_counters_hint", "Counters are shared across the community. A response reads one with {read}, or adds to it with {add}.", p),
     /** New counter name */
     pageCountersNewPlaceholder: () => t("chat-triggers", "page_counters_new_placeholder", "New counter name"),
     /** {count} defined */
@@ -4655,8 +4647,8 @@ export const m = {
     pageNoMatches: () => t("chat-triggers", "page_no_matches", "No triggers match your search."),
     /** Failed to add trigger: {error} */
     pageNotifyAddFailed: (p: { error: P }) => t("chat-triggers", "page_notify_add_failed", "Failed to add trigger: {error}", p),
-    /** Trigger added successfully */
-    pageNotifyAdded: () => t("chat-triggers", "page_notify_added", "Trigger added successfully"),
+    /** Trigger added */
+    pageNotifyAdded: () => t("chat-triggers", "page_notify_added", "Trigger added"),
     /** Both trigger text and response are required */
     pageNotifyBothRequired: () => t("chat-triggers", "page_notify_both_required", "Both trigger text and response are required"),
     /** Failed to update category. */
@@ -4671,12 +4663,12 @@ export const m = {
     pageNotifyCounterSaveFailed: () => t("chat-triggers", "page_notify_counter_save_failed", "Failed to save counter."),
     /** Failed to create trigger: {error} */
     pageNotifyCreateFailed: (p: { error: P }) => t("chat-triggers", "page_notify_create_failed", "Failed to create trigger: {error}", p),
-    /** Trigger created successfully! */
-    pageNotifyCreated: () => t("chat-triggers", "page_notify_created", "Trigger created successfully!"),
+    /** Trigger created */
+    pageNotifyCreated: () => t("chat-triggers", "page_notify_created", "Trigger created"),
     /** Failed to delete trigger: {error} */
     pageNotifyDeleteFailed: (p: { error: P }) => t("chat-triggers", "page_notify_delete_failed", "Failed to delete trigger: {error}", p),
-    /** Trigger deleted successfully */
-    pageNotifyDeleted: () => t("chat-triggers", "page_notify_deleted", "Trigger deleted successfully"),
+    /** Trigger deleted */
+    pageNotifyDeleted: () => t("chat-triggers", "page_notify_deleted", "Trigger deleted"),
     /** Invalid regex pattern */
     pageNotifyInvalidRegex: () => t("chat-triggers", "page_notify_invalid_regex", "Invalid regex pattern"),
     /** Trigger and Response are required */
@@ -4685,8 +4677,8 @@ export const m = {
     pageNotifyTestFailed: () => t("chat-triggers", "page_notify_test_failed", "Failed to test trigger."),
     /** Failed to update trigger: {error} */
     pageNotifyUpdateFailed: (p: { error: P }) => t("chat-triggers", "page_notify_update_failed", "Failed to update trigger: {error}", p),
-    /** Trigger updated successfully */
-    pageNotifyUpdated: () => t("chat-triggers", "page_notify_updated", "Trigger updated successfully"),
+    /** Trigger updated */
+    pageNotifyUpdated: () => t("chat-triggers", "page_notify_updated", "Trigger updated"),
     /** Regular Expression Pattern */
     pagePatternRegex: () => t("chat-triggers", "page_pattern_regex", "Regular Expression Pattern"),
     /** Normal Text Pattern */
@@ -4699,8 +4691,8 @@ export const m = {
     pageQuickCreate: () => t("chat-triggers", "page_quick_create", "Create Trigger"),
     /** Creates a simple trigger that responds when users type your trigger text */
     pageQuickCreateHint: () => t("chat-triggers", "page_quick_create_hint", "Creates a simple trigger that responds when users type your trigger text"),
-    /** More Options → */
-    pageQuickMoreOptions: () => t("chat-triggers", "page_quick_more_options", "More Options →"),
+    /** More options */
+    pageQuickMoreOptions: () => t("chat-triggers", "page_quick_more_options", "More options"),
     /** Bot's response to the trigger */
     pageQuickPreviewDescription: () => t("chat-triggers", "page_quick_preview_description", "Bot's response to the trigger"),
     /** Quick Response */
@@ -4745,8 +4737,8 @@ export const m = {
     pageSummaryEmbedsOther: (p: { count: P }) => t("chat-triggers", "page_summary_embeds_other", "[{count} embeds]", p),
     /** Rich Embeds */
     pageTemplateEmbed: () => t("chat-triggers", "page_template_embed", "Rich Embeds"),
-    /** Welcome to the server! */
-    pageTemplateEmbedContent: () => t("chat-triggers", "page_template_embed_content", "Welcome to the server!"),
+    /** Welcome to the community! */
+    pageTemplateEmbedContent: () => t("chat-triggers", "page_template_embed_content", "Welcome to the community!"),
     /** Rich embeds with images, fields, and link buttons */
     pageTemplateEmbedDesc: () => t("chat-triggers", "page_template_embed_desc", "Rich embeds with images, fields, and link buttons"),
     /** Thanks for joining %server.name%! */
@@ -4835,26 +4827,26 @@ export const m = {
     saverNotifyChannelsFailed: () => t("chatsaver", "saver_notify_channels_failed", "Failed to load channels"),
     /** Failed to delete log */
     saverNotifyDeleteFailed: () => t("chatsaver", "saver_notify_delete_failed", "Failed to delete log"),
-    /** Log deleted successfully */
-    saverNotifyDeleted: () => t("chatsaver", "saver_notify_deleted", "Log deleted successfully"),
+    /** Log deleted */
+    saverNotifyDeleted: () => t("chatsaver", "saver_notify_deleted", "Log deleted"),
     /** Failed to fetch messages */
     saverNotifyFetchFailed: () => t("chatsaver", "saver_notify_fetch_failed", "Failed to fetch messages"),
     /** Failed to load log */
     saverNotifyLoadFailed: () => t("chatsaver", "saver_notify_load_failed", "Failed to load log"),
     /** Failed to load saved logs */
     saverNotifyLogsFailed: () => t("chatsaver", "saver_notify_logs_failed", "Failed to load saved logs"),
-    /** Missing guild or user information */
-    saverNotifyMissingInfo: () => t("chatsaver", "saver_notify_missing_info", "Missing guild or user information"),
+    /** Missing community or user information */
+    saverNotifyMissingInfo: () => t("chatsaver", "saver_notify_missing_info", "Missing community or user information"),
     /** No messages found in the selected time range */
     saverNotifyNoMessages: () => t("chatsaver", "saver_notify_no_messages", "No messages found in the selected time range"),
     /** Failed to rename log */
     saverNotifyRenameFailed: () => t("chatsaver", "saver_notify_rename_failed", "Failed to rename log"),
-    /** Log renamed successfully */
-    saverNotifyRenamed: () => t("chatsaver", "saver_notify_renamed", "Log renamed successfully"),
+    /** Log renamed */
+    saverNotifyRenamed: () => t("chatsaver", "saver_notify_renamed", "Log renamed"),
     /** Failed to save log */
     saverNotifySaveFailed: () => t("chatsaver", "saver_notify_save_failed", "Failed to save log"),
-    /** Log saved successfully */
-    saverNotifySaved: () => t("chatsaver", "saver_notify_saved", "Log saved successfully"),
+    /** Log saved */
+    saverNotifySaved: () => t("chatsaver", "saver_notify_saved", "Log saved"),
     /** Maximum time is {max} {unit} */
     saverNotifyTimeMax: (p: { max: P; unit: P }) => t("chatsaver", "saver_notify_time_max", "Maximum time is {max} {unit}", p),
     /** Time amount must be greater than 0 */
@@ -4913,8 +4905,8 @@ export const m = {
     pageListTitle: (p: { count: P }) => t("confessions", "page_list_title", "All Confessions ({count})", p),
     /** No content */
     pageNoContent: () => t("confessions", "page_no_content", "No content"),
-    /** Confession deleted successfully! */
-    pageNotifyDeleted: () => t("confessions", "page_notify_deleted", "Confession deleted successfully!"),
+    /** Confession deleted */
+    pageNotifyDeleted: () => t("confessions", "page_notify_deleted", "Confession deleted"),
     /** Show confession content */
     pageShowContentAria: () => t("confessions", "page_show_content_aria", "Show confession content"),
     /** Show more */
@@ -5047,12 +5039,12 @@ export const m = {
     milestonesTitle: () => t("counting", "milestones_title", "Milestones"),
     /** Failed to ban user */
     notifyBanFailed: () => t("counting", "notify_ban_failed", "Failed to ban user"),
-    /** Channel disabled successfully! */
-    notifyChannelDisabled: () => t("counting", "notify_channel_disabled", "Channel disabled successfully!"),
-    /** Channel reset to {number} successfully! */
-    notifyChannelReset: (p: { number: P }) => t("counting", "notify_channel_reset", "Channel reset to {number} successfully!", p),
-    /** Counting channel setup successfully! */
-    notifyChannelSetup: () => t("counting", "notify_channel_setup", "Counting channel setup successfully!"),
+    /** Channel disabled */
+    notifyChannelDisabled: () => t("counting", "notify_channel_disabled", "Channel disabled"),
+    /** Channel reset to {number} */
+    notifyChannelReset: (p: { number: P }) => t("counting", "notify_channel_reset", "Channel reset to {number}", p),
+    /** Counting channel set up */
+    notifyChannelSetup: () => t("counting", "notify_channel_setup", "Counting channel set up"),
     /** Failed to setup counting channel */
     notifyChannelSetupFailed: () => t("counting", "notify_channel_setup_failed", "Failed to setup counting channel"),
     /** Failed to delete save point */
@@ -5079,16 +5071,16 @@ export const m = {
     notifySaveFailed: () => t("counting", "notify_save_failed", "Couldn't save counting settings."),
     /** Couldn't save counting settings. Your last change was undone. */
     notifySaveFailedUndone: () => t("counting", "notify_save_failed_undone", "Couldn't save counting settings. Your last change was undone."),
-    /** Save point created successfully! */
-    notifySavePointCreated: () => t("counting", "notify_save_point_created", "Save point created successfully!"),
+    /** Save point created */
+    notifySavePointCreated: () => t("counting", "notify_save_point_created", "Save point created"),
     /** Failed to create save point */
     notifySavePointFailed: () => t("counting", "notify_save_point_failed", "Failed to create save point"),
     /** Save point restored */
     notifySavePointRestored: () => t("counting", "notify_save_point_restored", "Save point restored"),
     /** Failed to unban user */
     notifyUnbanFailed: () => t("counting", "notify_unban_failed", "Failed to unban user"),
-    /** Manage counting games and competitions in your server */
-    pageSubtitle: () => t("counting", "page_subtitle", "Manage counting games and competitions in your server"),
+    /** Manage counting games and competitions in your community */
+    pageSubtitle: () => t("counting", "page_subtitle", "Manage counting games and competitions in your community"),
     /** Counting Channels */
     pageTitle: () => t("counting", "page_title", "Counting Channels"),
     /** Fibonacci (1, 1, 2, 3, 5...) */
@@ -5189,8 +5181,8 @@ export const m = {
     adjustReasonPlaceholder: () => t("currency", "adjust_reason_placeholder", "Recorded on the ledger"),
     /** Adjust a balance */
     adjustTitle: () => t("currency", "adjust_title", "Adjust a balance"),
-    /** Nobody on this server holds any currency yet. */
-    analyticsEmpty: () => t("currency", "analytics_empty", "Nobody on this server holds any currency yet."),
+    /** Nobody in this community holds any currency yet. */
+    analyticsEmpty: () => t("currency", "analytics_empty", "Nobody in this community holds any currency yet."),
     /** Net worth */
     boardColNetWorth: () => t("currency", "board_col_net_worth", "Net worth"),
     /** Share */
@@ -5321,8 +5313,8 @@ export const m = {
     configReset: () => t("currency", "config_reset", "Reset to defaults"),
     /** Robbery */
     configRobbery: () => t("currency", "config_robbery", "Robbery"),
-    /** Off by default because it is disruptive in servers that did not opt into it. Only walle... */
-    configRobberyHint: () => t("currency", "config_robbery_hint", "Off by default because it is disruptive in servers that did not opt into it. Only wallets can be robbed."),
+    /** Off by default because it is disruptive in communities that did not opt into it. Only w... */
+    configRobberyHint: () => t("currency", "config_robbery_hint", "Off by default because it is disruptive in communities that did not opt into it. Only wallets can be robbed."),
     /** Transfers */
     configTransfers: () => t("currency", "config_transfers", "Transfers"),
     /** Transfer tax is a sink: the taxed portion is destroyed rather than moved. */
@@ -5575,18 +5567,18 @@ export const m = {
     notifyCleanupFailed: () => t("customvoice", "notify_cleanup_failed", "Failed to clean up channels"),
     /** Failed to delete channel */
     notifyDeleteFailed: () => t("customvoice", "notify_delete_failed", "Failed to delete channel"),
-    /** Channel deleted successfully! */
-    notifyDeleted: () => t("customvoice", "notify_deleted", "Channel deleted successfully!"),
+    /** Channel deleted */
+    notifyDeleted: () => t("customvoice", "notify_deleted", "Channel deleted"),
     /** Failed to disable custom voice */
     notifyDisableFailed: () => t("customvoice", "notify_disable_failed", "Failed to disable custom voice"),
     /** Failed to load custom voice data */
     notifyLoadFailed: () => t("customvoice", "notify_load_failed", "Failed to load custom voice data"),
-    /** Channel locked successfully! */
-    notifyLocked: () => t("customvoice", "notify_locked", "Channel locked successfully!"),
+    /** Channel locked */
+    notifyLocked: () => t("customvoice", "notify_locked", "Channel locked"),
     /** Couldn't save custom voice settings. */
     notifySaveFailed: () => t("customvoice", "notify_save_failed", "Couldn't save custom voice settings."),
-    /** Channel unlocked successfully! */
-    notifyUnlocked: () => t("customvoice", "notify_unlocked", "Channel unlocked successfully!"),
+    /** Channel unlocked */
+    notifyUnlocked: () => t("customvoice", "notify_unlocked", "Channel unlocked"),
     /** Failed to update channel */
     notifyUpdateFailed: () => t("customvoice", "notify_update_failed", "Failed to update channel"),
     /** Custom Voice Channels - Dashboard */
@@ -5717,8 +5709,8 @@ export const m = {
     communityNoTickets: () => t("dashboard", "community_no_tickets", "No tickets yet"),
     /** No XP Data */
     communityNoXpData: () => t("dashboard", "community_no_xp_data", "No XP Data"),
-    /** No members have earned XP yet. Get active in the server! */
-    communityNoXpDataHint: () => t("dashboard", "community_no_xp_data_hint", "No members have earned XP yet. Get active in the server!"),
+    /** No members have earned XP yet. Be the first. */
+    communityNoXpDataHint: () => t("dashboard", "community_no_xp_data_hint", "No members have earned XP yet. Be the first."),
     /** +{count} other channel */
     communityOtherChannelsOne: (p: { count: P }) => t("dashboard", "community_other_channels_one", "+{count} other channel", p),
     /** +{count} other channels */
@@ -5755,16 +5747,16 @@ export const m = {
     entertainmentParticipants: (p: { count: P }) => t("dashboard", "entertainment_participants", "{count} participants", p),
     /** Dashboard component failed to load. Please refresh or try a different page. */
     layoutErrorBoundary: () => t("dashboard", "layout_error_boundary", "Dashboard component failed to load. Please refresh or try a different page."),
-    /** No servers match "{term}" */
-    layoutNoMatch: (p: { term: P }) => t("dashboard", "layout_no_match", "No servers match \"{term}\"", p),
+    /** No communities match "{term}" */
+    layoutNoMatch: (p: { term: P }) => t("dashboard", "layout_no_match", "No communities match \"{term}\"", p),
     /** Try a different search term */
     layoutNoMatchHint: () => t("dashboard", "layout_no_match_hint", "Try a different search term"),
-    /** Make sure the bot is in a server where you have admin permissions */
-    layoutNoServersHint: () => t("dashboard", "layout_no_servers_hint", "Make sure the bot is in a server where you have admin permissions"),
-    /** Choose a server to manage from the dashboard */
-    layoutSelectServerSubtitle: () => t("dashboard", "layout_select_server_subtitle", "Choose a server to manage from the dashboard"),
-    /** Select a Server */
-    layoutSelectServerTitle: () => t("dashboard", "layout_select_server_title", "Select a Server"),
+    /** Make sure the bot is in a community where you have admin permissions */
+    layoutNoServersHint: () => t("dashboard", "layout_no_servers_hint", "Make sure the bot is in a community where you have admin permissions"),
+    /** Choose a community to manage from the dashboard */
+    layoutSelectServerSubtitle: () => t("dashboard", "layout_select_server_subtitle", "Choose a community to manage from the dashboard"),
+    /** Select a Community */
+    layoutSelectServerTitle: () => t("dashboard", "layout_select_server_title", "Select a Community"),
     /** Bot Info */
     overviewBotInfo: () => t("dashboard", "overview_bot_info", "Bot Info"),
     /** Bot Members */
@@ -5777,8 +5769,8 @@ export const m = {
     overviewRolesSubtitle: (p: { saved: P }) => t("dashboard", "overview_roles_subtitle", "{saved} saved", p),
     /** Saved Roles */
     overviewSavedRoles: () => t("dashboard", "overview_saved_roles", "Saved Roles"),
-    /** Server Stats */
-    overviewServerStats: () => t("dashboard", "overview_server_stats", "Server Stats"),
+    /** Community Stats */
+    overviewServerStats: () => t("dashboard", "overview_server_stats", "Community Stats"),
     /** Text Commands */
     overviewTextCommands: () => t("dashboard", "overview_text_commands", "Text Commands"),
     /** Total Roles */
@@ -5793,10 +5785,10 @@ export const m = {
     pageErrorFetch: () => t("dashboard", "page_error_fetch", "An error occurred while fetching data"),
     /** Last updated: {time} */
     pageLastUpdated: (p: { time: P }) => t("dashboard", "page_last_updated", "Last updated: {time}", p),
-    /** Now playing music in your server */
-    pageMusicStartedBody: () => t("dashboard", "page_music_started_body", "Now playing music in your server"),
-    /** Music Started Playing! */
-    pageMusicStartedTitle: () => t("dashboard", "page_music_started_title", "Music Started Playing!"),
+    /** Now playing music in your community */
+    pageMusicStartedBody: () => t("dashboard", "page_music_started_body", "Now playing music in your community"),
+    /** Music started */
+    pageMusicStartedTitle: () => t("dashboard", "page_music_started_title", "Music started"),
     /** Open Music Player */
     pageOpenMusicPlayer: () => t("dashboard", "page_open_music_player", "Open Music Player"),
     /** (Press {key} to refresh) */
@@ -5813,8 +5805,8 @@ export const m = {
     pageWitchMessage4: () => t("dashboard", "page_witch_message_4", "Color swap spell cast! ✨"),
     /** Boo! 🦇 */
     pageWitchMessage5: () => t("dashboard", "page_witch_message_5", "Boo! 🦇"),
-    /** {action} → */
-    productUpdateActionArrow: (p: { action: P }) => t("dashboard", "product_update_action_arrow", "{action} →", p),
+    /** {action} */
+    productUpdateActionArrow: (p: { action: P }) => t("dashboard", "product_update_action_arrow", "{action}", p),
     /** Dismiss updates */
     productUpdateDismiss: () => t("dashboard", "product_update_dismiss", "Dismiss updates"),
     /** Everything that's new */
@@ -5825,8 +5817,8 @@ export const m = {
     securityActiveProtections: () => t("dashboard", "security_active_protections", "Active Protections"),
     /** All Clear */
     securityAllClear: () => t("dashboard", "security_all_clear", "All Clear"),
-    /** No recent moderation actions. Your server is running smoothly! */
-    securityAllClearHint: () => t("dashboard", "security_all_clear_hint", "No recent moderation actions. Your server is running smoothly!"),
+    /** No recent moderation actions. Nothing needs attention. */
+    securityAllClearHint: () => t("dashboard", "security_all_clear_hint", "No recent moderation actions. Nothing needs attention."),
     /** {count} event types */
     securityEventTypes: (p: { count: P }) => t("dashboard", "security_event_types", "{count} event types", p),
     /** Full Moderation Dashboard */
@@ -5853,10 +5845,6 @@ export const m = {
     settingsTabAutoAssignRolesDesc: () => t("dashboard", "settings_tab_auto_assign_roles_desc", "Roles given to new members"),
     /** Core bot settings */
     settingsTabBotSettingsDesc: () => t("dashboard", "settings_tab_bot_settings_desc", "Core bot settings"),
-    /** Configure → */
-    settingsTabConfigureArrow: () => t("dashboard", "settings_tab_configure_arrow", "Configure →"),
-    /** Greets → */
-    settingsTabGreetsArrow: () => t("dashboard", "settings_tab_greets_arrow", "Greets →"),
     /** Integrations */
     settingsTabIntegrations: () => t("dashboard", "settings_tab_integrations", "Integrations"),
     /** Event logging and audit trails */
@@ -5887,12 +5875,12 @@ export const m = {
     settingsTabSelfAssignRoles: () => t("dashboard", "settings_tab_self_assign_roles", "Self-Assign Roles"),
     /** Roles users can assign themselves */
     settingsTabSelfAssignRolesDesc: () => t("dashboard", "settings_tab_self_assign_roles_desc", "Roles users can assign themselves"),
-    /** Server Info */
-    settingsTabServerInfo: () => t("dashboard", "settings_tab_server_info", "Server Info"),
+    /** Community Info */
+    settingsTabServerInfo: () => t("dashboard", "settings_tab_server_info", "Community Info"),
     /** Highlight popular messages */
     settingsTabStarboardDesc: () => t("dashboard", "settings_tab_starboard_desc", "Highlight popular messages"),
-    /** States → */
-    settingsTabStatesArrow: () => t("dashboard", "settings_tab_states_arrow", "States →"),
+    /** States */
+    settingsTabStatesArrow: () => t("dashboard", "settings_tab_states_arrow", "States"),
     /** User suggestion voting system */
     settingsTabSuggestionsDesc: () => t("dashboard", "settings_tab_suggestions_desc", "User suggestion voting system"),
     /** Smart defaults */
@@ -6095,26 +6083,24 @@ export const m = {
     fullscreenNotifyNothingToSave: () => t("embedbuilder", "fullscreen_notify_nothing_to_save", "Nothing to save yet"),
     /** Failed to save embed. The name may already be in use. */
     fullscreenNotifySaveFailed: () => t("embedbuilder", "fullscreen_notify_save_failed", "Failed to save embed. The name may already be in use."),
-    /** Saved successfully! */
-    fullscreenNotifySaved: () => t("embedbuilder", "fullscreen_notify_saved", "Saved successfully!"),
     /** Saved "{name}" */
     fullscreenNotifySavedNamed: (p: { name: P }) => t("embedbuilder", "fullscreen_notify_saved_named", "Saved \"{name}\"", p),
-    /** A server must be selected to save a shared embed */
-    fullscreenNotifyServerRequired: () => t("embedbuilder", "fullscreen_notify_server_required", "A server must be selected to save a shared embed"),
+    /** A community must be selected to save a shared embed */
+    fullscreenNotifyServerRequired: () => t("embedbuilder", "fullscreen_notify_server_required", "A community must be selected to save a shared embed"),
     /** Save Current Embed */
     fullscreenSaveHeading: () => t("embedbuilder", "fullscreen_save_heading", "Save Current Embed"),
     /** Embed name */
     fullscreenSaveNamePlaceholder: () => t("embedbuilder", "fullscreen_save_name_placeholder", "Embed name"),
-    /** Share with everyone on this server */
-    fullscreenSaveShare: () => t("embedbuilder", "fullscreen_save_share", "Share with everyone on this server"),
+    /** Share with everyone in this community */
+    fullscreenSaveShare: () => t("embedbuilder", "fullscreen_save_share", "Share with everyone in this community"),
     /** embed */
     fullscreenSavedNameFallback: () => t("embedbuilder", "fullscreen_saved_name_fallback", "embed"),
     /** this embed */
     fullscreenSavedNameFallbackThis: () => t("embedbuilder", "fullscreen_saved_name_fallback_this", "this embed"),
     /** No shared embeds yet */
     fullscreenSharedEmpty: () => t("embedbuilder", "fullscreen_shared_empty", "No shared embeds yet"),
-    /** Shared on this server ({count}) */
-    fullscreenSharedHeading: (p: { count: P }) => t("embedbuilder", "fullscreen_shared_heading", "Shared on this server ({count})", p),
+    /** Shared on this community ({count}) */
+    fullscreenSharedHeading: (p: { count: P }) => t("embedbuilder", "fullscreen_shared_heading", "Shared on this community ({count})", p),
     /** Embed */
     fullscreenTabEmbed: () => t("embedbuilder", "fullscreen_tab_embed", "Embed"),
     /** Embed {number} author needs a name when it has an icon or link */
@@ -6151,8 +6137,6 @@ export const m = {
     linksNotifyRemoved: () => t("embedbuilder", "links_notify_removed", "Link button removed"),
     /** Cancel edits */
     pageActionCancelEdits: () => t("embedbuilder", "page_action_cancel_edits", "Cancel edits"),
-    /** Copied! */
-    pageActionCopied: () => t("embedbuilder", "page_action_copied", "Copied!"),
     /** Copy JSON */
     pageActionCopyJson: () => t("embedbuilder", "page_action_copy_json", "Copy JSON"),
     /** Click % for placeholders */
@@ -6173,8 +6157,8 @@ export const m = {
     pageJsonRefreshAria: () => t("embedbuilder", "page_json_refresh_aria", "Refresh JSON from builder"),
     /** Failed to copy JSON */
     pageNotifyCopyFailed: () => t("embedbuilder", "page_notify_copy_failed", "Failed to copy JSON"),
-    /** JSON copied to clipboard! */
-    pageNotifyJsonCopied: () => t("embedbuilder", "page_notify_json_copied", "JSON copied to clipboard!"),
+    /** JSON copied */
+    pageNotifyJsonCopied: () => t("embedbuilder", "page_notify_json_copied", "JSON copied"),
     /** Nothing to send yet */
     pageNotifyNothingToSend: () => t("embedbuilder", "page_notify_nothing_to_send", "Nothing to send yet"),
     /** Pick a channel to send to */
@@ -6187,8 +6171,8 @@ export const m = {
     pageNotifySent: (p: { channel: P }) => t("embedbuilder", "page_notify_sent", "Sent to #{channel}", p),
     /** Sent to #{channel}. Everyone and role mentions were stripped because you lack Mention E... */
     pageNotifySentStripped: (p: { channel: P }) => t("embedbuilder", "page_notify_sent_stripped", "Sent to #{channel}. Everyone and role mentions were stripped because you lack Mention Everyone there.", p),
-    /** Select a guild to save a guild-shared embed */
-    pageNotifyServerForShared: () => t("embedbuilder", "page_notify_server_for_shared", "Select a guild to save a guild-shared embed"),
+    /** Select a community to save a community-shared embed */
+    pageNotifyServerForShared: () => t("embedbuilder", "page_notify_server_for_shared", "Select a community to save a community-shared embed"),
     /** Applied template: {name} */
     pageNotifyTemplateApplied: (p: { name: P }) => t("embedbuilder", "page_notify_template_applied", "Applied template: {name}", p),
     /** Delete embed */
@@ -6197,8 +6181,8 @@ export const m = {
     pageSavedLoadAria: () => t("embedbuilder", "page_saved_load_aria", "Load embed"),
     /** Log in to save personal embeds */
     pageSavedLogin: () => t("embedbuilder", "page_saved_login", "Log in to save personal embeds"),
-    /** No guild-shared embeds yet */
-    pageSavedSharedEmpty: () => t("embedbuilder", "page_saved_shared_empty", "No guild-shared embeds yet"),
+    /** No community-shared embeds yet */
+    pageSavedSharedEmpty: () => t("embedbuilder", "page_saved_shared_empty", "No community-shared embeds yet"),
     /** Shared in {server} ({count}) */
     pageSavedSharedHeading: (p: { count: P; server: P }) => t("embedbuilder", "page_saved_shared_heading", "Shared in {server} ({count})", p),
     /** Send as */
@@ -6225,8 +6209,8 @@ export const m = {
     pageSendEmbedBlockedBot: () => t("embedbuilder", "page_send_embed_blocked_bot", "The bot does not have the Embed Links permission in this channel."),
     /** You do not have the Embed Links permission in this channel. */
     pageSendEmbedBlockedUser: () => t("embedbuilder", "page_send_embed_blocked_user", "You do not have the Embed Links permission in this channel."),
-    /** Could not load channels. You may not have access to this server. */
-    pageSendErrorChannels: () => t("embedbuilder", "page_send_error_channels", "Could not load channels. You may not have access to this server."),
+    /** Could not load channels. You may not have access to this community. */
+    pageSendErrorChannels: () => t("embedbuilder", "page_send_error_channels", "Could not load channels. You may not have access to this community."),
     /** Log in to send messages */
     pageSendErrorLogin: () => t("embedbuilder", "page_send_error_login", "Log in to send messages"),
     /** Send to {server} */
@@ -6241,8 +6225,8 @@ export const m = {
     pageSendMentionsStripped: () => t("embedbuilder", "page_send_mentions_stripped", "Everyone, here, and role mentions will be stripped from this message."),
     /** There are no channels you and the bot can both post in. */
     pageSendNoChannels: () => t("embedbuilder", "page_send_no_channels", "There are no channels you and the bot can both post in."),
-    /** Select a server from the sidebar to send this message. */
-    pageSendNoGuild: () => t("embedbuilder", "page_send_no_guild", "Select a server from the sidebar to send this message."),
+    /** Select a community from the sidebar to send this message. */
+    pageSendNoGuild: () => t("embedbuilder", "page_send_no_guild", "Select a community from the sidebar to send this message."),
     /** Send embeds */
     pageSendPermEmbeds: () => t("embedbuilder", "page_send_perm_embeds", "Send embeds"),
     /** Mention everyone and roles */
@@ -6271,8 +6255,8 @@ export const m = {
     pageSendWebhookToggle: () => t("embedbuilder", "page_send_webhook_toggle", "Send through a webhook with a custom name and avatar"),
     /** Start from Scratch */
     pageStartFromScratch: () => t("embedbuilder", "page_start_from_scratch", "Start from Scratch"),
-    /** Create and customize embeds for your Fluxer server */
-    pageSubtitle: () => t("embedbuilder", "page_subtitle", "Create and customize embeds for your Fluxer server"),
+    /** Create and customize embeds for your Fluxer community */
+    pageSubtitle: () => t("embedbuilder", "page_subtitle", "Create and customize embeds for your Fluxer community"),
     /** Choose a Template */
     pageTemplatesHeading: () => t("embedbuilder", "page_templates_heading", "Choose a Template"),
     /** Start with a pre-built template or create from scratch */
@@ -6335,8 +6319,8 @@ export const m = {
     personaSaveAria: () => t("embedbuilder", "persona_save_aria", "Save persona"),
     /** Failed to save persona */
     personaSaveFailed: () => t("embedbuilder", "persona_save_failed", "Failed to save persona"),
-    /** Select a server to share a persona */
-    personaShareNeedsServer: () => t("embedbuilder", "persona_share_needs_server", "Select a server to share a persona"),
+    /** Select a community to share a persona */
+    personaShareNeedsServer: () => t("embedbuilder", "persona_share_needs_server", "Select a community to share a persona"),
     /** Share with everyone in {server} */
     personaShareWithEveryone: (p: { server: P }) => t("embedbuilder", "persona_share_with_everyone", "Share with everyone in {server}", p),
     /** Shared with {server} */
@@ -6363,8 +6347,8 @@ export const m = {
     previewSampleChannelTopic: () => t("embedbuilder", "preview_sample_channel_topic", "Welcome to the chat!"),
     /** False */
     previewSampleFalse: () => t("embedbuilder", "preview_sample_false", "False"),
-    /** Example Server */
-    previewSampleServer: () => t("embedbuilder", "preview_sample_server", "Example Server"),
+    /** Example Community */
+    previewSampleServer: () => t("embedbuilder", "preview_sample_server", "Example Community"),
     /** ExampleUser */
     previewSampleUser: () => t("embedbuilder", "preview_sample_user", "ExampleUser"),
     /** JSON */
@@ -6373,16 +6357,16 @@ export const m = {
     tabLinks: () => t("embedbuilder", "tab_links", "Link buttons"),
     /** Important information for all members of %server.name%. */
     templatesAnnouncementBasicBody: () => t("embedbuilder", "templates_announcement_basic_body", "Important information for all members of %server.name%."),
-    /** Simple server announcement */
-    templatesAnnouncementBasicDescription: () => t("embedbuilder", "templates_announcement_basic_description", "Simple server announcement"),
+    /** Simple community announcement */
+    templatesAnnouncementBasicDescription: () => t("embedbuilder", "templates_announcement_basic_description", "Simple community announcement"),
     /** Posted by %user.name% */
     templatesAnnouncementBasicFooter: () => t("embedbuilder", "templates_announcement_basic_footer", "Posted by %user.name%"),
     /** Basic Announcement */
     templatesAnnouncementBasicName: () => t("embedbuilder", "templates_announcement_basic_name", "Basic Announcement"),
-    /** 📢 Server Announcement */
-    templatesAnnouncementBasicTitle: () => t("embedbuilder", "templates_announcement_basic_title", "📢 Server Announcement"),
-    /** Join us for an exciting community event! */
-    templatesAnnouncementEventBody: () => t("embedbuilder", "templates_announcement_event_body", "Join us for an exciting community event!"),
+    /** 📢 Community Announcement */
+    templatesAnnouncementBasicTitle: () => t("embedbuilder", "templates_announcement_basic_title", "📢 Community Announcement"),
+    /** Join us for a community event. */
+    templatesAnnouncementEventBody: () => t("embedbuilder", "templates_announcement_event_body", "Join us for a community event."),
     /** Announce upcoming events */
     templatesAnnouncementEventDescription: () => t("embedbuilder", "templates_announcement_event_description", "Announce upcoming events"),
     /** 📅 Date & Time */
@@ -6421,8 +6405,8 @@ export const m = {
     templatesFieldCountOther: (p: { count: P }) => t("embedbuilder", "templates_field_count_other", "{count} fields", p),
     /** Achievement Unlocked! */
     templatesFunCelebrationAuthor: () => t("embedbuilder", "templates_fun_celebration_author", "Achievement Unlocked!"),
-    /** Let's celebrate this amazing achievement! */
-    templatesFunCelebrationBody: () => t("embedbuilder", "templates_fun_celebration_body", "Let's celebrate this amazing achievement!"),
+    /** Congratulations on the achievement. */
+    templatesFunCelebrationBody: () => t("embedbuilder", "templates_fun_celebration_body", "Congratulations on the achievement."),
     /** Celebrate achievements and milestones */
     templatesFunCelebrationDescription: () => t("embedbuilder", "templates_fun_celebration_description", "Celebrate achievements and milestones"),
     /** Celebration */
@@ -6439,8 +6423,8 @@ export const m = {
     templatesInfoBasicName: () => t("embedbuilder", "templates_info_basic_name", "Information Card"),
     /** ℹ️ Information */
     templatesInfoBasicTitle: () => t("embedbuilder", "templates_info_basic_title", "ℹ️ Information"),
-    /** Vote on this important community decision! */
-    templatesInteractivePollBody: () => t("embedbuilder", "templates_interactive_poll_body", "Vote on this important community decision!"),
+    /** Vote on this community decision. */
+    templatesInteractivePollBody: () => t("embedbuilder", "templates_interactive_poll_body", "Vote on this community decision."),
     /** Interactive poll with reactions */
     templatesInteractivePollDescription: () => t("embedbuilder", "templates_interactive_poll_description", "Interactive poll with reactions"),
     /** ✅ Option A */
@@ -6459,8 +6443,8 @@ export const m = {
     templatesInteractivePollTitle: () => t("embedbuilder", "templates_interactive_poll_title", "📊 Community Poll"),
     /** Please follow these rules to keep our community safe and fun for everyone. */
     templatesRulesBasicBody: () => t("embedbuilder", "templates_rules_basic_body", "Please follow these rules to keep our community safe and fun for everyone."),
-    /** Basic server rules layout */
-    templatesRulesBasicDescription: () => t("embedbuilder", "templates_rules_basic_description", "Basic server rules layout"),
+    /** Basic community rules layout */
+    templatesRulesBasicDescription: () => t("embedbuilder", "templates_rules_basic_description", "Basic community rules layout"),
     /** 3️⃣ Keep it Clean */
     templatesRulesBasicFieldCleanName: () => t("embedbuilder", "templates_rules_basic_field_clean_name", "3️⃣ Keep it Clean"),
     /** No inappropriate content or language. */
@@ -6475,10 +6459,10 @@ export const m = {
     templatesRulesBasicFieldSpamValue: () => t("embedbuilder", "templates_rules_basic_field_spam_value", "Keep messages relevant and avoid excessive posting."),
     /** Breaking rules may result in warnings or bans */
     templatesRulesBasicFooter: () => t("embedbuilder", "templates_rules_basic_footer", "Breaking rules may result in warnings or bans"),
-    /** Server Rules */
-    templatesRulesBasicName: () => t("embedbuilder", "templates_rules_basic_name", "Server Rules"),
-    /** 📜 Server Rules */
-    templatesRulesBasicTitle: () => t("embedbuilder", "templates_rules_basic_title", "📜 Server Rules"),
+    /** Community Rules */
+    templatesRulesBasicName: () => t("embedbuilder", "templates_rules_basic_name", "Community Rules"),
+    /** 📜 Community Rules */
+    templatesRulesBasicTitle: () => t("embedbuilder", "templates_rules_basic_title", "📜 Community Rules"),
     /** Select {name} template */
     templatesSelectAria: (p: { name: P }) => t("embedbuilder", "templates_select_aria", "Select {name} template", p),
     /** Hey %user.mention%, welcome to **%server.name%**! We're glad to have you here. Make sur... */
@@ -6489,12 +6473,12 @@ export const m = {
     templatesWelcomeBasicFooter: () => t("embedbuilder", "templates_welcome_basic_footer", "Member #%server.membercount%"),
     /** Basic Welcome */
     templatesWelcomeBasicName: () => t("embedbuilder", "templates_welcome_basic_name", "Basic Welcome"),
-    /** Welcome to the Server! 👋 */
-    templatesWelcomeBasicTitle: () => t("embedbuilder", "templates_welcome_basic_title", "Welcome to the Server! 👋"),
+    /** Welcome to the Community! 👋 */
+    templatesWelcomeBasicTitle: () => t("embedbuilder", "templates_welcome_basic_title", "Welcome to the Community! 👋"),
     /** Hello %user.mention%! We're excited to have you join our community. */
     templatesWelcomeDetailedBody: () => t("embedbuilder", "templates_welcome_detailed_body", "Hello %user.mention%! We're excited to have you join our community."),
-    /** Comprehensive welcome with server info */
-    templatesWelcomeDetailedDescription: () => t("embedbuilder", "templates_welcome_detailed_description", "Comprehensive welcome with server info"),
+    /** Comprehensive welcome with community info */
+    templatesWelcomeDetailedDescription: () => t("embedbuilder", "templates_welcome_detailed_description", "Comprehensive welcome with community info"),
     /** 🎯 Have Fun */
     templatesWelcomeDetailedFieldFunName: () => t("embedbuilder", "templates_welcome_detailed_field_fun_name", "🎯 Have Fun"),
     /** Enjoy your stay and make new friends! */
@@ -6511,8 +6495,8 @@ export const m = {
     templatesWelcomeDetailedFooter: () => t("embedbuilder", "templates_welcome_detailed_footer", "You are member #%server.membercount%"),
     /** Detailed Welcome */
     templatesWelcomeDetailedName: () => t("embedbuilder", "templates_welcome_detailed_name", "Detailed Welcome"),
-    /** Welcome to %server.name%! ✨ */
-    templatesWelcomeDetailedTitle: () => t("embedbuilder", "templates_welcome_detailed_title", "Welcome to %server.name%! ✨"),
+    /** Welcome to %server.name%! */
+    templatesWelcomeDetailedTitle: () => t("embedbuilder", "templates_welcome_detailed_title", "Welcome to %server.name%!"),
     /** Dismiss error */
     validationDismissError: () => t("embedbuilder", "validation_dismiss_error", "Dismiss error"),
     /** Dismiss suggestion */
@@ -6627,8 +6611,8 @@ export const m = {
     submitAnother: () => t("feature-requests", "submit_another", "Submit another"),
     /** Your request "{title}" was sent to the developers. You can follow it under the Mine tab. */
     submittedMessage: (p: { title: P }) => t("feature-requests", "submitted_message", "Your request \"{title}\" was sent to the developers. You can follow it under the Mine tab.", p),
-    /** Thanks! */
-    submittedThanks: () => t("feature-requests", "submitted_thanks", "Thanks!"),
+    /** Thanks */
+    submittedThanks: () => t("feature-requests", "submitted_thanks", "Thanks"),
     /** Browse */
     tabBrowse: () => t("feature-requests", "tab_browse", "Browse"),
     /** Mine */
@@ -6649,8 +6633,8 @@ export const m = {
     achievementsDescription: () => t("features", "achievements_description", "Milestones, badges, ranks, and custom achievements for members"),
     /** Achievements */
     achievementsName: () => t("features", "achievements_name", "Achievements"),
-    /** Server administration and automation */
-    administrationDescription: () => t("features", "administration_description", "Server administration and automation"),
+    /** Community administration and automation */
+    administrationDescription: () => t("features", "administration_description", "Community administration and automation"),
     /** Administration */
     administrationName: () => t("features", "administration_name", "Administration"),
     /** Away from keyboard notifications */
@@ -6669,8 +6653,8 @@ export const m = {
     birthdayDescription: () => t("features", "birthday_description", "Birthday announcements and celebrations"),
     /** Birthdays */
     birthdayName: () => t("features", "birthday_name", "Birthdays"),
-    /** Servers littered with bots, with bulk leave */
-    botHellsDescription: () => t("features", "bot_hells_description", "Servers littered with bots, with bulk leave"),
+    /** Communities littered with bots, with bulk leave */
+    botHellsDescription: () => t("features", "bot_hells_description", "Communities littered with bots, with bulk leave"),
     /** Bot Hells */
     botHellsName: () => t("features", "bot_hells_name", "Bot Hells"),
     /** Actions */
@@ -6685,8 +6669,8 @@ export const m = {
     categoryEntertainment: () => t("features", "category_entertainment", "Entertainment"),
     /** Essential */
     categoryEssential: () => t("features", "category_essential", "Essential"),
-    /** Core features every server should consider */
-    categoryEssentialDescription: () => t("features", "category_essential_description", "Core features every server should consider"),
+    /** Core features every community should consider */
+    categoryEssentialDescription: () => t("features", "category_essential_description", "Core features every community should consider"),
     /** Members */
     categoryMembers: () => t("features", "category_members", "Members"),
     /** Messages */
@@ -6695,26 +6679,26 @@ export const m = {
     categoryModeration: () => t("features", "category_moderation", "Moderation"),
     /** Moderation & Support */
     categoryModerationSupport: () => t("features", "category_moderation_support", "Moderation & Support"),
-    /** Keep your server safe and organized */
-    categoryModerationSupportDescription: () => t("features", "category_moderation_support_description", "Keep your server safe and organized"),
+    /** Keep your community safe and organized */
+    categoryModerationSupportDescription: () => t("features", "category_moderation_support_description", "Keep your community safe and organized"),
     /** Notifications & Content */
     categoryNotificationsContent: () => t("features", "category_notifications_content", "Notifications & Content"),
-    /** Bring outside content into your server */
-    categoryNotificationsContentDescription: () => t("features", "category_notifications_content_description", "Bring outside content into your server"),
+    /** Bring outside content into your community */
+    categoryNotificationsContentDescription: () => t("features", "category_notifications_content_description", "Bring outside content into your community"),
     /** Profile */
     categoryProfile: () => t("features", "category_profile", "Profile"),
     /** Roles & Access */
     categoryRolesAccess: () => t("features", "category_roles_access", "Roles & Access"),
-    /** Control who gets what in your server */
-    categoryRolesAccessDescription: () => t("features", "category_roles_access_description", "Control who gets what in your server"),
+    /** Control who gets what in your community */
+    categoryRolesAccessDescription: () => t("features", "category_roles_access_description", "Control who gets what in your community"),
     /** Security */
     categorySecurity: () => t("features", "category_security", "Security"),
-    /** Server */
-    categoryServer: () => t("features", "category_server", "Server"),
-    /** Server Insights */
-    categoryServerInsights: () => t("features", "category_server_insights", "Server Insights"),
-    /** Surface what's happening in your server */
-    categoryServerInsightsDescription: () => t("features", "category_server_insights_description", "Surface what's happening in your server"),
+    /** Community */
+    categoryServer: () => t("features", "category_server", "Community"),
+    /** Community Insights */
+    categoryServerInsights: () => t("features", "category_server_insights", "Community Insights"),
+    /** Surface what's happening in your community */
+    categoryServerInsightsDescription: () => t("features", "category_server_insights_description", "Surface what's happening in your community"),
     /** Settings */
     categorySettings: () => t("features", "category_settings", "Settings"),
     /** Voice */
@@ -6787,8 +6771,8 @@ export const m = {
     formsDescription: () => t("features", "forms_description", "Custom forms and surveys"),
     /** Forms */
     formsName: () => t("features", "forms_name", "Forms"),
-    /** Manage server giveaways */
-    giveawaysDescription: () => t("features", "giveaways_description", "Manage server giveaways"),
+    /** Manage community giveaways */
+    giveawaysDescription: () => t("features", "giveaways_description", "Manage community giveaways"),
     /** Giveaways */
     giveawaysName: () => t("features", "giveaways_name", "Giveaways"),
     /** Word highlights and notifications */
@@ -6799,20 +6783,20 @@ export const m = {
     invitesDescription: () => t("features", "invites_description", "Invite tracking, fake detection, labels and growth analytics"),
     /** Invites */
     invitesName: () => t("features", "invites_name", "Invites"),
-    /** Why servers removed the bot, answered by their owners */
-    leaveFeedbackDescription: () => t("features", "leave_feedback_description", "Why servers removed the bot, answered by their owners"),
+    /** Why communities removed the bot, answered by their owners */
+    leaveFeedbackDescription: () => t("features", "leave_feedback_description", "Why communities removed the bot, answered by their owners"),
     /** Leave Feedback */
     leaveFeedbackName: () => t("features", "leave_feedback_name", "Leave Feedback"),
     /** Reply to Twitter/X, Instagram, TikTok and similar links with a copy that embeds properly */
     linkfixDescription: () => t("features", "linkfix_description", "Reply to Twitter/X, Instagram, TikTok and similar links with a copy that embeds properly"),
     /** Link Fixing */
     linkfixName: () => t("features", "linkfix_name", "Link Fixing"),
-    /** Pinned leaderboards, charts and scheduled server reports */
-    liveboardsDescription: () => t("features", "liveboards_description", "Pinned leaderboards, charts and scheduled server reports"),
+    /** Pinned leaderboards, charts and scheduled community reports */
+    liveboardsDescription: () => t("features", "liveboards_description", "Pinned leaderboards, charts and scheduled community reports"),
     /** Live Boards */
     liveboardsName: () => t("features", "liveboards_name", "Live Boards"),
-    /** Server audit logs */
-    loggingDescription: () => t("features", "logging_description", "Server audit logs"),
+    /** Community audit logs */
+    loggingDescription: () => t("features", "logging_description", "Community audit logs"),
     /** Logging */
     loggingName: () => t("features", "logging_name", "Logging"),
     /** Message activity statistics */
@@ -6889,8 +6873,8 @@ export const m = {
     starboardDescription: () => t("features", "starboard_description", "Star-based message board"),
     /** Starboard */
     starboardName: () => t("features", "starboard_name", "Starboard"),
-    /** Voice channels displaying live server stats */
-    statchannelsDescription: () => t("features", "statchannels_description", "Voice channels displaying live server stats"),
+    /** Voice channels displaying live community stats */
+    statchannelsDescription: () => t("features", "statchannels_description", "Voice channels displaying live community stats"),
     /** Stat Channels */
     statchannelsName: () => t("features", "statchannels_name", "Stat Channels"),
     /** Roles granted and removed by activity over time */
@@ -6905,8 +6889,8 @@ export const m = {
     streamsDescription: () => t("features", "streams_description", "Go-live announcements for Twitch, YouTube, Kick and more"),
     /** Stream Alerts */
     streamsName: () => t("features", "streams_name", "Stream Alerts"),
-    /** Server suggestion system */
-    suggestionsDescription: () => t("features", "suggestions_description", "Server suggestion system"),
+    /** Community suggestion system */
+    suggestionsDescription: () => t("features", "suggestions_description", "Community suggestion system"),
     /** Suggestions */
     suggestionsName: () => t("features", "suggestions_name", "Suggestions"),
     /** Support ticket panels, cases, and staff tools */
@@ -7049,8 +7033,8 @@ export const m = {
     wizardCustomvoiceStepHubDescription: () => t("features", "wizard_customvoice_step_hub_description", "Where should personal channels be created?"),
     /** Hub & Category */
     wizardCustomvoiceStepHubTitle: () => t("features", "wizard_customvoice_step_hub_title", "Hub & Category"),
-    /** When server events are created */
-    wizardEventCreatedDescription: () => t("features", "wizard_event_created_description", "When server events are created"),
+    /** When community events are created */
+    wizardEventCreatedDescription: () => t("features", "wizard_event_created_description", "When community events are created"),
     /** Event Created */
     wizardEventCreatedName: () => t("features", "wizard_event_created_name", "Event Created"),
     /** Follow blogs, news sites and release notes */
@@ -7169,16 +7153,16 @@ export const m = {
     wizardMultigreetsStepMessageDescription: () => t("features", "wizard_multigreets_step_message_description", "Create your welcome message"),
     /** Design Message */
     wizardMultigreetsStepMessageTitle: () => t("features", "wizard_multigreets_step_message_title", "Design Message"),
-    /** When a member changes their server nickname */
-    wizardNicknameUpdatedDescription: () => t("features", "wizard_nickname_updated_description", "When a member changes their server nickname"),
+    /** When a member changes their community nickname */
+    wizardNicknameUpdatedDescription: () => t("features", "wizard_nickname_updated_description", "When a member changes their community nickname"),
     /** Nickname Changed */
     wizardNicknameUpdatedName: () => t("features", "wizard_nickname_updated_name", "Nickname Changed"),
     /** Anything not covered by the categories above */
     wizardOtherDescription: () => t("features", "wizard_other_description", "Anything not covered by the categories above"),
     /** Other Events */
     wizardOtherName: () => t("features", "wizard_other_name", "Other Events"),
-    /** Catch join raids before they flood your server */
-    wizardProtectionBenefit1: () => t("features", "wizard_protection_benefit_1", "Catch join raids before they flood your server"),
+    /** Catch join raids before they flood your community */
+    wizardProtectionBenefit1: () => t("features", "wizard_protection_benefit_1", "Catch join raids before they flood your community"),
     /** Auto-punish message spam and mention spam */
     wizardProtectionBenefit2: () => t("features", "wizard_protection_benefit_2", "Auto-punish message spam and mention spam"),
     /** Block brand-new alt accounts */
@@ -7231,12 +7215,12 @@ export const m = {
     wizardReasonExistingXp: () => t("features", "wizard_reason_existing_xp", "You already have a levels channel"),
     /** Keeps a record of joins, leaves and moderation */
     wizardReasonLogging: () => t("features", "wizard_reason_logging", "Keeps a record of joins, leaves and moderation"),
-    /** Busy servers need moderation tooling */
-    wizardReasonModeration: () => t("features", "wizard_reason_moderation", "Busy servers need moderation tooling"),
-    /** Most servers greet new members */
-    wizardReasonMultigreets: () => t("features", "wizard_reason_multigreets", "Most servers greet new members"),
-    /** Worth having on a server of {count} members */
-    wizardReasonProtection: (p: { count: P }) => t("features", "wizard_reason_protection", "Worth having on a server of {count} members", p),
+    /** Busy communities need moderation tooling */
+    wizardReasonModeration: () => t("features", "wizard_reason_moderation", "Busy communities need moderation tooling"),
+    /** Most communities greet new members */
+    wizardReasonMultigreets: () => t("features", "wizard_reason_multigreets", "Most communities greet new members"),
+    /** Worth having in a community of {count} members */
+    wizardReasonProtection: (p: { count: P }) => t("features", "wizard_reason_protection", "Worth having in a community of {count} members", p),
     /** Gives members a private way to reach staff */
     wizardReasonTickets: () => t("features", "wizard_reason_tickets", "Gives members a private way to reach staff"),
     /** Keep rules or links visible in busy channels */
@@ -7289,8 +7273,8 @@ export const m = {
     wizardRolegreetsBenefit3: () => t("features", "wizard_rolegreets_benefit_3", "Reduce spam from unverified users"),
     /** Announce achievement roles */
     wizardRolegreetsBenefit4: () => t("features", "wizard_rolegreets_benefit_4", "Announce achievement roles"),
-    /** Greet members when they get roles (perfect for verification) */
-    wizardRolegreetsDescription: () => t("features", "wizard_rolegreets_description", "Greet members when they get roles (perfect for verification)"),
+    /** Greet members when they get roles (useful for verification) */
+    wizardRolegreetsDescription: () => t("features", "wizard_rolegreets_description", "Greet members when they get roles (useful for verification)"),
     /** Role Messages */
     wizardRolegreetsName: () => t("features", "wizard_rolegreets_name", "Role Messages"),
     /** Where should the message be sent? */
@@ -7313,8 +7297,8 @@ export const m = {
     wizardRolesBenefit4: () => t("features", "wizard_roles_benefit_4", "No commands needed to hand out cosmetic roles"),
     /** Set staff and member roles, plus self-assignable roles */
     wizardRolesDescription: () => t("features", "wizard_roles_description", "Set staff and member roles, plus self-assignable roles"),
-    /** Server Roles */
-    wizardRolesName: () => t("features", "wizard_roles_name", "Server Roles"),
+    /** Community Roles */
+    wizardRolesName: () => t("features", "wizard_roles_name", "Community Roles"),
     /** Which roles identify your staff and members? */
     wizardRolesStepCoreDescription: () => t("features", "wizard_roles_step_core_description", "Which roles identify your staff and members?"),
     /** Staff & Member Roles */
@@ -7339,10 +7323,10 @@ export const m = {
     wizardRolestatesStepConfigDescription: () => t("features", "wizard_rolestates_step_config_description", "Choose how saved roles behave"),
     /** Persistence Rules */
     wizardRolestatesStepConfigTitle: () => t("features", "wizard_rolestates_step_config_title", "Persistence Rules"),
-    /** When server settings change */
-    wizardServerUpdatedDescription: () => t("features", "wizard_server_updated_description", "When server settings change"),
-    /** Server Updated */
-    wizardServerUpdatedName: () => t("features", "wizard_server_updated_name", "Server Updated"),
+    /** When community settings change */
+    wizardServerUpdatedDescription: () => t("features", "wizard_server_updated_description", "When community settings change"),
+    /** Community Updated */
+    wizardServerUpdatedName: () => t("features", "wizard_server_updated_name", "Community Updated"),
     /** Showcase community highlights */
     wizardStarboardBenefit1: () => t("features", "wizard_starboard_benefit_1", "Showcase community highlights"),
     /** Encourage positive interactions */
@@ -7357,8 +7341,8 @@ export const m = {
     wizardStarboardStepConfigDescription: () => t("features", "wizard_starboard_step_config_description", "Set up your starboard"),
     /** Configure Starboard */
     wizardStarboardStepConfigTitle: () => t("features", "wizard_starboard_step_config_title", "Configure Starboard"),
-    /** Everyone in the server */
-    wizardStatType0Description: () => t("features", "wizard_stat_type_0_description", "Everyone in the server"),
+    /** Everyone in the community */
+    wizardStatType0Description: () => t("features", "wizard_stat_type_0_description", "Everyone in the community"),
     /** Members excluding bots */
     wizardStatType1Description: () => t("features", "wizard_stat_type_1_description", "Members excluding bots"),
     /** Bot accounts only */
@@ -7379,14 +7363,14 @@ export const m = {
     wizardStatchannelsBenefit3: () => t("features", "wizard_statchannels_benefit_3", "Updates automatically as numbers change"),
     /** Fully customisable templates later */
     wizardStatchannelsBenefit4: () => t("features", "wizard_statchannels_benefit_4", "Fully customisable templates later"),
-    /** Live member and server counts in your channel list */
-    wizardStatchannelsDescription: () => t("features", "wizard_statchannels_description", "Live member and server counts in your channel list"),
+    /** Live member and community counts in your channel list */
+    wizardStatchannelsDescription: () => t("features", "wizard_statchannels_description", "Live member and community counts in your channel list"),
     /** Which counters should be created? */
     wizardStatchannelsStepStatsDescription: () => t("features", "wizard_statchannels_step_stats_description", "Which counters should be created?"),
     /** Choose Counters */
     wizardStatchannelsStepStatsTitle: () => t("features", "wizard_statchannels_step_stats_title", "Choose Counters"),
-    /** Reward members who advertise your server */
-    wizardStatusrolesBenefit1: () => t("features", "wizard_statusroles_benefit_1", "Reward members who advertise your server"),
+    /** Reward members who advertise your community */
+    wizardStatusrolesBenefit1: () => t("features", "wizard_statusroles_benefit_1", "Reward members who advertise your community"),
     /** Automatic add and remove as the status changes */
     wizardStatusrolesBenefit2: () => t("features", "wizard_statusroles_benefit_2", "Automatic add and remove as the status changes"),
     /** Great for /vanity or invite links */
@@ -7423,8 +7407,8 @@ export const m = {
     wizardSuggestionsBenefit3: () => t("features", "wizard_suggestions_benefit_3", "Staff approval workflow"),
     /** Optional channels for accepted/denied */
     wizardSuggestionsBenefit4: () => t("features", "wizard_suggestions_benefit_4", "Optional channels for accepted/denied"),
-    /** Let members suggest server improvements */
-    wizardSuggestionsDescription: () => t("features", "wizard_suggestions_description", "Let members suggest server improvements"),
+    /** Let members suggest community improvements */
+    wizardSuggestionsDescription: () => t("features", "wizard_suggestions_description", "Let members suggest community improvements"),
     /** Configure where suggestions are managed */
     wizardSuggestionsStepChannelsDescription: () => t("features", "wizard_suggestions_step_channels_description", "Configure where suggestions are managed"),
     /** Suggestion Channels */
@@ -7461,12 +7445,12 @@ export const m = {
     wizardUserBannedDescription: () => t("features", "wizard_user_banned_description", "When someone is banned"),
     /** Member Banned */
     wizardUserBannedName: () => t("features", "wizard_user_banned_name", "Member Banned"),
-    /** When someone joins the server */
-    wizardUserJoinedDescription: () => t("features", "wizard_user_joined_description", "When someone joins the server"),
+    /** When someone joins the community */
+    wizardUserJoinedDescription: () => t("features", "wizard_user_joined_description", "When someone joins the community"),
     /** Member Joined */
     wizardUserJoinedName: () => t("features", "wizard_user_joined_name", "Member Joined"),
-    /** When someone leaves the server */
-    wizardUserLeftDescription: () => t("features", "wizard_user_left_description", "When someone leaves the server"),
+    /** When someone leaves the community */
+    wizardUserLeftDescription: () => t("features", "wizard_user_left_description", "When someone leaves the community"),
     /** Member Left */
     wizardUserLeftName: () => t("features", "wizard_user_left_name", "Member Left"),
     /** When someone is muted or timed out */
@@ -7505,8 +7489,8 @@ export const m = {
     wizardVotesBenefit3: () => t("features", "wizard_votes_benefit_3", "Announcement channel for every vote"),
     /** Works with top.gg webhooks */
     wizardVotesBenefit4: () => t("features", "wizard_votes_benefit_4", "Works with top.gg webhooks"),
-    /** Reward members for voting for your server */
-    wizardVotesDescription: () => t("features", "wizard_votes_description", "Reward members for voting for your server"),
+    /** Reward members for voting for your community */
+    wizardVotesDescription: () => t("features", "wizard_votes_description", "Reward members for voting for your community"),
     /** Vote Rewards */
     wizardVotesName: () => t("features", "wizard_votes_name", "Vote Rewards"),
     /** Announcement channel, message and webhook password */
@@ -7583,10 +7567,10 @@ export const m = {
     pageListEmptyTitle: () => t("feeds", "page_list_empty_title", "No RSS Feeds"),
     /** RSS Feeds ({count}) */
     pageListTitle: (p: { count: P }) => t("feeds", "page_list_title", "RSS Feeds ({count})", p),
-    /** RSS feed added successfully! */
-    pageNotifyAdded: () => t("feeds", "page_notify_added", "RSS feed added successfully!"),
-    /** Feed removed successfully! */
-    pageNotifyRemoved: () => t("feeds", "page_notify_removed", "Feed removed successfully!"),
+    /** RSS feed added */
+    pageNotifyAdded: () => t("feeds", "page_notify_added", "RSS feed added"),
+    /** Feed removed */
+    pageNotifyRemoved: () => t("feeds", "page_notify_removed", "Feed removed"),
     /** with feeds */
     pageStatChannelsSub: () => t("feeds", "page_stat_channels_sub", "with feeds"),
     /** Total Feeds */
@@ -7625,8 +7609,8 @@ export const m = {
     errorUpdateWarning: () => t("filter", "error_update_warning", "Failed to update warning setting"),
     /** Failed to update word list */
     errorUpdateWords: () => t("filter", "error_update_words", "Failed to update word list"),
-    /** Messages containing these words are deleted when the word filter is enabled server-wide... */
-    filteredHint: () => t("filter", "filtered_hint", "Messages containing these words are deleted when the word filter is enabled server-wide or in a channel."),
+    /** Messages containing these words are deleted when the word filter is enabled community-w... */
+    filteredHint: () => t("filter", "filtered_hint", "Messages containing these words are deleted when the word filter is enabled community-wide or in a channel."),
     /** New filtered word */
     filteredWordAria: () => t("filter", "filtered_word_aria", "New filtered word"),
     /** Invite filter channels */
@@ -7635,8 +7619,8 @@ export const m = {
     inviteHint: () => t("filter", "invite_hint", "Delete Fluxer invite links posted by members"),
     /** Enable the invite filter only in these channels. */
     inviteOnlyHere: () => t("filter", "invite_only_here", "Enable the invite filter only in these channels."),
-    /** The invite filter is on server-wide, so these channel entries have no extra effect. */
-    inviteServerWide: () => t("filter", "invite_server_wide", "The invite filter is on server-wide, so these channel entries have no extra effect."),
+    /** The invite filter is on community-wide, so these channel entries have no extra effect. */
+    inviteServerWide: () => t("filter", "invite_server_wide", "The invite filter is on community-wide, so these channel entries have no extra effect."),
     /** Invite filter */
     inviteTitle: () => t("filter", "invite_title", "Invite filter"),
     /** Link filter channels */
@@ -7645,8 +7629,8 @@ export const m = {
     linkHint: () => t("filter", "link_hint", "Delete any message containing a URL"),
     /** Enable the link filter only in these channels. */
     linkOnlyHere: () => t("filter", "link_only_here", "Enable the link filter only in these channels."),
-    /** The link filter is on server-wide, so these channel entries have no extra effect. */
-    linkServerWide: () => t("filter", "link_server_wide", "The link filter is on server-wide, so these channel entries have no extra effect."),
+    /** The link filter is on community-wide, so these channel entries have no extra effect. */
+    linkServerWide: () => t("filter", "link_server_wide", "The link filter is on community-wide, so these channel entries have no extra effect."),
     /** Link filter */
     linkTitle: () => t("filter", "link_title", "Link filter"),
     /** Auto-ban words ({count}) */
@@ -7669,8 +7653,8 @@ export const m = {
     searchWordsPlaceholder: () => t("filter", "search_words_placeholder", "Search words"),
     /** These apply in every channel. Use channel overrides to enable a filter only in specific... */
     serverWideHint: () => t("filter", "server_wide_hint", "These apply in every channel. Use channel overrides to enable a filter only in specific places."),
-    /** Server-wide filters */
-    serverWideTitle: () => t("filter", "server_wide_title", "Server-wide filters"),
+    /** Community-wide filters */
+    serverWideTitle: () => t("filter", "server_wide_title", "Community-wide filters"),
     /** ban immediately */
     statAutobanWordsSubtitle: () => t("filter", "stat_autoban_words_subtitle", "ban immediately"),
     /** per-channel filters */
@@ -7695,8 +7679,8 @@ export const m = {
     wordOnlyHere: () => t("filter", "word_only_here", "Enable the word filter only in these channels."),
     /** Add a word or phrase */
     wordPlaceholder: () => t("filter", "word_placeholder", "Add a word or phrase"),
-    /** The word filter is on server-wide, so these channel entries have no extra effect. */
-    wordServerWide: () => t("filter", "word_server_wide", "The word filter is on server-wide, so these channel entries have no extra effect."),
+    /** The word filter is on community-wide, so these channel entries have no extra effect. */
+    wordServerWide: () => t("filter", "word_server_wide", "The word filter is on community-wide, so these channel entries have no extra effect."),
   },
   forms: {
     /** Always show (no condition) */
@@ -7711,16 +7695,16 @@ export const m = {
     conditionalMinAccountAge: () => t("forms", "conditional_min_account_age", "Min account age (days):"),
     /** e.g., 180 */
     conditionalMinAccountAgePlaceholder: () => t("forms", "conditional_min_account_age_placeholder", "e.g., 180"),
-    /** Min days in server: */
-    conditionalMinDays: () => t("forms", "conditional_min_days", "Min days in server:"),
+    /** Min days in community: */
+    conditionalMinDays: () => t("forms", "conditional_min_days", "Min days in community:"),
     /** e.g., 30 */
     conditionalMinDaysPlaceholder: () => t("forms", "conditional_min_days_placeholder", "e.g., 30"),
     /** Advanced: Multiple Conditions with AND/OR Logic */
     conditionalMultiTitle: () => t("forms", "conditional_multi_title", "Advanced: Multiple Conditions with AND/OR Logic"),
     /** <strong>Multiple Conditions:</strong> This advanced feature is only available when edit... */
     conditionalMultiUnavailable: () => t("forms", "conditional_multi_unavailable", "<strong>Multiple Conditions:</strong> This advanced feature is only available when editing existing forms. Save the form first, then edit the question to add multiple conditions with AND/OR logic."),
-    /** User must be boosting server */
-    conditionalMustBoost: () => t("forms", "conditional_must_boost", "User must be boosting server"),
+    /** User must be boosting community */
+    conditionalMustBoost: () => t("forms", "conditional_must_boost", "User must be boosting community"),
     /** User must have Discord Nitro */
     conditionalMustNitro: () => t("forms", "conditional_must_nitro", "User must have Discord Nitro"),
     /** User must have permission: */
@@ -7763,8 +7747,6 @@ export const m = {
     conditionalTitle: () => t("forms", "conditional_title", "Conditional Logic (Optional)"),
     /** User must have: */
     conditionalUserMustHave: () => t("forms", "conditional_user_must_have", "User must have:"),
-    /** Form created successfully! */
-    createCreated: () => t("forms", "create_created", "Form created successfully!"),
     /** Creating form... */
     createCreating: () => t("forms", "create_creating", "Creating form..."),
     /** Failed to create form */
@@ -7845,8 +7827,8 @@ export const m = {
     editRequiredQuestion: () => t("forms", "edit_required_question", "Required question"),
     /** Form restored */
     editRestored: () => t("forms", "edit_restored", "Form restored"),
-    /** Form updated successfully! */
-    editSaved: () => t("forms", "edit_saved", "Form updated successfully!"),
+    /** Form updated */
+    editSaved: () => t("forms", "edit_saved", "Form updated"),
     /** Section description */
     editSectionDescription: () => t("forms", "edit_section_description", "Section description"),
     /** Shown under the section heading */
@@ -7865,10 +7847,10 @@ export const m = {
     labelConditionType1: () => t("forms", "label_condition_type_1", "Role-Based"),
     /** Show based on user's roles */
     labelConditionType1Description: () => t("forms", "label_condition_type_1_description", "Show based on user's roles"),
-    /** Server Tenure */
-    labelConditionType2: () => t("forms", "label_condition_type_2", "Server Tenure"),
-    /** Show based on time in server */
-    labelConditionType2Description: () => t("forms", "label_condition_type_2_description", "Show based on time in server"),
+    /** Community Tenure */
+    labelConditionType2: () => t("forms", "label_condition_type_2", "Community Tenure"),
+    /** Show based on time in community */
+    labelConditionType2Description: () => t("forms", "label_condition_type_2_description", "Show based on time in community"),
     /** Boost/Nitro */
     labelConditionType3: () => t("forms", "label_condition_type_3", "Boost/Nitro"),
     /** Show based on boost/Nitro status */
@@ -7889,8 +7871,8 @@ export const m = {
     labelFormTypeJoinApplicationDescription: () => t("forms", "label_form_type_join_application_description", "External users apply to join"),
     /** Regular Form */
     labelFormTypeRegular: () => t("forms", "label_form_type_regular", "Regular Form"),
-    /** Standard form for guild members */
-    labelFormTypeRegularDescription: () => t("forms", "label_form_type_regular_description", "Standard form for guild members"),
+    /** Standard form for community members */
+    labelFormTypeRegularDescription: () => t("forms", "label_form_type_regular_description", "Standard form for community members"),
     /** Contains */
     labelOperatorContains: () => t("forms", "label_operator_contains", "Contains"),
     /** Equals */
@@ -7901,8 +7883,6 @@ export const m = {
     labelOperatorLessThan: () => t("forms", "label_operator_less_than", "Less than"),
     /** Does not equal */
     labelOperatorNotEquals: () => t("forms", "label_operator_not_equals", "Does not equal"),
-    /** Manage Guild */
-    labelPermissionManageGuild: () => t("forms", "label_permission_manage_guild", "Manage Guild"),
     /** View Audit Log */
     labelPermissionViewAuditLog: () => t("forms", "label_permission_view_audit_log", "View Audit Log"),
     /** Checkboxes */
@@ -8103,22 +8083,22 @@ export const m = {
     pageLoadingShareLink: () => t("forms", "page_loading_share_link", "Getting share link..."),
     /** Updating form... */
     pageLoadingStatus: () => t("forms", "page_loading_status", "Updating form..."),
-    /** Form activated successfully */
-    pageNotifyActivated: () => t("forms", "page_notify_activated", "Form activated successfully"),
-    /** Form created successfully */
-    pageNotifyCreated: () => t("forms", "page_notify_created", "Form created successfully"),
-    /** Form deactivated successfully */
-    pageNotifyDeactivated: () => t("forms", "page_notify_deactivated", "Form deactivated successfully"),
-    /** Form deleted successfully */
-    pageNotifyDeleted: () => t("forms", "page_notify_deleted", "Form deleted successfully"),
+    /** Form activated */
+    pageNotifyActivated: () => t("forms", "page_notify_activated", "Form activated"),
+    /** Form created */
+    pageNotifyCreated: () => t("forms", "page_notify_created", "Form created"),
+    /** Form deactivated */
+    pageNotifyDeactivated: () => t("forms", "page_notify_deactivated", "Form deactivated"),
+    /** Form deleted */
+    pageNotifyDeleted: () => t("forms", "page_notify_deleted", "Form deleted"),
     /** Form duplicated as "{name}" */
     pageNotifyDuplicated: (p: { name: P }) => t("forms", "page_notify_duplicated", "Form duplicated as \"{name}\"", p),
-    /** Responses exported successfully */
-    pageNotifyExported: () => t("forms", "page_notify_exported", "Responses exported successfully"),
-    /** Link copied to clipboard! */
-    pageNotifyLinkCopied: () => t("forms", "page_notify_link_copied", "Link copied to clipboard!"),
-    /** Form published successfully! */
-    pageNotifyPublished: () => t("forms", "page_notify_published", "Form published successfully!"),
+    /** Responses exported */
+    pageNotifyExported: () => t("forms", "page_notify_exported", "Responses exported"),
+    /** Link copied */
+    pageNotifyLinkCopied: () => t("forms", "page_notify_link_copied", "Link copied"),
+    /** Form published */
+    pageNotifyPublished: () => t("forms", "page_notify_published", "Form published"),
     /** Close share modal */
     pageShareCloseAria: () => t("forms", "page_share_close_aria", "Close share modal"),
     /** This link is permanent and reusable. Share it anywhere - clicking "Copy" again won't in... */
@@ -8134,7 +8114,7 @@ export const m = {
     /** Failed to verify administrator permissions */
     publicAdminVerifyFailed: () => t("forms", "public_admin_verify_failed", "Failed to verify administrator permissions"),
     /** This form accepts <strong>anonymous submissions</strong>. Your Fluxer login is required... */
-    publicAnonymousIntro: () => t("forms", "public_anonymous_intro", "This form accepts <strong>anonymous submissions</strong>. Your Fluxer login is required to verify guild membership and prevent spam, but your identity <strong>will not be stored</strong>."),
+    publicAnonymousIntro: () => t("forms", "public_anonymous_intro", "This form accepts <strong>anonymous submissions</strong>. Your Fluxer login is required to verify community membership and prevent spam, but your identity <strong>will not be stored</strong>."),
     /** Anonymous Submission */
     publicAnonymousSubmission: () => t("forms", "public_anonymous_submission", "Anonymous Submission"),
     /** We could not load your answers. Try the link in your submission again. */
@@ -8221,12 +8201,12 @@ export const m = {
     publicFormNotFound: () => t("forms", "public_form_not_found", "Form not found. It may have been deleted or the link may be incorrect."),
     /** If approved, you will be automatically unbanned */
     publicIfApprovedYouWillBe: () => t("forms", "public_if_approved_you_will_be", "If approved, you will be automatically unbanned"),
-    /** If approved, you'll receive an invite link to join the server */
-    publicIfApprovedYoullReceiveAn: () => t("forms", "public_if_approved_youll_receive_an", "If approved, you'll receive an invite link to join the server"),
+    /** If approved, you'll receive an invite link to join the community */
+    publicIfApprovedYoullReceiveAn: () => t("forms", "public_if_approved_youll_receive_an", "If approved, you'll receive an invite link to join the community"),
     /** Join Application Form */
     publicJoinApplicationForm: () => t("forms", "public_join_application_form", "Join Application Form"),
-    /** This form link is invalid or has expired. Please request a new link from the server adm... */
-    publicLinkInvalid: () => t("forms", "public_link_invalid", "This form link is invalid or has expired. Please request a new link from the server administrator."),
+    /** This form link is invalid or has expired. Please request a new link from the community ... */
+    publicLinkInvalid: () => t("forms", "public_link_invalid", "This form link is invalid or has expired. Please request a new link from the community administrator."),
     /** {summary} Your answers are submitted anonymously. */
     publicMetaAnonymous: (p: { summary: P }) => t("forms", "public_meta_anonymous", "{summary} Your answers are submitted anonymously.", p),
     /** Fill out this form */
@@ -8251,8 +8231,8 @@ export const m = {
     publicPleaseReviewYourResponsesBefore: () => t("forms", "public_please_review_your_responses_before", "Please review your responses before submitting. Click \"Edit\" to make changes."),
     /** Prevent spam and abuse */
     publicPreventSpamAndAbuse: () => t("forms", "public_prevent_spam_and_abuse", "Prevent spam and abuse"),
-    /** Preview mode is only available to server administrators */
-    publicPreviewAdminOnly: () => t("forms", "public_preview_admin_only", "Preview mode is only available to server administrators"),
+    /** Preview mode is only available to community administrators */
+    publicPreviewAdminOnly: () => t("forms", "public_preview_admin_only", "Preview mode is only available to community administrators"),
     /** Preview Mode */
     publicPreviewMode: () => t("forms", "public_preview_mode", "Preview Mode"),
     /** Preview Mode - Submission Disabled */
@@ -8285,22 +8265,20 @@ export const m = {
     publicSuccessApplication: () => t("forms", "public_success_application", "Your join application has been submitted and is now pending review."),
     /** Your changes have been saved and the reviewers can see them. */
     publicSuccessEdit: () => t("forms", "public_success_edit", "Your changes have been saved and the reviewers can see them."),
-    /** Your response has been submitted successfully. */
-    publicSuccessResponse: () => t("forms", "public_success_response", "Your response has been submitted successfully."),
-    /** Success! */
-    publicSuccessTitle: () => t("forms", "public_success_title", "Success!"),
+    /** Your response has been submitted. */
+    publicSuccessResponse: () => t("forms", "public_success_response", "Your response has been submitted."),
     /** Answers updated */
     publicSuccessUpdated: () => t("forms", "public_success_updated", "Answers updated"),
     /** The reviewers keep a copy of what you wrote before, so they can see what changed. */
     publicTheReviewersKeepACopy: () => t("forms", "public_the_reviewers_keep_a_copy", "The reviewers keep a copy of what you wrote before, so they can see what changed."),
     /** This is a ban appeal form. Your submission will be reviewed by the moderation team. If ... */
-    publicThisIsABanAppeal: () => t("forms", "public_this_is_a_ban_appeal", "This is a ban appeal form. Your submission will be reviewed by the moderation team. If approved, you will be automatically unbanned from the server."),
+    publicThisIsABanAppeal: () => t("forms", "public_this_is_a_ban_appeal", "This is a ban appeal form. Your submission will be reviewed by the moderation team. If approved, you will be automatically unbanned from the community."),
     /** This is a join application form. Your submission will be reviewed by the moderation tea... */
-    publicThisIsAJoinApplication: () => t("forms", "public_this_is_a_join_application", "This is a join application form. Your submission will be reviewed by the moderation team. If approved, you'll receive an invite link to join the server with pre-assigned roles."),
+    publicThisIsAJoinApplication: () => t("forms", "public_this_is_a_join_application", "This is a join application form. Your submission will be reviewed by the moderation team. If approved, you'll receive an invite link to join the community with pre-assigned roles."),
     /** {title} - Mewdeko */
     publicTitle: (p: { title: P }) => t("forms", "public_title", "{title} - Mewdeko", p),
-    /** Verify you're a member of the server */
-    publicVerifyYoureAMemberOf: () => t("forms", "public_verify_youre_a_member_of", "Verify you're a member of the server"),
+    /** Verify you're a member of the community */
+    publicVerifyYoureAMemberOf: () => t("forms", "public_verify_youre_a_member_of", "Verify you're a member of the community"),
     /** We brought back what you had already written */
     publicWeBroughtBackWhatYou: () => t("forms", "public_we_brought_back_what_you", "We brought back what you had already written"),
     /** What happens next? */
@@ -8427,8 +8405,8 @@ export const m = {
     settingsAllowAnonymous: () => t("forms", "settings_allow_anonymous", "Submit anonymously"),
     /** Answers are stored with no submitter. Nobody can be messaged, given roles, or replied to. */
     settingsAllowAnonymousHint: () => t("forms", "settings_allow_anonymous_hint", "Answers are stored with no submitter. Nobody can be messaged, given roles, or replied to."),
-    /** Allow people outside the server */
-    settingsAllowExternal: () => t("forms", "settings_allow_external", "Allow people outside the server"),
+    /** Allow people outside the community */
+    settingsAllowExternal: () => t("forms", "settings_allow_external", "Allow people outside the community"),
     /** Lets anyone with the link submit, even if they have not joined. */
     settingsAllowExternalHint: () => t("forms", "settings_allow_external_hint", "Lets anyone with the link submit, even if they have not joined."),
     /** Allow more than one answer per person */
@@ -8455,8 +8433,8 @@ export const m = {
     settingsAnnounced: (p: { date: P }) => t("forms", "settings_announced", "Announced {date}. Changing the opening time will not send it again.", p),
     /** This form is anonymous, so it records nobody to give roles to. The role settings below ... */
     settingsAnonymousRolesNote: () => t("forms", "settings_anonymous_roles_note", "This form is anonymous, so it records nobody to give roles to. The role settings below are hidden until you turn that off."),
-    /** Anyone in the server */
-    settingsAnyoneInTheServerPlaceholder: () => t("forms", "settings_anyone_in_the_server_placeholder", "Anyone in the server"),
+    /** Anyone in the community */
+    settingsAnyoneInTheServerPlaceholder: () => t("forms", "settings_anyone_in_the_server_placeholder", "Anyone in the community"),
     /** Wait after the ban */
     settingsAppealDelay: () => t("forms", "settings_appeal_delay", "Wait after the ban"),
     /** Days somebody must wait after being banned before they may appeal at all. */
@@ -8473,8 +8451,8 @@ export const m = {
     settingsApprovalRemoveRolesHint: () => t("forms", "settings_approval_remove_roles_hint", "Taken away when their answer is approved. The waiting role above is removed anyway."),
     /** Approve button emote */
     settingsApproveEmote: () => t("forms", "settings_approve_emote", "Approve button emote"),
-    /** Shown on the approve button. Empty uses the server default. */
-    settingsApproveEmoteHint: () => t("forms", "settings_approve_emote_hint", "Shown on the approve button. Empty uses the server default."),
+    /** Shown on the approve button. Empty uses the community default. */
+    settingsApproveEmoteHint: () => t("forms", "settings_approve_emote_hint", "Shown on the approve button. Empty uses the community default."),
     /** Roles waiting for them on join */
     settingsAutoApproveRoles: () => t("forms", "settings_auto_approve_roles", "Roles waiting for them on join"),
     /** Applied when the accepted person actually joins, not when they are approved. */
@@ -8489,8 +8467,8 @@ export const m = {
     settingsBlockReappealHint: () => t("forms", "settings_block_reappeal_hint", "A rejected appeal is the end of it. Overrides the two limits below."),
     /** Do not announce */
     settingsDoNotAnnouncePlaceholder: () => t("forms", "settings_do_not_announce_placeholder", "Do not announce"),
-    /** ✅ server default */
-    settingsEmoteServerDefault: () => t("forms", "settings_emote_server_default", "✅ server default"),
+    /** ✅ community default */
+    settingsEmoteServerDefault: () => t("forms", "settings_emote_server_default", "✅ community default"),
     /** Closes at */
     settingsExpiresAt: () => t("forms", "settings_expires_at", "Closes at"),
     /** The form stops accepting answers at this moment. */
@@ -8523,8 +8501,8 @@ export const m = {
     settingsGuildUseBuiltin: () => t("forms", "settings_guild_use_builtin", "Use the built-in pair"),
     /** How often somebody may appeal, and how long they must wait. */
     settingsHowOftenSomebodyMayAppealSummary: () => t("forms", "settings_how_often_somebody_may_appeal_summary", "How often somebody may appeal, and how long they must wait."),
-    /** How the invite works for people accepted into the server. */
-    settingsHowTheInviteWorksForSummary: () => t("forms", "settings_how_the_invite_works_for_summary", "How the invite works for people accepted into the server."),
+    /** How the invite works for people accepted into the community. */
+    settingsHowTheInviteWorksForSummary: () => t("forms", "settings_how_the_invite_works_for_summary", "How the invite works for people accepted into the community."),
     /** Invite expires after (seconds) */
     settingsInviteMaxAge: () => t("forms", "settings_invite_max_age", "Invite expires after (seconds)"),
     /** How long the accepted person has to use it. 86400 is a day. */
@@ -8543,8 +8521,8 @@ export const m = {
     settingsJoinApplicationsReview: () => t("forms", "settings_join_applications_review", "Join applications always go through review."),
     /** Limits on who may open and send this form. */
     settingsLimitsOnWhoMayOpenSummary: () => t("forms", "settings_limits_on_who_may_open_summary", "Limits on who may open and send this form."),
-    /** Manage Server only */
-    settingsManageServerOnlyPlaceholder: () => t("forms", "settings_manage_server_only_placeholder", "Manage Server only"),
+    /** Manage Community only */
+    settingsManageServerOnlyPlaceholder: () => t("forms", "settings_manage_server_only_placeholder", "Manage Community only"),
     /** Appeals allowed */
     settingsMaxAppeals: () => t("forms", "settings_max_appeals", "Appeals allowed"),
     /** How many rejected appeals before they are locked out for good. */
@@ -8583,10 +8561,10 @@ export const m = {
     settingsReappealCooldownHint: () => t("forms", "settings_reappeal_cooldown_hint", "Days after a rejection before they may appeal again."),
     /** Reject button emote */
     settingsRejectEmote: () => t("forms", "settings_reject_emote", "Reject button emote"),
-    /** Shown on the reject button. Empty uses the server default. */
-    settingsRejectEmoteHint: () => t("forms", "settings_reject_emote_hint", "Shown on the reject button. Empty uses the server default."),
-    /** ❌ server default */
-    settingsRejectEmoteServerDefault: () => t("forms", "settings_reject_emote_server_default", "❌ server default"),
+    /** Shown on the reject button. Empty uses the community default. */
+    settingsRejectEmoteHint: () => t("forms", "settings_reject_emote_hint", "Shown on the reject button. Empty uses the community default."),
+    /** ❌ community default */
+    settingsRejectEmoteServerDefault: () => t("forms", "settings_reject_emote_server_default", "❌ community default"),
     /** Add on rejection */
     settingsRejectionAddRoles: () => t("forms", "settings_rejection_add_roles", "Add on rejection"),
     /** Given to the person when their answer is turned down. */
@@ -8609,8 +8587,8 @@ export const m = {
     settingsRequiredRoleHint: () => t("forms", "settings_required_role_hint", "Only people holding this role can open the form. Everyone else is turned away."),
     /** Who may approve or reject */
     settingsReviewerRole: () => t("forms", "settings_reviewer_role", "Who may approve or reject"),
-    /** Can review submissions in Fluxer. Anyone with Manage Server can regardless. */
-    settingsReviewerRoleHint: () => t("forms", "settings_reviewer_role_hint", "Can review submissions in Fluxer. Anyone with Manage Server can regardless."),
+    /** Can review submissions in Fluxer. Anyone with Manage Community can regardless. */
+    settingsReviewerRoleHint: () => t("forms", "settings_reviewer_role_hint", "Can review submissions in Fluxer. Anyone with Manage Community can regardless."),
     /** Reviewing answers */
     settingsReviewingAnswersTitle: () => t("forms", "settings_reviewing_answers_title", "Reviewing answers"),
     /** Scheduling, limits, and how often one person may answer. */
@@ -8677,14 +8655,14 @@ export const m = {
     statusCheckerExpiresMinutes: (p: { count: P }) => t("forms", "status_checker_expires_minutes", "Expires in {count} minutes", p),
     /** Expires on {date} */
     statusCheckerExpiresOn: (p: { date: P }) => t("forms", "status_checker_expires_on", "Expires on {date}", p),
-    /** Use this invite link to join the server. Your assigned roles will be automatically appl... */
-    statusCheckerInviteBody: () => t("forms", "status_checker_invite_body", "Use this invite link to join the server. Your assigned roles will be automatically applied when you join!"),
-    /** This invite has expired. Please contact the server administrators. */
-    statusCheckerInviteExpired: () => t("forms", "status_checker_invite_expired", "This invite has expired. Please contact the server administrators."),
-    /** Your Server Invite */
-    statusCheckerInviteTitle: () => t("forms", "status_checker_invite_title", "Your Server Invite"),
-    /** Join Server */
-    statusCheckerJoinServer: () => t("forms", "status_checker_join_server", "Join Server"),
+    /** Use this invite link to join the community. Your assigned roles will be automatically a... */
+    statusCheckerInviteBody: () => t("forms", "status_checker_invite_body", "Use this invite link to join the community. Your assigned roles will be automatically applied when you join!"),
+    /** This invite has expired. Please contact the community administrators. */
+    statusCheckerInviteExpired: () => t("forms", "status_checker_invite_expired", "This invite has expired. Please contact the community administrators."),
+    /** Your Community Invite */
+    statusCheckerInviteTitle: () => t("forms", "status_checker_invite_title", "Your Community Invite"),
+    /** Join Community */
+    statusCheckerJoinServer: () => t("forms", "status_checker_join_server", "Join Community"),
     /** Last changed on {date} */
     statusCheckerLastChanged: (p: { date: P }) => t("forms", "status_checker_last_changed", "Last changed on {date}", p),
     /** Invite link copied to clipboard */
@@ -8715,10 +8693,10 @@ export const m = {
     statusCheckerSubmissionsIntro: () => t("forms", "status_checker_submissions_intro", "Everything you have submitted is listed in one place."),
     /** Submission Status */
     statusCheckerTitle: () => t("forms", "status_checker_title", "Submission Status"),
-    /** Your ban appeal has been approved and you have been unbanned from the server. You can n... */
-    statusCheckerUnbannedBody: () => t("forms", "status_checker_unbanned_body", "Your ban appeal has been approved and you have been unbanned from the server. You can now rejoin using a server invite link."),
-    /** If you need help finding an invite link, please contact the server administrators or ch... */
-    statusCheckerUnbannedHelp: () => t("forms", "status_checker_unbanned_help", "If you need help finding an invite link, please contact the server administrators or check the server's public channels."),
+    /** Your ban appeal has been approved and you have been unbanned from the community. You ca... */
+    statusCheckerUnbannedBody: () => t("forms", "status_checker_unbanned_body", "Your ban appeal has been approved and you have been unbanned from the community. You can now rejoin using a community invite link."),
+    /** If you need help finding an invite link, please contact the community administrators or... */
+    statusCheckerUnbannedHelp: () => t("forms", "status_checker_unbanned_help", "If you need help finding an invite link, please contact the community administrators or check the community's public channels."),
     /** You Have Been Unbanned */
     statusCheckerUnbannedTitle: () => t("forms", "status_checker_unbanned_title", "You Have Been Unbanned"),
     /** Your submission is currently being reviewed by a moderator. A decision will be made soon. */
@@ -8845,12 +8823,12 @@ export const m = {
     pageFieldWinners: () => t("giveaways", "page_field_winners", "Number of Winners"),
     /** Loading giveaways... */
     pageLoadingFetch: () => t("giveaways", "page_loading_fetch", "Loading giveaways..."),
-    /** Giveaway created successfully */
-    pageNotifyCreated: () => t("giveaways", "page_notify_created", "Giveaway created successfully"),
-    /** Giveaway ended successfully */
-    pageNotifyEnded: () => t("giveaways", "page_notify_ended", "Giveaway ended successfully"),
-    /** Manage server giveaways and prizes */
-    pageSubtitle: () => t("giveaways", "page_subtitle", "Manage server giveaways and prizes"),
+    /** Giveaway created */
+    pageNotifyCreated: () => t("giveaways", "page_notify_created", "Giveaway created"),
+    /** Giveaway ended */
+    pageNotifyEnded: () => t("giveaways", "page_notify_ended", "Giveaway ended"),
+    /** Manage community giveaways and prizes */
+    pageSubtitle: () => t("giveaways", "page_subtitle", "Manage community giveaways and prizes"),
     /** Create Giveaway */
     pageTabCreate: () => t("giveaways", "page_tab_create", "Create Giveaway"),
     /** Ended Giveaways */
@@ -8889,10 +8867,10 @@ export const m = {
     pageErrorLoad: () => t("highlights", "page_error_load", "Failed to load highlight data"),
     /** Search failed */
     pageErrorSearch: () => t("highlights", "page_error_search", "Search failed"),
-    /** Highlight deleted successfully! */
-    pageNotifyDeleted: () => t("highlights", "page_notify_deleted", "Highlight deleted successfully!"),
-    /** Deleted {count} highlight(s)! */
-    pageNotifyDeletedCount: (p: { count: P }) => t("highlights", "page_notify_deleted_count", "Deleted {count} highlight(s)!", p),
+    /** Highlight deleted */
+    pageNotifyDeleted: () => t("highlights", "page_notify_deleted", "Highlight deleted"),
+    /** Deleted {count} highlight(s) */
+    pageNotifyDeletedCount: (p: { count: P }) => t("highlights", "page_notify_deleted_count", "Deleted {count} highlight(s)", p),
     /** "{word}" by {username} */
     pageRecentLine: (p: { username: P; word: P }) => t("highlights", "page_recent_line", "\"{word}\" by {username}", p),
     /** Recent Highlights */
@@ -8913,16 +8891,16 @@ export const m = {
     pageStatTopWord: () => t("highlights", "page_stat_top_word", "Top Word"),
     /** Total Highlights */
     pageStatTotal: () => t("highlights", "page_stat_total", "Total Highlights"),
-    /** across server */
-    pageStatTotalSub: () => t("highlights", "page_stat_total_sub", "across server"),
+    /** across community */
+    pageStatTotalSub: () => t("highlights", "page_stat_total_sub", "across community"),
     /** Active Users */
     pageStatUsers: () => t("highlights", "page_stat_users", "Active Users"),
     /** with highlights */
     pageStatUsersSub: () => t("highlights", "page_stat_users_sub", "with highlights"),
     /** Highlight statistics will appear here once users set up highlights. */
     pageStatsEmptyHint: () => t("highlights", "page_stats_empty_hint", "Highlight statistics will appear here once users set up highlights."),
-    /** Manage guild-wide highlight system */
-    pageSubtitle: () => t("highlights", "page_subtitle", "Manage guild-wide highlight system"),
+    /** Manage community-wide highlight system */
+    pageSubtitle: () => t("highlights", "page_subtitle", "Manage community-wide highlight system"),
     /** All Highlights */
     pageTabAll: () => t("highlights", "page_tab_all", "All Highlights"),
     /** Disabled Users */
@@ -8951,24 +8929,20 @@ export const m = {
     errorTitle: (p: { status: P }) => t("home", "error_title", "Error {status} - Mewdeko", p),
     /** Add to Fluxer */
     heroAddToFluxer: () => t("home", "hero_add_to_fluxer", "Add to Fluxer"),
-    /** Mewdeko, the free and open source Fluxer bot */
-    heroEyebrow: () => t("home", "hero_eyebrow", "Mewdeko, the free and open source Fluxer bot"),
     /** Open dashboard */
     heroOpenDashboard: () => t("home", "hero_open_dashboard", "Open dashboard"),
-    /** Every feature free, in every server. */
-    heroServers: () => t("home", "hero_servers", "Every feature free, in every server."),
     /** Moderation, tickets, XP, achievements, music, forms, giveaways and about a thousand oth... */
     heroSubtitle: () => t("home", "hero_subtitle", "Moderation, tickets, XP, achievements, music, forms, giveaways and about a thousand other things. We might have gone a little overboard."),
-    /** One bot.<br />Way too many <span style="color: {color}">tails.</span> */
-    heroTitle: (p: { color: P }) => t("home", "hero_title", "One bot.<br />Way too many <span style=\"color: {color}\">tails.</span>", p),
+    /** One bot.<br />Way too many tails. */
+    heroTitle: () => t("home", "hero_title", "One bot.<br />Way too many tails."),
     /** 20+ gambling games */
     landing20GamblingGames: () => t("home", "landing_20_gambling_games", "20+ gambling games"),
     /** 30 welcome messages */
     landing30WelcomeMessages: () => t("home", "landing_30_welcome_messages", "30 welcome messages"),
     /** A DM when your word is said */
     landingADmWhenYourWordIs: () => t("home", "landing_a_dm_when_your_word_is", "A DM when your word is said"),
-    /** A few of the servers running Mewdeko right now */
-    landingAFewOfTheServersRunning: () => t("home", "landing_a_few_of_the_servers_running", "A few of the servers running Mewdeko right now"),
+    /** A few of the communities running Mewdeko right now */
+    landingAFewOfTheServersRunning: () => t("home", "landing_a_few_of_the_servers_running", "A few of the communities running Mewdeko right now"),
     /** A few of the things it does. */
     landingAFewOfTheThingsIt: () => t("home", "landing_a_few_of_the_things_it", "A few of the things it does."),
     /** A message when someone gets a role */
@@ -9003,8 +8977,6 @@ export const m = {
     landingCustomizeNow: () => t("home", "landing_customize_now", "Customize Now"),
     /** Economy Games */
     landingEconomyGames: () => t("home", "landing_economy_games", "Economy Games"),
-    /** Engagement */
-    landingEngagement: () => t("home", "landing_engagement", "Engagement"),
     /** Every command, with examples and the permissions it needs. */
     landingEveryCommandWithExamplesAndThe: () => t("home", "landing_every_command_with_examples_and_the", "Every command, with examples and the permissions it needs."),
     /** Every module has its own wiki page. */
@@ -9027,42 +8999,38 @@ export const m = {
     landingGithubForks: (p: { count: P }) => t("home", "landing_github_forks", "{count} forks", p),
     /** {count} stars */
     landingGithubStars: (p: { count: P }) => t("home", "landing_github_stars", "{count} stars", p),
-    /** Give the bot its own avatar, banner and bio in your server. */
-    landingGiveTheBotItsOwnAvatar: () => t("home", "landing_give_the_bot_its_own_avatar", "Give the bot its own avatar, banner and bio in your server."),
+    /** Give the bot its own avatar, banner and bio in your community. */
+    landingGiveTheBotItsOwnAvatar: () => t("home", "landing_give_the_bot_its_own_avatar", "Give the bot its own avatar, banner and bio in your community."),
     /** Hide All Modules */
     landingHideAllModules: () => t("home", "landing_hide_all_modules", "Hide All Modules"),
     /** Join Fluxer */
     landingJoinFluxer: () => t("home", "landing_join_fluxer", "Join Fluxer"),
     /** Levels for chatting and voice, with a rank card you can redesign. */
     landingLevelsForChattingAndVoiceWith: () => t("home", "landing_levels_for_chatting_and_voice_with", "Levels for chatting and voice, with a rank card you can redesign."),
-    /** Loading servers... */
-    landingLoadingServers: () => t("home", "landing_loading_servers", "Loading servers..."),
-    /** Log Events */
-    landingLogEvents: () => t("home", "landing_log_events", "Log Events"),
+    /** Loading communities... */
+    landingLoadingServers: () => t("home", "landing_loading_servers", "Loading communities..."),
     /** Members get their own voice channel */
     landingMembersGetTheirOwnVoiceChannel: () => t("home", "landing_members_get_their_own_voice_channel", "Members get their own voice channel"),
     /** Members thank each other */
     landingMembersThankEachOther: () => t("home", "landing_members_thank_each_other", "Members thank each other"),
-    /** 1,400+ commands across 40+ modules: Forms, XP/Leveling, Economy, Music, Protection, Log... */
-    landingMetaDescription: () => t("home", "landing_meta_description", "1,400+ commands across 40+ modules: Forms, XP/Leveling, Economy, Music, Protection, Logging, and more. Completely free and open source since 2020."),
+    /** 1,400+ commands across 40+ modules: forms, XP, economy, music, protection, logging and ... */
+    landingMetaDescription: () => t("home", "landing_meta_description", "1,400+ commands across 40+ modules: forms, XP, economy, music, protection, logging and more. Free and open source since 2020."),
     /** Fluxer bot, free Fluxer bot, open source Fluxer bot, 1400+ commands, forms builder, ban... */
-    landingMetaKeywords: () => t("home", "landing_meta_keywords", "Fluxer bot, free Fluxer bot, open source Fluxer bot, 1400+ commands, forms builder, ban appeals, XP leveling bot, Fluxer economy bot, Fluxer music bot, Fluxer moderation bot, anti-raid protection, anti-spam, server logging, chat triggers, embed builder, ticket system, giveaway bot, suggestion bot, starboard, custom commands, role states, multi-purpose bot, Fluxer reputation system, stream alerts, invite tracking, automated moderation, Mewdeko"),
+    landingMetaKeywords: () => t("home", "landing_meta_keywords", "Fluxer bot, free Fluxer bot, open source Fluxer bot, 1400+ commands, forms builder, ban appeals, XP leveling bot, Fluxer economy bot, Fluxer music bot, Fluxer moderation bot, anti-raid protection, anti-spam, community logging, chat triggers, embed builder, ticket system, giveaway bot, suggestion bot, starboard, custom commands, role states, multi-purpose bot, Fluxer reputation system, stream alerts, invite tracking, automated moderation, Mewdeko"),
     /** Mewdeko - 1,400+ Commands. Free & Open Source Fluxer Bot */
     landingMetaTitle: () => t("home", "landing_meta_title", "Mewdeko - 1,400+ Commands. Free & Open Source Fluxer Bot"),
     /** Multi-Greets */
     landingMultiGreets: () => t("home", "landing_multi_greets", "Multi-Greets"),
     /** Music Bot */
     landingMusicBot: () => t("home", "landing_music_bot", "Music Bot"),
-    /** No servers to show right now. */
-    landingNoServersToShowRightNow: () => t("home", "landing_no_servers_to_show_right_now", "No servers to show right now."),
-    /** Or just hop in our Fluxer server for quick questions and help */
-    landingOrJustHopInFluxerFor: () => t("home", "landing_or_just_hop_in_fluxer_for", "Or just hop in our Fluxer server for quick questions and help"),
-    /** Our Top Servers */
-    landingOurTopServers: () => t("home", "landing_our_top_servers", "Our Top Servers"),
-    /** Per-Server */
-    landingPerServer: () => t("home", "landing_per_server", "Per-Server"),
-    /** Per-Server Bot Profile */
-    landingPerServerBotProfile: () => t("home", "landing_per_server_bot_profile", "Per-Server Bot Profile"),
+    /** No communities to show right now. */
+    landingNoServersToShowRightNow: () => t("home", "landing_no_servers_to_show_right_now", "No communities to show right now."),
+    /** Or just hop in our Fluxer community for quick questions and help */
+    landingOrJustHopInFluxerFor: () => t("home", "landing_or_just_hop_in_fluxer_for", "Or just hop in our Fluxer community for quick questions and help"),
+    /** Our Top Communities */
+    landingOurTopServers: () => t("home", "landing_our_top_servers", "Our Top Communities"),
+    /** Per-Community Bot Profile */
+    landingPerServerBotProfile: () => t("home", "landing_per_server_bot_profile", "Per-Community Bot Profile"),
     /** Polls you vote on with reactions */
     landingPollsWithReactions: () => t("home", "landing_polls_with_reactions", "Polls you vote on with reactions"),
     /** Posts new items from a feed */
@@ -9079,14 +9047,14 @@ export const m = {
     landingRolesHandedOutWhenMembersReach: () => t("home", "landing_roles_handed_out_when_members_reach", "Roles handed out when members reach a level"),
     /** Mewdeko posting a ban appeal to the staff channel, where staff approve it with a reaction */
     landingSceneForms: () => t("home", "landing_scene_forms", "Mewdeko posting a ban appeal to the staff channel, where staff approve it with a reaction"),
-    /** Mewdeko taking a new nickname and avatar in one server */
-    landingSceneProfile: () => t("home", "landing_scene_profile", "Mewdeko taking a new nickname and avatar in one server"),
+    /** Mewdeko taking a new nickname and avatar in one community */
+    landingSceneProfile: () => t("home", "landing_scene_profile", "Mewdeko taking a new nickname and avatar in one community"),
     /** Mewdeko announcing that a member reached level 12 */
     landingSceneXp: () => t("home", "landing_scene_xp", "Mewdeko announcing that a member reached level 12"),
     /** Scheduled messages */
     landingScheduledMessages: () => t("home", "landing_scheduled_messages", "Scheduled messages"),
-    /** See full list → */
-    landingSeeFullList: () => t("home", "landing_see_full_list", "See full list →"),
+    /** See full list */
+    landingSeeFullList: () => t("home", "landing_see_full_list", "See full list"),
     /** See It For Yourself */
     landingSeeItForYourself: () => t("home", "landing_see_it_for_yourself", "See It For Yourself"),
     /** See It In Action */
@@ -9095,8 +9063,8 @@ export const m = {
     landingSeeWhoInvitedWhom: () => t("home", "landing_see_who_invited_whom", "See who invited whom"),
     /** {name} icon */
     landingServerIconAlt: (p: { name: P }) => t("home", "landing_server_icon_alt", "{name} icon", p),
-    /** Server Logging */
-    landingServerLogging: () => t("home", "landing_server_logging", "Server Logging"),
+    /** Community Logging */
+    landingServerLogging: () => t("home", "landing_server_logging", "Community Logging"),
     /** And {count} more. */
     landingServersMore: (p: { count: P }) => t("home", "landing_servers_more", "And {count} more.", p),
     /** Shared and personal lists */
@@ -9109,16 +9077,14 @@ export const m = {
     landingTellsPeopleYouReAway: () => t("home", "landing_tells_people_you_re_away", "Tells people you're away"),
     /** Timed, with random winners */
     landingTimedWithRandomWinners: () => t("home", "landing_timed_with_random_winners", "Timed, with random winners"),
-    /** Top server communities */
-    landingTopServerCommunities: () => t("home", "landing_top_server_communities", "Top server communities"),
     /** 25+ tracked events */
     landingTrackedEvents: () => t("home", "landing_tracked_events", "25+ tracked events"),
     /** Trivia, hangman, TicTacToe */
     landingTriviaHangmanTictactoe: () => t("home", "landing_trivia_hangman_tictactoe", "Trivia, hangman, TicTacToe"),
     /** Twitch/YouTube */
     landingTwitchYoutube: () => t("home", "landing_twitch_youtube", "Twitch/YouTube"),
-    /** Free & open source Fluxer bot with 1,400+ commands. Forms builder, XP/leveling, economy... */
-    landingTwitterDescription: () => t("home", "landing_twitter_description", "Free & open source Fluxer bot with 1,400+ commands. Forms builder, XP/leveling, economy, music, protection systems, and more. No limitations, no subscriptions."),
+    /** Free and open source Fluxer bot with 1,400+ commands, including forms, XP, economy, mus... */
+    landingTwitterDescription: () => t("home", "landing_twitter_description", "Free and open source Fluxer bot with 1,400+ commands, including forms, XP, economy, music and protection."),
     /** Mewdeko - 1,400+ Commands. Ridiculously Over-Engineered. */
     landingTwitterTitle: () => t("home", "landing_twitter_title", "Mewdeko - 1,400+ Commands. Ridiculously Over-Engineered."),
     /** View Complete Feature List */
@@ -9129,16 +9095,10 @@ export const m = {
     landingViewSource: () => t("home", "landing_view_source", "View Source"),
     /** Voting System */
     landingVotingSystem: () => t("home", "landing_voting_system", "Voting System"),
-    /** We documented every single one of them */
-    landingWeDocumentedEverySingleOneOf: () => t("home", "landing_we_documented_every_single_one_of", "We documented every single one of them"),
-    /** We Use Our Own Tools */
-    landingWeUseOurOwnTools: () => t("home", "landing_we_use_our_own_tools", "We Use Our Own Tools"),
     /** Who talks, and where */
     landingWhoTalksAndWhere: () => t("home", "landing_who_talks_and_where", "Who talks, and where"),
     /** XP and Leveling */
     landingXpAndLeveling: () => t("home", "landing_xp_and_leveling", "XP and Leveling"),
-    /** You can read all of it on GitHub. */
-    landingYouCanReadAllOfIt: () => t("home", "landing_you_can_read_all_of_it", "You can read all of it on GitHub."),
     /** YouTube, Spotify and SoundCloud */
     landingYoutubeSpotifyAndSoundcloud: () => t("home", "landing_youtube_spotify_and_soundcloud", "YouTube, Spotify and SoundCloud"),
     /** About */
@@ -9165,8 +9125,8 @@ export const m = {
     tailsBulbText: () => t("home", "tails_bulb_text", "Members post ideas and vote on each other's."),
     /** Members set their birthday and the bot announces it on the day. */
     tailsCakeText: () => t("home", "tails_cake_text", "Members set their birthday and the bot announces it on the day."),
-    /** See who is active in your server, and keep a log of what happens. */
-    tailsChartText: () => t("home", "tails_chart_text", "See who is active in your server, and keep a log of what happens."),
+    /** See who is active in your community, and keep a log of what happens. */
+    tailsChartText: () => t("home", "tails_chart_text", "See who is active in your community, and keep a log of what happens."),
     /** Stats and logging */
     tailsChartTitle: () => t("home", "tails_chart_title", "Stats and logging"),
     /** Applications and ban appeals that people fill in from a link and your staff approve in ... */
@@ -9175,8 +9135,8 @@ export const m = {
     tailsClockText: () => t("home", "tails_clock_text", "Personal reminders, and messages that repost on a schedule."),
     /** Reminders and repeaters */
     tailsClockTitle: () => t("home", "tails_clock_title", "Reminders and repeaters"),
-    /** A server currency, with games to win it and a shop to spend it in. */
-    tailsCoinsText: () => t("home", "tails_coins_text", "A server currency, with games to win it and a shop to spend it in."),
+    /** A community currency, with games to win it and a shop to spend it in. */
+    tailsCoinsText: () => t("home", "tails_coins_text", "A community currency, with games to win it and a shop to spend it in."),
     /** Economy and games */
     tailsCoinsTitle: () => t("home", "tails_coins_title", "Economy and games"),
     /** Small games for when chat goes quiet. */
@@ -9213,12 +9173,10 @@ export const m = {
     tailsSubheading: () => t("home", "tails_subheading", "Every tail has more than one job."),
     /** Let members pick their own roles by reacting to a message. */
     tailsTagText: () => t("home", "tails_tag_text", "Let members pick their own roles by reacting to a message."),
-    /** Write your own commands and replies, and change how the bot looks in your server. */
-    tailsWrenchText: () => t("home", "tails_wrench_text", "Write your own commands and replies, and change how the bot looks in your server."),
+    /** Write your own commands and replies, and change how the bot looks in your community. */
+    tailsWrenchText: () => t("home", "tails_wrench_text", "Write your own commands and replies, and change how the bot looks in your community."),
     /** Make it yours */
     tailsWrenchTitle: () => t("home", "tails_wrench_title", "Make it yours"),
-    /** What Mewdeko has been working on */
-    updateEyebrow: () => t("home", "update_eyebrow", "What Mewdeko has been working on"),
     /** Next update */
     updateNext: () => t("home", "update_next", "Next update"),
     /** Previous update */
@@ -9233,8 +9191,8 @@ export const m = {
     boardSubtitle: () => t("invites", "board_subtitle", "Net total is regular minus left minus fake, plus bonus"),
     /** credits {user} */
     codesCredits: (p: { user: P }) => t("invites", "codes_credits", "credits {user}", p),
-    /** This server has no invite codes */
-    codesEmpty: () => t("invites", "codes_empty", "This server has no invite codes"),
+    /** This community has no invite codes */
+    codesEmpty: () => t("invites", "codes_empty", "This community has no invite codes"),
     /** expires */
     codesFlagExpires: () => t("invites", "codes_flag_expires", "expires"),
     /** temporary */
@@ -9267,16 +9225,16 @@ export const m = {
     confirmDeleteCodeMessage: (p: { code: P }) => t("invites", "confirm_delete_code_message", "Delete invite code {code}? Anyone holding the link will no longer be able to use it.", p),
     /** Delete invite */
     confirmDeleteCodeTitle: () => t("invites", "confirm_delete_code_title", "Delete invite"),
-    /** This clears the tally of every inviter who is no longer in the server. */
-    confirmResetLeftMessage: () => t("invites", "confirm_reset_left_message", "This clears the tally of every inviter who is no longer in the server."),
+    /** This clears the tally of every inviter who is no longer in the community. */
+    confirmResetLeftMessage: () => t("invites", "confirm_reset_left_message", "This clears the tally of every inviter who is no longer in the community."),
     /** Reset invites of members who left */
     confirmResetLeftTitle: () => t("invites", "confirm_reset_left_title", "Reset invites of members who left"),
     /** Reset all invites for {user}? This cannot be undone. */
     confirmResetMemberMessage: (p: { user: P }) => t("invites", "confirm_reset_member_message", "Reset all invites for {user}? This cannot be undone.", p),
     /** Reset invites */
     confirmResetMemberTitle: () => t("invites", "confirm_reset_member_title", "Reset invites"),
-    /** This clears every inviter's tally and the join history for this server. It cannot be un... */
-    confirmResetServerMessage: () => t("invites", "confirm_reset_server_message", "This clears every inviter's tally and the join history for this server. It cannot be undone."),
+    /** This clears every inviter's tally and the join history for this community. It cannot be... */
+    confirmResetServerMessage: () => t("invites", "confirm_reset_server_message", "This clears every inviter's tally and the join history for this community. It cannot be undone."),
     /** Reset every invite */
     confirmResetServerTitle: () => t("invites", "confirm_reset_server_title", "Reset every invite"),
     /** Adjust */
@@ -9436,6 +9394,68 @@ export const m = {
     /** {regular} regular · {left} left · {fake} fake */
     topInviterDetail: (p: { fake: P; left: P; regular: P }) => t("invites", "top_inviter_detail", "{regular} regular · {left} left · {fake} fake", p),
   },
+  joinRoleTimeout: {
+    /** Give a role */
+    actionAddRole: () => t("join-role-timeout", "action_add_role", "Give a role"),
+    /** Sent to the member when the action is taken. Leave empty for the default message. */
+    actionMessageHint: () => t("join-role-timeout", "action_message_hint", "Sent to the member when the action is taken. Leave empty for the default message."),
+    /** Action message */
+    actionMessageLabel: () => t("join-role-timeout", "action_message_label", "Action message"),
+    /** You were removed from %server.name% because you did not get a role in time. */
+    actionMessagePlaceholder: () => t("join-role-timeout", "action_message_placeholder", "You were removed from %server.name% because you did not get a role in time."),
+    /** Role to give */
+    actionRoleLabel: () => t("join-role-timeout", "action_role_label", "Role to give"),
+    /** Time out */
+    actionTimeout: () => t("join-role-timeout", "action_timeout", "Time out"),
+    /** Members who do not get one of the required roles in time have the action applied to them. */
+    enabledHint: () => t("join-role-timeout", "enabled_hint", "Members who do not get one of the required roles in time have the action applied to them."),
+    /** The timeout has to be between 1 minute and 30 days */
+    errorInvalidTimeout: () => t("join-role-timeout", "error_invalid_timeout", "The timeout has to be between 1 minute and 30 days"),
+    /** The warning has to be at least 1 minute and shorter than the timeout */
+    errorInvalidWarn: () => t("join-role-timeout", "error_invalid_warn", "The warning has to be at least 1 minute and shorter than the timeout"),
+    /** Pick the role to give */
+    errorMissingActionRole: () => t("join-role-timeout", "error_missing_action_role", "Pick the role to give"),
+    /** Pick at least one required role */
+    errorMissingRequiredRoles: () => t("join-role-timeout", "error_missing_required_roles", "Pick at least one required role"),
+    /** Couldn't save the join role timeout */
+    errorSave: () => t("join-role-timeout", "error_save", "Couldn't save the join role timeout"),
+    /** Members with any of these roles are never acted on. */
+    exemptRolesHint: () => t("join-role-timeout", "exempt_roles_hint", "Members with any of these roles are never acted on."),
+    /** Exempt roles */
+    exemptRolesLabel: () => t("join-role-timeout", "exempt_roles_label", "Exempt roles"),
+    /** Members already here without a required role start counting down when this is turned on. */
+    includeExistingHint: () => t("join-role-timeout", "include_existing_hint", "Members already here without a required role start counting down when this is turned on."),
+    /** Include existing members */
+    includeExistingLabel: () => t("join-role-timeout", "include_existing_label", "Include existing members"),
+    /** {count} counting down */
+    pendingCount: (p: { count: P }) => t("join-role-timeout", "pending_count", "{count} counting down", p),
+    /** Next due */
+    pendingNext: () => t("join-role-timeout", "pending_next", "Next due"),
+    /** Nobody is counting down */
+    pendingNone: () => t("join-role-timeout", "pending_none", "Nobody is counting down"),
+    /** Any one of these roles is enough to stop the countdown. */
+    requiredRolesHint: () => t("join-role-timeout", "required_roles_hint", "Any one of these roles is enough to stop the countdown."),
+    /** Required roles */
+    requiredRolesLabel: () => t("join-role-timeout", "required_roles_label", "Required roles"),
+    /** Select roles */
+    rolesPlaceholder: () => t("join-role-timeout", "roles_placeholder", "Select roles"),
+    /** Act on members who do not get a role within a set time of joining */
+    subtitle: () => t("join-role-timeout", "subtitle", "Act on members who do not get a role within a set time of joining"),
+    /** Time to get a role */
+    timeoutLabel: () => t("join-role-timeout", "timeout_label", "Time to get a role"),
+    /** Join role timeout */
+    title: () => t("join-role-timeout", "title", "Join role timeout"),
+    /** Optional. Leave empty to send no warning. */
+    warnBeforeHint: () => t("join-role-timeout", "warn_before_hint", "Optional. Leave empty to send no warning."),
+    /** Warn before */
+    warnBeforeLabel: () => t("join-role-timeout", "warn_before_label", "Warn before"),
+    /** Sent to the member before the timeout. Leave empty for the default message. */
+    warnMessageHint: () => t("join-role-timeout", "warn_message_hint", "Sent to the member before the timeout. Leave empty for the default message."),
+    /** Warning message */
+    warnMessageLabel: () => t("join-role-timeout", "warn_message_label", "Warning message"),
+    /** Get a role in %server.name% soon or you will be removed. */
+    warnMessagePlaceholder: () => t("join-role-timeout", "warn_message_placeholder", "Get a role in %server.name% soon or you will be removed."),
+  },
   layout: {
     /** Close dialog */
     confirmClose: () => t("layout", "confirm_close", "Close dialog"),
@@ -9463,26 +9483,26 @@ export const m = {
     instanceAvailable: () => t("layout", "instance_available", "Available"),
     /** {bot} avatar */
     instanceAvatarAlt: (p: { bot: P }) => t("layout", "instance_avatar_alt", "{bot} avatar", p),
-    /** Checking which servers you share with each bot... */
-    instanceChecking: () => t("layout", "instance_checking", "Checking which servers you share with each bot..."),
+    /** Checking which communities you share with each bot... */
+    instanceChecking: () => t("layout", "instance_checking", "Checking which communities you share with each bot..."),
     /** Please contact an administrator */
     instanceContactAdmin: () => t("layout", "instance_contact_admin", "Please contact an administrator"),
-    /** Failed to check mutual guilds */
-    instanceErrorMutualGuilds: () => t("layout", "instance_error_mutual_guilds", "Failed to check mutual guilds"),
-    /** Join a server with one of our bots to manage it */
-    instanceJoinServerHint: () => t("layout", "instance_join_server_hint", "Join a server with one of our bots to manage it"),
+    /** Failed to check mutual communities */
+    instanceErrorMutualGuilds: () => t("layout", "instance_error_mutual_guilds", "Failed to check mutual communities"),
+    /** Join a community with one of our bots to manage it */
+    instanceJoinServerHint: () => t("layout", "instance_join_server_hint", "Join a community with one of our bots to manage it"),
     /** Loading bot instances... */
     instanceLoading: () => t("layout", "instance_loading", "Loading bot instances..."),
-    /** No bot instances found in your servers */
-    instanceNoneInServers: () => t("layout", "instance_none_in_servers", "No bot instances found in your servers"),
+    /** No bot instances found in your communities */
+    instanceNoneInServers: () => t("layout", "instance_none_in_servers", "No bot instances found in your communities"),
     /** Port: {port} */
     instancePort: (p: { port: P }) => t("layout", "instance_port", "Port: {port}", p),
     /** Select {bot} bot instance - {status} */
     instanceSelectAria: (p: { bot: P; status: P }) => t("layout", "instance_select_aria", "Select {bot} bot instance - {status}", p),
     /** Status: {status} */
     instanceStatusAria: (p: { status: P }) => t("layout", "instance_status_aria", "Status: {status}", p),
-    /** Choose a bot instance from servers you're in */
-    instanceSubtitle: () => t("layout", "instance_subtitle", "Choose a bot instance from servers you're in"),
+    /** Choose a bot instance from communities you're in */
+    instanceSubtitle: () => t("layout", "instance_subtitle", "Choose a bot instance from communities you're in"),
     /** Select Bot Instance */
     instanceTitle: () => t("layout", "instance_title", "Select Bot Instance"),
     /** Frutiger Aero theme */
@@ -9491,16 +9511,16 @@ export const m = {
     navAria: () => t("layout", "nav_aria", "Main navigation"),
     /** Bot Instances */
     navBotInstances: () => t("layout", "nav_bot_instances", "Bot Instances"),
-    /** Checking server access... */
-    navCheckingServerAccess: () => t("layout", "nav_checking_server_access", "Checking server access..."),
+    /** Checking community access... */
+    navCheckingServerAccess: () => t("layout", "nav_checking_server_access", "Checking community access..."),
     /** Close menu */
     navCloseMenu: () => t("layout", "nav_close_menu", "Close menu"),
     /** Donate */
     navDonate: () => t("layout", "nav_donate", "Donate"),
     /** Failed to load instances */
     navErrorLoadInstances: () => t("layout", "nav_error_load_instances", "Failed to load instances"),
-    /** No available servers */
-    navErrorNoServers: () => t("layout", "nav_error_no_servers", "No available servers"),
+    /** No available communities */
+    navErrorNoServers: () => t("layout", "nav_error_no_servers", "No available communities"),
     /** Loading instances... */
     navLoadingInstances: () => t("layout", "nav_loading_instances", "Loading instances..."),
     /** Mobile Navigation Menu */
@@ -9603,10 +9623,8 @@ export const m = {
     sidebarLogout: () => t("layout", "sidebar_logout", "Logout"),
     /** No features match "{term}" */
     sidebarNoFeaturesMatch: (p: { term: P }) => t("layout", "sidebar_no_features_match", "No features match \"{term}\"", p),
-    /** No server selected */
-    sidebarNoServerSelected: () => t("layout", "sidebar_no_server_selected", "No server selected"),
-    /** No servers found */
-    sidebarNoServersFound: () => t("layout", "sidebar_no_servers_found", "No servers found"),
+    /** No communities found */
+    sidebarNoServersFound: () => t("layout", "sidebar_no_servers_found", "No communities found"),
     /** Open full search */
     sidebarOpenFullSearch: () => t("layout", "sidebar_open_full_search", "Open full search"),
     /** Search everything, including settings inside each page */
@@ -9617,8 +9635,8 @@ export const m = {
     sidebarSearchInsidePages: () => t("layout", "sidebar_search_inside_pages", "Search settings inside pages"),
     /** Select instance */
     sidebarSelectInstance: () => t("layout", "sidebar_select_instance", "Select instance"),
-    /** View Server */
-    sidebarViewServer: () => t("layout", "sidebar_view_server", "View Server"),
+    /** View Community */
+    sidebarViewServer: () => t("layout", "sidebar_view_server", "View Community"),
     /** What's New */
     sidebarWhatsNew: () => t("layout", "sidebar_whats_new", "What's New"),
     /** Greets, triggers, embeds */
@@ -9627,8 +9645,8 @@ export const m = {
     tabbedCommunityDescription: () => t("layout", "tabbed_community_description", "XP, suggestions, tickets"),
     /** Music, voice, giveaways */
     tabbedEntertainmentDescription: () => t("layout", "tabbed_entertainment_description", "Music, voice, giveaways"),
-    /** Server stats and bot status */
-    tabbedOverviewDescription: () => t("layout", "tabbed_overview_description", "Server stats and bot status"),
+    /** Community stats and bot status */
+    tabbedOverviewDescription: () => t("layout", "tabbed_overview_description", "Community stats and bot status"),
     /** Moderation and protection */
     tabbedSecurityDescription: () => t("layout", "tabbed_security_description", "Moderation and protection"),
     /** Bot config and roles */
@@ -9637,14 +9655,14 @@ export const m = {
     tooltipShowHelp: () => t("layout", "tooltip_show_help", "Show help"),
   },
   legal: {
-    /** Activity in a server: message counts, voice time, XP, the invite you joined with, when ... */
-    privacyActivityInAServerMessage: () => t("legal", "privacy_activity_in_a_server_message", "Activity in a server: message counts, voice time, XP, the invite you joined with, when you joined or left, and the roles you held when you left, so they can be restored if you return"),
-    /** AI chat: messages sent in a channel a server has set up for AI chat, kept as conversati... */
-    privacyAiChatMessagesSentIn: () => t("legal", "privacy_ai_chat_messages_sent_in", "AI chat: messages sent in a channel a server has set up for AI chat, kept as conversation history until you clear it by sending \"deletesession\" in that channel."),
+    /** Activity in a community: message counts, voice time, XP, the invite you joined with, wh... */
+    privacyActivityInAServerMessage: () => t("legal", "privacy_activity_in_a_server_message", "Activity in a community: message counts, voice time, XP, the invite you joined with, when you joined or left, and the roles you held when you left, so they can be restored if you return"),
+    /** AI chat: messages sent in a channel a community has set up for AI chat, kept as convers... */
+    privacyAiChatMessagesSentIn: () => t("legal", "privacy_ai_chat_messages_sent_in", "AI chat: messages sent in a channel a community has set up for AI chat, kept as conversation history until you clear it by sending \"deletesession\" in that channel."),
     /** Changes to our privacy policy */
     privacyChangesToOurPrivacyPolicy: () => t("legal", "privacy_changes_to_our_privacy_policy", "Changes to our privacy policy"),
-    /** Data belonging to a Fluxer server, such as XP levels, warnings, suggestions, starboard ... */
-    privacyDataBelongingToADiscord: () => t("legal", "privacy_data_belonging_to_a_discord", "Data belonging to a Fluxer server, such as XP levels, warnings, suggestions, starboard entries, and tickets, is kept for as long as the bot remains in that server, because the features depend on it. It is removed when a server administrator deletes it, when a relevant command is used, or when you ask us to remove it. When the bot is removed from a server, that server's data is permanently deleted after 7 days, which gives an administrator who removed it by mistake time to add it back."),
+    /** Data belonging to a Fluxer community, such as XP levels, warnings, suggestions, starboa... */
+    privacyDataBelongingToADiscord: () => t("legal", "privacy_data_belonging_to_a_discord", "Data belonging to a Fluxer community, such as XP levels, warnings, suggestions, starboard entries, and tickets, is kept for as long as the bot remains in that community, because the features depend on it. It is removed when a community administrator deletes it, when a relevant command is used, or when you ask us to remove it. When the bot is removed from a community, that community's data is permanently deleted after 7 days, which gives an administrator who removed it by mistake time to add it back."),
     /** Deleting your data */
     privacyDeletingYourData: () => t("legal", "privacy_deleting_your_data", "Deleting your data"),
     /** Privacy Policy for Mewdeko */
@@ -9663,8 +9681,8 @@ export const m = {
     privacyHowToContactUs: () => t("legal", "privacy_how_to_contact_us", "How to contact us"),
     /** How will we use your data? */
     privacyHowWillWeUseYour: () => t("legal", "privacy_how_will_we_use_your", "How will we use your data?"),
-    /** If a server sets up AI chat, the messages sent in that server's AI chat channel, along ... */
-    privacyIfAServerSetsUp: () => t("legal", "privacy_if_a_server_sets_up", "If a server sets up AI chat, the messages sent in that server's AI chat channel, along with recent conversation history, are sent to the AI provider that server chose (OpenAI, Groq or Anthropic) using that server's own account with the provider. That provider's privacy policy applies to what it receives."),
+    /** If a community sets up AI chat, the messages sent in that community's AI chat channel, ... */
+    privacyIfAServerSetsUp: () => t("legal", "privacy_if_a_server_sets_up", "If a community sets up AI chat, the messages sent in that community's AI chat channel, along with recent conversation history, are sent to the AI provider that community chose (OpenAI, Groq or Anthropic) using that community's own account with the provider. That provider's privacy policy applies to what it receives."),
     /** If you have any questions about Mewdeko's privacy policy, the data we hold on you, or y... */
     privacyIfYouHaveAnyQuestions: (p: { email: P }) => t("legal", "privacy_if_you_have_any_questions", "If you have any questions about Mewdeko's privacy policy, the data we hold on you, or you would like to exercise one of your data protection rights, please do not hesitate to contact us at our email: {email}", p),
     /** If you make a request, we have one month to respond to you. If you would like to exerci... */
@@ -9677,8 +9695,8 @@ export const m = {
     privacyMakeImprovementsBasedOnUser: () => t("legal", "privacy_make_improvements_based_on_user", "Make improvements based on user feedback"),
     /** Measure how the bot and dashboard are used, such as which commands are run and which da... */
     privacyMeasureHowTheBotAnd: () => t("legal", "privacy_measure_how_the_bot_and", "Measure how the bot and dashboard are used, such as which commands are run and which dashboard pages are visited, so we know what to improve"),
-    /** Message logs: when a server enables them, the old and new text of edited and deleted me... */
-    privacyMessageLogsWhenAServer: () => t("legal", "privacy_message_logs_when_a_server", "Message logs: when a server enables them, the old and new text of edited and deleted messages is posted to that server's log channel in Fluxer. It is not kept in our database."),
+    /** Message logs: when a community enables them, the old and new text of edited and deleted... */
+    privacyMessageLogsWhenAServer: () => t("legal", "privacy_message_logs_when_a_server", "Message logs: when a community enables them, the old and new text of edited and deleted messages is posted to that community's log channel in Fluxer. It is not kept in our database."),
     /** Mewdeko collects the following data: */
     privacyMewdekoCollectsTheFollowingData: () => t("legal", "privacy_mewdeko_collects_the_following_data", "Mewdeko collects the following data:"),
     /** Mewdeko collects your data so that we can: */
@@ -9688,43 +9706,43 @@ export const m = {
     /** Mewdeko Mobile can be pointed at a self-hosted Mewdeko dashboard instead of the officia... */
     privacyMewdekoMobileCanBePointed: () => t("legal", "privacy_mewdeko_mobile_can_be_pointed", "Mewdeko Mobile can be pointed at a self-hosted Mewdeko dashboard instead of the official one. If you do that, your data goes to whoever runs that deployment rather than to us, and their own policy applies."),
     /** Mewdeko Mobile signs you in with Fluxer. It does not create a separate account and it n... */
-    privacyMewdekoMobileSignsYouIn: () => t("legal", "privacy_mewdeko_mobile_signs_you_in", "Mewdeko Mobile signs you in with Fluxer. It does not create a separate account and it never sees or stores your Fluxer password. When you sign in, your Fluxer user ID, username, and avatar are sent to the dashboard so it can show you the servers you administer."),
+    privacyMewdekoMobileSignsYouIn: () => t("legal", "privacy_mewdeko_mobile_signs_you_in", "Mewdeko Mobile signs you in with Fluxer. It does not create a separate account and it never sees or stores your Fluxer password. When you sign in, your Fluxer user ID, username, and avatar are sent to the dashboard so it can show you the communities you administer."),
     /** Mewdeko reads the messages in channels it can see so that its features work. Most messa... */
     privacyMewdekoReadsTheMessagesIn: () => t("legal", "privacy_mewdeko_reads_the_messages_in", "Mewdeko reads the messages in channels it can see so that its features work. Most messages are checked and then forgotten: prefix commands, chat triggers, word and link filters, anti-spam, highlights, counting, games, AFK and XP all read a message without keeping its text. XP and message statistics keep counts, never the text itself."),
     /** Mewdeko stores your data in a PostgreSQL database and a Redis cache, both hosted at Het... */
     privacyMewdekoStoresYourDataIn: () => t("legal", "privacy_mewdeko_stores_your_data_in", "Mewdeko stores your data in a PostgreSQL database and a Redis cache, both hosted at Hetzner in Germany. Access to them requires authentication and neither is reachable from the public internet. Traffic between you and the dashboard or the mobile app is encrypted with HTTPS."),
     /** Operate the bot and provide functionality */
     privacyOperateTheBotAndProvide: () => t("legal", "privacy_operate_the_bot_and_provide", "Operate the bot and provide functionality"),
-    /** Send messages, join or leave, or change your roles, nickname or status in a server wher... */
-    privacySendMessagesJoinOrLeave: () => t("legal", "privacy_send_messages_join_or_leave", "Send messages, join or leave, or change your roles, nickname or status in a server where the bot is present and the relevant feature is enabled"),
-    /** Server ID, and the channel and role IDs used in server settings */
-    privacyServerIdAndTheChannel: () => t("legal", "privacy_server_id_and_the_channel", "Server ID, and the channel and role IDs used in server settings"),
+    /** Send messages, join or leave, or change your roles, nickname or status in a community w... */
+    privacySendMessagesJoinOrLeave: () => t("legal", "privacy_send_messages_join_or_leave", "Send messages, join or leave, or change your roles, nickname or status in a community where the bot is present and the relevant feature is enabled"),
+    /** Community ID, and the channel and role IDs used in community settings */
+    privacyServerIdAndTheChannel: () => t("legal", "privacy_server_id_and_the_channel", "Community ID, and the channel and role IDs used in community settings"),
     /** Should you wish to report a complaint or if you feel that Mewdeko has not addressed you... */
     privacyShouldYouWishToReport: () => t("legal", "privacy_should_you_wish_to_report", "Should you wish to report a complaint or if you feel that Mewdeko has not addressed your concern in a satisfactory manner, you may contact the Information Commissioner’s Office (or your local data protection authority)."),
-    /** Show server administrators an audit log of who changed a setting through the dashboard,... */
-    privacyShowServerAdministratorsAnAudit: () => t("legal", "privacy_show_server_administrators_an_audit", "Show server administrators an audit log of who changed a setting through the dashboard, and what they changed"),
+    /** Show community administrators an audit log of who changed a setting through the dashboa... */
+    privacyShowServerAdministratorsAnAudit: () => t("legal", "privacy_show_server_administrators_an_audit", "Show community administrators an audit log of who changed a setting through the dashboard, and what they changed"),
     /** Sign-in sessions for the dashboard and the mobile app expire after 30 days without use,... */
     privacySignInSessionsForThe: () => t("legal", "privacy_sign_in_sessions_for_the", "Sign-in sessions for the dashboard and the mobile app expire after 30 days without use, and are destroyed immediately when you sign out or delete your data."),
     /** Sign in to the dashboard or the Mewdeko Mobile app with Fluxer. We receive your user ID... */
-    privacySignInToTheDashboard: () => t("legal", "privacy_sign_in_to_the_dashboard", "Sign in to the dashboard or the Mewdeko Mobile app with Fluxer. We receive your user ID, username, and avatar from Fluxer so we can show you the servers you administer"),
+    privacySignInToTheDashboard: () => t("legal", "privacy_sign_in_to_the_dashboard", "Sign in to the dashboard or the Mewdeko Mobile app with Fluxer. We receive your user ID, username, and avatar from Fluxer so we can show you the communities you administer"),
     /** Sign-in tokens issued to you when you authorise the dashboard or the mobile app through... */
     privacySignInTokensIssuedTo: () => t("legal", "privacy_sign_in_tokens_issued_to", "Sign-in tokens issued to you when you authorise the dashboard or the mobile app through Fluxer"),
-    /** Snipe: when a server turns it on, the most recent deleted and edited messages in each c... */
-    privacySnipeWhenAServerTurns: () => t("legal", "privacy_snipe_when_a_server_turns", "Snipe: when a server turns it on, the most recent deleted and edited messages in each channel are kept so members can view them. They are deleted after 30 days."),
+    /** Snipe: when a community turns it on, the most recent deleted and edited messages in eac... */
+    privacySnipeWhenAServerTurns: () => t("legal", "privacy_snipe_when_a_server_turns", "Snipe: when a community turns it on, the most recent deleted and edited messages in each channel are kept so members can view them. They are deleted after 30 days."),
     /** Some features do keep message text: */
     privacySomeFeaturesDoKeepMessage: () => t("legal", "privacy_some_features_do_keep_message", "Some features do keep message text:"),
-    /** Some features keep their own history and expose their own retention setting, which serv... */
-    privacySomeFeaturesKeepTheirOwn: () => t("legal", "privacy_some_features_keep_their_own", "Some features keep their own history and expose their own retention setting, which server administrators control. Others, such as XP and reputation, reduce scores over a period of inactivity rather than deleting the record."),
+    /** Some features keep their own history and expose their own retention setting, which comm... */
+    privacySomeFeaturesKeepTheirOwn: () => t("legal", "privacy_some_features_keep_their_own", "Some features keep their own history and expose their own retention setting, which community administrators control. Others, such as XP and reputation, reduce scores over a period of inactivity rather than deleting the record."),
     /** Some features read your Fluxer status and activities, such as the game you are playing ... */
-    privacySomeFeaturesReadYourDiscord: () => t("legal", "privacy_some_features_read_your_discord", "Some features read your Fluxer status and activities, such as the game you are playing and your custom status. They are used by Status Roles to give or remove roles and to show how many members are online. If a server turns on activity tracking in Server Stats, the bot also records which activities members spend time on so that server's staff can see what is popular. Your custom status text is read by Status Roles but never stored."),
-    /** Starboard: a copy of messages that reach a server's starboard. */
-    privacyStarboardACopyOfMessages: () => t("legal", "privacy_starboard_a_copy_of_messages", "Starboard: a copy of messages that reach a server's starboard."),
+    privacySomeFeaturesReadYourDiscord: () => t("legal", "privacy_some_features_read_your_discord", "Some features read your Fluxer status and activities, such as the game you are playing and your custom status. They are used by Status Roles to give or remove roles and to show how many members are online. If a community turns on activity tracking in Community Stats, the bot also records which activities members spend time on so that community's staff can see what is popular. Your custom status text is read by Status Roles but never stored."),
+    /** Starboard: a copy of messages that reach a community's starboard. */
+    privacyStarboardACopyOfMessages: () => t("legal", "privacy_starboard_a_copy_of_messages", "Starboard: a copy of messages that reach a community's starboard."),
     /** Status and activities */
     privacyStatusAndActivities: () => t("legal", "privacy_status_and_activities", "Status and activities"),
     /** Suggestions, confessions, AFK messages and highlight words: the text you submit to thes... */
     privacySuggestionsConfessionsAfkMessagesAnd: () => t("legal", "privacy_suggestions_confessions_afk_messages_and", "Suggestions, confessions, AFK messages and highlight words: the text you submit to these features."),
-    /** Support tickets and Chat Saver: transcripts of ticket channels and messages a server's ... */
-    privacySupportTicketsAndChatSaver: () => t("legal", "privacy_support_tickets_and_chat_saver", "Support tickets and Chat Saver: transcripts of ticket channels and messages a server's staff choose to save, including attachments."),
+    /** Support tickets and Chat Saver: transcripts of ticket channels and messages a community... */
+    privacySupportTicketsAndChatSaver: () => t("legal", "privacy_support_tickets_and_chat_saver", "Support tickets and Chat Saver: transcripts of ticket channels and messages a community's staff choose to save, including attachments."),
     /** The content of messages, where a feature needs it (see <a class="underline" href="#mess... */
     privacyTheContentOfMessagesWhere: () => t("legal", "privacy_the_content_of_messages_where", "The content of messages, where a feature needs it (see <a class=\"underline\" href=\"#message-content\">Message Content</a> below)"),
     /** The Mewdeko Mobile app */
@@ -9743,8 +9761,8 @@ export const m = {
     privacyThingsYouCreateWithThe: () => t("legal", "privacy_things_you_create_with_the", "Things you create with the bot, such as suggestions, confessions, tickets, reminders, birthdays, AFK messages and highlight words"),
     /** This privacy policy explains how we use the personal data we collect from you when you ... */
     privacyThisPrivacyPolicyExplainsHow: () => t("legal", "privacy_this_privacy_policy_explains_how", "This privacy policy explains how we use the personal data we collect from you when you use Mewdeko. It covers the Fluxer bot, this dashboard, and the Mewdeko Mobile app for Android and iOS."),
-    /** Usage records, such as which commands were run in which server and which dashboard page... */
-    privacyUsageRecordsSuchAsWhich: () => t("legal", "privacy_usage_records_such_as_which", "Usage records, such as which commands were run in which server and which dashboard pages were visited, are deleted after 30 days. They do not contain your user ID; dashboard visits are recorded with a short anonymous hash instead. Daily totals built from them are kept."),
+    /** Usage records, such as which commands were run in which community and which dashboard p... */
+    privacyUsageRecordsSuchAsWhich: () => t("legal", "privacy_usage_records_such_as_which", "Usage records, such as which commands were run in which community and which dashboard pages were visited, are deleted after 30 days. They do not contain your user ID; dashboard visits are recorded with a short anonymous hash instead. Daily totals built from them are kept."),
     /** Use or view our bot via your browser’s cookies */
     privacyUseOrViewOurBot: () => t("legal", "privacy_use_or_view_our_bot", "Use or view our bot via your browser’s cookies"),
     /** Usernames, nicknames and avatars */
@@ -9795,10 +9813,10 @@ export const m = {
     termsNoWarranty: () => t("legal", "terms_no_warranty", "No Warranty"),
     /** Service Termination */
     termsServiceTermination: () => t("legal", "terms_service_termination", "Service Termination"),
-    /** Some features connect to services we do not control, such as the AI providers a server ... */
-    termsSomeFeaturesConnectToServices: () => t("legal", "terms_some_features_connect_to_services", "Some features connect to services we do not control, such as the AI providers a server chooses for AI chat, music sources, and social feeds. Your use of those services is subject to their own terms, and we are not responsible for what they provide."),
-    /** Spam, or flood servers or users with messages or commands */
-    termsSpamOrFloodServersOr: () => t("legal", "terms_spam_or_flood_servers_or", "Spam, or flood servers or users with messages or commands"),
+    /** Some features connect to services we do not control, such as the AI providers a communi... */
+    termsSomeFeaturesConnectToServices: () => t("legal", "terms_some_features_connect_to_services", "Some features connect to services we do not control, such as the AI providers a community chooses for AI chat, music sources, and social feeds. Your use of those services is subject to their own terms, and we are not responsible for what they provide."),
+    /** Spam, or flood communities or users with messages or commands */
+    termsSpamOrFloodServersOr: () => t("legal", "terms_spam_or_flood_servers_or", "Spam, or flood communities or users with messages or commands"),
     /** Terms of Service for Mewdeko */
     termsTermsOfServiceForMewdeko: () => t("legal", "terms_terms_of_service_for_mewdeko", "Terms of Service for Mewdeko"),
     /** The Service */
@@ -9835,12 +9853,8 @@ export const m = {
     hostLabel: () => t("linkfix", "host_label", "Fixing host"),
     /** Use default */
     hostReset: () => t("linkfix", "host_reset", "Use default"),
-    /** Link fixing settings saved */
-    notifySaved: () => t("linkfix", "notify_saved", "Link fixing settings saved"),
     /** Reply to social media links with a copy that embeds properly */
     pageSubtitle: () => t("linkfix", "page_subtitle", "Reply to social media links with a copy that embeds properly"),
-    /** Save hosts */
-    save: () => t("linkfix", "save", "Save hosts"),
     /** Reply to {site} links with the fixed link */
     siteHint: (p: { site: P }) => t("linkfix", "site_hint", "Reply to {site} links with the fixed link", p),
     /** Turn sites on or off, and pick the embed fixing service each one uses */
@@ -9863,8 +9877,8 @@ export const m = {
     boardRows: (p: { count: P }) => t("liveboards", "board_rows", "· {count} rows", p),
     /** No live boards yet. Add one and the bot posts and pins it right away. */
     boardsEmpty: () => t("liveboards", "boards_empty", "No live boards yet. Add one and the bot posts and pins it right away."),
-    /** Up to 10 per server, each refreshed on its own interval */
-    boardsSubtitle: () => t("liveboards", "boards_subtitle", "Up to 10 per server, each refreshed on its own interval"),
+    /** Up to 10 per community, each refreshed on its own interval */
+    boardsSubtitle: () => t("liveboards", "boards_subtitle", "Up to 10 per community, each refreshed on its own interval"),
     /** Where the message is posted */
     channelHint: () => t("liveboards", "channel_hint", "Where the message is posted"),
     /** Delete the {kind} in #{channel}? Its message is removed too. */
@@ -9967,8 +9981,8 @@ export const m = {
     rowsHint: () => t("liveboards", "rows_hint", "3 to 25"),
     /** Send a report now */
     sendNow: () => t("liveboards", "send_now", "Send a report now"),
-    /** Server Reports */
-    tabReports: () => t("liveboards", "tab_reports", "Server Reports"),
+    /** Community Reports */
+    tabReports: () => t("liveboards", "tab_reports", "Community Reports"),
     /** Leaderboards use it directly; charts use up to 90 days for all time */
     windowHint: () => t("liveboards", "window_hint", "Leaderboards use it directly; charts use up to 90 days for all time"),
   },
@@ -9985,8 +9999,8 @@ export const m = {
     logtypeChannelDestroyedDescription: () => t("logging", "logtype_channel_destroyed_description", "Logs when a channel is deleted"),
     /** Logs when channel properties are updated */
     logtypeChannelUpdatedDescription: () => t("logging", "logtype_channel_updated_description", "Logs when channel properties are updated"),
-    /** Logs when a server event is created */
-    logtypeEventCreatedDescription: () => t("logging", "logtype_event_created_description", "Logs when a server event is created"),
+    /** Logs when a community event is created */
+    logtypeEventCreatedDescription: () => t("logging", "logtype_event_created_description", "Logs when a community event is created"),
     /** Logs when an invite is created */
     logtypeInviteCreatedDescription: () => t("logging", "logtype_invite_created_description", "Logs when an invite is created"),
     /** Logs when an invite is deleted */
@@ -10015,8 +10029,8 @@ export const m = {
     logtypeRoleDeletedDescription: () => t("logging", "logtype_role_deleted_description", "Logs when a role is deleted"),
     /** Logs when role properties are updated */
     logtypeRoleUpdatedDescription: () => t("logging", "logtype_role_updated_description", "Logs when role properties are updated"),
-    /** Logs when server settings change */
-    logtypeServerUpdatedDescription: () => t("logging", "logtype_server_updated_description", "Logs when server settings change"),
+    /** Logs when community settings change */
+    logtypeServerUpdatedDescription: () => t("logging", "logtype_server_updated_description", "Logs when community settings change"),
     /** Logs when a new thread is created */
     logtypeThreadCreatedDescription: () => t("logging", "logtype_thread_created_description", "Logs when a new thread is created"),
     /** Logs when a thread is deleted */
@@ -10029,12 +10043,12 @@ export const m = {
     logtypeUserBannedDescription: () => t("logging", "logtype_user_banned_description", "Logs when a user is banned"),
     /** User Joined */
     logtypeUserJoined: () => t("logging", "logtype_user_joined", "User Joined"),
-    /** Logs when a user joins the server */
-    logtypeUserJoinedDescription: () => t("logging", "logtype_user_joined_description", "Logs when a user joins the server"),
+    /** Logs when a user joins the community */
+    logtypeUserJoinedDescription: () => t("logging", "logtype_user_joined_description", "Logs when a user joins the community"),
     /** User Left */
     logtypeUserLeft: () => t("logging", "logtype_user_left", "User Left"),
-    /** Logs when a user leaves the server */
-    logtypeUserLeftDescription: () => t("logging", "logtype_user_left_description", "Logs when a user leaves the server"),
+    /** Logs when a user leaves the community */
+    logtypeUserLeftDescription: () => t("logging", "logtype_user_left_description", "Logs when a user leaves the community"),
     /** User Muted */
     logtypeUserMuted: () => t("logging", "logtype_user_muted", "User Muted"),
     /** Logs when a user is muted */
@@ -10117,8 +10131,8 @@ export const m = {
     pageIgnoredEmpty: () => t("logging", "page_ignored_empty", "No channels are ignored. All events will be logged according to your channel configurations."),
     /** Search channels... */
     pageSearchChannelsPlaceholder: () => t("logging", "page_search_channels_placeholder", "Search channels..."),
-    /** Track important server events like joins, leaves, message edits, and moderation actions... */
-    pageSetupBody: () => t("logging", "page_setup_body", "Track important server events like joins, leaves, message edits, and moderation actions by assigning channels below."),
+    /** Track important community events like joins, leaves, message edits, and moderation acti... */
+    pageSetupBody: () => t("logging", "page_setup_body", "Track important community events like joins, leaves, message edits, and moderation actions by assigning channels below."),
     /** 💡 Start with "User Joined" and "Message Deleted" for basic monitoring */
     pageSetupTip: () => t("logging", "page_setup_tip", "💡 Start with \"User Joined\" and \"Message Deleted\" for basic monitoring"),
     /** Set up Event Logging */
@@ -10137,8 +10151,8 @@ export const m = {
     achBadgeSlotAria: (p: { number: P }) => t("me", "ach_badge_slot_aria", "Badge slot {number}", p),
     /** Always */
     achDmAlways: () => t("me", "ach_dm_always", "Always"),
-    /** Global points · {servers} servers */
-    achGlobalPoints: (p: { servers: P }) => t("me", "ach_global_points", "Global points · {servers} servers", p),
+    /** Global points · {servers} communities */
+    achGlobalPoints: (p: { servers: P }) => t("me", "ach_global_points", "Global points · {servers} communities", p),
     /** Points · #{rank} */
     achPointsRanked: (p: { rank: P }) => t("me", "ach_points_ranked", "Points · #{rank}", p),
     /** {points} points to {tier} */
@@ -10157,14 +10171,14 @@ export const m = {
     afkSince: (p: { time: P }) => t("me", "afk_since", "Since {time}", p),
     /** AFK Status */
     afkStatus: () => t("me", "afk_status", "AFK Status"),
-    /** AFK status removed! */
-    afkStatusRemoved: () => t("me", "afk_status_removed", "AFK status removed!"),
-    /** AFK status set! */
-    afkStatusSet: () => t("me", "afk_status_set", "AFK status set!"),
+    /** AFK status removed */
+    afkStatusRemoved: () => t("me", "afk_status_removed", "AFK status removed"),
+    /** AFK status set */
+    afkStatusSet: () => t("me", "afk_status_set", "AFK status set"),
     /** Allow birthday celebrations */
     allowBirthdayCelebrations: () => t("me", "allow_birthday_celebrations", "Allow birthday celebrations"),
-    /** Announce my unlocks in servers */
-    announceMyUnlocksInServers: () => t("me", "announce_my_unlocks_in_servers", "Announce my unlocks in servers"),
+    /** Announce my unlocks in communities */
+    announceMyUnlocksInServers: () => t("me", "announce_my_unlocks_in_servers", "Announce my unlocks in communities"),
     /** Auto Pronoun Fetching */
     autoPronounFetching: () => t("me", "auto_pronoun_fetching", "Auto Pronoun Fetching"),
     /** Bio */
@@ -10181,12 +10195,12 @@ export const m = {
     blockWelcomeDms: () => t("me", "block_welcome_dms", "Block Welcome DMs"),
     /** Button action */
     buttonAction: () => t("me", "button_action", "Button action"),
-    /** Change Server */
-    changeServer: () => t("me", "change_server", "Change Server"),
-    /** Choose a Server */
-    chooseAServer: () => t("me", "choose_a_server", "Choose a Server"),
-    /** Choose Server */
-    chooseServer: () => t("me", "choose_server", "Choose Server"),
+    /** Change Community */
+    changeServer: () => t("me", "change_server", "Change Community"),
+    /** Choose a Community */
+    chooseAServer: () => t("me", "choose_a_server", "Choose a Community"),
+    /** Choose Community */
+    chooseServer: () => t("me", "choose_server", "Choose Community"),
     /** Complete authentication in the opened window */
     completeAuthenticationInTheOpened: () => t("me", "complete_authentication_in_the_opened", "Complete authentication in the opened window"),
     /** Connect Last.fm */
@@ -10209,22 +10223,22 @@ export const m = {
     disableLevelUpNotifications: () => t("me", "disable_level_up_notifications", "Disable level-up notifications"),
     /** Disable PronounDB integration */
     disablePronoundbIntegration: () => t("me", "disable_pronoundb_integration", "Disable PronounDB integration"),
-    /** Earning is paused in this server, so nothing new unlocks right now. */
-    earningIsPausedInThisServer: () => t("me", "earning_is_paused_in_this_server", "Earning is paused in this server, so nothing new unlocks right now."),
+    /** Earning is paused in this community, so nothing new unlocks right now. */
+    earningIsPausedInThisServer: () => t("me", "earning_is_paused_in_this_server", "Earning is paused in this community, so nothing new unlocks right now."),
     /** Enter AFK message (optional)... */
     enterAfkMessageOptional: () => t("me", "enter_afk_message_optional", "Enter AFK message (optional)..."),
     /** Failed to add highlight */
     failedToAddHighlight: () => t("me", "failed_to_add_highlight", "Failed to add highlight"),
     /** Failed to load profile data */
     failedToLoadProfileData: () => t("me", "failed_to_load_profile_data", "Failed to load profile data"),
-    /** Failed to load server data */
-    failedToLoadServerData: () => t("me", "failed_to_load_server_data", "Failed to load server data"),
+    /** Failed to load community data */
+    failedToLoadServerData: () => t("me", "failed_to_load_server_data", "Failed to load community data"),
     /** Failed to remove AFK status */
     failedToRemoveAfkStatus: () => t("me", "failed_to_remove_afk_status", "Failed to remove AFK status"),
     /** Failed to remove highlight */
     failedToRemoveHighlight: () => t("me", "failed_to_remove_highlight", "Failed to remove highlight"),
-    /** Failed to reset guild wizard */
-    failedToResetGuildWizard: () => t("me", "failed_to_reset_guild_wizard", "Failed to reset guild wizard"),
+    /** Failed to reset community wizard */
+    failedToResetGuildWizard: () => t("me", "failed_to_reset_guild_wizard", "Failed to reset community wizard"),
     /** Failed to reset wizard */
     failedToResetWizard: () => t("me", "failed_to_reset_wizard", "Failed to reset wizard"),
     /** Failed to save profile */
@@ -10239,10 +10253,10 @@ export const m = {
     failedToUpdatePreference: () => t("me", "failed_to_update_preference", "Failed to update preference"),
     /** Guided Setup */
     guidedSetup: () => t("me", "guided_setup", "Guided Setup"),
-    /** Highlight added! */
-    highlightAdded: () => t("me", "highlight_added", "Highlight added!"),
-    /** Highlight removed! */
-    highlightRemoved: () => t("me", "highlight_removed", "Highlight removed!"),
+    /** Highlight added */
+    highlightAdded: () => t("me", "highlight_added", "Highlight added"),
+    /** Highlight removed */
+    highlightRemoved: () => t("me", "highlight_removed", "Highlight removed"),
     /** Last.fm account unlinked */
     lastFmAccountUnlinked: () => t("me", "last_fm_account_unlinked", "Last.fm account unlinked"),
     /** Last.fm Scrobbling */
@@ -10313,28 +10327,28 @@ export const m = {
     profileBadges: () => t("me", "profile_badges", "Profile badges"),
     /** Profile Color */
     profileColor: () => t("me", "profile_color", "Profile Color"),
-    /** Profile updated! */
-    profileUpdated: () => t("me", "profile_updated", "Profile updated!"),
+    /** Profile updated */
+    profileUpdated: () => t("me", "profile_updated", "Profile updated"),
     /** Pronouns: */
     pronouns2: () => t("me", "pronouns_2", "Pronouns:"),
     /** Recent Tracks */
     recentTracks: () => t("me", "recent_tracks", "Recent Tracks"),
     /** Reset Setup Wizard */
     resetSetupWizard: () => t("me", "reset_setup_wizard", "Reset Setup Wizard"),
-    /** Reset setup wizard for this server */
-    resetSetupWizardForThis: () => t("me", "reset_setup_wizard_for_this", "Reset setup wizard for this server"),
+    /** Reset setup wizard for this community */
+    resetSetupWizardForThis: () => t("me", "reset_setup_wizard_for_this", "Reset setup wizard for this community"),
     /** Reset Wizard */
     resetWizard: () => t("me", "reset_wizard", "Reset Wizard"),
     /** Resetting... */
     resetting: () => t("me", "resetting", "Resetting..."),
     /** Highlights ({count}) */
     sectionHighlights: (p: { count: P }) => t("me", "section_highlights", "Highlights ({count})", p),
-    /** See setup guides again for all servers */
-    seeSetupGuidesAgainFor: () => t("me", "see_setup_guides_again_for", "See setup guides again for all servers"),
-    /** Select a server to manage your highlights, AFK status, and view your activity */
-    selectAServerToManage: () => t("me", "select_a_server_to_manage", "Select a server to manage your highlights, AFK status, and view your activity"),
-    /** Settings specific to each server */
-    settingsSpecificToEachServer: () => t("me", "settings_specific_to_each_server", "Settings specific to each server"),
+    /** See setup guides again for all communities */
+    seeSetupGuidesAgainFor: () => t("me", "see_setup_guides_again_for", "See setup guides again for all communities"),
+    /** Select a community to manage your highlights, AFK status, and view your activity */
+    selectAServerToManage: () => t("me", "select_a_server_to_manage", "Select a community to manage your highlights, AFK status, and view your activity"),
+    /** Settings specific to each community */
+    settingsSpecificToEachServer: () => t("me", "settings_specific_to_each_server", "Settings specific to each community"),
     /** Show me on leaderboards */
     showMeOnLeaderboards: () => t("me", "show_me_on_leaderboards", "Show me on leaderboards"),
     /** Stars */
@@ -10349,40 +10363,40 @@ export const m = {
     switchFriendCode: () => t("me", "switch_friend_code", "Switch Friend Code"),
     /** Tell others about yourself... */
     tellOthersAboutYourself: () => t("me", "tell_others_about_yourself", "Tell others about yourself..."),
-    /** These apply in every server. */
-    theseApplyInEveryServer: () => t("me", "these_apply_in_every_server", "These apply in every server."),
+    /** These apply in every community. */
+    theseApplyInEveryServer: () => t("me", "these_apply_in_every_server", "These apply in every community."),
     /** they/them, she/her, he/him... */
     theyThemSheHerHe: () => t("me", "they_them_she_her_he", "they/them, she/her, he/him..."),
-    /** Birthday announcements disabled! */
-    toastBirthdayAnnouncementsDisabled: () => t("me", "toast_birthday_announcements_disabled", "Birthday announcements disabled!"),
-    /** Birthday announcements enabled! */
-    toastBirthdayAnnouncementsEnabled: () => t("me", "toast_birthday_announcements_enabled", "Birthday announcements enabled!"),
-    /** Guided setup disabled! */
-    toastGuidedSetupDisabled: () => t("me", "toast_guided_setup_disabled", "Guided setup disabled!"),
-    /** Guided setup enabled! */
-    toastGuidedSetupEnabled: () => t("me", "toast_guided_setup_enabled", "Guided setup enabled!"),
-    /** Setup wizard reset for {server}! */
-    toastGuildWizardReset: (p: { server: P }) => t("me", "toast_guild_wizard_reset", "Setup wizard reset for {server}!", p),
-    /** Level-up pings disabled! */
-    toastLevelUpPingsDisabled: () => t("me", "toast_level_up_pings_disabled", "Level-up pings disabled!"),
-    /** Level-up pings enabled! */
-    toastLevelUpPingsEnabled: () => t("me", "toast_level_up_pings_enabled", "Level-up pings enabled!"),
-    /** Pronoun fetching disabled! */
-    toastPronounFetchingDisabled: () => t("me", "toast_pronoun_fetching_disabled", "Pronoun fetching disabled!"),
-    /** Pronoun fetching enabled! */
-    toastPronounFetchingEnabled: () => t("me", "toast_pronoun_fetching_enabled", "Pronoun fetching enabled!"),
+    /** Birthday announcements disabled */
+    toastBirthdayAnnouncementsDisabled: () => t("me", "toast_birthday_announcements_disabled", "Birthday announcements disabled"),
+    /** Birthday announcements enabled */
+    toastBirthdayAnnouncementsEnabled: () => t("me", "toast_birthday_announcements_enabled", "Birthday announcements enabled"),
+    /** Guided setup disabled */
+    toastGuidedSetupDisabled: () => t("me", "toast_guided_setup_disabled", "Guided setup disabled"),
+    /** Guided setup enabled */
+    toastGuidedSetupEnabled: () => t("me", "toast_guided_setup_enabled", "Guided setup enabled"),
+    /** Setup wizard reset for {server} */
+    toastGuildWizardReset: (p: { server: P }) => t("me", "toast_guild_wizard_reset", "Setup wizard reset for {server}", p),
+    /** Level-up pings disabled */
+    toastLevelUpPingsDisabled: () => t("me", "toast_level_up_pings_disabled", "Level-up pings disabled"),
+    /** Level-up pings enabled */
+    toastLevelUpPingsEnabled: () => t("me", "toast_level_up_pings_enabled", "Level-up pings enabled"),
+    /** Pronoun fetching disabled */
+    toastPronounFetchingDisabled: () => t("me", "toast_pronoun_fetching_disabled", "Pronoun fetching disabled"),
+    /** Pronoun fetching enabled */
+    toastPronounFetchingEnabled: () => t("me", "toast_pronoun_fetching_enabled", "Pronoun fetching enabled"),
     /** Scrobbling disabled */
     toastScrobblingDisabled: () => t("me", "toast_scrobbling_disabled", "Scrobbling disabled"),
     /** Scrobbling enabled */
     toastScrobblingEnabled: () => t("me", "toast_scrobbling_enabled", "Scrobbling enabled"),
-    /** Stats tracking allowed! */
-    toastStatsTrackingAllowed: () => t("me", "toast_stats_tracking_allowed", "Stats tracking allowed!"),
-    /** Stats tracking blocked! */
-    toastStatsTrackingBlocked: () => t("me", "toast_stats_tracking_blocked", "Stats tracking blocked!"),
-    /** Welcome DMs allowed! */
-    toastWelcomeDmsAllowed: () => t("me", "toast_welcome_dms_allowed", "Welcome DMs allowed!"),
-    /** Welcome DMs blocked! */
-    toastWelcomeDmsBlocked: () => t("me", "toast_welcome_dms_blocked", "Welcome DMs blocked!"),
+    /** Stats tracking allowed */
+    toastStatsTrackingAllowed: () => t("me", "toast_stats_tracking_allowed", "Stats tracking allowed"),
+    /** Stats tracking blocked */
+    toastStatsTrackingBlocked: () => t("me", "toast_stats_tracking_blocked", "Stats tracking blocked"),
+    /** Welcome DMs allowed */
+    toastWelcomeDmsAllowed: () => t("me", "toast_welcome_dms_allowed", "Welcome DMs allowed"),
+    /** Welcome DMs blocked */
+    toastWelcomeDmsBlocked: () => t("me", "toast_welcome_dms_blocked", "Welcome DMs blocked"),
     /** Wizard state reset! You'll see setup guides again. */
     toastWizardReset: () => t("me", "toast_wizard_reset", "Wizard state reset! You'll see setup guides again."),
     /** Top Albums */
@@ -10397,10 +10411,10 @@ export const m = {
     unlocksInMyDms: () => t("me", "unlocks_in_my_dms", "Unlocks in my DMs"),
     /** Use OpenDyslexic across the dashboard (this device only) */
     useOpendyslexicAcrossTheDashboard: () => t("me", "use_opendyslexic_across_the_dashboard", "Use OpenDyslexic across the dashboard (this device only)"),
-    /** Your personal settings and activity for this server */
-    yourPersonalSettingsAndActivity: () => t("me", "your_personal_settings_and_activity", "Your personal settings and activity for this server"),
-    /** Your profile and server preferences */
-    yourProfileAndServerPreferences: () => t("me", "your_profile_and_server_preferences", "Your profile and server preferences"),
+    /** Your personal settings and activity for this community */
+    yourPersonalSettingsAndActivity: () => t("me", "your_personal_settings_and_activity", "Your personal settings and activity for this community"),
+    /** Your profile and community preferences */
+    yourProfileAndServerPreferences: () => t("me", "your_profile_and_server_preferences", "Your profile and community preferences"),
     /** Zodiac: */
     zodiac: () => t("me", "zodiac", "Zodiac:"),
     /** Aquarius */
@@ -10443,8 +10457,8 @@ export const m = {
     confirmReset: () => t("messagestats", "confirm_reset", "Are you sure you want to reset all message counts? This cannot be undone."),
     /** Toggle message counting */
     enableAria: () => t("messagestats", "enable_aria", "Toggle message counting"),
-    /** Track message statistics for this server */
-    enableHint: () => t("messagestats", "enable_hint", "Track message statistics for this server"),
+    /** Track message statistics for this community */
+    enableHint: () => t("messagestats", "enable_hint", "Track message statistics for this community"),
     /** Enable Message Counting */
     enableLabel: () => t("messagestats", "enable_label", "Enable Message Counting"),
     /** Failed to export stats */
@@ -10485,12 +10499,12 @@ export const m = {
     notifyMinLengthUpdated: () => t("messagestats", "notify_min_length_updated", "Minimum message length updated"),
     /** Message counts reset */
     notifyReset: () => t("messagestats", "notify_reset", "Message counts reset"),
-    /** Analyze server message activity and user engagement */
-    pageSubtitle: () => t("messagestats", "page_subtitle", "Analyze server message activity and user engagement"),
+    /** Analyze community message activity and user engagement */
+    pageSubtitle: () => t("messagestats", "page_subtitle", "Analyze community message activity and user engagement"),
     /** Message Statistics */
     pageTitle: () => t("messagestats", "page_title", "Message Statistics"),
-    /** Reset All Server Counts */
-    resetAll: () => t("messagestats", "reset_all", "Reset All Server Counts"),
+    /** Reset All Community Counts */
+    resetAll: () => t("messagestats", "reset_all", "Reset All Community Counts"),
     /** Reset Message Counts */
     resetHeading: () => t("messagestats", "reset_heading", "Reset Message Counts"),
     /** Permanently delete message count data. This action cannot be undone. */
@@ -10525,8 +10539,8 @@ export const m = {
     channelsHint: () => t("migration", "channels_hint", "Pick the matching channel for each Discord channel. Unmatched ones are highlighted."),
     /** Replace settings and move */
     confirmButton: () => t("migration", "confirm_button", "Replace settings and move"),
-    /** I understand that this replaces the current Mewdeko settings in this server. */
-    confirmCheck: () => t("migration", "confirm_check", "I understand that this replaces the current Mewdeko settings in this server."),
+    /** I understand that this replaces the current Mewdeko settings in this community. */
+    confirmCheck: () => t("migration", "confirm_check", "I understand that this replaces the current Mewdeko settings in this community."),
     /** Connect Discord */
     connectButton: () => t("migration", "connect_button", "Connect Discord"),
     /** The Discord sign in was cancelled. Connect again to continue. */
@@ -10541,8 +10555,8 @@ export const m = {
     connectTitle: () => t("migration", "connect_title", "Connect your Discord account"),
     /** Connected to Discord as {name} */
     connectedAs: (p: { name: P }) => t("migration", "connected_as", "Connected to Discord as {name}", p),
-    /** Copy {emojis} emojis and {stickers} stickers this server doesn't have yet */
-    copyExpressions: (p: { emojis: P; stickers: P }) => t("migration", "copy_expressions", "Copy {emojis} emojis and {stickers} stickers this server doesn't have yet", p),
+    /** Copy {emojis} emojis and {stickers} stickers this community doesn't have yet */
+    copyExpressions: (p: { emojis: P; stickers: P }) => t("migration", "copy_expressions", "Copy {emojis} emojis and {stickers} stickers this community doesn't have yet", p),
     /** Anything that used them switches to the copies. Needs the Create Expressions permission... */
     copyExpressionsHint: () => t("migration", "copy_expressions_hint", "Anything that used them switches to the copies. Needs the Create Expressions permission. Lottie stickers can't be copied."),
     /** Disconnect Discord */
@@ -10579,8 +10593,8 @@ export const m = {
     linkResult: (p: { rows: P; servers: P }) => t("migration", "link_result", "Brought over {rows} entries from {servers} servers.", p),
     /** This Discord account is linked. There was no data to bring over yet. */
     linkResultNothing: () => t("migration", "link_result_nothing", "This Discord account is linked. There was no data to bring over yet."),
-    /** Bring your Mewdeko setup from Discord to this server */
-    pageSubtitle: () => t("migration", "page_subtitle", "Bring your Mewdeko setup from Discord to this server"),
+    /** Bring your Mewdeko setup from Discord to this community */
+    pageSubtitle: () => t("migration", "page_subtitle", "Bring your Mewdeko setup from Discord to this community"),
     /** Not paired */
     pairNonePlaceholder: () => t("migration", "pair_none_placeholder", "Not paired"),
     /** This export expired. Start again to make a new one. */
@@ -10621,8 +10635,8 @@ export const m = {
     progressStageStickers: () => t("migration", "progress_stage_stickers", "Copying stickers"),
     /** Skipped */
     resultDropped: () => t("migration", "result_dropped", "Skipped"),
-    /** Channel or role not on this server */
-    resultDroppedHint: () => t("migration", "result_dropped_hint", "Channel or role not on this server"),
+    /** Channel or role not on this community */
+    resultDroppedHint: () => t("migration", "result_dropped_hint", "Channel or role not on this community"),
     /** {emojis} emojis and {stickers} stickers were copied. {failed} could not be copied. */
     resultExpressions: (p: { emojis: P; failed: P; stickers: P }) => t("migration", "result_expressions", "{emojis} emojis and {stickers} stickers were copied. {failed} could not be copied.", p),
     /** Emojis and stickers weren't copied. Give Mewdeko the Create Expressions permission and ... */
@@ -10645,8 +10659,8 @@ export const m = {
     resultTitle: () => t("migration", "result_title", "Your setup has been moved"),
     /** Settings copied */
     resultWritten: () => t("migration", "result_written", "Settings copied"),
-    /** Pick the role in this server that each Discord role should map to. */
-    rolesHint: () => t("migration", "roles_hint", "Pick the role in this server that each Discord role should map to."),
+    /** Pick the role in this community that each Discord role should map to. */
+    rolesHint: () => t("migration", "roles_hint", "Pick the role in this community that each Discord role should map to."),
     /** No Discord servers found. You need to own or administer a server that has Mewdeko. */
     serversEmpty: () => t("migration", "servers_empty", "No Discord servers found. You need to own or administer a server that has Mewdeko."),
     /** Finding your Discord servers */
@@ -10659,8 +10673,8 @@ export const m = {
     statusMigrateAgain: () => t("migration", "status_migrate_again", "Move again"),
     /** Moved from Discord on {date} */
     statusMigrated: (p: { date: P }) => t("migration", "status_migrated", "Moved from Discord on {date}", p),
-    /** This server has not been moved from Discord yet. */
-    statusNotMigrated: () => t("migration", "status_not_migrated", "This server has not been moved from Discord yet."),
+    /** This community has not been moved from Discord yet. */
+    statusNotMigrated: () => t("migration", "status_not_migrated", "This community has not been moved from Discord yet."),
     /** {count} member still needs to link their Discord account. */
     statusWaitingOne: (p: { count: P }) => t("migration", "status_waiting_one", "{count} member still needs to link their Discord account.", p),
     /** {count} members still need to link their Discord account. */
@@ -10673,8 +10687,8 @@ export const m = {
     typeStage: () => t("migration", "type_stage", "Stage"),
     /** Unmatched */
     unmatchedBadge: () => t("migration", "unmatched_badge", "Unmatched"),
-    /** Replaces this server's settings for every feature in the export. Member data already he... */
-    warningBody: () => t("migration", "warning_body", "Replaces this server's settings for every feature in the export. Member data already here is kept."),
+    /** Replaces this community's settings for every feature in the export. Member data already... */
+    warningBody: () => t("migration", "warning_body", "Replaces this community's settings for every feature in the export. Member data already here is kept."),
     /** Current settings will be replaced */
     warningTitle: () => t("migration", "warning_title", "Current settings will be replaced"),
     /** Finish setup */
@@ -10805,8 +10819,8 @@ export const m = {
     notifyDefaultSet: (p: { name: P }) => t("minecraft", "notify_default_set", "\"{name}\" set as default server", p),
     /** Failed to load history */
     notifyHistoryFailed: () => t("minecraft", "notify_history_failed", "Failed to load history"),
-    /** Key copied! */
-    notifyKeyCopied: () => t("minecraft", "notify_key_copied", "Key copied!"),
+    /** Key copied */
+    notifyKeyCopied: () => t("minecraft", "notify_key_copied", "Key copied"),
     /** Failed to generate key */
     notifyKeyGenerateFailed: () => t("minecraft", "notify_key_generate_failed", "Failed to generate key"),
     /** Plugin API key generated. Copy it now, it won't be shown again. */
@@ -10827,16 +10841,16 @@ export const m = {
     notifyRefreshFailed: () => t("minecraft", "notify_refresh_failed", "Failed to refresh statuses"),
     /** Failed to remove server */
     notifyRemoveFailed: () => t("minecraft", "notify_remove_failed", "Failed to remove server"),
-    /** Server "{name}" added successfully! */
-    notifyServerAdded: (p: { name: P }) => t("minecraft", "notify_server_added", "Server \"{name}\" added successfully!", p),
+    /** Server "{name}" added */
+    notifyServerAdded: (p: { name: P }) => t("minecraft", "notify_server_added", "Server \"{name}\" added", p),
     /** Server "{name}" removed */
     notifyServerRemoved: (p: { name: P }) => t("minecraft", "notify_server_removed", "Server \"{name}\" removed", p),
-    /** Server "{name}" updated! */
-    notifyServerUpdated: (p: { name: P }) => t("minecraft", "notify_server_updated", "Server \"{name}\" updated!", p),
+    /** Server "{name}" updated */
+    notifyServerUpdated: (p: { name: P }) => t("minecraft", "notify_server_updated", "Server \"{name}\" updated", p),
     /** Failed to update server */
     notifyUpdateFailed: () => t("minecraft", "notify_update_failed", "Failed to update server"),
-    /** URL copied! */
-    notifyUrlCopied: () => t("minecraft", "notify_url_copied", "URL copied!"),
+    /** URL copied */
+    notifyUrlCopied: () => t("minecraft", "notify_url_copied", "URL copied"),
     /** Failed to add player */
     notifyWhitelistAddFailed: () => t("minecraft", "notify_whitelist_add_failed", "Failed to add player"),
     /** Player added to whitelist */
@@ -11049,16 +11063,16 @@ export const m = {
     overridesDaysLabel: () => t("moderation", "overrides_days_label", "Purge in days"),
     /** No overrides */
     overridesEmpty: () => t("moderation", "overrides_empty", "No overrides"),
-    /** Every channel uses the server defaults. */
-    overridesEmptyHint: () => t("moderation", "overrides_empty_hint", "Every channel uses the server defaults."),
+    /** Every channel uses the community defaults. */
+    overridesEmptyHint: () => t("moderation", "overrides_empty_hint", "Every channel uses the community defaults."),
     /** Purge (days) */
     overridesPurgeDays: () => t("moderation", "overrides_purge_days", "Purge (days)"),
     /** Reset everything to defaults */
     overridesReset: () => t("moderation", "overrides_reset", "Reset everything to defaults"),
     /** Scope... */
     overridesScopePlaceholder: () => t("moderation", "overrides_scope_placeholder", "Scope..."),
-    /** A channel beats its category, which beats the server default. */
-    overridesSubtitle: () => t("moderation", "overrides_subtitle", "A channel beats its category, which beats the server default."),
+    /** A channel beats its category, which beats the community default. */
+    overridesSubtitle: () => t("moderation", "overrides_subtitle", "A channel beats its category, which beats the community default."),
     /** Overrides */
     overridesTitle: () => t("moderation", "overrides_title", "Overrides"),
     /** Manage warnings, punishments, and moderation activity */
@@ -11115,8 +11129,8 @@ export const m = {
     removePunishmentMessage: (p: { count: P }) => t("moderation", "remove_punishment_message", "Nothing will happen automatically at {count} warnings anymore.", p),
     /** Remove punishment? */
     removePunishmentTitle: () => t("moderation", "remove_punishment_title", "Remove punishment?"),
-    /** Every server default and override is removed, and each action goes back to its built in... */
-    resetMessage: () => t("moderation", "reset_message", "Every server default and override is removed, and each action goes back to its built in purge."),
+    /** Every community default and override is removed, and each action goes back to its built... */
+    resetMessage: () => t("moderation", "reset_message", "Every community default and override is removed, and each action goes back to its built in purge."),
     /** Reset ban purge settings? */
     resetTitle: () => t("moderation", "reset_title", "Reset ban purge settings?"),
     /** Active Warnings */
@@ -11127,8 +11141,8 @@ export const m = {
     tabBanpurge: () => t("moderation", "tab_banpurge", "Ban Purge"),
     /** Punishments */
     tabPunishments: () => t("moderation", "tab_punishments", "Punishments"),
-    /** Failed to warn user. Make sure the ID belongs to a member of this server. */
-    warnFailed: () => t("moderation", "warn_failed", "Failed to warn user. Make sure the ID belongs to a member of this server."),
+    /** Failed to warn user. Make sure the ID belongs to a member of this community. */
+    warnFailed: () => t("moderation", "warn_failed", "Failed to warn user. Make sure the ID belongs to a member of this community."),
     /** A reason is required. */
     warnReasonRequired: () => t("moderation", "warn_reason_required", "A reason is required."),
     /** Configured punishments for the resulting warning count are applied automatically. */
@@ -11141,8 +11155,8 @@ export const m = {
     warningsDeleteTitle: () => t("moderation", "warnings_delete_title", "Delete permanently"),
     /** No warnings found */
     warningsEmpty: () => t("moderation", "warnings_empty", "No warnings found"),
-    /** This server has been peaceful! */
-    warningsEmptyHint: () => t("moderation", "warnings_empty_hint", "This server has been peaceful!"),
+    /** This community has been peaceful. */
+    warningsEmptyHint: () => t("moderation", "warnings_empty_hint", "This community has been peaceful."),
     /** Forgive */
     warningsForgive: () => t("moderation", "warnings_forgive", "Forgive"),
     /** Forgive all */
@@ -11293,10 +11307,10 @@ export const m = {
     errorAdd: () => t("multigreets", "error_add", "Failed to add greet"),
     /** Failed to fetch greets */
     errorFetchGreets: () => t("multigreets", "error_fetch_greets", "Failed to fetch greets"),
-    /** No guild or channel selected */
-    errorNoGuildOrChannel: () => t("multigreets", "error_no_guild_or_channel", "No guild or channel selected"),
-    /** No guild selected or webhook data missing */
-    errorNoWebhookData: () => t("multigreets", "error_no_webhook_data", "No guild selected or webhook data missing"),
+    /** No community or channel selected */
+    errorNoGuildOrChannel: () => t("multigreets", "error_no_guild_or_channel", "No community or channel selected"),
+    /** No community selected or webhook data missing */
+    errorNoWebhookData: () => t("multigreets", "error_no_webhook_data", "No community selected or webhook data missing"),
     /** Failed to remove greet */
     errorRemove: () => t("multigreets", "error_remove", "Failed to remove greet"),
     /** Failed to update delete time */
@@ -11313,24 +11327,24 @@ export const m = {
     loadingConfigurations: () => t("multigreets", "loading_configurations", "Loading configurations..."),
     /** Click to configure greeting message */
     messagePlaceholder: () => t("multigreets", "message_placeholder", "Click to configure greeting message"),
-    /** Greet added successfully */
-    notifyAdded: () => t("multigreets", "notify_added", "Greet added successfully"),
-    /** Delete time updated successfully */
-    notifyDeleteTimeUpdated: () => t("multigreets", "notify_delete_time_updated", "Delete time updated successfully"),
-    /** Greet bots setting updated successfully */
-    notifyGreetBotsUpdated: () => t("multigreets", "notify_greet_bots_updated", "Greet bots setting updated successfully"),
-    /** Message updated successfully */
-    notifyMessageUpdated: () => t("multigreets", "notify_message_updated", "Message updated successfully"),
-    /** Greet removed successfully */
-    notifyRemoved: () => t("multigreets", "notify_removed", "Greet removed successfully"),
-    /** Greet status updated successfully */
-    notifyStatusUpdated: () => t("multigreets", "notify_status_updated", "Greet status updated successfully"),
-    /** Greet type updated successfully */
-    notifyTypeUpdated: () => t("multigreets", "notify_type_updated", "Greet type updated successfully"),
-    /** Webhook updated successfully */
-    notifyWebhookUpdated: () => t("multigreets", "notify_webhook_updated", "Webhook updated successfully"),
-    /** Configure multiple greeting messages for your server */
-    pageSubtitle: () => t("multigreets", "page_subtitle", "Configure multiple greeting messages for your server"),
+    /** Greet added */
+    notifyAdded: () => t("multigreets", "notify_added", "Greet added"),
+    /** Delete time updated */
+    notifyDeleteTimeUpdated: () => t("multigreets", "notify_delete_time_updated", "Delete time updated"),
+    /** Greet bots setting updated */
+    notifyGreetBotsUpdated: () => t("multigreets", "notify_greet_bots_updated", "Greet bots setting updated"),
+    /** Message updated */
+    notifyMessageUpdated: () => t("multigreets", "notify_message_updated", "Message updated"),
+    /** Greet removed */
+    notifyRemoved: () => t("multigreets", "notify_removed", "Greet removed"),
+    /** Greet status updated */
+    notifyStatusUpdated: () => t("multigreets", "notify_status_updated", "Greet status updated"),
+    /** Greet type updated */
+    notifyTypeUpdated: () => t("multigreets", "notify_type_updated", "Greet type updated"),
+    /** Webhook updated */
+    notifyWebhookUpdated: () => t("multigreets", "notify_webhook_updated", "Webhook updated"),
+    /** Configure multiple greeting messages for your community */
+    pageSubtitle: () => t("multigreets", "page_subtitle", "Configure multiple greeting messages for your community"),
     /** MultiGreets Configuration */
     pageTitle: () => t("multigreets", "page_title", "MultiGreets Configuration"),
     /** Join */
@@ -11793,8 +11807,8 @@ export const m = {
     unknownWithId: (p: { id: P }) => t("music", "unknown_with_id", "Unknown ({id})", p),
   },
   owner: {
-    /** A server is flagged when it has at least the minimum members and either the bot count o... */
-    botHellsAServerIsFlaggedWhenIt: () => t("owner", "bot_hells_a_server_is_flagged_when_it", "A server is flagged when it has at least the minimum members and either the bot count or the bot percentage is met. Set a threshold to 0 to turn that check off."),
+    /** A community is flagged when it has at least the minimum members and either the bot coun... */
+    botHellsAServerIsFlaggedWhenIt: () => t("owner", "bot_hells_a_server_is_flagged_when_it", "A community is flagged when it has at least the minimum members and either the bot count or the bot percentage is met. Set a threshold to 0 to turn that check off."),
     /** Bot count */
     botHellsBotCount: () => t("owner", "bot_hells_bot_count", "Bot count"),
     /** Bot percentage */
@@ -11803,66 +11817,66 @@ export const m = {
     botHellsChannelUnreachable: (p: { channel: P }) => t("owner", "bot_hells_channel_unreachable", "The bot cannot see channel {channel}, so join detections will not be posted.", p),
     /** Checking... */
     botHellsChecking: () => t("owner", "bot_hells_checking", "Checking..."),
-    /** Counts come from the member cache, use Recheck for exact numbers on large servers. */
-    botHellsCountsComeFromTheMemberCache: () => t("owner", "bot_hells_counts_come_from_the_member_cache", "Counts come from the member cache, use Recheck for exact numbers on large servers."),
+    /** Counts come from the member cache, use Recheck for exact numbers on large communities. */
+    botHellsCountsComeFromTheMemberCache: () => t("owner", "bot_hells_counts_come_from_the_member_cache", "Counts come from the member cache, use Recheck for exact numbers on large communities."),
     /** {total} members · {humans} humans · {bots} bots ({percent}%) */
     botHellsCountsLine: (p: { bots: P; humans: P; percent: P; total: P }) => t("owner", "bot_hells_counts_line", "{total} members · {humans} humans · {bots} bots ({percent}%)", p),
-    /** No servers meet the thresholds. */
-    botHellsEmptyFlagged: () => t("owner", "bot_hells_empty_flagged", "No servers meet the thresholds."),
-    /** No servers match the search. */
-    botHellsEmptySearch: () => t("owner", "bot_hells_empty_search", "No servers match the search."),
-    /** Failed to leave the selected servers */
-    botHellsErrorLeave: () => t("owner", "bot_hells_error_leave", "Failed to leave the selected servers"),
+    /** No communities meet the thresholds. */
+    botHellsEmptyFlagged: () => t("owner", "bot_hells_empty_flagged", "No communities meet the thresholds."),
+    /** No communities match the search. */
+    botHellsEmptySearch: () => t("owner", "bot_hells_empty_search", "No communities match the search."),
+    /** Failed to leave the selected communities */
+    botHellsErrorLeave: () => t("owner", "bot_hells_error_leave", "Failed to leave the selected communities"),
     /** The bot percentage cannot be above 100 */
     botHellsErrorPercentMax: () => t("owner", "bot_hells_error_percent_max", "The bot percentage cannot be above 100"),
     /** Failed to recheck {server} */
     botHellsErrorRecheck: (p: { server: P }) => t("owner", "bot_hells_error_recheck", "Failed to recheck {server}", p),
     /** Thresholds must be whole numbers, zero or above */
     botHellsErrorThresholdsInvalid: () => t("owner", "bot_hells_error_thresholds_invalid", "Thresholds must be whole numbers, zero or above"),
-    /** Every new server is checked after its member list downloads. Flagged ones are reported,... */
-    botHellsEveryNewServerIsCheckedAfter: () => t("owner", "bot_hells_every_new_server_is_checked_after", "Every new server is checked after its member list downloads. Flagged ones are reported, and left when this is on."),
-    /** All servers */
-    botHellsFilterAllServers: () => t("owner", "bot_hells_filter_all_servers", "All servers"),
+    /** Every new community is checked after its member list downloads. Flagged ones are report... */
+    botHellsEveryNewServerIsCheckedAfter: () => t("owner", "bot_hells_every_new_server_is_checked_after", "Every new community is checked after its member list downloads. Flagged ones are reported, and left when this is on."),
+    /** All communities */
+    botHellsFilterAllServers: () => t("owner", "bot_hells_filter_all_servers", "All communities"),
     /** Flagged only */
     botHellsFilterFlaggedOnly: () => t("owner", "bot_hells_filter_flagged_only", "Flagged only"),
-    /** Flagging servers with at least {min} members and either {count}+ bots or {percent}%+ bots. */
-    botHellsFlaggingBoth: (p: { count: P; min: P; percent: P }) => t("owner", "bot_hells_flagging_both", "Flagging servers with at least {min} members and either {count}+ bots or {percent}%+ bots.", p),
-    /** Flagging servers with at least {min} members and {count}+ bots. */
-    botHellsFlaggingCount: (p: { count: P; min: P }) => t("owner", "bot_hells_flagging_count", "Flagging servers with at least {min} members and {count}+ bots.", p),
-    /** Flagging servers with at least {min} members and no thresholds set, so nothing is flagged. */
-    botHellsFlaggingNone: (p: { min: P }) => t("owner", "bot_hells_flagging_none", "Flagging servers with at least {min} members and no thresholds set, so nothing is flagged.", p),
-    /** Flagging servers with at least {min} members and {percent}%+ bots. */
-    botHellsFlaggingPercent: (p: { min: P; percent: P }) => t("owner", "bot_hells_flagging_percent", "Flagging servers with at least {min} members and {percent}%+ bots.", p),
+    /** Flagging communities with at least {min} members and either {count}+ bots or {percent}%... */
+    botHellsFlaggingBoth: (p: { count: P; min: P; percent: P }) => t("owner", "bot_hells_flagging_both", "Flagging communities with at least {min} members and either {count}+ bots or {percent}%+ bots.", p),
+    /** Flagging communities with at least {min} members and {count}+ bots. */
+    botHellsFlaggingCount: (p: { count: P; min: P }) => t("owner", "bot_hells_flagging_count", "Flagging communities with at least {min} members and {count}+ bots.", p),
+    /** Flagging communities with at least {min} members and no thresholds set, so nothing is f... */
+    botHellsFlaggingNone: (p: { min: P }) => t("owner", "bot_hells_flagging_none", "Flagging communities with at least {min} members and no thresholds set, so nothing is flagged.", p),
+    /** Flagging communities with at least {min} members and {percent}%+ bots. */
+    botHellsFlaggingPercent: (p: { min: P; percent: P }) => t("owner", "bot_hells_flagging_percent", "Flagging communities with at least {min} members and {percent}%+ bots.", p),
     /** {id} · joined {date} */
     botHellsIdJoined: (p: { date: P; id: P }) => t("owner", "bot_hells_id_joined", "{id} · joined {date}", p),
     /** Join detections go to #{channel} */
     botHellsJoinDetections: (p: { channel: P }) => t("owner", "bot_hells_join_detections", "Join detections go to #{channel}", p),
     /** Join detections go to #{channel} in {guild} */
     botHellsJoinDetectionsInGuild: (p: { channel: P; guild: P }) => t("owner", "bot_hells_join_detections_in_guild", "Join detections go to #{channel} in {guild}", p),
-    /** Leave flagged servers automatically */
-    botHellsLeaveFlaggedServersAutomatically: () => t("owner", "bot_hells_leave_flagged_servers_automatically", "Leave flagged servers automatically"),
+    /** Leave flagged communities automatically */
+    botHellsLeaveFlaggedServersAutomatically: () => t("owner", "bot_hells_leave_flagged_servers_automatically", "Leave flagged communities automatically"),
     /** Leave {server}? The bot will have to be re-invited to come back. */
     botHellsLeaveMessageOne: (p: { server: P }) => t("owner", "bot_hells_leave_message_one", "Leave {server}? The bot will have to be re-invited to come back.", p),
-    /** Leave {count} servers? The bot will have to be re-invited to come back to any of them. */
-    botHellsLeaveMessageOther: (p: { count: P }) => t("owner", "bot_hells_leave_message_other", "Leave {count} servers? The bot will have to be re-invited to come back to any of them.", p),
+    /** Leave {count} communities? The bot will have to be re-invited to come back to any of them. */
+    botHellsLeaveMessageOther: (p: { count: P }) => t("owner", "bot_hells_leave_message_other", "Leave {count} communities? The bot will have to be re-invited to come back to any of them.", p),
     /** Leave selected ({count}) */
     botHellsLeaveSelected: (p: { count: P }) => t("owner", "bot_hells_leave_selected", "Leave selected ({count})", p),
-    /** Leave this server */
-    botHellsLeaveThisServer: () => t("owner", "bot_hells_leave_this_server", "Leave this server"),
-    /** Leave server */
-    botHellsLeaveTitleOne: () => t("owner", "bot_hells_leave_title_one", "Leave server"),
-    /** Leave {count} servers */
-    botHellsLeaveTitleOther: (p: { count: P }) => t("owner", "bot_hells_leave_title_other", "Leave {count} servers", p),
+    /** Leave this community */
+    botHellsLeaveThisServer: () => t("owner", "bot_hells_leave_this_server", "Leave this community"),
+    /** Leave community */
+    botHellsLeaveTitleOne: () => t("owner", "bot_hells_leave_title_one", "Leave community"),
+    /** Leave {count} communities */
+    botHellsLeaveTitleOther: (p: { count: P }) => t("owner", "bot_hells_leave_title_other", "Leave {count} communities", p),
     /** Leaving... */
     botHellsLeaving: () => t("owner", "bot_hells_leaving", "Leaving..."),
-    /** Left {count} server */
-    botHellsLeftOne: (p: { count: P }) => t("owner", "bot_hells_left_one", "Left {count} server", p),
-    /** Left {count} servers */
-    botHellsLeftOther: (p: { count: P }) => t("owner", "bot_hells_left_other", "Left {count} servers", p),
+    /** Left {count} community */
+    botHellsLeftOne: (p: { count: P }) => t("owner", "bot_hells_left_one", "Left {count} community", p),
+    /** Left {count} communities */
+    botHellsLeftOther: (p: { count: P }) => t("owner", "bot_hells_left_other", "Left {count} communities", p),
     /** Left {left}, {failed} failed: {reasons} */
     botHellsLeftWithFailures: (p: { failed: P; left: P; reasons: P }) => t("owner", "bot_hells_left_with_failures", "Left {left}, {failed} failed: {reasons}", p),
-    /** Loading servers */
-    botHellsLoadingServers: () => t("owner", "bot_hells_loading_servers", "Loading servers"),
+    /** Loading communities */
+    botHellsLoadingServers: () => t("owner", "bot_hells_loading_servers", "Loading communities"),
     /** Member cache is partial */
     botHellsMemberCacheIsPartial: () => t("owner", "bot_hells_member_cache_is_partial", "Member cache is partial"),
     /** Minimum members */
@@ -11879,18 +11893,18 @@ export const m = {
     botHellsRecheck: () => t("owner", "bot_hells_recheck", "Recheck"),
     /** Save thresholds */
     botHellsSaveThresholds: () => t("owner", "bot_hells_save_thresholds", "Save thresholds"),
-    /** Scanning servers... */
-    botHellsScanning: () => t("owner", "bot_hells_scanning", "Scanning servers..."),
+    /** Scanning communities... */
+    botHellsScanning: () => t("owner", "bot_hells_scanning", "Scanning communities..."),
     /** Select all flagged */
     botHellsSelectAllFlagged: () => t("owner", "bot_hells_select_all_flagged", "Select all flagged"),
-    /** Select every listed server */
-    botHellsSelectEveryListedServer: () => t("owner", "bot_hells_select_every_listed_server", "Select every listed server"),
+    /** Select every listed community */
+    botHellsSelectEveryListedServer: () => t("owner", "bot_hells_select_every_listed_server", "Select every listed community"),
     /** Select {server} */
     botHellsSelectServer: (p: { server: P }) => t("owner", "bot_hells_select_server", "Select {server}", p),
-    /** Server name or ID */
-    botHellsServerNameOrId: () => t("owner", "bot_hells_server_name_or_id", "Server name or ID"),
-    /** Showing {shown} of {total} servers */
-    botHellsShowing: (p: { shown: P; total: P }) => t("owner", "bot_hells_showing", "Showing {shown} of {total} servers", p),
+    /** Community name or ID */
+    botHellsServerNameOrId: () => t("owner", "bot_hells_server_name_or_id", "Community name or ID"),
+    /** Showing {shown} of {total} communities */
+    botHellsShowing: (p: { shown: P; total: P }) => t("owner", "bot_hells_showing", "Showing {shown} of {total} communities", p),
     /** Bots in flagged */
     botHellsStatBotsInFlagged: () => t("owner", "bot_hells_stat_bots_in_flagged", "Bots in flagged"),
     /** Flagged */
@@ -12085,8 +12099,8 @@ export const m = {
     dockerWaitingForOutput: () => t("owner", "docker_waiting_for_output", "Waiting for output..."),
     /** the selected bot */
     landingSelectedBot: () => t("owner", "landing_selected_bot", "the selected bot"),
-    /** Fleet and host tools for {bot}. Nothing here is scoped to a server. */
-    landingSubtitle: (p: { bot: P }) => t("owner", "landing_subtitle", "Fleet and host tools for {bot}. Nothing here is scoped to a server.", p),
+    /** Fleet and host tools for {bot}. Nothing here is scoped to a community. */
+    landingSubtitle: (p: { bot: P }) => t("owner", "landing_subtitle", "Fleet and host tools for {bot}. Nothing here is scoped to a community.", p),
     /** Owner Panel - Mewdeko */
     landingTitle: () => t("owner", "landing_title", "Owner Panel - Mewdeko"),
     /** Checking owner access... */
@@ -12143,10 +12157,10 @@ export const m = {
     leaveFeedbackReasonNotSelected: () => t("owner", "leave_feedback_reason_not_selected", "Not selected"),
     /** Reasons given */
     leaveFeedbackReasonsGiven: () => t("owner", "leave_feedback_reasons_given", "Reasons given"),
-    /** Sent right after the bot is removed, once per server every 30 days */
-    leaveFeedbackSentRightAfterTheBotIs: () => t("owner", "leave_feedback_sent_right_after_the_bot_is", "Sent right after the bot is removed, once per server every 30 days"),
-    /** Server name or comment */
-    leaveFeedbackServerNameOrComment: () => t("owner", "leave_feedback_server_name_or_comment", "Server name or comment"),
+    /** Sent right after the bot is removed, once per community every 30 days */
+    leaveFeedbackSentRightAfterTheBotIs: () => t("owner", "leave_feedback_sent_right_after_the_bot_is", "Sent right after the bot is removed, once per community every 30 days"),
+    /** Community name or comment */
+    leaveFeedbackServerNameOrComment: () => t("owner", "leave_feedback_server_name_or_comment", "Community name or comment"),
     /** Show comment */
     leaveFeedbackShowComment: () => t("owner", "leave_feedback_show_comment", "Show comment"),
     /** Prompts sent */
@@ -12307,34 +12321,34 @@ export const m = {
     errorDisconnectFailed: () => t("patreon", "error_disconnect_failed", "Failed to disconnect Patreon"),
     /** Failed to start OAuth flow */
     errorOauthStart: () => t("patreon", "error_oauth_start", "Failed to start OAuth flow"),
-    /** Invalid OAuth state - missing guild ID */
-    errorOauthState: () => t("patreon", "error_oauth_state", "Invalid OAuth state - missing guild ID"),
-    /** Please select a server first */
-    errorSelectServer: () => t("patreon", "error_select_server", "Please select a server first"),
+    /** Invalid OAuth state - missing community ID */
+    errorOauthState: () => t("patreon", "error_oauth_state", "Invalid OAuth state - missing community ID"),
+    /** Please select a community first */
+    errorSelectServer: () => t("patreon", "error_select_server", "Please select a community first"),
     /** Connect your Patreon account by clicking the "Connect to Patreon" button above. */
     howStep1: () => t("patreon", "how_step_1", "Connect your Patreon account by clicking the \"Connect to Patreon\" button above."),
     /** Authorize Mewdeko to access your campaign information and supporter data. */
     howStep2: () => t("patreon", "how_step_2", "Authorize Mewdeko to access your campaign information and supporter data."),
     /** Configure automatic role rewards and exclusive perks for your supporters. */
     howStep3: () => t("patreon", "how_step_3", "Configure automatic role rewards and exclusive perks for your supporters."),
-    /** Supporters will automatically receive their Fluxer roles and perks! */
-    howStep4: () => t("patreon", "how_step_4", "Supporters will automatically receive their Fluxer roles and perks!"),
+    /** Supporters get their Fluxer roles and perks automatically. */
+    howStep4: () => t("patreon", "how_step_4", "Supporters get their Fluxer roles and perks automatically."),
     /** Loading Patreon data... */
     loading: () => t("patreon", "loading", "Loading Patreon data..."),
     /** Failed to send the announcement */
     notifyAnnounceFailed: () => t("patreon", "notify_announce_failed", "Failed to send the announcement"),
     /** Failed to update configuration */
     notifyConfigFailed: () => t("patreon", "notify_config_failed", "Failed to update configuration"),
-    /** Configuration updated successfully! */
-    notifyConfigUpdated: () => t("patreon", "notify_config_updated", "Configuration updated successfully!"),
-    /** Patreon integration configured successfully! */
-    notifyConfigured: () => t("patreon", "notify_configured", "Patreon integration configured successfully!"),
+    /** Configuration updated */
+    notifyConfigUpdated: () => t("patreon", "notify_config_updated", "Configuration updated"),
+    /** Patreon integration configured */
+    notifyConfigured: () => t("patreon", "notify_configured", "Patreon integration configured"),
     /** Failed to map tier to role */
     notifyMapFailed: () => t("patreon", "notify_map_failed", "Failed to map tier to role"),
     /** Failed to refresh data */
     notifyRefreshFailed: () => t("patreon", "notify_refresh_failed", "Failed to refresh data"),
-    /** Data refreshed successfully! */
-    notifyRefreshed: () => t("patreon", "notify_refreshed", "Data refreshed successfully!"),
+    /** Data refreshed */
+    notifyRefreshed: () => t("patreon", "notify_refreshed", "Data refreshed"),
     /** Failed to sync */
     notifySyncFailed: () => t("patreon", "notify_sync_failed", "Failed to sync"),
     /** Failed to sync roles */
@@ -12505,10 +12519,10 @@ export const m = {
     categoryRandom: () => t("placeholders", "category_random", "Random"),
     /** Random generation placeholders */
     categoryRandomDescription: () => t("placeholders", "category_random_description", "Random generation placeholders"),
-    /** Server */
-    categoryServer: () => t("placeholders", "category_server", "Server"),
-    /** Server-related placeholders */
-    categoryServerDescription: () => t("placeholders", "category_server_description", "Server-related placeholders"),
+    /** Community */
+    categoryServer: () => t("placeholders", "category_server", "Community"),
+    /** Community-related placeholders */
+    categoryServerDescription: () => t("placeholders", "category_server_description", "Community-related placeholders"),
     /** Stats/Shard */
     categoryStats: () => t("placeholders", "category_stats", "Stats/Shard"),
     /** Bot statistics and shard information */
@@ -12679,8 +12693,8 @@ export const m = {
     pageClearFilters: () => t("placeholders", "page_clear_filters", "Clear filters"),
     /** Copy {code} to clipboard */
     pageCopyCode: (p: { code: P }) => t("placeholders", "page_copy_code", "Copy {code} to clipboard", p),
-    /** Placeholders for commands with embeds! */
-    pageDescription: () => t("placeholders", "page_description", "Placeholders for commands with embeds!"),
+    /** Placeholders for commands with embeds */
+    pageDescription: () => t("placeholders", "page_description", "Placeholders for commands with embeds"),
     /** Generate random content and user-specific information */
     pageFeatureDynamicBody: () => t("placeholders", "page_feature_dynamic_body", "Generate random content and user-specific information"),
     /** Dynamic Content */
@@ -12709,8 +12723,8 @@ export const m = {
     pageSectionHeading: (p: { category: P }) => t("placeholders", "page_section_heading", "{category} Placeholders", p),
     /** Dynamic content for embeds and messages */
     pageSubheading: () => t("placeholders", "page_subheading", "Dynamic content for embeds and messages"),
-    /** Mewdeko - Placeholders for commands with embeds! */
-    pageTitle: () => t("placeholders", "page_title", "Mewdeko - Placeholders for commands with embeds!"),
+    /** Mewdeko - Placeholders for commands with embeds */
+    pageTitle: () => t("placeholders", "page_title", "Mewdeko - Placeholders for commands with embeds"),
     /** Patreon link */
     patreonLink: () => t("placeholders", "patreon_link", "Patreon link"),
     /** Highest pledging supporter's monthly pledge */
@@ -12743,14 +12757,12 @@ export const m = {
     roleMention: () => t("placeholders", "role_mention", "Mention the role"),
     /** Role name */
     roleName: () => t("placeholders", "role_name", "Role name"),
-    /** Server name */
-    server: () => t("placeholders", "server", "Server name"),
-    /** Server banner URL */
-    serverBanner: () => t("placeholders", "server_banner", "Server banner URL"),
-    /** Server ID */
-    serverId: () => t("placeholders", "server_id", "Server ID"),
-    /** Number of server members */
-    serverMembercount: () => t("placeholders", "server_membercount", "Number of server members"),
+    /** Community name */
+    server: () => t("placeholders", "server", "Community name"),
+    /** Community banner URL */
+    serverBanner: () => t("placeholders", "server_banner", "Community banner URL"),
+    /** Number of community members */
+    serverMembercount: () => t("placeholders", "server_membercount", "Number of community members"),
     /** Total member count */
     serverMembers: () => t("placeholders", "server_members", "Total member count"),
     /** Do Not Disturb members count */
@@ -12761,12 +12773,12 @@ export const m = {
     serverMembersOffline: () => t("placeholders", "server_members_offline", "Offline members count"),
     /** Online members count */
     serverMembersOnline: () => t("placeholders", "server_members_online", "Online members count"),
-    /** Server name */
-    serverName: () => t("placeholders", "server_name", "Server name"),
-    /** Server owner username */
-    serverOwner: () => t("placeholders", "server_owner", "Server owner username"),
-    /** Current server time with timezone */
-    serverTime: () => t("placeholders", "server_time", "Current server time with timezone"),
+    /** Community name */
+    serverName: () => t("placeholders", "server_name", "Community name"),
+    /** Community owner username */
+    serverOwner: () => t("placeholders", "server_owner", "Community owner username"),
+    /** Current community time with timezone */
+    serverTime: () => t("placeholders", "server_time", "Current community time with timezone"),
     /** Fluxer long date timestamp */
     serverTimestampLongdate: () => t("placeholders", "server_timestamp_longdate", "Fluxer long date timestamp"),
     /** Fluxer long date/time timestamp */
@@ -12775,8 +12787,8 @@ export const m = {
     serverTimestampLongtime: () => t("placeholders", "server_timestamp_longtime", "Fluxer long time timestamp"),
     /** Fluxer short date/time timestamp */
     serverTimestampShortdatetime: () => t("placeholders", "server_timestamp_shortdatetime", "Fluxer short date/time timestamp"),
-    /** Number of servers on this shard */
-    shardServercount: () => t("placeholders", "shard_servercount", "Number of servers on this shard"),
+    /** Number of communities on this shard */
+    shardServercount: () => t("placeholders", "shard_servercount", "Number of communities on this shard"),
     /** Number of users on this shard */
     shardUsercount: () => t("placeholders", "shard_usercount", "Number of users on this shard"),
     /** The detected status text */
@@ -12883,20 +12895,20 @@ export const m = {
     userFullname: () => t("placeholders", "user_fullname", "Full username"),
     /** User ID */
     userId: () => t("placeholders", "user_id", "User ID"),
-    /** Server join date (dd.MM.yyyy) */
-    userJoinedDate: () => t("placeholders", "user_joined_date", "Server join date (dd.MM.yyyy)"),
-    /** Server join time (HH:mm) */
-    userJoinedTime: () => t("placeholders", "user_joined_time", "Server join time (HH:mm)"),
+    /** Community join date (dd.MM.yyyy) */
+    userJoinedDate: () => t("placeholders", "user_joined_date", "Community join date (dd.MM.yyyy)"),
+    /** Community join time (HH:mm) */
+    userJoinedTime: () => t("placeholders", "user_joined_time", "Community join time (HH:mm)"),
     /** Mention the user */
     userMention: () => t("placeholders", "user_mention", "Mention the user"),
     /** Username */
     userName: () => t("placeholders", "user_name", "Username"),
-    /** User's nickname in the server */
-    userNick: () => t("placeholders", "user_nick", "User's nickname in the server"),
+    /** User's nickname in the community */
+    userNick: () => t("placeholders", "user_nick", "User's nickname in the community"),
     /** User's username */
     userUsername: () => t("placeholders", "user_username", "User's username"),
-    /** Today's date in the server timezone */
-    wotdDate: () => t("placeholders", "wotd_date", "Today's date in the server timezone"),
+    /** Today's date in the community timezone */
+    wotdDate: () => t("placeholders", "wotd_date", "Today's date in the community timezone"),
     /** The definition */
     wotdDefinition: () => t("placeholders", "wotd_definition", "The definition"),
     /** Example sentence, if any */
@@ -12921,12 +12933,12 @@ export const m = {
     xpDate: () => t("placeholders", "xp_date", "Current date (dd/MM/yyyy format)"),
     /** XP gained in the current session */
     xpGained: () => t("placeholders", "xp_gained", "XP gained in the current session"),
-    /** Name of the guild/server */
-    xpGuild: () => t("placeholders", "xp_guild", "Name of the guild/server"),
-    /** ID of the guild/server */
-    xpGuildId: () => t("placeholders", "xp_guild_id", "ID of the guild/server"),
-    /** Total member count of the server */
-    xpGuildMembercount: () => t("placeholders", "xp_guild_membercount", "Total member count of the server"),
+    /** Name of the community */
+    xpGuild: () => t("placeholders", "xp_guild", "Name of the community"),
+    /** ID of the community */
+    xpGuildId: () => t("placeholders", "xp_guild_id", "ID of the community"),
+    /** Total member count of the community */
+    xpGuildMembercount: () => t("placeholders", "xp_guild_membercount", "Total member count of the community"),
     /** Current level of the user (alias for new level) */
     xpLevelCurrent: () => t("placeholders", "xp_level_current", "Current level of the user (alias for new level)"),
     /** Difference between old and new level */
@@ -12941,8 +12953,8 @@ export const m = {
     xpNeeded: () => t("placeholders", "xp_needed", "XP needed for next level"),
     /** Progress percentage to next level */
     xpProgress: () => t("placeholders", "xp_progress", "Progress percentage to next level"),
-    /** Current rank of the user in the server */
-    xpRank: () => t("placeholders", "xp_rank", "Current rank of the user in the server"),
+    /** Current rank of the user in the community */
+    xpRank: () => t("placeholders", "xp_rank", "Current rank of the user in the community"),
     /** Rank in ordinal format (1st, 2nd, 3rd, etc.) */
     xpRankOrdinal: () => t("placeholders", "xp_rank_ordinal", "Rank in ordinal format (1st, 2nd, 3rd, etc.)"),
     /** Ordinal suffix for the rank (st, nd, rd, th) */
@@ -12979,12 +12991,12 @@ export const m = {
     xpUserDisplayname: () => t("placeholders", "xp_user_displayname", "Display name of the user"),
     /** User ID */
     xpUserId: () => t("placeholders", "xp_user_id", "User ID"),
-    /** Date when the user joined the server */
-    xpUserJoined: () => t("placeholders", "xp_user_joined", "Date when the user joined the server"),
+    /** Date when the user joined the community */
+    xpUserJoined: () => t("placeholders", "xp_user_joined", "Date when the user joined the community"),
     /** Mention of the user (respects ping settings) */
     xpUserMention: () => t("placeholders", "xp_user_mention", "Mention of the user (respects ping settings)"),
-    /** Nickname of the user in the server */
-    xpUserNickname: () => t("placeholders", "xp_user_nickname", "Nickname of the user in the server"),
+    /** Nickname of the user in the community */
+    xpUserNickname: () => t("placeholders", "xp_user_nickname", "Nickname of the user in the community"),
   },
   polls: {
     /** New poll */
@@ -13119,8 +13131,8 @@ export const m = {
     commandsAvailable: (p: { count: P }) => t("public", "commands_available", "{count} commands available", p),
     /** Bot (Channel): */
     commandsBotChannel: () => t("public", "commands_bot_channel", "Bot (Channel):"),
-    /** Bot (Server): */
-    commandsBotServer: () => t("public", "commands_bot_server", "Bot (Server):"),
+    /** Bot (Community): */
+    commandsBotServer: () => t("public", "commands_bot_server", "Bot (Community):"),
     /** Command modules */
     commandsCommandModules: () => t("public", "commands_command_modules", "Command modules"),
     /** {count} command */
@@ -13133,8 +13145,6 @@ export const m = {
     commandsExploreAllAvailableCommandsAnd: () => t("public", "commands_explore_all_available_commands_and", "Explore all available commands and modules"),
     /** fun */
     commandsFun: () => t("public", "commands_fun", "fun"),
-    /** General */
-    commandsGeneral: () => t("public", "commands_general", "General"),
     /** Has selectable options */
     commandsHasSelectableOptions: () => t("public", "commands_has_selectable_options", "Has selectable options"),
     /** Link to this command */
@@ -13159,8 +13169,8 @@ export const m = {
     commandsNoCommandsFor: (p: { query: P }) => t("public", "commands_no_commands_for", "No commands found for \"{query}\"", p),
     /** No commands found */
     commandsNoCommandsFound: () => t("public", "commands_no_commands_found", "No commands found"),
-    /** Mewdeko - All the commands! Searchable! */
-    commandsOgTitle: () => t("public", "commands_og_title", "Mewdeko - All the commands! Searchable!"),
+    /** Mewdeko - Searchable command list */
+    commandsOgTitle: () => t("public", "commands_og_title", "Mewdeko - Searchable command list"),
     /** Options Available */
     commandsOptionsAvailable: () => t("public", "commands_options_available", "Options Available"),
     /** Close the reply */
@@ -13191,16 +13201,16 @@ export const m = {
     commandsUsageExamples: () => t("public", "commands_usage_examples", "Usage Examples"),
     /** User (Channel): */
     commandsUserChannel: () => t("public", "commands_user_channel", "User (Channel):"),
-    /** User (Server): */
-    commandsUserServer: () => t("public", "commands_user_server", "User (Server):"),
+    /** User (Community): */
+    commandsUserServer: () => t("public", "commands_user_server", "User (Community):"),
     /** Connect with Us */
     contactsConnectWithUs: () => t("public", "contacts_connect_with_us", "Connect with Us"),
-    /** Ways to contact us! */
-    contactsDescription: () => t("public", "contacts_description", "Ways to contact us!"),
+    /** Ways to contact us */
+    contactsDescription: () => t("public", "contacts_description", "Ways to contact us"),
     /** Join Our Fluxer */
     contactsJoinOurFluxer: () => t("public", "contacts_join_our_fluxer", "Join Our Fluxer"),
-    /** Mewdeko - Ways to contact us! */
-    contactsTitle: () => t("public", "contacts_title", "Mewdeko - Ways to contact us!"),
+    /** Mewdeko - Contact us */
+    contactsTitle: () => t("public", "contacts_title", "Mewdeko - Contact us"),
     /** Add it to your credentials.json file */
     credguideAddItToYourCredentials: () => t("public", "credguide_add_it_to_your_credentials", "Add it to your credentials.json file"),
     /** Add this to your credentials.json file: */
@@ -13313,8 +13323,8 @@ export const m = {
     credguideGoToStep: (p: { number: P }) => t("public", "credguide_go_to_step", "Go to step {number}", p),
     /** Open Fluxer, go to User Settings, then Applications, and log in */
     credguideGoToTheDiscordDeveloper: () => t("public", "credguide_go_to_the_discord_developer", "Open Fluxer, go to User Settings, then Applications, and log in"),
-    /** Go to your Fluxer server */
-    credguideGoToYourDiscordServer: () => t("public", "credguide_go_to_your_discord_server", "Go to your Fluxer server"),
+    /** Go to your Fluxer community */
+    credguideGoToYourDiscordServer: () => t("public", "credguide_go_to_your_discord_server", "Go to your Fluxer community"),
     /** Important Note: */
     credguideImportantNote: () => t("public", "credguide_important_note", "Important Note:"),
     /** Install PostgreSQL and additional components */
@@ -13327,8 +13337,8 @@ export const m = {
     credguideLinuxUbuntuDebian: () => t("public", "credguide_linux_ubuntu_debian", "Linux (Ubuntu/Debian)"),
     /** Mark Complete */
     credguideMarkComplete: () => t("public", "credguide_mark_complete", "Mark Complete"),
-    /** Mewdeko uses PostgreSQL to store server configurations and user data. */
-    credguideMewdekoUsesPostgresqlToStore: () => t("public", "credguide_mewdeko_uses_postgresql_to_store", "Mewdeko uses PostgreSQL to store server configurations and user data."),
+    /** Mewdeko uses PostgreSQL to store community configurations and user data. */
+    credguideMewdekoUsesPostgresqlToStore: () => t("public", "credguide_mewdeko_uses_postgresql_to_store", "Mewdeko uses PostgreSQL to store community configurations and user data."),
     /** Multiple Owners: */
     credguideMultipleOwners: () => t("public", "credguide_multiple_owners", "Multiple Owners:"),
     /** Music playback server address */
@@ -13337,10 +13347,8 @@ export const m = {
     credguideNavigateToPostgresqlBinDirectory: () => t("public", "credguide_navigate_to_postgresql_bin_directory", "Navigate to PostgreSQL bin directory"),
     /** Navigate to the 'Bot' tab on the left sidebar */
     credguideNavigateToTheBotTab: () => t("public", "credguide_navigate_to_the_bot_tab", "Navigate to the 'Bot' tab on the left sidebar"),
-    /** Never share your bot token with anyone. Treat it like a password! */
-    credguideNeverShareYourBotToken: () => t("public", "credguide_never_share_your_bot_token", "Never share your bot token with anyone. Treat it like a password!"),
-    /** Next → */
-    credguideNext: () => t("public", "credguide_next", "Next →"),
+    /** Never share your bot token with anyone. Treat it like a password. */
+    credguideNeverShareYourBotToken: () => t("public", "credguide_never_share_your_bot_token", "Never share your bot token with anyone. Treat it like a password."),
     /** Mewdeko - Interactive Credentials Setup Guide */
     credguideOgTitle: () => t("public", "credguide_og_title", "Mewdeko - Interactive Credentials Setup Guide"),
     /** Open Command Prompt as Administrator */
@@ -13355,8 +13363,6 @@ export const m = {
     credguideOwnerIdConfiguration: () => t("public", "credguide_owner_id_configuration", "Owner ID configuration"),
     /** Press Win+X and select 'Windows Terminal (Admin)' */
     credguidePressWinXAndSelect: () => t("public", "credguide_press_win_x_and_select", "Press Win+X and select 'Windows Terminal (Admin)'"),
-    /** ← Previous */
-    credguidePrevious: () => t("public", "credguide_previous", "← Previous"),
     /** high priority */
     credguidePriorityHigh: () => t("public", "credguide_priority_high", "high priority"),
     /** low priority */
@@ -13417,8 +13423,8 @@ export const m = {
     credguideTheCredentialsExampleJsonFile: () => t("public", "credguide_the_credentials_example_json_file", "The credentials_example.json file is located in the Mewdeko/src/Mewdeko folder. You'll need to rename it to credentials.json and configure it."),
     /** The owner ID gives you full control over your bot. You can have multiple owners. */
     credguideTheOwnerIdGivesYou: () => t("public", "credguide_the_owner_id_gives_you", "The owner ID gives you full control over your bot. You can have multiple owners."),
-    /** These API keys are optional but enable additional features like music, games, and more. */
-    credguideTheseApiKeysAreOptional: () => t("public", "credguide_these_api_keys_are_optional", "These API keys are optional but enable additional features like music, games, and more."),
+    /** These API keys are optional and add extras such as music and games. */
+    credguideTheseApiKeysAreOptional: () => t("public", "credguide_these_api_keys_are_optional", "These API keys are optional and add extras such as music and games."),
     /** Mewdeko - Credentials Setup Wizard */
     credguideTitle: () => t("public", "credguide_title", "Mewdeko - Credentials Setup Wizard"),
     /** Twitch stream notifications */
@@ -13447,8 +13453,8 @@ export const m = {
     credguideYourBotTokenIsThe: () => t("public", "credguide_your_bot_token_is_the", "Your bot token is the unique identifier that allows your bot to connect to Fluxer."),
     /** YouTube search and playlist queuing */
     credguideYoutubeSearchAndPlaylistQueuing: () => t("public", "credguide_youtube_search_and_playlist_queuing", "YouTube search and playlist queuing"),
-    /** Activity recorded about you by Server Stats in a named server. */
-    deleteAccountActivityRecordedAboutYouBy: () => t("public", "delete_account_activity_recorded_about_you_by", "Activity recorded about you by Server Stats in a named server."),
+    /** Activity recorded about you by Community Stats in a named community. */
+    deleteAccountActivityRecordedAboutYouBy: () => t("public", "delete_account_activity_recorded_about_you_by", "Activity recorded about you by Community Stats in a named community."),
     /** Confessions you submitted, or ticket transcripts you appear in. */
     deleteAccountConfessionsYouSubmittedOrTicket: () => t("public", "delete_account_confessions_you_submitted_or_ticket", "Confessions you submitted, or ticket transcripts you appear in."),
     /** Confirm when prompted. */
@@ -13458,7 +13464,7 @@ export const m = {
     /** Delete some of your data without signing out */
     deleteAccountDeleteSomeOfYourData: () => t("public", "delete_account_delete_some_of_your_data", "Delete some of your data without signing out"),
     /** Deleting your Mewdeko Mobile data does not remove data the Mewdeko bot holds for the Fl... */
-    deleteAccountDeletingYourMewdekoMobileData: () => t("public", "delete_account_deleting_your_mewdeko_mobile_data", "Deleting your Mewdeko Mobile data does not remove data the Mewdeko bot holds for the Fluxer servers you are in, because that data belongs to those communities rather than to your app sign-in. Examples include XP levels, warnings, suggestions, and starboard entries."),
+    deleteAccountDeletingYourMewdekoMobileData: () => t("public", "delete_account_deleting_your_mewdeko_mobile_data", "Deleting your Mewdeko Mobile data does not remove data the Mewdeko bot holds for the Fluxer communities you are in, because that data belongs to those communities rather than to your app sign-in. Examples include XP levels, warnings, suggestions, and starboard entries."),
     /** How to delete your Mewdeko Mobile account and data */
     deleteAccountDescription: () => t("public", "delete_account_description", "How to delete your Mewdeko Mobile account and data"),
     /** If you can no longer sign in to the app, email {email} from any address and include you... */
@@ -13477,10 +13483,10 @@ export const m = {
     deleteAccountRequestDeletionByEmail: () => t("public", "delete_account_request_deletion_by_email", "Request deletion by email"),
     /** Self-hosted dashboards */
     deleteAccountSelfHostedDashboards: () => t("public", "delete_account_self_hosted_dashboards", "Self-hosted dashboards"),
-    /** Server administrators can also remove most of this directly from the dashboard or with ... */
-    deleteAccountServerAdministratorsCanAlsoRemove: () => t("public", "delete_account_server_administrators_can_also_remove", "Server administrators can also remove most of this directly from the dashboard or with bot commands, which is usually faster. Requests sent by email are answered within one month."),
+    /** Community administrators can also remove most of this directly from the dashboard or wi... */
+    deleteAccountServerAdministratorsCanAlsoRemove: () => t("public", "delete_account_server_administrators_can_also_remove", "Community administrators can also remove most of this directly from the dashboard or with bot commands, which is usually faster. Requests sent by email are answered within one month."),
     /** Sessions and sign-in tokens are destroyed at the moment of deletion and are not retaine... */
-    deleteAccountSessionsAndSignInTokens: () => t("public", "delete_account_sessions_and_sign_in_tokens", "Sessions and sign-in tokens are destroyed at the moment of deletion and are not retained. Data belonging to a Fluxer server is kept for as long as the bot remains in that server, and is covered by the section above."),
+    deleteAccountSessionsAndSignInTokens: () => t("public", "delete_account_sessions_and_sign_in_tokens", "Sessions and sign-in tokens are destroyed at the moment of deletion and are not retained. Data belonging to a Fluxer community is kept for as long as the bot remains in that community, and is covered by the section above."),
     /** Tap <strong>Delete my data</strong>. */
     deleteAccountStepDelete: () => t("public", "delete_account_step_delete", "Tap <strong>Delete my data</strong>."),
     /** Scroll to the <strong>Privacy</strong> section. */
@@ -13497,22 +13503,22 @@ export const m = {
     deleteAccountTheDeletionHappensImmediatelyYou: () => t("public", "delete_account_the_deletion_happens_immediately_you", "The deletion happens immediately. You are returned to the first screen of the app and signed out everywhere that session was active."),
     /** Delete your Mewdeko Mobile account and data */
     deleteAccountTitle: () => t("public", "delete_account_title", "Delete your Mewdeko Mobile account and data"),
-    /** Warnings recorded against you in a named server. */
-    deleteAccountWarningsRecordedAgainstYouIn: () => t("public", "delete_account_warnings_recorded_against_you_in", "Warnings recorded against you in a named server."),
+    /** Warnings recorded against you in a named community. */
+    deleteAccountWarningsRecordedAgainstYouIn: () => t("public", "delete_account_warnings_recorded_against_you_in", "Warnings recorded against you in a named community."),
     /** What is deleted */
     deleteAccountWhatIsDeleted: () => t("public", "delete_account_what_is_deleted", "What is deleted"),
     /** What is kept */
     deleteAccountWhatIsKept: () => t("public", "delete_account_what_is_kept", "What is kept"),
-    /** Your AI chat history in a named server. */
-    deleteAccountYourAiChatHistoryIn: () => t("public", "delete_account_your_ai_chat_history_in", "Your AI chat history in a named server."),
+    /** Your AI chat history in a named community. */
+    deleteAccountYourAiChatHistoryIn: () => t("public", "delete_account_your_ai_chat_history_in", "Your AI chat history in a named community."),
     /** Your birthday, AFK status, or highlight words. */
     deleteAccountYourBirthdayAfkStatusOr: () => t("public", "delete_account_your_birthday_afk_status_or", "Your birthday, AFK status, or highlight words."),
     /** Your dashboard sign-in session, revoked immediately. */
     deleteAccountYourDashboardSignInSession: () => t("public", "delete_account_your_dashboard_sign_in_session", "Your dashboard sign-in session, revoked immediately."),
     /** Your sign-in tokens, removed from the device. */
     deleteAccountYourSignInTokensRemoved: () => t("public", "delete_account_your_sign_in_tokens_removed", "Your sign-in tokens, removed from the device."),
-    /** Your XP and level history in a named server. */
-    deleteAccountYourXpAndLevelHistory: () => t("public", "delete_account_your_xp_and_level_history", "Your XP and level history in a named server."),
+    /** Your XP and level history in a named community. */
+    deleteAccountYourXpAndLevelHistory: () => t("public", "delete_account_your_xp_and_level_history", "Your XP and level history in a named community."),
     /** Please complete the captcha verification */
     giveawaysCaptchaRequired: () => t("public", "giveaways_captcha_required", "Please complete the captcha verification"),
     /** Complete the verification below to secure your entry */
@@ -13525,8 +13531,8 @@ export const m = {
     giveawaysEndsOn: () => t("public", "giveaways_ends_on", "Ends On"),
     /** 🎯 Enter Giveaway */
     giveawaysEnterButton: () => t("public", "giveaways_enter_button", "🎯 Enter Giveaway"),
-    /** 🎉 Successfully entered the giveaway! Good luck! */
-    giveawaysEntered: () => t("public", "giveaways_entered", "🎉 Successfully entered the giveaway! Good luck!"),
+    /** You entered the giveaway. Good luck. */
+    giveawaysEntered: () => t("public", "giveaways_entered", "You entered the giveaway. Good luck."),
     /** Entering... */
     giveawaysEntering: () => t("public", "giveaways_entering", "Entering..."),
     /** Authentication error: Please log in again to enter giveaway. */
@@ -13553,16 +13559,14 @@ export const m = {
     giveawaysGiveawayHasEnded: () => t("public", "giveaways_giveaway_has_ended", "Giveaway Has Ended"),
     /** Invalid giveaway ID provided */
     giveawaysInvalidGiveaway: () => t("public", "giveaways_invalid_giveaway", "Invalid giveaway ID provided"),
-    /** Invalid guild ID provided */
-    giveawaysInvalidGuild: () => t("public", "giveaways_invalid_guild", "Invalid guild ID provided"),
-    /** Join the excitement and win amazing prizes! */
-    giveawaysJoinTheExcitementAndWin: () => t("public", "giveaways_join_the_excitement_and_win", "Join the excitement and win amazing prizes!"),
+    /** Invalid community ID provided */
+    giveawaysInvalidGuild: () => t("public", "giveaways_invalid_guild", "Invalid community ID provided"),
+    /** Enter to win prizes. */
+    giveawaysJoinTheExcitementAndWin: () => t("public", "giveaways_join_the_excitement_and_win", "Enter to win prizes."),
     /** Loading giveaway details... */
     giveawaysLoadingGiveawayDetails: () => t("public", "giveaways_loading_giveaway_details", "Loading giveaway details..."),
     /** No Giveaway Found */
     giveawaysNoGiveawayFound: () => t("public", "giveaways_no_giveaway_found", "No Giveaway Found"),
-    /** Oops! Something went wrong */
-    giveawaysOopsSomethingWentWrong: () => t("public", "giveaways_oops_something_went_wrong", "Oops! Something went wrong"),
     /** Please complete the captcha verification above */
     giveawaysPleaseCompleteTheCaptchaVerification: () => t("public", "giveaways_please_complete_the_captcha_verification", "Please complete the captcha verification above"),
     /** Ready to Enter? */
@@ -13579,52 +13583,50 @@ export const m = {
     leaderboardAvgLevel: () => t("public", "leaderboard_avg_level", "Avg Level"),
     /** Bot Instance: {bot} */
     leaderboardBotInstance: (p: { bot: P }) => t("public", "leaderboard_bot_instance", "Bot Instance: {bot}", p),
-    /** Failed to check guild */
-    leaderboardCheckGuildFailed: () => t("public", "leaderboard_check_guild_failed", "Failed to check guild"),
+    /** Failed to check community */
+    leaderboardCheckGuildFailed: () => t("public", "leaderboard_check_guild_failed", "Failed to check community"),
     /** Failed to check bot instances */
     leaderboardCheckInstancesFailed: () => t("public", "leaderboard_check_instances_failed", "Failed to check bot instances"),
     /** View the XP leaderboard for {server} */
     leaderboardDescription: (p: { server: P }) => t("public", "leaderboard_description", "View the XP leaderboard for {server}", p),
-    /** Finding which bot has this server... */
-    leaderboardFindingBot: () => t("public", "leaderboard_finding_bot", "Finding which bot has this server..."),
+    /** Finding which bot has this community... */
+    leaderboardFindingBot: () => t("public", "leaderboard_finding_bot", "Finding which bot has this community..."),
     /** {server} Leaderboard */
     leaderboardHeading: (p: { server: P }) => t("public", "leaderboard_heading", "{server} Leaderboard", p),
-    /** Join this server to start earning XP and climb the leaderboard! */
-    leaderboardJoinThisServerToStart: () => t("public", "leaderboard_join_this_server_to_start", "Join this server to start earning XP and climb the leaderboard!"),
+    /** Join this community to earn XP and get on the leaderboard. */
+    leaderboardJoinThisServerToStart: () => t("public", "leaderboard_join_this_server_to_start", "Join this community to earn XP and get on the leaderboard."),
     /** Failed to load leaderboard data */
     leaderboardLoadFailed: () => t("public", "leaderboard_load_failed", "Failed to load leaderboard data"),
     /** Loading leaderboard... */
     leaderboardLoading: () => t("public", "leaderboard_loading", "Loading leaderboard..."),
-    /** Please log in to view server leaderboards */
-    leaderboardLoginPrompt: () => t("public", "leaderboard_login_prompt", "Please log in to view server leaderboards"),
+    /** Please log in to view community leaderboards */
+    leaderboardLoginPrompt: () => t("public", "leaderboard_login_prompt", "Please log in to view community leaderboards"),
     /** Member Access Only */
     leaderboardMemberAccessOnly: () => t("public", "leaderboard_member_access_only", "Member Access Only"),
-    /** You must be a member of this server to view its leaderboard */
-    leaderboardMembersOnly: () => t("public", "leaderboard_members_only", "You must be a member of this server to view its leaderboard"),
+    /** You must be a member of this community to view its leaderboard */
+    leaderboardMembersOnly: () => t("public", "leaderboard_members_only", "You must be a member of this community to view its leaderboard"),
     /** You must be a member of {server} to view its leaderboard */
     leaderboardMustBeMember: (p: { server: P }) => t("public", "leaderboard_must_be_member", "You must be a member of {server} to view its leaderboard", p),
     /** No leaderboard data available */
     leaderboardNoLeaderboardDataAvailable: () => t("public", "leaderboard_no_leaderboard_data_available", "No leaderboard data available"),
-    /** Oops! */
-    leaderboardOops: () => t("public", "leaderboard_oops", "Oops!"),
-    /** Please log in with Fluxer to view server leaderboards */
-    leaderboardPleaseLogInWithDiscord: () => t("public", "leaderboard_please_log_in_with_discord", "Please log in with Fluxer to view server leaderboards"),
+    /** Please log in with Fluxer to view community leaderboards */
+    leaderboardPleaseLogInWithDiscord: () => t("public", "leaderboard_please_log_in_with_discord", "Please log in with Fluxer to view community leaderboards"),
     /** Powered by <span style="color: {color};" class="font-semibold">Mewdeko</span> */
     leaderboardPoweredBy: (p: { color: P }) => t("public", "leaderboard_powered_by", "Powered by <span style=\"color: {color};\" class=\"font-semibold\">Mewdeko</span>", p),
     /** • {count} messages */
     leaderboardRowMessages: (p: { count: P }) => t("public", "leaderboard_row_messages", "• {count} messages", p),
-    /** Server Not Found */
-    leaderboardServerNotFound: () => t("public", "leaderboard_server_not_found", "Server Not Found"),
-    /** This server doesn't appear to be using Mewdeko, or XP tracking isn't enabled. */
-    leaderboardThisServerDoesntAppearTo: () => t("public", "leaderboard_this_server_doesnt_appear_to", "This server doesn't appear to be using Mewdeko, or XP tracking isn't enabled."),
-    /** This server may not have XP tracking enabled */
-    leaderboardThisServerMayNotHave: () => t("public", "leaderboard_this_server_may_not_have", "This server may not have XP tracking enabled"),
+    /** Community Not Found */
+    leaderboardServerNotFound: () => t("public", "leaderboard_server_not_found", "Community Not Found"),
+    /** This community doesn't appear to be using Mewdeko, or XP tracking isn't enabled. */
+    leaderboardThisServerDoesntAppearTo: () => t("public", "leaderboard_this_server_doesnt_appear_to", "This community doesn't appear to be using Mewdeko, or XP tracking isn't enabled."),
+    /** This community may not have XP tracking enabled */
+    leaderboardThisServerMayNotHave: () => t("public", "leaderboard_this_server_may_not_have", "This community may not have XP tracking enabled"),
     /** XP Leaderboard - {server} */
     leaderboardTitle: (p: { server: P }) => t("public", "leaderboard_title", "XP Leaderboard - {server}", p),
     /** Top members by experience points */
     leaderboardTopMembersByExperiencePoints: () => t("public", "leaderboard_top_members_by_experience_points", "Top members by experience points"),
-    /** Failed to verify guild membership */
-    leaderboardVerifyFailed: () => t("public", "leaderboard_verify_failed", "Failed to verify guild membership"),
+    /** Failed to verify community membership */
+    leaderboardVerifyFailed: () => t("public", "leaderboard_verify_failed", "Failed to verify community membership"),
     /** You have already submitted a review. */
     reviewsAlreadySubmitted: () => t("public", "reviews_already_submitted", "You have already submitted a review."),
     /** What users think of Mewdeko. */
@@ -13655,22 +13657,22 @@ export const m = {
     reviewsSubmitFailed: () => t("public", "reviews_submit_failed", "Failed to submit review. Please try again later."),
     /** Submit Your Review */
     reviewsSubmitHeading: () => t("public", "reviews_submit_heading", "Submit Your Review"),
-    /** Thank you for your review! */
-    reviewsThanks: () => t("public", "reviews_thanks", "Thank you for your review!"),
+    /** Thank you for your review */
+    reviewsThanks: () => t("public", "reviews_thanks", "Thank you for your review"),
     /** Mewdeko - Reviews */
     reviewsTitle: () => t("public", "reviews_title", "Mewdeko - Reviews"),
     /** Write your review (supports Markdown) */
     reviewsWriteLabel: () => t("public", "reviews_write_label", "Write your review (supports Markdown)"),
     /** Write your review here... */
     reviewsWritePlaceholder: () => t("public", "reviews_write_placeholder", "Write your review here..."),
-    /** 💡 Click me! */
-    staffClickMe: () => t("public", "staff_click_me", "💡 Click me!"),
+    /** Click me */
+    staffClickMe: () => t("public", "staff_click_me", "Click me"),
     /** Click to reveal easter egg */
     staffClickToRevealEasterEgg: () => t("public", "staff_click_to_reveal_easter_egg", "Click to reveal easter egg"),
     /** Contribute on GitHub */
     staffContributeOnGithub: () => t("public", "staff_contribute_on_github", "Contribute on GitHub"),
-    /** Meet the talented team behind Mewdeko Fluxer bot */
-    staffDescription: () => t("public", "staff_description", "Meet the talented team behind Mewdeko Fluxer bot"),
+    /** The team behind the Mewdeko Fluxer bot */
+    staffDescription: () => t("public", "staff_description", "The team behind the Mewdeko Fluxer bot"),
     /** Head of evil science/Catgirl shenanigans */
     staffEggCottage: () => t("public", "staff_egg_cottage", "Head of evil science/Catgirl shenanigans"),
     /** LEEEEROY JEEEENKINS */
@@ -13679,24 +13681,22 @@ export const m = {
     staffMajorPeople: () => t("public", "staff_major_people", "Major People"),
     /** Meet Our Team */
     staffMeetOurTeam: () => t("public", "staff_meet_our_team", "Meet Our Team"),
-    /** Meet the dedicated team that makes Mewdeko possible. Each member brings unique skills a... */
-    staffMeetTheDedicatedTeamThat: () => t("public", "staff_meet_the_dedicated_team_that", "Meet the dedicated team that makes Mewdeko possible. Each member brings unique skills and passion to create the best Fluxer bot experience."),
+    /** The developers and supporters who keep Mewdeko running. */
+    staffMeetTheDedicatedTeamThat: () => t("public", "staff_meet_the_dedicated_team_that", "The developers and supporters who keep Mewdeko running."),
     /** Mewdeko staff members */
     staffMewdekoStaffMembers: () => t("public", "staff_mewdeko_staff_members", "Mewdeko staff members"),
-    /** Mewdeko - The people that make the bot possible. */
-    staffOgTitle: () => t("public", "staff_og_title", "Mewdeko - The people that make the bot possible."),
-    /** Our Staff */
-    staffOurStaff: () => t("public", "staff_our_staff", "Our Staff"),
-    /** Our team is driven by the amazing community that uses and supports Mewdeko. Every sugge... */
-    staffOurTeamIsDrivenBy: () => t("public", "staff_our_team_is_driven_by", "Our team is driven by the amazing community that uses and supports Mewdeko. Every suggestion, bug report, and piece of feedback helps us make the bot better for everyone."),
+    /** Mewdeko - The people behind the bot */
+    staffOgTitle: () => t("public", "staff_og_title", "Mewdeko - The people behind the bot"),
+    /** Every suggestion and bug report from the community goes into the bot. */
+    staffOurTeamIsDrivenBy: () => t("public", "staff_our_team_is_driven_by", "Every suggestion and bug report from the community goes into the bot."),
     /** Owner/Developer */
     staffRoleOwnerDeveloper: () => t("public", "staff_role_owner_developer", "Owner/Developer"),
     /** Owner/Major Supporter */
     staffRoleOwnerSupporter: () => t("public", "staff_role_owner_supporter", "Owner/Major Supporter"),
     /** Thank You for Your Support */
     staffThankYouForYourSupport: () => t("public", "staff_thank_you_for_your_support", "Thank You for Your Support"),
-    /** The passionate people behind Mewdeko */
-    staffThePassionatePeopleBehindMewdeko: () => t("public", "staff_the_passionate_people_behind_mewdeko", "The passionate people behind Mewdeko"),
+    /** The people behind Mewdeko */
+    staffThePassionatePeopleBehindMewdeko: () => t("public", "staff_the_passionate_people_behind_mewdeko", "The people behind Mewdeko"),
     /** Mewdeko - Our Team */
     staffTitle: () => t("public", "staff_title", "Mewdeko - Our Team"),
   },
@@ -13831,8 +13831,8 @@ export const m = {
     pageFormAllowMentions: () => t("repeaters", "page_form_allow_mentions", "Allow @everyone and @here mentions"),
     /** Target Channel */
     pageFormChannel: () => t("repeaters", "page_form_channel", "Target Channel"),
-    /** Set up automated messages for your server */
-    pageFormCreateSubtitle: () => t("repeaters", "page_form_create_subtitle", "Set up automated messages for your server"),
+    /** Set up automated messages for your community */
+    pageFormCreateSubtitle: () => t("repeaters", "page_form_create_subtitle", "Set up automated messages for your community"),
     /** Create New Repeater */
     pageFormCreateTitle: () => t("repeaters", "page_form_create_title", "Create New Repeater"),
     /** Custom: HH:MM:SS */
@@ -13917,20 +13917,20 @@ export const m = {
     pageMessagePreviewPlaceholder: () => t("repeaters", "page_message_preview_placeholder", "No message content"),
     /** Message Preview */
     pageMessagePreviewTitle: () => t("repeaters", "page_message_preview_title", "Message Preview"),
-    /** Disabled repeaters successfully */
-    pageNotifyBulkDisabled: () => t("repeaters", "page_notify_bulk_disabled", "Disabled repeaters successfully"),
-    /** Enabled repeaters successfully */
-    pageNotifyBulkEnabled: () => t("repeaters", "page_notify_bulk_enabled", "Enabled repeaters successfully"),
+    /** Disabled repeaters */
+    pageNotifyBulkDisabled: () => t("repeaters", "page_notify_bulk_disabled", "Disabled repeaters"),
+    /** Enabled repeaters */
+    pageNotifyBulkEnabled: () => t("repeaters", "page_notify_bulk_enabled", "Enabled repeaters"),
     /** Failed to bulk toggle repeaters */
     pageNotifyBulkFailed: () => t("repeaters", "page_notify_bulk_failed", "Failed to bulk toggle repeaters"),
     /** Failed to create repeater */
     pageNotifyCreateFailed: () => t("repeaters", "page_notify_create_failed", "Failed to create repeater"),
-    /** Repeater created successfully! */
-    pageNotifyCreated: () => t("repeaters", "page_notify_created", "Repeater created successfully!"),
+    /** Repeater created */
+    pageNotifyCreated: () => t("repeaters", "page_notify_created", "Repeater created"),
     /** Failed to delete repeater */
     pageNotifyDeleteFailed: () => t("repeaters", "page_notify_delete_failed", "Failed to delete repeater"),
-    /** Repeater deleted successfully */
-    pageNotifyDeleted: () => t("repeaters", "page_notify_deleted", "Repeater deleted successfully"),
+    /** Repeater deleted */
+    pageNotifyDeleted: () => t("repeaters", "page_notify_deleted", "Repeater deleted"),
     /** Repeater disabled */
     pageNotifyDisabled: () => t("repeaters", "page_notify_disabled", "Repeater disabled"),
     /** Repeater enabled */
@@ -13939,36 +13939,36 @@ export const m = {
     pageNotifyExpiryFailed: () => t("repeaters", "page_notify_expiry_failed", "Failed to update expiry settings"),
     /** Failed to update interval */
     pageNotifyIntervalFailed: () => t("repeaters", "page_notify_interval_failed", "Failed to update interval"),
-    /** Interval updated successfully */
-    pageNotifyIntervalUpdated: () => t("repeaters", "page_notify_interval_updated", "Interval updated successfully"),
+    /** Interval updated */
+    pageNotifyIntervalUpdated: () => t("repeaters", "page_notify_interval_updated", "Interval updated"),
     /** Failed to load repeater data */
     pageNotifyLoadFailed: () => t("repeaters", "page_notify_load_failed", "Failed to load repeater data"),
     /** No changes detected */
     pageNotifyNoChanges: () => t("repeaters", "page_notify_no_changes", "No changes detected"),
     /** Failed to update queue position */
     pageNotifyQueueFailed: () => t("repeaters", "page_notify_queue_failed", "Failed to update queue position"),
-    /** Queue position updated successfully */
-    pageNotifyQueueUpdated: () => t("repeaters", "page_notify_queue_updated", "Queue position updated successfully"),
+    /** Queue position updated */
+    pageNotifyQueueUpdated: () => t("repeaters", "page_notify_queue_updated", "Queue position updated"),
     /** Failed to update start time */
     pageNotifyStartFailed: () => t("repeaters", "page_notify_start_failed", "Failed to update start time"),
     /** Failed to update forum tag conditions */
     pageNotifyTagsFailed: () => t("repeaters", "page_notify_tags_failed", "Failed to update forum tag conditions"),
-    /** Forum tag conditions updated successfully */
-    pageNotifyTagsUpdated: () => t("repeaters", "page_notify_tags_updated", "Forum tag conditions updated successfully"),
+    /** Forum tag conditions updated */
+    pageNotifyTagsUpdated: () => t("repeaters", "page_notify_tags_updated", "Forum tag conditions updated"),
     /** Failed to update conversation threshold */
     pageNotifyThresholdFailed: () => t("repeaters", "page_notify_threshold_failed", "Failed to update conversation threshold"),
-    /** Conversation threshold updated successfully */
-    pageNotifyThresholdUpdated: () => t("repeaters", "page_notify_threshold_updated", "Conversation threshold updated successfully"),
+    /** Conversation threshold updated */
+    pageNotifyThresholdUpdated: () => t("repeaters", "page_notify_threshold_updated", "Conversation threshold updated"),
     /** Failed to toggle repeater */
     pageNotifyToggleFailed: () => t("repeaters", "page_notify_toggle_failed", "Failed to toggle repeater"),
     /** Failed to trigger repeater */
     pageNotifyTriggerFailed: () => t("repeaters", "page_notify_trigger_failed", "Failed to trigger repeater"),
-    /** Repeater triggered successfully! */
-    pageNotifyTriggered: () => t("repeaters", "page_notify_triggered", "Repeater triggered successfully!"),
+    /** Repeater triggered */
+    pageNotifyTriggered: () => t("repeaters", "page_notify_triggered", "Repeater triggered"),
     /** Failed to update repeater */
     pageNotifyUpdateFailed: () => t("repeaters", "page_notify_update_failed", "Failed to update repeater"),
-    /** Repeater updated successfully! */
-    pageNotifyUpdated: () => t("repeaters", "page_notify_updated", "Repeater updated successfully!"),
+    /** Repeater updated */
+    pageNotifyUpdated: () => t("repeaters", "page_notify_updated", "Repeater updated"),
     /** Trigger Modes */
     pageOverviewModes: () => t("repeaters", "page_overview_modes", "Trigger Modes"),
     /** Stop the repeater after a time limit or a number of triggers. Leave empty for no limit. */
@@ -14075,18 +14075,14 @@ export const m = {
     leaderboardHeading: () => t("reputation", "leaderboard_heading", "Reputation Leaderboard"),
     /** Min Message Count */
     minMessagesLabel: () => t("reputation", "min_messages_label", "Min Message Count"),
-    /** Min Server Time (hours) */
-    minServerTimeLabel: () => t("reputation", "min_server_time_label", "Min Server Time (hours)"),
+    /** Min Community Time (hours) */
+    minServerTimeLabel: () => t("reputation", "min_server_time_label", "Min Community Time (hours)"),
     /** Notification Channel (optional) */
     notificationChannelLabel: () => t("reputation", "notification_channel_label", "Notification Channel (optional)"),
     /** No notifications */
     notificationChannelPlaceholder: () => t("reputation", "notification_channel_placeholder", "No notifications"),
-    /** Role reward added successfully! */
-    notifyRewardAdded: () => t("reputation", "notify_reward_added", "Role reward added successfully!"),
-    /** Role reward removed! */
-    notifyRewardRemoved: () => t("reputation", "notify_reward_removed", "Role reward removed!"),
-    /** Manage server reputation and rewards */
-    pageSubtitle: () => t("reputation", "page_subtitle", "Manage server reputation and rewards"),
+    /** Manage community reputation and rewards */
+    pageSubtitle: () => t("reputation", "page_subtitle", "Manage community reputation and rewards"),
     /** Reputation System */
     pageTitle: () => t("reputation", "page_title", "Reputation System"),
     /** Remove role if rep drops below threshold */
@@ -14191,8 +14187,8 @@ export const m = {
     editorSectionConfirmation: () => t("role-menus", "editor_section_confirmation", "Confirmation"),
     /** Picking */
     editorSectionPicking: () => t("role-menus", "editor_section_picking", "Picking"),
-    /** This server */
-    editorThisServer: () => t("role-menus", "editor_this_server", "This server"),
+    /** This community */
+    editorThisServer: () => t("role-menus", "editor_this_server", "This community"),
     /** Uses the text and embeds from the old message */
     importCopySubtitle: () => t("role-menus", "import_copy_subtitle", "Uses the text and embeds from the old message"),
     /** Copy the original message */
@@ -14313,8 +14309,8 @@ export const m = {
     pageErrorToggle: () => t("rolegreets", "page_error_toggle", "Failed to update role greet state"),
     /** Should bot accounts receive this greeting? */
     pageGreetBotsHint: () => t("rolegreets", "page_greet_bots_hint", "Should bot accounts receive this greeting?"),
-    /** Role greet added successfully */
-    pageNotifyAdded: () => t("rolegreets", "page_notify_added", "Role greet added successfully"),
+    /** Role greet added */
+    pageNotifyAdded: () => t("rolegreets", "page_notify_added", "Role greet added"),
     /** Role greet deleted */
     pageNotifyDeleted: () => t("rolegreets", "page_notify_deleted", "Role greet deleted"),
     /** Role greet disabled */
@@ -14405,20 +14401,20 @@ export const m = {
     notifyRoleStatesEnabled: () => t("rolestates", "notify_role_states_enabled", "Role states enabled"),
     /** Failed to add roles to user */
     notifyRolesAddFailed: () => t("rolestates", "notify_roles_add_failed", "Failed to add roles to user"),
-    /** Roles added to user successfully */
-    notifyRolesAdded: () => t("rolestates", "notify_roles_added", "Roles added to user successfully"),
+    /** Roles added to user */
+    notifyRolesAdded: () => t("rolestates", "notify_roles_added", "Roles added to user"),
     /** Failed to remove roles from user */
     notifyRolesRemoveFailed: () => t("rolestates", "notify_roles_remove_failed", "Failed to remove roles from user"),
-    /** Roles removed from user successfully */
-    notifyRolesRemoved: () => t("rolestates", "notify_roles_removed", "Roles removed from user successfully"),
-    /** Role state applied successfully */
-    notifyStateApplied: () => t("rolestates", "notify_state_applied", "Role state applied successfully"),
+    /** Roles removed from user */
+    notifyRolesRemoved: () => t("rolestates", "notify_roles_removed", "Roles removed from user"),
+    /** Role state applied */
+    notifyStateApplied: () => t("rolestates", "notify_state_applied", "Role state applied"),
     /** Failed to apply role state */
     notifyStateApplyFailed: () => t("rolestates", "notify_state_apply_failed", "Failed to apply role state"),
     /** Failed to delete user role state */
     notifyStateDeleteFailed: () => t("rolestates", "notify_state_delete_failed", "Failed to delete user role state"),
-    /** User role state deleted successfully */
-    notifyStateDeleted: () => t("rolestates", "notify_state_deleted", "User role state deleted successfully"),
+    /** User role state deleted */
+    notifyStateDeleted: () => t("rolestates", "notify_state_deleted", "User role state deleted"),
     /** Failed to save user role states */
     notifyStatesSaveFailed: () => t("rolestates", "notify_states_save_failed", "Failed to save user role states"),
     /** Saved role states for {count} users */
@@ -14431,22 +14427,20 @@ export const m = {
     notifyUserDenied: () => t("rolestates", "notify_user_denied", "User added to deny list"),
     /** Save All */
     saveAllButton: () => t("rolestates", "save_all_button", "Save All"),
-    /** Save role states for all current server members */
-    saveCurrentHint: () => t("rolestates", "save_current_hint", "Save role states for all current server members"),
+    /** Save role states for all current community members */
+    saveCurrentHint: () => t("rolestates", "save_current_hint", "Save role states for all current community members"),
     /** Save Current States */
     saveCurrentTitle: () => t("rolestates", "save_current_title", "Save Current States"),
     /** Deny List */
     settingsTabDenied: () => t("rolestates", "settings_tab_denied", "Deny List"),
-    /** General */
-    settingsTabGeneral: () => t("rolestates", "settings_tab_general", "General"),
     /** Role States Settings */
     settingsTitle: () => t("rolestates", "settings_title", "Role States Settings"),
     /** All Saved Roles: */
     statesAllRoles: () => t("rolestates", "states_all_roles", "All Saved Roles:"),
     /** Delete role state */
     statesDelete: () => t("rolestates", "states_delete", "Delete role state"),
-    /** Role states will be saved automatically when users leave the server */
-    statesEmptyHint: () => t("rolestates", "states_empty_hint", "Role states will be saved automatically when users leave the server"),
+    /** Role states will be saved automatically when users leave the community */
+    statesEmptyHint: () => t("rolestates", "states_empty_hint", "Role states will be saved automatically when users leave the community"),
     /** No Role States Saved */
     statesEmptyTitle: () => t("rolestates", "states_empty_title", "No Role States Saved"),
     /** Saved Role States ({count}) */
@@ -14527,8 +14521,8 @@ export const m = {
     gameDetailOther: (p: { active: P; players: P; type: P }) => t("serverstats", "game_detail_other", "{players} players · {active} now · {type}", p),
     /** Messages and voice here are not counted */
     ignoredChannelsNote: () => t("serverstats", "ignored_channels_note", "Messages and voice here are not counted"),
-    /** Not counted in this server */
-    ignoredMembersNote: () => t("serverstats", "ignored_members_note", "Not counted in this server"),
+    /** Not counted in this community */
+    ignoredMembersNote: () => t("serverstats", "ignored_members_note", "Not counted in this community"),
     /** Holders are not counted */
     ignoredRolesNote: () => t("serverstats", "ignored_roles_note", "Holders are not counted"),
     /** Pick a channel to see who is active in it. */
@@ -14565,8 +14559,8 @@ export const m = {
     lookupWhoPlays: () => t("serverstats", "lookup_who_plays", "Who plays"),
     /** Couldn't save activity stats settings. Toggles were put back; use Retry for number fields. */
     notifySaveFailed: () => t("serverstats", "notify_save_failed", "Couldn't save activity stats settings. Toggles were put back; use Retry for number fields."),
-    /** Server Activity */
-    overviewTitle: () => t("serverstats", "overview_title", "Server Activity"),
+    /** Community Activity */
+    overviewTitle: () => t("serverstats", "overview_title", "Community Activity"),
     /** Messages, voice time, games and member growth over any window */
     pageSubtitle: () => t("serverstats", "page_subtitle", "Messages, voice time, games and member growth over any window"),
     /** CSV */
@@ -14685,16 +14679,16 @@ export const m = {
     pageCmdlogPlaceholder: () => t("settings", "page_cmdlog_placeholder", "No command logging"),
     /** Command Log Channel */
     pageCmdlogTitle: () => t("settings", "page_cmdlog_title", "Command Log Channel"),
-    /** The emoji displayed for your server currency */
-    pageCurrencyHint: () => t("settings", "page_currency_hint", "The emoji displayed for your server currency"),
+    /** The emoji displayed for your community currency */
+    pageCurrencyHint: () => t("settings", "page_currency_hint", "The emoji displayed for your community currency"),
     /** Currency Emoji */
     pageCurrencyTitle: () => t("settings", "page_currency_title", "Currency Emoji"),
-    /** Failed to fetch guild settings */
-    pageFetchFailed: () => t("settings", "page_fetch_failed", "Failed to fetch guild settings"),
+    /** Failed to fetch community settings */
+    pageFetchFailed: () => t("settings", "page_fetch_failed", "Failed to fetch community settings"),
     /** Bot default */
     pageLanguageDefault: () => t("settings", "page_language_default", "Bot default"),
-    /** Language the bot replies in for this server */
-    pageLanguageHint: () => t("settings", "page_language_hint", "Language the bot replies in for this server"),
+    /** Language the bot replies in for this community */
+    pageLanguageHint: () => t("settings", "page_language_hint", "Language the bot replies in for this community"),
     /** Additional settings like roles, permissions, and module-specific configurations can be ... */
     pageMoreHint: () => t("settings", "page_more_hint", "Additional settings like roles, permissions, and module-specific configurations can be found in their respective dashboard pages: <strong>Administration</strong>, <strong>Message Stats</strong>, <strong>Starboard</strong>, and more."),
     /** More Settings Available */
@@ -14719,8 +14713,8 @@ export const m = {
     pageSnipeHint: () => t("settings", "page_snipe_hint", "Let members recover recently deleted or edited messages with the snipe commands"),
     /** Message sniping */
     pageSnipeTitle: () => t("settings", "page_snipe_title", "Message sniping"),
-    /** Configure bot-wide settings for your server */
-    pageSubtitle: () => t("settings", "page_subtitle", "Configure bot-wide settings for your server"),
+    /** Configure bot-wide settings for your community */
+    pageSubtitle: () => t("settings", "page_subtitle", "Configure bot-wide settings for your community"),
     /** Used for scheduled messages, reminders and time displays. */
     pageTimezoneHint: () => t("settings", "page_timezone_hint", "Used for scheduled messages, reminders and time displays."),
     /** Loading timezones... */
@@ -14735,34 +14729,34 @@ export const m = {
     pageWarnlogPlaceholder: () => t("settings", "page_warnlog_placeholder", "No warning logging"),
     /** Bot Avatar */
     profileAvatarAlt: () => t("settings", "profile_avatar_alt", "Bot Avatar"),
-    /** Custom avatar for this server */
-    profileAvatarHint: () => t("settings", "profile_avatar_hint", "Custom avatar for this server"),
-    /** Guild Avatar */
-    profileAvatarTitle: () => t("settings", "profile_avatar_title", "Guild Avatar"),
+    /** Custom avatar for this community */
+    profileAvatarHint: () => t("settings", "profile_avatar_hint", "Custom avatar for this community"),
+    /** Community Avatar */
+    profileAvatarTitle: () => t("settings", "profile_avatar_title", "Community Avatar"),
     /** Failed to update avatar */
     profileAvatarUpdateFailed: () => t("settings", "profile_avatar_update_failed", "Failed to update avatar"),
-    /** Avatar updated successfully! */
-    profileAvatarUpdated: () => t("settings", "profile_avatar_updated", "Avatar updated successfully!"),
+    /** Avatar updated */
+    profileAvatarUpdated: () => t("settings", "profile_avatar_updated", "Avatar updated"),
     /** Bot Banner */
     profileBannerAlt: () => t("settings", "profile_banner_alt", "Bot Banner"),
-    /** Custom banner for this server */
-    profileBannerHint: () => t("settings", "profile_banner_hint", "Custom banner for this server"),
-    /** Guild Banner */
-    profileBannerTitle: () => t("settings", "profile_banner_title", "Guild Banner"),
+    /** Custom banner for this community */
+    profileBannerHint: () => t("settings", "profile_banner_hint", "Custom banner for this community"),
+    /** Community Banner */
+    profileBannerTitle: () => t("settings", "profile_banner_title", "Community Banner"),
     /** Failed to update banner */
     profileBannerUpdateFailed: () => t("settings", "profile_banner_update_failed", "Failed to update banner"),
-    /** Banner updated successfully! */
-    profileBannerUpdated: () => t("settings", "profile_banner_updated", "Banner updated successfully!"),
-    /** Custom bio for this server */
-    profileBioHint: () => t("settings", "profile_bio_hint", "Custom bio for this server"),
-    /** Enter bot bio for this server... */
-    profileBioPlaceholder: () => t("settings", "profile_bio_placeholder", "Enter bot bio for this server..."),
-    /** Guild Bio */
-    profileBioTitle: () => t("settings", "profile_bio_title", "Guild Bio"),
+    /** Banner updated */
+    profileBannerUpdated: () => t("settings", "profile_banner_updated", "Banner updated"),
+    /** Custom bio for this community */
+    profileBioHint: () => t("settings", "profile_bio_hint", "Custom bio for this community"),
+    /** Enter bot bio for this community... */
+    profileBioPlaceholder: () => t("settings", "profile_bio_placeholder", "Enter bot bio for this community..."),
+    /** Community Bio */
+    profileBioTitle: () => t("settings", "profile_bio_title", "Community Bio"),
     /** Failed to update bio */
     profileBioUpdateFailed: () => t("settings", "profile_bio_update_failed", "Failed to update bio"),
-    /** Bio updated successfully! */
-    profileBioUpdated: () => t("settings", "profile_bio_updated", "Bio updated successfully!"),
+    /** Bio updated */
+    profileBioUpdated: () => t("settings", "profile_bio_updated", "Bio updated"),
     /** File too large. Maximum size is {size}. */
     profileFileTooLarge: (p: { size: P }) => t("settings", "profile_file_too_large", "File too large. Maximum size is {size}.", p),
     /** Enter image URL */
@@ -14773,34 +14767,34 @@ export const m = {
     profileNoBanner: () => t("settings", "profile_no_banner", "No banner set"),
     /** No bio set */
     profileNoBio: () => t("settings", "profile_no_bio", "No bio set"),
-    /** These settings only affect how the bot appears in this specific server. The bot's globa... */
-    profileNote: () => t("settings", "profile_note", "These settings only affect how the bot appears in this specific server. The bot's global profile remains unchanged."),
+    /** These settings only affect how the bot appears in this specific community. The bot's gl... */
+    profileNote: () => t("settings", "profile_note", "These settings only affect how the bot appears in this specific community. The bot's global profile remains unchanged."),
     /** Note: */
     profileNoteLabel: () => t("settings", "profile_note_label", "Note:"),
-    /** The avatar, banner and bio in this server all go back to the bot's normal profile. */
-    profileResetAllMessage: () => t("settings", "profile_reset_all_message", "The avatar, banner and bio in this server all go back to the bot's normal profile."),
+    /** The avatar, banner and bio in this community all go back to the bot's normal profile. */
+    profileResetAllMessage: () => t("settings", "profile_reset_all_message", "The avatar, banner and bio in this community all go back to the bot's normal profile."),
     /** Reset the whole profile? */
     profileResetAllTitle: () => t("settings", "profile_reset_all_title", "Reset the whole profile?"),
-    /** The bot goes back to its normal avatar in this server. */
-    profileResetAvatarMessage: () => t("settings", "profile_reset_avatar_message", "The bot goes back to its normal avatar in this server."),
+    /** The bot goes back to its normal avatar in this community. */
+    profileResetAvatarMessage: () => t("settings", "profile_reset_avatar_message", "The bot goes back to its normal avatar in this community."),
     /** Reset the avatar? */
     profileResetAvatarTitle: () => t("settings", "profile_reset_avatar_title", "Reset the avatar?"),
-    /** The bot goes back to its normal banner in this server. */
-    profileResetBannerMessage: () => t("settings", "profile_reset_banner_message", "The bot goes back to its normal banner in this server."),
+    /** The bot goes back to its normal banner in this community. */
+    profileResetBannerMessage: () => t("settings", "profile_reset_banner_message", "The bot goes back to its normal banner in this community."),
     /** Reset the banner? */
     profileResetBannerTitle: () => t("settings", "profile_reset_banner_title", "Reset the banner?"),
-    /** The bot goes back to its normal bio in this server. */
-    profileResetBioMessage: () => t("settings", "profile_reset_bio_message", "The bot goes back to its normal bio in this server."),
+    /** The bot goes back to its normal bio in this community. */
+    profileResetBioMessage: () => t("settings", "profile_reset_bio_message", "The bot goes back to its normal bio in this community."),
     /** Reset the bio? */
     profileResetBioTitle: () => t("settings", "profile_reset_bio_title", "Reset the bio?"),
     /** Failed to reset the profile */
     profileResetFailed: () => t("settings", "profile_reset_failed", "Failed to reset the profile"),
     /** Please select an image file. */
     profileSelectImage: () => t("settings", "profile_select_image", "Please select an image file."),
-    /** Customize bot appearance in this server */
-    profileSubtitle: () => t("settings", "profile_subtitle", "Customize bot appearance in this server"),
-    /** Bot Guild Profile */
-    profileTitle: () => t("settings", "profile_title", "Bot Guild Profile"),
+    /** Customize bot appearance in this community */
+    profileSubtitle: () => t("settings", "profile_subtitle", "Customize bot appearance in this community"),
+    /** Bot Community Profile */
+    profileTitle: () => t("settings", "profile_title", "Bot Community Profile"),
   },
   shared: {
     /** Navigating... */
@@ -14883,8 +14877,8 @@ export const m = {
     shortcutsGoSettings: () => t("shortcuts", "shortcuts_go_settings", "Go to settings"),
     /** Play/pause music */
     shortcutsPlayPause: () => t("shortcuts", "shortcuts_play_pause", "Play/pause music"),
-    /** Quick server switch */
-    shortcutsQuickSwitch: () => t("shortcuts", "shortcuts_quick_switch", "Quick server switch"),
+    /** Quick community switch */
+    shortcutsQuickSwitch: () => t("shortcuts", "shortcuts_quick_switch", "Quick community switch"),
     /** Refresh current data */
     shortcutsRefresh: () => t("shortcuts", "shortcuts_refresh", "Refresh current data"),
     /** Skip backward/forward */
@@ -14953,8 +14947,8 @@ export const m = {
     emotesHeading: () => t("starboard", "emotes_heading", "Star Emotes"),
     /** Any of these reactions counts toward the threshold. */
     emotesHint: () => t("starboard", "emotes_hint", "Any of these reactions counts toward the threshold."),
-    /** Create your first starboard to showcase your server's best messages */
-    emptyHint: () => t("starboard", "empty_hint", "Create your first starboard to showcase your server's best messages"),
+    /** Create your first starboard to showcase your community's best messages */
+    emptyHint: () => t("starboard", "empty_hint", "Create your first starboard to showcase your community's best messages"),
     /** No starboards configured */
     emptyTitle: () => t("starboard", "empty_title", "No starboards configured"),
     /** Failed to add emote */
@@ -15005,10 +14999,10 @@ export const m = {
     notifyChannelRemovedBlacklist: () => t("starboard", "notify_channel_removed_blacklist", "Channel removed from blacklist"),
     /** Channel removed from whitelist */
     notifyChannelRemovedWhitelist: () => t("starboard", "notify_channel_removed_whitelist", "Channel removed from whitelist"),
-    /** Starboard created successfully */
-    notifyCreated: () => t("starboard", "notify_created", "Starboard created successfully"),
-    /** Starboard deleted successfully */
-    notifyDeleted: () => t("starboard", "notify_deleted", "Starboard deleted successfully"),
+    /** Starboard created */
+    notifyCreated: () => t("starboard", "notify_created", "Starboard created"),
+    /** Starboard deleted */
+    notifyDeleted: () => t("starboard", "notify_deleted", "Starboard deleted"),
     /** Now using blacklist mode for channels */
     notifyModeBlacklist: () => t("starboard", "notify_mode_blacklist", "Now using blacklist mode for channels"),
     /** Now using whitelist mode for channels */
@@ -15041,8 +15035,8 @@ export const m = {
     onDeleteRemove: () => t("starboard", "on_delete_remove", "Remove on Delete"),
     /** Starboard - Dashboard */
     pageHeadTitle: () => t("starboard", "page_head_title", "Starboard - Dashboard"),
-    /** Showcase your server's best messages in dedicated channels */
-    pageSubtitle: () => t("starboard", "page_subtitle", "Showcase your server's best messages in dedicated channels"),
+    /** Showcase your community's best messages in dedicated channels */
+    pageSubtitle: () => t("starboard", "page_subtitle", "Showcase your community's best messages in dedicated channels"),
     /** Disable remove below threshold */
     removeBelowDisableAria: () => t("starboard", "remove_below_disable_aria", "Disable remove below threshold"),
     /** Enable remove below threshold */
@@ -15111,8 +15105,8 @@ export const m = {
     addMinecraftServer: () => t("statchannels", "add_minecraft_server", "Minecraft Server"),
     /** No category */
     addNoCategory: () => t("statchannels", "add_no_category", "No category"),
-    /** Live preview rendered against this server's current data. */
-    addPreviewHint: () => t("statchannels", "add_preview_hint", "Live preview rendered against this server's current data."),
+    /** Live preview rendered against this community's current data. */
+    addPreviewHint: () => t("statchannels", "add_preview_hint", "Live preview rendered against this community's current data."),
     /** Rendering... */
     addPreviewRendering: () => t("statchannels", "add_preview_rendering", "Rendering..."),
     /** Preview unavailable */
@@ -15167,8 +15161,8 @@ export const m = {
     editStylePlaceholder: () => t("statchannels", "edit_style_placeholder", "Select style"),
     /** Add Stat Channel */
     listAdd: () => t("statchannels", "list_add", "Add Stat Channel"),
-    /** Add a voice channel to display live server stats */
-    listEmptyText: () => t("statchannels", "list_empty_text", "Add a voice channel to display live server stats"),
+    /** Add a voice channel to display live community stats */
+    listEmptyText: () => t("statchannels", "list_empty_text", "Add a voice channel to display live community stats"),
     /** No stat channels configured */
     listEmptyTitle: () => t("statchannels", "list_empty_title", "No stat channels configured"),
     /** {mechanism} every {minutes}m */
@@ -15179,8 +15173,8 @@ export const m = {
     mechanismAutoBlurb: () => t("statchannels", "mechanism_auto_blurb", "Renames while the per-channel budget allows it and only falls back to recreating when you have asked for a faster refresh than a rename can deliver."),
     /** Auto (recommended) */
     mechanismAutoLabel: () => t("statchannels", "mechanism_auto_label", "Auto (recommended)"),
-    /** Recreates the channel each update using the far more permissive guild channel bucket, s... */
-    mechanismRecreateBlurb: () => t("statchannels", "mechanism_recreate_blurb", "Recreates the channel each update using the far more permissive guild channel bucket, so it can refresh every minute."),
+    /** Recreates the channel each update using the far more permissive community channel bucke... */
+    mechanismRecreateBlurb: () => t("statchannels", "mechanism_recreate_blurb", "Recreates the channel each update using the far more permissive community channel bucket, so it can refresh every minute."),
     /** The channel ID changes on every update and each refresh writes two audit log entries. */
     mechanismRecreateCaution: () => t("statchannels", "mechanism_recreate_caution", "The channel ID changes on every update and each refresh writes two audit log entries."),
     /** Delete and recreate */
@@ -15199,8 +15193,8 @@ export const m = {
     notifySaveFailed: () => t("statchannels", "notify_save_failed", "Couldn't save stat channel settings. Use Retry to try again."),
     /** Select a voice channel */
     notifySelectVoice: () => t("statchannels", "notify_select_voice", "Select a voice channel"),
-    /** Voice channels displaying live server statistics */
-    pageSubtitle: () => t("statchannels", "page_subtitle", "Voice channels displaying live server statistics"),
+    /** Voice channels displaying live community statistics */
+    pageSubtitle: () => t("statchannels", "page_subtitle", "Voice channels displaying live community statistics"),
     /** Remove the stat channel "{name}"? The voice channel itself is left in place. */
     removeMessage: (p: { name: P }) => t("statchannels", "remove_message", "Remove the stat channel \"{name}\"? The voice channel itself is left in place.", p),
     /** Remove Stat Channel */
@@ -15369,8 +15363,8 @@ export const m = {
     scheduleSummary: (p: { lastRun: P; minutes: P }) => t("statroles", "schedule_summary", "every {minutes}m · last run {lastRun}", p),
     /** Voice minutes */
     statLabel1: () => t("statroles", "stat_label_1", "Voice minutes"),
-    /** Days in server */
-    statLabel3: () => t("statroles", "stat_label_3", "Days in server"),
+    /** Days in community */
+    statLabel3: () => t("statroles", "stat_label_3", "Days in community"),
     /** Account age (days) */
     statLabel4: () => t("statroles", "stat_label_4", "Account age (days)"),
     /** Minutes in a game */
@@ -15439,10 +15433,10 @@ export const m = {
     pageListEmptyTitle: () => t("statusroles", "page_list_empty_title", "No Status Roles"),
     /** Status Roles ({count}) */
     pageListTitle: (p: { count: P }) => t("statusroles", "page_list_title", "Status Roles ({count})", p),
-    /** Status role added successfully! */
-    pageNotifyAdded: () => t("statusroles", "page_notify_added", "Status role added successfully!"),
-    /** Status role removed successfully! */
-    pageNotifyRemoved: () => t("statusroles", "page_notify_removed", "Status role removed successfully!"),
+    /** Status role added */
+    pageNotifyAdded: () => t("statusroles", "page_notify_added", "Status role added"),
+    /** Status role removed */
+    pageNotifyRemoved: () => t("statusroles", "page_notify_removed", "Status role removed"),
     /** Active Configs */
     pageStatActive: () => t("statusroles", "page_stat_active", "Active Configs"),
     /** with role changes */
@@ -15475,8 +15469,8 @@ export const m = {
     confirmUnfollowButton: () => t("streams", "confirm_unfollow_button", "Unfollow"),
     /** Customize Messages */
     customizeMessages: () => t("streams", "customize_messages", "Customize Messages"),
-    /** Start following streamers to get notifications when they go live! */
-    emptyHint: () => t("streams", "empty_hint", "Start following streamers to get notifications when they go live!"),
+    /** Start following streamers to get notifications when they go live */
+    emptyHint: () => t("streams", "empty_hint", "Start following streamers to get notifications when they go live"),
     /** No Streams Followed */
     emptyTitle: () => t("streams", "empty_title", "No Streams Followed"),
     /** Failed to clear streams */
@@ -15499,18 +15493,18 @@ export const m = {
     globalMessageLabel: () => t("streams", "global_message_label", "Global Stream Message"),
     /** Global Settings */
     globalSettings: () => t("streams", "global_settings", "Global Settings"),
-    /** Custom message saved! */
-    notifyCustomSaved: () => t("streams", "notify_custom_saved", "Custom message saved!"),
-    /** Now following stream! */
-    notifyFollowed: () => t("streams", "notify_followed", "Now following stream!"),
-    /** Offline message saved! */
-    notifyOfflineSaved: () => t("streams", "notify_offline_saved", "Offline message saved!"),
-    /** Online message saved! */
-    notifyOnlineSaved: () => t("streams", "notify_online_saved", "Online message saved!"),
-    /** Removed {count} stream(s)! */
-    notifyRemoved: (p: { count: P }) => t("streams", "notify_removed", "Removed {count} stream(s)!", p),
-    /** Stream unfollowed successfully! */
-    notifyUnfollowed: () => t("streams", "notify_unfollowed", "Stream unfollowed successfully!"),
+    /** Custom message saved */
+    notifyCustomSaved: () => t("streams", "notify_custom_saved", "Custom message saved"),
+    /** Now following stream */
+    notifyFollowed: () => t("streams", "notify_followed", "Now following stream"),
+    /** Offline message saved */
+    notifyOfflineSaved: () => t("streams", "notify_offline_saved", "Offline message saved"),
+    /** Online message saved */
+    notifyOnlineSaved: () => t("streams", "notify_online_saved", "Online message saved"),
+    /** Removed {count} stream(s) */
+    notifyRemoved: (p: { count: P }) => t("streams", "notify_removed", "Removed {count} stream(s)", p),
+    /** Stream unfollowed */
+    notifyUnfollowed: () => t("streams", "notify_unfollowed", "Stream unfollowed"),
     /** Message sent when stream goes offline */
     offlineMessageDescription: () => t("streams", "offline_message_description", "Message sent when stream goes offline"),
     /** Offline Message */
@@ -15685,14 +15679,14 @@ export const m = {
     metaModifiedBy: (p: { user: P }) => t("suggestions", "meta_modified_by", "Modified by: {user}", p),
     /** Failed to delete suggestion */
     notifyDeleteFailed: () => t("suggestions", "notify_delete_failed", "Failed to delete suggestion"),
-    /** Suggestion deleted successfully */
-    notifyDeleted: () => t("suggestions", "notify_deleted", "Suggestion deleted successfully"),
+    /** Suggestion deleted */
+    notifyDeleted: () => t("suggestions", "notify_deleted", "Suggestion deleted"),
     /** Couldn't save suggestion settings. Your last change was undone. */
     notifySaveFailed: () => t("suggestions", "notify_save_failed", "Couldn't save suggestion settings. Your last change was undone."),
-    /** Status updated successfully */
-    notifyStatusUpdated: () => t("suggestions", "notify_status_updated", "Status updated successfully"),
-    /** Manage and configure server suggestions */
-    pageSubtitle: () => t("suggestions", "page_subtitle", "Manage and configure server suggestions"),
+    /** Status updated */
+    notifyStatusUpdated: () => t("suggestions", "notify_status_updated", "Status updated"),
+    /** Manage and configure community suggestions */
+    pageSubtitle: () => t("suggestions", "page_subtitle", "Manage and configure community suggestions"),
     /** Reactions: */
     reactionsLabel: () => t("suggestions", "reactions_label", "Reactions:"),
     /** Asc */
@@ -16209,8 +16203,8 @@ export const m = {
     ticketsUnclaim: () => t("tickets", "tickets_unclaim", "Unclaim"),
     /** View transcript */
     ticketsViewTranscript: () => t("tickets", "tickets_view_transcript", "View transcript"),
-    /** Failed to verify guild access */
-    transcriptAccessCheckFailed: () => t("tickets", "transcript_access_check_failed", "Failed to verify guild access"),
+    /** Failed to verify community access */
+    transcriptAccessCheckFailed: () => t("tickets", "transcript_access_check_failed", "Failed to verify community access"),
     /** Ticket Transcript System - Mewdeko */
     transcriptExportFooterSystem: () => t("tickets", "transcript_export_footer_system", "Ticket Transcript System - Mewdeko"),
     /** Generated {date} */
@@ -16231,8 +16225,8 @@ export const m = {
     transcriptMetaOther: (p: { count: P; timestamp: P }) => t("tickets", "transcript_meta_other", "{count} messages • {timestamp}", p),
     /** Missing share code in URL. */
     transcriptMissingShareCode: () => t("tickets", "transcript_missing_share_code", "Missing share code in URL."),
-    /** You do not have access to view this transcript. Only server administrators can view tic... */
-    transcriptNoAccess: () => t("tickets", "transcript_no_access", "You do not have access to view this transcript. Only server administrators can view ticket transcripts."),
+    /** You do not have access to view this transcript. Only community administrators can view ... */
+    transcriptNoAccess: () => t("tickets", "transcript_no_access", "You do not have access to view this transcript. Only community administrators can view ticket transcripts."),
     /** No messages in this transcript */
     transcriptNoMessages: () => t("tickets", "transcript_no_messages", "No messages in this transcript"),
     /** Transcript not found */
@@ -16299,16 +16293,16 @@ export const m = {
     pageItemsFilteredTitle: () => t("todo", "page_items_filtered_title", "No Items Match Filters"),
     /** {name} Items */
     pageItemsHeading: (p: { name: P }) => t("todo", "page_items_heading", "{name} Items", p),
-    /** Server List */
-    pageListBadgeServer: () => t("todo", "page_list_badge_server", "Server List"),
+    /** Community List */
+    pageListBadgeServer: () => t("todo", "page_list_badge_server", "Community List"),
     /** Empty list */
     pageListEmpty: () => t("todo", "page_list_empty", "Empty list"),
     /** Select todo list {name} */
     pageListSelectAria: (p: { name: P }) => t("todo", "page_list_select_aria", "Select todo list {name}", p),
     /** List settings */
     pageListSettingsAria: () => t("todo", "page_list_settings_aria", "List settings"),
-    /** Create your first server todo list to get started organizing tasks. */
-    pageListsEmptyHint: () => t("todo", "page_lists_empty_hint", "Create your first server todo list to get started organizing tasks."),
+    /** Create your first community todo list to get started organizing tasks. */
+    pageListsEmptyHint: () => t("todo", "page_lists_empty_hint", "Create your first community todo list to get started organizing tasks."),
     /** Try adjusting your search terms. */
     pageListsEmptySearchHint: () => t("todo", "page_lists_empty_search_hint", "Try adjusting your search terms."),
     /** No Lists Found */
@@ -16355,8 +16349,8 @@ export const m = {
     pageSortPriority: () => t("todo", "page_sort_priority", "Sort by Priority"),
     /** Sort by Title */
     pageSortTitle: () => t("todo", "page_sort_title", "Sort by Title"),
-    /** Organize and track your server's collaborative tasks */
-    pageSubtitle: () => t("todo", "page_subtitle", "Organize and track your server's collaborative tasks"),
+    /** Organize and track your community's collaborative tasks */
+    pageSubtitle: () => t("todo", "page_subtitle", "Organize and track your community's collaborative tasks"),
     /** Todo Lists - {guild} Dashboard */
     pageTitle: (p: { guild: P }) => t("todo", "page_title", "Todo Lists - {guild} Dashboard", p),
     /** Add User */
@@ -16403,8 +16397,8 @@ export const m = {
     botDisconnectBot: () => t("twitch", "bot_disconnect_bot", "Disconnect bot account"),
     /** Disconnect channel */
     botDisconnectChannel: () => t("twitch", "bot_disconnect_channel", "Disconnect channel"),
-    /** Enable Twitch chat bot for this server */
-    botEnable: () => t("twitch", "bot_enable", "Enable Twitch chat bot for this server"),
+    /** Enable Twitch chat bot for this community */
+    botEnable: () => t("twitch", "bot_enable", "Enable Twitch chat bot for this community"),
     /** Configure how Twitch chat commands behave in this channel. */
     botHint: () => t("twitch", "bot_hint", "Configure how Twitch chat commands behave in this channel."),
     /** Language override */
@@ -16427,8 +16421,8 @@ export const m = {
     commandEditorTitle: () => t("twitch", "command_editor_title", "Custom command editor"),
     /** No custom commands yet. */
     commandEmpty: () => t("twitch", "command_empty", "No custom commands yet."),
-    /** Manage the Twitch integration from Fluxer with text commands that start with your serve... */
-    commandListHint: () => t("twitch", "command_list_hint", "Manage the Twitch integration from Fluxer with text commands that start with your server prefix (<code style=\"font-family:monospace;font-size:0.85em\">.</code> by default), for example <code style=\"font-family:monospace;font-size:0.85em\">.twitchset</code>."),
+    /** Manage the Twitch integration from Fluxer with text commands that start with your commu... */
+    commandListHint: () => t("twitch", "command_list_hint", "Manage the Twitch integration from Fluxer with text commands that start with your community prefix (<code style=\"font-family:monospace;font-size:0.85em\">.</code> by default), for example <code style=\"font-family:monospace;font-size:0.85em\">.twitchset</code>."),
     /** Fluxer commands */
     commandListTitle: () => t("twitch", "command_list_title", "Fluxer commands"),
     /** Response */
@@ -16734,11 +16728,11 @@ export const m = {
     /** yes */
     redemptionYes: () => t("twitch", "redemption_yes", "yes"),
     /** Grants user:read:chat, user:write:chat, and user:bot. This is a single shared identity ... */
-    setupBotScopesHint: () => t("twitch", "setup_bot_scopes_hint", "Grants user:read:chat, user:write:chat, and user:bot. This is a single shared identity used across every server, so only bot owners can (re)authorize it."),
+    setupBotScopesHint: () => t("twitch", "setup_bot_scopes_hint", "Grants user:read:chat, user:write:chat, and user:bot. This is a single shared identity used across every community, so only bot owners can (re)authorize it."),
     /** Broadcaster channel */
     setupBroadcasterChannel: () => t("twitch", "setup_broadcaster_channel", "Broadcaster channel"),
-    /** Grants channel:bot and event scopes for this server. Authorize this with your own Twitc... */
-    setupChannelScopesHint: () => t("twitch", "setup_channel_scopes_hint", "Grants channel:bot and event scopes for this server. Authorize this with your own Twitch account."),
+    /** Grants channel:bot and event scopes for this community. Authorize this with your own Tw... */
+    setupChannelScopesHint: () => t("twitch", "setup_channel_scopes_hint", "Grants channel:bot and event scopes for this community. Authorize this with your own Twitch account."),
     /** Connect bot */
     setupConnectBot: () => t("twitch", "setup_connect_bot", "Connect bot"),
     /** Connect channel */
@@ -16767,8 +16761,8 @@ export const m = {
     subtabTimers: () => t("twitch", "subtab_timers", "Timers"),
     /** Account links */
     tabLinks: () => t("twitch", "tab_links", "Account links"),
-    /** Show the current Twitch configuration for this server. */
-    textConfigDescription: () => t("twitch", "text_config_description", "Show the current Twitch configuration for this server."),
+    /** Show the current Twitch configuration for this community. */
+    textConfigDescription: () => t("twitch", "text_config_description", "Show the current Twitch configuration for this community."),
     /** Set the Fluxer channel and optional message template for go-live notifications. */
     textGoliveChannelDescription: () => t("twitch", "text_golive_channel_description", "Set the Fluxer channel and optional message template for go-live notifications."),
     /** Clear the go-live notification channel. */
@@ -16777,14 +16771,14 @@ export const m = {
     textLanguageDescription: () => t("twitch", "text_language_description", "Override the language used for Twitch chat responses."),
     /** Link a Fluxer user to their Twitch account. */
     textLinkDescription: () => t("twitch", "text_link_description", "Link a Fluxer user to their Twitch account."),
-    /** List all Twitch account links for this server. */
-    textLinksDescription: () => t("twitch", "text_links_description", "List all Twitch account links for this server."),
+    /** List all Twitch account links for this community. */
+    textLinksDescription: () => t("twitch", "text_links_description", "List all Twitch account links for this community."),
     /** Change the Twitch chat command prefix. */
     textPrefixDescription: () => t("twitch", "text_prefix_description", "Change the Twitch chat command prefix."),
     /** Remove the Twitch channel configuration and leave the channel. */
     textRemoveDescription: () => t("twitch", "text_remove_description", "Remove the Twitch channel configuration and leave the channel."),
-    /** Set the Twitch channel this server's bot should join and enable chat commands. */
-    textSetDescription: () => t("twitch", "text_set_description", "Set the Twitch channel this server's bot should join and enable chat commands."),
+    /** Set the Twitch channel this community's bot should join and enable chat commands. */
+    textSetDescription: () => t("twitch", "text_set_description", "Set the Twitch channel this community's bot should join and enable chat commands."),
     /** Remove a Fluxer user's Twitch account link. */
     textUnlinkDescription: () => t("twitch", "text_unlink_description", "Remove a Fluxer user's Twitch account link."),
     /** always */
@@ -16857,12 +16851,8 @@ export const m = {
     aiRemoveKeyConfirmButton: () => t("utility", "ai_remove_key_confirm_button", "Remove key"),
     /** Failed to remove key */
     aiRemoveKeyFailed: () => t("utility", "ai_remove_key_failed", "Failed to remove key"),
-    /** Save AI settings */
-    aiSave: () => t("utility", "ai_save", "Save AI settings"),
     /** Failed to save AI settings */
     aiSaveFailed: () => t("utility", "ai_save_failed", "Failed to save AI settings"),
-    /** AI settings saved */
-    aiSaved: () => t("utility", "ai_saved", "AI settings saved"),
     /** System prompt */
     aiSystemPrompt: () => t("utility", "ai_system_prompt", "System prompt"),
     /** You are a helpful assistant for this community... */
@@ -16909,10 +16899,10 @@ export const m = {
     autopublishBlacklistUserFailed: () => t("utility", "autopublish_blacklist_user_failed", "Failed to blacklist user"),
     /** Failed to blacklist word */
     autopublishBlacklistWordFailed: () => t("utility", "autopublish_blacklist_word_failed", "Failed to blacklist word"),
-    /** Automatically publish announcement channel posts to servers that follow them. */
-    autopublishCardSubtitle: () => t("utility", "autopublish_card_subtitle", "Automatically publish announcement channel posts to servers that follow them."),
-    /** No announcement channels in this server */
-    autopublishChannelNone: () => t("utility", "autopublish_channel_none", "No announcement channels in this server"),
+    /** Automatically publish announcement channel posts to communities that follow them. */
+    autopublishCardSubtitle: () => t("utility", "autopublish_card_subtitle", "Automatically publish announcement channel posts to communities that follow them."),
+    /** No announcement channels in this community */
+    autopublishChannelNone: () => t("utility", "autopublish_channel_none", "No announcement channels in this community"),
     /** Select announcement channel */
     autopublishChannelPlaceholder: () => t("utility", "autopublish_channel_placeholder", "Select announcement channel"),
     /** Failed to disable auto publish */
@@ -16941,12 +16931,12 @@ export const m = {
     errorWithDetail: (p: { detail: P; failure: P }) => t("utility", "error_with_detail", "{failure}: {detail}", p),
     /** Block tag */
     nsfwBlock: () => t("utility", "nsfw_block", "Block tag"),
-    /** Tags that NSFW image commands will never return in this server. */
-    nsfwCardSubtitle: () => t("utility", "nsfw_card_subtitle", "Tags that NSFW image commands will never return in this server."),
+    /** Tags that NSFW image commands will never return in this community. */
+    nsfwCardSubtitle: () => t("utility", "nsfw_card_subtitle", "Tags that NSFW image commands will never return in this community."),
     /** Blocked NSFW tags ({count}) */
     nsfwCardTitle: (p: { count: P }) => t("utility", "nsfw_card_title", "Blocked NSFW tags ({count})", p),
-    /** No tags are blocked. Blocked tags are excluded from every NSFW image search in this ser... */
-    nsfwEmpty: () => t("utility", "nsfw_empty", "No tags are blocked. Blocked tags are excluded from every NSFW image search in this server."),
+    /** No tags are blocked. Blocked tags are excluded from every NSFW image search in this com... */
+    nsfwEmpty: () => t("utility", "nsfw_empty", "No tags are blocked. Blocked tags are excluded from every NSFW image search in this community."),
     /** Tag to block */
     nsfwTagAria: () => t("utility", "nsfw_tag_aria", "Tag to block"),
     /** Tag to block, e.g. gore */
@@ -17097,12 +17087,12 @@ export const m = {
     pageMessagePlaceholder: () => t("votes", "page_message_placeholder", "🗳️ Thanks %user.mention% for voting! You've received your rewards!"),
     /** Vote Message */
     pageMessageTitle: () => t("votes", "page_message_title", "Vote Message"),
-    /** All vote roles cleared! */
-    pageNotifyCleared: () => t("votes", "page_notify_cleared", "All vote roles cleared!"),
-    /** Vote role added successfully! */
-    pageNotifyRoleAdded: () => t("votes", "page_notify_role_added", "Vote role added successfully!"),
-    /** Vote role removed successfully! */
-    pageNotifyRoleRemoved: () => t("votes", "page_notify_role_removed", "Vote role removed successfully!"),
+    /** All vote roles cleared */
+    pageNotifyCleared: () => t("votes", "page_notify_cleared", "All vote roles cleared"),
+    /** Vote role added */
+    pageNotifyRoleAdded: () => t("votes", "page_notify_role_added", "Vote role added"),
+    /** Vote role removed */
+    pageNotifyRoleRemoved: () => t("votes", "page_notify_role_removed", "Vote role removed"),
     /** Add Vote Role */
     pageRoleAddAria: () => t("votes", "page_role_add_aria", "Add Vote Role"),
     /** Duration: {duration} */
@@ -17111,8 +17101,8 @@ export const m = {
     pageRoleDurationLabel: () => t("votes", "page_role_duration_label", "Duration (seconds, 0 for permanent)"),
     /** Role to Grant */
     pageRoleToGrant: () => t("votes", "page_role_to_grant", "Role to Grant"),
-    /** Add roles to grant users when they vote for your server. */
-    pageRolesEmptyHint: () => t("votes", "page_roles_empty_hint", "Add roles to grant users when they vote for your server."),
+    /** Add roles to grant users when they vote for your community. */
+    pageRolesEmptyHint: () => t("votes", "page_roles_empty_hint", "Add roles to grant users when they vote for your community."),
     /** No Vote Roles */
     pageRolesEmptyTitle: () => t("votes", "page_roles_empty_title", "No Vote Roles"),
     /** Vote Roles ({count}) */
@@ -17208,7 +17198,7 @@ export const m = {
     /** Close wiki panel */
     closeWikiPanel: () => t("wiki", "close_wiki_panel", "Close wiki panel"),
     /** Plain language write-ups of every Mewdeko feature: what it does, how to set it up, and ... */
-    embedSummary: () => t("wiki", "embed_summary", "Plain language write-ups of every Mewdeko feature: what it does, how to set it up, and how servers use it."),
+    embedSummary: () => t("wiki", "embed_summary", "Plain language write-ups of every Mewdeko feature: what it does, how to set it up, and how communities use it."),
     /** Every guide is listed A to Z in the sidebar. */
     everyGuideIsListedA: () => t("wiki", "every_guide_is_listed_a", "Every guide is listed A to Z in the sidebar."),
     /** Filter articles */
@@ -17257,24 +17247,24 @@ export const m = {
   wizard: {
     /** Back to Dashboard */
     backToDashboard: () => t("wizard", "back_to_dashboard", "Back to Dashboard"),
-    /** The language Mewdeko replies in for this server. */
-    basicsLanguageHint: () => t("wizard", "basics_language_hint", "The language Mewdeko replies in for this server."),
+    /** The language Mewdeko replies in for this community. */
+    basicsLanguageHint: () => t("wizard", "basics_language_hint", "The language Mewdeko replies in for this community."),
     /** Choose a language... */
     basicsLanguagePlaceholder: () => t("wizard", "basics_language_placeholder", "Choose a language..."),
-    /** Loading server settings... */
-    basicsLoading: () => t("wizard", "basics_loading", "Loading server settings..."),
+    /** Loading community settings... */
+    basicsLoading: () => t("wizard", "basics_loading", "Loading community settings..."),
     /** What members type before a command, for example <code>.help</code>. */
     basicsPrefixHint: () => t("wizard", "basics_prefix_hint", "What members type before a command, for example <code>.help</code>."),
     /** Leave blank to keep the default */
     basicsPrefixPlaceholder: () => t("wizard", "basics_prefix_placeholder", "Leave blank to keep the default"),
-    /** A few server-wide settings that everything else builds on. */
-    basicsSubtitle: () => t("wizard", "basics_subtitle", "A few server-wide settings that everything else builds on."),
+    /** A few community-wide settings that everything else builds on. */
+    basicsSubtitle: () => t("wizard", "basics_subtitle", "A few community-wide settings that everything else builds on."),
     /** Used for birthdays, repeating messages, timestamps and every other scheduled feature. W... */
     basicsTimezoneHint: () => t("wizard", "basics_timezone_hint", "Used for birthdays, repeating messages, timestamps and every other scheduled feature. Worth setting even if you skip everything else."),
-    /** Choose your server's timezone... */
-    basicsTimezonePlaceholder: () => t("wizard", "basics_timezone_placeholder", "Choose your server's timezone..."),
-    /** Server Basics */
-    basicsTitle: () => t("wizard", "basics_title", "Server Basics"),
+    /** Choose your community's timezone... */
+    basicsTimezonePlaceholder: () => t("wizard", "basics_timezone_placeholder", "Choose your community's timezone..."),
+    /** Community Basics */
+    basicsTitle: () => t("wizard", "basics_title", "Community Basics"),
     /** Apply First Channel to All */
     bulkApplyFirstToAll: () => t("wizard", "bulk_apply_first_to_all", "Apply First Channel to All"),
     /** Apply to all {category}: */
@@ -17329,8 +17319,8 @@ export const m = {
     completeRedirecting: () => t("wizard", "complete_redirecting", "Redirecting to dashboard..."),
     /** {guild} is now ready to go with your selected features. */
     completeSubtitle: (p: { guild: P }) => t("wizard", "complete_subtitle", "{guild} is now ready to go with your selected features.", p),
-    /** Setup Complete! */
-    completeTitle: () => t("wizard", "complete_title", "Setup Complete!"),
+    /** Setup complete */
+    completeTitle: () => t("wizard", "complete_title", "Setup complete"),
     /** Bot User Roles (Optional) */
     configAdministrationBotRoles: () => t("wizard", "config_administration_bot_roles", "Bot User Roles (Optional)"),
     /** These roles will be assigned to bots when they join (helps organize bots) */
@@ -17378,7 +17368,7 @@ export const m = {
     /** Optional: Staff moderation channel */
     configConfessionsLogPlaceholder: () => t("wizard", "config_confessions_log_placeholder", "Optional: Staff moderation channel"),
     /** The log channel reveals user IDs of anonymous confessions. Abusing this feature (sharin... */
-    configConfessionsWarningBody: () => t("wizard", "config_confessions_warning_body", "The log channel reveals user IDs of anonymous confessions. Abusing this feature (sharing IDs, punishing users for confessions) will result in <strong>immediate blacklisting</strong> of your server from Mewdeko. This feature is for moderation only (removing illegal content, etc.)."),
+    configConfessionsWarningBody: () => t("wizard", "config_confessions_warning_body", "The log channel reveals user IDs of anonymous confessions. Abusing this feature (sharing IDs, punishing users for confessions) will result in <strong>immediate blacklisting</strong> of your community from Mewdeko. This feature is for moderation only (removing illegal content, etc.)."),
     /** CRITICAL WARNING */
     configConfessionsWarningTitle: () => t("wizard", "config_confessions_warning_title", "CRITICAL WARNING"),
     /** Where should new channels be created? */
@@ -17403,14 +17393,14 @@ export const m = {
     configFeedsUrlAria: (p: { number: P }) => t("wizard", "config_feeds_url_aria", "Feed URL {number}", p),
     /** https://example.com/feed.xml */
     configFeedsUrlPlaceholder: () => t("wizard", "config_feeds_url_placeholder", "https://example.com/feed.xml"),
-    /** Invite tracking will be turned on for this server. */
-    configInvitetrackingIntro: () => t("wizard", "config_invitetracking_intro", "Invite tracking will be turned on for this server."),
+    /** Invite tracking will be turned on for this community. */
+    configInvitetrackingIntro: () => t("wizard", "config_invitetracking_intro", "Invite tracking will be turned on for this community."),
     /** Minimum Account Age (days) */
     configInvitetrackingMinAge: () => t("wizard", "config_invitetracking_min_age", "Minimum Account Age (days)"),
     /** Joins from newer accounts won't count towards invites. 0 disables the check. */
     configInvitetrackingMinAgeHint: () => t("wizard", "config_invitetracking_min_age_hint", "Joins from newer accounts won't count towards invites. 0 disables the check."),
-    /** Mewdeko needs the Manage Server permission to read invite counts. */
-    configInvitetrackingPermission: () => t("wizard", "config_invitetracking_permission", "Mewdeko needs the Manage Server permission to read invite counts."),
+    /** Mewdeko needs the Manage Community permission to read invite counts. */
+    configInvitetrackingPermission: () => t("wizard", "config_invitetracking_permission", "Mewdeko needs the Manage Community permission to read invite counts."),
     /** Subtract invites when a member leaves */
     configInvitetrackingRemoveOnLeave: () => t("wizard", "config_invitetracking_remove_on_leave", "Subtract invites when a member leaves"),
     /** Keeps the leaderboard honest against invite farming */
@@ -17593,8 +17583,8 @@ export const m = {
     errorLoadFailed: () => t("wizard", "error_load_failed", "Failed to load wizard data"),
     /** Error Loading Wizard */
     errorLoadingTitle: () => t("wizard", "error_loading_title", "Error Loading Wizard"),
-    /** You do not have access to this guild. Make sure you've selected the correct bot instance. */
-    errorNoGuildAccess: () => t("wizard", "error_no_guild_access", "You do not have access to this guild. Make sure you've selected the correct bot instance."),
+    /** You do not have access to this community. Make sure you've selected the correct bot ins... */
+    errorNoGuildAccess: () => t("wizard", "error_no_guild_access", "You do not have access to this community. Make sure you've selected the correct bot instance."),
     /** Click to select */
     featureCardClickToSelect: () => t("wizard", "feature_card_click_to_select", "Click to select"),
     /** Browse all {count} features */
@@ -17617,8 +17607,8 @@ export const m = {
     featuresSubtitle: () => t("wizard", "features_subtitle", "We've picked a starting point. Adjust it if you like, or carry on."),
     /** Based on your channels, roles and size. Change anything you like, or continue as is. */
     featuresSuggestedHint: () => t("wizard", "features_suggested_hint", "Based on your channels, roles and size. Change anything you like, or continue as is."),
-    /** Suggested for your server */
-    featuresSuggestedTitle: () => t("wizard", "features_suggested_title", "Suggested for your server"),
+    /** Suggested for your community */
+    featuresSuggestedTitle: () => t("wizard", "features_suggested_title", "Suggested for your community"),
     /** Full Setup */
     featuresSummaryFull: () => t("wizard", "features_summary_full", "Full Setup"),
     /** Quick Enable */
@@ -17641,16 +17631,16 @@ export const m = {
     healthWarning: () => t("wizard", "health_warning", "Needs Attention"),
     /** Some important permissions missing */
     healthWarningDescription: () => t("wizard", "health_warning_description", "Some important permissions missing"),
-    /** Set up Mewdeko for your Fluxer server with our guided setup wizard. */
-    layoutMetaDescription: () => t("wizard", "layout_meta_description", "Set up Mewdeko for your Fluxer server with our guided setup wizard."),
+    /** Set up Mewdeko for your Fluxer community with our guided setup wizard. */
+    layoutMetaDescription: () => t("wizard", "layout_meta_description", "Set up Mewdeko for your Fluxer community with our guided setup wizard."),
     /** Setup Wizard - Mewdeko Dashboard */
     layoutPageTitle: () => t("wizard", "layout_page_title", "Setup Wizard - Mewdeko Dashboard"),
-    /** Get your server configured in minutes */
-    layoutSubtitle: () => t("wizard", "layout_subtitle", "Get your server configured in minutes"),
+    /** Set up your community in a few minutes */
+    layoutSubtitle: () => t("wizard", "layout_subtitle", "Set up your community in a few minutes"),
     /** Loading wizard data... */
     loadingWizardData: () => t("wizard", "loading_wizard_data", "Loading wizard data..."),
-    /** Could not save server settings: {error}. You can change them later in Settings. */
-    notifyBasicsSaveFailed: (p: { error: P }) => t("wizard", "notify_basics_save_failed", "Could not save server settings: {error}. You can change them later in Settings.", p),
+    /** Could not save community settings: {error}. You can change them later in Settings. */
+    notifyBasicsSaveFailed: (p: { error: P }) => t("wizard", "notify_basics_save_failed", "Could not save community settings: {error}. You can change them later in Settings.", p),
     /** {feature} could not be saved: {error}. You can set it up later from the dashboard. */
     notifyFeatureSaveFailed: (p: { error: P; feature: P }) => t("wizard", "notify_feature_save_failed", "{feature} could not be saved: {error}. You can set it up later from the dashboard.", p),
     /** Failed to finish setup: {error} */
@@ -17749,8 +17739,8 @@ export const m = {
     suggestionAdministrationBenefit1: () => t("wizard", "suggestion_administration_benefit_1", "Automatically assign verification roles"),
     /** Set up roles for role greets to use */
     suggestionAdministrationBenefit2: () => t("wizard", "suggestion_administration_benefit_2", "Set up roles for role greets to use"),
-    /** Streamline role management */
-    suggestionAdministrationBenefit3: () => t("wizard", "suggestion_administration_benefit_3", "Streamline role management"),
+    /** Manage roles in one place */
+    suggestionAdministrationBenefit3: () => t("wizard", "suggestion_administration_benefit_3", "Manage roles in one place"),
     /** Manage roles that trigger greets */
     suggestionAdministrationReason: () => t("wizard", "suggestion_administration_reason", "Manage roles that trigger greets"),
     /** Consider enabling {feature} */
@@ -17817,12 +17807,12 @@ export const m = {
     welcomeGetStarted: () => t("wizard", "welcome_get_started", "Get Started"),
     /** Set your prefix, timezone and language */
     welcomeItemBasics: () => t("wizard", "welcome_item_basics", "Set your prefix, timezone and language"),
-    /** Turn on the features that suit your server */
-    welcomeItemFeatures: () => t("wizard", "welcome_item_features", "Turn on the features that suit your server"),
+    /** Turn on the features that suit your community */
+    welcomeItemFeatures: () => t("wizard", "welcome_item_features", "Turn on the features that suit your community"),
     /** Verify bot permissions */
     welcomeItemPermissions: () => t("wizard", "welcome_item_permissions", "Verify bot permissions"),
-    /** Get your server ready to go! */
-    welcomeItemReady: () => t("wizard", "welcome_item_ready", "Get your server ready to go!"),
+    /** Review and finish */
+    welcomeItemReady: () => t("wizard", "welcome_item_ready", "Review and finish"),
     /** Ready for setup */
     welcomeReady: () => t("wizard", "welcome_ready", "Ready for setup"),
     /** You can always configure features later from the dashboard. */
@@ -17833,12 +17823,12 @@ export const m = {
     welcomeSkipTitle: () => t("wizard", "welcome_skip_title", "Skip setup?"),
     /** Skipping... */
     welcomeSkipping: () => t("wizard", "welcome_skipping", "Skipping..."),
-    /** Let's set up {guild} with essential features in just a few minutes. */
-    welcomeSubtitleFirstTime: (p: { guild: P }) => t("wizard", "welcome_subtitle_first_time", "Let's set up {guild} with essential features in just a few minutes.", p),
-    /** Configure essential features for your server quickly. */
-    welcomeSubtitleRepeat: () => t("wizard", "welcome_subtitle_repeat", "Configure essential features for your server quickly."),
-    /** Welcome to Mewdeko! */
-    welcomeTitleFirstTime: () => t("wizard", "welcome_title_first_time", "Welcome to Mewdeko!"),
+    /** Set up {guild} in a few minutes. */
+    welcomeSubtitleFirstTime: (p: { guild: P }) => t("wizard", "welcome_subtitle_first_time", "Set up {guild} in a few minutes.", p),
+    /** Configure essential features for your community quickly. */
+    welcomeSubtitleRepeat: () => t("wizard", "welcome_subtitle_repeat", "Configure essential features for your community quickly."),
+    /** Welcome to Mewdeko */
+    welcomeTitleFirstTime: () => t("wizard", "welcome_title_first_time", "Welcome to Mewdeko"),
     /** Quick Setup for {guild} */
     welcomeTitleRepeat: (p: { guild: P }) => t("wizard", "welcome_title_repeat", "Quick Setup for {guild}", p),
     /** What we'll do: */
@@ -17946,7 +17936,7 @@ export const m = {
     /** Runs at the hour above in the selected timezone */
     postingToggleHint: () => t("wordoftheday", "posting_toggle_hint", "Runs at the hour above in the selected timezone"),
     /** This removes the configuration, every custom word, all weekday and month rules, and the... */
-    resetMessage: () => t("wordoftheday", "reset_message", "This removes the configuration, every custom word, all weekday and month rules, and the posting history for this server."),
+    resetMessage: () => t("wordoftheday", "reset_message", "This removes the configuration, every custom word, all weekday and month rules, and the posting history for this community."),
     /** Reset Word of the Day */
     resetTitle: () => t("wordoftheday", "reset_title", "Reset Word of the Day"),
     /** Clear {name} rule */
@@ -18020,7 +18010,7 @@ export const m = {
     /** Thread name */
     threadName: () => t("wordoftheday", "thread_name", "Thread name"),
     /** Leave empty to use the default, "{default}". Supports {wordToken}, {dateToken}, {posTok... */
-    threadNameHint: (p: { dateToken: P; default: P; posToken: P; wordToken: P }) => t("wordoftheday", "thread_name_hint", "Leave empty to use the default, \"{default}\". Supports {wordToken}, {dateToken}, {posToken}, and server placeholders.", p),
+    threadNameHint: (p: { dateToken: P; default: P; posToken: P; wordToken: P }) => t("wordoftheday", "thread_name_hint", "Leave empty to use the default, \"{default}\". Supports {wordToken}, {dateToken}, {posToken}, and community placeholders.", p),
     /** Discussion thread */
     threadTitle: () => t("wordoftheday", "thread_title", "Discussion thread"),
     /** Create a thread under each post */
@@ -18121,10 +18111,10 @@ export const m = {
     editorLayerAwarded: () => t("xp", "editor_layer_awarded", "Awarded XP"),
     /** {label} copy */
     editorLayerCopy: (p: { label: P }) => t("xp", "editor_layer_copy", "{label} copy", p),
-    /** Guild Level */
-    editorLayerGuildLevel: () => t("xp", "editor_layer_guild_level", "Guild Level"),
-    /** Guild Rank */
-    editorLayerGuildRank: () => t("xp", "editor_layer_guild_rank", "Guild Rank"),
+    /** Community Level */
+    editorLayerGuildLevel: () => t("xp", "editor_layer_guild_level", "Community Level"),
+    /** Community Rank */
+    editorLayerGuildRank: () => t("xp", "editor_layer_guild_rank", "Community Rank"),
     /** XP Progress Bar */
     editorLayerProgressBar: () => t("xp", "editor_layer_progress_bar", "XP Progress Bar"),
     /** Time on Level */
@@ -18295,8 +18285,8 @@ export const m = {
     leaderboardRankAria: (p: { rank: P }) => t("xp", "leaderboard_rank_aria", "Rank {rank}", p),
     /** Also reset bonus XP */
     leaderboardResetBonus: () => t("xp", "leaderboard_reset_bonus", "Also reset bonus XP"),
-    /** This sets the member's server XP back to zero. It cannot be undone. */
-    leaderboardResetWarning: () => t("xp", "leaderboard_reset_warning", "This sets the member's server XP back to zero. It cannot be undone."),
+    /** This sets the member's community XP back to zero. It cannot be undone. */
+    leaderboardResetWarning: () => t("xp", "leaderboard_reset_warning", "This sets the member's community XP back to zero. It cannot be undone."),
     /** Reset XP */
     leaderboardResetXp: () => t("xp", "leaderboard_reset_xp", "Reset XP"),
     /** Set total XP */
@@ -18331,8 +18321,8 @@ export const m = {
     pageErrorFetchRewards: () => t("xp", "page_error_fetch_rewards", "Failed to fetch XP rewards"),
     /** Failed to fetch XP settings */
     pageErrorFetchSettings: () => t("xp", "page_error_fetch_settings", "Failed to fetch XP settings"),
-    /** Failed to fetch XP server stats */
-    pageErrorFetchStats: () => t("xp", "page_error_fetch_stats", "Failed to fetch XP server stats"),
+    /** Failed to fetch XP community stats */
+    pageErrorFetchStats: () => t("xp", "page_error_fetch_stats", "Failed to fetch XP community stats"),
     /** Failed to fetch XP template */
     pageErrorFetchTemplate: () => t("xp", "page_error_fetch_template", "Failed to fetch XP template"),
     /** Level must be at least 1 */
@@ -18353,24 +18343,20 @@ export const m = {
     pageHeadTitle: () => t("xp", "page_head_title", "XP Management - Dashboard"),
     /** No template data available */
     pageNoTemplate: () => t("xp", "page_no_template", "No template data available"),
-    /** Channel excluded successfully */
-    pageNotifyChannelExcluded: () => t("xp", "page_notify_channel_excluded", "Channel excluded successfully"),
-    /** Channel included successfully */
-    pageNotifyChannelIncluded: () => t("xp", "page_notify_channel_included", "Channel included successfully"),
-    /** Currency reward added successfully */
-    pageNotifyCurrencyRewardAdded: () => t("xp", "page_notify_currency_reward_added", "Currency reward added successfully"),
-    /** Currency reward removed successfully */
-    pageNotifyCurrencyRewardRemoved: () => t("xp", "page_notify_currency_reward_removed", "Currency reward removed successfully"),
-    /** Role excluded successfully */
-    pageNotifyRoleExcluded: () => t("xp", "page_notify_role_excluded", "Role excluded successfully"),
-    /** Role included successfully */
-    pageNotifyRoleIncluded: () => t("xp", "page_notify_role_included", "Role included successfully"),
-    /** Role reward added successfully */
-    pageNotifyRoleRewardAdded: () => t("xp", "page_notify_role_reward_added", "Role reward added successfully"),
-    /** Role reward removed successfully */
-    pageNotifyRoleRewardRemoved: () => t("xp", "page_notify_role_reward_removed", "Role reward removed successfully"),
-    /** XP template updated successfully */
-    pageNotifyTemplateUpdated: () => t("xp", "page_notify_template_updated", "XP template updated successfully"),
+    /** Channel excluded */
+    pageNotifyChannelExcluded: () => t("xp", "page_notify_channel_excluded", "Channel excluded"),
+    /** Channel included */
+    pageNotifyChannelIncluded: () => t("xp", "page_notify_channel_included", "Channel included"),
+    /** Currency reward added */
+    pageNotifyCurrencyRewardAdded: () => t("xp", "page_notify_currency_reward_added", "Currency reward added"),
+    /** Currency reward removed */
+    pageNotifyCurrencyRewardRemoved: () => t("xp", "page_notify_currency_reward_removed", "Currency reward removed"),
+    /** Role excluded */
+    pageNotifyRoleExcluded: () => t("xp", "page_notify_role_excluded", "Role excluded"),
+    /** Role included */
+    pageNotifyRoleIncluded: () => t("xp", "page_notify_role_included", "Role included"),
+    /** XP template updated */
+    pageNotifyTemplateUpdated: () => t("xp", "page_notify_template_updated", "XP template updated"),
     /** Reset changes */
     pageResetChanges: () => t("xp", "page_reset_changes", "Reset changes"),
     /** Save template changes */
@@ -18435,12 +18421,12 @@ export const m = {
     settingsMultiplierHint: () => t("xp", "settings_multiplier_hint", "Global multiplier applied to all XP gains."),
     /** Amount of XP users earn per message (max 50). */
     settingsPerMessageHint: () => t("xp", "settings_per_message_hint", "Amount of XP users earn per message (max 50)."),
-    /** Server XP Exclusion */
-    settingsServerExclusion: () => t("xp", "settings_server_exclusion", "Server XP Exclusion"),
-    /** Enable or disable XP gain for the entire server */
-    settingsServerExclusionAria: () => t("xp", "settings_server_exclusion_aria", "Enable or disable XP gain for the entire server"),
-    /** When enabled, XP gain is disabled server-wide. */
-    settingsServerExclusionHint: () => t("xp", "settings_server_exclusion_hint", "When enabled, XP gain is disabled server-wide."),
+    /** Community XP Exclusion */
+    settingsServerExclusion: () => t("xp", "settings_server_exclusion", "Community XP Exclusion"),
+    /** Enable or disable XP gain for the entire community */
+    settingsServerExclusionAria: () => t("xp", "settings_server_exclusion_aria", "Enable or disable XP gain for the entire community"),
+    /** When enabled, XP gain is disabled community-wide. */
+    settingsServerExclusionHint: () => t("xp", "settings_server_exclusion_hint", "When enabled, XP gain is disabled community-wide."),
     /** XP Settings */
     settingsTitle: () => t("xp", "settings_title", "XP Settings"),
     /** Amount of XP users earn per minute in voice channels (max 10). */
@@ -18463,4 +18449,4 @@ export const m = {
 } as const;
 
 /** Module names that exist in the source locale, for loading other locales lazily later. */
-export const modules = ["_common","access","achievements","administration","afk","analytics","auditlog","birthday","brand","channel-access","chat-triggers","chatsaver","confessions","counting","currency","customvoice","dashboard","embedbuilder","feature-requests","features","feeds","filter","forms","giveaways","highlights","home","invites","layout","legal","linkfix","liveboards","logging","me","messagestats","migration","minecraft","moderation","monitoring","multigreets","music","owner","patreon","placeholders","polls","public","repeaters","reputation","role-menus","rolegreets","rolestates","serverstats","settings","shared","shortcuts","starboard","statchannels","statroles","statusroles","streams","suggestions","tickets","todo","twitch","utility","votes","widgets","wiki","wizard","wordoftheday","xp"] as const;
+export const modules = ["_common","access","achievements","administration","afk","analytics","auditlog","birthday","brand","channel-access","chat-triggers","chatsaver","confessions","counting","currency","customvoice","dashboard","embedbuilder","feature-requests","features","feeds","filter","forms","giveaways","highlights","home","invites","join-role-timeout","layout","legal","linkfix","liveboards","logging","me","messagestats","migration","minecraft","moderation","monitoring","multigreets","music","owner","patreon","placeholders","polls","public","repeaters","reputation","role-menus","rolegreets","rolestates","serverstats","settings","shared","shortcuts","starboard","statchannels","statroles","statusroles","streams","suggestions","tickets","todo","twitch","utility","votes","widgets","wiki","wizard","wordoftheday","xp"] as const;

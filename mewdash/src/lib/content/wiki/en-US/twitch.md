@@ -12,7 +12,7 @@ related: [streams, administration]
 
 ## What it does
 
-The Twitch Bot connects one Twitch channel to your Fluxer server and lets Mewdeko act as a chat bot inside that channel. Viewers type `!ping`, `!quote`, `!counter deaths` or your own custom commands in Twitch chat, and the bot answers there. Timers post repeating messages while you are live, quotes and counters are stored per server, and channel point rewards can trigger a chat reply or a Fluxer post.
+The Twitch Bot connects one Twitch channel to your Fluxer community and lets Mewdeko act as a chat bot inside that channel. Viewers type `!ping`, `!quote`, `!counter deaths` or your own custom commands in Twitch chat, and the bot answers there. Timers post repeating messages while you are live, quotes and counters are stored per community, and channel point rewards can trigger a chat reply or a Fluxer post.
 
 Events from the channel flow back into Fluxer. When the channel goes live, a go-live post is sent to a Fluxer channel; subscriptions, gifted subs and raids can each post to their own channel with your own template, and an end-of-stream recap can summarise duration, peak viewers, chat messages, subs and raids.
 
@@ -35,7 +35,7 @@ Two Twitch authorisations are involved, both done from the **Setup** tab, **Conn
 
 | Authorisation | Who does it | What it grants |
 | --- | --- | --- |
-| Bot account | Bot owner only | The Twitch account the bot chats as. Scopes `user:read:chat`, `user:write:chat`, `user:bot`. One shared identity for every server. |
+| Bot account | Bot owner only | The Twitch account the bot chats as. Scopes `user:read:chat`, `user:write:chat`, `user:bot`. One shared identity for every community. |
 | Broadcaster channel | You, the streamer | Access to your channel's events. Scopes `channel:bot`, subscriptions, bits, redemptions, polls, predictions, broadcast management, clip editing and moderation. |
 
 The integration counts as configured when a bot account exists, your channel is authorised, and the config is enabled. The **Health** panel shows the transport (EventSub WebSocket or legacy IRC), the last event received, token expiry for both accounts, and under **Advanced diagnostics** any missing scopes and the stored EventSub subscriptions.
@@ -154,7 +154,7 @@ There are two ways to link a Fluxer member to a Twitch login:
 1. Self-service: the viewer types `!link` in Twitch chat, gets a six-digit code, and runs `.twitchclaim <code>` in Fluxer within ten minutes.
 2. Staff: the **Account Links** tab or `.twitchlink @user twitchlogin`.
 
-One Twitch login per Fluxer member per server. Once linked, `%discord%` fills in for that viewer and role sync applies.
+One Twitch login per Fluxer member per community. Once linked, `%discord%` fills in for that viewer and role sync applies.
 
 Role sync maps a Twitch rank to a Fluxer role with the `twitch rolesync add` command. Every time a linked viewer sends a chat message, the bot adds the role if their rank is at or above the mapping and removes it if it is below.
 
@@ -169,8 +169,8 @@ Under **Setup**, **Bot Settings**:
 | Setting | Default | What it controls |
 | --- | --- | --- |
 | Command prefix | `!` | Prefix for Twitch chat commands, up to 5 characters |
-| Language override | server default | BCP-47 tag such as `de-DE` used for the bot's chat replies |
-| Enable Twitch chat bot for this server | on | Master switch; disabling keeps the configuration |
+| Language override | community default | BCP-47 tag such as `de-DE` used for the bot's chat replies |
+| Enable Twitch chat bot for this community | on | Master switch; disabling keeps the configuration |
 | Use EventSub for chat events | on | Receive chat and events over EventSub; if off, chat commands do not run |
 | Go-live Fluxer channel | none | Where go-live and offline posts go |
 | Go-live message | default embed | Custom template with the go-live placeholders |
@@ -181,7 +181,7 @@ Under **Events**, **Alerts**: **Sub Fluxer channel**, **Sub message**, **Raid Fl
 
 1. Open **Twitch Bot** in the dashboard. A bot owner must have connected the **Bot account** first; the **Connect** sub-tab shows whether one exists.
 2. Click **Connect channel** and authorise with your own Twitch account.
-3. In **Bot Settings**, set the prefix, turn on **Enable Twitch chat bot for this server**, pick a **Go-live Fluxer channel** and save.
+3. In **Bot Settings**, set the prefix, turn on **Enable Twitch chat bot for this community**, pick a **Go-live Fluxer channel** and save.
 4. In **Commands**, add a couple of custom commands and a socials timer. Use **Test args** and the preview to check placeholders.
 5. In **Events**, **Alerts**, choose sub and raid channels and press **Send test** for each.
 6. Type `!ping` in your Twitch chat to confirm the bot is listening, then `!link` and `.twitchclaim` to link yourself.
@@ -189,60 +189,60 @@ Under **Events**, **Alerts**: **Sub Fluxer channel**, **Sub message**, **Raid Fl
 
 ## Commands
 
-Run these with your server prefix (`.` unless you changed it).
+Run these with your community prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
-| `.twitchset <channel> [prefix]` | | Manage Server | Set the Twitch channel and prefix, and enable the integration |
-| `.twitchremove` | | Manage Server | Disable the integration and leave the channel |
-| `.twitchenable` | | Manage Server | Turn the integration back on |
-| `.twitchdisable` | | Manage Server | Turn it off without deleting settings |
+| `.twitchset <channel> [prefix]` | | Manage Community | Set the Twitch channel and prefix, and enable the integration |
+| `.twitchremove` | | Manage Community | Disable the integration and leave the channel |
+| `.twitchenable` | | Manage Community | Turn the integration back on |
+| `.twitchdisable` | | Manage Community | Turn it off without deleting settings |
 | `.twitchconfig` | | Nobody | Show channel, prefix, enabled state, go-live channel and language |
 | `.twitchclaim <code>` | | Nobody | Claim a link code from `!link` |
-| `.twitchstreaminfo [title] [category]` | | Manage Server | Update the stream title or category |
-| `.twitchclip` | | Manage Server | Create a clip of the current stream |
-| `.twitchstatus` | | Manage Server | Health summary: accounts, tokens, EventSub state |
-| `.twitchlanguage <tag>` | | Manage Server | Language for chat replies; empty resets |
-| `.twitchprefix <prefix>` | | Manage Server | Change the chat command prefix |
-| `.twitchcommandadd <name> <response> [permission] [cooldown]` | | Manage Server | Add or update a custom command |
-| `.twitchcommandremove <name>` | | Manage Server | Delete a custom command |
+| `.twitchstreaminfo [title] [category]` | | Manage Community | Update the stream title or category |
+| `.twitchclip` | | Manage Community | Create a clip of the current stream |
+| `.twitchstatus` | | Manage Community | Health summary: accounts, tokens, EventSub state |
+| `.twitchlanguage <tag>` | | Manage Community | Language for chat replies; empty resets |
+| `.twitchprefix <prefix>` | | Manage Community | Change the chat command prefix |
+| `.twitchcommandadd <name> <response> [permission] [cooldown]` | | Manage Community | Add or update a custom command |
+| `.twitchcommandremove <name>` | | Manage Community | Delete a custom command |
 | `.twitchcommandlist` | | Nobody | List custom commands with permission, cooldown and use count |
-| `.twitchcounterset <name> <value>` | | Manage Server | Set a counter |
+| `.twitchcounterset <name> <value>` | | Manage Community | Set a counter |
 | `.twitchcounterlist` | | Nobody | List counters |
-| `.twitchscheduleset <message>` | | Manage Server | Set the `!schedule` reply |
-| `.twitchscheduleclear` | | Manage Server | Clear it |
-| `.twitchsocialsset <message>` | | Manage Server | Set the `!socials` reply |
-| `.twitchsocialsclear` | | Manage Server | Clear it |
-| `.twitchtimeradd <name> <messages> [interval] [minchat] [onlineonly] [randomize]` | | Manage Server | Add or update a timer |
-| `.twitchtimerremove <name>` | | Manage Server | Delete a timer |
+| `.twitchscheduleset <message>` | | Manage Community | Set the `!schedule` reply |
+| `.twitchscheduleclear` | | Manage Community | Clear it |
+| `.twitchsocialsset <message>` | | Manage Community | Set the `!socials` reply |
+| `.twitchsocialsclear` | | Manage Community | Clear it |
+| `.twitchtimeradd <name> <messages> [interval] [minchat] [onlineonly] [randomize]` | | Manage Community | Add or update a timer |
+| `.twitchtimerremove <name>` | | Manage Community | Delete a timer |
 | `.twitchtimerlist` | | Nobody | List timers |
-| `.twitchtimerenable <name>` | | Manage Server | Enable a timer |
-| `.twitchtimerdisable <name>` | | Manage Server | Disable a timer |
-| `.twitchtimertest <name>` | | Manage Server | Post a timer now |
-| `.twitchgolive <channel> [message]` | | Manage Server | Set the go-live channel and template |
-| `.twitchgoliveclear` | | Manage Server | Clear the go-live channel |
-| `.twitchsubchannel <channel> [message]` | | Manage Server | Set the sub channel and template |
-| `.twitchsubclear` | | Manage Server | Disable sub posts |
-| `.twitchraidchannel <channel> [message]` | | Manage Server | Set the raid channel and template |
-| `.twitchraidclear` | | Manage Server | Disable raid posts |
-| `.twitchrecapchannel <channel>` | | Manage Server | Set the stream recap channel |
-| `.twitchrecapclear` | | Manage Server | Disable recaps |
-| `.twitchlink <@user> <twitchlogin>` | | Manage Server | Link a member to a Twitch login |
-| `.twitchunlink <@user>` | | Manage Server | Remove a member's link |
+| `.twitchtimerenable <name>` | | Manage Community | Enable a timer |
+| `.twitchtimerdisable <name>` | | Manage Community | Disable a timer |
+| `.twitchtimertest <name>` | | Manage Community | Post a timer now |
+| `.twitchgolive <channel> [message]` | | Manage Community | Set the go-live channel and template |
+| `.twitchgoliveclear` | | Manage Community | Clear the go-live channel |
+| `.twitchsubchannel <channel> [message]` | | Manage Community | Set the sub channel and template |
+| `.twitchsubclear` | | Manage Community | Disable sub posts |
+| `.twitchraidchannel <channel> [message]` | | Manage Community | Set the raid channel and template |
+| `.twitchraidclear` | | Manage Community | Disable raid posts |
+| `.twitchrecapchannel <channel>` | | Manage Community | Set the stream recap channel |
+| `.twitchrecapclear` | | Manage Community | Disable recaps |
+| `.twitchlink <@user> <twitchlogin>` | | Manage Community | Link a member to a Twitch login |
+| `.twitchunlink <@user>` | | Manage Community | Remove a member's link |
 | `.twitchlinks` | | Nobody | List all links |
-| `.twitchrolesyncadd <rank> <@role>` | | Manage Server | Give a role to linked viewers at or above a rank |
-| `.twitchrolesyncremove <rank> <@role>` | | Manage Server | Remove a mapping |
+| `.twitchrolesyncadd <rank> <@role>` | | Manage Community | Give a role to linked viewers at or above a rank |
+| `.twitchrolesyncremove <rank> <@role>` | | Manage Community | Remove a mapping |
 | `.twitchrolesynclist` | | Nobody | List mappings |
-| `.twitchredemptionadd <reward> [twitchreply] [channel] [discordmessage]` | | Manage Server | Add or update a channel point action |
-| `.twitchredemptionremove <reward>` | | Manage Server | Remove one |
+| `.twitchredemptionadd <reward> [twitchreply] [channel] [discordmessage]` | | Manage Community | Add or update a channel point action |
+| `.twitchredemptionremove <reward>` | | Manage Community | Remove one |
 | `.twitchredemptionlist` | | Nobody | List actions |
-| `.twitchraidtargetadd <twitchlogin> [note]` | | Manage Server | Add a channel to the `!raidtarget` pool |
-| `.twitchraidtargetremove <twitchlogin>` | | Manage Server | Remove one |
+| `.twitchraidtargetadd <twitchlogin> [note]` | | Manage Community | Add a channel to the `!raidtarget` pool |
+| `.twitchraidtargetremove <twitchlogin>` | | Manage Community | Remove one |
 | `.twitchraidtargetlist` | | Nobody | List raid targets |
 
 ## Tips and gotchas
 
-- The bot account is shared by every server on the bot. If nobody has connected one, chat replies cannot be sent no matter what you configure.
+- The bot account is shared by every community on the bot. If nobody has connected one, chat replies cannot be sent no matter what you configure.
 - Chat commands only work while **Use EventSub for chat events** is on. If the Health panel shows Legacy IRC, switch it back on.
 - Live state is also polled once a minute, so a go-live post can lag the actual start by up to a minute.
 - Custom command cooldowns are per channel, not per viewer. A 30 second cooldown means one use every 30 seconds for everyone.
@@ -251,4 +251,4 @@ Run these with your server prefix (`.` unless you changed it).
 - Unknown ranks passed to `.twitchrolesyncadd` fall back to Subscriber, and unknown permissions passed to `.twitchcommandadd` fall back to Everyone.
 - Link codes expire after ten minutes and generating a new one invalidates the old.
 - Timeouts and bans from Live Tools use your channel's moderation scopes, so they appear in Twitch as actions taken by the authorised account.
-- Language override changes only Twitch chat replies. Fluxer replies keep the server locale.
+- Language override changes only Twitch chat replies. Fluxer replies keep the community locale.

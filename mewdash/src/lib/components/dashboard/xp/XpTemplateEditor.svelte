@@ -1270,17 +1270,14 @@
     <!-- Dark base with gradient overlay -->
     <div class="absolute inset-0" style="background: #0a0a0a"></div>
     <div class="absolute inset-0"
-         style="background: radial-gradient(circle at center,
-              {$colorStore.gradientStart}20 0%,
-              {$colorStore.gradientEnd}15 50%,
-              {$colorStore.gradientEnd}10 100%);"></div>
+         style="background: {$colorStore.primary}0c;"></div>
     <!-- Main Editor Container -->
     <div class="flex-1 flex h-full w-full relative z-10">
       <!-- Left Sidebar - Layers & Tools -->
       <div
         class="w-64 border-r flex flex-col transition-all duration-300 "
         class:w-12={!panels.layers.open}
-        style="background: linear-gradient(135deg, {$colorStore.gradientStart}12, {$colorStore.gradientMid}18);
+        style="background: {$colorStore.primary}0c;
            border-color: {$colorStore.primary}30;"
       >
         <!-- Layers Panel -->
@@ -1301,7 +1298,7 @@
             </div>
             {#if panels.layers.open}
               <button
-                class="p-1 rounded-lg transition-all hover:scale-110"
+                class="p-1 rounded-lg transition-all"
                 style="background: {$colorStore.primary}10;"
                 onclick={(e) => { e.stopPropagation(); togglePanelPin("layers"); }}
               >
@@ -1322,7 +1319,7 @@
                   ["line", "fa-minus", m.xp.editorToolLine()], ["text", "fa-font", m.common.text()], ["image", "fa-image", m.common.image()],
                   ["progress", "fa-chart-simple", m.xp.editorToolProgress()]
                 ] as tool}
-                  <button class="aspect-square rounded-lg transition-transform hover:scale-105"
+                  <button class="aspect-square rounded-lg transition-transform"
                           style="background: {$colorStore.primary}12; color: {$colorStore.primary};"
                           aria-label={m.xp.editorAddTool({ tool: tool[2] })}
                           title={m.xp.editorAddTool({ tool: tool[2] })}
@@ -1333,7 +1330,7 @@
               </div>
               {#each layerElements as element (element.id)}
                 <div
-                  class="p-2 rounded-lg cursor-pointer transition-all hover:scale-[1.01]"
+                  class="p-2 rounded-lg cursor-pointer transition-all"
                   class:opacity-50={!element.visible}
                   style="background: {selectedElement === element.id ? $colorStore.primary + '20' : $colorStore.primary + '08'};
                      border: 1px solid {selectedElement === element.id ? $colorStore.primary + '40' : 'transparent'};"
@@ -1345,7 +1342,7 @@
                   <div class="flex items-center justify-between">
                     <div class="flex items-center gap-2">
                       <button
-                        class="p-1 rounded transition-all hover:scale-110"
+                        class="p-1 rounded transition-all"
                         style="background: {element.visible ? $colorStore.primary + '20' : 'transparent'};"
                         onclick={(e) => { e.stopPropagation(); toggleElementVisibility(element.id); }}
                       >
@@ -1403,7 +1400,7 @@
             </div>
             <div class="grid grid-cols-2 gap-2">
               <button
-                class="p-2 rounded-lg transition-all hover:scale-[1.02] flex items-center justify-center gap-1"
+                class="p-2 rounded-lg transition-all flex items-center justify-center gap-1"
                 style="background: {showGrid ? $colorStore.primary + '20' : $colorStore.primary + '10'};
                    color: {showGrid ? $colorStore.primary : $colorStore.muted};"
                 onclick={() => { showGrid = !showGrid; redrawCanvas(); }}
@@ -1412,7 +1409,7 @@
                 <span class="text-xs">{m.xp.editorGrid()}</span>
               </button>
               <button
-                class="p-2 rounded-lg transition-all hover:scale-[1.02] flex items-center justify-center gap-1"
+                class="p-2 rounded-lg transition-all flex items-center justify-center gap-1"
                 style="background: {snapToGrid ? $colorStore.primary + '20' : $colorStore.primary + '10'};
                    color: {snapToGrid ? $colorStore.primary : $colorStore.muted};"
                 onclick={() => { snapToGrid = !snapToGrid; }}
@@ -1421,7 +1418,7 @@
                 <span class="text-xs">{m.xp.editorSnap()}</span>
               </button>
               <button
-                class="p-2 rounded-lg transition-all hover:scale-[1.02] flex items-center justify-center gap-1"
+                class="p-2 rounded-lg transition-all flex items-center justify-center gap-1"
                 style="background: {showRulers ? $colorStore.primary + '20' : $colorStore.primary + '10'};
                    color: {showRulers ? $colorStore.primary : $colorStore.muted};"
                 onclick={() => { showRulers = !showRulers; redrawCanvas(); }}
@@ -1430,7 +1427,7 @@
                 <span class="text-xs">{m.xp.editorRulers()}</span>
               </button>
               <button
-                class="p-2 rounded-lg transition-all hover:scale-[1.02] flex items-center justify-center gap-1"
+                class="p-2 rounded-lg transition-all flex items-center justify-center gap-1"
                 style="background: {lockProportions ? $colorStore.primary + '20' : $colorStore.primary + '10'};
                    color: {lockProportions ? $colorStore.primary : $colorStore.muted};"
                 onclick={() => { lockProportions = !lockProportions; }}
@@ -1446,7 +1443,7 @@
 
             <div class="flex gap-2">
               <button aria-label={m.common.undo()}
-                      class="flex-1 p-2 rounded-lg transition-all hover:scale-[1.02] flex items-center justify-center"
+                      class="flex-1 p-2 rounded-lg transition-all flex items-center justify-center"
                       style="background: {$colorStore.primary}10; color: {$colorStore.primary};"
                       onclick={undo}
                       disabled={undoStack.length === 0}
@@ -1454,7 +1451,7 @@
                 <i class="fa-solid fa-rotate-left" style="font-size: 16px;"></i>
               </button>
               <button aria-label={m.common.redo()}
-                      class="flex-1 p-2 rounded-lg transition-all hover:scale-[1.02] flex items-center justify-center"
+                      class="flex-1 p-2 rounded-lg transition-all flex items-center justify-center"
                       style="background: {$colorStore.primary}10; color: {$colorStore.primary};"
                       onclick={redo}
                       disabled={redoStack.length === 0}
@@ -1465,7 +1462,7 @@
           {:else}
             <div class="flex flex-col gap-2">
               <button
-                class="p-2 rounded-lg transition-all hover:scale-[1.02]"
+                class="p-2 rounded-lg transition-all"
                 style="background: {showGrid ? $colorStore.primary + '20' : $colorStore.primary + '10'};"
                 onclick={() => { showGrid = !showGrid; redrawCanvas(); }}
                 aria-label={showGrid ? m.xp.editorHideGrid() : m.xp.editorShowGrid()}
@@ -1474,7 +1471,7 @@
                    style="color: {showGrid ? $colorStore.primary : $colorStore.muted}; font-size: 16px;"></i>
               </button>
               <button
-                class="p-2 rounded-lg transition-all hover:scale-[1.02]"
+                class="p-2 rounded-lg transition-all"
                 style="background: {showRulers ? $colorStore.primary + '20' : $colorStore.primary + '10'};"
                 onclick={() => { showRulers = !showRulers; redrawCanvas(); }}
                 aria-label={showRulers ? m.xp.editorHideRulers() : m.xp.editorShowRulers()}
@@ -1492,7 +1489,7 @@
         <!-- Top Toolbar -->
         <div
           class="h-14 border-b flex items-center justify-between px-4 "
-          style="background: linear-gradient(135deg, {$colorStore.gradientStart}15, {$colorStore.gradientMid}20);
+          style="background: {$colorStore.primary}0c;
              border-color: {$colorStore.primary}30;"
         >
           <div class="flex items-center gap-2">
@@ -1525,7 +1522,7 @@
             <div class="flex items-center gap-1">
               <button
                 aria-label={m.xp.editorZoomOut()}
-                class="p-2 rounded-lg transition-all hover:scale-[1.02]"
+                class="p-2 rounded-lg transition-all"
                 onclick={() => { zoom = Math.max(0.1, zoom - 0.1); redrawCanvas(); }}
                 style="background: {$colorStore.primary}10; color: {$colorStore.primary};"
               >
@@ -1541,7 +1538,7 @@
               </button>
               <button
                 aria-label={m.xp.editorZoomIn()}
-                class="p-2 rounded-lg transition-all hover:scale-[1.02]"
+                class="p-2 rounded-lg transition-all"
                 onclick={() => { zoom = Math.min(5, zoom + 0.1); redrawCanvas(); }}
                 style="background: {$colorStore.primary}10; color: {$colorStore.primary};"
               >
@@ -1553,7 +1550,7 @@
 
             <!-- Data Toggle -->
             <button
-              class="px-3 py-1 rounded-lg text-sm font-medium transition-all hover:scale-[1.02]"
+              class="px-3 py-1 rounded-lg text-sm font-medium transition-all"
               onclick={() => { useRealData = !useRealData; redrawCanvas(); }}
               style="background: {useRealData ? $colorStore.secondary + '20' : $colorStore.primary + '10'};
                  color: {useRealData ? $colorStore.secondary : $colorStore.muted};"
@@ -1572,7 +1569,7 @@
 
             <!-- Close Button -->
             <button aria-label={m.common.ariaCloseEditor()}
-                    class="p-2 rounded-lg transition-all hover:scale-[1.02]"
+                    class="p-2 rounded-lg transition-all"
                     onclick={() => { showEditor = false; }}
                     style="background: {$colorStore.accent}20; color: {$colorStore.accent};"
                     title={m.xp.editorCloseEditorEsc()}
@@ -1586,7 +1583,7 @@
         <div
           bind:this={canvasContainer}
           class="flex-1 relative overflow-hidden"
-          style="background: radial-gradient(circle at center, {$colorStore.primary}12, transparent);"
+          style="background: {$colorStore.primary}0c;"
         >
           <canvas
             bind:this={canvas}
@@ -1604,7 +1601,7 @@
       <div
         class="w-80 border-l flex flex-col transition-all duration-300 "
         class:w-12={!panels.properties.open}
-        style="background: linear-gradient(135deg, {$colorStore.gradientStart}12, {$colorStore.gradientMid}18);
+        style="background: {$colorStore.primary}0c;
            border-color: {$colorStore.primary}30;"
       >
         <div
@@ -1623,7 +1620,7 @@
           </div>
           {#if panels.properties.open}
             <button
-              class="p-1 rounded-lg transition-all hover:scale-110"
+              class="p-1 rounded-lg transition-all"
               style="background: {$colorStore.primary}10;"
               onclick={(e) => { e.stopPropagation(); togglePanelPin("properties"); }}
             >

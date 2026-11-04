@@ -430,7 +430,7 @@
       },
       {
         "id": "reports",
-        "label": "Server Reports",
+        "label": "Community Reports",
         "icon": "fa-newspaper"
       }
     ]
@@ -494,7 +494,7 @@
     "tabs": [
       {
         "id": "servers",
-        "label": "Servers",
+        "label": "Communities",
         "icon": "fa-server"
       }
     ]
@@ -1042,12 +1042,12 @@
       },
       {
         "id": "servers",
-        "label": "Servers",
+        "label": "Communities",
         "icon": "fa-server"
       },
       {
         "id": "guilds",
-        "label": "Guilds",
+        "label": "Communities",
         "icon": "fa-people-group"
       },
       {
@@ -1086,7 +1086,7 @@
     "tabs": [
       {
         "id": "servers",
-        "label": "Servers",
+        "label": "Communities",
         "icon": "fa-robot"
       },
       {

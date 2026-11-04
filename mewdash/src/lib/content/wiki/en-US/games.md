@@ -11,7 +11,7 @@ related: [polls, currency, xp, searches, utility]
 
 ## What it does
 
-Games are played in the channel where they are started. A member runs a command, the bot posts the game, and everyone in the channel plays by typing answers or pressing buttons. Only one game of each kind runs per channel (or per server for Nunchi and Kaladont) at a time, and most games can be stopped early with a matching stop command.
+Games are played in the channel where they are started. A member runs a command, the bot posts the game, and everyone in the channel plays by typing answers or pressing buttons. Only one game of each kind runs per channel (or per community for Nunchi and Kaladont) at a time, and most games can be stopped early with a matching stop command.
 
 Trivia, hangman, Kaladont, Nunchi, the typing race, acrophobia and tic-tac-toe are multiplayer. Polls let staff put a question to the channel with buttons or a dropdown. `choose` and `8ball` are one-off toys.
 
@@ -21,7 +21,7 @@ There is no dashboard page for this module. Everything is done with commands, an
 
 - Break up a quiet evening with a round of trivia or hangman.
 - Run a typing race or Kaladont tournament as a community event.
-- Ask the server a quick yes or no question, or a multi-option poll with a dropdown.
+- Ask the community a quick yes or no question, or a multi-option poll with a dropdown.
 - Set up a permanent Kaladont channel so the word chain never stops.
 
 ## Trivia
@@ -43,7 +43,7 @@ There is no dashboard page for this module. Everything is done with commands, an
 
 ## Hangman
 
-`hangman [type]` picks a word from a category and shows it as blanks. Members guess a single letter, or the whole word, by typing it in the channel. Six wrong guesses lose the game. The categories are `countries`, `movies`, `animals`, `things` and `random`; `random` is the default. `hangmanlist` shows the types available on your server and `hangmanstop` ends the game.
+`hangman [type]` picks a word from a category and shows it as blanks. Members guess a single letter, or the whole word, by typing it in the channel. Six wrong guesses lose the game. The categories are `countries`, `movies`, `animals`, `things` and `random`; `random` is the default. `hangmanlist` shows the types available on your community and `hangmanstop` ends the game.
 
 ## Kaladont
 
@@ -98,7 +98,7 @@ Polls with two to five options use buttons; longer ones use a dropdown with up t
 
 ## Settings
 
-This module has no dashboard page and no per-server settings. Game behaviour is set with the command options above. The bot owner's `games.yml` config holds the 8ball responses and the trivia minimum win requirement and currency reward.
+This module has no dashboard page and no per-community settings. Game behaviour is set with the command options above. The bot owner's `games.yml` config holds the 8ball responses and the trivia minimum win requirement and currency reward.
 
 ## Setup walkthrough
 
@@ -109,7 +109,7 @@ This module has no dashboard page and no per-server settings. Game behaviour is 
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |

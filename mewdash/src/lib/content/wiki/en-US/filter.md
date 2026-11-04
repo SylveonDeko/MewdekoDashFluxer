@@ -16,12 +16,12 @@ The filter checks every message a member sends or edits before other modules see
 
 A second list, auto-ban words, is stricter. A message that matches an auto-ban word is deleted and the author is banned immediately, with a DM containing the reason where the bot can send one.
 
-Administrators and anyone holding the server's staff role (set with `staffrole`) are never filtered. Bot messages are not checked either.
+Administrators and anyone holding the community's staff role (set with `staffrole`) are never filtered. Bot messages are not checked either.
 
 ## Why you would use it
 
 - Keep slurs and other banned terms out of chat without a moderator online.
-- Stop members advertising other servers by dropping invite links.
+- Stop members advertising other communities by dropping invite links.
 - Make a channel text only by removing any message with a URL, for example a media-free announcements chat.
 - Instantly ban accounts that post known scam phrases or raid signatures.
 
@@ -30,8 +30,8 @@ Administrators and anyone holding the server's staff role (set with `staffrole`)
 | Filter | Where it applies | What happens |
 | --- | --- | --- |
 | Word filter | Only in channels on the word filter channel list | Message deleted; warning and DM if **Warn on filtered word** is on |
-| Invite filter | Everywhere when the server switch is on and the channel list is empty, or only in listed channels when the list has entries | Message deleted; warning and DM if **Warn on invite link** is on |
-| Link filter | Everywhere when the server switch is on, plus any channel on its list | Message deleted, no warning |
+| Invite filter | Everywhere when the community switch is on and the channel list is empty, or only in listed channels when the list has entries | Message deleted; warning and DM if **Warn on invite link** is on |
+| Link filter | Everywhere when the community switch is on, plus any channel on its list | Message deleted, no warning |
 | Auto-ban words | Everywhere | Message deleted, author DMed and banned |
 
 The three channel lists are the **Channel Overrides** on the dashboard. Note that the word filter is driven entirely by its channel list: a channel must be on it for words to be checked there.
@@ -57,16 +57,16 @@ The Message Filters page has four tabs: **Filters**, **Filtered Words**, **Auto-
 
 | Setting | Default | What it controls |
 | --- | --- | --- |
-| Word filter | Off | Server-wide switch shown on the Filters tab |
+| Word filter | Off | Community-wide switch shown on the Filters tab |
 | Invite filter | Off | Deletes Fluxer invite links; needed for the invite channel list to do anything |
-| Link filter | Off | Deletes any message with a URL server-wide |
+| Link filter | Off | Deletes any message with a URL community-wide |
 | Warn on filtered word | Off | Adds a warning and DMs the member when a filtered word is removed |
 | Warn on invite link | Off | Adds a warning and DMs the member when an invite is removed |
 | Filtered words | none | List on the Filtered Words tab, with per-word remove, a **Clear all** button that does the same as `fwclear`, and a search box once there are more than ten words |
 | Auto-ban words | none | List on the Auto-ban Words tab |
 | Word filter channels | none | Channels where the word list is enforced |
 | Invite filter channels | none | Restricts the invite filter to these channels when non-empty |
-| Link filter channels | none | Extra channels where links are removed even if the server switch is off |
+| Link filter channels | none | Extra channels where links are removed even if the community switch is off |
 
 The top of the page shows counts of filtered words, auto-ban words and channel overrides.
 
@@ -81,18 +81,18 @@ The top of the page shows counts of filtered words, auto-ban words and channel o
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
 | `filterword <word>` | `fw` | Nobody | Add a word to the filter list, or remove it if already present |
 | `lstfilterwords` | `lfw` | Nobody | Page through the filtered word list |
-| `fwclear` | | Administrator | Remove every filtered word, clear the word channel list and turn the server switch off |
-| `srvrfilterwords` | `sfw` | Nobody | Toggle the server-wide word filter switch |
+| `fwclear` | | Administrator | Remove every filtered word, clear the word channel list and turn the community switch off |
+| `srvrfilterwords` | `sfw` | Nobody | Toggle the community-wide word filter switch |
 | `chnlfilterwords` | `cfw` | Nobody | Toggle the current channel on the word filter channel list |
-| `srvrfilterinv` | `sfi` | Nobody | Toggle the server-wide invite filter |
+| `srvrfilterinv` | `sfi` | Nobody | Toggle the community-wide invite filter |
 | `chnlfilterinv` | `cfi` | Nobody | Toggle the current channel on the invite filter channel list |
-| `srvrfilterlin` | `sfl` | Nobody | Toggle the server-wide link filter |
+| `srvrfilterlin` | `sfl` | Nobody | Toggle the community-wide link filter |
 | `chnlfilterlin` | `cfl` | Nobody | Toggle the current channel on the link filter channel list |
 | `fwarn <y or n>` | `filteredwarn` | Administrator | Turn warnings for filtered words on or off |
 | `invwarn <y or n>` | `invitewarn` | Administrator | Turn warnings for invite links on or off |

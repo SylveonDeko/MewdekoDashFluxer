@@ -404,7 +404,7 @@ export const searchesPreviews: Record<string, CommandPreview> = {
     }),
   ),
   streamremove: reply("streamremove 1", replyOk("Removed **biscuit**'s stream (Twitch) from notifications.")),
-  streamsclear: reply("streamsclear", replyOk("All 3 followed streams on this server have been removed.")),
+  streamsclear: reply("streamsclear", replyOk("All 3 followed streams on this community have been removed.")),
   streamlist: reply("streamlist", {
     color: OK,
     title: "Streams you're following",
@@ -564,7 +564,7 @@ export const searchesPreviews: Record<string, CommandPreview> = {
   wotdreset: chat(
     "general",
     sylveon("wotdreset"),
-    bot(confirm("Reset all Word of the Day settings, custom words, and history for this server?")),
+    bot(confirm("Reset all Word of the Day settings, custom words, and history for this community?")),
     bot(confirm("Word of the Day settings have been reset.")),
   ),
 };

@@ -12,10 +12,10 @@
   </div>
   <div class="messageGutterRight"></div>
   <div class="systemMessageContent">
-    <span><span class="systemMessageLink" role="button">{name}</span>{" pinned "}<span class="systemMessageLink" role="button"
+    <span><span class="systemMessageLink" role="button">{name}</span> pinned <span class="systemMessageLink" role="button"
         >a message</span
-      >{" to this channel. See "}<span class="systemMessageLink" role="button">all pinned messages</span>.</span
-    >{" "}<span class="systemMessageTimestamp">{time}</span>
+      > to this channel. See <span class="systemMessageLink" role="button">all pinned messages</span>.</span
+    > <span class="systemMessageTimestamp">{time}</span>
   </div>
 </div>
 

@@ -32,7 +32,7 @@
     },
     { key: "latency", label: m.common.latency(), num: true, format: (r) => ms(r.latency) },
     { key: "peak", label: m.analytics.tabShardsColPeak(), num: true, format: (r) => ms(r.peak), tone: (r) => (r.peak !== null && r.peak >= 1000 ? "crit" : r.peak !== null && r.peak >= 400 ? "warn" : null) },
-    { key: "guilds", label: m.analytics.pageTabGuilds(), num: true, format: (r) => n(r.guilds) },
+    { key: "guilds", label: m.common.servers(), num: true, format: (r) => n(r.guilds) },
     { key: "reconnects", label: m.analytics.tabShardsColReconnects(), num: true, format: (r) => n(r.reconnects) },
   ]);
 

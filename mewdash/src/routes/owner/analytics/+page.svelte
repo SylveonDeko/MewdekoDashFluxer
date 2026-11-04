@@ -31,7 +31,7 @@
     { id: "events", label: m.common.events(), icon: "fa-bolt" },
     { id: "latency", label: m.common.latency(), icon: "fa-stopwatch" },
     { id: "servers", label: m.common.servers(), icon: "fa-server" },
-    { id: "guilds", label: m.analytics.pageTabGuilds(), icon: "fa-people-group" },
+    { id: "guilds", label: m.common.servers(), icon: "fa-people-group" },
     { id: "features", label: m.common.features(), icon: "fa-puzzle-piece" },
     { id: "ai", label: m.analytics.pageTabAi(), icon: "fa-robot" },
     { id: "music", label: m.features.musicName(), icon: "fa-music" },

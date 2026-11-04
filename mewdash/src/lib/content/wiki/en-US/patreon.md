@@ -12,7 +12,7 @@ related: [administration, utility]
 
 ## What it does
 
-A server owner who runs a Patreon campaign links it to the bot by signing in with their creator account. From then on the bot pulls the campaign's tiers and supporters, keeps them in sync, and can hand out Fluxer roles based on how much each supporter pledges. When a supporter's Fluxer account is known to Patreon, the link is automatic; otherwise staff can link a member to a Patreon user by hand.
+A community owner who runs a Patreon campaign links it to the bot by signing in with their creator account. From then on the bot pulls the campaign's tiers and supporters, keeps them in sync, and can hand out Fluxer roles based on how much each supporter pledges. When a supporter's Fluxer account is known to Patreon, the link is automatic; otherwise staff can link a member to a Patreon user by hand.
 
 Once a month, on a day you choose, the bot can post an announcement in a channel thanking supporters. The message can be plain text or an embed and can include live figures such as the active supporter count, monthly revenue and how many people joined this month. There is also a recognition command that posts a shout out for anyone who became a supporter in the last week.
 
@@ -65,7 +65,7 @@ Without a custom message the bot posts a default thank you that includes the act
 
 ### Placeholders
 
-These work in the announcement message alongside the usual server and channel placeholders.
+These work in the announcement message alongside the usual community and channel placeholders.
 
 | Placeholder | Value |
 | --- | --- |
@@ -124,7 +124,7 @@ The dashboard has four tabs: **Overview**, **Supporters**, **Tier Mapping** and 
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |

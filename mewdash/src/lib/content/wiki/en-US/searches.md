@@ -84,7 +84,7 @@ These post an anime GIF for the action. Ones aimed at someone take a mention: `h
 
 ## Settings
 
-This module has no dashboard page and no per-server settings beyond the auto-translation toggle. Several commands rely on API keys the bot owner configures; if a key is missing the command replies with an error instead of results.
+This module has no dashboard page and no per-community settings beyond the auto-translation toggle. Several commands rely on API keys the bot owner configures; if a key is missing the command replies with an error instead of results.
 
 ## Setup walkthrough
 
@@ -94,7 +94,7 @@ This module has no dashboard page and no per-server settings beyond the auto-tra
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |

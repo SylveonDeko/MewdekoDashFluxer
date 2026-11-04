@@ -9,11 +9,8 @@
   import StatsManagementCard from "../automation/StatsManagementCard.svelte";
 
   let {
-    staffRole,
-    memberRole,
     newStaffRole = $bindable(),
     newMemberRole = $bindable(),
-    guildTimezone,
     newTimezone = $bindable(),
     availableTimezones,
     commandCooldowns,
@@ -30,7 +27,9 @@
     availablePermissions,
     textChannels,
     saving,
-    saveServerSettings,
+    saveStaffRole,
+    saveMemberRole,
+    saveTimezone,
     removeCommandCooldown,
     addCommandCooldown,
     showConfirm,
@@ -47,18 +46,14 @@
     {availableRoles}
     bind:newMemberRole
     bind:newStaffRole
-    {memberRole}
-    {saveServerSettings}
-    {saving}
-    {staffRole}
+    {saveMemberRole}
+    {saveStaffRole}
   />
 
   <TimezoneCard
     {availableTimezones}
     bind:newTimezone
-    {guildTimezone}
-    {saveServerSettings}
-    {saving}
+    {saveTimezone}
   />
 
   <CommandCooldownsCard

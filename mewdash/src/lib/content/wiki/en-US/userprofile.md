@@ -11,9 +11,9 @@ related: [birthday, switch, afk, help]
 
 ## What it does
 
-Every member has a profile that follows them across every server the bot is in. Running `profile` posts it as an embed: the member's avatar as a thumbnail, their bio as the description, then fields for pronouns, zodiac sign, birthday, how many servers they share with the bot, and their Nintendo Switch friend code if they set one. A custom colour and a large image at the bottom finish it off.
+Every member has a profile that follows them across every community the bot is in. Running `profile` posts it as an embed: the member's avatar as a thumbnail, their bio as the description, then fields for pronouns, zodiac sign, birthday, how many communities they share with the bot, and their Nintendo Switch friend code if they set one. A custom colour and a large image at the bottom finish it off.
 
-Members fill the profile in with a handful of `set...` commands, or from the **My Settings** page on the dashboard. Nothing is server specific: set your bio once and it shows the same everywhere.
+Members fill the profile in with a handful of `set...` commands, or from the **My Settings** page on the dashboard. Nothing is community specific: set your bio once and it shows the same everywhere.
 
 Privacy is under the member's control. A profile can be made private so only its owner can open it, the birthday can be trimmed to just the month or hidden entirely, and members can opt out of command statistics and of welcome DMs.
 
@@ -40,7 +40,7 @@ Pronouns are a little special. If a member has not set any with the bot, the bot
 | Pronouns | Your override, otherwise PronounDB, otherwise "Unspecified" |
 | Zodiac Sign | `setzodiac`, otherwise "Unspecified" |
 | Birthday | `setbirthday`, shown according to the birthday privacy mode, otherwise "Unspecified" |
-| Mutual Bot Servers | How many servers you and the bot are both in |
+| Mutual Bot Communities | How many communities you and the bot are both in |
 | Switch Friend Code | Only shown if set |
 | Image | The URL from `setprofileimage` |
 
@@ -91,17 +91,17 @@ Pronouns are a little special. If a member has not set any with the bot, the bot
 When the pronouns shown come from a member's own override (not PronounDB), the reply carries a **Report** button. Reports go to a channel the bot owners run, where they can clear the override, disable pronouns for that user, or blacklist them. A user whose pronouns have been disabled sees the reason whenever they try to use the pronoun commands.
 
 > [!NOTE]
-> The bot owner command `pronounsforceclear` is how those reports are acted on. Server staff cannot clear another member's pronouns.
+> The bot owner command `pronounsforceclear` is how those reports are acted on. Community staff cannot clear another member's pronouns.
 
 ## Opt outs
 
-- `greetdmoptout` toggles whether servers using the bot's DM greetings can DM you. It only affects greetings sent by this bot.
+- `greetdmoptout` toggles whether communities using the bot's DM greetings can DM you. It only affects greetings sent by this bot.
 - `userstatsoptout` toggles command statistics collection for your account. This never collects message contents.
 - `deleteuserstatsdata` deletes the command statistics already stored for you after a confirmation. It can be run once an hour.
 
 ## Settings
 
-There is no server-side configuration. Everything lives on the member. The dashboard's **My Settings** page (`/me`) has a **Profile** section with an **Edit** button and a privacy section with toggles.
+There is no community-level configuration. Everything lives on the member. The dashboard's **My Settings** page (`/me`) has a **Profile** section with an **Edit** button and a privacy section with toggles.
 
 | Setting | Default | What it controls |
 | --- | --- | --- |
@@ -132,7 +132,7 @@ The same page also has a toggle that disables pronoun fetching for your account.
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -154,7 +154,7 @@ Run these with your server's prefix (`.` unless you changed it).
 
 ## Tips and gotchas
 
-- The profile is global. Changing it in one server changes it everywhere.
+- The profile is global. Changing it in one community changes it everywhere.
 - `setbirthday` reads the date with the bot's date parser, so an unambiguous format like `1998-04-12` is safest.
 - If the profile image URL stops working, the embed still sends but Fluxer shows no image. Set a new URL to fix it.
 - PronounDB lookups need the member to have linked their Fluxer account on pronoundb.org. Without that, the profile says "Unspecified" until they run `setpronouns`.

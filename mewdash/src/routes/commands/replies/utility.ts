@@ -19,17 +19,17 @@ const snipe = (said: string, text: string, footer: string) => ({
   footer,
 });
 
-const deleted = snipe("said:", "this server is getting a new name soon", "Snipe requested by SylveonDeko || Message deleted 3 minutes ago || Invite me!");
+const deleted = snipe("said:", "this community is getting a new name soon", "Snipe requested by SylveonDeko || Message deleted 3 minutes ago || Invite me!");
 const edited = snipe("originally said:", "meeting is at 5pm", "Snipe requested by SylveonDeko || Message deleted 2 minutes ago || Invite me!");
 
-const deletedPage = snipe("said:", "this server is getting a new name soon", "Page 1/3");
+const deletedPage = snipe("said:", "this community is getting a new name soon", "Page 1/3");
 const editedPage = snipe("originally said:", "meeting is at 5pm", "Page 1/3");
 
 export const utilityPreviews: Record<string, CommandPreview> = {
   ping: reply("ping", confirm("Bot Ping 182ms\nBot Latency 41ms\nRedis Ping 312ns")),
   vote: reply(
     "vote",
-    confirm("Vote here for Mewdeko!\n[Vote Link](https://top.gg/bot/752236274261426212)\nMake sure to join the support server! \n[Link](https://mewdeko.tech/support)"),
+    confirm("Vote here for Mewdeko!\n[Vote Link](https://top.gg/bot/752236274261426212)\nMake sure to join the support community! \n[Link](https://mewdeko.tech/support)"),
   ),
   vcheck: reply("vcheck https://mewdeko.tech", {
     color: OK,
@@ -42,7 +42,7 @@ export const utilityPreviews: Record<string, CommandPreview> = {
   userid: reply("userid", rc("🆔 of the user **SylveonDeko** is `1521568983961042944`")),
   roleid: reply("roleid Moderator", rc("🆔 of the role **Moderator** is `1520000000000000042`")),
   channelid: reply("channelid", rc("🆔 of this channel is `1520000000000000007`")),
-  serverid: reply("serverid", rc("🆔 of this server is `1520000000000000003`")),
+  serverid: reply("serverid", rc("🆔 of this community is `1520000000000000003`")),
   channeltopic: reply("channeltopic", confirm("Welcome to The Deko Tree! Be kind and keep it on topic.", "Channel topic")),
   traceroute: reply("traceroute mewdeko.tech", {
     color: OK,
@@ -67,7 +67,7 @@ export const utilityPreviews: Record<string, CommandPreview> = {
       { name: "Memory", value: "809 MB resident\n181 MB managed\n291 MB committed\nServer, DATAS default, 32 cores" },
       { name: "Cache", value: "3,034 members\n371 channels\n318 roles" },
       { name: "Uptime", value: "3 hours\n45 minutes" },
-      { name: "Servers", value: "7 Servers" },
+      { name: "Communities", value: "7 Communities" },
     ],
   }),
   invite: reply("invite", {
@@ -78,7 +78,7 @@ export const utilityPreviews: Record<string, CommandPreview> = {
         value: "[Invite Link](https://web.fluxer.app/oauth2/authorize?client_id=1520000000000000000&scope=bot&permissions=66186303)",
       },
       { name: "Website/Docs", value: "https://mewdeko.tech" },
-      { name: "Support Server", value: "https://fluxer.gg/GQuFOiBV" },
+      { name: "Support Community", value: "https://fluxer.gg/GQuFOiBV" },
     ],
   }),
   say: reply("say Welcome to The Deko Tree!", "Welcome to The Deko Tree!"),
@@ -107,7 +107,7 @@ export const utilityPreviews: Record<string, CommandPreview> = {
   editsnipelist: reply("editsnipelist 3", editedPage),
   roles: reply("roles", {
     color: OK,
-    title: "Guild Roles List",
+    title: "Community Roles List",
     description: `@Moderator | ${SNIPE_ID} | 3\n@Staff | 1520000000000000002 | 9\n@Member | 1520000000000000004 | 412`,
     footer: "Page 1/1",
   }),
@@ -165,7 +165,7 @@ export const utilityPreviews: Record<string, CommandPreview> = {
       { name: "Username", value: "SylveonDeko" },
       { name: "User Id", value: "1521568983961042944" },
       { name: "User Type", value: "Administrator" },
-      { name: "Joined Server", value: ago(31536000) },
+      { name: "Joined Community", value: ago(31536000) },
       { name: "Joined Fluxer", value: ago(63072000) },
       { name: "Role Count", value: "3" },
     ],
@@ -192,7 +192,7 @@ export const utilityPreviews: Record<string, CommandPreview> = {
   }),
   serverinfo: reply("serverinfo", {
     color: OK,
-    author: "Server info",
+    author: "Community info",
     title: "The Deko Tree",
     fields: [
       { name: "Id", value: "1520000000000000003" },
@@ -271,13 +271,13 @@ export const utilityPreviews: Record<string, CommandPreview> = {
   quoteimport: reply("quoteimport", rc("Successfully imported 12 quotes. 0 quotes failed to import.")),
   alias: reply("alias hi say Hello there", rc("Typing `hi` will now be an alias of `say Hello there`.")),
   aliaslist: reply("aliaslist", confirm("`hi` => `say Hello there`\n`rules` => `quoteprint rules`", "List of aliases")),
-  aliasesclear: reply("aliasesclear", rc("All 2 aliases on this server have been removed.")),
+  aliasesclear: reply("aliasesclear", rc("All 2 aliases on this community have been removed.")),
   embedsave: reply('embedsave welcome {"title":"Welcome"}', rc("✅ Embed template `welcome` saved successfully!")),
-  guildembedsave: reply('guildembedsave rules {"title":"Rules"}', rc("✅ Guild embed template `rules` saved successfully!")),
+  guildembedsave: reply('guildembedsave rules {"title":"Rules"}', rc("✅ Community embed template `rules` saved successfully!")),
   embedlist: reply("embedlist", rc("📝 Your saved embed templates:\n• welcome\n• announcement")),
-  guildembedlist: reply("guildembedlist", rc("📝 Guild embed templates:\n• rules")),
+  guildembedlist: reply("guildembedlist", rc("📝 Community embed templates:\n• rules")),
   embeddelete: reply("embeddelete welcome", rc("✅ Embed template `welcome` deleted successfully!")),
-  guildembeddelete: reply("guildembeddelete rules", rc("✅ Guild embed template `rules` deleted successfully!")),
+  guildembeddelete: reply("guildembeddelete rules", rc("✅ Community embed template `rules` deleted successfully!")),
   embedpreview: reply("embedpreview welcome", { color: OK, title: "Welcome", description: "Glad you are here" }),
   aichannel: reply("aichannel #ai-chat", confirm("AI configured to use channel <#ai-chat>")),
   aimodel: reply("aimodel claude claude-sonnet-4-20250514", confirm("AI model set to claude-sonnet-4-20250514")),
@@ -478,7 +478,7 @@ export const utilityPreviews: Record<string, CommandPreview> = {
   }),
   togglemsgcount: reply("togglemsgcount", rc("Message counting has been enabled.")),
   minmsglength: reply("minmsglength 5", rc("Minimum counted message length set to 5")),
-  resetmessagecounts: reply("resetmessagecounts", confirm("Successfully reset all message counts in this server.")),
+  resetmessagecounts: reply("resetmessagecounts", confirm("Successfully reset all message counts in this community.")),
   repeat: reply("repeat 1h Remember to read the rules", { color: OK, title: "Repeater Created", description: REPEATER }),
   repeatlist: reply("repeatlist", { color: OK, title: "List of repeaters", fields: [{ name: "#`1`", value: REPEATER }], footer: "Page 1/1" }),
   repeatremove: reply("repeatremove 1", { color: OK, title: "Repeater #1 Removed", description: REPEATER }),
@@ -497,7 +497,7 @@ export const utilityPreviews: Record<string, CommandPreview> = {
     "general",
     sylveon("repeatschedule 1 business"),
     bot(rc("Sticky #1 scheduled for business hours (timezone: UTC).")),
-    bot("💡 Time-based scheduling uses your server timezone. Set it with .timezone if needed."),
+    bot("💡 Time-based scheduling uses your community timezone. Set it with .timezone if needed."),
   ),
   repeatconversation: reply("repeatconversation 1", rc("Conversation detection enabled for sticky #1. Will not interrupt active discussions.")),
   repeattoggle: reply("repeattoggle 1", rc("Sticky #1 has been disabled.")),

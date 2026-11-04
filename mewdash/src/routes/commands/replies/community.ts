@@ -23,7 +23,7 @@ const instanceCard = (title: string): ChatEmbed => ({
 export const communityPreviews: Record<string, CommandPreview> = {
   addstatusrole: reply("addstatusrole fluxer.gg/deko", confirm("Added statusrole config! Please configure it with the other commands.")),
   removestatusrole: reply("removestatusrole 1", confirm("Statusrole config removed!")),
-  setstatusroleembed: reply("setstatusroleembed 1 Thanks for repping the server!", confirm(`${OK_EMOTE} Succesfully set embed text!`)),
+  setstatusroleembed: reply("setstatusroleembed 1 Thanks for repping the community!", confirm(`${OK_EMOTE} Succesfully set embed text!`)),
   setstatusrolechannel: reply("setstatusrolechannel 1 #general", confirm(`${OK_EMOTE} Succesfully set StatusEmbedChannel to <#general>!`)),
   setaddroles: reply("setaddroles 1 @Supporter", confirm(`${OK_EMOTE} Having this status will now add the following roles:\n@Supporter`)),
   setremoveroles: reply("setremoveroles 1 @Newcomer", confirm(`${OK_EMOTE} Having this status will now remove the following roles:\n@Newcomer`)),
@@ -36,7 +36,7 @@ export const communityPreviews: Record<string, CommandPreview> = {
     {
       color: OK,
       description:
-        "#1\n`Status`: fluxer.gg/deko\n`Channel:` <#general> 1521568983961042950\n`AddRoles`: @Supporter\n`RemoveRoles`: @Newcomer\n`RemoveAdded`: True\n`ReaddRemoved`: True\n`Message:` Thanks for repping the server!",
+        "#1\n`Status`: fluxer.gg/deko\n`Channel:` <#general> 1521568983961042950\n`AddRoles`: @Supporter\n`RemoveRoles`: @Newcomer\n`RemoveAdded`: True\n`ReaddRemoved`: True\n`Message:` Thanks for repping the community!",
       footer: "Page 1/1",
     },
   ),
@@ -209,7 +209,7 @@ export const communityPreviews: Record<string, CommandPreview> = {
   serveractivity: reply("serveractivity", {
     color: OK,
     author: "The Deko Tree",
-    title: "Server Activity (Last 7 Days)",
+    title: "Community Activity (Last 7 Days)",
     fields: [
       { name: "Messages", value: "18,342", inline: true },
       { name: "Voice Time", value: "6d 14h", inline: true },
@@ -349,17 +349,17 @@ export const communityPreviews: Record<string, CommandPreview> = {
   }),
   liveboardremove: reply("liveboardremove 2", byUser("Removed live board **#2**.")),
   liveboardrefresh: reply("liveboardrefresh", byUser("Refreshed **2** live boards.")),
-  serverreportchannel: reply("serverreportchannel #reports", byUser("Server reports will be posted in <#reports>.")),
-  serverreportfrequency: reply("serverreportfrequency Weekly", byUser("Server reports will be posted **Weekly**.")),
+  serverreportchannel: reply("serverreportchannel #reports", byUser("Community reports will be posted in <#reports>.")),
+  serverreportfrequency: reply("serverreportfrequency Weekly", byUser("Community reports will be posted **Weekly**.")),
   serverreportshow: reply("serverreportshow", {
     color: OK,
-    title: "Server Report Settings",
+    title: "Community Report Settings",
     description: `**Enabled:** Yes\n**Channel:** <#reports>\n**Frequency:** Weekly\n**Last sent:** ${ago(172800)}`,
   }),
   serverreportnow: reply("serverreportnow", {
     color: OK,
     author: "The Deko Tree",
-    title: "Weekly Server Report (Last 7 Days)",
+    title: "Weekly Community Report (Last 7 Days)",
     fields: [
       { name: "Growth", value: "📥 96 joined · 📤 31 left · net +65\n🔁 Retention 68%", inline: true },
       { name: "Activity", value: "💬 18,342 messages · 🔊 6d 14h in voice\n👥 214 active members", inline: true },
@@ -457,7 +457,7 @@ export const communityPreviews: Record<string, CommandPreview> = {
   voiceprefsbitrate: reply("voiceprefsbitrate 96", byUser("Your preferred bitrate is now set to: **96** kbps")),
   voiceprefslock: reply("voiceprefslock true", byUser("Your channels will now be created **locked** by default.")),
   voiceprefskeepalive: reply("voiceprefskeepalive true", byUser("Your channels will now be **kept alive** by default.")),
-  voiceprefsreset: reply("voiceprefsreset", byUser("All your voice channel preferences have been reset to server defaults.")),
+  voiceprefsreset: reply("voiceprefsreset", byUser("All your voice channel preferences have been reset to community defaults.")),
 
   patreonch: reply("patreonch #announcements", byUser("Patreon announcement channel has been set to <#announcements>.")),
   patreondisable: reply("patreondisable", byUser("Patreon announcements have been disabled.")),
@@ -484,7 +484,7 @@ export const communityPreviews: Record<string, CommandPreview> = {
       {
         name: "Available Placeholders",
         value:
-          "**Basic Placeholders:**\n`%server.name%` - Server name\n`%channel.name%` - Channel name\n`%month%` - Current month name\n`%year%` - Current year\n`%patreon.link%` - Patreon link\n\n**Supporter Data:**\n`%supporter.count%` - Active supporters\n`%supporter.new%` - New supporters this month\n`%revenue.monthly%` - Monthly revenue\n`%supporters.summary%` - Formatted supporter text\n`%revenue.summary%` - Revenue summary\n`%growth.summary%` - Growth summary",
+          "**Basic Placeholders:**\n`%server.name%` - Community name\n`%channel.name%` - Channel name\n`%month%` - Current month name\n`%year%` - Current year\n`%patreon.link%` - Patreon link\n\n**Supporter Data:**\n`%supporter.count%` - Active supporters\n`%supporter.new%` - New supporters this month\n`%revenue.monthly%` - Monthly revenue\n`%supporters.summary%` - Formatted supporter text\n`%revenue.summary%` - Revenue summary\n`%growth.summary%` - Growth summary",
       },
       {
         name: "Basic Commands",
@@ -520,7 +520,7 @@ export const communityPreviews: Record<string, CommandPreview> = {
           '1. Open the "Authorize with Patreon" link above\n2. Sign in to Patreon if prompted\n3. Review and approve the requested permissions\n4. You\'ll be redirected back automatically\n5. Your supporters will be synced automatically',
       },
     ],
-    footer: "This setup is required only once per server",
+    footer: "This setup is required only once per community",
   }),
   patreonsupporters: reply("patreonsupporters", {
     color: "#f96854",
@@ -625,10 +625,10 @@ export const communityPreviews: Record<string, CommandPreview> = {
   generatedocs: reply("generatedocs", "⏱ Generating command documentation...", "Command documentation successfully generated!"),
   redisexec: reply("redisexec PING", { color: OK, title: "Redis Response", description: "PONG" }),
   sqlexec: reply("sqlexec DELETE FROM guild_stale WHERE id < 100", error("Affected 3 rows")),
-  topserversupdate: reply("topserversupdate", confirm(`${OK_EMOTE} Updated top guilds.`)),
+  topserversupdate: reply("topserversupdate", confirm(`${OK_EMOTE} Updated top communities.`)),
   listservers: reply("listservers", {
     color: OK,
-    title: "Servers List",
+    title: "Communities List",
     fields: [
       {
         name: "The Deko Tree | 1521568983961042950",
@@ -648,7 +648,7 @@ export const communityPreviews: Record<string, CommandPreview> = {
       { name: "Command Statistics", value: "ping was used 4211 times" },
       { name: "Module Statistics", value: "Utility was used 18342 times" },
       { name: "User Statistics", value: "SylveonDeko has used commands 6120 times" },
-      { name: "Guild Statistics", value: "The Deko Tree has used commands 21408 times" },
+      { name: "Community Statistics", value: "The Deko Tree has used commands 21408 times" },
     ],
   }),
   config: reply("config bot", {
@@ -666,7 +666,7 @@ export const communityPreviews: Record<string, CommandPreview> = {
     color: OK,
     title: "New startup command added.",
     fields: [
-      { name: "Server", value: "The Deko Tree/1521568983961042950", inline: true },
+      { name: "Community", value: "The Deko Tree/1521568983961042950", inline: true },
       { name: "Channel", value: "general/1521568983961042951", inline: true },
       { name: "Command Text", value: ".ping" },
     ],
@@ -675,13 +675,13 @@ export const communityPreviews: Record<string, CommandPreview> = {
   sclist: reply("sclist", {
     color: OK,
     description:
-      "```css\n#1\n[Server]: The Deko Tree #1521568983961042950\n[Channel]: general #1521568983961042951\n[Command Text]: .ping```",
+      "```css\n#1\n[Community]: The Deko Tree #1521568983961042950\n[Channel]: general #1521568983961042951\n[Command Text]: .ping```",
     footer: "page 1",
   }),
   aclist: reply("aclist", {
     color: OK,
     description:
-      "```css\n#1\n[Server]: The Deko Tree #1521568983961042950\n[Channel]: general #1521568983961042951\n[Interval]: 30\n[Command Text]: .ping```",
+      "```css\n#1\n[Community]: The Deko Tree #1521568983961042950\n[Channel]: general #1521568983961042951\n[Interval]: 30\n[Command Text]: .ping```",
     footer: "page 1",
   }),
   wait: reply("wait 1500", confirm("⏲ 1500ms")),
@@ -704,7 +704,7 @@ export const communityPreviews: Record<string, CommandPreview> = {
     title: "Recent Data Purges",
     fields: [
       {
-        name: `Purged ${ago(604800)} · 2 server(s) · 18204 rows`,
+        name: `Purged ${ago(604800)} · 2 communities · 18204 rows`,
         value: "Quiet Corner `1521568983961042982`, Bot Pit `1521568983961042983`",
       },
     ],
@@ -713,14 +713,14 @@ export const communityPreviews: Record<string, CommandPreview> = {
   retentionpurge: reply("retentionpurge 1521568983961042980", confirm("Purged 9102 rows for `1521568983961042980`.")),
   retentionpurgeall: reply(
     "retentionpurgeall",
-    confirm("Purging 2 server(s), this may take a while..."),
-    confirm("Purged 2 server(s), 11480 rows removed."),
+    confirm("Purging 2 communities, this may take a while..."),
+    confirm("Purged 2 communities, 11480 rows removed."),
   ),
-  retentionscan: reply("retentionscan", confirm("Orphan scan queued 1 server(s) the bot is no longer in.")),
+  retentionscan: reply("retentionscan", confirm("Orphan scan queued 1 community the bot is no longer in.")),
   bothells: reply("bothells", {
     color: OK,
     title: "Bot Hells (1)",
-    description: "Servers with at least 50 members and either 30+ bots or 60%+ bots. 0 means that check is off.",
+    description: "Communities with at least 50 members and either 30+ bots or 60%+ bots. 0 means that check is off.",
     fields: [
       { name: "Bot Pit `1521568983961042983`", value: "Humans: 18 · Bots: 112 (86%) · Members: 130 · Trigger: count and ratio" },
     ],
@@ -729,7 +729,7 @@ export const communityPreviews: Record<string, CommandPreview> = {
   bothellcheck: reply("bothellcheck", {
     color: OK,
     title: "The Deko Tree `1521568983961042950`",
-    description: "This server is not a bot hell.",
+    description: "This community is not a bot hell.",
     fields: [
       { name: "Members", value: "1204", inline: true },
       { name: "Humans", value: "1180", inline: true },

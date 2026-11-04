@@ -1,30 +1,30 @@
 ---
-title: Server Management
+title: Community Management
 slug: servermanagement
-summary: Bulk tools for the shape of your server: create and delete channels and roles, hand roles to hundreds of members in one job, lock the server down, sync channel overrides, steal emotes and watch for dangerous role changes.
+summary: Bulk tools for the shape of your community: create and delete channels and roles, hand roles to hundreds of members in one job, lock the community down, sync channel overrides, steal emotes and watch for dangerous role changes.
 icon: fa-server
 category: Actions
 module: ServerManagement
-tags: [server management, roles, mass role, channels, lockdown, slowmode, lock channel, nuke, emotes, steal emotes, webhook, permcontrol, role monitor, role jobs, server icon, server banner]
+tags: [community management, roles, mass role, channels, lockdown, slowmode, lock channel, nuke, emotes, steal emotes, webhook, permcontrol, role monitor, role jobs, community icon, community banner]
 related: [administration, permissions, moderation]
 ---
 
 ## What it does
 
-Server Management collects the commands that change the structure of a server rather than the people in it. Staff can create a category and all its channels in one line, rename or delete channels, set topics, toggle NSFW, set slowmode, lock a channel, or delete and recreate one to wipe its history.
+Community Management collects the commands that change the structure of a community rather than the people in it. Staff can create a category and all its channels in one line, rename or delete channels, set topics, toggle NSFW, set slowmode, lock a channel, or delete and recreate one to wipe its history.
 
 Roles get the most attention. One-off commands create, rename, recolour, hoist and delete roles or give a role to a single member, with an optional timer. Mass commands add or remove a role for every member, every human, every bot, everyone in another role, or everyone who joined before or after a cutoff. Those run as background jobs you can list and stop.
 
-The module also covers the server's own look (icon, banner, splash, name), emote management including stealing emotes from other servers, per-channel permission overrides, voice channel moves, three kinds of lockdown, and a role monitor that reverts and punishes dangerous role changes.
+The module also covers the community's own look (icon, banner, splash, name), emote management including stealing emotes from other communities, per-channel permission overrides, voice channel moves, three kinds of lockdown, and a role monitor that reverts and punishes dangerous role changes.
 
 Nothing here is configured on the dashboard. Everything is run from commands.
 
 ## Why you would use it
 
-- Setting up a new server and wanting ten channels under a category without clicking through Fluxer's UI ten times.
+- Setting up a new community and wanting ten channels under a category without clicking through Fluxer's UI ten times.
 - Giving a "Member" role to two thousand existing members after turning on role gating.
-- Locking the server during a raid so nobody can post, then restoring the old permissions exactly.
-- Copying emotes from a friend's server in one command.
+- Locking the community during a raid so nobody can post, then restoring the old permissions exactly.
+- Copying emotes from a friend's community in one command.
 - Stopping a moderator from giving themselves Administrator by adding a blacklisted permission to a role.
 
 ## Channels
@@ -80,7 +80,7 @@ The `cc...` family builds several at once:
 
 Before applying a read-only lockdown the bot checks it can edit every channel. If some are missing, it lists them and stops, unless you pass `true` as the third argument to continue anyway. Lifting the lockdown restores the saved overrides. Join lockdowns survive a bot restart.
 
-`unlockdown` is a separate, older tool: it turns Send Messages back on for the `@everyone` role itself, for servers that locked down by editing that role.
+`unlockdown` is a separate, older tool: it turns Send Messages back on for the `@everyone` role itself, for communities that locked down by editing that role.
 
 > [!WARNING]
 > `lockdown` with no arguments is a read-only lockdown, and `lockdown joins` bans joiners by default. Pass `kick` if that is what you want.
@@ -112,7 +112,7 @@ Role and member arguments can be given in either order for `setrole` and `remove
 
 ### Mass role jobs
 
-These go through the whole member list and run as background jobs. Because of Fluxer rate limits the bot pauses briefly per member and only allows five jobs per server at a time. Each job reports how long it expects to take.
+These go through the whole member list and run as background jobs. Because of Fluxer rate limits the bot pauses briefly per member and only allows five jobs per community at a time. Each job reports how long it expects to take.
 
 | Command | Who is affected |
 | --- | --- |
@@ -134,20 +134,20 @@ These go through the whole member list and run as background jobs. Because of Fl
 
 `exportrolelist` sends a `rolelist.txt` file with one `roleId,userId,roleName` line per membership for every role the bot can manage. `importrolelist` reads such a file attached to the command and re-applies the roles; pass `true` to create roles by name when the IDs no longer exist. `addroletolist <role>` reads an attached list of user IDs and gives them the role.
 
-## Server appearance and emotes
+## Community appearance and emotes
 
-`seticon <url>`, `setbanner <url>`, `setsplash <url>` and `setservername <name>` change the server itself and need Administrator. `setguildavatar`, `setguildbanner` and `setguildbio` change how the bot itself appears in this server only, and need Manage Server.
+`seticon <url>`, `setbanner <url>`, `setsplash <url>` and `setservername <name>` change the community itself and need Administrator. `setguildavatar`, `setguildbanner` and `setguildbio` change how the bot itself appears in this community only, and need Manage Community.
 
 Emote commands need Manage Expressions on both you and the bot:
 
 - `addemote <name> [url]` uploads an emote from a URL or an attached image.
-- `removeemote <emote>` and `renameemote <emote> <name>` work on emotes from this server.
-- `stealemotes <emotes...>` copies every custom emote in your message into this server. `sfr <role> <emotes...>` does the same but restricts the emotes to one role.
+- `removeemote <emote>` and `renameemote <emote> <name>` work on emotes from this community.
+- `stealemotes <emotes...>` copies every custom emote in your message into this community. `sfr <role> <emotes...>` does the same but restricts the emotes to one role.
 - Right-clicking a message and choosing **Steal Emotes** or **Steal Sticker** from the Apps menu does the same without typing.
 
 ## Role monitor
 
-The role monitor watches the audit log. When a member is given a blacklisted role, or a role gains a blacklisted permission, the bot reverts the change and punishes whoever did it. Only the server owner can configure it.
+The role monitor watches the audit log. When a member is given a blacklisted role, or a role gains a blacklisted permission, the bot reverts the change and punishes whoever did it. Only the community owner can configure it.
 
 - `addblacklistedrole <role> [punishment]` and `removeblacklistedrole <role>`.
 - `addblacklistedpermission <permission> [punishment]` and `removeblacklistedpermission <permission>`, for example `addblacklistedpermission Administrator Ban`.
@@ -175,27 +175,27 @@ There is no dashboard page. The only stored settings belong to the role monitor 
 2. Build the layout: `ccatc Community general off-topic memes` creates the category and three channels.
 3. Create roles in one go: `createroles Member Regular Veteran`.
 4. Hand the base role out: `addtoallusers Member`, then watch it with `rolejobs`.
-5. As server owner, protect the server: `addblacklistedpermission Administrator Ban` and `addwhitelistedrole Admin`.
+5. As community owner, protect the community: `addblacklistedpermission Administrator Ban` and `addwhitelistedrole Admin`.
 6. Keep `lockdown full kick` in mind for emergencies and test `liftlockdown full` afterwards on a quiet day.
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
 | `permview [@user or role]` | `pview` | Nobody | List allowed permissions |
 | `setsplash <url>` | `setserversplash`, `setsplashimage` | Administrator | Set the invite splash |
-| `seticon <url>` | `setservericon`, `seticonimage` | Administrator | Set the server icon |
-| `setbanner <url>` | `setserverbanner` | Administrator | Set the server banner |
-| `setservername <name>` | | Administrator | Rename the server |
-| `setguildavatar [url]` | `sgav`, `setgav` | Manage Server | Bot's avatar in this server |
-| `setguildbanner [url]` | `sgbanner`, `setgbanner` | Manage Server | Bot's banner in this server |
-| `setguildbio <text>` | `sgbio`, `setgbio` | Manage Server | Bot's bio in this server |
+| `seticon <url>` | `setservericon`, `seticonimage` | Administrator | Set the community icon |
+| `setbanner <url>` | `setserverbanner` | Administrator | Set the community banner |
+| `setservername <name>` | | Administrator | Rename the community |
+| `setguildavatar [url]` | `sgav`, `setgav` | Manage Community | Bot's avatar in this community |
+| `setguildbanner [url]` | `sgbanner`, `setgbanner` | Manage Community | Bot's banner in this community |
+| `setguildbio <text>` | `sgbio`, `setgbio` | Manage Community | Bot's bio in this community |
 | `addemote <name> [url]` | `emoteadd`, `ae`, `ea` | Manage Expressions | Upload an emote |
 | `removeemote <emote>` | `deleteemote`, `emoteremove`, `emotedelete` | Manage Expressions | Delete an emote |
 | `renameemote <emote> <name>` | `emoterename` | Manage Expressions | Rename an emote |
-| `stealemotes <emotes...>` | `steal` | Manage Expressions | Copy emotes into this server |
+| `stealemotes <emotes...>` | `steal` | Manage Expressions | Copy emotes into this community |
 | `sfr <role> <emotes...>` | | Manage Expressions | Copy emotes, restricted to a role |
 | `creatxtchanl <name>` | `ctch` | Manage Channels | Create a text channel |
 | `creatvoichanl <name>` | `cvch` | Manage Channels | Create a voice channel |
@@ -254,23 +254,23 @@ Run these with your server's prefix (`.` unless you changed it).
 | `exportrolelist` | `exportroles`, `erl` | Manage Roles | Download role memberships |
 | `importrolelist [true]` | `importroles`, `irl` | Manage Roles | Re-apply an exported list |
 | `addroletolist <role>` | `artl` | Manage Roles | Give a role to an attached list of user IDs |
-| `setdefaultpunishment <action>` | `sdp`, `defaultpunishment`, `setdefpunishment` | Server owner | Role monitor fallback punishment |
-| `addblacklistedrole <role> [action]` | `abr`, `blacklistrole`, `addbrole` | Server owner | Watch a role |
-| `removeblacklistedrole <role>` | `rbr`, `unblacklistrole`, `removebrole` | Server owner | Stop watching a role |
-| `addblacklistedpermission <permission> [action]` | `abp`, `blacklistpermission`, `addbpermission` | Server owner | Watch a permission |
-| `removeblacklistedpermission <permission>` | `rbp`, `unblacklistpermission`, `removebpermission` | Server owner | Stop watching a permission |
-| `addwhitelisteduser @user` | `awu`, `whitelistuser`, `addwuser` | Server owner | Exempt a member |
-| `removewhitelisteduser @user` | `rwu`, `unwhitelistuser`, `removewuser` | Server owner | Remove an exemption |
-| `addwhitelistedrole <role>` | `awr`, `whitelistrole`, `addwrole` | Server owner | Exempt a role |
-| `removewhitelistedrole <role>` | `rwr`, `unwhitelistrole`, `removewrole` | Server owner | Remove an exemption |
-| `listblacklists` | `lbl`, `blacklists`, `listbws` | Server owner | Show the monitor's lists |
+| `setdefaultpunishment <action>` | `sdp`, `defaultpunishment`, `setdefpunishment` | Community owner | Role monitor fallback punishment |
+| `addblacklistedrole <role> [action]` | `abr`, `blacklistrole`, `addbrole` | Community owner | Watch a role |
+| `removeblacklistedrole <role>` | `rbr`, `unblacklistrole`, `removebrole` | Community owner | Stop watching a role |
+| `addblacklistedpermission <permission> [action]` | `abp`, `blacklistpermission`, `addbpermission` | Community owner | Watch a permission |
+| `removeblacklistedpermission <permission>` | `rbp`, `unblacklistpermission`, `removebpermission` | Community owner | Stop watching a permission |
+| `addwhitelisteduser @user` | `awu`, `whitelistuser`, `addwuser` | Community owner | Exempt a member |
+| `removewhitelisteduser @user` | `rwu`, `unwhitelistuser`, `removewuser` | Community owner | Remove an exemption |
+| `addwhitelistedrole <role>` | `awr`, `whitelistrole`, `addwrole` | Community owner | Exempt a role |
+| `removewhitelistedrole <role>` | `rwr`, `unwhitelistrole`, `removewrole` | Community owner | Remove an exemption |
+| `listblacklists` | `lbl`, `blacklists`, `listbws` | Community owner | Show the monitor's lists |
 
 ## Tips and gotchas
 
-- Role commands check hierarchy twice: your top role and the bot's top role must both be above the role in question. The server owner skips the check on their own side.
+- Role commands check hierarchy twice: your top role and the bot's top role must both be above the role in question. The community owner skips the check on their own side.
 - Mass jobs take roughly one second per member. Adding a role to five thousand members is well over an hour, and the bot refuses a sixth simultaneous job.
 - `syncroletoall` and its variants need the role to already have an override on the channel you run them in; that override is what gets copied.
 - `nuke` cannot be undone and the confirmation prompt is the only safeguard.
-- Read-only lockdown edits overrides on every channel, which is a lot of API calls on large servers. Lift it with `liftlockdown`, not by hand, so the saved overrides are restored.
+- Read-only lockdown edits overrides on every channel, which is a lot of API calls on large communities. Lift it with `liftlockdown`, not by hand, so the saved overrides are restored.
 - The role monitor relies on the audit log, so the bot needs View Audit Log, and it needs the permission for whatever punishment you pick.
 - Emote stealing needs free emote slots; failures are listed under "Errored Emotes".

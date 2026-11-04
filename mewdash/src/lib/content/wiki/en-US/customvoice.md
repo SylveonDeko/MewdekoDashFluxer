@@ -23,7 +23,7 @@ Members can save preferences for their channels, so every channel they create st
 - Stop maintaining a wall of "Gaming 1" to "Gaming 8" channels; members make one when they need it and it disappears afterwards.
 - Members who want a private call lock their channel and allow only their friends.
 - Streamers and event hosts keep a channel alive so it survives while they step away.
-- Moderators with the admin role can rename, lock or hand over any channel without needing Manage Channels on the whole server.
+- Moderators with the admin role can rename, lock or hand over any channel without needing Manage Channels on the whole community.
 
 ## The hub
 
@@ -33,22 +33,22 @@ If **Allow multiple channels per user** is off (the default), joining the hub wh
 
 ## Channel naming
 
-The **Default Name Format** is a template. The bot replaces `{0}` with the member's username, `{1}` with their discriminator and `{2}` with the server name. The default is `{0}'s Channel`. The name is trimmed to fit Fluxer's limits.
+The **Default Name Format** is a template. The bot replaces `{0}` with the member's username, `{1}` with their discriminator and `{2}` with the community name. The default is `{0}'s Channel`. The name is trimmed to fit Fluxer's limits.
 
 > [!NOTE]
 > The dashboard placeholder text shows `{username}'s Channel`, but the bot only substitutes `{0}`, `{1}` and `{2}`. Use the numbered form.
 
 ## Owner controls
 
-`voicecontrols` posts a panel for the channel you are in, showing the current name, limit, bitrate, lock and keep alive state and who is inside, with buttons for **Rename**, **Limit**, **Bitrate**, **Lock**/**Unlock**, keep alive, **Transfer** and a member picker for managing who is inside. Buttons for customisations the server has turned off are disabled.
+`voicecontrols` posts a panel for the channel you are in, showing the current name, limit, bitrate, lock and keep alive state and who is inside, with buttons for **Rename**, **Limit**, **Bitrate**, **Lock**/**Unlock**, keep alive, **Transfer** and a member picker for managing who is inside. Buttons for customisations the community has turned off are disabled.
 
-The same actions exist as commands, and each one checks that you are in a custom channel, that you own it or hold the admin role, and that the server allows that customisation:
+The same actions exist as commands, and each one checks that you are in a custom channel, that you own it or hold the admin role, and that the community allows that customisation:
 
 | Action | Command | What it does |
 | --- | --- | --- |
 | Rename | `voicerename <name>` | Renames the channel, if **Allow name customization** is on |
-| User limit | `voicelimit <n>` | Sets the limit, capped by the server's maximum user limit |
-| Bitrate | `voicebitrate <kbps>` | Sets the bitrate, capped by the server's maximum bitrate |
+| User limit | `voicelimit <n>` | Sets the limit, capped by the community's maximum user limit |
+| Bitrate | `voicebitrate <kbps>` | Sets the bitrate, capped by the community's maximum bitrate |
 | Lock | `voicelock [true/false]`, `voiceunlock` | Locked denies connect to everyone except allowed members, the owner and the admin role |
 | Allow | `voiceallow @user` | Grants connect to a member even when locked |
 | Deny | `voicedeny @user` | Removes connect from a member and disconnects them if they are inside |
@@ -64,7 +64,7 @@ With **Delete channels when empty** on (the default), a channel with no humans l
 
 ## Member preferences
 
-`voicepreferences` shows your saved name format, user limit, bitrate, lock and keep alive preferences. Each `voiceprefs...` command sets one, running it with no value clears it, and `voiceprefsreset` clears them all. Preferences are only applied when **Remember user preferences** is on, and limit and bitrate are still capped by the server maximums. Staff can view and edit any member's preferences from the **User Preferences** tab by user ID.
+`voicepreferences` shows your saved name format, user limit, bitrate, lock and keep alive preferences. Each `voiceprefs...` command sets one, running it with no value clears it, and `voiceprefsreset` clears them all. Preferences are only applied when **Remember user preferences** is on, and limit and bitrate are still capped by the community maximums. Staff can view and edit any member's preferences from the **User Preferences** tab by user ID.
 
 ## Settings
 
@@ -88,12 +88,12 @@ The dashboard has three tabs: **Configuration**, **Active Channels** and **User 
 | Allow channel locking | On | `locking` |
 | Allow user management | On | Allow and deny commands (`usermanagement`) |
 | Maximum user limit | 99 | Cap for member-set limits (`maxuserlimit`) |
-| Maximum bitrate | 96 kbps | Cap for member-set bitrates, also capped by the server's boost tier (`maxbitrate`) |
+| Maximum bitrate | 96 kbps | Cap for member-set bitrates, also capped by the community's boost tier (`maxbitrate`) |
 | Admin role | none | Role that may manage any custom channel (`adminrole`) |
 
 **Maximum user limit**, **Maximum bitrate** and **Admin role** have no dashboard control; set them with `voiceconfig`.
 
-The **Active Channels** tab lists every live custom channel with its owner, lock and keep alive state, lets you lock, unlock or delete one, and shows totals for channels created, active in the last hour, locked and kept alive. It also holds the **Clean up inactive channels** button and a **Disable custom voice** button that turns the module off for the server.
+The **Active Channels** tab lists every live custom channel with its owner, lock and keep alive state, lets you lock, unlock or delete one, and shows totals for channels created, active in the last hour, locked and kept alive. It also holds the **Clean up inactive channels** button and a **Disable custom voice** button that turns the module off for the community.
 
 ## Setup walkthrough
 
@@ -106,13 +106,13 @@ The **Active Channels** tab lists every live custom channel with its owner, lock
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
 | `setupvoicehub` | `svh`, `createvoicehub`, `voicesetup` | Manage Channels | Create a hub channel and category |
 | `setvoicehub <#channel> [category]` | `sethub`, `voicehub` | Manage Channels | Use an existing channel as the hub |
-| `voiceconfig [setting] [value]` | `vcconfig`, `voicesettings`, `vcsettings`, `customvoiceconfig` | Manage Channels | Show or change server settings |
+| `voiceconfig [setting] [value]` | `vcconfig`, `voicesettings`, `vcsettings`, `customvoiceconfig` | Manage Channels | Show or change community settings |
 | `voicecontrols` | `vcontrols` | Owner or admin role | Interactive control panel for your channel |
 | `voicechannels` | `vchannels`, `listvoice`, `customvoices`, `voicelist` | Nobody | List active custom channels |
 | `voicerename <name>` | `vrename`, `renamevoice`, `vcname`, `vcrename` | Owner or admin role | Rename your channel |
@@ -136,7 +136,7 @@ Run these with your server's prefix (`.` unless you changed it).
 ## Tips and gotchas
 
 - The bot needs Manage Channels in the category, Move Members to place the creator in the new channel, and Manage Roles to write permission overwrites.
-- The maximum bitrate is clamped to what the server's boost tier allows, so a setting of 384 on an unboosted server is reduced automatically.
+- The maximum bitrate is clamped to what the community's boost tier allows, so a setting of 384 on an unboosted community is reduced automatically.
 - Locking denies connect for the everyone role. Members with Administrator or a role that already has an explicit connect allow can still join.
 - The empty-channel timer that runs when the last member leaves treats the timeout value as seconds, while the config display and the five-minute sweep treat it as minutes. With the default of 1 the channel disappears almost immediately once empty.
 - Keep alive channels are never cleaned up automatically. Use the **Active Channels** tab or `voicechannels` to find forgotten ones.

@@ -29,7 +29,7 @@
   ]);
 
   const guildColumns: Column<AiGuildRow>[] = $derived([
-    { key: "guildId", label: m.analytics.tableColGuild(), mono: true },
+    { key: "guildId", label: m.features.categoryCommunity(), mono: true },
     { key: "name", label: m.common.name(), format: (r) => r.name ?? "—" },
     { key: "count", label: m.analytics.tabAiColUses(), num: true },
     { key: "errors", label: m.common.errors(), num: true },
@@ -81,7 +81,7 @@
     </Card>
   </div>
 
-  <Card title={m.analytics.tabAiCardTopGuilds()} note={m.analytics.tabAiGuildsNote()}>
+  <Card title={m.common.topCommunities()} note={m.analytics.tabAiGuildsNote()}>
     <AnalyticsTable columns={guildColumns} rows={guilds} loading={guildsLoading} empty={m.analytics.tabAiEmptyGuilds()} sortKey="count" pageSize={15} />
   </Card>
 </div>

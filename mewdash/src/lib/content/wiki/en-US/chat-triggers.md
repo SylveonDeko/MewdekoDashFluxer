@@ -16,9 +16,9 @@ A trigger is a piece of text the bot watches for and a response it sends when it
 
 Triggers do not have to be messages. The same trigger can fire when someone adds or removes a specific reaction, or fire on a bot event such as a level up, a member joining, a boost starting, a ticket opening or a giveaway being won.
 
-Each trigger carries its own conditions: a cooldown per user, channel or server, a required XP level, a currency cost or reward, active hours and days, an expiry date, a use limit, a minimum account age or time in the server, and a counter that has to be within a range. If a condition fails the trigger stays quiet, or shows a message you wrote. The dashboard tester tells you exactly which rule would block a sample message.
+Each trigger carries its own conditions: a cooldown per user, channel or community, a required XP level, a currency cost or reward, active hours and days, an expiry date, a use limit, a minimum account age or time in the community, and a counter that has to be within a range. If a condition fails the trigger stays quiet, or shows a message you wrote. The dashboard tester tells you exactly which rule would block a sample message.
 
-Responses can read values from the rest of the bot: the member's level, balance, reputation or message count, the text after the trigger, the people they mentioned, the message they replied to, capture groups from a regex, and server-wide counters that a response can read and bump.
+Responses can read values from the rest of the bot: the member's level, balance, reputation or message count, the text after the trigger, the people they mentioned, the message they replied to, capture groups from a regex, and community-wide counters that a response can read and bump.
 
 ## Why you would use it
 
@@ -56,8 +56,8 @@ A **prefix requirement** decides whether the message must start with a prefix be
 | --- | --- |
 | No prefix needed | Match the bare text (default) |
 | Global prefix | Must start with the bot's global prefix |
-| Server prefix, or global | Must start with the server prefix, falling back to the global one |
-| Server prefix if one is set | Must start with the server prefix; never matches if the server has none |
+| Community prefix, or global | Must start with the community prefix, falling back to the global one |
+| Community prefix if one is set | Must start with the community prefix; never matches if the community has none |
 | A custom prefix | Must start with the prefix set by `ctprefix` |
 
 If several triggers match one message, one of them is picked at random. Messages from bots and webhooks are ignored unless a trigger has **Bots only** (`ctallowbots`) on, and such a trigger then responds only to bot messages. The bot never responds to its own messages. A trigger with **Match embed text too** (`ctmatchembeds`) on also checks the embeds of a message when its text matches nothing. The title, description, author, footer and each field name and value are matched on their own.
@@ -94,7 +94,7 @@ The primary response is the text given when the trigger is created. It goes thro
 | --- | --- |
 | Single | Always the first response (default) |
 | Random | One picked at random; repeat a line to weight it |
-| RoundRobin | In order, one per use, shared across the server |
+| RoundRobin | In order, one per use, shared across the community |
 | All | Every response, in order |
 
 Delivery options, all off by default:
@@ -109,7 +109,7 @@ Delivery options, all off by default:
 
 ### Crossposting
 
-`ctcpch` posts a copy of every response to another channel in the server. `ctcpwh` posts it through a webhook URL instead, which can be in another server. Crossposting happens even when **Send no message at all** is on.
+`ctcpch` posts a copy of every response to another channel in the community. `ctcpwh` posts it through a webhook URL instead, which can be in another community. Crossposting happens even when **Send no message at all** is on.
 
 ### Roles
 
@@ -138,18 +138,18 @@ All of these are checked before anything is charged, sent or counted. A failed c
 | Cost | `ctcost <id> <amount>` | 0 | Currency taken from the member; no fire if they cannot pay |
 | Reward | `ctreward <id> <amount>` | 0 | Currency paid to the member when it fires |
 | XP reward | `ctxpreward <id> <amount>` | 0 | XP granted when it fires |
-| Active hours | `cttime <id> <HH:mm> <HH:mm> [days...]` | always | Only fires inside the window, in the server's timezone. An end before the start runs overnight. Days are names or 0 to 6 with Sunday as 0 |
+| Active hours | `cttime <id> <HH:mm> <HH:mm> [days...]` | always | Only fires inside the window, in the community's timezone. An end before the start runs overnight. Days are names or 0 to 6 with Sunday as 0 |
 | Expiry | `ctexpiry <id> [duration]` | never | Stops firing after the duration from now, for example `7d` |
 | Use limit | `ctmaxuses <id> <uses>` | unlimited | Stops after that many fires; 0 removes the limit |
 | Minimum account age | `ctminage <id> [duration]` | none | The account must be at least this old |
-| Minimum time in server | `ctminmember <id> [duration]` | none | The member must have joined at least this long ago |
+| Minimum time in community | `ctminmember <id> [duration]` | none | The member must have joined at least this long ago |
 | Counter range | `ctrequirecounter <id> <name> [min] [max]` | none | The named counter must be within the range; `clear` as the name removes it |
 
-The cooldown starts only after every other condition passes, so a blocked attempt does not consume it. The cost is taken before the reward is paid, so a trigger that both costs and pays never pays someone who could not afford it. Server-wide command cooldowns set with `cmdcd` also apply to triggers, per user, on top of the trigger's own cooldown.
+The cooldown starts only after every other condition passes, so a blocked attempt does not consume it. The cost is taken before the reward is paid, so a trigger that both costs and pays never pays someone who could not afford it. Community-wide command cooldowns set with `cmdcd` also apply to triggers, per user, on top of the trigger's own cooldown.
 
 ## Counters
 
-Counters are named numbers stored per server. They are created the first time a response uses them and can be read or changed from any response:
+Counters are named numbers stored per community. They are created the first time a response uses them and can be read or changed from any response:
 
 | Placeholder | Effect |
 | --- | --- |
@@ -164,7 +164,7 @@ Names are up to 64 letters, digits, underscores or hyphens and are case-insensit
 
 ## Placeholders
 
-A response can use the general placeholder set (user, server, channel, bot and time placeholders from the placeholders page), the trigger placeholders, and the placeholders other modules contribute. `ctplaceholders` lists the contributed ones live.
+A response can use the general placeholder set (user, community, channel, bot and time placeholders from the placeholders page), the trigger placeholders, and the placeholders other modules contribute. `ctplaceholders` lists the contributed ones live.
 
 | Placeholder | Value |
 | --- | --- |
@@ -196,7 +196,7 @@ Mentions inside `%target%` are neutralised unless the member could ping everyone
 
 ## The tester
 
-`cttest <id> <sample message>` or the **Test this trigger** box on a trigger card checks whether that message would fire the trigger as you, without sending, charging or counting anything. It reports whether the text matched and, if the trigger would not fire, which rule stops it: disabled, bots only, no match, a permission entry, a permission override, expiry, cooldown, counter, use limit, active hours, account age, membership, level, balance, or the server command cooldown.
+`cttest <id> <sample message>` or the **Test this trigger** box on a trigger card checks whether that message would fire the trigger as you, without sending, charging or counting anything. It reports whether the text matched and, if the trigger would not fire, which rule stops it: disabled, bots only, no match, a permission entry, a permission override, expiry, cooldown, counter, use limit, active hours, account age, membership, level, balance, or the community command cooldown.
 
 ## Categories and organisation
 
@@ -215,7 +215,7 @@ Each trigger card expands to show **Trigger Text**, the **Response Message** edi
 | When it matches | Prefix requirement, Custom prefix, Match anywhere in the message, Allow targeting someone, Bot owner only |
 | How it responds | Reply to the message, Send the response as a DM, Delete the triggering message, React to the message instead, Send no message at all, Emoji to react with, Delete the response after, Extra responses, When there are several responses |
 | Roles | Roles to grant, Roles to remove, Apply those roles to |
-| Limits | Cooldown (seconds), Cooldown applies to, Stop after this many uses, Stop firing after, Minimum account age (minutes), Minimum time in server (minutes), Only active at certain hours with From, Until and On these days |
+| Limits | Cooldown (seconds), Cooldown applies to, Stop after this many uses, Stop firing after, Minimum account age (minutes), Minimum time in community (minutes), Only active at certain hours with From, Until and On these days |
 | Costs and rewards | Costs the user, Pays the user, Grants XP, Requires level, Message when they cannot use it |
 | Counter requirement | Counter name, At least, At most |
 | Fire on an event | Fire when, Respond in |
@@ -235,7 +235,7 @@ The sidebar lists categories, **Counters** and the live **Placeholders** list, a
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). Trigger IDs are shown by `listchattriggers`.
+Run these with your community's prefix (`.` unless you changed it). Trigger IDs are shown by `listchattriggers`.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -282,7 +282,7 @@ Run these with your server's prefix (`.` unless you changed it). Trigger IDs are
 | `ctexpiry <id> [duration]` | `chattriggerexpiry` | Administrator | Expiry, or none to clear |
 | `ctmaxuses <id> <uses>` | `chattriggermaxuses` | Administrator | Use limit, 0 for none |
 | `ctminage <id> [duration]` | `chattriggerminimumage` | Administrator | Minimum account age |
-| `ctminmember <id> [duration]` | `chattriggerminimummembership` | Administrator | Minimum time in server |
+| `ctminmember <id> [duration]` | `chattriggerminimummembership` | Administrator | Minimum time in community |
 | `ctrequirecounter <id> <name> [min] [max]` | `chattriggerrequirecounter` | Administrator | Counter range requirement |
 | `ctcounters` | `chattriggercounters` | Nobody | List counters |
 | `ctcounterset <name> <value>` | `chattriggercounterset` | Administrator | Set a counter |
@@ -306,7 +306,7 @@ Run these with your server's prefix (`.` unless you changed it). Trigger IDs are
 - Role grants need Manage Roles and the bot's role above the roles involved. The command that adds a role to the list also checks that you can manage it.
 - Bots only triggers never respond to humans, and human triggers never respond to bots; a single trigger cannot do both.
 - Cooldowns live in memory and reset when the bot restarts. Use limits and expiry are stored and survive restarts.
-- Round robin order is shared by everyone in the server, not tracked per member.
+- Round robin order is shared by everyone in the community, not tracked per member.
 - The permission system's entries for the module `ActualChatTriggers` and any `permoverride` for the trigger text are checked before the trigger's own conditions.
 - Reactions on the response are paced one per second, so six emoji take six seconds to appear.
 - Event triggers for joins, leaves, voice and boosts silently do nothing until you set **Respond in**.

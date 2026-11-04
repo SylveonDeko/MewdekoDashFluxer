@@ -12,9 +12,9 @@ related: [currency, achievements, administration, utility]
 
 ## What it does
 
-Members earn XP by sending messages and by talking in voice channels. XP adds up into levels along a curve you choose. Anyone can run `rank` to get a rendered rank card showing their level, progress bar, server rank and avatar, or `leaderboard` to see who is ahead.
+Members earn XP by sending messages and by talking in voice channels. XP adds up into levels along a curve you choose. Anyone can run `rank` to get a rendered rank card showing their level, progress bar, community rank and avatar, or `leaderboard` to see who is ahead.
 
-When a member levels up, the bot can post an announcement in the channel, in a dedicated level-up channel, or by DM. You can write your own level-up messages with placeholders, or let the default embed handle it. Reaching a level can also hand out roles and server currency automatically.
+When a member levels up, the bot can post an announcement in the channel, in a dedicated level-up channel, or by DM. You can write your own level-up messages with placeholders, or let the default embed handle it. Reaching a level can also hand out roles and community currency automatically.
 
 Staff control how fast XP comes in: XP per message, cooldown, voice XP per minute, a global multiplier, and per-channel and per-role multipliers. Temporary boost events multiply everything for a while, and competitions run a timed race with rewards for the top places. Users, roles and channels can be excluded so bot-spam channels and muted roles do not earn anything.
 
@@ -30,7 +30,7 @@ Staff control how fast XP comes in: XP per message, cooldown, voice XP per minut
 
 ### Text XP
 
-Each message from a non-bot member awards **XP per message** (default 3, capped at 50) once per cooldown window. The **Message XP cooldown** defaults to 60 seconds; a member who sends ten messages in that window gets XP once. Messages in excluded channels, or from excluded users and roles, earn nothing. If the server is excluded entirely, nothing is counted.
+Each message from a non-bot member awards **XP per message** (default 3, capped at 50) once per cooldown window. The **Message XP cooldown** defaults to 60 seconds; a member who sends ten messages in that window gets XP once. Messages in excluded channels, or from excluded users and roles, earn nothing. If the community is excluded entirely, nothing is counted.
 
 The amount is then multiplied. All of these stack together:
 
@@ -76,11 +76,11 @@ Each member chooses how they are told about level-ups with `levelnotif`: `None`,
 
 Channel notifications go to the **level-up channel** if one is set with `levelupchannel`, otherwise to the channel where the XP was earned. The bot needs Send Messages there.
 
-If the server has no custom messages, the default is an embed titled with a level-up message, the member's avatar as thumbnail, and fields for total XP, server rank and new level. If you have added custom messages with `addlevelupmessage`, one enabled message is picked at random each time. A custom message may be plain text or embed JSON from the embed builder. Test any template with `testlevelupmessage`.
+If the community has no custom messages, the default is an embed titled with a level-up message, the member's avatar as thumbnail, and fields for total XP, community rank and new level. If you have added custom messages with `addlevelupmessage`, one enabled message is picked at random each time. A custom message may be plain text or embed JSON from the embed builder. Test any template with `testlevelupmessage`.
 
 ### Placeholders
 
-These work inside custom level-up messages, alongside the general user and server placeholders from the placeholders page. Because notifications do not track the channel or the person who triggered them, `%xp.channel.*%` resolves to "Unknown Channel" and `%xp.triggeruser.*%` to "System", and `%xp.gained%` is always 0.
+These work inside custom level-up messages, alongside the general user and community placeholders from the placeholders page. Because notifications do not track the channel or the person who triggered them, `%xp.channel.*%` resolves to "Unknown Channel" and `%xp.triggeruser.*%` to "System", and `%xp.gained%` is always 0.
 
 | Placeholder | Value |
 | --- | --- |
@@ -92,7 +92,7 @@ These work inside custom level-up messages, alongside the general user and serve
 | `%xp.user.avatar%` | Avatar URL |
 | `%xp.user.id%` | User ID |
 | `%xp.user.created%` | Account creation date |
-| `%xp.user.joined%` | Server join date |
+| `%xp.user.joined%` | Community join date |
 | `%xp.level.old%` | Level before the level-up |
 | `%xp.level.new%` | New level (`%xp.level.current%` is the same) |
 | `%xp.level.next%` | New level plus one |
@@ -102,13 +102,13 @@ These work inside custom level-up messages, alongside the general user and serve
 | `%xp.needed%` | XP the current level requires in total |
 | `%xp.remaining%` | XP still needed for the next level |
 | `%xp.progress%` | Progress through the level as a percentage |
-| `%xp.rank%` | Server rank as a number |
+| `%xp.rank%` | Community rank as a number |
 | `%xp.rank.ordinal%` | Rank in words, such as "third" |
 | `%xp.rank.suffix%` | Just the suffix: st, nd, rd or th |
-| `%xp.guild%`, `%xp.guild.name%` | Server name |
-| `%xp.guild.id%` | Server ID |
+| `%xp.guild%`, `%xp.guild.name%` | Community name |
+| `%xp.guild.id%` | Community ID |
 | `%xp.guild.membercount%` | Approximate member count |
-| `%xp.guild.icon%`, `%xp.guild.banner%` | Server icon and banner URLs |
+| `%xp.guild.icon%`, `%xp.guild.banner%` | Community icon and banner URLs |
 | `%xp.time%`, `%xp.time.full%`, `%xp.date%` | Current UTC time, time with date, and date |
 | `%xp.timestamp%`, `%xp.timestamp.relative%` | Fluxer timestamp tags for now |
 
@@ -125,7 +125,7 @@ Rewards are applied when a level changes. Use `syncmyxproles`, `syncuserxproles`
 
 ## Currency rewards
 
-`currencyreward <level> <amount>` pays server currency from the currency module when a member reaches that level. Passing 0 removes the reward. If a member's level drops, for example after `setxp` or decay, the currency for the levels they lost is taken back.
+`currencyreward <level> <amount>` pays community currency from the currency module when a member reaches that level. Passing 0 removes the reward. If a member's level drops, for example after `setxp` or decay, the currency for the levels they lost is taken back.
 
 ## Achievements
 
@@ -149,19 +149,19 @@ Add prizes with `addcompetitionreward <id> <position> <type> <reward>` where the
 
 ## Exclusions
 
-`xpexclude` and `xpinclude` accept a user, a role or a text channel. Excluded users and anyone holding an excluded role never earn XP; excluded channels earn nothing for anyone. This applies to voice channels too. `xpexcludelist users|roles|channels` shows the lists. The dashboard's **Server XP Exclusion** toggle disables XP gain for the whole server at once.
+`xpexclude` and `xpinclude` accept a user, a role or a text channel. Excluded users and anyone holding an excluded role never earn XP; excluded channels earn nothing for anyone. This applies to voice channels too. `xpexcludelist users|roles|channels` shows the lists. The dashboard's **Community XP Exclusion** toggle disables XP gain for the whole community at once.
 
 ## Rank cards
 
 `rank [@user]` renders a PNG card. `textrank [@user]` gives the same information as text for screen readers. Bots have no rank.
 
-The card is built from the server's template: a background image (your own from **Custom XP Card Background**, or the built-in one), and layers for the user's avatar and name, the progress bar, server level, server rank, time on the current level, and awarded bonus XP. Each layer can be shown or hidden, moved, resized and recoloured, and the progress bar can be rounded, segmented or radial and fill in any direction.
+The card is built from the community's template: a background image (your own from **Custom XP Card Background**, or the built-in one), and layers for the user's avatar and name, the progress bar, community level, community rank, time on the current level, and awarded bonus XP. Each layer can be shown or hidden, moved, resized and recoloured, and the progress bar can be rounded, segmented or radial and fill in any direction.
 
 The **Template** tab opens a visual editor. On screens narrower than 768 pixels the dashboard switches to a touch editor with the same layers, a bottom sheet for properties and simple position and size controls. On wider screens you get the full editor with a layer list, grid, snap, rulers, undo and redo, and zoom.
 
 ## Leaderboard
 
-`leaderboard [page]` shows the server ranking. If the server also uses the currency module and currency is in circulation, a bare `leaderboard` asks whether you meant XP or currency; naming a page always means XP. The dashboard's **Leaderboard** tab shows the same ranking with an **Adjust XP** action that can add to, set or reset a member's XP, optionally clearing bonus XP as well.
+`leaderboard [page]` shows the community ranking. If the community also uses the currency module and currency is in circulation, a bare `leaderboard` asks whether you meant XP or currency; naming a page always means XP. The dashboard's **Leaderboard** tab shows the same ranking with an **Adjust XP** action that can add to, set or reset a member's XP, optionally clearing bonus XP as well.
 
 ## Settings
 
@@ -169,7 +169,7 @@ The dashboard has six tabs: **Settings**, **Stats**, **Leaderboard**, **Rewards*
 
 | Setting | Default | What it controls |
 | --- | --- | --- |
-| Server XP Exclusion | off | Stops all XP gain on the server |
+| Community XP Exclusion | off | Stops all XP gain on the community |
 | XP Per Message | 3 | Base XP per message, maximum 50 |
 | Message XP Cooldown | 60 seconds | Minimum gap between message XP awards per member |
 | Voice XP Per Minute | 2 | Base XP per eligible voice minute, maximum 10; 0 disables voice XP |
@@ -184,7 +184,7 @@ These fields also exist in the `GuildXpSetting` record but are set by command on
 
 ## Setup walkthrough
 
-1. Open **XP System** in the dashboard and check **Server XP Exclusion** is off.
+1. Open **XP System** in the dashboard and check **Community XP Exclusion** is off.
 2. On **Settings**, leave the message and voice values at their defaults to start, pick a curve, then **Save Changes**.
 3. On **Exclusions**, exclude bot command channels and any muted or bot roles.
 4. On **Rewards**, add a role reward for a few milestone levels. Make sure the bot's role sits above those roles.
@@ -193,56 +193,56 @@ These fields also exist in the `GuildXpSetting` record but are set by command on
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
 | `rank [@user]` | | Nobody | Show a rank card |
 | `textrank [@user]` | | Nobody | Rank information as text |
-| `leaderboard [page]` | `lb` | Nobody | Server XP ranking |
+| `leaderboard [page]` | `lb` | Nobody | Community XP ranking |
 | `levelnotif <None\|Channel\|Dm>` | `lvlnotif` | Nobody | Choose how you are told about level-ups |
 | `leveluppings <true\|false>` | `lvluppings` | Nobody | Whether level-up messages may mention you |
-| `xpsettings` | `xpconfig` | Manage Server | Show the current XP settings |
-| `setmessagexp <amount>` | `setmsgxp` | Manage Server | XP per message |
-| `setxpcooldown <seconds>` | `xpcd` | Manage Server | Message XP cooldown |
-| `setvoicexp <amount>` | | Manage Server | Voice XP per minute |
-| `setvoicetimeout <minutes>` | | Manage Server | Voice session cap |
-| `setxpmultiplier <number>` | `xpmult` | Manage Server | Global multiplier |
-| `setxpcurve <type> [recompute]` | | Manage Server | Change the level curve |
-| `setxpexclusive <true\|false>` | `xpexclusive`, `exclusivexp`, `setxpexcl`, `xpexcl` | Manage Server | Keep only the highest reward role |
-| `setchannelxp <#channel> <number>` | | Manage Server | Channel multiplier |
-| `setrolexp <role> <number>` | | Manage Server | Role multiplier |
-| `addxp <@user> <amount>` | | Manage Server | Add XP to a member |
-| `setxp <@user> <amount>` | | Manage Server | Set a member's XP |
-| `resetxp <@user> [resetBonus]` | | Manage Server | Reset a member's XP to zero |
-| `resetxp` | | Administrator | Reset XP for the whole server |
-| `xpboost <time> <multiplier> <name>` | | Manage Server | Start a boost event |
+| `xpsettings` | `xpconfig` | Manage Community | Show the current XP settings |
+| `setmessagexp <amount>` | `setmsgxp` | Manage Community | XP per message |
+| `setxpcooldown <seconds>` | `xpcd` | Manage Community | Message XP cooldown |
+| `setvoicexp <amount>` | | Manage Community | Voice XP per minute |
+| `setvoicetimeout <minutes>` | | Manage Community | Voice session cap |
+| `setxpmultiplier <number>` | `xpmult` | Manage Community | Global multiplier |
+| `setxpcurve <type> [recompute]` | | Manage Community | Change the level curve |
+| `setxpexclusive <true\|false>` | `xpexclusive`, `exclusivexp`, `setxpexcl`, `xpexcl` | Manage Community | Keep only the highest reward role |
+| `setchannelxp <#channel> <number>` | | Manage Community | Channel multiplier |
+| `setrolexp <role> <number>` | | Manage Community | Role multiplier |
+| `addxp <@user> <amount>` | | Manage Community | Add XP to a member |
+| `setxp <@user> <amount>` | | Manage Community | Set a member's XP |
+| `resetxp <@user> [resetBonus]` | | Manage Community | Reset a member's XP to zero |
+| `resetxp` | | Administrator | Reset XP for the whole community |
+| `xpboost <time> <multiplier> <name>` | | Manage Community | Start a boost event |
 | `xpboosts` | | Nobody | List active boosts |
-| `cancelboost <id>` | | Manage Server | End a boost early |
-| `xpexclude <@user\|role\|#channel>` | | Manage Server | Exclude from XP |
-| `xpinclude <@user\|role\|#channel>` | | Manage Server | Remove an exclusion |
+| `cancelboost <id>` | | Manage Community | End a boost early |
+| `xpexclude <@user\|role\|#channel>` | | Manage Community | Exclude from XP |
+| `xpinclude <@user\|role\|#channel>` | | Manage Community | Remove an exclusion |
 | `xpexcludelist [users\|roles\|channels]` | | Nobody | Show exclusions |
 | `rolereward <level> <role>` | `rr` | Manage Roles | Add a role reward |
 | `removerolereward <level>` | `removerr` | Manage Roles | Remove a role reward |
 | `rolerewards` | | Nobody | List role rewards |
-| `currencyreward <level> <amount>` | `cr` | Manage Server | Add a currency reward |
-| `removecurrencyreward <level>` | `removecr` | Manage Server | Remove a currency reward |
+| `currencyreward <level> <amount>` | `cr` | Manage Community | Add a currency reward |
+| `removecurrencyreward <level>` | `removecr` | Manage Community | Remove a currency reward |
 | `currencyrewards` | | Nobody | List currency rewards |
-| `xpcompetition <time> <type> [targetLevel] [name]` | | Manage Server | Start a competition |
-| `addcompetitionreward <id> <position> <Role\|XP\|Currency> <reward>` | | Manage Server | Add a placement prize |
+| `xpcompetition <time> <type> [targetLevel] [name]` | | Manage Community | Start a competition |
+| `addcompetitionreward <id> <position> <Role\|XP\|Currency> <reward>` | | Manage Community | Add a placement prize |
 | `xpcompetitions` | | Nobody | List active competitions |
 | `competitionleaderboard <id>` | `complb` | Nobody | Competition standings |
-| `endcompetition <id>` | | Manage Server | End a competition and pay out |
+| `endcompetition <id>` | | Manage Community | End a competition and pay out |
 | `syncallxproles` | | Administrator | Re-apply reward roles to everyone (once per hour) |
 | `syncmyxproles` | | Nobody | Re-apply your own reward roles (once per five minutes) |
 | `syncuserxproles <@user>` | | Manage Roles | Re-apply one member's reward roles |
-| `levelupchannel [#channel]` | `lvlupchan` | Manage Server | Where channel notifications go; no channel means the current one |
-| `addlevelupmessage <text or embed JSON>` | `addlvlupmsg` | Manage Server | Add a custom level-up message |
-| `levelupmessages` | `lvlupmsgs` | Manage Server | List custom messages with IDs |
-| `removelevelupmessage <id>` | `remlvlupmsg` | Manage Server | Delete a custom message |
-| `togglelevelupmessage <id> <true\|false>` | `togglelvlupmsg` | Manage Server | Enable or disable one message |
-| `testlevelupmessage [template]` | `testlvlupmsg` | Manage Server | Preview a template, or a random saved one |
-| `levelupplaceholders` | `lvlupplaceholders` | Manage Server | List the placeholders above |
+| `levelupchannel [#channel]` | `lvlupchan` | Manage Community | Where channel notifications go; no channel means the current one |
+| `addlevelupmessage <text or embed JSON>` | `addlvlupmsg` | Manage Community | Add a custom level-up message |
+| `levelupmessages` | `lvlupmsgs` | Manage Community | List custom messages with IDs |
+| `removelevelupmessage <id>` | `remlvlupmsg` | Manage Community | Delete a custom message |
+| `togglelevelupmessage <id> <true\|false>` | `togglelvlupmsg` | Manage Community | Enable or disable one message |
+| `testlevelupmessage [template]` | `testlvlupmsg` | Manage Community | Preview a template, or a random saved one |
+| `levelupplaceholders` | `lvlupplaceholders` | Manage Community | List the placeholders above |
 
 ## Tips and gotchas
 

@@ -94,7 +94,7 @@
   let retentionSeries = $derived([{ name: m.analytics.tabServersRetainedPct(), data: retention.map((r) => (r.rate === null ? null : r.rate * 100)) }]);
 
   const bouncedColumns: Column<BouncedGuildRow>[] = $derived([
-    { key: "guildId", label: m.analytics.tableColGuild(), mono: true },
+    { key: "guildId", label: m.features.categoryCommunity(), mono: true },
     { key: "firstSeen", label: m.analytics.tabServersColFirstSeen(), muted: true, format: (r) => stamp(r.firstSeen), sortValue: (r) => utcParse(r.firstSeen) },
     { key: "lastSeen", label: m.analytics.tableColLastSeen(), muted: true, format: (r) => stamp(r.lastSeen), sortValue: (r) => utcParse(r.lastSeen) },
     { key: "stay", label: m.analytics.tabServersColStayed(), num: true, format: (r) => duration((utcParse(r.lastSeen) - utcParse(r.firstSeen)) / 1000), sortValue: (r) => utcParse(r.lastSeen) - utcParse(r.firstSeen) },
@@ -102,7 +102,7 @@
   ]);
 
   const silentColumns: Column<SilentGuildRow>[] = $derived([
-    { key: "guildId", label: m.analytics.tableColGuild(), mono: true },
+    { key: "guildId", label: m.features.categoryCommunity(), mono: true },
     { key: "name", label: m.common.name(), format: (r) => r.name ?? "—" },
     { key: "memberCount", label: m.common.members(), num: true, format: (r) => n(r.memberCount) },
     { key: "lastActive", label: m.analytics.tabServersColLastActive(), muted: true, format: (r) => ago(r.lastActive), sortValue: (r) => utcParse(r.lastActive) },
@@ -193,11 +193,11 @@
             {m.analytics.tabServersChurnBounced({ count: n(churn.bounced), rate: pct((churn.bounceRate ?? 0) * 100) })}
           </p>
           <div>
-            <p class="text-xs uppercase tracking-wide mb-1" style="color: {$colorStore.muted}">{m.analytics.tabServersJoinsBySize()}</p>
+            <p class="text-xs mb-1" style="color: {$colorStore.muted}">{m.analytics.tabServersJoinsBySize()}</p>
             <BreakdownBar rows={churn.joinsBySize} color={GOOD} max={6} />
           </div>
           <div>
-            <p class="text-xs uppercase tracking-wide mb-1" style="color: {$colorStore.muted}">{m.analytics.tabServersLeavesBySize()}</p>
+            <p class="text-xs mb-1" style="color: {$colorStore.muted}">{m.analytics.tabServersLeavesBySize()}</p>
             <BreakdownBar rows={churn.leavesBySize} color={CRIT} max={6} />
           </div>
         </div>

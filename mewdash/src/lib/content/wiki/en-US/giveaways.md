@@ -12,7 +12,7 @@ related: [embedbuilder, chat-triggers, xp]
 
 ## What it does
 
-Staff start a giveaway with a prize, a channel, a number of winners, and a duration. The bot posts an embed in that channel showing the prize, the host, when it ends, and any requirements. Members enter by reacting with the server's giveaway emote, by pressing an **Enter** button, or by solving a captcha on the dashboard, depending on how the giveaway was started.
+Staff start a giveaway with a prize, a channel, a number of winners, and a duration. The bot posts an embed in that channel showing the prize, the host, when it ends, and any requirements. Members enter by reacting with the community's giveaway emote, by pressing an **Enter** button, or by solving a captcha on the dashboard, depending on how the giveaway was started.
 
 When the timer runs out the bot picks winners at random from everyone who entered and still meets the requirements. It edits the original message to show the winners, posts a congratulations message in the channel, and, if enabled, DMs each winner with a link to the giveaway. Staff can end a giveaway early or reroll it after it has ended.
 
@@ -31,32 +31,32 @@ Each giveaway uses exactly one of these. The interactive `gstart` wizard asks wh
 
 | Method | How members enter | Notes |
 | --- | --- | --- |
-| Reaction | React with the server's giveaway emote | The default. The bot reads the reaction list when the giveaway ends, up to 1000 users. |
-| Button | Press the **Enter** button under the embed | Entries are stored by the bot. Entering twice, after it has ended, or while not in the server is refused. |
+| Reaction | React with the community's giveaway emote | The default. The bot reads the reaction list when the giveaway ends, up to 1000 users. |
+| Button | Press the **Enter** button under the embed | Entries are stored by the bot. Entering twice, after it has ended, or while not in the community is refused. |
 | Captcha | Press **Enter (Web Captcha)**, sign in to the dashboard, and pass a Cloudflare Turnstile check | Same storage as button entry. The entry is credited to the signed-in Fluxer account. |
 
-The giveaway emote is set per server with `gemote`. The bot validates it by reacting with it, so a custom emote from another server only works if the bot is also in that server. Reaction giveaways also need the bot's Add Reactions and Use External Emojis permissions, and `gstart` refuses to start without them.
+The giveaway emote is set per community with `gemote`. The bot validates it by reacting with it, so a custom emote from another community only works if the bot is also in that community. Reaction giveaways also need the bot's Add Reactions and Use External Emojis permissions, and `gstart` refuses to start without them.
 
 ## Requirements
 
 | Requirement | Set by | Effect at draw time |
 | --- | --- | --- |
 | Required roles | Wizard, dashboard **Required Roles** | The member must hold all of the listed roles |
-| Message count | Wizard, dashboard **Required Message Count** | The member's counted messages in this server must be at least this number. Uses the message count service, so it only knows about messages counted since that was enabled. |
+| Message count | Wizard, dashboard **Required Message Count** | The member's counted messages in this community must be at least this number. Uses the message count service, so it only knows about messages counted since that was enabled. |
 
-Bots are always excluded, and so is anyone who has left the server. Requirements are listed in the giveaway embed as a **Required Roles** line and a "N Messages Required" line.
+Bots are always excluded, and so is anyone who has left the community. Requirements are listed in the giveaway embed as a **Required Roles** line and a "N Messages Required" line.
 
 ## The giveaway message
 
-The embed's title is the prize. The description reads "React with (emote) to enter!", names the host, and shows the end time as a relative and absolute Fluxer timestamp. The footer shows the winner count, the server name, and the end date. Message content is the ping role mention if one is set.
+The embed's title is the prize. The description reads "React with (emote) to enter!", names the host, and shows the end time as a relative and absolute Fluxer timestamp. The footer shows the winner count, the community name, and the end date. Message content is the ping role mention if one is set.
 
-Server-wide appearance settings:
+Community-wide appearance settings:
 
 | Setting | Command | Effect |
 | --- | --- | --- |
 | Embed colour | `gembedcolor` | Colour of the giveaway embed, as a colour name or `#hex` |
 | Banner | `gbanner` | Image shown on every giveaway. The wizard can override it per giveaway with a URL or attachment. |
-| Ping role | none, only wizard override | The wizard offers to ping a role; if a server ping role is stored it asks whether to override it |
+| Ping role | none, only wizard override | The wizard offers to ping a role; if a community ping role is stored it asks whether to override it |
 | DM winners | `gdm` | Whether winners get a DM. On by default. |
 
 ### When it ends
@@ -67,7 +67,7 @@ A single-winner giveaway also fires the `GiveawayWon` event for chat triggers, s
 
 ### Winner DM
 
-With **DM winners** on, each winner gets a DM. The default is an embed saying they won, with a link to the giveaway message. If a custom end message is stored, it is sent instead and can use these placeholders on top of the general server, user, and channel ones.
+With **DM winners** on, each winner gets a DM. The default is an embed saying they won, with a link to the giveaway message. If a custom end message is stored, it is sent instead and can use these placeholders on top of the general community, user, and channel ones.
 
 | Placeholder | Value |
 | --- | --- |
@@ -79,7 +79,7 @@ With **DM winners** on, each winner gets a DM. The default is an embed saying th
 
 ## Settings
 
-The **Giveaways** dashboard page has three tabs: **Active Giveaways**, **Create Giveaway**, and **Ended Giveaways**. The server-wide settings above (emote, colour, banner, DM toggle) are command only.
+The **Giveaways** dashboard page has three tabs: **Active Giveaways**, **Create Giveaway**, and **Ended Giveaways**. The community-wide settings above (emote, colour, banner, DM toggle) are command only.
 
 The **Create Giveaway** form:
 
@@ -99,7 +99,7 @@ The **Create Giveaway** form:
 ## Setup walkthrough
 
 1. Run `gemote` with the emote you want members to react with, for example `gemote :tada:`.
-2. Optionally set `gembedcolor` and `gbanner` so giveaways match your server's look.
+2. Optionally set `gembedcolor` and `gbanner` so giveaways match your community's look.
 3. Open **Giveaways** in the dashboard, then **Create Giveaway**.
 4. Fill in **Giveaway Item**, **Number of Winners**, **Channel**, and **Duration**.
 5. Add **Required Roles** or a **Required Message Count** if the prize should go to established members.
@@ -108,7 +108,7 @@ The **Create Giveaway** form:
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). The same commands exist as
+Run these with your community's prefix (`.` unless you changed it). The same commands exist as
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -129,7 +129,7 @@ Run these with your server's prefix (`.` unless you changed it). The same comman
 - The message ID for `gend` and `greroll` is the ID of the giveaway embed. Copy it with Developer Mode, or read it from `glist`.
 - Reroll picks from the entrants again with the same requirements, so the previous winner can win again.
 - After a restart the bot schedules giveaways ending within the next 24 hours straight away; ones ending later are picked up by an hourly check, so a giveaway with a long duration still ends on time.
-- If the bot cannot read reactions on a reaction giveaway it falls back to the current server emote, but if the emote was changed to something nobody reacted with, the draw finds no entrants.
+- If the bot cannot read reactions on a reaction giveaway it falls back to the current community emote, but if the emote was changed to something nobody reacted with, the draw finds no entrants.
 - The dashboard's **Active Giveaways** list also shows ended giveaways, and the **Ended Giveaways** tab is currently empty. Use the end time and the missing **End Giveaway** button to tell them apart.
 - Captcha entry needs the dashboard to be reachable and the member to sign in with Fluxer; the entry is tied to that account, not to anything typed on the page.
 - Winner DMs fail silently if the winner has DMs closed. The channel announcement still goes out.

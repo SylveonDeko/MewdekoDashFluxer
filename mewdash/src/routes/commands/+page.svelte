@@ -58,7 +58,7 @@
     for (const command of module.Commands) {
       const key = command.Submodule ?? "";
       if (!groups.has(key)) {
-        groups.set(key, { key, label: key ? submoduleLabel(key) : m.public.commandsGeneral(), commands: [] });
+        groups.set(key, { key, label: key ? submoduleLabel(key) : m.common.general(), commands: [] });
       }
       groups.get(key)!.commands.push(command);
     }
@@ -294,16 +294,9 @@
          --color-secondary: {$colorStore.secondary};
          --color-accent: {$colorStore.accent};
          --color-text: {$colorStore.text};
-         --color-muted: {$colorStore.muted};
-         background: radial-gradient(circle at center,
-           {$colorStore.gradientStart}15 0%,
-           {$colorStore.gradientEnd}10 50%,
-           {$colorStore.gradientEnd}05 100%
-         );"
+         --color-muted: {$colorStore.muted};"
 >
-  <div class="py-4 backdrop-blur-lg border-b shadow-lg"
-       style="background: linear-gradient(135deg, {$colorStore.gradientStart}15 0%, {$colorStore.gradientEnd}10 100%);
-              border-color: {$colorStore.primary}30;">
+  <div class="py-4 border-b" style="border-color: {$colorStore.primary}20;">
     <div class="w-full max-w-7xl mx-auto px-3 sm:px-4 lg:px-6 py-2 sm:py-3">
       <div class="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-4">
         <div>
@@ -444,7 +437,7 @@
          role="presentation"
          transition:fade={{ duration: 150 }}>
       <div class="w-full max-h-[85vh] overflow-y-auto rounded-t-2xl border-t p-4 pb-8"
-           style="background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15); border-color: {$colorStore.primary}30;
+           style="background: {$colorStore.background}; border-color: {$colorStore.primary}20;
                   --color-primary: {$colorStore.primary}; --color-text: {$colorStore.text};"
            role="dialog"
            aria-modal="true"

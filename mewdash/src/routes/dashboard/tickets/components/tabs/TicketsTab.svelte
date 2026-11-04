@@ -152,11 +152,11 @@
 </script>
 
 <div class="space-y-6" in:fade={{ duration: 200 }}>
-  <div class=" rounded-2xl border p-6 shadow-2xl transition-all"
-       style="background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15); border-color: {$colorStore.primary}30;">
+  <div class=" rounded-2xl border p-6 transition-all"
+       style="background: {$colorStore.primary}0c; border-color: {$colorStore.primary}30;">
     <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-4 mb-6">
       <div class="flex items-center gap-4">
-        <div class="p-3 rounded-xl" style="background: linear-gradient(135deg, {$colorStore.primary}20, {$colorStore.secondary}20);">
+        <div class="p-3 rounded-xl" style="background: {$colorStore.primary}20;">
           <i class="fa-utility-duo fa-regular fa-ticket" style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 24px;"></i>
         </div>
         <div>
@@ -220,19 +220,19 @@
                 {#if !ticket.closedAt && !ticket.isArchived}
                   <div class="flex flex-wrap gap-2">
                     {#if ticket.claimedBy && staffId && ticket.claimedBy.toString() === staffId.toString()}
-                      <button class="px-4 py-2 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] min-h-[40px] disabled:opacity-50"
+                      <button class="px-4 py-2 rounded-lg text-sm font-medium transition-all min-h-[40px] disabled:opacity-50"
                               style="background: {$colorStore.muted}20; color: {$colorStore.muted};" disabled={busy} onclick={() => unclaim(ticket)}>
                         <i class="fa-solid fa-hand mr-1"></i>{m.tickets.ticketsUnclaim()}
                       </button>
                     {:else if !ticket.claimedBy}
-                      <button class="px-4 py-2 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] min-h-[40px] disabled:opacity-50"
+                      <button class="px-4 py-2 rounded-lg text-sm font-medium transition-all min-h-[40px] disabled:opacity-50"
                               style="background: {$colorStore.secondary}20; color: {$colorStore.secondary}; border: 1px solid {$colorStore.secondary}30;"
                               disabled={busy || !staffId} onclick={() => claim(ticket)}>
                         <i class="fa-solid fa-hand mr-1"></i>{m.tickets.ticketsClaim()}
                       </button>
                     {/if}
                     <a href={cdn.channelUrl($currentGuild?.id, ticket.channelId)} target="_blank" rel="noopener"
-                       class="px-4 py-2 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] min-h-[40px] inline-flex items-center"
+                       class="px-4 py-2 rounded-lg text-sm font-medium transition-all min-h-[40px] inline-flex items-center"
                        style="background: {$colorStore.primary}15; color: {$colorStore.primary};">
                       <FluxerIcon class="w-[1em] h-[1em] mr-1" />{m.tickets.ticketsOpenChannel()}
                     </a>
@@ -272,7 +272,7 @@
                       <input id="ticket-note-{ticket.id}" type="text" bind:value={noteDraft} maxlength="1000" placeholder={m.tickets.ticketsNotePlaceholder()}
                              class="flex-1 p-3 rounded-lg border min-h-[44px]"
                              style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}30; color: {$colorStore.text};">
-                      <button class="px-4 py-2 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] min-h-[44px] disabled:opacity-50"
+                      <button class="px-4 py-2 rounded-lg text-sm font-medium transition-all min-h-[44px] disabled:opacity-50"
                               style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
                               disabled={busy || !noteDraft.trim()} onclick={() => addNote(ticket)}>
                         {m.tickets.ticketsAddNote()}
@@ -286,7 +286,7 @@
                       <input id="ticket-close-{ticket.id}" type="text" bind:value={closeReason} maxlength="500" placeholder={m.common.reasonOptional()}
                              class="flex-1 p-3 rounded-lg border min-h-[44px]"
                              style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}30; color: {$colorStore.text};">
-                      <button class="px-4 py-2 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] min-h-[44px] disabled:opacity-50"
+                      <button class="px-4 py-2 rounded-lg text-sm font-medium transition-all min-h-[44px] disabled:opacity-50"
                               style="background: #ef444420; color: #ef4444; border: 1px solid #ef444430;"
                               disabled={busy} onclick={() => close(ticket)}>
                         <i class="fa-solid fa-lock mr-1"></i>{m.common.close()}
@@ -300,7 +300,7 @@
                       <a href={ticket.transcriptUrl} target="_blank" rel="noopener" class="underline" style="color: {$colorStore.primary};">{m.tickets.ticketsViewTranscript()}</a>
                     {/if}
                     {#if !ticket.isArchived}
-                      <button class="px-4 py-2 rounded-lg text-sm font-medium transition-all hover:scale-[1.02] min-h-[40px] disabled:opacity-50"
+                      <button class="px-4 py-2 rounded-lg text-sm font-medium transition-all min-h-[40px] disabled:opacity-50"
                               style="background: {$colorStore.muted}20; color: {$colorStore.muted};" disabled={busy} onclick={() => archive(ticket)}>
                         <i class="fa-solid fa-box-archive mr-1"></i>{m.common.archive()}
                       </button>

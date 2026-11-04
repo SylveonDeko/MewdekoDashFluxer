@@ -14,7 +14,7 @@ related: [multigreets, chat-triggers, afk, feeds, giveaways, suggestions]
 
 The embed builder is a visual editor for Fluxer messages. You fill in a title, description, colour, fields, images, and optional link buttons, watch a live preview, and get a block of JSON at the end. That JSON is the bot's universal message format. Paste it into `say` to post it, save it as a named template, or drop it into any feature that takes a custom message, such as greets, chat triggers, AFK replies, feed updates, or the giveaway winner DM.
 
-Templates can be personal, visible only to you across every server, or shared with a server so any staff member can load them. The dashboard can also send a finished message straight to a channel, optionally through a webhook with a custom name and avatar, called a persona.
+Templates can be personal, visible only to you across every community, or shared with a community so any staff member can load them. The dashboard can also send a finished message straight to a channel, optionally through a webhook with a custom name and avatar, called a persona.
 
 Members never interact with the builder. They just see the messages it produces.
 
@@ -24,7 +24,7 @@ Members never interact with the builder. They just see the messages it produces.
 - Design a welcome message once, then paste the JSON into greets.
 - Keep a set of announcement templates so staff post consistent-looking updates.
 - Add links under the message as link buttons.
-- Post as "Server News" with its own avatar without giving anyone webhook access.
+- Post as "Community News" with its own avatar without giving anyone webhook access.
 
 ## The JSON format
 
@@ -46,7 +46,7 @@ A component is a link button with `displayName`, `url` and an optional `emoji`. 
 
 ### Placeholders
 
-The builder's **%** button inserts placeholders from the placeholders page (user, server, channel, bot, time, and so on). The dashboard does not replace them: a message sent from the **Send** tab goes out with the literal text. The bot replaces them when JSON passes through a command or feature, for example `say`, `embedpreview`, greets, and triggers. Each feature adds its own set, such as `%afk.message%` or `%giveawayitem%`, on top of the general ones.
+The builder's **%** button inserts placeholders from the placeholders page (user, community, channel, bot, time, and so on). The dashboard does not replace them: a message sent from the **Send** tab goes out with the literal text. The bot replaces them when JSON passes through a command or feature, for example `say`, `embedpreview`, greets, and triggers. Each feature adds its own set, such as `%afk.message%` or `%giveawayitem%`, on top of the general ones.
 
 ## Templates
 
@@ -54,10 +54,10 @@ A template is a name plus the JSON. Two scopes exist.
 
 | Scope | Who sees it | Created by |
 | --- | --- | --- |
-| Personal | Only you, in any server and in DMs | `embedsave`, or **Save** on the dashboard with sharing unticked |
-| Guild shared | Anyone with access in that server | `guildembedsave` (Manage Messages), or **Save** with **Share with everyone in (server)** ticked |
+| Personal | Only you, in any community and in DMs | `embedsave`, or **Save** on the dashboard with sharing unticked |
+| Community shared | Anyone with access in that community | `guildembedsave` (Manage Messages), or **Save** with **Share with everyone in (community)** ticked |
 
-Names must be unique within a scope. `embedpreview <name>` looks up your personal template first, then the server's shared one, replaces placeholders, and posts it in the current channel.
+Names must be unique within a scope. `embedpreview <name>` looks up your personal template first, then the community's shared one, replaces placeholders, and posts it in the current channel.
 
 Some commands accept a template reference in place of raw JSON: write `{template:name}` or `{t:name}` as the message. `multigreetmessage` supports this. The resolved JSON is stored, not the reference, so later edits to the template do not update the greet.
 
@@ -71,33 +71,33 @@ The page is titled **Fluxer Embed Builder** and has six tabs, with a **Live Prev
 | Editor | **Message Content** plus up to ten embeds. Each embed has title, description, URL, colour, author, footer, up to 25 fields, thumbnail, and image, with character counters. |
 | Link buttons | Up to 25 link buttons, each with text, an optional emoji and a URL. The bot shows them as links under the message. |
 | JSON | The raw payload. **Refresh from Builder** regenerates it; **Apply to Builder** loads pasted JSON, either a full payload or a single embed object. |
-| Saved | **Save Current Embed** with a name and the share checkbox, then lists of **Shared in (server)** and **My Embeds** with **Load** and **Delete** |
+| Saved | **Save Current Embed** with a name and the share checkbox, then lists of **Shared in (community)** and **My Embeds** with **Load** and **Delete** |
 | Send | Choose a channel, review your permissions there, optionally send through a webhook as a persona or with a custom name and avatar URL, then **Send Message** |
 
 ### Sending and personas
 
 The **Send** tab only lists channels where both you and the bot can post. Sending embeds needs Embed Links for both. If you lack Mention Everyone, everyone, here, and role mentions are stripped and the tab warns you.
 
-Webhook sending needs Manage Webhooks for you and the bot. A **persona** is a saved name and avatar, personal or shared with the server; **Manage** opens the persona list. Personas with an uploaded image get their own webhook in each channel, so a channel can hold at most fifteen of them. The **Custom** option takes a display name and an avatar link instead. Every send is written to the dashboard audit log.
+Webhook sending needs Manage Webhooks for you and the bot. A **persona** is a saved name and avatar, personal or shared with the community; **Manage** opens the persona list. Personas with an uploaded image get their own webhook in each channel, so a channel can hold at most fifteen of them. The **Custom** option takes a display name and an avatar link instead. Every send is written to the dashboard audit log.
 
 The same builder opens as a popup inside other dashboard pages (greets, triggers, and others) with the **Editor**, **Link buttons**, **JSON**, and **Saved** tabs only.
 
 ## Settings
 
-The builder has no server settings. Everything is per message or per template.
+The builder has no community settings. Everything is per message or per template.
 
 ## Setup walkthrough
 
 1. Open **Embeds** in the dashboard and pick a template or **Start from Scratch**.
 2. In **Editor**, write the content and fill in the embed. Watch the **Issues** panel for anything Fluxer would reject.
 3. Add link buttons in **Link buttons** if you want clickable links under the message.
-4. Go to **Saved**, give it a name, tick **Share with everyone in (server)** if staff should use it, and press **Save**.
+4. Go to **Saved**, give it a name, tick **Share with everyone in (community)** if staff should use it, and press **Save**.
 5. To post it now, open **Send**, pick a channel, and press **Send Message**. To use it elsewhere, press **Copy JSON** and paste it into the other feature.
 6. In Fluxer, `embedpreview <name>` posts a saved template with placeholders filled in.
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -106,8 +106,8 @@ Run these with your server's prefix (`.` unless you changed it).
 | `embedsave <name> <JSON>` | `esave` | Nobody | Save a personal template |
 | `embedlist` | `elist` | Nobody | List your personal templates |
 | `embeddelete <name>` | `edel`, `edelete` | Nobody | Delete one of your personal templates |
-| `guildembedsave <name> <JSON>` | `gesave`, `gembedsave` | Manage Messages | Save a template shared with this server |
-| `guildembedlist` | `gelist`, `gembedlist` | Nobody | List the server's shared templates |
+| `guildembedsave <name> <JSON>` | `gesave`, `gembedsave` | Manage Messages | Save a template shared with this community |
+| `guildembedlist` | `gelist`, `gembedlist` | Nobody | List the community's shared templates |
 | `guildembeddelete <name>` | `gedel`, `gembeddelete` | Manage Messages | Delete a shared template |
 | `embedpreview <name>` | `epreview`, `eprev` | Nobody | Post a saved template in the current channel |
 

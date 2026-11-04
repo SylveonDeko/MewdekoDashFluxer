@@ -12,9 +12,9 @@ related: [xp, administration]
 
 ## What it does
 
-A member runs `rep @user` to give one reputation point, optionally with a reason. The receiver's total goes up, the giver's daily streak is tracked, and the history keeps who gave what and why. Anyone can check totals with `repcheck`, see the server ranking with `repleaderboard`, and read the last ten entries with `rephistory`.
+A member runs `rep @user` to give one reputation point, optionally with a reason. The receiver's total goes up, the giver's daily streak is tracked, and the history keeps who gave what and why. Anyone can check totals with `repcheck`, see the community ranking with `repleaderboard`, and read the last ten entries with `rephistory`.
 
-Staff configure how freely rep flows: a cooldown per giver and receiver pair, daily and weekly caps, and minimum account age, server time and message count before someone may give at all. Channels can be disabled for rep or given a multiplier. Reputation can also be earned from reactions: a configured emoji on a message gives its author points.
+Staff configure how freely rep flows: a cooldown per giver and receiver pair, daily and weekly caps, and minimum account age, community time and message count before someone may give at all. Channels can be disabled for rep or given a multiplier. Reputation can also be earned from reactions: a configured emoji on a message gives its author points.
 
 At chosen thresholds the bot hands out roles, announces the milestone in a channel, and DMs the member. Optional decay slowly removes points from members who have neither given nor received rep for a while, so the leaderboard reflects current activity.
 
@@ -39,7 +39,7 @@ Each `rep` gives one point, multiplied by the channel multiplier if one is set. 
 | Daily limit | 10 | Rep a giver may hand out per UTC day |
 | Weekly limit | none | Optional cap per week, counted from Sunday |
 | Min account age | 7 days | Giver's Fluxer account age |
-| Min server time | 24 hours | How long the giver has been in the server |
+| Min community time | 24 hours | How long the giver has been in the community |
 | Min message count | 10 | Messages the giver has sent, from message counting |
 
 Anonymous rep records the entry as anonymous, but only when anonymous giving is enabled in the config. Negative reputation is a separate switch; reaction removal already takes back the points it gave.
@@ -81,7 +81,7 @@ The Reputation page has four tabs: **Configuration**, **Role Rewards**, **Leader
 | Daily Limit | 10 | Rep per giver per day |
 | Weekly Limit (optional) | none | Rep per giver per week |
 | Min Account Age (days) | 7 | Giver requirement |
-| Min Server Time (hours) | 24 | Giver requirement |
+| Min Community Time (hours) | 24 | Giver requirement |
 | Min Message Count | 10 | Giver requirement |
 | Notification Channel (optional) | none | Where milestone messages go |
 | Allow Negative Reputation | off | Enables negative amounts |
@@ -94,18 +94,18 @@ Decay is not on the dashboard; use the `repdecay*` commands below.
 ## Setup walkthrough
 
 1. Open **Reputation** in the dashboard. On **Configuration**, turn **Enabled** on.
-2. Set **Cooldown**, **Daily Limit** and the three minimum requirements to suit your server's size.
+2. Set **Cooldown**, **Daily Limit** and the three minimum requirements to suit your community's size.
 3. Pick a **Notification channel** for milestones and save.
 4. On **Role Rewards**, add a role with its **Reputation Required** and tick **Remove role if rep drops below threshold** if you want it to be earned continuously.
 5. In Fluxer, run `repreaction <emoji> 1` to enable reaction rep, and `repchannel #bot-spam disabled` to keep spam channels out.
 6. Test with a second account: `rep @you great help`, then `repcheck @you`.
 
 > [!WARNING]
-> `represet all` wipes every member's rep, history and badges for the server after a confirmation. There is no undo.
+> `represet all` wipes every member's rep, history and badges for the community after a confirmation. There is no undo.
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -164,6 +164,6 @@ Run these with your server's prefix (`.` unless you changed it).
 - The minimum message count uses the message counting feature. If counting is off, members can be blocked from giving rep with a count of zero.
 - Only the `disabled` channel state blocks giving. `readonly` is accepted by the command but does not currently stop rep in that channel.
 - Events created with `repeventcreate` are stored with their multiplier and end time, but the multiplier is not currently applied to rep given during the event.
-- Reaction rep uses the emoji's name for standard emoji and its ID for custom ones, so a custom emoji from another server will not match once it is removed.
+- Reaction rep uses the emoji's name for standard emoji and its ID for custom ones, so a custom emoji from another community will not match once it is removed.
 - Decay checks run on the hour, so a `daily` decay happens once during the 02:00 UTC hour.
 - The cooldown is per pair. One member can rep several different people back to back, up to the daily limit.

@@ -1,7 +1,7 @@
 ---
 title: NSFW
 slug: nsfw
-summary: Adult image commands that only work in channels marked NSFW, with a per-server tag blacklist and optional timed auto posting.
+summary: Adult image commands that only work in channels marked NSFW, with a per-community tag blacklist and optional timed auto posting.
 icon: fa-eye-slash
 category: Entertainment
 module: Nsfw
@@ -13,14 +13,14 @@ related: [servermanagement, permissions, filter]
 
 The NSFW module fetches adult images from image boards and Reddit on request. Every command in it carries Fluxer's NSFW requirement: it only runs in a channel that has the NSFW flag set, and most of the image board commands also work in a DM with the bot. In any other channel the command is silently refused.
 
-Staff control two things. `nsfwtoggle` (in the Administration module) flips the NSFW flag on the current channel, which is what unlocks these commands there. `nsfwtagbl` keeps a list of tags that are removed from every image board search in this server, so a server can allow the module while excluding content it does not want.
+Staff control two things. `nsfwtoggle` (in the Administration module) flips the NSFW flag on the current channel, which is what unlocks these commands there. `nsfwtagbl` keeps a list of tags that are removed from every image board search in this community, so a community can allow the module while excluding content it does not want.
 
 Members run a source command with optional tags and get one image with its rating, source and first few tags. The "bomb" variants post four at once. Moderators can also start a timer that posts a new image into a channel every so many seconds.
 
 ## Why you would use it
 
-- An 18+ server wants image commands confined to its marked channels.
-- Staff want certain tags blocked server-wide without turning the module off.
+- An 18+ community wants image commands confined to its marked channels.
+- Staff want certain tags blocked community-wide without turning the module off.
 - A dedicated channel should get a fresh image on a timer without anyone typing.
 
 ## Channel requirement
@@ -43,11 +43,11 @@ If a command is used in a non-NSFW channel nothing happens. Members sometimes re
 | `nhentai <id>` | A specific gallery by number | Refuses galleries tagged lolicon or shotacon |
 | `nhentaisearch <query> [page] [type] [blacklist]` | Gallery search | |
 
-Tags are separated by spaces. On e621 and Derpibooru the tag `yuri` is translated to that board's equivalent automatically. Only one `hentaibomb` and one `pornbomb` can run at a time per server.
+Tags are separated by spaces. On e621 and Derpibooru the tag `yuri` is translated to that board's equivalent automatically. Only one `hentaibomb` and one `pornbomb` can run at a time per community.
 
 ## Tag blacklist
 
-`nsfwtagbl` with no argument lists the blacklisted tags. `nsfwtagbl <tag>` adds the tag, or removes it if it is already on the list. Results that carry a blacklisted tag are skipped for every image board command in the server. It needs Manage Messages.
+`nsfwtagbl` with no argument lists the blacklisted tags. `nsfwtagbl <tag>` adds the tag, or removes it if it is already on the list. Results that carry a blacklisted tag are skipped for every image board command in the community. It needs Manage Messages.
 
 ## Auto posting
 
@@ -60,7 +60,7 @@ There is no dashboard page for this module.
 | Setting | Default | What it controls |
 | --- | --- | --- |
 | Channel NSFW flag | off | Whether any of these commands run in a channel |
-| Tag blacklist | empty | Tags excluded from image board results in this server |
+| Tag blacklist | empty | Tags excluded from image board results in this community |
 | Auto post timers | none | Per channel timers started with the `auto...` commands |
 
 ## Setup walkthrough
@@ -73,7 +73,7 @@ There is no dashboard page for this module.
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |

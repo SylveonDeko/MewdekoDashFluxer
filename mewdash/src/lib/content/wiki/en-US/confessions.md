@@ -12,9 +12,9 @@ related: [administration, moderation]
 
 ## What it does
 
-A member runs `/confess` in the server, or DMs the bot `.confess <server id> "text"`, and the bot posts their message in the confession channel as an embed headed "Anonymous confession #N". The sender's name never appears in that channel. They get a private confirmation, and the confession number goes up by one each time.
+A member runs `/confess` in the community, or DMs the bot `.confess <server id> "text"`, and the bot posts their message in the confession channel as an embed headed "Anonymous confession #N". The sender's name never appears in that channel. They get a private confirmation, and the confession number goes up by one each time.
 
-Staff can set a separate log channel. Every confession is copied there with the sender's tag and ID, the confession number, and a jump link to the posted message. Members are told in every confession footer how to confess, and in the confirmation that they can report a server that abuses the feature.
+Staff can set a separate log channel. Every confession is copied there with the sender's tag and ID, the confession number, and a jump link to the posted message. Members are told in every confession footer how to confess, and in the confirmation that they can report a community that abuses the feature.
 
 Staff can also blacklist individual members so their confessions are refused, and delete confessions from the dashboard, which removes the Fluxer message as well.
 
@@ -30,7 +30,7 @@ Each confession is an embed in the confession channel:
 
 | Part | Content |
 | --- | --- |
-| Author line | `Anonymous confession #N` with the server icon |
+| Author line | `Anonymous confession #N` with the community icon |
 | Description | The confession text |
 | Image | The attachment, if one was sent |
 | Footer | `Do /confess or dm me .confess <server id> yourconfession to send a confession!` |
@@ -45,11 +45,11 @@ Attachments are supported both ways: attach a file to `/confess` with the `attac
 When a **Log Channel** is set, each confession also produces a red embed there with **User** (tag and ID), **Confession N** (the text), a **Message Link**, and a warning about misuse. This is the only place the sender is revealed, so restrict it to people you trust.
 
 > [!WARNING]
-> The log channel exists so staff can deal with harassment. Sharing who sent a confession is grounds for the bot owners to blacklist the server. Members can report abuse with `/confessions report`.
+> The log channel exists so staff can deal with harassment. Sharing who sent a confession is grounds for the bot owners to blacklist the community. Members can report abuse with `/confessions report`.
 
 ## Blacklist
 
-`confessionblacklist` adds a member to the server's blacklist and `confessionunblacklist` removes them. Blacklisted members get "you are blacklisted" instead of a post. The check is by user ID.
+`confessionblacklist` adds a member to the community's blacklist and `confessionunblacklist` removes them. Blacklisted members get "you are blacklisted" instead of a post. The check is by user ID.
 
 The dashboard shows a **Role Blacklist** and stores role IDs in the same list. The bot only compares the sender's user ID against the list when a confession comes in, so roles selected on the dashboard do not currently stop anyone. Use the commands to block specific members.
 
@@ -78,23 +78,23 @@ The **Confessions** page has three tabs: **Configuration**, **Confessions** and 
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
-| `confess <server id> <"text">` | | Nobody | DM only. Post a confession in the given server; wrap multi-word text in quotes |
+| `confess <server id> <"text">` | | Nobody | DM only. Post a confession in the given community; wrap multi-word text in quotes |
 | `confessionchannel [#channel]` | `confesschannel` | Manage Channels | Set the confession channel, or turn confessions off with no channel |
 | `confessionlogchannel [#channel]` | `confesslogchannel`, `confessionlogchnl` | Administrator | Set the log channel |
 | `confessionblacklist <@user>` | `confessblacklist`, `confessbl` | Manage Channels | Stop a member from confessing |
 | `confessionunblacklist <@user>` | `confessunblacklist`, `confessunbl` | Manage Channels | Let a blacklisted member confess again |
 
-`/confessions report <server id> <description>` sends a report about a server misusing confessions to the bot owners. It has no text equivalent.
+`/confessions report <server id> <description>` sends a report about a community misusing confessions to the bot owners. It has no text equivalent.
 
 ## Tips and gotchas
 
 - The bot needs Send Messages and Embed Links in both the confession channel and the log channel. The channel commands warn if it lacks them but still save the setting.
-- The text `confess` command only works in DMs and takes the confession as a single argument, so `confess 123456789 "I like pineapple on pizza"` works and the unquoted version only posts the first word. `/confess` in the server is simpler for members.
-- `confess` by DM only works for servers you share with the bot; other server IDs are refused.
+- The text `confess` command only works in DMs and takes the confession as a single argument, so `confess 123456789 "I like pineapple on pizza"` works and the unquoted version only posts the first word. `/confess` in the community is simpler for members.
+- `confess` by DM only works for communities you share with the bot; other community IDs are refused.
 - The text `confessionlogchannel` command with no channel clears the confession channel rather than the log channel. Clear the log channel from the dashboard instead.
 - Confessions are stored with the sender's user ID even without a log channel, and the dashboard can look up a single confession's sender. Treat dashboard access as staff-only.
 - Deleting from the dashboard removes the stored record, so the log channel copy is your only remaining trace.

@@ -11,7 +11,7 @@ related: [userprofile, help]
 
 ## What it does
 
-The Switch module is a support toolkit for servers around Nintendo Switch homebrew and emulation. When someone posts an error like `2168-0002`, a helper runs `err 2168-0002` and the bot replies with the module the error belongs to, what is known about it, and a link to Nintendo's support page when one exists.
+The Switch module is a support toolkit for communities around Nintendo Switch homebrew and emulation. When someone posts an error like `2168-0002`, a helper runs `err 2168-0002` and the bot replies with the module the error belongs to, what is known about it, and a link to Nintendo's support page when one exists.
 
 Two small converters turn the `NNNN-NNNN` form into the raw hex value used in code and back. `switchbrew` searches the switchbrew.org wiki so people can find SVC, result code or hardware pages without leaving Fluxer.
 
@@ -75,7 +75,7 @@ This module has no settings and no dashboard page.
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |

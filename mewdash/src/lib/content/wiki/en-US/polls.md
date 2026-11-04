@@ -86,7 +86,7 @@ The **Polls** tab lists polls with an **Include inactive** checkbox. Expanding a
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -95,7 +95,7 @@ Run these with your server's prefix (`.` unless you changed it).
 | `pollm <question;option1;option2;...>` | | Manage Messages | Post a multiple choice poll |
 | `polla <question;option1;option2;...>` | | Manage Messages | Post an anonymous poll |
 | `polltemplate <name>` | `ptemplate` | Manage Messages | Post a poll from a saved template |
-| `polltemplates` | `ptemplates` | Nobody | List the server's templates |
+| `polltemplates` | `ptemplates` | Nobody | List the community's templates |
 
 ## Tips and gotchas
 

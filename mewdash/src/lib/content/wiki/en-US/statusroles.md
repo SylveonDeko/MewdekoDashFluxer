@@ -18,13 +18,13 @@ When the text disappears from their status again, two toggles decide what happen
 
 Only the custom status is checked, the text you type under "Set a custom status" in Fluxer. Game, Spotify and streaming activities are ignored. Members who are offline or invisible are skipped, and the match is a plain substring check, so `mewdeko` matches `I love mewdeko` but is case sensitive.
 
-Each server can hold any number of status role entries, each with its own roles, channel and message. Commands refer to an entry by its index, the number shown by `liststatusroles`.
+Each community can hold any number of status role entries, each with its own roles, channel and message. Commands refer to an entry by its index, the number shown by `liststatusroles`.
 
 ## Why you would use it
 
 - Reward members who put your vanity invite in their status with a supporter role and its perks.
 - Give a "streaming" or "looking to play" role while someone advertises it in their status, and remove it when they stop.
-- Announce in a channel when a member starts repping the server so staff can thank them.
+- Announce in a channel when a member starts repping the community so staff can thank them.
 - Swap one role for another while a status is active, for example move a member out of a "no pings" role while they show a certain status.
 
 ## Matching and role changes
@@ -37,7 +37,7 @@ Each server can hold any number of status role entries, each with its own roles,
 | Status loses the watched text, **Readd Removed** on | Gives back any of the **Roles to Remove** the member no longer has |
 | Member goes offline or invisible | Nothing, roles are left as they are |
 
-The bot compares each presence update with the last status it cached for that user, so a member who edits an unrelated part of their status is not processed again. The watched text must be unique per server; the commands also cap it at 128 characters, the dashboard does not.
+The bot compares each presence update with the last status it cached for that user, so a member who edits an unrelated part of their status is not processed again. The watched text must be unique per community; the commands also cap it at 128 characters, the dashboard does not.
 
 ## The notification message
 
@@ -45,7 +45,7 @@ If an entry has both a **Notification Channel** and a **Notification Message**, 
 
 ### Placeholders
 
-The message is run through the standard replacement set for the member, the notification channel and the server. The most useful ones are below; the full list is on the placeholders page under user, server, channel, bot and time.
+The message is run through the standard replacement set for the member, the notification channel and the community. The most useful ones are below; the full list is on the placeholders page under user, community, channel, bot and time.
 
 | Placeholder | Value |
 | --- | --- |
@@ -54,16 +54,16 @@ The message is run through the standard replacement set for the member, the noti
 | `%user.fullname%` | Username with discriminator |
 | `%user.avatar%` | The member's avatar URL |
 | `%user.id%` | The member's user ID |
-| `%server.name%` | Server name |
-| `%server.icon%` | Server icon URL |
+| `%server.name%` | Community name |
+| `%server.icon%` | Community icon URL |
 | `%channel.mention%` | Mention of the notification channel |
-| `%server.time%` | Current time in the server's configured timezone |
+| `%server.time%` | Current time in the community's configured timezone |
 
 > [!NOTE]
 > The dashboard editor lists a `%status%` placeholder, but the bot does not replace it. Write the status text into the message yourself.
 
 > [!EXAMPLE]
-> `%user.mention% is now repping the server in their status, thank you!`
+> `%user.mention% is now repping the community in their status, thank you!`
 
 ## Settings
 
@@ -92,21 +92,21 @@ The **Statistics** tab shows the total number of entries, how many change roles,
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). Every command needs Manage Server. The `<index>` is the number shown by `liststatusroles`, starting at 1.
+Run these with your community's prefix (`.` unless you changed it). Every command needs Manage Community. The `<index>` is the number shown by `liststatusroles`, starting at 1.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
-| `addstatusrole <text>` | `asr` | Manage Server | Add a status text to watch for |
-| `removestatusrole <index>` | `rsr` | Manage Server | Delete an entry |
-| `liststatusroles` | `lsr` | Manage Server | Page through every entry with its index and settings |
-| `setaddroles <index> <@role...>` | `sar` | Manage Server | Add roles to the list given when the status matches |
-| `setremoveroles <index> <@role...>` | `srr` | Manage Server | Add roles to the list taken when the status matches |
-| `removeaddroles <index> <@role...>` | `remar` | Manage Server | Take roles off the "roles to add" list |
-| `removeremoveroles <index> <@role...>` | `rmremoveroles` | Manage Server | Take roles off the "roles to remove" list |
-| `setstatusrolechannel <index> <#channel>` | `statusrolechannel`, `ssrc` | Manage Server | Set the notification channel |
-| `setstatusroleembed <index> [text]` | `statusroleembed`, `asre` | Manage Server | Set the notification message, or with no text preview the current one |
-| `toggleremoveadded <index>` | `togglerma` | Manage Server | Toggle **Remove Added** |
-| `togglereaddremoved <index>` | `togglermrm` | Manage Server | Toggle **Readd Removed** |
+| `addstatusrole <text>` | `asr` | Manage Community | Add a status text to watch for |
+| `removestatusrole <index>` | `rsr` | Manage Community | Delete an entry |
+| `liststatusroles` | `lsr` | Manage Community | Page through every entry with its index and settings |
+| `setaddroles <index> <@role...>` | `sar` | Manage Community | Add roles to the list given when the status matches |
+| `setremoveroles <index> <@role...>` | `srr` | Manage Community | Add roles to the list taken when the status matches |
+| `removeaddroles <index> <@role...>` | `remar` | Manage Community | Take roles off the "roles to add" list |
+| `removeremoveroles <index> <@role...>` | `rmremoveroles` | Manage Community | Take roles off the "roles to remove" list |
+| `setstatusrolechannel <index> <#channel>` | `statusrolechannel`, `ssrc` | Manage Community | Set the notification channel |
+| `setstatusroleembed <index> [text]` | `statusroleembed`, `asre` | Manage Community | Set the notification message, or with no text preview the current one |
+| `toggleremoveadded <index>` | `togglerma` | Manage Community | Toggle **Remove Added** |
+| `togglereaddremoved <index>` | `togglermrm` | Manage Community | Toggle **Readd Removed** |
 
 `setaddroles` and `setremoveroles` append to the existing list rather than replacing it. Use the `remove...` commands to take roles off again. The dashboard editor works the other way: whatever is in the box on Save becomes the full list, but an emptied box is ignored, so clearing a list entirely has to be done with the `remove...` commands.
 

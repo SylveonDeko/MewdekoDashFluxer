@@ -99,7 +99,7 @@ export const automationPreviews: Record<string, CommandPreview> = {
     bot("Here is a backup of your chat triggers before migration. Keep this file safe!"),
     bot(replyConfirm("Successfully migrated 6 out of 14 chat triggers to the new embed format.")),
   ),
-  ctsclear: reply("ctsclear", replyConfirm("All 14 Chat Triggers on this server have been removed.")),
+  ctsclear: reply("ctsclear", replyConfirm("All 14 Chat Triggers on this community have been removed.")),
   ctreact: chat(
     "general",
     {
@@ -172,7 +172,7 @@ export const automationPreviews: Record<string, CommandPreview> = {
   ctexpiry: ctEdit(`ctexpiry ${ctId} 7d`, [{ name: "Expires", value: "<t:604800:R>" }]),
   ctmaxuses: ctEdit(`ctmaxuses ${ctId} 100`, [{ name: "Max Uses", value: "0 / 100" }]),
   ctminage: ctEdit(`ctminage ${ctId} 7d`, [{ name: "Minimum Account Age", value: "7d" }]),
-  ctminmember: ctEdit(`ctminmember ${ctId} 1d`, [{ name: "Minimum Server Membership", value: "1d" }]),
+  ctminmember: ctEdit(`ctminmember ${ctId} 1d`, [{ name: "Minimum Community Membership", value: "1d" }]),
   ctresponsemode: ctEdit(`ctresponsemode ${ctId} Random`, [
     { name: "Response Mode", value: "Random" },
     { name: "Extra Responses", value: "2" },
@@ -299,10 +299,10 @@ export const automationPreviews: Record<string, CommandPreview> = {
     description: "**Release**\nTasks for the next release",
     timestamp: TIME,
   }),
-  todocreateserverlist: reply("todocreateserverlist Roadmap Plans for the whole server", {
+  todocreateserverlist: reply("todocreateserverlist Roadmap Plans for the whole community", {
     color: BLUE,
-    title: "🌐 Server todo list created successfully!",
-    description: "**Roadmap**\nPlans for the whole server",
+    title: "🌐 Community todo list created successfully!",
+    description: "**Roadmap**\nPlans for the whole community",
     timestamp: TIME,
   }),
   todolists: reply("todolists", {

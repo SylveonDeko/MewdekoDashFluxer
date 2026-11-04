@@ -978,7 +978,7 @@
         {#if panelButtons.length > 0}
           {#each panelButtons as button}
             <div class="p-4 rounded-xl transition-all"
-                 style="background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15); border: 1px solid {$colorStore.primary}20;">
+                 style="background: {$colorStore.primary}0c; border: 1px solid {$colorStore.primary}20;">
               {#if editingButtonId === button.id}
                 <!-- Inline Button Editor -->
                 <div class="space-y-4">
@@ -1375,7 +1375,7 @@
           {#each panelSelectMenus as menu}
             {@const atLimit = panelEntriesLeft < 1}
             <div class="p-4 rounded-xl"
-                 style="background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15); border: 1px solid {$colorStore.accent}20;">
+                 style="background: {$colorStore.primary}0c; border: 1px solid {$colorStore.accent}20;">
               <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
                 <div class="flex-1 w-full min-w-0">
                   {#if editingMenuId === menu.id}
@@ -2115,7 +2115,7 @@
   </div>
 {:else}
   <div class="text-center py-24 rounded-xl"
-       style="background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15); border: 1px dashed {$colorStore.primary}20;">
+       style="background: {$colorStore.primary}0c; border: 1px dashed {$colorStore.primary}20;">
     <i class="fa-solid fa-hand-pointer" style="color: {$colorStore.muted}; font-size: 64px; opacity: 0.2;"></i>
     <p class="mt-6 text-lg font-medium" style="color: {$colorStore.text}">{m.tickets.panelsSelectPanel()}</p>
     <p class="text-sm mt-2" style="color: {$colorStore.muted}">{m.tickets.casesSelectPromptHint()}</p>

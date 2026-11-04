@@ -5,7 +5,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "xpsettings",
-        "Description": "Shows the server's XP settings.",
+        "Description": "Shows the community's XP settings.",
         "Example": [
           ".xpsettings "
         ],
@@ -227,7 +227,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "syncallxproles",
-        "Description": "Synchronizes XP roles for all users in the guild.",
+        "Description": "Synchronizes XP roles for all users in the community.",
         "Example": [
           ".syncallxproles "
         ],
@@ -240,7 +240,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "setxpmultiplier",
-        "Description": "Sets the server-wide XP multiplier.",
+        "Description": "Sets the community-wide XP multiplier.",
         "Example": [
           ".setxpmultiplier number"
         ],
@@ -502,7 +502,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "levelupmessages",
-        "Description": "Lists all custom level-up messages for this server.",
+        "Description": "Lists all custom level-up messages for this community.",
         "Example": [
           ".levelupmessages "
         ],
@@ -541,7 +541,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "leaderboard",
-        "Description": "Shows the XP leaderboard for the server.",
+        "Description": "Shows the XP leaderboard for the community.",
         "Example": [
           ".leaderboard "
         ],
@@ -719,7 +719,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "wotdthreadname",
-        "Description": "Sets the name template for the discussion thread. Supports %wotd.word%, %wotd.date%, %wotd.pos%, and server placeholders. Send with no text to view the current template, or \"clear\" to reset.",
+        "Description": "Sets the name template for the discussion thread. Supports %wotd.word%, %wotd.date%, %wotd.pos%, and community placeholders. Send with no text to view the current template, or \"clear\" to reset.",
         "Example": [
           ".wotdthreadname ",
           ".wotdthreadname Sentence challenge: %wotd.word%",
@@ -774,7 +774,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "wotdreset",
-        "Description": "Resets all word of the day settings, custom words, and history for this server.",
+        "Description": "Resets all word of the day settings, custom words, and history for this community.",
         "Example": [
           ".wotdreset "
         ],
@@ -787,7 +787,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "wotdremove",
-        "Description": "Removes a word from this server's custom word list.",
+        "Description": "Removes a word from this community's custom word list.",
         "Example": [
           ".wotdremove serendipity"
         ],
@@ -900,7 +900,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "wotdlist",
-        "Description": "Lists this server's custom words and how often each has been posted.",
+        "Description": "Lists this community's custom words and how often each has been posted.",
         "Example": [
           ".wotdlist "
         ],
@@ -995,7 +995,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "wotdadd",
-        "Description": "Adds a word to this server's custom word list. If no definition is given, one is looked up automatically.",
+        "Description": "Adds a word to this community's custom word list. If no definition is given, one is looked up automatically.",
         "Example": [
           ".wotdadd serendipity",
           ".wotdadd petrichor The pleasant smell after rain on dry ground"
@@ -1371,7 +1371,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "serverid",
-        "Description": "Gets the server id of the current server.",
+        "Description": "Gets the community id of the current community.",
         "Example": [
           ".serverid "
         ],
@@ -1441,7 +1441,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "roles",
-        "Description": "Gets a list of roles in the current server. Shows a user's roles if a user is specified.",
+        "Description": "Gets a list of roles in the current community. Shows a user's roles if a user is specified.",
         "Example": [
           ".roles [@target]"
         ],
@@ -1521,7 +1521,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "invite",
-        "Description": "Gets the bots invite link. As well as showing the website, docs, and support server.",
+        "Description": "Gets the bots invite link. As well as showing the website, docs, and support community.",
         "Example": [
           ".invite "
         ],
@@ -1588,7 +1588,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "emotelist",
-        "Description": "Gets the emotes in a guild. If an emote type is specified, only the emotes of that type will be listed.",
+        "Description": "Gets the emotes in a community. If an emote type is specified, only the emotes of that type will be listed.",
         "Example": [
           ".emotelist [emotetype]"
         ],
@@ -1785,7 +1785,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "aiwebhook",
-        "Description": "Sets the webhook for AI responses in this guild.",
+        "Description": "Sets the webhook for AI responses in this community.",
         "Example": [
           ".aiwebhook [name] [avatar]"
         ],
@@ -1912,7 +1912,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "removeautopublish",
-        "Description": "Disables auto-publishing for a specified news channel within the guild.",
+        "Description": "Disables auto-publishing for a specified news channel within the community.",
         "Example": [
           ".removeautopublish channel"
         ],
@@ -1968,7 +1968,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "addautopublish",
-        "Description": "Enables auto-publishing for a specified news channel within the guild.",
+        "Description": "Enables auto-publishing for a specified news channel within the community.",
         "Example": [
           ".addautopublish channel"
         ],
@@ -2038,7 +2038,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "aliaslist",
-        "Description": "Lists all command aliases currently set for the guild.",
+        "Description": "Lists all command aliases currently set for the community.",
         "Example": [
           ".aliaslist "
         ],
@@ -2052,7 +2052,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "aliasesclear",
-        "Description": "Clears all command aliases for the guild.",
+        "Description": "Clears all command aliases for the community.",
         "Example": [
           ".aliasesclear "
         ],
@@ -2081,7 +2081,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "guildembedsave",
-        "Description": "Saves an embed template for guild use (requires ManageMessages permission).",
+        "Description": "Saves an embed template for community use (requires ManageMessages permission).",
         "Example": [
           ".guildembedsave name",
           ".guildembedsave embedJson"
@@ -2096,7 +2096,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "guildembedlist",
-        "Description": "Lists all guild embed templates.",
+        "Description": "Lists all community embed templates.",
         "Example": [
           ".guildembedlist "
         ],
@@ -2110,7 +2110,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "guildembeddelete",
-        "Description": "Deletes a guild embed template (requires ManageMessages permission).",
+        "Description": "Deletes a community embed template (requires ManageMessages permission).",
         "Example": [
           ".guildembeddelete name"
         ],
@@ -2209,7 +2209,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "serverinfo",
-        "Description": "Displays detailed information about the server.",
+        "Description": "Displays detailed information about the community.",
         "Example": [
           ".serverinfo [guildName]"
         ],
@@ -2223,7 +2223,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "rinfo",
-        "Description": "Displays information about a specified role within the guild.",
+        "Description": "Displays information about a specified role within the community.",
         "Example": [
           ".rinfo @role"
         ],
@@ -2265,7 +2265,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "avatar",
-        "Description": "Displays the avatar of a specified user or the command invoker. Has a button to view the guild avatar if available.",
+        "Description": "Displays the avatar of a specified user or the command invoker. Has a button to view the community avatar if available.",
         "Example": [
           ".avatar [@usr]"
         ],
@@ -2293,7 +2293,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "toggleremoveinviteonleave",
-        "Description": "Toggles whether invites should be removed when a user leaves the guild.",
+        "Description": "Toggles whether invites should be removed when a user leaves the community.",
         "Example": [
           ".toggleremoveinviteonleave "
         ],
@@ -2307,7 +2307,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "toggleinvitetracking",
-        "Description": "Toggles invite tracking for the guild.",
+        "Description": "Toggles invite tracking for the community.",
         "Example": [
           ".toggleinvitetracking "
         ],
@@ -2377,7 +2377,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "resetinvites",
-        "Description": "Resets invites for one user, for everyone in the server, or only for inviters who have since left.",
+        "Description": "Resets invites for one user, for everyone in the community, or only for inviters who have since left.",
         "Example": [
           ".resetinvites @user",
           ".resetinvites Server",
@@ -2393,7 +2393,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "resetinvites",
-        "Description": "Resets invites for one user, for everyone in the server, or only for inviters who have since left.",
+        "Description": "Resets invites for one user, for everyone in the community, or only for inviters who have since left.",
         "Example": [
           ".resetinvites @user",
           ".resetinvites Server",
@@ -2481,7 +2481,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "invitesettings",
-        "Description": "Displays the current invite settings for the guild.",
+        "Description": "Displays the current invite settings for the community.",
         "Example": [
           ".invitesettings "
         ],
@@ -2510,7 +2510,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "invitemassbancode",
-        "Description": "Bans every member who is still in the server and joined through an invite code. Asks for confirmation first.",
+        "Description": "Bans every member who is still in the community and joined through an invite code. Asks for confirmation first.",
         "Example": [
           ".invitemassbancode abc123 [reason]"
         ],
@@ -2524,7 +2524,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "invitemassban",
-        "Description": "Bans every member who is still in the server and was invited by a user. Asks for confirmation first.",
+        "Description": "Bans every member who is still in the community and was invited by a user. Asks for confirmation first.",
         "Example": [
           ".invitemassban @user [reason]"
         ],
@@ -2794,7 +2794,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "deleteinvite",
-        "Description": "Deletes an invite code from the server.",
+        "Description": "Deletes an invite code from the community.",
         "Example": [
           ".deleteinvite abc123"
         ],
@@ -2878,7 +2878,7 @@
         "BotVersion": "8",
         "IsDragon": true,
         "CommandName": "leavestats",
-        "Description": "Generates and sends a graph displaying the leave statistics of the server.",
+        "Description": "Generates and sends a graph displaying the leave statistics of the community.",
         "Example": [
           ".leavestats "
         ],
@@ -2920,7 +2920,7 @@
         "BotVersion": "8",
         "IsDragon": true,
         "CommandName": "joinstats",
-        "Description": "Generates and sends a graph displaying the join statistics of the server.",
+        "Description": "Generates and sends a graph displaying the join statistics of the community.",
         "Example": [
           ".joinstats "
         ],
@@ -2934,7 +2934,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "previewlinks",
-        "Description": "Toggles link previews on or off for the server.",
+        "Description": "Toggles link previews on or off for the community.",
         "Example": [
           ".previewlinks text"
         ],
@@ -3050,7 +3050,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "servermessages",
-        "Description": "Retrieves message statistics for the entire server.",
+        "Description": "Retrieves message statistics for the entire community.",
         "Example": [
           ".servermessages "
         ],
@@ -3120,7 +3120,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "activitygraph",
-        "Description": "Displays a graph of the busiest hours and days in the server.",
+        "Description": "Displays a graph of the busiest hours and days in the community.",
         "Example": [
           ".activitygraph graphtype.days"
         ],
@@ -3217,7 +3217,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "quoteexport",
-        "Description": "Exports all quotes from the guild in JSON format.",
+        "Description": "Exports all quotes from the community in JSON format.",
         "Example": [],
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
@@ -3257,7 +3257,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "listquotes",
-        "Description": "Lists quotes in the guild on a specific page. Quotes can be ordered by keyword or date added.",
+        "Description": "Lists quotes in the community on a specific page. Quotes can be ordered by keyword or date added.",
         "Example": [
           ".listquotes ordertype.keyword"
         ],
@@ -3271,7 +3271,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "listquotes",
-        "Description": "Lists quotes in the guild on a specific page. Quotes can be ordered by keyword or date added.",
+        "Description": "Lists quotes in the community on a specific page. Quotes can be ordered by keyword or date added.",
         "Example": [
           ".listquotes ordertype.keyword"
         ],
@@ -3500,7 +3500,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "repeatlist",
-        "Description": "Lists all active repeaters in the guild.",
+        "Description": "Lists all active repeaters in the community.",
         "Example": [
           ".repeatlist "
         ],
@@ -3885,7 +3885,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "greetdmoptout",
-        "Description": "Allows a user to toggle opting out of greet dms. Only works if the server they are joining uses mewdeko for dm greets.",
+        "Description": "Allows a user to toggle opting out of greet dms. Only works if the community they are joining uses mewdeko for dm greets.",
         "Example": [
           ".greetdmoptout "
         ],
@@ -4092,7 +4092,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "twitchset",
-        "Description": "Sets the Twitch channel the bot joins for this server.",
+        "Description": "Sets the Twitch channel the bot joins for this community.",
         "Example": [
           ".twitchset twitchChannel",
           ".twitchset prefix"
@@ -4173,7 +4173,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "twitchremove",
-        "Description": "Removes the Twitch channel setup of this server and leaves the channel.",
+        "Description": "Removes the Twitch channel setup of this community and leaves the channel.",
         "Example": [
           ".twitchremove "
         ],
@@ -4334,7 +4334,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "twitchlinks",
-        "Description": "Lists the member to Twitch account links of this server.",
+        "Description": "Lists the member to Twitch account links of this community.",
         "Example": [
           ".twitchlinks "
         ],
@@ -4361,7 +4361,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "twitchlanguage",
-        "Description": "Sets the language of Twitch chat responses, overriding the server locale. Leave empty to reset.",
+        "Description": "Sets the language of Twitch chat responses, overriding the community locale. Leave empty to reset.",
         "Example": [
           ".twitchlanguage languageTag"
         ],
@@ -4401,7 +4401,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "twitchenable",
-        "Description": "Enables the Twitch integration of this server.",
+        "Description": "Enables the Twitch integration of this community.",
         "Example": [
           ".twitchenable "
         ],
@@ -4454,7 +4454,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "twitchconfig",
-        "Description": "Shows the Twitch configuration of this server.",
+        "Description": "Shows the Twitch configuration of this community.",
         "Example": [
           ".twitchconfig "
         ],
@@ -4762,7 +4762,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "todocreateserverlist",
-        "Description": "Creates a new server-wide todo list (admin only)",
+        "Description": "Creates a new community-wide todo list (admin only)",
         "Example": [
           ".todocreateserverlist name",
           ".todocreateserverlist description"
@@ -5010,7 +5010,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "ticketstats",
-        "Description": "Shows ticket statistics for the guild.",
+        "Description": "Shows ticket statistics for the community.",
         "Example": [
           ".ticketstats "
         ],
@@ -5472,7 +5472,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "checkpanels",
-        "Description": "Checks all panels in the guild for missing messages.",
+        "Description": "Checks all panels in the community for missing messages.",
         "Example": [
           ".checkpanels "
         ],
@@ -5485,7 +5485,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "ticketlistpanels",
-        "Description": "Lists all ticket panels in the guild",
+        "Description": "Lists all ticket panels in the community",
         "Example": [
           ".ticketlistpanels "
         ],
@@ -5613,7 +5613,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "panellist",
-        "Description": "Lists all ticket panels in the guild.",
+        "Description": "Lists all ticket panels in the community.",
         "Example": [
           ".panellist "
         ],
@@ -5857,7 +5857,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "suggestclear",
-        "Description": "Clears all suggestions from the server.",
+        "Description": "Clears all suggestions from the community.",
         "Example": [
           ".suggestclear "
         ],
@@ -5883,7 +5883,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "setsuggestchannel",
-        "Description": "Sets or disables the suggestion channel for the server.",
+        "Description": "Sets or disables the suggestion channel for the community.",
         "Example": [
           ".setsuggestchannel [@channel]"
         ],
@@ -6628,7 +6628,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "statchannellist",
-        "Description": "Lists all stat channels for this server.",
+        "Description": "Lists all stat channels for this community.",
         "Example": [
           ".statchannellist "
         ],
@@ -6667,7 +6667,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "statchannelcreate",
-        "Description": "Creates a new locked voice channel displaying a server stat. The bot will create and manage the channel.",
+        "Description": "Creates a new locked voice channel displaying a community stat. The bot will create and manage the channel.",
         "Example": [
           ".statchannelcreate TotalMembers [template]"
         ],
@@ -6741,7 +6741,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "starboardstats",
-        "Description": "Shows starboard statistics for the guild.",
+        "Description": "Shows starboard statistics for the community.",
         "Example": [
           ".starboardstats "
         ],
@@ -6858,7 +6858,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "liststarboards",
-        "Description": "Lists all starboard configurations in the guild.",
+        "Description": "Lists all starboard configurations in the community.",
         "Example": [
           ".liststarboards "
         ],
@@ -6871,7 +6871,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "deletestarboard",
-        "Description": "Removes a starboard configuration from the guild.",
+        "Description": "Removes a starboard configuration from the community.",
         "Example": [
           ".deletestarboard number"
         ],
@@ -6884,7 +6884,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "createstarboard",
-        "Description": "Creates a new starboard configuration for the guild.",
+        "Description": "Creates a new starboard configuration for the community.",
         "Example": [
           ".createstarboard channel emote 1",
           ".createstarboard channel emote"
@@ -6916,7 +6916,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "serverreportshow",
-        "Description": "Shows whether server reports are enabled, where they are posted and how often.",
+        "Description": "Shows whether community reports are enabled, where they are posted and how often.",
         "Example": [
           ".serverreportshow "
         ],
@@ -6929,7 +6929,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "serverreportnow",
-        "Description": "Posts a server report right now in the current channel, covering the given period or the configured one.",
+        "Description": "Posts a community report right now in the current channel, covering the given period or the configured one.",
         "Example": [
           ".serverreportnow [Weekly]"
         ],
@@ -6942,7 +6942,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "serverreportfrequency",
-        "Description": "Sets how often server reports are posted: Daily, Weekly or Monthly.",
+        "Description": "Sets how often community reports are posted: Daily, Weekly or Monthly.",
         "Example": [
           ".serverreportfrequency Weekly"
         ],
@@ -6955,7 +6955,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "serverreportchannel",
-        "Description": "Sets the channel that receives scheduled server reports and enables them. Omit the channel to disable reports.",
+        "Description": "Sets the channel that receives scheduled community reports and enables them. Omit the channel to disable reports.",
         "Example": [
           ".serverreportchannel [#channel]"
         ],
@@ -7132,7 +7132,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "statsprivacy",
-        "Description": "Opts you out of activity stats in every server, permanently deleting your recorded message and voice stats, or opts you back in.",
+        "Description": "Opts you out of activity stats in every community, permanently deleting your recorded message and voice stats, or opts you back in.",
         "Example": [
           ".statsprivacy "
         ],
@@ -7296,7 +7296,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "serveractivity",
-        "Description": "Shows the server's activity summary for a window: messages, voice time, contributors, joins and leaves, and the most active member and channels. Use 0 for all time.",
+        "Description": "Shows the community's activity summary for a window: messages, voice time, contributors, joins and leaves, and the most active member and channels. Use 0 for all time.",
         "Example": [
           ".serveractivity [days]",
           ".serveractivity 7",
@@ -7383,7 +7383,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "steal",
-        "Description": "Steals emotes from other servers.",
+        "Description": "Steals emotes from other communities.",
         "Example": [
           ".steal emotes"
         ],
@@ -7396,7 +7396,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "setsplash",
-        "Description": "Sets the splash image of the server.",
+        "Description": "Sets the splash image of the community.",
         "Example": [
           ".setsplash text"
         ],
@@ -7409,7 +7409,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "setservername",
-        "Description": "Sets the name of the server.",
+        "Description": "Sets the name of the community.",
         "Example": [
           ".setservername text"
         ],
@@ -7422,7 +7422,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "seticon",
-        "Description": "Sets the icon of the server.",
+        "Description": "Sets the icon of the community.",
         "Example": [
           ".seticon text"
         ],
@@ -7435,7 +7435,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "setbanner",
-        "Description": "Sets the banner of the server.",
+        "Description": "Sets the banner of the community.",
         "Example": [
           ".setbanner text"
         ],
@@ -7448,7 +7448,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "renameemote",
-        "Description": "Renames an existing emote on the server.",
+        "Description": "Renames an existing emote on the community.",
         "Example": [
           ".renameemote text text"
         ],
@@ -7461,7 +7461,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "removeemote",
-        "Description": "Removes an emote from the server.",
+        "Description": "Removes an emote from the community.",
         "Example": [
           ".removeemote text"
         ],
@@ -7513,7 +7513,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "addemote",
-        "Description": "Adds a new emote to the server.",
+        "Description": "Adds a new emote to the community.",
         "Example": [
           ".addemote <name> [url]",
           ".addemote text"
@@ -7555,7 +7555,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "unlockdown",
-        "Description": "Unlocks the server by allowing @everyone to send messages again.",
+        "Description": "Unlocks the community by allowing @everyone to send messages again.",
         "Example": [
           ".unlockdown "
         ],
@@ -7681,7 +7681,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "lockdown",
-        "Description": "Locks down the server based on the specified lockdown type (Joins, Readonly, Full).",
+        "Description": "Locks down the community based on the specified lockdown type (Joins, Readonly, Full).",
         "Example": [
           ".lockdown lockdowntype.readonly punishmentaction.ban false"
         ],
@@ -7808,7 +7808,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "syncroletoallchannels",
-        "Description": "Synchronizes a role's permissions to all text channels within the guild.",
+        "Description": "Synchronizes a role's permissions to all text channels within the community.",
         "Example": [
           ".syncroletoallchannels @role"
         ],
@@ -7822,7 +7822,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "syncroletoallcategories",
-        "Description": "Synchronizes a role's permissions to all categories within the guild.",
+        "Description": "Synchronizes a role's permissions to all categories within the community.",
         "Example": [
           ".syncroletoallcategories @role"
         ],
@@ -7836,7 +7836,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "syncroletoall",
-        "Description": "Synchronizes a role's permissions to all text channels and categories within the guild.",
+        "Description": "Synchronizes a role's permissions to all text channels and categories within the community.",
         "Example": [
           ".syncroletoall @role"
         ],
@@ -7963,7 +7963,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "removefromallbots",
-        "Description": "Removes a specified role from all bots in the server.",
+        "Description": "Removes a specified role from all bots in the community.",
         "Example": [
           ".removefromallbots @role"
         ],
@@ -7977,7 +7977,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "removefromall",
-        "Description": "Removes a specified role from all server members.",
+        "Description": "Removes a specified role from all community members.",
         "Example": [
           ".removefromall @role"
         ],
@@ -8019,7 +8019,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "deleteroles",
-        "Description": "Deletes a list of roles from the guild.",
+        "Description": "Deletes a list of roles from the community.",
         "Example": [
           ".deleteroles @role"
         ],
@@ -8033,7 +8033,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "createroles",
-        "Description": "Creates multiple roles within the guild based on a provided list of role names.",
+        "Description": "Creates multiple roles within the community based on a provided list of role names.",
         "Example": [
           ".createroles text"
         ],
@@ -8090,7 +8090,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "addtoallusers",
-        "Description": "Adds a specified role to all human users in the server, excluding bots.",
+        "Description": "Adds a specified role to all human users in the community, excluding bots.",
         "Example": [
           ".addtoallusers @role"
         ],
@@ -8104,7 +8104,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "addtoallbots",
-        "Description": "Adds a specified role to all bots in the server.",
+        "Description": "Adds a specified role to all bots in the community.",
         "Example": [
           ".addtoallbots @role"
         ],
@@ -8118,7 +8118,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "addtoall",
-        "Description": "Adds a specified role to all server members.",
+        "Description": "Adds a specified role to all community members.",
         "Example": [
           ".addtoall @role"
         ],
@@ -8174,7 +8174,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "setdefaultpunishment",
-        "Description": "Sets the default punishment action for the guild.",
+        "Description": "Sets the default punishment action for the community.",
         "Example": [
           ".setdefaultpunishment punishmentaction"
         ],
@@ -9177,7 +9177,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "mal",
-        "Description": "Retrieves and displays information about a MyAnimeList profile for a specified user in the current guild.",
+        "Description": "Retrieves and displays information about a MyAnimeList profile for a specified user in the current community.",
         "Example": [
           ".mal text"
         ],
@@ -9191,7 +9191,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "mal",
-        "Description": "Retrieves and displays information about a MyAnimeList profile for a specified user in the current guild.",
+        "Description": "Retrieves and displays information about a MyAnimeList profile for a specified user in the current community.",
         "Example": [
           ".mal text"
         ],
@@ -9261,7 +9261,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "feedremove",
-        "Description": "Removes an RSS feed from the guild's feed list.",
+        "Description": "Removes an RSS feed from the community's feed list.",
         "Example": [
           ".feedremove number"
         ],
@@ -9289,7 +9289,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "feedlist",
-        "Description": "Lists all RSS feeds added to the guild.",
+        "Description": "Lists all RSS feeds added to the community.",
         "Example": [
           ".feedlist "
         ],
@@ -9303,7 +9303,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "feedadd",
-        "Description": "Adds a new RSS feed to the guild's feed list.",
+        "Description": "Adds a new RSS feed to the community's feed list.",
         "Example": [
           ".feedadd <url> [@channel]",
           ".feedadd text"
@@ -9476,7 +9476,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "streamtemplate",
-        "Description": "Sets or shows the custom stream notification message template for all streams in the guild.",
+        "Description": "Sets or shows the custom stream notification message template for all streams in the community.",
         "Example": [
           ".streamtemplate text"
         ],
@@ -9490,7 +9490,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "streamsclear",
-        "Description": "Clears all streams from the guild's notification list.",
+        "Description": "Clears all streams from the community's notification list.",
         "Example": [
           ".streamsclear "
         ],
@@ -9533,7 +9533,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "streamoffline",
-        "Description": "Toggles the setting for notifying the guild when a followed stream goes offline.",
+        "Description": "Toggles the setting for notifying the community when a followed stream goes offline.",
         "Example": [
           ".streamoffline "
         ],
@@ -9547,7 +9547,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "streammessage",
-        "Description": "Sets a custom notification message for a specific stream in the guild's notification list.",
+        "Description": "Sets a custom notification message for a specific stream in the community's notification list.",
         "Example": [
           ".streammessage number text"
         ],
@@ -9561,7 +9561,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "streamlist",
-        "Description": "Lists all streams currently followed by the guild.",
+        "Description": "Lists all streams currently followed by the community.",
         "Example": [
           ".streamlist "
         ],
@@ -9589,7 +9589,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "streamadd",
-        "Description": "Adds a new stream to the notification list for the current guild.",
+        "Description": "Adds a new stream to the notification list for the current community.",
         "Example": [
           ".streamadd text"
         ],
@@ -9706,7 +9706,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "viewrolestates",
-        "Description": "Views all user role states in the server.",
+        "Description": "Views all user role states in the community.",
         "Example": [
           ".viewrolestates "
         ],
@@ -9719,7 +9719,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "transferrolestates",
-        "Description": "Transfers role states from the current server to another server.",
+        "Description": "Transfers role states from the current community to another community.",
         "Example": [
           ".transferrolestates serverid"
         ],
@@ -9797,7 +9797,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "saveallrolestates",
-        "Description": "Saves role states for all users in the server.",
+        "Description": "Saves role states for all users in the community.",
         "Example": [
           ".saveallrolestates "
         ],
@@ -9919,7 +9919,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "rolemenus",
-        "Description": "Lists every role menu in this server with its channel, number of options, and status.",
+        "Description": "Lists every role menu in this community with its channel, number of options, and status.",
         "Example": [
           ".rolemenus "
         ],
@@ -10182,7 +10182,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "rolegreetlist",
-        "Description": "Lists all role greets set up in the guild, providing detailed information for each.",
+        "Description": "Lists all role greets set up in the community, providing detailed information for each.",
         "Example": [
           ".rolegreetlist "
         ],
@@ -10266,7 +10266,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "toprep",
-        "Description": "Shows the reputation leaderboard for the server.",
+        "Description": "Shows the reputation leaderboard for the community.",
         "Example": [
           ".toprep number"
         ],
@@ -10279,7 +10279,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "reptop",
-        "Description": "Shows the reputation leaderboard for the server.",
+        "Description": "Shows the reputation leaderboard for the community.",
         "Example": [
           ".reptop number"
         ],
@@ -10305,7 +10305,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "repleaderboard",
-        "Description": "Shows the reputation leaderboard for the server.",
+        "Description": "Shows the reputation leaderboard for the community.",
         "Example": [
           ".repleaderboard number"
         ],
@@ -10318,7 +10318,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "replb",
-        "Description": "Shows the reputation leaderboard for the server.",
+        "Description": "Shows the reputation leaderboard for the community.",
         "Example": [
           ".replb number"
         ],
@@ -10490,7 +10490,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "reptypelist",
-        "Description": "Lists all custom reputation types for this server.",
+        "Description": "Lists all custom reputation types for this community.",
         "Example": [
           ".reptypelist "
         ],
@@ -10606,7 +10606,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "represet",
-        "Description": "Resets reputation for a user or all users in the server.",
+        "Description": "Resets reputation for a user or all users in the community.",
         "Example": [
           ".represet text"
         ],
@@ -10704,7 +10704,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "repminmembership",
-        "Description": "Sets the minimum server membership time required to give reputation.",
+        "Description": "Sets the minimum community membership time required to give reputation.",
         "Example": [
           ".repminmembership hours"
         ],
@@ -10830,7 +10830,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "repenable",
-        "Description": "Enables or disables the reputation system for this server.",
+        "Description": "Enables or disables the reputation system for this community.",
         "Example": [
           ".repenable enabled"
         ],
@@ -10942,7 +10942,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "repcommandreqlist",
-        "Description": "Lists all command requirements for the server.",
+        "Description": "Lists all command requirements for the community.",
         "Example": [
           ".repcommandreqlist "
         ],
@@ -11086,7 +11086,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "srvrmdl",
-        "Description": "Adds or removes server-level permissions for a specific module.",
+        "Description": "Adds or removes community-level permissions for a specific module.",
         "Example": [
           ".srvrmdl module action"
         ],
@@ -11099,7 +11099,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "srvrcmd",
-        "Description": "Enables or disables a command in the server.",
+        "Description": "Enables or disables a command in the community.",
         "Example": [
           ".srvrcmd command action"
         ],
@@ -11138,7 +11138,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "resetperms",
-        "Description": "Resets the permissions for the guild.",
+        "Description": "Resets the permissions for the community.",
         "Example": [
           ".resetperms "
         ],
@@ -11203,7 +11203,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "listperms",
-        "Description": "Lists the permissions for the guild.",
+        "Description": "Lists the permissions for the community.",
         "Example": [
           ".listperms "
         ],
@@ -11281,7 +11281,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "allsrvrmdls",
-        "Description": "Adds or removes permissions for all modules for the entire server.",
+        "Description": "Adds or removes permissions for all modules for the entire community.",
         "Example": [
           ".allsrvrmdls action"
         ],
@@ -11363,7 +11363,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "serverblacklist",
-        "Description": "Blacklists or unblacklists a server by its guild object, with an optional reason.",
+        "Description": "Blacklists or unblacklists a community by its ID, with an optional reason.",
         "Example": [
           ".serverblacklist action id text",
           ".serverblacklist action id"
@@ -11378,7 +11378,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "serverblacklist",
-        "Description": "Blacklists or unblacklists a server by its guild object, with an optional reason.",
+        "Description": "Blacklists or unblacklists a community by its ID, with an optional reason.",
         "Example": [
           ".serverblacklist action id text",
           ".serverblacklist action id"
@@ -11422,7 +11422,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "cmdcooldown",
-        "Description": "Sets or clears the cooldown for a specified command in the guild.",
+        "Description": "Sets or clears the cooldown for a specified command in the community.",
         "Example": [
           ".cmdcooldown <command> [time]",
           ".cmdcooldown command"
@@ -11437,7 +11437,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "allcmdcooldowns",
-        "Description": "Displays all commands with active cooldowns in the guild.",
+        "Description": "Displays all commands with active cooldowns in the community.",
         "Example": [
           ".allcmdcooldowns "
         ],
@@ -11451,7 +11451,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "srvrfilterwords",
-        "Description": "Toggles the server-wide word filter on or off.",
+        "Description": "Toggles the community-wide word filter on or off.",
         "Example": [
           ".srvrfilterwords "
         ],
@@ -11465,7 +11465,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "srvrfilterlin",
-        "Description": "Toggles the server-wide link filter on or off.",
+        "Description": "Toggles the community-wide link filter on or off.",
         "Example": [
           ".srvrfilterlin "
         ],
@@ -11479,7 +11479,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "srvrfilterinv",
-        "Description": "Toggles the server-wide invite link filter on or off.",
+        "Description": "Toggles the community-wide invite link filter on or off.",
         "Example": [
           ".srvrfilterinv "
         ],
@@ -11493,7 +11493,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "lstfilterwords",
-        "Description": "Lists all words currently on the filtered words list for the current guild.",
+        "Description": "Lists all words currently on the filtered words list for the current community.",
         "Example": [
           ".lstfilterwords "
         ],
@@ -11507,7 +11507,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "invwarn",
-        "Description": "Enables or disables warnings for invite links posted in the current guild.",
+        "Description": "Enables or disables warnings for invite links posted in the current community.",
         "Example": [
           ".invwarn text"
         ],
@@ -11521,7 +11521,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "fwclear",
-        "Description": "Clears all filtered words for the current guild.",
+        "Description": "Clears all filtered words for the current community.",
         "Example": [
           ".fwclear "
         ],
@@ -11535,7 +11535,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "fwarn",
-        "Description": "Enables or disables warnings for filtered words in the current guild.",
+        "Description": "Enables or disables warnings for filtered words in the current community.",
         "Example": [
           ".fwarn text"
         ],
@@ -11549,7 +11549,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "filterword",
-        "Description": "Adds or removes a word from the filtered words list in the current guild.",
+        "Description": "Adds or removes a word from the filtered words list in the current community.",
         "Example": [
           ".filterword text"
         ],
@@ -11605,7 +11605,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "autobanwordlist",
-        "Description": "Displays a paginated list of all words on the automatic ban list for the current guild.",
+        "Description": "Displays a paginated list of all words on the automatic ban list for the current community.",
         "Example": [
           ".autobanwordlist "
         ],
@@ -11619,7 +11619,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "autobanword",
-        "Description": "Toggles a word on or off the automatic ban list for the current guild.",
+        "Description": "Toggles a word on or off the automatic ban list for the current community.",
         "Example": [
           ".autobanword text"
         ],
@@ -11863,7 +11863,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "patreondisable",
-        "Description": "Disables Patreon announcements for this server.",
+        "Description": "Disables Patreon announcements for this community.",
         "Example": [
           ".patreondisable "
         ],
@@ -11889,7 +11889,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "patreonconfig",
-        "Description": "Shows the current Patreon configuration for this server.",
+        "Description": "Shows the current Patreon configuration for this community.",
         "Example": [
           ".patreonconfig "
         ],
@@ -12081,7 +12081,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "topserversupdate",
-        "Description": "Updates the top guilds list. Can only be run on the master instance.",
+        "Description": "Updates the top communities list. Can only be run on the master instance.",
         "Example": [
           ".topserversupdate "
         ],
@@ -12094,7 +12094,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "sudo",
-        "Description": "Executes a command as if it were sent by the owner of the guild.",
+        "Description": "Executes a command as if it were sent by the owner of the community.",
         "Example": [
           ".sudo @user text"
         ],
@@ -12107,7 +12107,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "sudo",
-        "Description": "Executes a command as if it were sent by the owner of the guild.",
+        "Description": "Executes a command as if it were sent by the owner of the community.",
         "Example": [
           ".sudo @user text"
         ],
@@ -12146,7 +12146,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "shardstats",
-        "Description": "Shows the shard this instance runs, with its connection state, server count and member count.",
+        "Description": "Shows the shard this instance runs, with its connection state, community count and member count.",
         "Example": [
           ".shardstats "
         ],
@@ -12320,7 +12320,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "retentionscan",
-        "Description": "Scans every guild scoped table for servers the bot is no longer in and queues them for purging after the grace period.",
+        "Description": "Scans every community-scoped table for communities the bot is no longer in and queues them for purging after the grace period.",
         "Example": [
           ".retentionscan "
         ],
@@ -12346,7 +12346,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "retentionpurgeall",
-        "Description": "Purges every pending server right now, ignoring the grace period. Servers the bot has rejoined are skipped.",
+        "Description": "Purges every pending community right now, ignoring the grace period. Communities the bot has rejoined are skipped.",
         "Example": [
           ".retentionpurgeall "
         ],
@@ -12359,7 +12359,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "retentionpurge",
-        "Description": "Purges a server's data immediately instead of waiting for the grace period. Refuses while the bot is still in it.",
+        "Description": "Purges a community's data immediately instead of waiting for the grace period. Refuses while the bot is still in it.",
         "Example": [
           ".retentionpurge 123456789012345678"
         ],
@@ -12372,7 +12372,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "retentionpending",
-        "Description": "Lists servers the bot has left whose data is waiting to be purged, soonest first.",
+        "Description": "Lists communities the bot has left whose data is waiting to be purged, soonest first.",
         "Example": [
           ".retentionpending "
         ],
@@ -12385,7 +12385,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "retentioncancel",
-        "Description": "Removes a server from the purge queue so its data is kept.",
+        "Description": "Removes a community from the purge queue so its data is kept.",
         "Example": [
           ".retentioncancel 123456789012345678"
         ],
@@ -12424,7 +12424,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "listservers",
-        "Description": "Lists all servers the bot is currently in.",
+        "Description": "Lists all communities the bot is currently in.",
         "Example": [
           ".listservers "
         ],
@@ -12450,7 +12450,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "leaveserver",
-        "Description": "Commands the bot to leave a server.",
+        "Description": "Commands the bot to leave a community.",
         "Example": [
           ".leaveserver text"
         ],
@@ -12463,7 +12463,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "langsetdefault",
-        "Description": "Sets the default language for the server.",
+        "Description": "Sets the default language for the community.",
         "Example": [
           ".langsetdefault language"
         ],
@@ -12580,7 +12580,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "commandstats",
-        "Description": "Retrieves and displays statistics on the most used command, module, guild, and user.",
+        "Description": "Retrieves and displays statistics on the most used command, module, community, and user.",
         "Example": [
           ".commandstats "
         ],
@@ -12593,7 +12593,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "bothells",
-        "Description": "Lists servers littered with bots, based on the bot count and bot percentage thresholds in bot config.",
+        "Description": "Lists communities littered with bots, based on the bot count and bot percentage thresholds in bot config.",
         "Example": [
           ".bothells "
         ],
@@ -12606,7 +12606,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "bothellcheck",
-        "Description": "Checks a single server against the bot hell thresholds after downloading its full member list.",
+        "Description": "Checks a single community against the bot hell thresholds after downloading its full member list.",
         "Example": [
           ".bothellcheck ",
           ".bothellcheck 123456789012345678"
@@ -12690,7 +12690,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "yandere",
-        "Description": "Command to fetch and display NSFW content from the Yandere image board with optional tags in the current guild channel or direct messages.",
+        "Description": "Command to fetch and display NSFW content from the Yandere image board with optional tags in the current community channel or direct messages.",
         "Example": [
           ".yandere text"
         ],
@@ -12703,7 +12703,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "sankaku",
-        "Description": "Command to fetch and display NSFW content from the Sankaku image board with optional tags in the current guild channel or direct messages.",
+        "Description": "Command to fetch and display NSFW content from the Sankaku image board with optional tags in the current community channel or direct messages.",
         "Example": [
           ".sankaku text"
         ],
@@ -12729,7 +12729,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "rule34",
-        "Description": "Command to fetch and display NSFW content from the Rule34 image board with optional tags in the current guild channel or direct messages.",
+        "Description": "Command to fetch and display NSFW content from the Rule34 image board with optional tags in the current community channel or direct messages.",
         "Example": [
           ".rule34 text"
         ],
@@ -12755,7 +12755,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "realbooru",
-        "Description": "Command to fetch and display NSFW content from the Realbooru image board with optional tags in the current guild channel or direct messages.",
+        "Description": "Command to fetch and display NSFW content from the Realbooru image board with optional tags in the current community channel or direct messages.",
         "Example": [
           ".realbooru text"
         ],
@@ -12781,7 +12781,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "pornbomb",
-        "Description": "Command to initiate a \"porn bomb\" by fetching and displaying NSFW content from a RealBooru source with optional tags in the current guild channel or direct messages.",
+        "Description": "Command to initiate a \"porn bomb\" by fetching and displaying NSFW content from a RealBooru source with optional tags in the current community channel or direct messages.",
         "Example": [
           ".pornbomb text"
         ],
@@ -12898,7 +12898,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "konachan",
-        "Description": "Command to fetch and display NSFW content from the Konachan image board with optional tags in the current guild channel or direct messages.",
+        "Description": "Command to fetch and display NSFW content from the Konachan image board with optional tags in the current community channel or direct messages.",
         "Example": [
           ".konachan text"
         ],
@@ -12924,7 +12924,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "hentaibomb",
-        "Description": "Command to initiate a \"hentai bomb\" by fetching and displaying NSFW content from multiple sources with optional tags in the current guild channel or direct messages.",
+        "Description": "Command to initiate a \"hentai bomb\" by fetching and displaying NSFW content from multiple sources with optional tags in the current community channel or direct messages.",
         "Example": [
           ".hentaibomb text"
         ],
@@ -12937,7 +12937,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "hentai",
-        "Description": "Command to fetch and display NSFW content from the \"hentai\" subreddit with optional tags in the current guild channel or direct messages.",
+        "Description": "Command to fetch and display NSFW content from the \"hentai\" subreddit with optional tags in the current community channel or direct messages.",
         "Example": [
           ".hentai text"
         ],
@@ -12950,7 +12950,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "gelbooru",
-        "Description": "Command to fetch and display NSFW content from the Gelbooru image board with optional tags in the current guild channel or direct messages.",
+        "Description": "Command to fetch and display NSFW content from the Gelbooru image board with optional tags in the current community channel or direct messages.",
         "Example": [
           ".gelbooru text"
         ],
@@ -12963,7 +12963,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "e621",
-        "Description": "Command to fetch and display NSFW content from the E621 image board with optional tags in the current guild channel or direct messages.",
+        "Description": "Command to fetch and display NSFW content from the E621 image board with optional tags in the current community channel or direct messages.",
         "Example": [
           ".e621 text"
         ],
@@ -12976,7 +12976,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "derpibooru",
-        "Description": "Command to fetch and display NSFW content from the Derpibooru image board with optional tags in the current guild channel or direct messages.",
+        "Description": "Command to fetch and display NSFW content from the Derpibooru image board with optional tags in the current community channel or direct messages.",
         "Example": [
           ".derpibooru text"
         ],
@@ -12989,7 +12989,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "danbooru",
-        "Description": "Command to fetch and display NSFW content from the Danbooru image board with optional tags in the current guild channel or direct messages.",
+        "Description": "Command to fetch and display NSFW content from the Danbooru image board with optional tags in the current community channel or direct messages.",
         "Example": [
           ".danbooru text"
         ],
@@ -13002,7 +13002,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "butts",
-        "Description": "Command to fetch and display NSFW content from the \"ass\" subreddit in the current guild channel or direct messages.",
+        "Description": "Command to fetch and display NSFW content from the \"ass\" subreddit in the current community channel or direct messages.",
         "Example": [
           ".butts "
         ],
@@ -13015,7 +13015,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "boobs",
-        "Description": "Command to fetch and display NSFW content from the \"boobs\" subreddit in the current guild channel or direct messages.",
+        "Description": "Command to fetch and display NSFW content from the \"boobs\" subreddit in the current community channel or direct messages.",
         "Example": [
           ".boobs "
         ],
@@ -13041,7 +13041,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "autohentai",
-        "Description": "Command to start or stop automatic posting of NSFW content at specified intervals in the current guild channel.",
+        "Description": "Command to start or stop automatic posting of NSFW content at specified intervals in the current community channel.",
         "Example": [
           ".autohentai [interval] [tags]"
         ],
@@ -13054,7 +13054,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "autobutts",
-        "Description": "Command to start or stop automatic posting of NSFW content from the \"butts\" subreddit at specified intervals in the current guild channel or direct messages.",
+        "Description": "Command to start or stop automatic posting of NSFW content from the \"butts\" subreddit at specified intervals in the current community channel or direct messages.",
         "Example": [
           ".autobutts 0"
         ],
@@ -13067,7 +13067,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "autoboobs",
-        "Description": "Command to start or stop automatic posting of NSFW content from the \"boobs\" subreddit at specified intervals in the current guild channel.",
+        "Description": "Command to start or stop automatic posting of NSFW content from the \"boobs\" subreddit at specified intervals in the current community channel.",
         "Example": [
           ".autoboobs 0"
         ],
@@ -13242,7 +13242,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "playlists",
-        "Description": "Lists all saved playlists for the guild.",
+        "Description": "Lists all saved playlists for the community.",
         "Example": [
           ".playlists "
         ],
@@ -13307,7 +13307,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "musicsettings",
-        "Description": "Gets the guilds current settings for music.",
+        "Description": "Gets the community's current settings for music.",
         "Example": [
           ".musicsettings "
         ],
@@ -13320,7 +13320,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "musiclinkchannels",
-        "Description": "Lists the channels in this server where music link conversion is enabled.",
+        "Description": "Lists the channels in this community where music link conversion is enabled.",
         "Example": [
           ".musiclinkchannels "
         ],
@@ -13457,7 +13457,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "fmwhoknowstrack",
-        "Description": "Ranks every linked server member by their play count for a track.",
+        "Description": "Ranks every linked community member by their play count for a track.",
         "Example": [
           ".fmwhoknowstrack artist | track"
         ],
@@ -13470,7 +13470,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "fmwhoknowsalbum",
-        "Description": "Ranks every linked server member by their play count for an album.",
+        "Description": "Ranks every linked community member by their play count for an album.",
         "Example": [
           ".fmwhoknowsalbum artist | album"
         ],
@@ -13483,7 +13483,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "fmwhoknows",
-        "Description": "Ranks every linked server member by their play count for an artist.",
+        "Description": "Ranks every linked community member by their play count for an artist.",
         "Example": [
           ".fmwhoknows [artist]"
         ],
@@ -13564,7 +13564,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "fmcrowns",
-        "Description": "Shows who \"owns\" (has the most plays for) an artist in this server.",
+        "Description": "Shows who \"owns\" (has the most plays for) an artist in this community.",
         "Example": [
           ".fmcrowns [artist]"
         ],
@@ -13657,7 +13657,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "autoplay",
-        "Description": "Sets the autoplay amount in the guild. Uses spotify api so client secret and id must be valid.",
+        "Description": "Sets the autoplay amount in the community. Uses spotify api so client secret and id must be valid.",
         "Example": [
           ".autoplay number"
         ],
@@ -13898,7 +13898,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "ttsvoice",
-        "Description": "Sets your personal TTS voice for this server. Use without arguments to reset to the server default.",
+        "Description": "Sets your personal TTS voice for this community. Use without arguments to reset to the community default.",
         "Example": [
           ".ttsvoice Brian",
           ".ttsvoice "
@@ -13927,7 +13927,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "ttssettings",
-        "Description": "Shows the current TTS settings for this guild and voice channel.",
+        "Description": "Shows the current TTS settings for this community and voice channel.",
         "Example": [
           ".ttssettings "
         ],
@@ -14057,7 +14057,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "ttsdefaultvoice",
-        "Description": "Sets the default TTS voice for the guild. Use without arguments to reset to system default.",
+        "Description": "Sets the default TTS voice for the community. Use without arguments to reset to system default.",
         "Example": [
           ".ttsdefaultvoice Brian",
           ".ttsdefaultvoice "
@@ -14086,7 +14086,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "ttsblocklist",
-        "Description": "Lists all users blocked from TTS in this server.",
+        "Description": "Lists all users blocked from TTS in this community.",
         "Example": [
           ".ttsblocklist "
         ],
@@ -14100,7 +14100,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "ttsblock",
-        "Description": "Blocks or unblocks a user from using TTS in this server. Toggles the block state.",
+        "Description": "Blocks or unblocks a user from using TTS in this community. Toggles the block state.",
         "Example": [
           ".ttsblock @user"
         ],
@@ -14328,7 +14328,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "banprunereset",
-        "Description": "Removes every purge setting in the server.",
+        "Description": "Removes every purge setting in the community.",
         "Example": [
           ".banprunereset "
         ],
@@ -14428,7 +14428,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "unmuteall",
-        "Description": "Unmutes all users in the guild. DANGEROUS!!!!!!!!!!!!!!!!",
+        "Description": "Unmutes all users in the community. DANGEROUS!!!!!!!!!!!!!!!!",
         "Example": [
           ".unmuteall [reason]"
         ],
@@ -14500,7 +14500,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "muterole",
-        "Description": "Sets the mute role for the guild.",
+        "Description": "Sets the mute role for the community.",
         "Example": [
           ".muterole [@role]"
         ],
@@ -14668,7 +14668,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "warnpunishlist",
-        "Description": "Lists the warn punishments for the guild.",
+        "Description": "Lists the warn punishments for the community.",
         "Example": [
           ".warnpunishlist "
         ],
@@ -14899,7 +14899,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "setwarnchannel",
-        "Description": "Sets the warnlog channel for the guild.",
+        "Description": "Sets the warnlog channel for the community.",
         "Example": [
           ".setwarnchannel channel"
         ],
@@ -14913,7 +14913,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "sanitizeall",
-        "Description": "Sanitizes all users in the guild by replacing special characters in their usernames.",
+        "Description": "Sanitizes all users in the community by replacing special characters in their usernames.",
         "Example": [
           ".sanitizeall "
         ],
@@ -15025,7 +15025,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "dehoistall",
-        "Description": "Dehoists all users in the guild by replacing special characters in their nicknames.",
+        "Description": "Dehoists all users in the community by replacing special characters in their nicknames.",
         "Example": [
           ".dehoistall false"
         ],
@@ -15460,7 +15460,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "mcremove",
-        "Description": "Removes a Minecraft server from the guild.",
+        "Description": "Removes a Minecraft server from the community.",
         "Example": [
           ".mcremove name"
         ],
@@ -15499,7 +15499,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "mclist",
-        "Description": "Lists all registered Minecraft servers for this guild.",
+        "Description": "Lists all registered Minecraft servers for this community.",
         "Example": [
           ".mclist "
         ],
@@ -15538,7 +15538,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "mcadd",
-        "Description": "Adds a Minecraft server to the guild. Prefix address with bedrock: for Bedrock servers.",
+        "Description": "Adds a Minecraft server to the community. Prefix address with bedrock: for Bedrock servers.",
         "Example": [
           ".mcadd name address"
         ],
@@ -15952,7 +15952,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "hangmanlist",
-        "Description": "Lists the available hangman types in the current guild.",
+        "Description": "Lists the available hangman types in the current community.",
         "Example": [
           ".hangmanlist "
         ],
@@ -16181,7 +16181,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "polltemplates",
-        "Description": "Lists all poll templates available in the guild.",
+        "Description": "Lists all poll templates available in the community.",
         "Example": [
           ".polltemplates "
         ],
@@ -16259,7 +16259,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "polllist",
-        "Description": "Lists the polls that are still open in the server.",
+        "Description": "Lists the polls that are still open in the community.",
         "Example": [
           ".polllist "
         ],
@@ -16660,7 +16660,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "work",
-        "Description": "Works a shift for a random payout, on a cooldown the server sets.",
+        "Description": "Works a shift for a random payout, on a cooldown the community sets.",
         "Example": [
           ".work "
         ],
@@ -16881,7 +16881,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "shop",
-        "Description": "Lists everything the server currently sells.",
+        "Description": "Lists everything the community currently sells.",
         "Example": [
           ".shop "
         ],
@@ -16894,7 +16894,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "setdaily",
-        "Description": "Sets the daily reward amount and cooldown time for the guild.",
+        "Description": "Sets the daily reward amount and cooldown time for the community.",
         "Example": [
           ".setdaily number time"
         ],
@@ -16986,7 +16986,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "pay",
-        "Description": "Sends currency to another user, minus any transfer tax the server charges.",
+        "Description": "Sends currency to another user, minus any transfer tax the community charges.",
         "Example": [
           ".pay @user <amount>"
         ],
@@ -17120,7 +17120,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "economystats",
-        "Description": "Reports the size and concentration of the server's money supply.",
+        "Description": "Reports the size and concentration of the community's money supply.",
         "Example": [
           ".economystats "
         ],
@@ -17355,7 +17355,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "buy",
-        "Description": "Buys an item from the server shop.",
+        "Description": "Buys an item from the community shop.",
         "Example": [
           ".buy <item name>"
         ],
@@ -17544,7 +17544,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "countinglist",
-        "Description": "Lists all active counting channels in the server.",
+        "Description": "Lists all active counting channels in the community.",
         "Example": [
           ".countinglist "
         ],
@@ -17765,7 +17765,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "countmodshow",
-        "Description": "Shows the current moderation configuration for the counting channel or guild defaults.",
+        "Description": "Shows the current moderation configuration for the counting channel or community defaults.",
         "Example": [
           ".countmodshow channel"
         ],
@@ -17778,7 +17778,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "countmodreset",
-        "Description": "Resets a channel to use guild defaults.",
+        "Description": "Resets a channel to use community defaults.",
         "Example": [
           ".countmodreset channel"
         ],
@@ -17817,7 +17817,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "countmodpunishlist",
-        "Description": "Lists all tiered punishments for the guild or specific channel.",
+        "Description": "Lists all tiered punishments for the community or specific channel.",
         "Example": [
           ".countmodpunishlist channel"
         ],
@@ -17895,7 +17895,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "countmoddefaults",
-        "Description": "Sets guild-wide default moderation settings.",
+        "Description": "Sets community-wide default moderation settings.",
         "Example": [
           ".countmoddefaults enabled threshold windowHours punishment durationMinutes punishmentRole"
         ],
@@ -17978,7 +17978,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "coprmonitorremove",
-        "Description": "Removes a COPR project monitor from the server.",
+        "Description": "Removes a COPR project monitor from the community.",
         "Example": [
           ".coprmonitorremove <ownerProject> [channel]",
           ".coprmonitorremove ownerProject"
@@ -17992,7 +17992,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "coprmonitorlist",
-        "Description": "Lists all COPR monitors configured in the server.",
+        "Description": "Lists all COPR monitors configured in the community.",
         "Example": [
           ".coprmonitorlist "
         ],
@@ -18005,7 +18005,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "coprmonitoradd",
-        "Description": "Adds a COPR project monitor to the server.",
+        "Description": "Adds a COPR project monitor to the community.",
         "Example": [
           ".coprmonitoradd <ownerProject> [channel] [packages]",
           ".coprmonitoradd <ownerProject> [channel] [packages]",
@@ -18177,7 +18177,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "confessreport",
-        "Description": "Reports a server for misuse of confessions.",
+        "Description": "Reports a community for misuse of confessions.",
         "Example": [
           ".confessreport serverId text"
         ],
@@ -18407,7 +18407,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "ctsimport",
-        "Description": "Imports chat trigger settings for the current guild.",
+        "Description": "Imports chat trigger settings for the current community.",
         "Example": [
           ".ctsimport [input]"
         ],
@@ -18420,7 +18420,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "ctsexport",
-        "Description": "Exports chat trigger settings for the current guild.",
+        "Description": "Exports chat trigger settings for the current community.",
         "Example": [
           ".ctsexport "
         ],
@@ -18601,7 +18601,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "ctminmember",
-        "Description": "Sets a minimum server-membership age for a chat trigger.",
+        "Description": "Sets a minimum community-membership age for a chat trigger.",
         "Example": [],
         "GuildUserPermissions": "Administrator",
         "ChannelUserPermissions": "",
@@ -19068,7 +19068,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "channelaccesslist",
-        "Description": "Lists every gate in the server with its current thresholds",
+        "Description": "Lists every gate in the community with its current thresholds",
         "Example": [],
         "GuildUserPermissions": "",
         "ChannelUserPermissions": "",
@@ -19162,7 +19162,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "channelaccessblacklist",
-        "Description": "Lists everyone blocked from applying in this server",
+        "Description": "Lists everyone blocked from applying in this community",
         "Example": [],
         "GuildUserPermissions": "ManageRoles",
         "ChannelUserPermissions": "",
@@ -19270,7 +19270,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "birthdaylist",
-        "Description": "Shows upcoming birthdays in the server.",
+        "Description": "Shows upcoming birthdays in the community.",
         "Example": [
           ".birthdaylist days"
         ],
@@ -19405,7 +19405,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "afktype",
-        "Description": "Sets the type of AFK behavior for the guild.",
+        "Description": "Sets the type of AFK behavior for the community.",
         "Example": [
           ".afktype selfdisable|onmessage|ontype",
           ".afktype selfdisable",
@@ -19530,7 +19530,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "undeafen",
-        "Description": "Undeafens specified users in the guild.",
+        "Description": "Undeafens specified users in the community.",
         "Example": [
           ".undeafen @user"
         ],
@@ -19610,7 +19610,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "setguildbio",
-        "Description": "Sets the bot's guild-specific bio.",
+        "Description": "Sets the bot's community-specific bio.",
         "Example": [
           ".setguildbio text"
         ],
@@ -19623,7 +19623,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "setguildbanner",
-        "Description": "Sets the bot's guild-specific banner.",
+        "Description": "Sets the bot's community-specific banner.",
         "Example": [
           ".setguildbanner text"
         ],
@@ -19636,7 +19636,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "setguildavatar",
-        "Description": "Sets the bot's guild-specific avatar.",
+        "Description": "Sets the bot's community-specific avatar.",
         "Example": [
           ".setguildavatar text"
         ],
@@ -19701,7 +19701,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "memberrole",
-        "Description": "Sets the member role for the server. Currently unused.",
+        "Description": "Sets the member role for the community. Currently unused.",
         "Example": [
           ".memberrole @role"
         ],
@@ -19714,7 +19714,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "kickunder",
-        "Description": "Kicks users who have been in the server for less than a specified time.",
+        "Description": "Kicks users who have been in the community for less than a specified time.",
         "Example": [
           ".kickunder <time> [option]",
           ".kickunder time"
@@ -19728,7 +19728,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "guildstatsoptout",
-        "Description": "Allows you to opt the entire guild out of stats tracking.",
+        "Description": "Allows you to opt the entire community out of stats tracking.",
         "Example": [
           ".guildstatsoptout "
         ],
@@ -19841,7 +19841,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "deleteguildstatsdata",
-        "Description": "Allows you to delete all stats data for the guild.",
+        "Description": "Allows you to delete all stats data for the community.",
         "Example": [
           ".deleteguildstatsdata "
         ],
@@ -19882,7 +19882,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "deafen",
-        "Description": "Deafens specified users in the guild.",
+        "Description": "Deafens specified users in the community.",
         "Example": [
           ".deafen @user"
         ],
@@ -19921,7 +19921,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "banunder",
-        "Description": "Allows you to ban users that have been in the server for a certain amount of time.",
+        "Description": "Allows you to ban users that have been in the community for a certain amount of time.",
         "Example": [
           ".banunder <time> [option] [time1]",
           ".banunder time"
@@ -19962,7 +19962,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "autoassignrole",
-        "Description": "Displays the list of roles eligible for auto-assigning when users join the guild.",
+        "Description": "Displays the list of roles eligible for auto-assigning when users join the community.",
         "Example": [
           ".autoassignrole @role"
         ],
@@ -19976,7 +19976,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "autoassignrole",
-        "Description": "Displays the list of roles eligible for auto-assigning when users join the guild.",
+        "Description": "Displays the list of roles eligible for auto-assigning when users join the community.",
         "Example": [
           ".autoassignrole @role"
         ],
@@ -19990,7 +19990,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "autoassignbotrole",
-        "Description": "Displays the list of roles eligible for auto-assigning to bots when they join the guild.",
+        "Description": "Displays the list of roles eligible for auto-assigning to bots when they join the community.",
         "Example": [
           ".autoassignbotrole @role"
         ],
@@ -20004,7 +20004,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "autoassignbotrole",
-        "Description": "Displays the list of roles eligible for auto-assigning to bots when they join the guild.",
+        "Description": "Displays the list of roles eligible for auto-assigning to bots when they join the community.",
         "Example": [
           ".autoassignbotrole @role"
         ],
@@ -20047,7 +20047,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "autobanrolelist",
-        "Description": "Lists all roles in the AutoBanRole list for the current guild.",
+        "Description": "Lists all roles in the AutoBanRole list for the current community.",
         "Example": [
           ".autobanrolelist "
         ],
@@ -20131,7 +20131,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "languageset",
-        "Description": "Sets the language for the current guild.",
+        "Description": "Sets the language for the current community.",
         "Example": [
           ".languageset text"
         ],
@@ -20145,7 +20145,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "langsetdefault",
-        "Description": "Sets the default language for the server.",
+        "Description": "Sets the default language for the community.",
         "Example": [
           ".langsetdefault language"
         ],
@@ -20159,7 +20159,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "langsetdefault",
-        "Description": "Sets the default language for the server.",
+        "Description": "Sets the default language for the community.",
         "Example": [
           ".langsetdefault language"
         ],
@@ -20201,7 +20201,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "logevents",
-        "Description": "Displays the current logging events configuration for the guild.",
+        "Description": "Displays the current logging events configuration for the community.",
         "Example": [
           ".logevents "
         ],
@@ -20442,7 +20442,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "blockimage",
-        "Description": "Blocks an image so that anyone re-posting it is actioned, including resized, recompressed, mirrored, and bordered copies. Attach the image, reply to a message containing it, or pass its URL. An action given before the label overrides the guild default for this image only.",
+        "Description": "Blocks an image so that anyone re-posting it is actioned, including resized, recompressed, mirrored, and bordered copies. Attach the image, reply to a message containing it, or pass its URL. An action given before the label overrides the community default for this image only.",
         "Example": [
           ".blockimage ",
           ".blockimage mrbeast crypto scam",
@@ -20459,7 +20459,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "blockimage",
-        "Description": "Blocks an image so that anyone re-posting it is actioned, including resized, recompressed, mirrored, and bordered copies. Attach the image, reply to a message containing it, or pass its URL. An action given before the label overrides the guild default for this image only.",
+        "Description": "Blocks an image so that anyone re-posting it is actioned, including resized, recompressed, mirrored, and bordered copies. Attach the image, reply to a message containing it, or pass its URL. An action given before the label overrides the community default for this image only.",
         "Example": [
           ".blockimage ",
           ".blockimage mrbeast crypto scam",
@@ -20490,7 +20490,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antispam",
-        "Description": "Configures the Anti-Spam protection for the guild, setting the message count threshold and punishment action.",
+        "Description": "Configures the Anti-Spam protection for the community, setting the message count threshold and punishment action.",
         "Example": [
           ".antispam "
         ],
@@ -20504,7 +20504,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antispam",
-        "Description": "Configures the Anti-Spam protection for the guild, setting the message count threshold and punishment action.",
+        "Description": "Configures the Anti-Spam protection for the community, setting the message count threshold and punishment action.",
         "Example": [
           ".antispam "
         ],
@@ -20518,7 +20518,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antispam",
-        "Description": "Configures the Anti-Spam protection for the guild, setting the message count threshold and punishment action.",
+        "Description": "Configures the Anti-Spam protection for the community, setting the message count threshold and punishment action.",
         "Example": [
           ".antispam "
         ],
@@ -20532,7 +20532,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antispam",
-        "Description": "Configures the Anti-Spam protection for the guild, setting the message count threshold and punishment action.",
+        "Description": "Configures the Anti-Spam protection for the community, setting the message count threshold and punishment action.",
         "Example": [
           ".antispam "
         ],
@@ -20546,7 +20546,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antiraid",
-        "Description": "Configures the Anti-Raid protection for the guild, setting the user threshold, detection time window, and punishment action.",
+        "Description": "Configures the Anti-Raid protection for the community, setting the user threshold, detection time window, and punishment action.",
         "Example": [
           ".antiraid "
         ],
@@ -20560,7 +20560,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antiraid",
-        "Description": "Configures the Anti-Raid protection for the guild, setting the user threshold, detection time window, and punishment action.",
+        "Description": "Configures the Anti-Raid protection for the community, setting the user threshold, detection time window, and punishment action.",
         "Example": [
           ".antiraid "
         ],
@@ -20574,7 +20574,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antiraid",
-        "Description": "Configures the Anti-Raid protection for the guild, setting the user threshold, detection time window, and punishment action.",
+        "Description": "Configures the Anti-Raid protection for the community, setting the user threshold, detection time window, and punishment action.",
         "Example": [
           ".antiraid "
         ],
@@ -20618,7 +20618,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antipostchannel",
-        "Description": "Disables the Anti-Post-Channel protection for the guild, or with arguments configures it.",
+        "Description": "Disables the Anti-Post-Channel protection for the community, or with arguments configures it.",
         "Example": [
           ".antipostchannel "
         ],
@@ -20632,7 +20632,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antipostchannel",
-        "Description": "Disables the Anti-Post-Channel protection for the guild, or with arguments configures it.",
+        "Description": "Disables the Anti-Post-Channel protection for the community, or with arguments configures it.",
         "Example": [
           ".antipostchannel "
         ],
@@ -20646,7 +20646,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antipattern",
-        "Description": "Configures the Anti-Pattern protection for the guild, setting the punishment action with a role-based punishment.",
+        "Description": "Configures the Anti-Pattern protection for the community, setting the punishment action with a role-based punishment.",
         "Example": [
           ".antipattern "
         ],
@@ -20660,7 +20660,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antipattern",
-        "Description": "Configures the Anti-Pattern protection for the guild, setting the punishment action with a role-based punishment.",
+        "Description": "Configures the Anti-Pattern protection for the community, setting the punishment action with a role-based punishment.",
         "Example": [
           ".antipattern "
         ],
@@ -20674,7 +20674,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antipattern",
-        "Description": "Configures the Anti-Pattern protection for the guild, setting the punishment action with a role-based punishment.",
+        "Description": "Configures the Anti-Pattern protection for the community, setting the punishment action with a role-based punishment.",
         "Example": [
           ".antipattern "
         ],
@@ -20688,7 +20688,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antimasspost",
-        "Description": "Disables the Anti-Mass-Post protection for the guild, or with arguments configures it.",
+        "Description": "Disables the Anti-Mass-Post protection for the community, or with arguments configures it.",
         "Example": [
           ".antimasspost "
         ],
@@ -20702,7 +20702,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antimasspost",
-        "Description": "Disables the Anti-Mass-Post protection for the guild, or with arguments configures it.",
+        "Description": "Disables the Anti-Mass-Post protection for the community, or with arguments configures it.",
         "Example": [
           ".antimasspost "
         ],
@@ -20716,7 +20716,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antimassmention",
-        "Description": "Configures the Anti-Mass-Mention protection for the guild, setting the mention threshold for a single message, the time window for mention tracking, the maximum allowed mentions in the time window, and the punishment action with a role-based punishment.",
+        "Description": "Configures the Anti-Mass-Mention protection for the community, setting the mention threshold for a single message, the time window for mention tracking, the maximum allowed mentions in the time window, and the punishment action with a role-based punishment.",
         "Example": [
           ".antimassmention "
         ],
@@ -20730,7 +20730,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antimassmention",
-        "Description": "Configures the Anti-Mass-Mention protection for the guild, setting the mention threshold for a single message, the time window for mention tracking, the maximum allowed mentions in the time window, and the punishment action with a role-based punishment.",
+        "Description": "Configures the Anti-Mass-Mention protection for the community, setting the mention threshold for a single message, the time window for mention tracking, the maximum allowed mentions in the time window, and the punishment action with a role-based punishment.",
         "Example": [
           ".antimassmention "
         ],
@@ -20744,7 +20744,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antimassmention",
-        "Description": "Configures the Anti-Mass-Mention protection for the guild, setting the mention threshold for a single message, the time window for mention tracking, the maximum allowed mentions in the time window, and the punishment action with a role-based punishment.",
+        "Description": "Configures the Anti-Mass-Mention protection for the community, setting the mention threshold for a single message, the time window for mention tracking, the maximum allowed mentions in the time window, and the punishment action with a role-based punishment.",
         "Example": [
           ".antimassmention "
         ],
@@ -20836,7 +20836,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antialt",
-        "Description": "Configures the Anti-Alt protection for the guild, setting the minimum account age and punishment action with a role-based punishment.",
+        "Description": "Configures the Anti-Alt protection for the community, setting the minimum account age and punishment action with a role-based punishment.",
         "Example": [
           ".antialt "
         ],
@@ -20850,7 +20850,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antialt",
-        "Description": "Configures the Anti-Alt protection for the guild, setting the minimum account age and punishment action with a role-based punishment.",
+        "Description": "Configures the Anti-Alt protection for the community, setting the minimum account age and punishment action with a role-based punishment.",
         "Example": [
           ".antialt "
         ],
@@ -20864,7 +20864,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "antialt",
-        "Description": "Configures the Anti-Alt protection for the guild, setting the minimum account age and punishment action with a role-based punishment.",
+        "Description": "Configures the Anti-Alt protection for the community, setting the minimum account age and punishment action with a role-based punishment.",
         "Example": [
           ".antialt "
         ],
@@ -21046,7 +21046,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "reactionroleslist",
-        "Description": "Displays a list of reaction roles configured in the server.",
+        "Description": "Displays a list of reaction roles configured in the community.",
         "Example": [
           ".reactionroleslist "
         ],
@@ -21215,7 +21215,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "lsar",
-        "Description": "Lists the auto-self-assignable roles configured for the guild.",
+        "Description": "Lists the auto-self-assignable roles configured for the community.",
         "Example": [
           ".lsar "
         ],
@@ -21285,7 +21285,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "adsarm",
-        "Description": "Toggles the auto delete of server advertisement messages.",
+        "Description": "Toggles the auto delete of community advertisement messages.",
         "Example": [
           ".adsarm "
         ],
@@ -21453,7 +21453,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "serverrecover",
-        "Description": "Starts the server recovery setup for the owner, or recovers admin access with the recovery key and a 2FA code. Everything secret is exchanged in your DMs.",
+        "Description": "Starts the community recovery setup for the owner, or recovers admin access with the recovery key and a 2FA code. Everything secret is exchanged in your DMs.",
         "Example": [
           ".serverrecover "
         ],
@@ -21467,7 +21467,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "clearserverrecover",
-        "Description": "Clears the stored server recovery setup after asking for confirmation.",
+        "Description": "Clears the stored community recovery setup after asking for confirmation.",
         "Example": [
           ".clearserverrecover "
         ],
@@ -21537,7 +21537,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "vcrolelist",
-        "Description": "List all voice channel roles for this guild.",
+        "Description": "List all voice channel roles for this community.",
         "Example": [
           ".vcrolelist "
         ],
@@ -21682,7 +21682,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "achtoggle",
-        "Description": "Starts or pauses earning achievements in the server. Starting it also turns on message counting, and members who already qualify get their achievements quietly.",
+        "Description": "Starts or pauses earning achievements in the community. Starting it also turns on message counting, and members who already qualify get their achievements quietly.",
         "Example": [
           ".achtoggle "
         ],
@@ -21695,7 +21695,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "achstats",
-        "Description": "Shows every number achievements track: messages, voice time, reactions, invites, commands, time in the server, level, and reputation.",
+        "Description": "Shows every number achievements track: messages, voice time, reactions, invites, commands, time in the community, level, and reputation.",
         "Example": [
           ".achstats ",
           ".achstats @Someone"
@@ -21788,7 +21788,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "achreset",
-        "Description": "Clears every achievement a member has in the server after asking to confirm.",
+        "Description": "Clears every achievement a member has in the community after asking to confirm.",
         "Example": [
           ".achreset @Someone"
         ],
@@ -21815,7 +21815,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "achnotify",
-        "Description": "Turns unlock DMs, unlock messages in the server, or mentions in them on or off for you.",
+        "Description": "Turns unlock DMs, unlock messages in the community, or mentions in them on or off for you.",
         "Example": [
           ".achnotify dm true",
           ".achnotify mention false"
@@ -21843,7 +21843,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "achmanage",
-        "Description": "Lists every achievement in the server with its key, whether it is on, and how many members unlocked it.",
+        "Description": "Lists every achievement in the community with its key, whether it is on, and how many members unlocked it.",
         "Example": [
           ".achmanage "
         ],
@@ -21870,7 +21870,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "achlist",
-        "Description": "Shows every achievement in the server with progress, page by page.",
+        "Description": "Shows every achievement in the community with progress, page by page.",
         "Example": [
           ".achlist ",
           ".achlist @Someone"
@@ -21884,7 +21884,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "achleaderboard",
-        "Description": "Shows who has earned the most achievements in the server. Members who hide themselves are left out.",
+        "Description": "Shows who has earned the most achievements in the community. Members who hide themselves are left out.",
         "Example": [
           ".achleaderboard ",
           ".achleaderboard unlocked",
@@ -21927,7 +21927,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "achicon",
-        "Description": "Sets the icon an achievement shows in its image, the dashboard, and the apps: an icon name like trophy, a server emoji, or an https image link. Leave the icon out to use its category's again.",
+        "Description": "Sets the icon an achievement shows in its image, the dashboard, and the apps: an icon name like trophy, a community emoji, or an https image link. Leave the icon out to use its category's again.",
         "Example": [
           ".achicon \"Night Owl\" moon",
           ".achicon voice_hours_100 :partymic:",
@@ -21970,7 +21970,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "achgloballeaderboard",
-        "Description": "Shows who has earned the most achievements across every server.",
+        "Description": "Shows who has earned the most achievements across every community.",
         "Example": [
           ".achgloballeaderboard ",
           ".achgloballeaderboard unlocked"
@@ -21984,7 +21984,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "achglobal",
-        "Description": "Shows achievements earned across every server: total points, servers, and global achievements.",
+        "Description": "Shows achievements earned across every community: total points, communities, and global achievements.",
         "Example": [
           ".achglobal ",
           ".achglobal @Someone"
@@ -22065,7 +22065,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "achdelete",
-        "Description": "Deletes an achievement the server made after asking to confirm. Everyone who unlocked it loses it.",
+        "Description": "Deletes an achievement the community made after asking to confirm. Everyone who unlocked it loses it.",
         "Example": [
           ".achdelete Pizza Fan"
         ],
@@ -22091,7 +22091,7 @@
         "BotVersion": "8",
         "IsDragon": false,
         "CommandName": "achcreatephrase",
-        "Description": "Makes an achievement unlocked by saying a phrase anywhere in the server.",
+        "Description": "Makes an achievement unlocked by saying a phrase anywhere in the community.",
         "Example": [
           ".achcreatephrase \"good morning\" Bronze Early Bird"
         ],

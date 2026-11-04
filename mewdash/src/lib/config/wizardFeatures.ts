@@ -1063,7 +1063,7 @@ export const wizardFeatureCategories: WizardFeatureCategory[] = [
     ]
   },
   {
-    name: "Server Insights",
+    name: "Community Insights",
     get label() { return m.features.categoryServerInsights(); },
     get description() { return m.features.categoryServerInsightsDescription(); },
     features: [

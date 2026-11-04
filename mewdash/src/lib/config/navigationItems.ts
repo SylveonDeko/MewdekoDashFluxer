@@ -283,7 +283,7 @@ export const allDashboardFeatures: NavigationItem[] = [
     category: "Community",
     categoryLabel: m.features.categoryCommunity,
     description: m.features.liveboardsDescription,
-    keywords: ["live boards", "pinned leaderboard", "pin leaderboard", "auto update", "server report", "weekly report", "monthly report", "digest"],
+    keywords: ["live boards", "pinned leaderboard", "pin leaderboard", "auto update", "community report", "weekly report", "monthly report", "digest"],
   },
   {
     label: m.features.loggingName,
@@ -573,7 +573,7 @@ export const ownerFeatures: NavigationItem[] = [
     category: "Analytics",
     categoryLabel: m.features.analyticsName,
     description: m.features.botHellsDescription,
-    keywords: ["bot hell", "bot farm", "bots", "bot ratio", "leave", "bulk leave", "spam servers"],
+    keywords: ["bot hell", "bot farm", "bots", "bot ratio", "leave", "bulk leave", "spam communities"],
   },
   {
     label: m.features.leaveFeedbackName,

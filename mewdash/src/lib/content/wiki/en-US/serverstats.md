@@ -1,7 +1,7 @@
 ---
 title: Activity Stats
 slug: serverstats
-summary: Messages, voice time, games and member growth for the whole server, a member or a channel over any window up to ninety days, with charts, rankings, exports and a privacy opt out.
+summary: Messages, voice time, games and member growth for the whole community, a member or a channel over any window up to ninety days, with charts, rankings, exports and a privacy opt out.
 icon: fa-chart-simple
 category: Analytics
 dashboard: /dashboard/serverstats
@@ -59,15 +59,15 @@ Game tracking is off until you turn it on, because it is the heaviest tracker. O
 
 ## Privacy
 
-Any member can run `statsprivacy` (or `/serverstats privacy`) to opt out. Their recorded messages, voice time and game time are deleted in every server the bot shares with them, and nothing new is recorded until they run it again to opt back in. Server admins cannot override it.
+Any member can run `statsprivacy` (or `/serverstats privacy`) to opt out. Their recorded messages, voice time and game time are deleted in every community the bot shares with them, and nothing new is recorded until they run it again to opt back in. Community admins cannot override it.
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). Every command also exists under `/serverstats`. `days` is the window; 0 means all time and leaving it out uses the server default.
+Run these with your community's prefix (`.` unless you changed it). Every command also exists under `/serverstats`. `days` is the window; 0 means all time and leaving it out uses the community default.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
-| `serveractivity [days]` | `sstats` | Nobody | The server overview |
+| `serveractivity [days]` | `sstats` | Nobody | The community overview |
 | `useractivity [@user] [days]` | `ustats`, `mystats` | Nobody | A member's messages, voice time, ranks, lifetime totals, top channels and games |
 | `channelactivity [#channel] [days]` | `cstats` | Nobody | A channel's activity and top members |
 | `activitytop [Messages/Voice/Activity] [days] [@role]` | `topchatters`, `topvoice` | Nobody | Rank members |
@@ -75,13 +75,13 @@ Run these with your server's prefix (`.` unless you changed it). Every command a
 | `topgames [days]` | `games` | Nobody | The most played games and apps |
 | `whoplays <game>` | | Nobody | Who is in a game right now and who has played it most |
 | `activitychart [Messages/Voice/Members/Status/Joins/Leaves/Growth/InVoice/Activities] [days]` | `graph` | Nobody | A chart image |
-| `activityexport [Messages/Voice/Activity] [days]` | | Manage Server | A CSV ranking |
-| `statssettings` | | Manage Server | Show the settings |
-| `statslookback <days>`, `statscooldown <seconds>` | `lookback` | Manage Server | Default window and message cooldown |
-| `statstrackvoice`, `statstracksnapshots`, `statscountbots`, `statstrackactivities`, `statsverifyactivities` | `trackvoice`, `trackgames` | Manage Server | Toggle each tracker |
-| `statsignorevoicestate <state>` | | Manage Server | Toggle whether a voice state counts |
-| `statsignore <#channel, @role or @user>`, `statsignored` | | Manage Server | Exclusions |
-| `statsactivityfiltermode <Whitelist/Blacklist>`, `statsactivityfilter <game>`, `statsactivityfilters` | `gamefilter` | Manage Server | The activity filter |
+| `activityexport [Messages/Voice/Activity] [days]` | | Manage Community | A CSV ranking |
+| `statssettings` | | Manage Community | Show the settings |
+| `statslookback <days>`, `statscooldown <seconds>` | `lookback` | Manage Community | Default window and message cooldown |
+| `statstrackvoice`, `statstracksnapshots`, `statscountbots`, `statstrackactivities`, `statsverifyactivities` | `trackvoice`, `trackgames` | Manage Community | Toggle each tracker |
+| `statsignorevoicestate <state>` | | Manage Community | Toggle whether a voice state counts |
+| `statsignore <#channel, @role or @user>`, `statsignored` | | Manage Community | Exclusions |
+| `statsactivityfiltermode <Whitelist/Blacklist>`, `statsactivityfilter <game>`, `statsactivityfilters` | `gamefilter` | Manage Community | The activity filter |
 | `statsprivacy` | `optoutstats` | Nobody | Opt out of, or back in to, tracking everywhere |
 
 ## Tips and gotchas

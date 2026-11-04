@@ -144,26 +144,26 @@ The Minecraft page has a **Servers** tab, an **Add Server** tab, **History**, **
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
 | `mcstatus [name or address]` | `mcs` | Nobody | Status of the default server, a registered server, or any `host:port` you type |
-| `mcadd <name> <address[:port]>` | | Manage Server | Register a server; prefix the address with `bedrock:` for Bedrock |
-| `mcremove <name>` | `mcrm` | Manage Server | Delete a registered server |
+| `mcadd <name> <address[:port]>` | | Manage Community | Register a server; prefix the address with `bedrock:` for Bedrock |
+| `mcremove <name>` | `mcrm` | Manage Community | Delete a registered server |
 | `mclist` | `mcl` | Nobody | List registered servers with type, default marker and watch channel |
-| `mcdefault <name>` | `mcdef` | Manage Server | Choose the server `mcstatus` uses by default |
-| `mcwatch <name> [#channel]` | `mcw` | Manage Server | Start posting status to a channel, or stop with no channel |
-| `mcwatchmode <name> <embed, channeltopic or both>` | `mcwm` | Manage Server | Pick how the watch shows status |
-| `mcembed <name> [template]` | `mce` | Manage Server | Set a custom status embed, or `-` to reset |
+| `mcdefault <name>` | `mcdef` | Manage Community | Choose the server `mcstatus` uses by default |
+| `mcwatch <name> [#channel]` | `mcw` | Manage Community | Start posting status to a channel, or stop with no channel |
+| `mcwatchmode <name> <embed, channeltopic or both>` | `mcwm` | Manage Community | Pick how the watch shows status |
+| `mcembed <name> [template]` | `mce` | Manage Community | Set a custom status embed, or `-` to reset |
 | `mcplayer <username>` | `mcp` | Nobody | Show a player's UUID, avatar and skin |
 | `mcskin <username>` | | Nobody | Show a player's skin render |
 | `mcrcon <name> <command>` | | Administrator | Run a console command over RCON |
-| `mcwhitelist <name> <action> [player]` | `mcwl` | Manage Server | `add`, `remove`, `list`, `on`, `off` or `reload` |
+| `mcwhitelist <name> <action> [player]` | `mcwl` | Manage Community | `add`, `remove`, `list`, `on`, `off` or `reload` |
 
 ## Tips and gotchas
 
-- `mcstatus` is rate limited to ten queries per minute per Fluxer server, shared by every member.
+- `mcstatus` is rate limited to ten queries per minute per Fluxer community, shared by every member.
 - Direct address lookups with `mcstatus play.example.com:25565` work without registering, but private and local addresses are blocked.
 - The bot needs **Manage Channels** in the watch channel for Channel Topic mode, and Fluxer itself limits topic edits, so topic mode never updates more often than every five minutes.
 - Extended details such as map, game mode and plugins only appear when `enable-query=true` is set in `server.properties` and the **Query Port** matches.

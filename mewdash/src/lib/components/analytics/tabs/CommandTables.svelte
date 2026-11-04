@@ -37,7 +37,7 @@
   const topColumns: Column<TopCommandRow>[] = $derived([
     { key: "command", label: m.common.command(), mono: true },
     { key: "count", label: m.common.count(), num: true },
-    { key: "guilds", label: m.analytics.pageTabGuilds(), num: true },
+    { key: "guilds", label: m.common.servers(), num: true },
     { key: "p95Ms", label: "p95", num: true, format: (r) => ms(r.p95Ms ?? r.avgMs), sortValue: (r) => r.p95Ms ?? r.avgMs },
     { key: "failureRate", label: m.analytics.tableColErr(), num: true, format: (r) => pct(r.failureRate * 100), tone: (r) => (r.failureRate >= 0.25 ? "crit" : r.failureRate >= 0.05 ? "warn" : null) },
     { key: "module", label: m.common.module(), muted: true, format: (r) => r.module ?? "—" },
@@ -46,7 +46,7 @@
   const invocationColumns: Column<InvocationPage["items"][number]>[] = $derived([
     { key: "at", label: m.common.when(), muted: true, format: (r) => clock(r.at), sortValue: (r) => Date.parse(r.at) },
     { key: "bot", label: m.placeholders.categoryBot(), mono: true },
-    { key: "guildId", label: m.analytics.tableColGuild(), mono: true, format: (r) => r.guildId ?? "—" },
+    { key: "guildId", label: m.features.categoryCommunity(), mono: true, format: (r) => r.guildId ?? "—" },
     { key: "shard", label: m.analytics.filterShard(), num: true, format: (r) => (r.shard === null ? "—" : String(r.shard)) },
     { key: "command", label: m.common.command(), mono: true },
     { key: "kind", label: m.analytics.tableColKind(), tone: () => "muted" },
@@ -66,7 +66,7 @@
 
   const sampleColumns: Column<CommandErrorSampleRow>[] = $derived([
     { key: "at", label: m.common.when(), muted: true, format: (r) => stamp(r.at), sortValue: (r) => Date.parse(r.at) },
-    { key: "guildId", label: m.analytics.tableColGuild(), mono: true, format: (r) => r.guildId ?? "—" },
+    { key: "guildId", label: m.features.categoryCommunity(), mono: true, format: (r) => r.guildId ?? "—" },
     { key: "kind", label: m.analytics.tableColKind(), tone: () => "muted" },
     { key: "module", label: m.common.module(), muted: true, format: (r) => r.module ?? "—" },
     { key: "durationMs", label: m.analytics.tableColMs(), num: true },

@@ -37,7 +37,7 @@
     { key: "bot", label: m.placeholders.categoryBot(), mono: true },
     { key: "shard", label: m.analytics.filterShard(), num: true, format: (r) => (r.shard === null ? "—" : String(r.shard)) },
     { key: "count", label: m.common.count(), num: true },
-    { key: "lastGuildId", label: m.analytics.tableColGuild(), mono: true, format: (r) => r.lastGuildId ?? "—" },
+    { key: "lastGuildId", label: m.features.categoryCommunity(), mono: true, format: (r) => r.lastGuildId ?? "—" },
     { key: "lastSeen", label: m.analytics.tableColLast(), num: true, muted: true, format: (r) => ago(r.lastSeen) },
     { key: "message", label: m.common.message(), format: (r) => truncate(r.message, 90), title: (r) => r.message ?? "" },
   ]);

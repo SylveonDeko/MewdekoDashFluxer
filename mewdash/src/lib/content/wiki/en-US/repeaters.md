@@ -14,14 +14,14 @@ related: [utility, embedbuilder]
 
 A repeater is a message the bot posts again and again in one channel. The classic use is a timed reminder: "Read the rules" every six hours. Each time it fires, the bot deletes its previous copy first, so the channel never fills with duplicates and the message always sits near the bottom.
 
-Repeaters have five trigger modes. Besides a fixed interval, they can fire the moment someone else posts (a true sticky message), after a number of messages, when the channel has been busy, or when it has gone quiet. Optional time windows limit them to business hours, evenings or weekends in your server's timezone, and forum repeaters can post automatically into every new thread.
+Repeaters have five trigger modes. Besides a fixed interval, they can fire the moment someone else posts (a true sticky message), after a number of messages, when the channel has been busy, or when it has gone quiet. Optional time windows limit them to business hours, evenings or weekends in your community's timezone, and forum repeaters can post automatically into every new thread.
 
 The message supports the full embed builder, plain text, components and the general placeholders, so a repeater can be a rich announcement rather than a line of text. Mentions are only kept if the person creating it has Mention Everyone; otherwise they are neutralised.
 
 ## Why you would use it
 
 - Keep the rules or a "how to get help" notice pinned to the bottom of a busy channel.
-- Post a daily event reminder at 18:00 server time.
+- Post a daily event reminder at 18:00 community time.
 - Put the posting guidelines in every new forum thread, filtered by tag.
 - Nudge a dead channel with a conversation starter when it has been quiet for an hour.
 - Run a promotion only during business hours and only for the next seven days.
@@ -36,13 +36,13 @@ The message supports the full embed builder, plain text, components and the gene
 | On Activity | Posts when the channel is busy: the threshold is compared against recent traffic in the time window. |
 | On No Activity | Posts when no messages have been sent in the channel for the whole time window. |
 
-Activity-based modes are checked once a minute and need message counting enabled on the server. The interval must be between five seconds and 25000 minutes. The default is five minutes, or one day when you give a time of day and no interval. **Activity threshold** defaults to 5 messages and **Time window** to five minutes, with a window range of thirty seconds to six hours.
+Activity-based modes are checked once a minute and need message counting enabled on the community. The interval must be between five seconds and 25000 minutes. The default is five minutes, or one day when you give a time of day and no interval. **Activity threshold** defaults to 5 messages and **Time window** to five minutes, with a window range of thirty seconds to six hours.
 
 ## Conditions and limits
 
 - **Don't repeat if message is already last in channel** (redundancy): the bot skips a run if its last copy is still the newest message.
 - **Conversation Detection**: if three or more messages arrived in the last minute, the run is delayed and rechecked in thirty seconds.
-- **Time Schedule**: `business` is 09:00 to 17:00 Monday to Friday, `evening` is 18:00 to 23:00 every day, `weekend` is all day Saturday and Sunday. Times use the server timezone; set one first or the bot assumes UTC and reminds you.
+- **Time Schedule**: `business` is 09:00 to 17:00 Monday to Friday, `evening` is 18:00 to 23:00 every day, `weekend` is all day Saturday and Sunday. Times use the community timezone; set one first or the bot assumes UTC and reminds you.
 - **Auto-delete after** and **Max displays**: the repeater removes itself after a maximum age or a number of posts.
 - **Suppress Notifications**: the message is sent silently so it does not ping anyone's device.
 - **Priority** is stored per repeater as 0 to 100, default 50, and is shown in the list.
@@ -59,12 +59,12 @@ The message runs through the general placeholder set. The user placeholders refe
 
 | Placeholder | Value |
 | --- | --- |
-| `%server%`, `%server.name%` | Server name |
+| `%server%`, `%server.name%` | Community name |
 | `%server.members%` | Cached member count |
-| `%server.id%`, `%server.icon%` | Server ID and icon URL |
+| `%server.id%`, `%server.icon%` | Community ID and icon URL |
 | `%channel%`, `%channel.name%` | Mention and name of the repeater channel |
 | `%bot.name%`, `%bot.avatar%` | The bot's name and avatar |
-| `%server.time%`, `%time.day%` | Server time and current weekday |
+| `%server.time%`, `%time.day%` | Community time and current weekday |
 
 Reaction GIF placeholders such as `%huggif%` are also replaced. Trigger placeholders like `%user%` resolve to the bot.
 
@@ -106,11 +106,11 @@ The Repeaters page has three tabs: **Overview**, **Manage Repeaters** and **Crea
 6. Click **Create Repeater**, then use **Trigger Now** on the Manage tab to test it.
 
 > [!NOTE]
-> Time schedules need a server timezone. Set it with the timezone command before enabling business, evening or weekend windows.
+> Time schedules need a community timezone. Set it with the timezone command before enabling business, evening or weekend windows.
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). All of them need Manage Messages. Repeaters are addressed by their number from `repeatlist`.
+Run these with your community's prefix (`.` unless you changed it). All of them need Manage Messages. Repeaters are addressed by their number from `repeatlist`.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |

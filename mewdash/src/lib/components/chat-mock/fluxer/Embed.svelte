@@ -89,7 +89,7 @@
         {#if embed.footer || embed.timestamp}
           <div class="embedFooter">
             <div class="embedFooterText"
-              >{embed.footer ?? ""}{#if embed.footer && embed.timestamp}{"​"}<div class="embedFooterSeparator"></div>{"​"}{/if}{embed.timestamp ?? ""}</div
+              >{embed.footer ?? ""}{#if embed.footer && embed.timestamp}&#8203;<div class="embedFooterSeparator"></div>&#8203;{/if}{embed.timestamp ?? ""}</div
             >
           </div>
         {/if}

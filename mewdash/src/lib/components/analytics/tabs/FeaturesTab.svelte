@@ -20,7 +20,7 @@
   let seq = 0;
 
   let histLabels = $derived((depth?.histogram ?? []).map((h) => String(h.features)));
-  let histSeries = $derived([{ name: m.analytics.pageTabGuilds(), data: (depth?.histogram ?? []).map((h) => h.guilds) }]);
+  let histSeries = $derived([{ name: m.common.servers(), data: (depth?.histogram ?? []).map((h) => h.guilds) }]);
   let scatter = $derived<ScatterPoint[]>(
     (depth?.points ?? [])
       .filter((p) => p.memberCount !== null)

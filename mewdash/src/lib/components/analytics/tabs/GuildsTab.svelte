@@ -29,7 +29,7 @@
   );
 
   const topColumns: Column<TopGuildRow>[] = $derived([
-    { key: "guildId", label: m.analytics.tableColGuild(), mono: true },
+    { key: "guildId", label: m.features.categoryCommunity(), mono: true },
     { key: "name", label: m.common.name(), format: (r) => r.name ?? "—" },
     { key: "memberCount", label: m.common.members(), num: true, format: (r) => n(r.memberCount) },
     { key: "events", label: m.common.events(), num: true, format: (r) => compact(r.events) },
@@ -37,7 +37,7 @@
   ]);
 
   const anomalyColumns: Column<GuildAnomalyRow>[] = $derived([
-    { key: "guildId", label: m.analytics.tableColGuild(), mono: true },
+    { key: "guildId", label: m.features.categoryCommunity(), mono: true },
     { key: "name", label: m.common.name(), format: (r) => r.name ?? "—" },
     { key: "eventType", label: m.common.type(), mono: true },
     { key: "hour", label: m.analytics.tableColHourUtc(), muted: true, format: (r) => stamp(r.hour), sortValue: (r) => utcParse(r.hour) },

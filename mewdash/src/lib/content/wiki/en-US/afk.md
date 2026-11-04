@@ -20,7 +20,7 @@ Running `afk` with no message toggles: it turns AFK on with a blank message if y
 
 ## Why you would use it
 
-- Members in busy servers stop being pinged repeatedly by people who did not see them say "brb".
+- Members in busy communities stop being pinged repeatedly by people who did not see them say "brb".
 - Staff can see at a glance who is around and who is not.
 - Timed AFK covers "back in two hours" without anyone having to remember to clear it.
 
@@ -31,7 +31,7 @@ The **AFK type** decides what the bot counts as coming back. It is the most impo
 | Type | Status clears when |
 | --- | --- |
 | Self disable | Only when the member runs `afk` again, or staff remove it. Nothing automatic. |
-| On message | The member sends a message anywhere in the server. |
+| On message | The member sends a message anywhere in the community. |
 | On type | The member starts typing in any channel. |
 | Either | A message or typing, whichever comes first. |
 
@@ -98,7 +98,7 @@ The **User Management** tab lists every member currently away and lets staff cle
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -107,7 +107,7 @@ Run these with your server's prefix (`.` unless you changed it).
 | `getactiveafks` | `activeafks` | Nobody | List everyone currently AFK |
 | `afkview [@user]` | `viewafk` | Manage Messages | Show someone's current AFK message |
 | `afkremove @user...` | `afkrm` | Manage Messages | Clear one or more members' statuses |
-| `afkdel [seconds]` | `afkdelete` | Manage Server | Show or set auto-deletion for the reply |
+| `afkdel [seconds]` | `afkdelete` | Manage Community | Show or set auto-deletion for the reply |
 | `afklength <number>` | `maxafklength` | Administrator | Cap AFK message length |
 | `afktype <type>` | | Administrator | `selfdisable`, `onmessage`, `ontype` or `either` |
 | `afktimeout <time>` | | Administrator | Set the grace period, for example `30s` |
@@ -119,6 +119,6 @@ Run these with your server's prefix (`.` unless you changed it).
 ## Tips and gotchas
 
 - There is no command to clear only your own status. Run `afk` again with no message, or wait for the type rule to clear it.
-- Nickname changes need the bot's role above the member's top role and the Manage Nicknames permission. The server owner's nickname can never be changed by a bot, so owners keep their name but the status still works.
+- Nickname changes need the bot's role above the member's top role and the Manage Nicknames permission. The community owner's nickname can never be changed by a bot, so owners keep their name but the status still works.
 - The AFK service loads its cache shortly after the bot starts. Until then commands reply that AFK is still starting.
 - Mentions inside the AFK message are neutralised in the reply, so members cannot use their status to ping roles or everyone.

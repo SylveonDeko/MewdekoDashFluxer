@@ -92,7 +92,7 @@ export const economyPreviews: Record<string, CommandPreview> = {
       field("Pronouns", "he/him", false),
       field("Zodiac Sign", "Gemini", false),
       field("Birthday", "6/14/2001", false),
-      field("Mutual Bot Servers", "4", false),
+      field("Mutual Bot Communities", "4", false),
       field("Switch Friend Code", "sw-1234-5678-9012", false),
     ],
   }),
@@ -126,7 +126,7 @@ export const economyPreviews: Record<string, CommandPreview> = {
     title: "Reputation Statistics for Biscuit",
     fields: [
       field("Total Reputation", "15"),
-      field("Server Rank", "#3"),
+      field("Community Rank", "#3"),
       field("Total Given", "9"),
       field("Total Received", "15"),
       field("Current Streak", "3"),
@@ -148,7 +148,7 @@ export const economyPreviews: Record<string, CommandPreview> = {
   repstatus: reply("repstatus", {
     color: OK,
     title: "Reputation System Configuration",
-    description: "Current reputation system settings for this server:",
+    description: "Current reputation system settings for this community:",
     fields: [
       field(
         "⚙️ Basic Settings",
@@ -162,7 +162,7 @@ export const economyPreviews: Record<string, CommandPreview> = {
       ),
       field(
         "📋 Requirements",
-        "**Minimum Account Age:** 7 days\n**Minimum Server Membership:** 24 hours\n**Minimum Messages:** 10",
+        "**Minimum Account Age:** 7 days\n**Minimum Community Membership:** 24 hours\n**Minimum Messages:** 10",
         false,
       ),
       field("🔔 Notifications", "**Notification Channel:** <#general>", false),

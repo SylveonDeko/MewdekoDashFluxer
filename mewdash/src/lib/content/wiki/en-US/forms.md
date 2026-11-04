@@ -16,7 +16,7 @@ Staff build a form on the dashboard: a name, a set of questions, and rules about
 
 Each submission is posted as an embed in the channel you choose, with **Approve** and **Reject** buttons if the form needs a decision. Reviewers press a button in Fluxer or use the **Responses** tab on the dashboard. The submitter gets a DM with the decision and any notes, and can follow it on a status page at any time.
 
-Forms come in three types. A regular form is for members. A ban appeal form is for people currently banned, and approving it unbans them. A join application is for people outside the server, and approving it sends them a single-use invite with roles waiting for them when they join.
+Forms come in three types. A regular form is for members. A ban appeal form is for people currently banned, and approving it unbans them. A join application is for people outside the community, and approving it sends them a single-use invite with roles waiting for them when they join.
 
 There are no commands for forms. Everything except the two review buttons happens on the dashboard.
 
@@ -31,9 +31,9 @@ There are no commands for forms. Everything except the two review buttons happen
 
 | Type | Who can submit | On approval |
 | --- | --- | --- |
-| Regular Form | Members, or anyone if **Allow people outside the server** is on | Role changes only, if configured |
-| Ban Appeal | People currently banned from the server | The ban is removed |
-| Join Application | People who are not in the server | An invite is created and any **Roles waiting for them on join** are saved as a role state, so they are applied when the person joins |
+| Regular Form | Members, or anyone if **Allow people outside the community** is on | Role changes only, if configured |
+| Ban Appeal | People currently banned from the community | The ban is removed |
+| Join Application | People who are not in the community | An invite is created and any **Roles waiting for them on join** are saved as a role state, so they are applied when the person joins |
 
 The type is fixed once the form is created. Ban appeals and join applications always go through review; regular forms only do if **Answers need approving** is on.
 
@@ -67,7 +67,7 @@ Each question can be shown only when a condition holds. Hidden questions are ski
 | --- | --- |
 | Answer-Based | An earlier answer matches: **Equals**, **Does not equal**, **Contains**, **Greater than**, or **Less than** |
 | Role-Based | The member holds **Any Of**, **All Of**, or **None Of** the chosen roles |
-| Server Tenure | The member has been in the server for at least N days, or their account is at least N days old |
+| Community Tenure | The member has been in the community for at least N days, or their account is at least N days old |
 | Boost/Nitro | The member is boosting. The Nitro check is a best guess from avatar and boost data. |
 | Permission-Based | The member has all of the chosen permissions |
 | Multiple Conditions | Several rows combined. Rows in the same group must all be true (AND); any group being true shows the question (OR). |
@@ -86,7 +86,7 @@ Ban appeals add their own limits under **Appeal limits**: a wait after the ban (
 
 The public page requires a Fluxer login. Answers are saved as a draft about a second and a half after the last keystroke and when moving to the next page. Coming back within 30 days restores the draft with a "We brought back what you had already written" banner and a **Start over** button.
 
-A progress bar shows answered questions. The last page ends with **Review & Continue**, which lists every answer with an **Edit** link, then **Confirm & Submit**. Afterwards the page shows your **Message after submitting** (or a default per type) and a **Check Your Status** link. The status page also links to **My submissions** at `/forms/submissions`, which lists every non-anonymous response the signed-in user has made across servers.
+A progress bar shows answered questions. The last page ends with **Review & Continue**, which lists every answer with an **Edit** link, then **Confirm & Submit**. Afterwards the page shows your **Message after submitting** (or a default per type) and a **Check Your Status** link. The status page also links to **My submissions** at `/forms/submissions`, which lists every non-anonymous response the signed-in user has made across communities.
 
 Submitters can edit their answers from the status page while the response is still pending, as long as the form is not anonymous and has not closed. Earlier answers are kept as revisions. There is no way for a submitter to withdraw a response.
 
@@ -101,7 +101,7 @@ Anonymous forms store no user ID, so they cannot change roles and their response
 
 ## The review process
 
-Responses move from Pending Review to Approved or Rejected. **Who may approve or reject** names a role; anyone with Manage Server or Administrator can always decide. If no reviewer role is set, holders of the approval roles can also decide.
+Responses move from Pending Review to Approved or Rejected. **Who may approve or reject** names a role; anyone with Manage Community or Administrator can always decide. If no reviewer role is set, holders of the approval roles can also decide.
 
 In Fluxer, **Approve** decides immediately. **Reject** opens a modal asking for a reason, which is required because it is sent to the submitter. Either way the embed is recoloured, gains an **Approved** or **Rejected** field with the reviewer and time, the reason if any, and loses its buttons. On the dashboard, the same decision is made from the queue with a **Notes for the submitter** box.
 
@@ -111,7 +111,7 @@ On a decision the bot:
 - Unbans the user for an approved ban appeal, or creates the invite for an approved join application.
 - DMs the submitter "Your response was approved" or "Your response was not accepted" with the notes, your **Message after submitting** on approval, and the invite. If the DM fails, the embed and queue say so.
 
-The review button emotes come from the form, then the **Server defaults** on the **Settings** tab, then a plain tick and cross.
+The review button emotes come from the form, then the **Community defaults** on the **Settings** tab, then a plain tick and cross.
 
 ## Versions
 
@@ -129,9 +129,9 @@ The **Forms** page has **Forms**, **Create**, and **Settings** tabs, plus **Edit
 | Message after submitting | none | Text on the confirmation page and in the approval DM |
 | Draft | on for new forms | Drafts cannot be submitted to |
 | Accepting responses | on | Turn off to close without deleting |
-| Role required to submit | Anyone in the server | Gate by role |
+| Role required to submit | Anyone in the community | Gate by role |
 | Minimum Fluxer account age | No limit | Days |
-| Allow people outside the server | off | Regular forms only |
+| Allow people outside the community | off | Regular forms only |
 | Submit anonymously | off | Records no submitter |
 | Opens at, Closes at | none | Window; a launch announcement needs an opening time |
 | Total responses accepted | No limit | Cap across everyone |
@@ -144,8 +144,8 @@ The **Forms** page has **Forms**, **Create**, and **Settings** tabs, plus **Edit
 | Role while awaiting review | none | Removed on decision |
 | Send to a webhook | none | Fluxer webhook URL that also receives each submission embed and each approve or reject decision |
 | Answers need approving | off | Adds review to a regular form |
-| Who may approve or reject | Manage Server only | Reviewer role |
-| Approve button emote, Reject button emote | server default | |
+| Who may approve or reject | Manage Community only | Reviewer role |
+| Approve button emote, Reject button emote | community default | |
 | Add/Remove on approval, Add/Remove on rejection | none | Role changes on decision |
 | One rejection is final, Wait after the ban, Appeals allowed, Wait between appeals | off, No wait, Unlimited, No wait | Ban appeals only |
 | Times the invite can be used, Invite expires after (seconds), Roles waiting for them on join | 1, 86400, none | Join applications only |

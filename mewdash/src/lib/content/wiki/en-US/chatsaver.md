@@ -16,7 +16,7 @@ Chat Saver has two halves. On the dashboard, staff pick a channel and a time win
 
 In Fluxer, `savechat` runs a full transcript export of a channel for the last few minutes, hours or days and gives you a link to an HTML file that looks like Fluxer, including media.
 
-Ticket transcripts also land here. When a ticket closes in a server that has a ticket transcript channel set, the ticket system stores the conversation as a saved log named `Ticket #<id> - <channel>`, so it shows up under **Saved Logs** with everything else.
+Ticket transcripts also land here. When a ticket closes in a community that has a ticket transcript channel set, the ticket system stores the conversation as a saved log named `Ticket #<id> - <channel>`, so it shows up under **Saved Logs** with everything else.
 
 ## Why you would use it
 
@@ -47,7 +47,7 @@ Attachment and avatar links point at Fluxer's CDN. If Fluxer removes the file, t
 
 ## Saved logs
 
-The **Saved Logs** tab lists every log for the server, newest first, with its channel and message count. Each entry has **View log**, **Rename log** and **Delete log**. Renaming changes only the label. Deleting is permanent and happens as soon as you click; there is no confirmation prompt.
+The **Saved Logs** tab lists every log for the community, newest first, with its channel and message count. Each entry has **View log**, **Rename log** and **Delete log**. Renaming changes only the label. Deleting is permanent and happens as soon as you click; there is no confirmation prompt.
 
 Renames and deletions are recorded in the dashboard audit log.
 
@@ -81,7 +81,7 @@ Chat Saver has no configuration. The dashboard page has three tabs: **Fetch Mess
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -93,5 +93,5 @@ Run these with your server's prefix (`.` unless you changed it).
 - Fetching stops at 5000 messages. For a very busy channel, use a shorter window.
 - Message edits and deletions that happened before you fetch are not visible; the bot reads what is in the channel at that moment. Use the logging feature for a live record.
 - Saved logs store author names as they were at save time. A later username change is not reflected.
-- Anyone with dashboard access to the server can read saved logs, including ticket transcripts. Restrict dashboard access accordingly.
+- Anyone with dashboard access to the community can read saved logs, including ticket transcripts. Restrict dashboard access accordingly.
 - `savechat` is meant for the public bot's CDN. Self-hosters need to set a chat save path in credentials and copy the DiscordChatExporter files next to the bot.

@@ -195,9 +195,9 @@ export function timeAgo(iso: string | null | undefined): string {
 /** Names and help for the features that feed achievements data. */
 export const DATA_SOURCES: Record<string, { label: string; icon: string; off: string; href?: string }> = {
   messages: { label: "Message counting", icon: "fa-comments", off: "Message achievements can't track until message counting is on." },
-  voice: { label: "Voice tracking", icon: "fa-microphone", off: "Voice hours and channels need voice tracking in Server Stats.", href: "/dashboard/serverstats" },
+  voice: { label: "Voice tracking", icon: "fa-microphone", off: "Voice hours and channels need voice tracking in Community Stats.", href: "/dashboard/serverstats" },
   invites: { label: "Invite tracking", icon: "fa-users", off: "Invite achievements need invite tracking.", href: "/dashboard/invites" },
-  commands: { label: "Command stats", icon: "fa-code", off: "Command achievements need command stats, which this server opted out of." },
+  commands: { label: "Command stats", icon: "fa-code", off: "Command achievements need command stats, which this community opted out of." },
   xp: { label: "XP", icon: "fa-star", off: "Level achievements need XP gain turned on.", href: "/dashboard/xp" },
   reputation: { label: "Reputation", icon: "fa-trophy", off: "Reputation achievements need the reputation system.", href: "/dashboard/reputation" },
 };

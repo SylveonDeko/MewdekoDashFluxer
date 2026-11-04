@@ -21,7 +21,7 @@ For staff there are save points that let you roll the count back after a bad run
 ## Why you would use it
 
 - A low-effort community game that runs itself and gives members a shared goal.
-- Big servers can add a cooldown and the no-repeat rule so one person cannot farm the count.
+- Big communities can add a cooldown and the no-repeat rule so one person cannot farm the count.
 - Staff can restore the count from a save point instead of arguing about who broke it.
 - Repeat offenders who keep breaking the count on purpose can be muted or banned from counting automatically.
 
@@ -89,9 +89,9 @@ The command shows the top 20, ten per page.
 
 ## Moderation
 
-Counting moderation is off until you enable it, either per channel with `countmodenable true` or server-wide with `countmoddefaults true`. Channel settings override the server defaults; `countmodreset` puts a channel back on the defaults.
+Counting moderation is off until you enable it, either per channel with `countmodenable true` or community-wide with `countmoddefaults true`. Channel settings override the community defaults; `countmodreset` puts a channel back on the defaults.
 
-When it is on, each wrong number is logged against the member and added to their wrong-count tally for the **time window** (default 24 hours, 1 to 168). Tiered punishments fire when a member's tally hits an exact number: `countmodpunish 3 Mute 30` mutes for 30 minutes on the third wrong count. Tiers set with a channel apply to that channel; tiers set without one are server defaults, and channel tiers win. `Softban`, `Kick` and `RemoveRoles` cannot take a duration, and durations cap at 49 days. `AddRole` needs a role.
+When it is on, each wrong number is logged against the member and added to their wrong-count tally for the **time window** (default 24 hours, 1 to 168). Tiered punishments fire when a member's tally hits an exact number: `countmodpunish 3 Mute 30` mutes for 30 minutes on the third wrong count. Tiers set with a channel apply to that channel; tiers set without one are community defaults, and channel tiers win. `Softban`, `Kick` and `RemoveRoles` cannot take a duration, and durations cap at 49 days. `AddRole` needs a role.
 
 Two extra rules only apply when moderation is on:
 
@@ -138,7 +138,7 @@ The dashboard has five tabs: **Channels**, **Configuration**, **Statistics**, **
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -163,13 +163,13 @@ Run these with your server's prefix (`.` unless you changed it).
 | `countingmilestonechannel [#counting] [#target]` | `cmilestonechannel`, `countmilestonechannel` | Manage Channels | Store a milestone channel, none to clear |
 | `countingfailurechannel [#counting] [#target]` | `cfailurechannel`, `countfailurechannel` | Manage Channels | Store a failure log channel, none to clear |
 | `countingfailurethreshold [#channel] [1-10]` | `cfailurethreshold`, `countfailurethreshold` | Manage Channels | Show or set the failure threshold |
-| `countmodshow [#channel]` | `cmshow`, `countmoderationshow` | Manage Channels | Show moderation config and server defaults |
-| `countmoddefaults <on/off> [threshold] [hours] [punishment] [minutes] [@role]` | `cmdefaults`, `countmoderationdefaults` | Administrator | Server-wide moderation defaults |
+| `countmodshow [#channel]` | `cmshow`, `countmoderationshow` | Manage Channels | Show moderation config and community defaults |
+| `countmoddefaults <on/off> [threshold] [hours] [punishment] [minutes] [@role]` | `cmdefaults`, `countmoderationdefaults` | Administrator | Community-wide moderation defaults |
 | `countmodenable <on/off> [#channel]` | `cmenable`, `countmoderationenable` | Manage Channels | Turn moderation on or off for a channel |
 | `countmodthreshold <1-100> [#channel]` | `cmthreshold`, `countmoderationthreshold` | Manage Channels | Set the channel's wrong-count threshold |
 | `countmodwindow <1-168> [#channel]` | `cmwindow`, `countmoderationwindow` | Manage Channels | Hours a wrong count stays on record |
 | `countmodpunishment <action> [minutes] [@role] [#channel]` | `cmpunishment`, `countmoderationpunishment` | Manage Channels | Set the channel's default punishment |
-| `countmodpunish <count> <action> [minutes] [@role] [#channel]` | `cmpunish`, `countmoderationpunish` | Manage Channels | Punishment at an exact wrong count; no channel means server default |
+| `countmodpunish <count> <action> [minutes] [@role] [#channel]` | `cmpunish`, `countmoderationpunish` | Manage Channels | Punishment at an exact wrong count; no channel means community default |
 | `countmodunpunish <count> [#channel]` | `cmunpunish`, `countmoderationunpunish` | Manage Channels | Remove a tier |
 | `countmodpunishlist [#channel]` | `cmpunishlist`, `countmoderationpunishlist` | Manage Channels | List tiers |
 | `countmodignore <delete> [#channel] [@roles...]` | `cmignore`, `countmoderationignore` | Manage Channels | Roles the bot ignores, optionally deleting their messages |
@@ -177,7 +177,7 @@ Run these with your server's prefix (`.` unless you changed it).
 | `countmodbanned [#channel] [@roles...]` | `cmbanned`, `countmoderationbanned` | Manage Channels | Roles that cannot count |
 | `countmodnonnumbers <punish> [delete] [#channel]` | `cmnonnumbers`, `countmoderationnonnumbers` | Manage Channels | Rules for chat in the channel |
 | `countmodedits <punish> [delete] [#channel]` | `cmedits`, `countmoderationedits` | Manage Channels | Rules for edited messages |
-| `countmodreset [#channel]` | `cmreset`, `countmoderationreset` | Manage Channels | Channel goes back to server defaults |
+| `countmodreset [#channel]` | `cmreset`, `countmoderationreset` | Manage Channels | Channel goes back to community defaults |
 | `countmodclear <@user> [#channel]` | `cmclear`, `countmoderationclear` | Manage Messages | Clear a member's wrong counts |
 | `countmodclearall [#channel]` | `cmclearall`, `countmoderationclearall` | Manage Messages | Clear everyone's wrong counts |
 

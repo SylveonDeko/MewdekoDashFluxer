@@ -14,7 +14,7 @@ related: [rolegreets, invites, administration]
 
 When a member joins, the bot posts a greeting in every channel you have set up as a greet. Each greet has its own message, its own delete timer, its own webhook identity and its own bot toggle. You can run all of them at once or pick one at random per join.
 
-Messages go through the embed parser, so a greet can be plain text, a full embed with buttons, or a webhook post with a custom name and avatar. Placeholders fill in the member's name, the server name, the member count and, if invite tracking is on, who invited them.
+Messages go through the embed parser, so a greet can be plain text, a full embed with buttons, or a webhook post with a custom name and avatar. Placeholders fill in the member's name, the community name, the member count and, if invite tracking is on, who invited them.
 
 The older single-message system still exists alongside this. It handles the goodbye message when someone leaves, the boost announcement when someone boosts, and a private welcome DM. Those live in the Administration module and are described further down.
 
@@ -28,7 +28,7 @@ The older single-message system still exists alongside this. It handles the good
 
 ## Greet types
 
-The **Greet Type** is server-wide and decides what happens on a join.
+The **Greet Type** is community-wide and decides what happens on a join.
 
 | Type | Dashboard label | What happens |
 | --- | --- | --- |
@@ -38,7 +38,7 @@ The **Greet Type** is server-wide and decides what happens on a join.
 
 ## What one greet holds
 
-Each greet is tied to one channel. A channel can hold up to five greets, and a server can hold thirty in total. Greets are numbered by their position in the list, and that number is what the commands use.
+Each greet is tied to one channel. A channel can hold up to five greets, and a community can hold thirty in total. Greets are numbered by their position in the list, and that number is what the commands use.
 
 | Field | Default | Meaning |
 | --- | --- | --- |
@@ -53,7 +53,7 @@ If the channel is deleted, the greet is removed the next time it tries to fire. 
 
 ## Placeholders
 
-Greets are built with the user, server and bot placeholder sets. Inviter placeholders only work while invite tracking is enabled on the Invites page.
+Greets are built with the user, community and bot placeholder sets. Inviter placeholders only work while invite tracking is enabled on the Invites page.
 
 | Placeholder | Value |
 | --- | --- |
@@ -64,9 +64,9 @@ Greets are built with the user, server and bot placeholder sets. Inviter placeho
 | `%user.avatar%`, `%useravatar%` | Avatar URL |
 | `%user.banner%` | Banner URL |
 | `%user.created_date%`, `%user.created_time%` | When the account was created |
-| `%user.joined_date%`, `%user.joined_time%` | When they joined this server |
-| `%server%`, `%server.name%` | Server name |
-| `%server.id%`, `%sid%` | Server ID |
+| `%user.joined_date%`, `%user.joined_time%` | When they joined this community |
+| `%server%`, `%server.name%` | Community name |
+| `%server.id%`, `%sid%` | Community ID |
 | `%server.icon%`, `%server.banner%` | Icon and banner URLs |
 | `%server.members%`, `%members%` | Member count |
 | `%server.time%`, `%server.timestamp.longdatetime%` | Current time, plain or as a Fluxer timestamp |
@@ -81,17 +81,17 @@ Greets are built with the user, server and bot placeholder sets. Inviter placeho
 > [!EXAMPLE]
 > `Welcome %user.mention% to %server%! You are member #%server.members%.`
 
-The full list of server, channel and bot placeholders is on the placeholders page. Channel placeholders are not filled in for greets.
+The full list of community, channel and bot placeholders is on the placeholders page. Channel placeholders are not filled in for greets.
 
 ## The classic greet, bye and boost commands
 
-These predate multi greets and live in the Administration module. They are one message each, stored on the server config, and toggled from the channel you run the command in.
+These predate multi greets and live in the Administration module. They are one message each, stored on the community config, and toggled from the channel you run the command in.
 
 | Message | Fires when | Placeholders |
 | --- | --- | --- |
-| Bye | A member leaves | User, server and bot sets, plus channel placeholders. `%user%` mentions the member who left. |
-| Boost | A member starts boosting, or boosts again | User, channel, server, bot and gif sets |
-| Greet DM | A member joins, sent as a private message | User, channel, server, bot and gif sets |
+| Bye | A member leaves | User, community and bot sets, plus channel placeholders. `%user%` mentions the member who left. |
+| Boost | A member starts boosting, or boosts again | User, channel, community, bot and gif sets |
+| Greet DM | A member joins, sent as a private message | User, channel, community, bot and gif sets |
 
 Running `bye` or `boost` toggles that message on or off and sets the channel to the one you typed in. `byedel` and `boostdel` set a self-delete timer in seconds; `boostdel` is capped at 600. The message commands with no text show the current message. `leavehook` wraps the bye message in a webhook with a custom name and avatar, and `leavehook disable` removes it.
 
@@ -128,7 +128,7 @@ The bye, boost and greet DM messages are not on this page. Set them with the com
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -139,20 +139,20 @@ Run these with your server's prefix (`.` unless you changed it).
 | `multigreetdisable <number> <true or false>` | `mgdisable`, `mgdis` | Administrator | `true` disables the greet, `false` enables it |
 | `multigreetgreetbots <number> <true or false>` | `multigreetbots`, `mggb` | Administrator | Whether this greet fires for bots |
 | `multigreetwebhook <number> [name] [avatar url]` | `mgwebhook`, `mghook`, `mgh` | Administrator | Create a webhook for the greet; no name removes it |
-| `multigreettype <multigreet, randomgreet or off>` | `mgtype`, `mgt` | Administrator | Change the server-wide greet type |
+| `multigreettype <multigreet, randomgreet or off>` | `mgtype`, `mgt` | Administrator | Change the community-wide greet type |
 | `multigreetlist` | `mglist`, `mgl` | Administrator | Page through every greet with its settings |
-| `bye` | | Manage Server | Toggle the goodbye message in this channel |
-| `byemsg [text]` | | Manage Server | Show or set the goodbye message |
-| `byedel [seconds]` | | Manage Server | Goodbye self-delete timer, default 30 |
-| `byetest [@user]` | | Manage Server | Send the goodbye message as a test |
-| `leavehook [#channel] [name] [image url] [text]` | `byehook` | Manage Server | Send goodbyes through a webhook, or `leavehook disable` |
-| `boost` | | Manage Server | Toggle the boost message in this channel |
-| `boostmsg [text]` | `boostmessage` | Manage Server | Show or set the boost message |
-| `boostdel [seconds]` | `boostdelete` | Manage Server | Boost self-delete timer, 0 to 600, default 30 |
-| `boosttest [@user]` | `testboost` | Manage Server | Send the boost message as a test |
-| `greetdm` | | Manage Server | Toggle the welcome DM |
-| `greetdmmsg [text]` | | Manage Server | Show or set the welcome DM text |
-| `greetdmtest [@user]` | | Manage Server | Send the welcome DM as a test |
+| `bye` | | Manage Community | Toggle the goodbye message in this channel |
+| `byemsg [text]` | | Manage Community | Show or set the goodbye message |
+| `byedel [seconds]` | | Manage Community | Goodbye self-delete timer, default 30 |
+| `byetest [@user]` | | Manage Community | Send the goodbye message as a test |
+| `leavehook [#channel] [name] [image url] [text]` | `byehook` | Manage Community | Send goodbyes through a webhook, or `leavehook disable` |
+| `boost` | | Manage Community | Toggle the boost message in this channel |
+| `boostmsg [text]` | `boostmessage` | Manage Community | Show or set the boost message |
+| `boostdel [seconds]` | `boostdelete` | Manage Community | Boost self-delete timer, 0 to 600, default 30 |
+| `boosttest [@user]` | `testboost` | Manage Community | Send the boost message as a test |
+| `greetdm` | | Manage Community | Toggle the welcome DM |
+| `greetdmmsg [text]` | | Manage Community | Show or set the welcome DM text |
+| `greetdmtest [@user]` | | Manage Community | Send the welcome DM as a test |
 | `greetdmoptout` | `gdmoptout` | Nobody | Stop receiving welcome DMs from this bot anywhere |
 
 ## Tips and gotchas
@@ -161,5 +161,5 @@ Run these with your server's prefix (`.` unless you changed it).
 - Greet numbers are positions in the list, so removing one shifts the numbers of everything after it. Run `multigreetlist` before editing.
 - The `off` option of `multigreettype`, `/multigreets type` and the dashboard's **Disabled** button all set the same greet type, so any of them turns the system off without deleting your greets.
 - Invite placeholders wait up to five seconds for the join to be attributed before the greet goes out, so the inviter is right even when several people join at once.
-- The welcome DM only works if the member allows DMs from server members. Failed DMs are ignored.
+- The welcome DM only works if the member allows DMs from community members. Failed DMs are ignored.
 - Role Greets are a separate feature that fires when a role is given rather than on join.

@@ -468,12 +468,12 @@
 {/snippet}
 
 {#snippet section(title: string)}
-  <h4 class="text-xs font-semibold uppercase tracking-wide pt-2" style="color: {$colorStore.muted}">{title}</h4>
+  <h4 class="text-xs font-semibold pt-2" style="color: {$colorStore.muted}">{title}</h4>
 {/snippet}
 
 <div class="space-y-4" in:fade={{ duration: 150 }}>
   <div class="rounded-2xl border p-3 md:p-4 flex flex-col lg:flex-row lg:items-center gap-3"
-       style="background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15, {$colorStore.gradientEnd}10);
+       style="background: {$colorStore.primary}0c;
               border-color: {$colorStore.primary}30;">
     <div class="flex items-center gap-2 flex-1 min-w-0">
       <button type="button" class="w-[44px] h-[44px] rounded-xl flex items-center justify-center shrink-0"

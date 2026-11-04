@@ -21,7 +21,7 @@ Lines keep the colours Serilog prints with, and each line is tagged with its lev
 
 - The bot restarted or crashed and you want the last thing it said before it went down, which is on the stderr side.
 - A member reports a command failing and you want to watch the log live while they try again.
-- You want to search a few thousand recent lines for a guild id or a message without SSHing in.
+- You want to search a few thousand recent lines for a community id or a message without SSHing in.
 - You need the full log file for a bug report and want it as a download.
 
 ## Controls

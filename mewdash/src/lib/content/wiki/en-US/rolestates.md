@@ -1,7 +1,7 @@
 ---
 title: Role States
 slug: rolestates
-summary: Remember the roles a member had when they left the server and hand them back automatically when they rejoin.
+summary: Remember the roles a member had when they left the community and hand them back automatically when they rejoin.
 icon: fa-tag
 category: Actions
 dashboard: /dashboard/rolestates
@@ -16,21 +16,21 @@ When Role States is enabled, the bot watches for members leaving. The moment som
 
 From the member's point of view nothing changes on the way out. On the way back in, their roles are simply there again, usually before they finish reading the welcome channel.
 
-Staff get a saved role list per member that they can inspect, edit or delete, an exclusion list for roles that should never be restored, and a bulk "save everyone now" action so the feature also covers members who were already in the server before you turned it on.
+Staff get a saved role list per member that they can inspect, edit or delete, an exclusion list for roles that should never be restored, and a bulk "save everyone now" action so the feature also covers members who were already in the community before you turned it on.
 
 ## Why you would use it
 
 - Verified members who leave by accident, or to clear notifications, come back without losing access.
 - Colour, ping and hobby roles picked from a reaction role menu survive a rejoin.
-- Servers with a manual verification process avoid re-checking people who were already approved.
+- Communities with a manual verification process avoid re-checking people who were already approved.
 - You can hand pick roles that should never come back, such as a temporary muted role or a staff role.
-- Moving a community to a new server: role states can be transferred and matched to roles with the same names.
+- Moving to a new community: role states can be transferred and matched to roles with the same names.
 
 ## How a role state is saved
 
 When a member leaves, the bot checks:
 
-1. Role States is enabled for the server.
+1. Role States is enabled for the community.
 2. **Ignore Bots** is off, or the member is not a bot.
 3. The member is not on the **Denied Users** list.
 
@@ -58,11 +58,11 @@ Staff can build or adjust a member's state without waiting for them to leave:
 - `deleteuserrolestate` forgets a member entirely.
 - `saveallrolestates` snapshots every current member at once, applying the same bot and deny filters as an automatic save.
 
-The dashboard adds one thing commands do not have: **Copy Role State**, which takes one member's saved roles and applies them directly to another member who is currently in the server.
+The dashboard adds one thing commands do not have: **Copy Role State**, which takes one member's saved roles and applies them directly to another member who is currently in the community.
 
-## Transferring to another server
+## Transferring to another community
 
-`transferrolestates <serverId>` copies every saved state from the current server to another server the bot is in. Roles are matched by name, ignoring case, and managed roles are skipped. Members whose saved roles have no name match in the target are skipped. The target server has Role States enabled automatically if it was not already, inheriting the source's **Ignore Bots** and **Clear on Ban** values when it has no settings of its own.
+`transferrolestates <serverId>` copies every saved state from the current community to another community the bot is in. Roles are matched by name, ignoring case, and managed roles are skipped. Members whose saved roles have no name match in the target are skipped. The target community has Role States enabled automatically if it was not already, inheriting the source's **Ignore Bots** and **Clear on Ban** values when it has no settings of its own.
 
 ## Settings
 
@@ -91,7 +91,7 @@ The **Management** tab holds **Manage User Roles** (add or remove selected roles
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). Every command in this module needs Administrator.
+Run these with your community's prefix (`.` unless you changed it). Every command in this module needs Administrator.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -99,7 +99,7 @@ Run these with your server's prefix (`.` unless you changed it). Every command i
 | `viewrolestatessettings` | `vrss` | Administrator | Show the current settings and deny lists |
 | `viewuserrolestates` | `viewrolestates`, `vurs` | Administrator | Page through every saved state |
 | `saveallrolestates` | `saveserverstates`, `backuprolestates` | Administrator | Snapshot every current member |
-| `transferrolestates <serverId>` | `copyrolestates`, `moverolestates` | Administrator | Copy states to another server, matching roles by name |
+| `transferrolestates <serverId>` | `copyrolestates`, `moverolestates` | Administrator | Copy states to another community, matching roles by name |
 | `togglerolestatesignorebots` | `trsib` | Administrator | Toggle ignoring bot accounts |
 | `togglerolestatesclearonban` | `trscob` | Administrator | Toggle clearing a state on ban |
 | `togglerolestatesskipautoassign` | `trssaa`, `rsskipautoassign` | Administrator | Toggle skipping auto-assign roles for members with a saved state |
@@ -114,7 +114,7 @@ Run these with your server's prefix (`.` unless you changed it). Every command i
 
 ## Tips and gotchas
 
-- Nothing is saved for members who were already in the server when you enabled the feature until they leave, or until you run **Save All**. Run it once right after setup.
+- Nothing is saved for members who were already in the community when you enabled the feature until they leave, or until you run **Save All**. Run it once right after setup.
 - Only leaves trigger a save. Kicks count as leaves. Bans also count as leaves, and the state is then removed again if **Clear on Ban** is on.
 - Restoring uses a single add-roles call. One missing or too-high role makes the whole restore fail silently, so keep the deny list current when you delete or reorder roles.
 - Managed roles (bot integration roles, the booster role) are never saved. Fluxer assigns those itself.

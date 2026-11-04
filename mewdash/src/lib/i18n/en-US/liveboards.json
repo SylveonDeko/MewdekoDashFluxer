@@ -6,7 +6,7 @@
   "board_meta": "#{channel} · every {minutes}m · updated {updated}",
   "board_rows": "· {count} rows",
   "boards_empty": "No live boards yet. Add one and the bot posts and pins it right away.",
-  "boards_subtitle": "Up to 10 per server, each refreshed on its own interval",
+  "boards_subtitle": "Up to 10 per community, each refreshed on its own interval",
   "channel_hint": "Where the message is posted",
   "confirm_delete_message": "Delete the {kind} in #{channel}? Its message is removed too.",
   "confirm_delete_title": "Delete live board",
@@ -58,6 +58,6 @@
   "reports_subtitle": "A digest of growth and activity posted daily, weekly or monthly",
   "rows_hint": "3 to 25",
   "send_now": "Send a report now",
-  "tab_reports": "Server Reports",
+  "tab_reports": "Community Reports",
   "window_hint": "Leaderboards use it directly; charts use up to 90 days for all time"
 }

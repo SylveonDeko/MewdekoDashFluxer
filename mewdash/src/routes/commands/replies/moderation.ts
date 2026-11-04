@@ -20,9 +20,9 @@ const reacted = (input: string): CommandPreview =>
 const warnedOn = "On November 2, 2026 at 6:12 PM by";
 
 export const moderationPreviews: Record<string, CommandPreview> = {
-  banpruneset: reply("banpruneset ban 3", success("Bans from Ban now purge **3 day(s) of messages** for this server.")),
+  banpruneset: reply("banpruneset ban 3", success("Bans from Ban now purge **3 day(s) of messages** for this community.")),
   banprunereset: reply("banprunereset", success("Removed 2 purge settings. Every action is back to its default.")),
-  banpruneclear: reply("banpruneclear ban", confirm("Cleared the purge setting for Ban in this server.")),
+  banpruneclear: reply("banpruneclear ban", confirm("Cleared the purge setting for Ban in this community.")),
   banprune: reply("banprune", {
     color: OK,
     title: "Ban message purge",
@@ -60,7 +60,7 @@ export const moderationPreviews: Record<string, CommandPreview> = {
   }),
   warnlogall: reply("warnlogall", {
     color: OK,
-    title: "List of all warned users on the server",
+    title: "List of all warned users on the community",
     description: "Biscuit | 2 (3 - 1)\nHazel | 1 (1 - 0)",
   }),
   warnclear: reply(`warnclear ${MEMBER}`, replyConfirm("All warnings have been cleared for Biscuit.")),
@@ -146,10 +146,10 @@ export const moderationPreviews: Record<string, CommandPreview> = {
   massnickstop: reply("massnickstop", confirm("Stopping mass nick.")),
 
   confess: reply("confess 1521570000000000021 I still use light mode in my editor",
-    confirm("Your confession has been sent! Please keep in mind if the server is abusing confessions you can send in a report using `/confessions report`")),
+    confirm("Your confession has been sent! Please keep in mind if the community is abusing confessions you can send in a report using `/confessions report`")),
   confesschannel: reply("confesschannel #confessions", confirm("Set <#confessions> as the Confession Channel!")),
   confesslogchannel: reply("confesslogchannel #confession-logs",
-    fail("Set <#confession-logs> as the Confession Log Channel. \n***Keep in mind if I find you misusing this function I will find out, blacklist this server. And use your spleen to take over the world")),
+    fail("Set <#confession-logs> as the Confession Log Channel. \n***Keep in mind if I find you misusing this function I will find out, blacklist this community. And use your spleen to take over the world")),
   confessblacklist: reply(`confessblacklist ${MEMBER}`, confirm(`Added ${MEMBER} to the confession blacklist!!`)),
   confessunblacklist: reply(`confessunblacklist ${MEMBER}`, confirm(`Removed ${MEMBER} from the confession blacklist!!`)),
   confessreport: reply("confessreport 1521570000000000021 Confessions are being used to harass members",
@@ -180,7 +180,7 @@ export const moderationPreviews: Record<string, CommandPreview> = {
   channelaccessquestionlist: reply("channelaccessquestionlist #staff-lounge", {
     color: OK,
     title: "Application questions for <#staff-lounge>",
-    description: "`1.` Why do you want access to this channel?\n`2.` How long have you been in the server? *(optional)*",
+    description: "`1.` Why do you want access to this channel?\n`2.` How long have you been in the community? *(optional)*",
   }),
   channelaccesswithdraw: reply("channelaccesswithdraw 12", confirm("Application #12 was withdrawn.")),
   channelaccesshistory: reply("channelaccesshistory", {

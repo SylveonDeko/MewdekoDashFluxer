@@ -66,14 +66,14 @@ const voiceSearch = lines(
 );
 
 const globalLines = lines(
-  done("Traveler", "Bronze", "Unlock achievements in 3 servers", 1_300_000),
-  progress("Globetrotter", "Silver", "Unlock achievements in 5 servers", 3, 5),
-  progress("Citizen of Everywhere", "Gold", "Unlock achievements in 10 servers", 3, 10),
-  progress("Rising Star", "Silver", "Earn 1,000 achievement points across every server", 820, 1000),
-  progress("Celebrity", "Gold", "Earn 5,000 achievement points across every server", 820, 5000),
-  progress("Icon", "Champion", "Earn 25,000 achievement points across every server", 820, 25000),
-  progress("Achievement Hunter", "Silver", "Unlock 100 achievements across every server", 19, 100),
-  progress("Trophy Case", "Amethyst", "Unlock 500 achievements across every server", 19, 500),
+  done("Traveler", "Bronze", "Unlock achievements in 3 communities", 1_300_000),
+  progress("Globetrotter", "Silver", "Unlock achievements in 5 communities", 3, 5),
+  progress("Citizen of Everywhere", "Gold", "Unlock achievements in 10 communities", 3, 10),
+  progress("Rising Star", "Silver", "Earn 1,000 achievement points across every community", 820, 1000),
+  progress("Celebrity", "Gold", "Earn 5,000 achievement points across every community", 820, 5000),
+  progress("Icon", "Champion", "Earn 25,000 achievement points across every community", 820, 25000),
+  progress("Achievement Hunter", "Silver", "Unlock 100 achievements across every community", 19, 100),
+  progress("Trophy Case", "Amethyst", "Unlock 500 achievements across every community", 19, 500),
 );
 
 const badgeSlots =
@@ -232,7 +232,7 @@ export const progressPreviews: Record<string, CommandPreview> = {
         ),
         wide(
           "Other Placeholders",
-          "`%xp.rank%` - Current rank\n`%xp.rank.ordinal%` - Rank in words (first, second)\n`%xp.rank.suffix%` - Rank suffix (st, nd, rd, th)\n`%xp.guild.name%` - Server name\n`%xp.time%` - Current time\n`%xp.timestamp%` - Fluxer timestamp",
+          "`%xp.rank%` - Current rank\n`%xp.rank.ordinal%` - Rank in words (first, second)\n`%xp.rank.suffix%` - Rank suffix (st, nd, rd, th)\n`%xp.guild.name%` - Community name\n`%xp.time%` - Current time\n`%xp.timestamp%` - Fluxer timestamp",
         ),
         wide(
           "Legacy Compatibility",
@@ -449,13 +449,13 @@ export const progressPreviews: Record<string, CommandPreview> = {
         field("Duration", "30 minutes"),
         field("Delete Ignored Messages", "❌ No"),
         wide("Ignore Roles", "@Moderator"),
-        wide("Guild Defaults", "Enabled: ✅ | Threshold: 3 | Window: 24h | Punishment: Mute"),
+        wide("Community Defaults", "Enabled: ✅ | Threshold: 3 | Window: 24h | Punishment: Mute"),
       ],
     }),
   ),
   countmodreset: reply(
     "countmodreset #counting",
-    confirm("Channel <#counting> has been reset to use guild defaults."),
+    confirm("Channel <#counting> has been reset to use community defaults."),
   ),
   countmodrequired: reply(
     "countmodrequired #counting @Counters",
@@ -523,7 +523,7 @@ export const progressPreviews: Record<string, CommandPreview> = {
   countmoddefaults: reply(
     "countmoddefaults true 3 24 Mute 30",
     ok({
-      title: "Guild Defaults Updated",
+      title: "Community Defaults Updated",
       description: `Set counting moderation defaults for ${SERVER}`,
       fields: [
         field("Enabled", "✅ Yes"),
@@ -657,7 +657,7 @@ export const progressPreviews: Record<string, CommandPreview> = {
         ),
         field("Invites", "Invites: **12**"),
         field("Commands", "Commands: **204**"),
-        field("Membership", "Days in server: **412**"),
+        field("Membership", "Days in community: **412**"),
         field("XP", "XP level: **12**"),
         field("Reputation", "Reputation: **5**"),
         field("Currency", "Net worth: **18,250**"),
@@ -759,7 +759,7 @@ export const progressPreviews: Record<string, CommandPreview> = {
     color: SILVER,
     author: "SylveonDeko",
     title: "Global achievements",
-    description: `**Silver** rank · **820** points · 19 achievements in 3 servers\n\n${globalLines}`,
+    description: `**Silver** rank · **820** points · 19 achievements in 3 communities\n\n${globalLines}`,
   }),
   achexcluderole: reply("achexcluderole @Muted", confirm("@Muted no longer earns achievements.")),
   achexcludechannel: reply(

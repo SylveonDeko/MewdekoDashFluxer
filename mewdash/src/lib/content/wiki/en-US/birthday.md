@@ -12,9 +12,9 @@ related: [utility, administration]
 
 ## What it does
 
-A member sets their birthday once with `setbirthday`, then runs `birthdayannouncements` in any server that has the feature turned on. Each day the bot checks who has a birthday, posts a message in the announcement channel, and can hand out a birthday role for 24 hours. If a ping role is set, it is mentioned in front of the message.
+A member sets their birthday once with `setbirthday`, then runs `birthdayannouncements` in any community that has the feature turned on. Each day the bot checks who has a birthday, posts a message in the announcement channel, and can hand out a birthday role for 24 hours. If a ping role is set, it is mentioned in front of the message.
 
-Birthdays are stored on the member's bot profile, not per server, so one `setbirthday` covers every server they share with the bot. Whether a birthday is announced in a given server depends on three things: the member has opted in, their profile is not private, and their birthday display mode is not disabled.
+Birthdays are stored on the member's bot profile, not per community, so one `setbirthday` covers every community they share with the bot. Whether a birthday is announced in a given community depends on three things: the member has opted in, their profile is not private, and their birthday display mode is not disabled.
 
 Anyone can see who is celebrating with `birthdaytoday` and who is coming up with `birthdaylist`. Age is shown next to the name unless the member has chosen a display mode that hides the year.
 
@@ -22,7 +22,7 @@ Staff configure the channel, roles and message from the **Birthdays** page on th
 
 ## Why you would use it
 
-- Community servers that want a daily "happy birthday" post without anyone tracking dates by hand.
+- Communities that want a daily "happy birthday" post without anyone tracking dates by hand.
 - Giving members a coloured birthday role for the day so they stand out in chat.
 - Pinging a "birthday squad" role so people actually see the announcement.
 - Letting members choose how much of their birthday is public, down to hiding it entirely.
@@ -38,7 +38,7 @@ A member is included in announcements and lists only when all of these are true:
 | Profile is not private | `setprivacy public` on the profile |
 | Display mode is not Disabled | `setbirthdayprivacy <mode>` |
 
-The check runs against the members currently in the server, so someone who leaves is not announced.
+The check runs against the members currently in the community, so someone who leaves is not announced.
 
 ### Birthday display modes
 
@@ -54,11 +54,11 @@ The check runs against the members currently in the server, so someone who leave
 
 ## How the daily check works
 
-The service runs once an hour and compares each member's birthday month and day with today's date in UTC. The first hour of a new UTC day that finds birthdays posts them, and the server is marked as done for that day so nothing is posted twice.
+The service runs once an hour and compares each member's birthday month and day with today's date in UTC. The first hour of a new UTC day that finds birthdays posts them, and the community is marked as done for that day so nothing is posted twice.
 
 Announcements only happen when the **Announcements** feature is on and a channel is set. Setting a channel with `birthdaychannel` or on the dashboard turns the feature on for you.
 
-Timezones are stored but not used by the daily check yet. `birthdaytimezone` and the **Server Timezone** setting are accepted and shown on the config embed, but announcements go out on the UTC day.
+Timezones are stored but not used by the daily check yet. `birthdaytimezone` and the **Community Timezone** setting are accepted and shown on the config embed, but announcements go out on the UTC day.
 
 ## The birthday role
 
@@ -72,14 +72,14 @@ The default message is `Happy Birthday %user.mention%!` with party emoji around 
 
 ### Placeholders
 
-The message supports the standard user, server, channel and bot placeholders from the placeholders page, plus one birthday-specific value.
+The message supports the standard user, community, channel and bot placeholders from the placeholders page, plus one birthday-specific value.
 
 | Placeholder | Value |
 | --- | --- |
 | `%user.mention%` | Mentions the birthday member |
 | `%user.name%` | Their username |
 | `%user.avatar%` | Their avatar URL |
-| `%server.name%` | The server name |
+| `%server.name%` | The community name |
 | `%birthday.age%` | The age they are turning, or `Unknown` |
 
 > [!WARNING]
@@ -96,7 +96,7 @@ Everything is on the **Birthdays** page under three tabs: **Configuration**, **U
 | Channel | none | Where announcements are posted |
 | Birthday Role | none | Role given for 24 hours on a birthday |
 | Ping Role | none | Role mentioned in front of each announcement |
-| Server Timezone | UTC | Stored for the server, shown on the config embed |
+| Community Timezone | UTC | Stored for the community, shown on the config embed |
 | Reminder Days Before Birthday | 0 | 0 to 30; stored, no reminder is sent yet |
 | Birthday Message | default embed | The announcement, with the placeholders above |
 
@@ -125,7 +125,7 @@ Everything is on the **Birthdays** page under three tabs: **Configuration**, **U
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -147,7 +147,7 @@ Run these with your server's prefix (`.` unless you changed it).
 
 - Members are not announced until they run `birthdayannouncements`. Tell them, or nobody will show up.
 - `setbirthday` accepts anything the bot can parse as a date. Use an unambiguous format such as `1998-04-12`.
-- `birthdaytimezone` only accepts a short fixed list of sixteen zones such as `UTC`, `GMT`, `America/New_York`, `Europe/London`, `Asia/Tokyo`, `Asia/Kolkata`, `Australia/Sydney` and `Pacific/Auckland`. The dashboard **Server Timezone** dropdown has a similar list of thirteen.
+- `birthdaytimezone` only accepts a short fixed list of sixteen zones such as `UTC`, `GMT`, `America/New_York`, `Europe/London`, `Asia/Tokyo`, `Asia/Kolkata`, `Australia/Sydney` and `Pacific/Auckland`. The dashboard **Community Timezone** dropdown has a similar list of thirteen.
 - The daily check uses UTC. Members far from UTC may be announced a few hours early or late.
 - The bot needs Manage Roles for the birthday role, and Send Messages plus Embed Links in the announcement channel.
 - `birthdayconfig` shows a "Reminder Days" field and a Reminders feature. These are stored but do not send anything at present.

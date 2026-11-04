@@ -194,12 +194,12 @@
     <div class="lg:col-span-6 space-y-4">
       <!-- XP Leaderboard -->
       <div
-        class=" rounded-xl p-4 transition-all hover:shadow-lg hover:-translate-y-px border"
+        class=" rounded-xl p-4 transition-all border"
               style="background: {$colorStore.primary}05;
                border-color: {$colorStore.primary}15;">
         <div class="flex items-center gap-3 mb-4">
           <div class="p-2 rounded-lg"
-               style="background: linear-gradient(135deg, {$colorStore.primary}20, {$colorStore.secondary}20);">
+               style="background: {$colorStore.primary}20;">
             <i class="fa-utility-duo fa-regular fa-star text-xl"
                style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary};"></i>
           </div>
@@ -233,7 +233,7 @@
           </div>
         {:else}
           {#each xpLeaderboard as user, index (user.userId)}
-            <div class="flex items-center gap-3 p-2 rounded-lg transition-all hover:scale-[1.01]"
+            <div class="flex items-center gap-3 p-2 rounded-lg transition-all"
                  style="background: {index < 3 ? $colorStore.primary + '15' : $colorStore.primary + '08'};">
               <!-- Rank Badge -->
               <div class="w-6 h-6 rounded-full flex items-center justify-center font-bold text-xs"
@@ -268,11 +268,9 @@
 
       <!-- View More Button -->
         <a
-          class="w-full mt-3 flex items-center justify-center gap-2 py-2 px-3 rounded-lg transition-all hover:scale-[1.02] text-sm"
+          class="w-full mt-3 flex items-center justify-center gap-2 py-2 px-3 rounded-lg transition-all text-sm"
          href="/dashboard/xp"
          style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;">
-        <i class="fa-utility-duo fa-regular fa-arrow-right"
-           style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary};"></i>
         {m.dashboard.communityViewFullXp()}
       </a>
     </div>
@@ -281,7 +279,7 @@
       <div class="space-y-3">
 
         <!-- Birthday Celebrations Card -->
-        <div class=" rounded-lg p-3 transition-all hover:shadow-md border"
+        <div class=" rounded-lg p-3 transition-all border"
                style="background: {$colorStore.primary}05;
                     border-color: {$colorStore.primary}15;">
         <div class="flex items-center justify-between mb-2">
@@ -338,7 +336,7 @@
         </div>
 
         <!-- Message Activity Card -->
-        <div class=" rounded-lg p-3 transition-all hover:shadow-md border"
+        <div class=" rounded-lg p-3 transition-all border"
                style="background: {$colorStore.primary}05;
                     border-color: {$colorStore.primary}15;">
         <div class="flex items-center justify-between mb-2">
@@ -393,7 +391,7 @@
         </div>
 
         <!-- Support Tickets Card -->
-        <div class=" rounded-lg p-3 transition-all hover:shadow-md border"
+        <div class=" rounded-lg p-3 transition-all border"
                style="background: {$colorStore.primary}05;
                     border-color: {$colorStore.primary}15;">
         <div class="flex items-center justify-between mb-2">
@@ -434,7 +432,7 @@
         </div>
 
         <!-- Starboard Highlights Card -->
-        <div class=" rounded-lg p-3 transition-all hover:shadow-md border"
+        <div class=" rounded-lg p-3 transition-all border"
                style="background: {$colorStore.primary}05;
                     border-color: {$colorStore.primary}15;">
         <div class="flex items-center justify-between mb-2">
@@ -473,7 +471,7 @@
         </div>
 
         <!-- Forms Card -->
-        <div class=" rounded-lg p-3 transition-all hover:shadow-md border"
+        <div class=" rounded-lg p-3 transition-all border"
              style="background: {$colorStore.primary}05;
                   border-color: {$colorStore.primary}15;">
           <div class="flex items-center justify-between mb-2">
@@ -519,7 +517,7 @@
         </div>
 
         <!-- Counting Activity Card -->
-        <div class=" rounded-lg p-3 transition-all hover:shadow-md border"
+        <div class=" rounded-lg p-3 transition-all border"
                style="background: {$colorStore.primary}05;
                     border-color: {$colorStore.primary}15;">
         <div class="flex items-center justify-between mb-2">
@@ -589,7 +587,7 @@
       <!-- Quick Stats List -->
       <div class="space-y-3">
         <!-- Active Members -->
-        <div class=" rounded-lg p-3 transition-all hover:scale-[1.01] hover:shadow-md border"
+        <div class=" rounded-lg p-3 transition-all border"
                style="background: {$colorStore.primary}05;
                     border-color: {$colorStore.primary}15;"
              in:fly={{ y: 20, duration: 300, delay: 0 }}>
@@ -608,7 +606,7 @@
                 {memberStats?.totalMembers > 0 ? m.dashboard.communityActiveRate({ percent: Math.round((activeMembers / memberStats.totalMembers) * 100) }) : m.common.noData()}
               </div>
             </div>
-            <a class="px-2 py-1 rounded-sm text-xs transition-all hover:scale-[1.02]"
+            <a class="px-2 py-1 rounded-sm text-xs transition-all"
                  href="/dashboard/xp"
                style="background: {$colorStore.primary}20; color: {$colorStore.primary};">
               {m.common.manage()}
@@ -619,7 +617,7 @@
 
 
         <!-- Total Invites -->
-        <div class=" rounded-lg p-3 transition-all hover:scale-[1.01] hover:shadow-md border"
+        <div class=" rounded-lg p-3 transition-all border"
                style="background: {$colorStore.primary}05;
                     border-color: {$colorStore.primary}15;"
              in:fly={{ y: 20, duration: 300, delay: 500 }}>
@@ -642,7 +640,7 @@
         </div>
 
         <!-- Average Joins -->
-        <div class=" rounded-lg p-3 transition-all hover:scale-[1.01] hover:shadow-md border"
+        <div class=" rounded-lg p-3 transition-all border"
                style="background: {$colorStore.primary}05;
                     border-color: {$colorStore.primary}15;"
              in:fly={{ y: 20, duration: 300, delay: 550 }}>
@@ -669,7 +667,7 @@
       <!-- Additional Features -->
       <div class="space-y-3">
         <!-- Reputation System -->
-        <div class=" rounded-lg p-3 transition-all hover:scale-[1.01] hover:shadow-md border"
+        <div class=" rounded-lg p-3 transition-all border"
                style="background: {$colorStore.primary}05;
                     border-color: {$colorStore.primary}15;"
              in:fly={{ y: 20, duration: 300, delay: 600 }}>
@@ -686,7 +684,7 @@
               </div>
               <div class="text-xs" style="color: {$colorStore.muted}">{m.features.reputationDescription()}</div>
             </div>
-            <a class="px-2 py-1 rounded-sm text-xs transition-all hover:scale-[1.02]"
+            <a class="px-2 py-1 rounded-sm text-xs transition-all"
                  href="/dashboard/reputation"
                style="background: {$colorStore.accent}20; color: {$colorStore.accent};">
               {m.common.manage()}
@@ -695,7 +693,7 @@
         </div>
 
         <!-- Confessions -->
-        <div class=" rounded-lg p-3 transition-all hover:scale-[1.01] hover:shadow-md border"
+        <div class=" rounded-lg p-3 transition-all border"
                style="background: {$colorStore.primary}05;
                     border-color: {$colorStore.primary}15;"
              in:fly={{ y: 20, duration: 300, delay: 650 }}>
@@ -712,7 +710,7 @@
               </div>
               <div class="text-xs" style="color: {$colorStore.muted}">{m.features.wizardConfessionsName()}</div>
             </div>
-            <a class="px-2 py-1 rounded-sm text-xs transition-all hover:scale-[1.02]"
+            <a class="px-2 py-1 rounded-sm text-xs transition-all"
                  href="/dashboard/confessions"
                style="background: {$colorStore.primary}20; color: {$colorStore.primary};">
               {m.common.manage()}
@@ -721,7 +719,7 @@
         </div>
 
         <!-- Highlights -->
-        <div class=" rounded-lg p-3 transition-all hover:scale-[1.01] hover:shadow-md border"
+        <div class=" rounded-lg p-3 transition-all border"
                style="background: {$colorStore.primary}05;
                     border-color: {$colorStore.primary}15;"
              in:fly={{ y: 20, duration: 300, delay: 700 }}>
@@ -738,7 +736,7 @@
               </div>
               <div class="text-xs" style="color: {$colorStore.muted}">{m.dashboard.communityHighlightsDesc()}</div>
             </div>
-            <a class="px-2 py-1 rounded-sm text-xs transition-all hover:scale-[1.02]"
+            <a class="px-2 py-1 rounded-sm text-xs transition-all"
                  href="/dashboard/highlights"
                style="background: {$colorStore.secondary}20; color: {$colorStore.secondary};">
               {m.common.manage()}
@@ -747,7 +745,7 @@
         </div>
 
         <!-- Stream Notifications -->
-        <div class=" rounded-lg p-3 transition-all hover:scale-[1.01] hover:shadow-md border"
+        <div class=" rounded-lg p-3 transition-all border"
                style="background: {$colorStore.primary}05;
                     border-color: {$colorStore.primary}15;"
              in:fly={{ y: 20, duration: 300, delay: 750 }}>
@@ -764,7 +762,7 @@
               </div>
               <div class="text-xs" style="color: {$colorStore.muted}">{m.dashboard.communityStreamsDesc()}</div>
             </div>
-            <a class="px-2 py-1 rounded-sm text-xs transition-all hover:scale-[1.02]"
+            <a class="px-2 py-1 rounded-sm text-xs transition-all"
                  href="/dashboard/streams"
                style="background: {$colorStore.accent}20; color: {$colorStore.accent};">
               {m.common.manage()}
@@ -777,7 +775,7 @@
       <div class="space-y-3">
         {#if patreonConnected}
           <!-- Patreon Supporters -->
-          <div class=" rounded-lg p-3 transition-all hover:scale-[1.01] hover:shadow-md border"
+          <div class=" rounded-lg p-3 transition-all border"
                  style="background: {$colorStore.primary}05;
                       border-color: {$colorStore.primary}15;">
             <div class="flex items-center gap-3">
@@ -794,7 +792,7 @@
                 <div class="text-xs" style="color: {$colorStore.muted}">{m.dashboard.communityActivePatrons()}</div>
               </div>
                 <a href="/dashboard/patreon"
-                   class="px-2 py-1 rounded-sm text-xs transition-all hover:scale-[1.02]"
+                   class="px-2 py-1 rounded-sm text-xs transition-all"
                  style="background: {$colorStore.accent}20; color: {$colorStore.accent};">
                 {m.common.manage()}
               </a>
@@ -802,7 +800,7 @@
           </div>
         {:else}
           <!-- Connect Patreon -->
-          <div class=" rounded-lg p-3 transition-all hover:scale-[1.01] hover:shadow-md border"
+          <div class=" rounded-lg p-3 transition-all border"
                  style="background: {$colorStore.primary}05;
                       border-color: {$colorStore.primary}15;">
             <div class="flex items-center gap-3">
@@ -819,7 +817,7 @@
                 <div class="text-xs" style="color: {$colorStore.muted}">{m.common.notConnected()}</div>
               </div>
                 <a href="/dashboard/patreon"
-                   class="px-2 py-1 rounded-sm text-xs transition-all hover:scale-[1.02]"
+                   class="px-2 py-1 rounded-sm text-xs transition-all"
                  style="background: {$colorStore.accent}20; color: {$colorStore.accent};">
                 {m.common.setup()}
               </a>

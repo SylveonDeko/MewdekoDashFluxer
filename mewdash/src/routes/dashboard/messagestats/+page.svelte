@@ -155,7 +155,7 @@
   function buildExportPayload() {
     return {
       guildId: $currentGuild?.id?.toString() ?? "",
-      guildName: $currentGuild?.name ?? "Unknown Guild",
+      guildName: $currentGuild?.name ?? "Unknown Community",
       exportedAt: new Date().toISOString(),
       startDate: exportStartDate || null,
       endDate: exportEndDate || null,

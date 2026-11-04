@@ -25,6 +25,17 @@ export const fluxerAuthorizeUrl = (): string => env.FLUXER_AUTHORIZE_URL || `${f
 
 export const fluxerScopes = (): string => env.FLUXER_SCOPES || "identify guilds";
 
+/** Thrown when Fluxer answers a sign-in request with 429. */
+export class FluxerRateLimitError extends Error {
+  readonly retryAfterSeconds: number;
+
+  constructor(response: Response) {
+    super("Fluxer rate limited the request");
+    this.name = "FluxerRateLimitError";
+    this.retryAfterSeconds = Number(response.headers.get("retry-after")) || 60;
+  }
+}
+
 export const requestFluxerToken = async (
   searchParams: URLSearchParams,
   cookies?: Cookies, // Make cookies optional
@@ -36,7 +47,16 @@ export const requestFluxerToken = async (
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
   });
 
-  const response = await request?.json();
+  if (request.status == 429) throw new FluxerRateLimitError(request);
+
+  const text = await request.text();
+  let response: any;
+  try {
+    response = JSON.parse(text);
+  } catch {
+    logger.error(`Token request returned ${request.status} with a non-JSON body:`, text.slice(0, 200));
+    throw new Error(`Token request failed: ${request.status}`);
+  }
 
   // Handle different error types appropriately
   if (request.status == 400) {
@@ -78,6 +98,7 @@ export async function getUserData(accessToken: string): Promise<FluxerUser> {
     }
   });
 
+  if (response.status == 429) throw new FluxerRateLimitError(response);
   if (!response.ok) {
     throw new Error(`Failed to fetch user data: ${response.statusText}`);
   }

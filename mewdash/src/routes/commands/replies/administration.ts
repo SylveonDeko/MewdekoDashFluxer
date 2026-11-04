@@ -144,22 +144,22 @@ export const administrationPreviews: Record<string, CommandPreview> = {
   banunder: chat(
     "general",
     sylveon("banunder 1d"),
-    bot(error("Are you sure you want to ban 8 users that are under that server join age? Say `yes` to continue.")),
+    bot(error("Are you sure you want to ban 8 users that are under that community join age? Say `yes` to continue.")),
     said("yes"),
     bot(
       confirm(
-        "Banned 8 users under that server join age, and was unable to ban 0 users.\nIf there were any failed bans please check the bots top role and try again.",
+        "Banned 8 users under that community join age, and was unable to ban 0 users.\nIf there were any failed bans please check the bots top role and try again.",
       ),
     ),
   ),
   kickunder: chat(
     "general",
     sylveon("kickunder 1d"),
-    bot(error("Are you sure you want to kick 8 users that are under that server join age? Say `yes` to continue.")),
+    bot(error("Are you sure you want to kick 8 users that are under that community join age? Say `yes` to continue.")),
     said("yes"),
     bot(
       confirm(
-        "Kicked 8 users under that server join age, and was unable to kick 0 users.\nIf there were any failed kicks please check the bots top role and try again.",
+        "Kicked 8 users under that community join age, and was unable to kick 0 users.\nIf there were any failed kicks please check the bots top role and try again.",
       ),
     ),
   ),
@@ -169,13 +169,13 @@ export const administrationPreviews: Record<string, CommandPreview> = {
   delmsgoncmd: chat(
     "general",
     sylveon("delmsgoncmd"),
-    bot(confirm("I will auto-delete messages which successfully execute commands on this server.")),
+    bot(confirm("I will auto-delete messages which successfully execute commands on this community.")),
     sylveon("delmsgoncmd channel enable <#bot-commands>"),
-    bot(confirm("I will always auto-delete messages which successfully execute commands on this channel, regardless of the server setting.")),
+    bot(confirm("I will always auto-delete messages which successfully execute commands on this channel, regardless of the community setting.")),
     sylveon("delmsgoncmd list"),
     bot({
       color: OK,
-      title: "Server Setting",
+      title: "Community Setting",
       description: "✅",
       fields: [{ name: "Channel-Specific Settings", value: "✅ bot-commands\n❌ general" }],
     }),
@@ -191,16 +191,16 @@ export const administrationPreviews: Record<string, CommandPreview> = {
   nsfwtoggle: reply("nsfwtoggle", confirm("NSFW has been enabled on this channel.")),
   renamechannel: reply("renamechannel <#general> lounge", confirm("Channel Renamed")),
   delete: tick("delete 1388294715602313216"),
-  setguildavatar: reply("setguildavatar https://cdn.mewdeko.tech/avatar.png", confirm("Successfully set the bot's guild avatar!")),
-  setguildbanner: reply("setguildbanner https://cdn.mewdeko.tech/banner.png", confirm("Successfully set the bot's guild banner!")),
-  setguildbio: reply("setguildbio Your friendly neighbourhood cat bot", confirm("Successfully set the bot's guild bio!")),
+  setguildavatar: reply("setguildavatar https://cdn.mewdeko.tech/avatar.png", confirm("Successfully set the bot's community avatar!")),
+  setguildbanner: reply("setguildbanner https://cdn.mewdeko.tech/banner.png", confirm("Successfully set the bot's community banner!")),
+  setguildbio: reply("setguildbio Your friendly neighbourhood cat bot", confirm("Successfully set the bot's community bio!")),
   autoassignrole: reply(
     "autoassignrole <@Member>",
-    confirm("The following roles are applied to users that join this server: \n**<@Member>**"),
+    confirm("The following roles are applied to users that join this community: \n**<@Member>**"),
   ),
   autoassignbotrole: reply(
     "autoassignbotrole <@Bots>",
-    confirm("The following roles are applied to bots that join this server: \n**<@Bots>**"),
+    confirm("The following roles are applied to bots that join this community: \n**<@Bots>**"),
   ),
   autobanroleadd: reply("autobanroleadd <@Raiders>", confirm("Added <@Raiders> to the auto ban role list.")),
   autobanroleremove: reply("autobanroleremove <@Raiders>", confirm("Removed <@Raiders> from the auto ban role list.")),
@@ -218,11 +218,11 @@ export const administrationPreviews: Record<string, CommandPreview> = {
   dpor: chat(
     "general",
     sylveon("dpor"),
-    bot(confirm("Are you sure that you want to remove **ALL** discord permission overrides on this server? This action is irreversible.")),
+    bot(confirm("Are you sure that you want to remove **ALL** discord permission overrides on this community? This action is irreversible.")),
     bot(confirm("All discord permission overrides have been cleared.")),
   ),
   dpol: reply("dpol", { color: OK, description: "purge => ManageMessages\nban => BanMembers", footer: pageOf(1, 1) }),
-  languageset: reply("languageset de-DE", confirm("Your server's locale is now **de-DE** - **Deutsch (Deutschland)**")),
+  languageset: reply("languageset de-DE", confirm("Your community's locale is now **de-DE** - **Deutsch (Deutschland)**")),
   languageslist: reply("languageslist", {
     color: OK,
     title: "List of languages",
@@ -240,9 +240,9 @@ export const administrationPreviews: Record<string, CommandPreview> = {
   prefix: chat(
     "general",
     sylveon("prefix"),
-    bot(confirm("Prefix on this server is `.`")),
+    bot(confirm("Prefix on this community is `.`")),
     sylveon("prefix !"),
-    bot(confirm("Changed prefix on this server from `.` to `!`")),
+    bot(confirm("Changed prefix on this community from `.` to `!`")),
   ),
   unblockimage: reply("unblockimage 3", confirm("Removed blocked image `3`.")),
   patternremove: reply("patternremove 2", confirm("Pattern with ID **2** has been removed successfully.")),
@@ -386,7 +386,7 @@ export const administrationPreviews: Record<string, CommandPreview> = {
   togglexclsar: reply("togglexclsar", confirm("Self assigned roles are now exclusive!")),
   sargn: reply("sargn 1 Colours", confirm("Group #**1** now has a name: **Colours**")),
   rsar: reply("rsar Gamer", confirm("**Gamer** has been removed from the list of self-assignable roles.")),
-  rolelevelreq: reply("rolelevelreq 5 Veteran", confirm("Self assignable role **Veteran** now requires at least server level **5**.")),
+  rolelevelreq: reply("rolelevelreq 5 Veteran", confirm("Self assignable role **Veteran** now requires at least community level **5**.")),
   lsar: reply("lsar", {
     color: OK,
     title: "**There are 4 self assignable roles**",
@@ -427,7 +427,7 @@ export const administrationPreviews: Record<string, CommandPreview> = {
   timezone: chat(
     "general",
     sylveon("timezone"),
-    bot(confirm("Timezone for this guild is `UTC`")),
+    bot(confirm("Timezone for this community is `UTC`")),
     sylveon("timezone Europe/London"),
     bot(confirm("(UTC+00:00) United Kingdom Time")),
   ),
@@ -468,7 +468,7 @@ export const administrationPreviews: Record<string, CommandPreview> = {
       {
         name: "Description",
         value:
-          "Shows the purge a ban issued in this channel woul…\nRemoves a purge setting so the action falls back …\nRemoves every purge setting in the server.\nSets how many days of messages one ban action pur…",
+          "Shows the purge a ban issued in this channel woul…\nRemoves a purge setting so the action falls back …\nRemoves every purge setting in the community.\nSets how many days of messages one ban action pur…",
         inline: true,
       },
     ],
@@ -477,7 +477,7 @@ export const administrationPreviews: Record<string, CommandPreview> = {
     color: OK,
     author: "Mewdeko Help Menu",
     description:
-      "Do `.cmds modulename` to list a module's commands.\nDo `.h commandname` for help on a single command, or `.searchcmd term` to search every command.\nModules that are crossed out are turned off here.\n\n[Documentation](https://mewdeko.tech) | [Support Server](https://mewdeko.tech/support) | [Invite Me](https://mewdeko.tech) | [Donate!](https://ko-fi.com/mewdeko)",
+      "Do `.cmds modulename` to list a module's commands.\nDo `.h commandname` for help on a single command, or `.searchcmd term` to search every command.\nModules that are crossed out are turned off here.\n\n[Documentation](https://mewdeko.tech) | [Support Community](https://mewdeko.tech/support) | [Invite Me](https://mewdeko.tech) | [Donate!](https://ko-fi.com/mewdeko)",
     fields: [
       {
         name: "Moderation & Admin",
@@ -485,7 +485,7 @@ export const administrationPreviews: Record<string, CommandPreview> = {
           "**Administration** · **CountingModeration** · **Moderation** · **Permissions** · **RoleStates** · **ServerManagement** · **StatusRoles**",
       },
       {
-        name: "Server Setup",
+        name: "Community Setup",
         value:
           "**ChannelAccess** · **ChatTriggers** · **Confessions** · **CustomVoice** · **Giveaways** · **LiveBoardCommands** · **MultiGreets** · **PollCommands** · **RoleGreets** · **RoleMenus** · **ServerStats** · **Starboard** · **StatChannels** · **StatRoles** · **Suggestions** · **Tickets** · **TwitchCommands**",
       },

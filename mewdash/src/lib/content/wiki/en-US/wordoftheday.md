@@ -1,7 +1,7 @@
 ---
 title: Word of the Day
 slug: wordoftheday
-summary: Posts one vocabulary word a day with its definition, pronunciation, and an example, picked from a dictionary by topic and difficulty or from a list the server writes itself.
+summary: Posts one vocabulary word a day with its definition, pronunciation, and an example, picked from a dictionary by topic and difficulty or from a list the community writes itself.
 icon: fa-book-open
 category: Community
 dashboard: /dashboard/wordoftheday
@@ -12,11 +12,11 @@ related: [birthday, utility]
 
 ## What it does
 
-Once a day, at an hour the server picks in its own timezone, the bot posts a word in a chosen channel. The post shows the word, how it is pronounced, its part of speech, a definition, and an example sentence when one exists. A role can be pinged with every post.
+Once a day, at an hour the community picks in its own timezone, the bot posts a word in a chosen channel. The post shows the word, how it is pronounced, its part of speech, a definition, and an example sentence when one exists. A role can be pinged with every post.
 
 Words come from the Datamuse dictionary and are filtered by three settings: a **topic** the words should lean toward, a **part of speech**, and a **difficulty** based on how often the word appears in written English. The bot avoids repeating anything it has posted in the last ninety days.
 
-Servers can also build a **custom list** with `wotdadd`. If a definition is left out, the bot looks one up. The **source mode** decides whether posts come from the dictionary, the custom list, or the custom list first and the dictionary once it runs out.
+Communities can also build a **custom list** with `wotdadd`. If a definition is left out, the bot looks one up. The **source mode** decides whether posts come from the dictionary, the custom list, or the custom list first and the dictionary once it runs out.
 
 ## Scheduling by weekday or month
 
@@ -31,7 +31,7 @@ Examples:
 
 ## Discussion thread
 
-When turned on, the bot creates a public thread under each daily post and drops a starter prompt inviting people to use the word in a sentence. The thread's name comes from a template (default `Word of the day: %wotd.word%`) that supports `%wotd.word%`, `%wotd.date%`, `%wotd.pos%`, and the usual server placeholders. `wotdthread` toggles it on or off, `wotdthreadname` sets, shows, or clears the name template, and `wotdthreadarchive` sets how long the thread stays open before auto-archiving (1 hour, 1 day, 3 days, or 1 week).
+When turned on, the bot creates a public thread under each daily post and drops a starter prompt inviting people to use the word in a sentence. The thread's name comes from a template (default `Word of the day: %wotd.word%`) that supports `%wotd.word%`, `%wotd.date%`, `%wotd.pos%`, and the usual community placeholders. `wotdthread` toggles it on or off, `wotdthreadname` sets, shows, or clears the name template, and `wotdthreadarchive` sets how long the thread stays open before auto-archiving (1 hour, 1 day, 3 days, or 1 week).
 
 ## Commands
 
@@ -54,4 +54,4 @@ When turned on, the bot creates a public thread under each daily post and drops 
 
 ## Message placeholders
 
-`%wotd.word%`, `%wotd.definition%`, `%wotd.pos%`, `%wotd.example%`, `%wotd.phonetic%`, `%wotd.date%`, and `%wotd.ping%` are available inside a custom template, alongside the usual server placeholders.
+`%wotd.word%`, `%wotd.definition%`, `%wotd.pos%`, `%wotd.example%`, `%wotd.phonetic%`, `%wotd.date%`, and `%wotd.ping%` are available inside a custom template, alongside the usual community placeholders.

@@ -12,19 +12,19 @@ related: [administration, tickets]
 
 ## What it does
 
-Todo Lists gives your server task lists that live in the bot. A member creates a list, adds items to it, marks them done, and can hand out access so other people can view or work on the same list. Staff with Manage Server can create server-wide lists that every member can see.
+Todo Lists gives your community task lists that live in the bot. A member creates a list, adds items to it, marks them done, and can hand out access so other people can view or work on the same list. Staff with Manage Community can create community-wide lists that every member can see.
 
 Each item has a title, an optional description, a priority from 1 to 4, optional tags, an optional due date and an optional reminder time. Items keep a position so you can reorder them, and completed items are stamped with who completed them and when.
 
-There are two kinds of list. A personal list belongs to one member and is invisible to everyone else unless the owner grants access. A server list belongs to the server; it is public by default so anyone can view it, but only people with explicit permission can add or change items.
+There are two kinds of list. A personal list belongs to one member and is invisible to everyone else unless the owner grants access. A community list belongs to the community; it is public by default so anyone can view it, but only people with explicit permission can add or change items.
 
 Lists show up as embeds in Fluxer and as cards on the dashboard. The dashboard also tracks progress, overdue counts and completion rate for the list you have open.
 
 ## Why you would use it
 
-- A moderation team tracks outstanding tasks in one server list instead of a pinned message that goes stale.
+- A moderation team tracks outstanding tasks in one community list instead of a pinned message that goes stale.
 - Event organisers share a checklist and tick items off as they go.
-- Members keep a private list of things to follow up on in the server.
+- Members keep a private list of things to follow up on in the community.
 - A project channel wants tags and priorities so "critical" items stand out from "low".
 
 ## Lists and permissions
@@ -50,8 +50,8 @@ Who can see a list:
 | List type | Public | Who can view |
 | --- | --- | --- |
 | Personal | any | Owner, plus anyone granted `view` |
-| Server | yes (default) | Everyone in the server |
-| Server | no | Owner, plus anyone granted `view` |
+| Community | yes (default) | Everyone in the community |
+| Community | no | Owner, plus anyone granted `view` |
 
 `todotoggleprivacy` flips a list between public and private. Only the owner or someone with `manage` can do that.
 
@@ -75,7 +75,7 @@ Each list can have a hex colour, set with `todosetcolor 12 #ff8800`, which is us
 
 ## Settings
 
-There are no server-wide settings. Everything is per list or per item.
+There are no community-wide settings. Everything is per list or per item.
 
 The Todo Lists page has one view. The left side lists every list you can see, with a **Search todo lists** box, a **Show completed items** toggle, and **Sort by** (Priority, Due Date, Created, Title) with an order selector. Selecting a list shows its items with **Add Item** and **Delete List** buttons, an item editor with **Priority** and **Due date**, and a **Manage permissions** button per list.
 
@@ -87,12 +87,12 @@ The Todo Lists page has one view. The left side lists every list you can see, wi
 | Show completed items | off | Whether done items appear in the list view |
 
 > [!NOTE]
-> Lists created from the dashboard are always server lists. Create personal lists with `todocreatelist` in Fluxer.
+> Lists created from the dashboard are always community lists. Create personal lists with `todocreatelist` in Fluxer.
 
 ## Setup walkthrough
 
 1. Open **Todo Lists** in the dashboard and click **Create List**.
-2. Enter a name and optional description. The list is created as a public server list.
+2. Enter a name and optional description. The list is created as a public community list.
 3. Click the list, then **Add Item**. Fill in **What needs to be done?**, an optional description and a priority.
 4. Use **Manage permissions** on the list card to see who has access. Grant access from Fluxer with `todogrant <listId> @user add,complete` so those people can work on it.
 5. In Fluxer, run `todolists` to get the list ID, then `todoshow <listId>` to check it renders.
@@ -100,12 +100,12 @@ The Todo Lists page has one view. The left side lists every list you can see, wi
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). List and item IDs come from `todolists` and `todoshow`.
+Run these with your community's prefix (`.` unless you changed it). List and item IDs come from `todolists` and `todoshow`.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
 | `todocreatelist <name> [description]` | `tcl` | Nobody | Create a personal list |
-| `todocreateserverlist <name> [description]` | `tcsl` | Manage Server | Create a server-wide list |
+| `todocreateserverlist <name> [description]` | `tcsl` | Manage Community | Create a community-wide list |
 | `todolists [includeServer]` | | Nobody | List the lists you can see; pass `false` for personal lists only |
 | `tododeletelist <listId>` | `tdl` | Nobody | Delete a list and all its items (owner or `manage`) |
 | `todoshow <listId> [includeCompleted]` | `ts` | Nobody | Show a list's items |
@@ -137,6 +137,6 @@ Run these with your server's prefix (`.` unless you changed it). List and item I
 - `todoshow` marks a list as not found if you have no `view` access, even when the ID is right.
 - A list name must be unique per owner and type, so two members can each have a "Shopping" personal list but one member cannot have two.
 - `todoreorder` renumbers every item in the list, so positions stay contiguous.
-- Public server lists are readable by everyone but nobody except the owner can add to them until you grant `add`.
+- Public community lists are readable by everyone but nobody except the owner can add to them until you grant `add`.
 - Use `todogrant` in Fluxer for the full permission set; the dashboard's **Manage permissions** view is for checking who has access.
 - Deleting a list removes its permissions and items in one go and cannot be undone.

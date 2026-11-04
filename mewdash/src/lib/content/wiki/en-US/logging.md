@@ -24,7 +24,7 @@ Channels can also be excluded. An ignored channel produces no message, thread or
 - Track who joined and left, including account creation dates, to spot raids and alt accounts.
 - Record bans, unbans and mutes with the responsible moderator for accountability.
 - Watch for role, channel and permission changes made by other admins or compromised accounts.
-- Follow voice activity in servers where voice channels are the main hangout.
+- Follow voice activity in communities where voice channels are the main hangout.
 
 ## Log event types
 
@@ -40,9 +40,9 @@ Each type can point at a different channel or be left off. These are the values 
 | `ThreadDeleted` | Thread Deleted | A thread is deleted |
 | `ThreadUpdated` | Thread Updated | A thread's name, archive status or similar changes |
 | `UsernameUpdated` | Username Updated | A member's global username changes |
-| `NicknameUpdated` | Nickname Updated | A member's server nickname changes |
+| `NicknameUpdated` | Nickname Updated | A member's community nickname changes |
 | `UserUpdated` | User Updated | A member's profile, such as avatar or global name, changes |
-| `UserJoined` | User Joined | A member joins the server |
+| `UserJoined` | User Joined | A member joins the community |
 | `UserLeft` | User Left | A member leaves or is kicked |
 | `UserRoleAdded` | User Role Added | One or more roles are given to a member |
 | `UserRoleRemoved` | User Role Removed | One or more roles are taken from a member |
@@ -51,8 +51,8 @@ Each type can point at a different channel or be left off. These are the values 
 | `UserMuted` | User Muted | A member is muted in voice or text |
 | `VoicePresence` | Voice Presence | A member joins, leaves, moves, mutes, deafens or streams in voice |
 | `VoicePresenceTts` | Voice Presence TTS | A member may have used text to speech in voice; detection is best effort |
-| `ServerUpdated` | Server Updated | Server settings such as name, icon or owner change |
-| `EventCreated` | Event Created | A scheduled server event is created |
+| `ServerUpdated` | Community Updated | Community settings such as name, icon or owner change |
+| `EventCreated` | Event Created | A scheduled community event is created |
 | `InviteCreated` | Invite Created | An invite is created, with its max age and uses |
 | `InviteDeleted` | Invite Deleted | An invite is deleted |
 | `RoleCreated` | Role Created | A role is created |
@@ -85,7 +85,7 @@ The dashboard also shows an **Avatar Updated** entry. It is stored alongside the
 
 Any channel on the ignore list is skipped for message, thread, channel and voice events that happen inside it. Threads inherit the setting from their parent channel, so ignoring a forum or text channel also ignores its threads. Ignoring a voice channel suppresses voice presence logs for joins to and leaves from that channel.
 
-Ignoring a channel does not stop member, role or server events, since those are not tied to a channel.
+Ignoring a channel does not stop member, role or community events, since those are not tied to a channel.
 
 ## Settings
 
@@ -93,14 +93,14 @@ The Logging page has two tabs, **Log Channels** and **Ignored Channels**.
 
 | Setting | Default | What it controls |
 | --- | --- | --- |
-| Log Channels | none | One channel picker per event type, grouped by Popular, Users, Messages, Moderation, Server, Channels, Roles, Threads, Voice and All Events |
+| Log Channels | none | One channel picker per event type, grouped by Popular, Users, Messages, Moderation, Community, Channels, Roles, Threads, Voice and All Events |
 | Clear Category | | Empties every picker in the group you are viewing; takes effect when you **Save Configuration** |
 | Clear All | | Shown in the **All Events** group; empties every picker, applied on save |
 | Disable All | | Header button shown while any channel is set; unassigns every event type immediately after confirmation, keeping ignored channels |
 | Ignored Channels | none | Channels excluded from logging, moved between the **Active Channels** and **Ignored Channels** lists |
 
 > [!TIP]
-> The **Popular** group holds User Joined, User Left, Message Deleted, Message Updated, User Banned, User Unbanned, Channel Created and Channel Destroyed. It is a good starting set for most servers.
+> The **Popular** group holds User Joined, User Left, Message Deleted, Message Updated, User Banned, User Unbanned, Channel Created and Channel Destroyed. It is a good starting set for most communities.
 
 ## Setup walkthrough
 
@@ -113,7 +113,7 @@ The Logging page has two tabs, **Log Channels** and **Ignored Channels**.
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -134,6 +134,6 @@ Run these with your server's prefix (`.` unless you changed it).
 - Give the bot **View Audit Log**. Without it, logs still post but cannot say which moderator deleted a message, banned someone or changed a role.
 - The bot must be able to view and send messages in each log channel. A log channel it cannot see is skipped without an error.
 - Deleted and edited message logs depend on the bot's message cache. Messages sent before the bot last restarted, or in bulk purges, may show as uncached.
-- Reaction logs are grouped: all reaction changes on a message within about five seconds arrive as one entry, to avoid flooding busy servers.
+- Reaction logs are grouped: all reaction changes on a message within about five seconds arrive as one entry, to avoid flooding busy communities.
 - The select menu opened by `log #channel` lists up to 25 types per menu and preselects the ones already sent to that channel.
 - `logcategory` overwrites every type in the category, including ones you had routed elsewhere. Use `log` for single types afterwards.

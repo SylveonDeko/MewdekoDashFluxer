@@ -1,7 +1,7 @@
 ---
 title: Audit Log
 slug: auditlog
-summary: A record of who used the dashboard for your server, what they looked at, and what they changed, kept for ninety days.
+summary: A record of who used the dashboard for your community, what they looked at, and what they changed, kept for ninety days.
 icon: fa-clipboard-check
 category: Security
 dashboard: /dashboard/auditlog
@@ -11,11 +11,11 @@ related: [logging, administration, channel-access]
 
 ## What it does
 
-Every request the dashboard sends to the bot for your server is recorded against the Fluxer account that was logged in. The Audit Log page turns that into a timeline: who opened the XP settings, who edited the welcome message, who deleted a chat trigger, and what the values were before and after.
+Every request the dashboard sends to the bot for your community is recorded against the Fluxer account that was logged in. The Audit Log page turns that into a timeline: who opened the XP settings, who edited the welcome message, who deleted a chat trigger, and what the values were before and after.
 
-It is separate from Fluxer's own audit log and from the Logging feature. Fluxer's log covers actions taken inside Fluxer. Mewdeko's Logging feature posts server events such as joins, edits and role changes into channels you choose. The dashboard Audit Log covers only the dashboard.
+It is separate from Fluxer's own audit log and from the Logging feature. Fluxer's log covers actions taken inside Fluxer. Mewdeko's Logging feature posts community events such as joins, edits and role changes into channels you choose. The dashboard Audit Log covers only the dashboard.
 
-Nothing needs enabling. Entries are written from the moment someone logs into the dashboard and opens your server, and they age out after ninety days.
+Nothing needs enabling. Entries are written from the moment someone logs into the dashboard and opens your community, and they age out after ninety days.
 
 ## Why you would use it
 
@@ -94,7 +94,7 @@ Entries are kept for **ninety days**. A cleanup job runs once a day, starting fi
 
 ## Who can see it
 
-The page is only available to people who can log into the dashboard and are members of your server. The server owner and anyone with the Administrator permission can always open it. Anyone else needs at least **View** access to the **Audit Log** section under Dashboard Access, which is granted per user or per role.
+The page is only available to people who can log into the dashboard and are members of your community. The community owner and anyone with the Administrator permission can always open it. Anyone else needs at least **View** access to the **Audit Log** section under Dashboard Access, which is granted per user or per role.
 
 > [!PERMISSION]
 > Because the user is taken from the dashboard login token, nobody can make an entry appear under someone else's name.
@@ -102,7 +102,7 @@ The page is only available to people who can log into the dashboard and are memb
 ## Tips and gotchas
 
 - The section filter only lists sections that appear on the page you are looking at. If a section is missing from the dropdown, it may still exist on later pages; clear the action filter and page through, or narrow by action first.
-- Timestamps are shown in the timezone of the browser viewing the page, not the server's timezone from the Administration settings.
+- Timestamps are shown in the timezone of the browser viewing the page, not the community's timezone from the Administration settings.
 - A "Created" entry means a POST request was made, which the dashboard also uses for some toggles and updates. Read the endpoint line and the details to see what really happened.
 - Entries whose details show values without an old value came from a section that does not snapshot its previous state. You will see what was sent, but not what it replaced.
-- The log is per server. Switching servers in the dashboard switches the log with it.
+- The log is per community. Switching communities in the dashboard switches the log with it.

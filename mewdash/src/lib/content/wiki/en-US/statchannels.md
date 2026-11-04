@@ -14,13 +14,13 @@ related: [counting, twitch, suggestions, xp, afk, starboard]
 
 A stat channel is a locked voice channel that sits at the top of your channel list and shows a number in its name, for example "Members: 12,480". The bot rewrites the name on a schedule so the number stays current. Members cannot join the channel; it exists only to be read.
 
-You choose a counter type, a template for the name, a style for the number and how often it refreshes. The bot supports several dozen counters covering server facts, presence, emojis, member goals and countdowns, plus values pulled from other Mewdeko features such as tickets, suggestions, giveaways, XP, counting, the starboard, and linked Twitch or Minecraft servers.
+You choose a counter type, a template for the name, a style for the number and how often it refreshes. The bot supports several dozen counters covering community facts, presence, emojis, member goals and countdowns, plus values pulled from other Mewdeko features such as tickets, suggestions, giveaways, XP, counting, the starboard, and linked Twitch or Minecraft servers.
 
 Fluxer only allows a channel to be renamed twice every ten minutes. Stat Channels works around that with a choice of update mechanism, including one that deletes and recreates the channel so it can refresh every minute.
 
 ## Why you would use it
 
-- Show member, human and bot counts at the top of the server.
+- Show member, human and bot counts at the top of the community.
 - Track progress to a member goal with a percentage or a progress bar.
 - Count down to an event, a launch or an anniversary.
 - Show Twitch live status and viewer count for a streamer's server.
@@ -50,7 +50,7 @@ The full catalogue below is what `statchanneltypes` and the dashboard's **Availa
 | `MemberGoal` | Progress toward a target member count | `%count% / %goal%` | `%goal%`, `%goal.raw%`, `%goal.percent%`, `%goal.remaining%`, `%goal.bar%` |
 | `AfkCount` | Members currently AFK through Mewdeko | `AFK: %count%` | |
 
-### Server
+### Community
 
 | Type | Shows | Default template | Extra placeholders |
 | --- | --- | --- | --- |
@@ -66,7 +66,7 @@ The full catalogue below is what `statchanneltypes` and the dashboard's **Availa
 | `AnimatedEmojiCount` | Animated custom emojis | `Animated: %count%` | |
 | `StaticEmojiCount` | Static custom emojis | `Static: %count%` | |
 | `StickerCount` | Custom stickers | `Stickers: %count%` | |
-| `ServerAge` | Days since the server was created | `Age: %count% days` | `%years%`, `%created%` |
+| `ServerAge` | Days since the community was created | `Age: %count% days` | `%years%`, `%created%` |
 | `BotUptime` | How long Mewdeko has been running | `Uptime: %days%d %hours%h` | `%days%`, `%hours%`, `%minutes%` |
 | `InviteCount` | Invites tracked by invite tracking | `Invites: %count%` | |
 
@@ -100,10 +100,10 @@ These read from the Twitch channel linked through the Twitch module.
 | `ActiveGiveaways` | Giveaways | Giveaways currently running | `Giveaways: %count%` | |
 | `StarboardPosts` | Starboard | Total starboard posts | `Starred: %count%` | |
 | `TopXpUser` | XP | The member with the most XP | `Top: %member.name%` | `%member.name%`, `%member.id%`, `%member.xp%` |
-| `TotalGuildXp` | XP | All XP earned in the server | `Total XP: %count%` | |
+| `TotalGuildXp` | XP | All XP earned in the community | `Total XP: %count%` | |
 | `TotalCurrency` | Currency | Currency held by members | `In Circulation: %count%` | |
 | `ActivePolls` | Polls | Polls accepting votes | `Polls: %count%` | |
-| `Clock` | Server | The date and time in the server's timezone | `%time% %tz%` | `%time%`, `%date%`, `%datetime%`, `%weekday%`, `%tz%` |
+| `Clock` | Community | The date and time in the community's timezone | `%time% %tz%` | `%time%`, `%date%`, `%datetime%`, `%weekday%`, `%tz%` |
 | `MessagesToday`, `MessagesWeek` | Activity | Messages in the last 24 hours or 7 days | `Today: %count%` | |
 | `VoiceHoursToday`, `VoiceHoursWeek` | Activity | Voice hours across all members in the last 24 hours or 7 days | `Today: %count%h` | |
 | `TopChatter` | Activity | The most active chatter of the last 7 days | `Chatter: %member.name%` | `%member.name%`, `%member.id%`, `%member.messages%` |
@@ -122,8 +122,8 @@ These read from the Twitch channel linked through the Twitch module.
 | --- | --- |
 | `%count%` | The value, rendered with the chosen display style |
 | `%count.raw%` | The value as plain digits |
-| `%server.name%` | Server name |
-| `%server.id%` | Server ID |
+| `%server.name%` | Community name |
+| `%server.id%` | Community ID |
 | `%server.members%` | Total member count |
 
 Channel names are capped at Fluxer's 100 character limit.
@@ -196,7 +196,7 @@ A newly created channel denies Connect to `@everyone` so it acts as a label. A c
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). Types, styles and mechanisms are the names from the tables above, for example `TotalMembers`, `Compact`, `Recreate`.
+Run these with your community's prefix (`.` unless you changed it). Types, styles and mechanisms are the names from the tables above, for example `TotalMembers`, `Compact`, `Recreate`.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -210,7 +210,7 @@ Run these with your server's prefix (`.` unless you changed it). Types, styles a
 | `statchannelstyle #voice <style>` | | Manage Channels | Set the display style |
 | `statchanneldefaults [mechanism] [minutes] [style]` | | Manage Channels | Set the defaults for new stat channels |
 | `statchanneltypes [category]` | | Nobody | Browse every counter with an example, optionally by category |
-| `statchannellist` | `scl` | Nobody | List this server's stat channels with type, style, mode and template |
+| `statchannellist` | `scl` | Nobody | List this community's stat channels with type, style, mode and template |
 | `statchannelremove #voice` | `statchrm` | Manage Channels | Stop tracking a channel |
 
 `statchannelcreate` also needs the bot to have Manage Channels.

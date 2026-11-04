@@ -116,7 +116,7 @@ export function permissionLabel(id: string | number): string {
   switch (String(id)) {
     case "Administrator": return m.common.permAdministrator();
     case "ManageChannels": return m.common.permManageChannels();
-    case "ManageGuild": return m.forms.labelPermissionManageGuild();
+    case "ManageGuild": return m.common.manageServer();
     case "ManageMessages": return m.common.permManageMessages();
     case "ManageNicknames": return m.common.manageNicknames();
     case "ManageRoles": return m.common.permManageRoles();

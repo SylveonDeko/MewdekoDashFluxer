@@ -12,7 +12,7 @@ related: [administration, filter, logging, auditlog]
 
 ## What it does
 
-Moderation is the toolbox staff use on individual members. Warnings are the core of it: a moderator runs `warn @user reason`, the member gets a DM with the reason and who warned them, the warning is stored, and if the server has a warning log channel an embed lands there with the warn count and any punishment that fired.
+Moderation is the toolbox staff use on individual members. Warnings are the core of it: a moderator runs `warn @user reason`, the member gets a DM with the reason and who warned them, the warning is stored, and if the community has a warning log channel an embed lands there with the warn count and any punishment that fired.
 
 Warnings add up. You can build a punishment ladder so that reaching a set number of active warnings triggers something automatically: a mute, a timeout, a kick, a ban, or a role. Staff do not have to remember the rules; the bot applies them the moment the count is hit. Warnings can be forgiven later, or set to expire on their own after a number of days.
 
@@ -30,7 +30,7 @@ The dashboard page covers warnings, the punishment ladder, the warning log chann
 
 ## Warnings
 
-`warn <user> [reason]` needs Ban Members. The bot first tries to DM the member an embed with the server name, the moderator and the reason. If the DM fails, the confirmation in the channel gets a footer saying so. The warning is then saved with the moderator's name and the reason, or `-` if none was given.
+`warn <user> [reason]` needs Ban Members. The bot first tries to DM the member an embed with the community name, the moderator and the reason. If the DM fails, the confirmation in the channel gets a footer saying so. The warning is then saved with the moderator's name and the reason, or `-` if none was given.
 
 The member must be below the moderator in the role hierarchy, and below the bot. If they are not, the command refuses.
 
@@ -84,7 +84,7 @@ There is a second, independent warning track called mini warnings, meant for min
 
 ## Mutes and the mute role
 
-The bot manages a mute role. By default it is named `Mewdeko-mute`; change it with `muterole @role`, or run `muterole` alone to see the current one. The first time a mute is needed the bot creates the role if it does not exist, then walks every text channel and adds an overwrite denying Send Messages, Add Reactions, Attach Files, Send Messages in Threads and Create Public Threads. Threads are skipped. This can take a moment in servers with many channels.
+The bot manages a mute role. By default it is named `Mewdeko-mute`; change it with `muterole @role`, or run `muterole` alone to see the current one. The first time a mute is needed the bot creates the role if it does not exist, then walks every text channel and adds an overwrite denying Send Messages, Add Reactions, Attach Files, Send Messages in Threads and Create Public Threads. Threads are skipped. This can take a moment in communities with many channels.
 
 | Command | Effect |
 | --- | --- |
@@ -103,7 +103,7 @@ Each has a timed form. Full mutes run from one minute up to 90 days; chat and vo
 
 ## Bans, kicks and softbans
 
-`ban <user> [reason]` DMs the member first, then bans. `ban <time> <user> [reason]` is a temporary ban that lifts itself, up to 49 days. `ban <pruneTime> <time> <user>` sets the purge window and the ban length explicitly. Banning by ID works for people who are not in the server. `unban <user or id>` reverses it.
+`ban <user> [reason]` DMs the member first, then bans. `ban <time> <user> [reason]` is a temporary ban that lifts itself, up to 49 days. `ban <pruneTime> <time> <user>` sets the purge window and the ban length explicitly. Banning by ID works for people who are not in the community. `unban <user or id>` reverses it.
 
 `softban <user> [reason]` bans and immediately unbans, which is a kick that also deletes recent messages. `kick <user> [reason]` kicks, and `masskick @a @b @c` kicks several people at once and reports how many succeeded. `masskill` is bot owner only and mass bans a pasted list of IDs.
 
@@ -120,11 +120,11 @@ The message sent to a banned member can be customised with `banmessage <text or 
 | `%ban.reason%` or `%reason%` | The reason, or `-` if none |
 | `%ban.duration%` | The length as `d.hh:mm`, or `perma` |
 
-Server placeholders such as `%server.name%` also work here.
+Community placeholders such as `%server.name%` also work here.
 
 ## Ban purge
 
-Every ban carries a purge: the number of days of the member's messages Fluxer deletes with it, from 0 to 7. Rather than one global number, each kind of ban has its own default, and you can override any of them for the whole server, for a category, or for a single channel.
+Every ban carries a purge: the number of days of the member's messages Fluxer deletes with it, from 0 to 7. Rather than one global number, each kind of ban has its own default, and you can override any of them for the whole community, for a category, or for a single channel.
 
 | Action | Key | Built in default |
 | --- | --- | --- |
@@ -143,11 +143,11 @@ Every ban carries a purge: the number of days of the member's messages Fluxer de
 | Lockdown | `lockdown` | none |
 | Dashboard | `dashboard` | none |
 
-When a ban happens the bot looks for the most specific setting: the channel the command was run in, then that channel's category, then the server default. Within each level a setting for the exact action beats one set for "all actions". If nothing matches, the built in default applies.
+When a ban happens the bot looks for the most specific setting: the channel the command was run in, then that channel's category, then the community default. Within each level a setting for the exact action beats one set for "all actions". If nothing matches, the built in default applies.
 
 `banprune` shows what a ban from the current channel would purge plus every configured setting. `banpruneset <action|all> <days> [#channel or category]` sets one, `banpruneclear <action|all> [#channel or category]` removes one, and `banprunereset` wipes them all.
 
-The dashboard's **Ban Purge** tab lists every action under **Server Defaults** with a days box each, an **All actions** fallback row, and an **Overrides** section where you pick a **Scope** (Channel or Category), the target, an **Action** and the **Purge (days)**.
+The dashboard's **Ban Purge** tab lists every action under **Community Defaults** with a days box each, an **All actions** fallback row, and an **Overrides** section where you pick a **Scope** (Channel or Category), the target, an **Action** and the **Purge (days)**.
 
 ## Purging messages
 
@@ -191,7 +191,7 @@ On the **Warnings** tab staff can warn a member by user ID with a required reaso
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |

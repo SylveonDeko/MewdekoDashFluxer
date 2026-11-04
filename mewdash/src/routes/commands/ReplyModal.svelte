@@ -70,8 +70,8 @@
   >
     <div
       bind:this={dialogEl}
-      class="rounded-2xl border shadow-2xl w-full max-w-[600px] max-h-[90vh] flex flex-col"
-      style="background: linear-gradient(135deg, {$colorStore.gradientStart}10, {$colorStore.gradientMid}15); border-color: {$colorStore.primary}30;"
+      class="rounded-2xl border w-full max-w-[600px] max-h-[90vh] flex flex-col"
+      style="background: {$colorStore.background}; border-color: {$colorStore.primary}20;"
       in:fly={{ y: 20, duration: 200 }}
       out:fly={{ y: -20, duration: 150 }}
       role="dialog"

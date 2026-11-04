@@ -6,13 +6,13 @@ icon: fa-thumbtack
 category: Community
 dashboard: /dashboard/liveboards
 module: ServerStats
-tags: [live boards, pinned leaderboard, pin leaderboard, auto updating, server report, weekly report, monthly report, digest, growth report]
+tags: [live boards, pinned leaderboard, pin leaderboard, auto updating, community report, weekly report, monthly report, digest, growth report]
 related: [serverstats, invites, statchannels, statroles]
 ---
 
 ## What it does
 
-A live board is a message the bot posts once, pins, and then edits on an interval so it always shows current numbers. A server report is a one-off embed with a growth chart posted daily, weekly or monthly that summarises what happened since the last one.
+A live board is a message the bot posts once, pins, and then edits on an interval so it always shows current numbers. A community report is a one-off embed with a growth chart posted daily, weekly or monthly that summarises what happened since the last one.
 
 ## Boards
 
@@ -25,12 +25,12 @@ A live board is a message the bot posts once, pins, and then edits on an interva
 | Joins chart, Leaves chart, Growth chart | Joins and leaves per day |
 | Members chart | Member count from the hourly snapshots |
 | Messages chart | Messages per day |
-| Server overview | The same summary as `serveractivity` |
+| Community overview | The same summary as `serveractivity` |
 | Invite analytics | Joins, leaves, retention, fake joins and sources |
 
-Each board has a **window** (last day, week, month, or all time; charts use up to 90 days for all time), a refresh interval of at least 5 minutes, a row count for leaderboards, and a pin toggle. A server can have up to 10 boards. Deleting a board deletes its message. If someone deletes the message by hand the bot posts a fresh one on the next refresh.
+Each board has a **window** (last day, week, month, or all time; charts use up to 90 days for all time), a refresh interval of at least 5 minutes, a row count for leaderboards, and a pin toggle. A community can have up to 10 boards. Deleting a board deletes its message. If someone deletes the message by hand the bot posts a fresh one on the next refresh.
 
-## Server reports
+## Community reports
 
 Set a channel and a frequency, and the bot posts a report the first time the schedule comes round, then daily at 00:00 UTC, weekly on Mondays, or on the first of each month. A report contains:
 
@@ -45,17 +45,17 @@ Set a channel and a frequency, and the bot posts a report the first time the sch
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). Boards also live under `/liveboard`, reports under `/serverreport`.
+Run these with your community's prefix (`.` unless you changed it). Boards also live under `/liveboard`, reports under `/serverreport`.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
-| `liveboardadd <#channel> <board> [range] [rows] [minutes]` | `pinboard`, `pinleaderboard` | Manage Server | Post and pin a board |
-| `liveboardlist` | `liveboards` | Manage Server | Every board |
-| `liveboardremove <id>` | `unpinboard` | Manage Server | Delete a board and its message |
-| `liveboardrefresh` | | Manage Server | Refresh every board now |
-| `serverreportchannel [#channel]` | `reportchannel` | Manage Server | Set the report channel and enable reports, or disable them |
-| `serverreportfrequency <Daily/Weekly/Monthly>` | `reportfrequency` | Manage Server | How often reports post |
-| `serverreportnow [frequency]` | `reportnow` | Manage Server | Post a report in the current channel |
+| `liveboardadd <#channel> <board> [range] [rows] [minutes]` | `pinboard`, `pinleaderboard` | Manage Community | Post and pin a board |
+| `liveboardlist` | `liveboards` | Manage Community | Every board |
+| `liveboardremove <id>` | `unpinboard` | Manage Community | Delete a board and its message |
+| `liveboardrefresh` | | Manage Community | Refresh every board now |
+| `serverreportchannel [#channel]` | `reportchannel` | Manage Community | Set the report channel and enable reports, or disable them |
+| `serverreportfrequency <Daily/Weekly/Monthly>` | `reportfrequency` | Manage Community | How often reports post |
+| `serverreportnow [frequency]` | `reportnow` | Manage Community | Post a report in the current channel |
 
 ## Tips and gotchas
 

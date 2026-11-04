@@ -16,7 +16,7 @@ A starboard is a channel where the bot reposts messages that enough people react
 
 The post keeps updating as reactions come and go. If reactions drop below the threshold, the post can be removed. If the original message is deleted or its reactions are cleared, the post can be removed too.
 
-A server can run several starboards at once, each with its own channel, its own emote or set of emotes, its own threshold and its own rules. A "best memes" board watching one emote and a "helpful answers" board watching another can run side by side.
+A community can run several starboards at once, each with its own channel, its own emote or set of emotes, its own threshold and its own rules. A "best memes" board watching one emote and a "helpful answers" board watching another can run side by side.
 
 ## Why you would use it
 
@@ -29,7 +29,7 @@ A server can run several starboards at once, each with its own channel, its own 
 
 Each starboard is identified by a numeric ID shown by `liststarboards` and in the dashboard list. Commands take that ID as their first argument.
 
-A starboard starts with one emote and can have more added. Any of its emotes counts toward the same total, and the post shows a separate count per emote. An emote can only belong to one starboard in the server; trying to reuse it fails with "emote already in use". A starboard must keep at least one emote, so the last one cannot be removed.
+A starboard starts with one emote and can have more added. Any of its emotes counts toward the same total, and the post shows a separate count per emote. An emote can only belong to one starboard in the community; trying to reuse it fails with "emote already in use". A starboard must keep at least one emote, so the last one cannot be removed.
 
 Custom emotes work as well as Unicode ones. The bot tests the emote by reacting to your command message, so it must be one the bot can use.
 
@@ -90,7 +90,7 @@ Mentions in the reposted text are suppressed, so a starred message cannot ping a
 
 ## Statistics
 
-`starboardstats` shows totals for the server: starred message count, total stars, the most starred member, the most active channel and the most active starrer. `starboarduserstats [@user]` shows a member's starred message count, stars received, stars given, their top posts, who stars them most, and who they star most. Both are open to everyone.
+`starboardstats` shows totals for the community: starred message count, total stars, the most starred member, the most active channel and the most active starrer. `starboarduserstats [@user]` shows a member's starred message count, stars received, stars given, their top posts, who stars them most, and who they star most. Both are open to everyone.
 
 ## Settings
 
@@ -110,7 +110,7 @@ Inside **Starboard Settings**:
 | Channel Mode | Whitelist | Whether the channel list is a whitelist or a blacklist |
 
 > [!TIP]
-> Start with a threshold of 3 to 5 on an active server. A threshold of 1 turns every stray reaction into a post.
+> Start with a threshold of 3 to 5 on an active community. A threshold of 1 turns every stray reaction into a post.
 
 ## Setup walkthrough
 
@@ -123,7 +123,7 @@ Inside **Starboard Settings**:
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). `<id>` is the starboard ID from `liststarboards`.
+Run these with your community's prefix (`.` unless you changed it). `<id>` is the starboard ID from `liststarboards`.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -140,7 +140,7 @@ Run these with your server's prefix (`.` unless you changed it). `<id>` is the s
 | `starboardremoveonbelowthreshold <id> <true or false>` | `starboardbelowthreshold`, `starbelow`, `srobt` | Manage Channels | Remove the post when it drops below the threshold |
 | `starboardwlmode <id> <whitelist or blacklist>` | `starboardmode`, `starboardwhitelist`, `swm` | Manage Channels | Set how the channel list is treated |
 | `starboardchtoggle <id> #channel` | `starboardchannel`, `togglestarboardchannel`, `scht` | Manage Channels | Add or remove a channel from the list |
-| `starboardstats` | `starstats`, `starboardstatistics`, `sbstats` | Nobody | Server-wide starboard statistics |
+| `starboardstats` | `starstats`, `starboardstatistics`, `sbstats` | Nobody | Community-wide starboard statistics |
 | `starboarduserstats [@user]` | `staruserstats`, `userstarstats`, `sbuserstats` | Nobody | Statistics for one member |
 
 ## Tips and gotchas

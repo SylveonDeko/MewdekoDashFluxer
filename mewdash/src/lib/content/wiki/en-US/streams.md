@@ -14,19 +14,19 @@ related: [twitch, utility, administration]
 
 Staff paste a stream URL and pick a Fluxer channel. The bot then polls that streamer's platform and, when the stream flips from offline to online, posts a go-live message in the chosen channel. By default that is an embed with the streamer's name linked to the stream, the stream title, the game or category, the viewer count, the streamer's avatar, and a preview image.
 
-You can replace the default embed with your own message. There is a server-wide template that applies to every followed stream, and each stream can also have its own online message and its own offline message. All of them accept the `%stream.*%` placeholders listed below and can be plain text or a full embed built in the dashboard's embed editor.
+You can replace the default embed with your own message. There is a community-wide template that applies to every followed stream, and each stream can also have its own online message and its own offline message. All of them accept the `%stream.*%` placeholders listed below and can be plain text or a full embed built in the dashboard's embed editor.
 
-Offline notices are off by default. Turn them on and the bot also posts when a followed stream ends, using the stream's offline message if one is set, otherwise the server template, otherwise the default embed showing "Offline".
+Offline notices are off by default. Turn them on and the bot also posts when a followed stream ends, using the stream's offline message if one is set, otherwise the community template, otherwise the default embed showing "Offline".
 
 > [!NOTE]
-> Stream Alerts announces other people's streams into your Fluxer server. The separate Twitch Bot feature connects the bot to your own Twitch chat for commands, timers and events. See the Twitch Bot article for that.
+> Stream Alerts announces other people's streams into your Fluxer community. The separate Twitch Bot feature connects the bot to your own Twitch chat for commands, timers and events. See the Twitch Bot article for that.
 
 ## Why you would use it
 
-- A community server wants a "now live" channel that lights up whenever one of its creators starts streaming.
+- A community wants a "now live" channel that lights up whenever one of its creators starts streaming.
 - A streamer's own Fluxer wants an automatic ping with the title and category so nobody has to post it by hand.
-- An esports or event server follows several tournament channels across Twitch and Kick in one place.
-- A server wants a clean "stream ended" notice so the go-live post does not look stale.
+- An esports or event community follows several tournament channels across Twitch and Kick in one place.
+- A community wants a clean "stream ended" notice so the go-live post does not look stale.
 
 ## Supported platforms
 
@@ -47,7 +47,7 @@ The bot keeps one tracker per platform and asks each platform for the state of e
 
 Going offline is handled more carefully because Twitch sometimes reports a brief offline blip during a live stream. A stream has to be seen offline in two consecutive checks before the offline notice is sent. If it comes back online in between, nothing is posted.
 
-Every thirty minutes the bot looks for streams whose platform lookups have been failing for more than twelve hours, for example a deleted or renamed channel, and removes them from every server that followed them.
+Every thirty minutes the bot looks for streams whose platform lookups have been failing for more than twelve hours, for example a deleted or renamed channel, and removes them from every community that followed them.
 
 If a followed stream's notification channel has been deleted, the stream is dropped the next time someone runs `streamlist`.
 
@@ -56,7 +56,7 @@ If a followed stream's notification channel has been deleted, the stream is drop
 When a stream changes state the bot picks a message in this order:
 
 1. The stream's own **Online Message** or **Offline Message**, whichever matches the new state.
-2. The server-wide **Global Stream Message** template.
+2. The community-wide **Global Stream Message** template.
 3. The built-in embed.
 
 A per-stream message that is not valid embed JSON is posted as plain text above the built-in embed. A global template that is not embed JSON is posted as plain text on its own. Messages that are valid embed JSON, which is what the dashboard's embed builder produces, are sent exactly as designed, including buttons.
@@ -65,7 +65,7 @@ The built-in embed has the streamer's name as a linked title, the title of the s
 
 ### Placeholders
 
-Only this set is replaced in stream messages. The general server and user placeholders from the placeholders page are not available here.
+Only this set is replaced in stream messages. The general community and user placeholders from the placeholders page are not available here.
 
 | Placeholder | Value |
 | --- | --- |
@@ -94,12 +94,12 @@ The Stream Notifications page has four tabs: **Streams**, **Follow Stream**, **S
 | Stream URL | none | The link to follow, on **Follow Stream** |
 | Online Message | none | Per-stream message when it goes live, edited from the stream's card on **Streams** |
 | Offline Message | none | Per-stream message when it ends, edited from the same card |
-| Global Stream Message | none | Server-wide template used when a stream has no message of its own, on **Settings** |
+| Global Stream Message | none | Community-wide template used when a stream has no message of its own, on **Settings** |
 | Offline Notifications | off | Whether the bot posts when followed streams go offline, on **Settings** |
 
 **Streams** lists every followed stream with its platform, channel and the date it was added, with a delete button on each card and a **Clear All** button. **Statistics** shows total streams, unique streamers, channels with notifications, platforms in use and a breakdown by platform.
 
-A server can follow at most ten streams. Adding an eleventh fails.
+A community can follow at most ten streams. Adding an eleventh fails.
 
 ## Setup walkthrough
 
@@ -112,13 +112,13 @@ A server can follow at most ten streams. Adding an eleventh fails.
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
 | `streamadd <url>` | `sta`, `stadd` | Manage Messages | Follow a stream and send its alerts to the current channel |
 | `streamremove <index>` | `strm` | Manage Messages | Unfollow the stream at that position in `streamlist` |
-| `streamsclear` | `stclear` | Administrator | Unfollow every stream in the server |
+| `streamsclear` | `stclear` | Administrator | Unfollow every stream in the community |
 | `streamlist` | `stl`, `streamslist` | Nobody | Paged list of followed streams with their numbers, platforms and channels |
 | `streamoffline` | `sto`, `stoff` | Manage Messages | Toggle offline notifications |
 | `streammessage <index> <message>` | `stm`, `stmsg` | Manage Messages | Set a stream's online message; an empty message resets it |
@@ -131,6 +131,6 @@ Run these with your server's prefix (`.` unless you changed it).
 - `streamadd` uses the channel you run it in. Use the dashboard if you want to pick a different channel.
 - Stream numbers come from `streamlist` and start at 1. They shift when a stream is removed, so check the list before removing by number.
 - The bot needs Send Messages and Embed Links in the notification channel. Alerts to a channel it cannot see are skipped with a log entry.
-- If your server has the Twitch Bot connected with a go-live channel set for the same Twitch channel, that integration takes over and Stream Alerts stays silent for it, so you do not get two posts.
+- If your community has the Twitch Bot connected with a go-live channel set for the same Twitch channel, that integration takes over and Stream Alerts stays silent for it, so you do not get two posts.
 - YouTube data is scraped rather than read from an API. Titles, categories and viewer counts may be missing or read as `Live Stream`.
 - Streams whose lookups keep failing for twelve hours are removed automatically. If a streamer renames their channel, follow the new URL.

@@ -17,7 +17,7 @@ The Help module is how members discover what the bot can do. `help` (or `cmds`) 
 
 `searchcommand <term>` finds commands whose name or description contains the term. Mentioning the bot with no text replies with the current prefix and a pointer to `cmds`.
 
-Every command is a text command, used with the server prefix.
+Every command is a text command, used with the community prefix.
 
 ## Why you would use it
 
@@ -28,12 +28,12 @@ Every command is a text command, used with the server prefix.
 
 ## The help menu
 
-`help`, `commands` or `modules` with no arguments opens the top level. The embed's description explains the two ways in: pick a category from the dropdown, or use `h commandname` for one command. It also carries links to the documentation, support server, invite and donation pages.
+`help`, `commands` or `modules` with no arguments opens the top level. The embed's description explains the two ways in: pick a category from the dropdown, or use `h commandname` for one command. It also carries links to the documentation, support community, invite and donation pages.
 
 | Category | Contains |
 | --- | --- |
-| Moderation & Admin | Administration, Moderation, Permissions, Server Management, Role States, Status Roles, Counting Moderation |
-| Server Setup | MultiGreets, Role Greets, Starboard, Stat Channels, Suggestions, Tickets, Confessions, Channel Access, Custom Voice, Chat Triggers, Polls, Giveaways |
+| Moderation & Admin | Administration, Moderation, Permissions, Community Management, Role States, Status Roles, Counting Moderation |
+| Community Setup | MultiGreets, Role Greets, Starboard, Stat Channels, Suggestions, Tickets, Confessions, Channel Access, Custom Voice, Chat Triggers, Polls, Giveaways |
 | Fun & Games | Games, Counting, NSFW, Searches, Minecraft, Switch |
 | Economy & Levels | Currency, XP, Reputation, Vote, Patreon |
 | Music | Music |
@@ -65,11 +65,11 @@ The **Run** button runs the command as if you had typed it. If it takes argument
 
 ## Text commands
 
-Commands use the server prefix, `.` by default, and the exact names in the help menu. Every command goes through the same permission rules.
+Commands use the community prefix, `.` by default, and the exact names in the help menu. Every command goes through the same permission rules.
 
 ## When the bot joins
 
-When the bot is added to a server it finds who invited it from the audit log (it needs View Audit Log for this) and DMs them. The message has a **Set Up Mewdeko** button linking to the dashboard wizard for that server, a three-step reminder of `cmds`, `cmds mod` and `h purge`, and the support server link. If the inviter cannot be identified or has DMs closed, nothing is sent; there is no channel announcement.
+When the bot is added to a community it finds who invited it from the audit log (it needs View Audit Log for this) and DMs them. The message has a **Set Up Mewdeko** button linking to the dashboard wizard for that community, a three-step reminder of `cmds`, `cmds mod` and `h purge`, and the support community link. If the inviter cannot be identified or has DMs closed, nothing is sent; there is no channel announcement.
 
 ## The setup wizard
 
@@ -79,13 +79,13 @@ The wizard lives at `/wizard?guild=<id>` on the dashboard. The link in the welco
 | --- | --- |
 | Welcome | Explains what is about to happen |
 | Permissions | First-time only: checks the bot has what it needs |
-| Server Basics | Prefix, bot language, and server timezone |
+| Community Basics | Prefix, bot language, and community timezone |
 | Select Features | Choose what to configure; features are marked as full setup or quick enable |
 | One step per full-setup feature | Guided configuration for that feature |
 | Quick Setup | Bulk-enable the remaining features with their defaults |
 | Complete | Summary, including anything that failed to save |
 
-Progress is stored per server, so leaving and coming back resumes. A server can be marked skipped so the wizard stops offering itself, and the **My Settings** page has a toggle for whether you prefer guided setup and a reset for a server's wizard state.
+Progress is stored per community, so leaving and coming back resumes. A community can be marked skipped so the wizard stops offering itself, and the **My Settings** page has a toggle for whether you prefer guided setup and a reset for a community's wizard state.
 
 ## Settings
 
@@ -102,11 +102,11 @@ There is nothing to configure for help itself. The prefix is set with the Admini
 2. Run `cmds mod` to see the Moderation module, then `h purge` to see one command in full.
 3. Try the **Run** button on a harmless command such as `h ping`.
 4. Run `searchcommand role` to see how search narrows things down.
-5. If you have just invited the bot, follow the **Set Up Mewdeko** link from the welcome DM, or open `/wizard?guild=<your server id>` on the dashboard.
+5. If you have just invited the bot, follow the **Set Up Mewdeko** link from the welcome DM, or open `/wizard?guild=<your community id>` on the dashboard.
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |

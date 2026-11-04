@@ -62,7 +62,7 @@ export const xpScene: ChatScene = {
           thumbnail: { src: defaultAvatarUrl(0), width: 80, height: 80 },
           fields: [
             { name: "Total XP", value: "5,889", inline: true },
-            { name: "Server Rank", value: "#4", inline: true },
+            { name: "Community Rank", value: "#4", inline: true },
             { name: "New Level", value: "12", inline: true },
           ],
           footer: "The Deko Tree",
@@ -81,6 +81,6 @@ export const profileScene: ChatScene = {
     { author: "sylveon", time: TIME, text: ".setnick Deko" },
     { author: "renamed", time: TIME, embeds: [{ color: OK, description: "Bot's nickname changed to **Deko**" }] },
     { author: "sylveon", time: TIME, text: ".setguildavatar https://mewdeko.tech/img/Mewdeko.png" },
-    { author: "deko", time: TIME, embeds: [{ color: OK, description: "Successfully set the bot's guild avatar!" }] },
+    { author: "deko", time: TIME, embeds: [{ color: OK, description: "Successfully set the bot's community avatar!" }] },
   ],
 };

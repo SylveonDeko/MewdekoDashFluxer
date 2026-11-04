@@ -77,7 +77,7 @@
   "save_failed": "Failed to save the stat role",
   "schedule_summary": "every {minutes}m · last run {lastRun}",
   "stat_label_1": "Voice minutes",
-  "stat_label_3": "Days in server",
+  "stat_label_3": "Days in community",
   "stat_label_4": "Account age (days)",
   "stat_label_5": "Minutes in a game",
   "tab_editor": "Create / Edit",

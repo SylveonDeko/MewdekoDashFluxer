@@ -38,7 +38,7 @@ Approved members are never removed automatically. Take the role away or delete t
 
 ## Applications
 
-Before an application opens, the bot checks in this order: the gate is accepting applications, the member does not already have access, they are not blocked, their account and server join are old enough, they have no open application for this gate, and their reapply cooldown has passed. Failing any check returns an ephemeral message saying why.
+Before an application opens, the bot checks in this order: the gate is accepting applications, the member does not already have access, they are not blocked, their account and community join are old enough, they have no open application for this gate, and their reapply cooldown has passed. Failing any check returns an ephemeral message saying why.
 
 If the gate has questions, a modal opens with one box per question. Questions are capped at 45 characters. Answer boxes are either single-line (200 characters) or multi-line (1000 characters) and can be marked required. A gate with no questions submits straight away.
 
@@ -78,7 +78,7 @@ Set **Voting window** to 0 for no time limit.
 
 ## Blocking applicants
 
-Staff can block a user from one gate or from every gate in the server. Blocked users get "You are blocked from applying for this channel" when they try. Blocks have an optional reason that shows in the blacklist.
+Staff can block a user from one gate or from every gate in the community. Blocked users get "You are blocked from applying for this channel" when they try. Blocks have an optional reason that shows in the blacklist.
 
 ## Settings
 
@@ -100,7 +100,7 @@ The **Channel Access** page has three tabs: **Gates**, **Applications** and **Bl
 | Voter role | everyone with the access role | Restrict voting to one role |
 | Ping role on new applications | no ping | Role mentioned when an application arrives |
 | Min account age (days) | 0 | Reject accounts younger than this |
-| Min time in server (days) | 0 | Reject members who joined more recently than this |
+| Min time in community (days) | 0 | Reject members who joined more recently than this |
 | Reapply cooldown (hours) | 168 | Wait after a denial or expiry before applying again |
 | Offer an abstain button | on | Adds an Abstain button to the review message |
 | Hide the applicant until the vote closes | off | Anonymous applicant while pending |
@@ -121,7 +121,7 @@ The **Channel Access** page has three tabs: **Gates**, **Applications** and **Bl
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -154,6 +154,6 @@ The settings accepted by `channelaccessconfig` are `enabled`, `approvals`, `deni
 - If no **Review channel** is set, applications are posted inside the locked channel. That works for "members vote on newcomers", but set a separate channel if staff should vote instead.
 - Questions added by command are always required and multi-line. Use the dashboard to make a question optional or single-line, or to give it placeholder text.
 - Deleting a gate removes its questions, applications and votes permanently.
-- Members who leave the server before the vote ends are not granted access even if approved.
+- Members who leave the community before the vote ends are not granted access even if approved.
 - Vote and expiry outcomes are only DMed for approvals and denials. Withdrawn applications get no DM.
-- A blocked user must be unblocked with the same scope the block was made with. A server-wide block is not lifted by an unblock naming a channel.
+- A blocked user must be unblocked with the same scope the block was made with. A community-wide block is not lifted by an unblock naming a channel.

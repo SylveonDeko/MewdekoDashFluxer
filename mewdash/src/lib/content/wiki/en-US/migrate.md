@@ -1,7 +1,7 @@
 ---
 title: Move from Discord
 slug: migrate
-summary: Bring your Mewdeko settings from a Discord server to this Fluxer server, and let your members carry over their own XP, balance and warnings.
+summary: Bring your Mewdeko settings from a Discord server to this Fluxer community, and let your members carry over their own XP, balance and warnings.
 icon: fa-arrow-right-arrow-left
 category: Settings
 dashboard: /dashboard/migrate
@@ -12,7 +12,7 @@ related: [settings, xp, currency, access]
 
 ## What it does
 
-If your community used Mewdeko on Discord, you do not have to set everything up again. The dashboard reads your Discord server's Mewdeko setup, pairs its channels and roles with the ones in your Fluxer server, and writes the settings over. Members then bring their own data across from their profile page.
+If your community used Mewdeko on Discord, you do not have to set everything up again. The dashboard reads your Discord server's Mewdeko setup, pairs its channels and roles with the ones in your Fluxer community, and writes the settings over. Members then bring their own data across from their profile page.
 
 Everything happens in the dashboard and the setup wizard. You never type a command, and nothing is changed on Discord.
 
@@ -24,12 +24,12 @@ Everything happens in the dashboard and the setup wizard. You never type a comma
 
 ## Who can use it
 
-Server administrators of the Fluxer server. You also need to own the Discord server or have Administrator there, and Mewdeko must be in it.
+Community administrators of the Fluxer community. You also need to own the Discord server or have Administrator there, and Mewdeko must be in it.
 
 > [!PERMISSION]
 > To prove who you are on Discord, the dashboard asks you to sign in with Discord. It only asks for your account name and the list of servers you are in, and it keeps the result for 15 minutes before forgetting it. The Discord access token is thrown away as soon as the sign in finishes.
 
-## Moving a server
+## Moving a community
 
 1. Open **Move from Discord** in the dashboard, or take the **Coming from Discord?** step in the setup wizard.
 2. Press **Connect Discord** and approve the sign in.
@@ -45,13 +45,13 @@ Server administrators of the Fluxer server. You also need to own the Discord ser
 ## What gets replaced
 
 > [!TIP]
-> Moving replaces the current Mewdeko settings of this server for every feature that is in the Discord export. Features that are not in the export are left alone. Data your members already have on Fluxer is kept, and the moved data is added to it.
+> Moving replaces the current Mewdeko settings of this community for every feature that is in the Discord export. Features that are not in the export are left alone. Data your members already have on Fluxer is kept, and the moved data is added to it.
 
 After the move you see how many entries were written, held for members who have not linked yet, dropped, or failed, and how many messages were posted again.
 
 ## Moving again
 
-Once a server has been moved, the page shows when it happened and how many members are still waiting to link their Discord account. You can move again at any time, for example after fixing a pairing.
+Once a community has been moved, the page shows when it happened and how many members are still waiting to link their Discord account. You can move again at any time, for example after fixing a pairing.
 
 ## Bringing over your own data
 
@@ -65,6 +65,6 @@ The page tells you how many entries came over and from how many servers. A Disco
 
 ## Tips and gotchas
 
-- Create your channels and roles in the Fluxer server first. The pairing is much more complete when they already exist.
+- Create your channels and roles in the Fluxer community first. The pairing is much more complete when they already exist.
 - Pairing is by name first. Rename a channel or pick the pair by hand when the names differ.
 - Data for members who have not linked is held safely and arrives as soon as they link.

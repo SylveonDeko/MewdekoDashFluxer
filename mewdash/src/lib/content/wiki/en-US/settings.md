@@ -1,7 +1,7 @@
 ---
 title: Settings
 slug: settings
-summary: The server-wide basics: command prefix, language, timezone, log channels, mute role, warning expiry and a few chat utilities.
+summary: The community-wide basics: command prefix, language, timezone, log channels, mute role, warning expiry and a few chat utilities.
 icon: fa-cog
 category: Settings
 dashboard: /dashboard/settings
@@ -20,7 +20,7 @@ Most of these settings have a matching text command, so staff can change them fr
 
 ## Why you would use it
 
-- Your server already uses `.` for another bot and you want Mewdeko on `!` or `m!`.
+- Your community already uses `.` for another bot and you want Mewdeko on `!` or `m!`.
 - Your community speaks a language other than English and you want replies to match.
 - Reminders and scheduled posts should land at the right local time, not UTC.
 - Moderators want a channel that records every command run and every warning issued.
@@ -33,11 +33,11 @@ The prefix is the text a member types before a command. It defaults to `.`. Anyo
 
 ## Language
 
-Each server can pick its own reply language with `languageset <code>`, for example `languageset de`, or with the **Language** dropdown on the dashboard. `languageset default` clears the override so the server follows the bot's default language. `languageslist` prints every supported locale code. `langsetdefault` with no argument shows the bot default; changing that default is a bot owner action.
+Each community can pick its own reply language with `languageset <code>`, for example `languageset de`, or with the **Language** dropdown on the dashboard. `languageset default` clears the override so the community follows the bot's default language. `languageslist` prints every supported locale code. `langsetdefault` with no argument shows the bot default; changing that default is a bot owner action.
 
 ## Timezone
 
-The server timezone drives reminders, scheduled messages and any time display. `timezone` on its own shows the current value (UTC if none is set). `timezone <id>` sets it using an IANA or Windows timezone identifier such as `Europe/London`, and `timezones` pages through the identifiers the bot accepts. On the dashboard, **Server Timezone** saves the moment you pick a value; it does not wait for **Save Changes**.
+The community timezone drives reminders, scheduled messages and any time display. `timezone` on its own shows the current value (UTC if none is set). `timezone <id>` sets it using an IANA or Windows timezone identifier such as `Europe/London`, and `timezones` pages through the identifiers the bot accepts. On the dashboard, **Community Timezone** saves the moment you pick a value; it does not wait for **Save Changes**.
 
 ## Log channels
 
@@ -51,7 +51,7 @@ The server timezone drives reminders, scheduled messages and any time display. `
 
 ## Mute role and role removal
 
-**Mute Role** is the name of the role the mute commands and punishments apply. If a role with that name does not exist the bot creates it. From Fluxer, `muterole @role` points the setting at an existing role; the role must sit below your own highest role unless you are the server owner. `muterole` with no argument shows the current mute role.
+**Mute Role** is the name of the role the mute commands and punishments apply. If a role with that name does not exist the bot creates it. From Fluxer, `muterole @role` points the setting at an existing role; the role must sit below your own highest role unless you are the community owner. `muterole` with no argument shows the current mute role.
 
 **Remove all other roles while muted** strips a member's other roles for the duration of a mute and returns them afterwards. The command form is `removeonmute y` or `removeonmute n`.
 
@@ -68,31 +68,31 @@ These are part of the same Administration module but have no dashboard control.
 
 **Staff role** (`staffrole @role`) marks a role whose members are exempt from the word, link and invite filters, and from suggestion spam checks. Run `staffrole` with no role to see the current one and `staffroledisable` to clear it.
 
-**Member role** (`memberrole @role`) stores a role for the server. It is recorded but not used by any feature at the moment.
+**Member role** (`memberrole @role`) stores a role for the community. It is recorded but not used by any feature at the moment.
 
 **Delete message on command** (`delmsgoncmd`) removes the message that triggered a command once the command runs:
 
 | Form | Effect |
 | --- | --- |
-| `delmsgoncmd` | Toggle deletion for the whole server |
-| `delmsgoncmd list` | Show the server setting and every channel override |
+| `delmsgoncmd` | Toggle deletion for the whole community |
+| `delmsgoncmd list` | Show the community setting and every channel override |
 | `delmsgoncmd channel enable [#channel]` | Always delete in that channel (current channel if omitted) |
 | `delmsgoncmd channel disable [#channel]` | Never delete in that channel |
-| `delmsgoncmd channel inherit [#channel]` | Follow the server setting |
+| `delmsgoncmd channel inherit [#channel]` | Follow the community setting |
 
 ## Settings
 
-Everything below is on the single **Bot Settings** page. Press **Save Changes** after editing; only **Server Timezone** saves on its own.
+Everything below is on the single **Bot Settings** page. Press **Save Changes** after editing; only **Community Timezone** saves on its own.
 
 | Setting | Default | What it controls |
 | --- | --- | --- |
 | Command Prefix | `.` | Text typed before commands |
 | Command Log Channel | none | Channel where command usage is logged |
-| Currency Emoji | none | Emoji shown for the server currency |
+| Currency Emoji | none | Emoji shown for the community currency |
 | Warning Log Channel | none | Channel where warnings are logged |
 | Warning Expiry | 0 (never) | Hours until warnings expire |
-| Language | Bot default | Reply language for this server |
-| Server Timezone | UTC | Timezone for scheduled messages, reminders and time displays |
+| Language | Bot default | Reply language for this community |
+| Community Timezone | UTC | Timezone for scheduled messages, reminders and time displays |
 | Mute Role | Muted | Name of the role applied by mutes and punishments |
 | Remove all other roles while muted | Off | Strip other roles for the length of a mute |
 | Message sniping | Off | Allow the snipe commands |
@@ -105,7 +105,7 @@ Everything below is on the single **Bot Settings** page. Press **Save Changes** 
 
 1. Open **Settings** in the dashboard.
 2. Set **Command Prefix** if `.` clashes with another bot.
-3. Pick a **Language** and a **Server Timezone**.
+3. Pick a **Language** and a **Community Timezone**.
 4. Choose a **Command Log Channel** and a **Warning Log Channel** that only staff can read.
 5. Set **Warning Expiry** in hours, for example `720` for thirty days, or leave it at 0.
 6. Check the **Mute Role** name matches the role your moderators already use, or leave it as `Muted` and let the bot create one.
@@ -115,15 +115,15 @@ Everything below is on the single **Bot Settings** page. Press **Save Changes** 
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it).
+Run these with your community's prefix (`.` unless you changed it).
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
 | `prefix [new prefix]` | | Nobody to view, Administrator to change | Show or set the command prefix |
-| `languageset <code>` | `langset` | Administrator | Set the server reply language, or `default` to clear it |
+| `languageset <code>` | `langset` | Administrator | Set the community reply language, or `default` to clear it |
 | `langsetdefault` | `langsetd` | Nobody to view, Bot owner to change | Show or set the bot-wide default language |
 | `languageslist` | `langli` | Nobody | List supported locale codes |
-| `timezone [id]` | | Nobody to view, Administrator to change | Show or set the server timezone |
+| `timezone [id]` | | Nobody to view, Administrator to change | Show or set the community timezone |
 | `timezones` | | Nobody | Page through accepted timezone identifiers |
 | `commandlogchannel [#channel]` | `commandlog`, `logcommands` | Administrator | Set the command log channel, or disable with no channel |
 | `warnexpire <days> <clear or delete>` | `warne` | Administrator | Expire warnings after a number of days |
@@ -134,7 +134,7 @@ Run these with your server's prefix (`.` unless you changed it).
 | `staffrole [@role]` | | Administrator | Show or set the staff role |
 | `staffroledisable` | | Administrator | Clear the staff role |
 | `memberrole [@role]` | | Administrator | Show or set the member role |
-| `delmsgoncmd [list or channel <state> [#channel]]` | `dmc` | Administrator | Delete command messages server-wide or per channel |
+| `delmsgoncmd [list or channel <state> [#channel]]` | `dmc` | Administrator | Delete command messages community-wide or per channel |
 
 ## Tips and gotchas
 

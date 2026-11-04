@@ -14,7 +14,7 @@ related: [embedbuilder, utility]
 
 You give the bot a feed URL and a channel. From then on the bot checks the feed regularly and posts anything published since the last check. Members see a new message in the channel each time the site publishes something, with the item's title, a link, and, where the feed provides one, the description and an image.
 
-Staff can subscribe up to ten feeds per server and can give each one its own message. The message is run through the embed parser, so a feed update can be plain text, an embed, or an embed with buttons, and it can use placeholders that pull the item's title, link, author, and so on.
+Staff can subscribe up to ten feeds per community and can give each one its own message. The message is run through the embed parser, so a feed update can be plain text, an embed, or an embed with buttons, and it can use placeholders that pull the item's title, link, author, and so on.
 
 Nothing is required from members. They just read the channel.
 
@@ -49,7 +49,7 @@ If a feed has no custom message, the bot sends an embed with:
 
 Set a custom message with `feedmessage` or the **Edit Message** button on the dashboard. The text goes through the embed parser, so anything from the [embed builder](/wiki/embedbuilder) works: plain text, embed JSON, or both. Role and user mentions in the plain text part will ping.
 
-These placeholders are replaced in the custom message, on top of the general server, channel, and bot placeholders from the placeholders page.
+These placeholders are replaced in the custom message, on top of the general community, channel, and bot placeholders from the placeholders page.
 
 | Placeholder | Value |
 | --- | --- |
@@ -70,7 +70,7 @@ Set the message to `-` to go back to the default embed.
 
 ## Settings
 
-Feeds have no server-wide settings. Each subscription has a channel and URL, chosen when it is added, plus an optional message. The dashboard page is called **RSS Feeds** and has three tabs.
+Feeds have no community-wide settings. Each subscription has a channel and URL, chosen when it is added, plus an optional message. The dashboard page is called **RSS Feeds** and has three tabs.
 
 | Tab | What it shows |
 | --- | --- |
@@ -90,7 +90,7 @@ The channel and URL of an existing feed cannot be changed. Remove the feed and a
 
 ## Commands
 
-Run these with your server's prefix (`.` unless you changed it). All feed commands need Manage Messages.
+Run these with your community's prefix (`.` unless you changed it). All feed commands need Manage Messages.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
@@ -102,7 +102,7 @@ Run these with your server's prefix (`.` unless you changed it). All feed comman
 
 ## Tips and gotchas
 
-- The limit is ten feeds per server, and the same URL cannot be added twice. `feedadd` reports one combined error for an unreadable link, a duplicate, and the limit, so check `feedlist` if you are not sure which it was.
+- The limit is ten feeds per community, and the same URL cannot be added twice. `feedadd` reports one combined error for an unreadable link, a duplicate, and the limit, so check `feedlist` if you are not sure which it was.
 - Adding a feed through the dashboard does not test the URL first. Use `feedtest` afterwards to make sure the bot can read it.
 - Numbers in `feedremove`, `feedmessage`, and `feedtest` come from `feedlist`, which orders feeds by when they were added.
 - The bot needs Send Messages and Embed Links in the target channel. Without Embed Links the default embed will not appear.
