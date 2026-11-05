@@ -334,9 +334,6 @@
               <i class="fa-solid fa-terminal" style="color: {$colorStore.primary}; font-size: 20px;"></i>
               <h3 class="font-semibold" style="color: {$colorStore.text}">{m.common.commandPrefix()}</h3>
             </div>
-            <p class="text-sm mb-3" style="color: {$colorStore.muted}">
-              {m.settings.pagePrefixHint()}
-            </p>
             <input
               type="text"
               bind:value={settings.prefix}
@@ -354,9 +351,6 @@
               <i class="fa-solid fa-list" style="color: {$colorStore.secondary}; font-size: 20px;"></i>
               <h3 class="font-semibold" style="color: {$colorStore.text}">{m.settings.pageCmdlogTitle()}</h3>
             </div>
-            <p class="text-sm mb-3" style="color: {$colorStore.muted}">
-              {m.settings.pageCmdlogHint()}
-            </p>
             <DiscordSelector
               type="channel"
               options={channels}
@@ -372,9 +366,6 @@
               <i class="fa-solid fa-coins" style="color: {$colorStore.primary}; font-size: 20px;"></i>
               <h3 class="font-semibold" style="color: {$colorStore.text}">{m.settings.pageCurrencyTitle()}</h3>
             </div>
-            <p class="text-sm mb-3" style="color: {$colorStore.muted}">
-              {m.settings.pageCurrencyHint()}
-            </p>
             <input
               type="text"
               bind:value={settings.currencyEmoji}
@@ -392,9 +383,6 @@
               <i class="fa-solid fa-triangle-exclamation" style="color: {$colorStore.accent}; font-size: 20px;"></i>
               <h3 class="font-semibold" style="color: {$colorStore.text}">{m.common.warningLogChannel()}</h3>
             </div>
-            <p class="text-sm mb-3" style="color: {$colorStore.muted}">
-              {m.settings.pageWarnlogHint()}
-            </p>
             <DiscordSelector
               type="channel"
               options={channels}
@@ -431,9 +419,6 @@
               <i class="fa-solid fa-language" style="color: {$colorStore.primary}; font-size: 20px;"></i>
               <h3 id="language-label" class="font-semibold" style="color: {$colorStore.text}">{m.common.language()}</h3>
             </div>
-            <p class="text-sm mb-3" style="color: {$colorStore.muted}">
-              {m.settings.pageLanguageHint()}
-            </p>
             <DiscordSelector
               type="custom"
               options={languageOptions}
@@ -505,26 +490,9 @@
               </label>
               <label class="flex items-start gap-3 cursor-pointer" style="color: {$colorStore.text};">
                 <input type="checkbox" bind:checked={settings.previewLinks} onchange={() => handleToggle("previewLinks")} class="w-4 h-4 rounded mt-0.5" style="accent-color: {$colorStore.primary};">
-                <span>
-                  <span class="text-sm font-medium block">{m.settings.pagePreviewsTitle()}</span>
-                  <span class="text-xs" style="color: {$colorStore.muted}">{m.settings.pagePreviewsHint()}</span>
-                </span>
+                <span class="text-sm font-medium">{m.settings.pagePreviewsTitle()}</span>
               </label>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Info Note -->
-      <div class="rounded-xl p-4 border"
-           style="background: {$colorStore.secondary}08; border-color: {$colorStore.secondary}30;">
-        <div class="flex items-start gap-3">
-          <i class="fa-solid fa-circle-info" style="color: {$colorStore.secondary}; font-size: 20px;"></i>
-          <div>
-            <h3 class="font-semibold mb-1" style="color: {$colorStore.text}">{m.settings.pageMoreTitle()}</h3>
-            <p class="text-sm" style="color: {$colorStore.muted}">
-              {@html m.settings.pageMoreHint()}
-            </p>
           </div>
         </div>
       </div>

@@ -418,8 +418,6 @@
     <div class="text-center py-8">
       <i class="fa-utility-duo fa-regular fa-layer-group"
          style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 48px; opacity: 0.5;"></i>
-      <p class="text-lg font-medium" style="color: {$colorStore.text}">{m.administration.protectionPatternDisabledTitle()}</p>
-      <p class="text-sm" style="color: {$colorStore.muted}">{m.administration.protectionPatternDisabledHint()}</p>
-    </div>
+      <p class="text-lg font-medium" style="color: {$colorStore.text}">{m.administration.protectionPatternDisabledTitle()}</p>    </div>
   {/if}
 </div>

@@ -328,10 +328,7 @@
           style="background: {$colorStore.primary}0c;
                  border-color: {$colorStore.primary}30;"
         >
-          <h2 class="text-lg font-semibold mb-1" style="color: {$colorStore.text};">{m.access.delegationHeading()}</h2>
-          <p class="text-sm mb-4" style="color: {$colorStore.muted};">
-            {m.access.delegationHint()}
-          </p>
+          <h2 class="text-lg font-semibold mb-4" style="color: {$colorStore.text};">{m.access.delegationHeading()}</h2>
 
           <label class="flex items-center justify-between gap-4 p-4 rounded-xl min-h-[44px]"
                  style="background: {$colorStore.primary}10;">
@@ -430,12 +427,9 @@
         style="background: {$colorStore.primary}0c;
                border-color: {$colorStore.primary}30;"
       >
-        <h2 class="text-lg font-semibold mb-1" style="color: {$colorStore.text};">
+        <h2 class="text-lg font-semibold mb-4" style="color: {$colorStore.text};">
           {editingGrantId ? m.access.grantHeadingEdit() : m.access.grantHeadingNew()}
         </h2>
-        <p class="text-sm mb-4" style="color: {$colorStore.muted};">
-          {m.access.grantHint()}
-        </p>
 
         <div class="flex flex-col sm:flex-row gap-2 mb-6">
           <div class="w-full sm:w-40">
@@ -487,8 +481,8 @@
                         <button
                           class="px-2.5 py-1 rounded-md text-xs font-medium transition-all min-h-[32px]"
                           style={groupLevel(group.sections) === level
-                            ? `background: ${$colorStore.primary}; color: ${$colorStore.text};`
-                            : `background: ${$colorStore.primary}15; color: ${$colorStore.muted};`}
+                            ? `background: ${$colorStore.selectedSurface}; border: 1px solid ${$colorStore.selectedBorder}; color: ${$colorStore.text};`
+                            : `background: ${$colorStore.primary}15; border: 1px solid transparent; color: ${$colorStore.muted};`}
                           onclick={() => setGroupLevel(group.sections, level)}
                         >
                           {levelLabels[level]}

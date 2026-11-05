@@ -221,9 +221,7 @@
     <div class="text-center py-8">
       <i class="fa-utility-duo fa-regular fa-user-check"
          style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 48px; opacity: 0.5;"></i>
-      <p class="text-lg font-medium mt-4" style="color: {$colorStore.text}">{m.administration.rolesSelfAssignableEmptyTitle()}</p>
-      <p class="text-sm" style="color: {$colorStore.muted}">{m.administration.rolesSelfAssignableEmptyHint()}</p>
-    </div>
+      <p class="text-lg font-medium mt-4" style="color: {$colorStore.text}">{m.administration.rolesSelfAssignableEmptyTitle()}</p>    </div>
   {:else}
     <div class="space-y-4">
       {#each groupedRoles as group (group.id)}

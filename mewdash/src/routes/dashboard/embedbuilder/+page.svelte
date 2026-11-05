@@ -945,7 +945,7 @@
       action: copyJson,
       disabled: !canCopyJson,
       loading: false,
-      style: `background: ${$colorStore.primary}; color: ${$colorStore.text};`
+      style: `background: ${$colorStore.primary}; color: ${$colorStore.onPrimary};`
     }
     ]);
 </script>
@@ -982,9 +982,6 @@
           <div class="space-y-6">
             <div class="text-center mb-6">
               <h2 class="text-xl font-semibold mb-2" style="color: {$colorStore.text};">{m.embedbuilder.pageTemplatesHeading()}</h2>
-              <p class="text-sm" style="color: {$colorStore.muted};">
-                {m.embedbuilder.pageTemplatesHint()}
-              </p>
             </div>
 
             <TemplateGallery
@@ -1074,9 +1071,6 @@
                 <h3 class="text-base sm:text-lg font-semibold" style="color: {$colorStore.text};">
                   {m.embedbuilder.tabLinks()} <span class="text-xs sm:text-sm font-normal">({linkButtons.length}/{MAX_LINK_BUTTONS})</span>
                 </h3>
-                <p class="text-xs sm:text-sm" style="color: {$colorStore.muted};">
-                  {m.embedbuilder.linksHint()}
-                </p>
               </div>
 
               <button
@@ -1096,9 +1090,6 @@
                 <i class="fa-utility-duo fa-regular fa-link"
                    style="--fa-primary-color: {$colorStore.muted}; --fa-secondary-color: {$colorStore.muted}; font-size: 36px; opacity: 0.5; display: block; margin: 0 auto 12px;"></i>
                 <h4 class="text-base sm:text-lg font-semibold mb-1 sm:mb-2" style="color: {$colorStore.text};">{m.embedbuilder.linksEmptyTitle()}</h4>
-                <p class="text-xs sm:text-sm mb-2 sm:mb-4" style="color: {$colorStore.muted};">
-                  {m.embedbuilder.linksEmptyHint()}
-                </p>
               </div>
             {:else}
               <div class="space-y-3 sm:space-y-4" role="list">
@@ -1127,9 +1118,6 @@
             <div class="flex justify-between items-center flex-wrap gap-2">
               <div>
                 <h3 class="text-lg font-semibold" style="color: {$colorStore.text};">{m.embedbuilder.fullscreenJsonHeading()}</h3>
-                <p class="text-sm" style="color: {$colorStore.muted};">
-                  {m.embedbuilder.fullscreenJsonHint()}
-                </p>
               </div>
               <div class="flex gap-2">
                 <button
@@ -1306,9 +1294,6 @@
                 <h3 class="text-base font-semibold" style="color: {$colorStore.text};">
                   {m.embedbuilder.pageSendHeading({ server: $currentGuild.name })}
                 </h3>
-                <p class="text-xs" style="color: {$colorStore.muted};">
-                  {m.embedbuilder.pageSendAuditHint()}
-                </p>
               </div>
 
               <!-- Channel picker -->

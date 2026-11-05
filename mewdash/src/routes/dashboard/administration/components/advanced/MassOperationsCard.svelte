@@ -102,9 +102,7 @@
          style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 24px;"></i>
     </div>
     <div>
-      <h2 class="text-xl font-bold" style="color: {$colorStore.text}">{m.administration.advancedMassTitle()}</h2>
-      <p class="text-sm" style="color: {$colorStore.muted}">{m.administration.advancedMassSubtitle()}</p>
-    </div>
+      <h2 class="text-xl font-bold" style="color: {$colorStore.text}">{m.administration.advancedMassTitle()}</h2>    </div>
   </div>
 
   <div class="grid grid-cols-1 md:grid-cols-2 gap-4">

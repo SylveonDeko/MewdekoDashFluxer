@@ -325,9 +325,6 @@
       <div class="font-semibold mb-1" style="color: {$colorStore.text};">
         {statusFilter ? m.forms.queueEmptyStatus({ status: statusStyle(statusFilter).label.toLowerCase() }) : m.forms.queueEmpty()}
       </div>
-      <div style="color: {$colorStore.muted};">
-        {statusFilter ? m.forms.queueEmptyStatusHint() : m.forms.queueEmptyHint()}
-      </div>
     </div>
   {:else}
     <div class="space-y-3">

@@ -337,9 +337,6 @@
           <p class="text-sm mb-3" style="color: {$colorStore.muted}">
             {m.logging.pageSetupBody()}
           </p>
-          <p class="text-xs" style="color: {$colorStore.muted}">
-            {m.logging.pageSetupTip()}
-          </p>
         </div>
       </div>
     </div>

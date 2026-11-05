@@ -440,7 +440,7 @@
                   <!-- Selection Indicator -->
                   {#if flatIndex === selectedIndex}
                     <span class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                      <span class="w-2 h-2 rounded-full block" style="background: {$colorStore.primary};"></span>
+                      <span class="w-2 h-2 rounded-full block" style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"></span>
                     </span>
                   {/if}
                 </button>
@@ -568,7 +568,7 @@
                 <!-- Selection Indicator -->
                 {#if flatIndex === selectedIndex}
                   <span class="absolute right-3 top-1/2 transform -translate-y-1/2">
-                    <span class="w-2 h-2 rounded-full block" style="background: {$colorStore.primary};"></span>
+                    <span class="w-2 h-2 rounded-full block" style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"></span>
                   </span>
                 {/if}
               </button>

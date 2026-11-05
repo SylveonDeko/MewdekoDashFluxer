@@ -47,17 +47,12 @@
   </div>
 
   <div class="space-y-4">
-    <p class="text-sm" style="color: {$colorStore.muted}">
-      {m.administration.rolesVoiceChannelDescription()}
-    </p>
 
     {#if voiceChannelRoles.length === 0}
       <div class="text-center py-8">
         <i class="fa-utility-duo fa-regular fa-volume"
            style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 48px; opacity: 0.5;"></i>
-        <p class="text-lg font-medium mt-4" style="color: {$colorStore.text}">{m.administration.rolesVoiceChannelEmptyTitle()}</p>
-        <p class="text-sm" style="color: {$colorStore.muted}">{m.administration.rolesVoiceChannelEmptyHint()}</p>
-      </div>
+        <p class="text-lg font-medium mt-4" style="color: {$colorStore.text}">{m.administration.rolesVoiceChannelEmptyTitle()}</p>      </div>
     {:else}
       <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
         {#each voiceChannelRoles as vcRole (vcRole.channelId)}

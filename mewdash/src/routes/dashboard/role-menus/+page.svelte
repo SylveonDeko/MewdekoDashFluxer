@@ -100,7 +100,7 @@
    * @param channelName The channel name, if it still exists
    */
   function channelLabel(channelName: string | null | undefined): string {
-    return channelName ? `#${channelName}` : m.roleMenus.channelDeleted();
+    return channelName ? `#${channelName}` : m.common.channelDeleted();
   }
 
   /**

@@ -157,8 +157,8 @@
   async function addRoleGreet() {
     try {
       if (!$currentGuild?.id) throw new Error(m.common.noGuildSelected());
-      if (!selectedRoleId) throw new Error(m.common.notifySelectRole());
-      if (!selectedChannelId) throw new Error(m.common.notifySelectChannel());
+      if (!selectedRoleId) throw new Error(m.common.selectARolePlaceholder());
+      if (!selectedChannelId) throw new Error(m.common.selectAChannelPlaceholder());
 
       await roleGreetApi.addRoleGreet($currentGuild.id, BigInt(selectedRoleId), BigInt(selectedChannelId));
 
@@ -438,9 +438,7 @@
           <i class="fa-utility-duo fa-regular fa-envelope"
              style="--fa-primary-color: {$colorStore.muted}; --fa-secondary-color: {$colorStore.muted}; font-size: 48px; display: block; margin: 0 auto 16px;"
              aria-hidden="true"></i>
-          <p style="color: {$colorStore.muted}">{m.rolegreets.pageEmptyTitle()}</p>
-          <p class="mt-2 text-sm" style="color: {$colorStore.muted}">{m.rolegreets.pageEmptyHint()}</p>
-        </div>
+          <p style="color: {$colorStore.muted}">{m.rolegreets.pageEmptyTitle()}</p>        </div>
       {:else}
         <div class="space-y-4">
           {#each roleGreets as greet}
@@ -596,9 +594,7 @@
                   <div class="flex items-center justify-between p-3 rounded-lg"
                        style="background: {$colorStore.primary}15;">
                     <div>
-                      <span class="font-medium" style="color: {$colorStore.text}">{m.common.greetBots()}</span>
-                      <p class="text-sm" style="color: {$colorStore.muted}">{m.rolegreets.pageGreetBotsHint()}</p>
-                    </div>
+                      <span class="font-medium" style="color: {$colorStore.text}">{m.common.greetBots()}</span>                    </div>
                     <label class="relative inline-flex items-center cursor-pointer">
                       <input
                         type="checkbox"
@@ -609,7 +605,7 @@
                       <span
                         class="w-11 h-6 rounded-full peer peer-checked:after:translate-x-full after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:rounded-full after:h-5 after:w-5 after:transition-all block"
                         style="background-color: {$colorStore.accent}30;
-                               peer-checked:background-color: {$colorStore.accent};"
+                               peer-checked:background-color: {$colorStore.accent}; color: {$colorStore.onAccent};"
                       ></span>
                     </label>
                   </div>

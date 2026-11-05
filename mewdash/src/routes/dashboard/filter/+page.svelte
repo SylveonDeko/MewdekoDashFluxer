@@ -35,10 +35,10 @@
     { id: "channels", label: m.common.channelOverrides(), icon: "fa-hashtag" }
   ]);
 
-  const filterMeta: Record<FilterKind, { title: string; hint: string; channelsTitle: string; serverWide: string; onlyHere: string; icon: string; serverKey: "filterWords" | "filterInvites" | "filterLinks"; listKey: "wordFilterChannels" | "inviteFilterChannels" | "linkFilterChannels" }> = $derived({
-    word: { title: m.common.wordFilter(), hint: m.filter.wordHint(), channelsTitle: m.filter.wordChannelsTitle(), serverWide: m.filter.wordServerWide(), onlyHere: m.filter.wordOnlyHere(), icon: "fa-comment-slash", serverKey: "filterWords", listKey: "wordFilterChannels" },
-    invite: { title: m.filter.inviteTitle(), hint: m.filter.inviteHint(), channelsTitle: m.filter.inviteChannelsTitle(), serverWide: m.filter.inviteServerWide(), onlyHere: m.filter.inviteOnlyHere(), icon: "fa-paper-plane", serverKey: "filterInvites", listKey: "inviteFilterChannels" },
-    link: { title: m.filter.linkTitle(), hint: m.filter.linkHint(), channelsTitle: m.filter.linkChannelsTitle(), serverWide: m.filter.linkServerWide(), onlyHere: m.filter.linkOnlyHere(), icon: "fa-globe", serverKey: "filterLinks", listKey: "linkFilterChannels" }
+  const filterMeta: Record<FilterKind, { title: string; channelsTitle: string; serverWide: string; onlyHere: string; icon: string; serverKey: "filterWords" | "filterInvites" | "filterLinks"; listKey: "wordFilterChannels" | "inviteFilterChannels" | "linkFilterChannels" }> = $derived({
+    word: { title: m.common.wordFilter(),channelsTitle: m.filter.wordChannelsTitle(), serverWide: m.filter.wordServerWide(), onlyHere: m.filter.wordOnlyHere(), icon: "fa-comment-slash", serverKey: "filterWords", listKey: "wordFilterChannels" },
+    invite: { title: m.filter.inviteTitle(),channelsTitle: m.filter.inviteChannelsTitle(), serverWide: m.filter.inviteServerWide(), onlyHere: m.filter.inviteOnlyHere(), icon: "fa-paper-plane", serverKey: "filterInvites", listKey: "inviteFilterChannels" },
+    link: { title: m.filter.linkTitle(),channelsTitle: m.filter.linkChannelsTitle(), serverWide: m.filter.linkServerWide(), onlyHere: m.filter.linkOnlyHere(), icon: "fa-globe", serverKey: "filterLinks", listKey: "linkFilterChannels" }
   });
 
   let filteredWordList = $derived.by(() => {
@@ -221,11 +221,10 @@
 
         <div class=" rounded-2xl border p-6 md:p-8 transition-all"
              style="background: {$colorStore.primary}0c; border-color: {$colorStore.primary}30;">
-          <div class="flex items-center gap-3 mb-2">
+          <div class="flex items-center gap-3 mb-6">
             <i class="fa-utility-duo fa-regular fa-filter" style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 20px;"></i>
             <h2 class="text-xl font-bold" style="color: {$colorStore.text}">{m.filter.serverWideTitle()}</h2>
           </div>
-          <p class="text-sm mb-6" style="color: {$colorStore.muted}">{m.filter.serverWideHint()}</p>
 
           <div class="space-y-3">
             {#each (["word", "invite", "link"] as FilterKind[]) as kind}
@@ -238,9 +237,7 @@
                     <i class="fa-solid {meta.icon}" style="color: {$colorStore.primary}; font-size: 16px;"></i>
                   </div>
                   <div class="min-w-0">
-                    <div class="font-medium" style="color: {$colorStore.text}">{meta.title}</div>
-                    <div class="text-sm" style="color: {$colorStore.muted}">{meta.hint}</div>
-                  </div>
+                    <div class="font-medium" style="color: {$colorStore.text}">{meta.title}</div>                  </div>
                 </div>
                 <button class="p-2 rounded-lg transition-all min-h-[44px] min-w-[44px] disabled:opacity-50"
                         role="switch" aria-checked={enabled} aria-label={meta.title}

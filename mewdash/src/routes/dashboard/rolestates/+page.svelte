@@ -609,11 +609,7 @@
           >
             <div class="flex justify-between items-center">
               <div>
-                <h3 class="font-semibold" style="color: {$colorStore.text}">{m.rolestates.saveCurrentTitle()}</h3>
-                <p class="text-sm mt-1" style="color: {$colorStore.muted}">
-                  {m.rolestates.saveCurrentHint()}
-                </p>
-              </div>
+                <h3 class="font-semibold" style="color: {$colorStore.text}">{m.rolestates.saveCurrentTitle()}</h3>              </div>
               <button
                 class="px-4 py-2 rounded-lg transition-all duration-200 flex items-center gap-2"
                 onclick={saveAllUserRoleStates}
@@ -820,7 +816,7 @@
             class="flex-1 px-4 py-2 rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
             onclick={addRolesToUser}
             disabled={!selectedUserId || selectedRoleIds.length === 0}
-            style="background: {$colorStore.primary}; color: {$colorStore.text};
+            style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};
                    opacity: {!selectedUserId || selectedRoleIds.length === 0 ? '0.5' : '1'};"
           >
             <i class="fa-solid fa-plus" style="font-size: 16px;"></i>
@@ -831,7 +827,7 @@
             class="flex-1 px-4 py-2 rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
             onclick={removeRolesFromUser}
             disabled={!selectedUserId || selectedRoleIds.length === 0}
-            style="background: {$colorStore.accent}; color: {$colorStore.text};
+            style="background: {$colorStore.accent}; color: {$colorStore.onAccent};
                    opacity: {!selectedUserId || selectedRoleIds.length === 0 ? '0.5' : '1'};"
           >
             <i class="fa-solid fa-minus" style="font-size: 16px;"></i>
@@ -849,10 +845,6 @@
              style="--fa-primary-color: {$colorStore.secondary}; --fa-secondary-color: {$colorStore.primary}; font-size: 20px;"></i>
           <h2 class="text-xl font-bold" style="color: {$colorStore.text}">{m.rolestates.copyTitle()}</h2>
         </div>
-
-        <p class="text-sm mb-4" style="color: {$colorStore.muted}">
-          {m.rolestates.copyHint()}
-        </p>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
           <div>
@@ -884,7 +876,7 @@
           class="w-full mt-4 px-4 py-3 rounded-lg transition-all duration-200 flex items-center justify-center gap-2"
           onclick={applyRoleState}
           disabled={!sourceUserId || !targetUserId}
-          style="background: {$colorStore.secondary}; color: {$colorStore.text};
+          style="background: {$colorStore.secondary}; color: {$colorStore.onSecondary};
                  opacity: {!sourceUserId || !targetUserId ? '0.5' : '1'};"
         >
           <i class="fa-solid fa-copy" style="font-size: 16px;"></i>

@@ -87,9 +87,7 @@
           <p class="font-medium flex items-center gap-2" style="color: {$colorStore.text}">
             <i class="fa-solid fa-triangle-exclamation" style="color: {$colorStore.accent};"></i>
             {m.administration.automationStatsDeleteTitle()}
-          </p>
-          <p class="text-xs" style="color: {$colorStore.muted}">{m.administration.automationStatsDeleteHint()}</p>
-        </div>
+          </p>        </div>
         <button
           class="px-4 py-2 rounded-xl font-medium transition-all min-w-[120px]"
           disabled={saving}

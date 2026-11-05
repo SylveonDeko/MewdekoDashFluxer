@@ -50,9 +50,7 @@
     <div class="text-center py-8">
       <i class="fa-utility-duo fa-regular fa-clock"
          style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 48px; opacity: 0.5;"></i>
-      <p class="text-lg font-medium" style="color: {$colorStore.text}">{m.administration.automationCommandCooldownsEmptyTitle()}</p>
-      <p class="text-sm" style="color: {$colorStore.muted}">{m.administration.automationCommandCooldownsEmptyHint()}</p>
-    </div>
+      <p class="text-lg font-medium" style="color: {$colorStore.text}">{m.administration.automationCommandCooldownsEmptyTitle()}</p>    </div>
   {:else}
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {#each commandCooldowns as cooldown (cooldown.commandName || cooldown.command)}

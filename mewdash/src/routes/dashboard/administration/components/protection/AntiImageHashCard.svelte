@@ -634,10 +634,6 @@
     <div class="text-center py-8">
       <i class="fa-utility-duo fa-regular fa-image"
          style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 48px; opacity: 0.5;"></i>
-      <p class="text-lg font-medium" style="color: {$colorStore.text}">{m.administration.protectionImagehashDisabledTitle()}</p>
-      <p class="text-sm" style="color: {$colorStore.muted}">
-        {m.administration.protectionImagehashDisabledHint()}
-      </p>
-    </div>
+      <p class="text-lg font-medium" style="color: {$colorStore.text}">{m.administration.protectionImagehashDisabledTitle()}</p>    </div>
   {/if}
 </div>

@@ -658,9 +658,7 @@
              style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}30;">
           <i class="fa-utility-duo fa-regular fa-inbox"
              style="--fa-primary-color: {$colorStore.muted}; --fa-secondary-color: {$colorStore.muted}; font-size: 48px; display: block; margin: 0 auto 16px;"></i>
-          <h3 class="text-xl font-bold mb-2" style="color: {$colorStore.text}">{m.suggestions.emptyTitle()}</h3>
-          <p style="color: {$colorStore.muted}">{m.suggestions.emptyBody()}</p>
-        </div>
+          <h3 class="text-xl font-bold mb-2" style="color: {$colorStore.text}">{m.suggestions.emptyTitle()}</h3>        </div>
       {:else}
         <!-- Sort Controls -->
         <div class="rounded-xl border p-3 md:p-4 mb-6 transition-all"
@@ -855,7 +853,7 @@
                       <button
                         class="px-3 py-2 md:px-4 rounded-lg text-xs md:text-sm font-medium flex items-center gap-1 md:gap-2 transition-all focus:ring-2 disabled:opacity-60"
                         style="{suggestion.currentState === SuggestionState.Considered
-                          ? `background: ${$colorStore.secondary}; color: white; border: 1px solid ${$colorStore.secondary};`
+                          ? `background: ${$colorStore.secondary}; color: ${$colorStore.onSecondary}; border: 1px solid ${$colorStore.secondary};`
                           : `background: ${$colorStore.secondary}20; color: ${$colorStore.secondary}; border: 1px solid ${$colorStore.secondary}30;`} --tw-ring-color: {$colorStore.secondary}50;"
                         onclick={() => initiateStatusChange(suggestion, SuggestionState.Considered)}
                         disabled={suggestion.currentState === SuggestionState.Considered}
@@ -867,7 +865,7 @@
                       <button
                         class="px-3 py-2 md:px-4 rounded-lg text-xs md:text-sm font-medium flex items-center gap-1 md:gap-2 transition-all focus:ring-2 disabled:opacity-60"
                         style="{suggestion.currentState === SuggestionState.Implemented
-                          ? `background: ${$colorStore.accent}; color: white; border: 1px solid ${$colorStore.accent};`
+                          ? `background: ${$colorStore.accent}; color: ${$colorStore.onAccent}; border: 1px solid ${$colorStore.accent};`
                           : `background: ${$colorStore.accent}20; color: ${$colorStore.accent}; border: 1px solid ${$colorStore.accent}30;`} --tw-ring-color: {$colorStore.accent}50;"
                         onclick={() => initiateStatusChange(suggestion, SuggestionState.Implemented)}
                         disabled={suggestion.currentState === SuggestionState.Implemented}

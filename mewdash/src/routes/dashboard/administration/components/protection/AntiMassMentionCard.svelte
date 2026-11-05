@@ -183,8 +183,6 @@
     <div class="text-center py-8">
       <i class="fa-utility-duo fa-regular fa-shield-alt"
          style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 48px; opacity: 0.5;"></i>
-      <p class="text-lg font-medium" style="color: {$colorStore.text}">{m.administration.protectionMassmentionDisabledTitle()}</p>
-      <p class="text-sm" style="color: {$colorStore.muted}">{m.administration.protectionMassmentionDisabledHint()}</p>
-    </div>
+      <p class="text-lg font-medium" style="color: {$colorStore.text}">{m.administration.protectionMassmentionDisabledTitle()}</p>    </div>
   {/if}
 </div>

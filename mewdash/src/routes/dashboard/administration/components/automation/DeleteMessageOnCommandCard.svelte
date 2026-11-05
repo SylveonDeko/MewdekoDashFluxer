@@ -210,8 +210,6 @@
     <div class="text-center py-8">
       <i class="fa-utility-duo fa-regular fa-comment-slash"
          style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 48px; opacity: 0.5;"></i>
-      <p class="text-lg font-medium mt-4" style="color: {$colorStore.text}">{m.administration.automationDeleteMessageDisabledTitle()}</p>
-      <p class="text-sm" style="color: {$colorStore.muted}">{m.administration.automationDeleteMessageDisabledHint()}</p>
-    </div>
+      <p class="text-lg font-medium mt-4" style="color: {$colorStore.text}">{m.administration.automationDeleteMessageDisabledTitle()}</p>    </div>
   {/if}
 </div>

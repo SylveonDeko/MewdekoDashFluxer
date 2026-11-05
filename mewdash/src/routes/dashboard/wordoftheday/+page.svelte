@@ -920,12 +920,7 @@
                                 guildId={$currentGuild?.id}
                                 user={data.user}
                                 placeholder={m.wordoftheday.templatePlaceholder()}
-        />
-
-        <p class="text-xs mt-3" style="color: {$colorStore.muted}">
-          {m.wordoftheday.templateHint()}
-        </p>
-      </div>
+        />      </div>
 
       <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3 sm:gap-4 pt-2">
         <button
@@ -1196,11 +1191,7 @@
           <div class="text-center py-8">
             <i class="fa-utility-duo fa-regular fa-clock"
                style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.primary}; font-size: 48px; opacity: 0.5;"></i>
-            <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.wordoftheday.historyEmptyTitle()}</h3>
-            <p class="text-sm" style="color: {$colorStore.muted}">
-              {m.wordoftheday.historyEmptyHint()}
-            </p>
-          </div>
+            <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.wordoftheday.historyEmptyTitle()}</h3>          </div>
         {:else}
           <div class="space-y-3 max-h-[36rem] overflow-y-auto">
             {#each history as entry (entry.id)}

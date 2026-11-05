@@ -82,17 +82,12 @@
   </div>
 
   <div class="space-y-4">
-    <p class="text-sm" style="color: {$colorStore.muted}">
-      {m.administration.rolesReactionRolesDescription()}
-    </p>
 
     {#if !reactionRoles.success || reactionRoles.reactionRoles.length === 0}
       <div class="text-center py-8">
         <i class="fa-utility-duo fa-regular fa-face-smile"
            style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 48px; opacity: 0.5;"></i>
-        <p class="text-lg font-medium mt-4" style="color: {$colorStore.text}">{m.administration.rolesReactionRolesEmptyTitle()}</p>
-        <p class="text-sm" style="color: {$colorStore.muted}">{m.administration.rolesReactionRolesEmptyHint()}</p>
-      </div>
+        <p class="text-lg font-medium mt-4" style="color: {$colorStore.text}">{m.administration.rolesReactionRolesEmptyTitle()}</p>      </div>
     {:else}
       <div class="space-y-4">
         {#each reactionRoles.reactionRoles as rr, index (`${rr.messageId}-${index}`)}

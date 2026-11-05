@@ -64,13 +64,10 @@
       class="rounded-xl border p-4 sm:p-6"
       style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}30;"
     >
-      <h2 class="text-lg sm:text-xl font-bold mb-1" style="color: {$colorStore.text};">
+      <h2 class="text-lg sm:text-xl font-bold mb-4" style="color: {$colorStore.text};">
         <i class="fa-solid fa-gear mr-2" style="color: {$colorStore.primary};"></i>
         {m.common.basics()}
       </h2>
-      <p class="text-sm mb-4" style="color: {$colorStore.muted};">
-        {m.forms.settingsBasicsSummary()}
-      </p>
 
       <div class="space-y-4">
         <div>
@@ -124,7 +121,7 @@
           {/if}
         </div>
 
-        <SettingField id="form-name" label={m.common.name()} hint={m.forms.settingsFormNameHint()} required>
+        <SettingField id="form-name" label={m.common.name()} required>
           <input
             id="form-name"
             type="text"
@@ -159,7 +156,7 @@
           />
         </SettingField>
 
-        <SettingField id="success-message" label={m.forms.settingsSuccessMessage()} hint={m.forms.settingsSuccessMessageHint()}>
+        <SettingField id="success-message" label={m.forms.settingsSuccessMessage()}>
           <textarea
             id="success-message"
             bind:value={settings.successMessage}
@@ -183,7 +180,6 @@
           <SettingToggle
             id="is-active"
             label={m.forms.settingsIsActive()}
-            hint={m.forms.settingsIsActiveHint()}
             checked={settings.isActive}
             accent="#10B981"
             onchange={(v) => (settings.isActive = v)}
@@ -194,12 +190,11 @@
 
     <SettingsSection
       title={m.forms.settingsWhoCanSubmitTitle()}
-      summary={m.forms.settingsLimitsOnWhoMayOpenSummary()}
       icon="fa-shield"
       changed={countSet([settings.requiredRoleId, settings.minAccountAgeDays, settings.allowExternalUsers || null, settings.allowAnonymous || null])}
     >
       <FormTypeScope formType={formTypeInt} types={[0]} animate={false}>
-        <SettingField id="required-role" label={m.forms.settingsRequiredRole()} hint={m.forms.settingsRequiredRoleHint()}>
+        <SettingField id="required-role" label={m.forms.settingsRequiredRole()}>
           <DiscordSelector
             id="required-role"
             type="role"
@@ -211,7 +206,7 @@
         </SettingField>
       </FormTypeScope>
 
-      <SettingField id="min-account-age" label={m.forms.settingsMinAccountAge()} hint={m.forms.settingsMinAccountAgeHint()}>
+      <SettingField id="min-account-age" label={m.forms.settingsMinAccountAge()} hint={m.common.days()}>
         <input
           id="min-account-age"
           type="number"
@@ -227,7 +222,6 @@
         <SettingToggle
           id="allow-external"
           label={m.forms.settingsAllowExternal()}
-          hint={m.forms.settingsAllowExternalHint()}
           checked={settings.allowExternalUsers}
           onchange={(v) => (settings.allowExternalUsers = v)}
         />
@@ -245,7 +239,6 @@
 
     <SettingsSection
       title={m.forms.settingsWhenItIsOpenTitle()}
-      summary={m.forms.settingsSchedulingLimitsAndHowOftenSummary()}
       icon="fa-calendar"
       changed={countSet([settings.opensAt, settings.expiresAt, settings.maxResponses, settings.allowMultipleSubmissions || null, settings.announceChannelId])}
     >
@@ -260,7 +253,7 @@
           />
         </SettingField>
 
-        <SettingField id="expires-at" label={m.forms.settingsExpiresAt()} hint={m.forms.settingsExpiresAtHint()}>
+        <SettingField id="expires-at" label={m.forms.settingsExpiresAt()}>
           <input
             id="expires-at"
             type="datetime-local"
@@ -271,7 +264,7 @@
         </SettingField>
       </div>
 
-      <SettingField id="max-responses" label={m.forms.settingsMaxResponses()} hint={m.forms.settingsMaxResponsesHint()}>
+      <SettingField id="max-responses" label={m.forms.settingsMaxResponses()}>
         <input
           id="max-responses"
           type="number"
@@ -286,7 +279,6 @@
       <SettingToggle
         id="allow-multiple"
         label={m.forms.settingsAllowMultiple()}
-        hint={m.forms.settingsAllowMultipleHint()}
         checked={settings.allowMultipleSubmissions}
         onchange={(v) => (settings.allowMultipleSubmissions = v)}
       />
@@ -304,7 +296,6 @@
       <SettingToggle
         id="require-captcha"
         label={m.forms.settingsRequireCaptcha()}
-        hint={m.forms.settingsRequireCaptchaHint()}
         checked={settings.requireCaptcha}
         onchange={(v) => (settings.requireCaptcha = v)}
       />
@@ -323,7 +314,7 @@
 
         {#if settings.announceChannelId}
           <div class="mt-4 space-y-4" transition:slide={{ duration: 150 }}>
-            <SettingField id="announce-role" label={m.forms.settingsAnnounceRole()} hint={m.forms.settingsAnnounceRoleHint()}>
+            <SettingField id="announce-role" label={m.forms.settingsAnnounceRole()}>
               <DiscordSelector
                 id="announce-role"
                 type="role"
@@ -359,11 +350,10 @@
 
     <SettingsSection
       title={m.forms.settingsWhenSomeoneSubmitsTitle()}
-      summary={m.forms.settingsWhoGetsToldAndWhatSummary()}
       icon="fa-paper-plane"
       changed={countSet([settings.notifyRoleId, settings.submitRoleIds.length ? "y" : null, settings.pendingRoleId, settings.notificationWebhookUrl])}
     >
-      <SettingField id="notify-role" label={m.forms.settingsNotifyRole()} hint={m.forms.settingsNotifyRoleHint()}>
+      <SettingField id="notify-role" label={m.forms.settingsNotifyRole()}>
         <DiscordSelector
           id="notify-role"
           type="role"
@@ -380,7 +370,7 @@
           {m.forms.settingsAnonymousRolesNote()}
         </p>
       {:else}
-        <SettingField id="submit-roles" label={m.forms.settingsSubmitRoles()} hint={m.forms.settingsSubmitRolesHint()}>
+        <SettingField id="submit-roles" label={m.forms.settingsSubmitRoles()}>
           <DiscordSelector
             id="submit-roles"
             type="role"
@@ -404,7 +394,7 @@
         </SettingField>
       {/if}
 
-      <SettingField id="webhook-url" label={m.forms.settingsWebhookUrl()} hint={m.forms.settingsWebhookUrlHint()}>
+      <SettingField id="webhook-url" label={m.forms.settingsWebhookUrl()}>
         <input
           id="webhook-url"
           type="url"
@@ -418,7 +408,6 @@
 
     <SettingsSection
       title={m.forms.settingsReviewingAnswersTitle()}
-      summary={m.forms.settingsWhetherAnswersAreApprovedBySummary()}
       icon="fa-shield-halved"
       initiallyOpen={settings.requireApproval || settings.formType !== "Regular"}
       changed={countSet([settings.reviewerRoleId, settings.approvalAddRoleIds.length ? "y" : null, settings.rejectionAddRoleIds.length ? "y" : null])}
@@ -454,7 +443,7 @@
           </SettingField>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-            <SettingField id="approve-emote" label={m.forms.settingsApproveEmote()} hint={m.forms.settingsApproveEmoteHint()}>
+            <SettingField id="approve-emote" label={m.forms.settingsApproveEmote()}>
               <EmojiPicker
                 id="approve-emote"
                 {guildEmojis}
@@ -466,7 +455,7 @@
               />
             </SettingField>
 
-            <SettingField id="reject-emote" label={m.forms.settingsRejectEmote()} hint={m.forms.settingsRejectEmoteHint()}>
+            <SettingField id="reject-emote" label={m.forms.settingsRejectEmote()}>
               <EmojiPicker
                 id="reject-emote"
                 {guildEmojis}
@@ -489,7 +478,7 @@
                 {m.forms.settingsOnApproval()}
               </h3>
 
-              <SettingField id="approval-add-roles" label={m.forms.settingsApprovalAddRoles()} hint={m.forms.settingsApprovalAddRolesHint()}>
+              <SettingField id="approval-add-roles" label={m.forms.settingsApprovalAddRoles()}>
                 <DiscordSelector
                   id="approval-add-roles"
                   type="role"
@@ -523,7 +512,7 @@
                 {m.forms.settingsOnRejection()}
               </h3>
 
-              <SettingField id="rejection-add-roles" label={m.forms.settingsRejectionAddRoles()} hint={m.forms.settingsRejectionAddRolesHint()}>
+              <SettingField id="rejection-add-roles" label={m.forms.settingsRejectionAddRoles()}>
                 <DiscordSelector
                   id="rejection-add-roles"
                   type="role"
@@ -535,7 +524,7 @@
                 />
               </SettingField>
 
-              <SettingField id="rejection-remove-roles" label={m.forms.settingsRejectionRemoveRoles()} hint={m.forms.settingsRejectionRemoveRolesHint()}>
+              <SettingField id="rejection-remove-roles" label={m.forms.settingsRejectionRemoveRoles()}>
                 <DiscordSelector
                   id="rejection-remove-roles"
                   type="role"
@@ -555,7 +544,6 @@
     <FormTypeScope formType={formTypeInt} types={[1]}>
       <SettingsSection
         title={m.forms.settingsAppealLimitsTitle()}
-        summary={m.forms.settingsHowOftenSomebodyMayAppealSummary()}
         icon="fa-clock"
         changed={countSet([settings.appealDelayDays, settings.maxAppealAttempts, settings.reappealCooldownDays, settings.blockReappealAfterRejection || null])}
       >
@@ -567,7 +555,7 @@
           onchange={(v) => (settings.blockReappealAfterRejection = v)}
         />
 
-        <SettingField id="appeal-delay" label={m.forms.settingsAppealDelay()} hint={m.forms.settingsAppealDelayHint()}>
+        <SettingField id="appeal-delay" label={m.forms.settingsAppealDelay()} hint={m.common.days()}>
           <input
             id="appeal-delay"
             type="number"
@@ -593,7 +581,7 @@
             />
           </SettingField>
 
-          <SettingField id="reappeal-cooldown" label={m.forms.settingsReappealCooldown()} hint={m.forms.settingsReappealCooldownHint()}>
+          <SettingField id="reappeal-cooldown" label={m.forms.settingsReappealCooldown()} hint={m.common.days()}>
             <input
               id="reappeal-cooldown"
               type="number"
@@ -612,12 +600,11 @@
     <FormTypeScope formType={formTypeInt} types={[2]}>
       <SettingsSection
         title={m.forms.settingsTheInviteSentOnApprovalTitle()}
-        summary={m.forms.settingsHowTheInviteWorksForSummary()}
         icon="fa-user-plus"
         changed={countSet([settings.autoApproveRoleIds.length ? "y" : null])}
       >
         <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <SettingField id="invite-max-uses" label={m.forms.settingsInviteMaxUses()} hint={m.forms.settingsInviteMaxUsesHint()}>
+          <SettingField id="invite-max-uses" label={m.forms.settingsInviteMaxUses()}>
             <input
               id="invite-max-uses"
               type="number"

@@ -368,7 +368,7 @@
 >
   {#if activeTab === "roles"}
     <section>
-      <SectionHeader icon="fa-trophy" title={m.features.statrolesName()} subtitle={m.statroles.listSubtitle()} />
+      <SectionHeader icon="fa-trophy" title={m.features.statrolesName()} />
 
       <AsyncState loading={listLoading} error={listError} empty={statRoles.length === 0} emptyMessage={m.statroles.listEmpty()} emptyIcon="fa-trophy">
         <div class="space-y-4">
@@ -441,7 +441,7 @@
 
   {#if activeTab === "editor"}
     <section>
-      <SectionHeader icon="fa-pen" title={draft.id === null ? m.statroles.newRole() : m.statroles.editorEditTitle({ id: draft.id })} subtitle={m.statroles.editorSubtitle()} />
+      <SectionHeader icon="fa-pen" title={draft.id === null ? m.statroles.newRole() : m.statroles.editorEditTitle({ id: draft.id })} />
 
       <div class="grid grid-cols-1 xl:grid-cols-2 gap-6">
         <Card title={m.common.condition()}>
@@ -524,13 +524,13 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-2">
               <SettingToggle id="sr-permanent" label={m.common.permanent()} hint={m.statroles.togglePermanentHint()} checked={draft.permanent} onchange={(v) => (draft.permanent = v)} />
               <SettingToggle id="sr-invert" label={m.statroles.toggleInvert()} hint={m.statroles.toggleInvertHint()} checked={draft.invert} onchange={(v) => (draft.invert = v)} />
-              <SettingToggle id="sr-bots" label={m.statroles.toggleBots()} hint={m.statroles.toggleBotsHint()} checked={draft.applyToBots} onchange={(v) => (draft.applyToBots = v)} />
+              <SettingToggle id="sr-bots" label={m.statroles.toggleBots()} checked={draft.applyToBots} onchange={(v) => (draft.applyToBots = v)} />
             </div>
           </div>
         </Card>
 
         <div class="space-y-6">
-          <Card title={m.common.filters()} note={m.statroles.cardFiltersNote()}>
+          <Card title={m.common.filters()}>
             <div class="space-y-4">
               {#if draft.statType === StatRoleStat.Messages || draft.statType === StatRoleStat.VoiceMinutes}
                 <SettingField label={m.statroles.fieldChannels()} hint={m.statroles.fieldChannelsHint()} id="sr-channels">
@@ -560,7 +560,7 @@
               <SettingField label={m.statroles.fieldAnnounce()} hint={m.statroles.fieldAnnounceHint()} id="sr-notify-channel">
                 <DiscordSelector id="sr-notify-channel" type="channel" options={textChannels} bind:selected={draft.notifyChannelId} placeholder={m.common.noAnnouncements()} />
               </SettingField>
-              <SettingToggle id="sr-dm" label={m.statroles.toggleDm()} hint={m.statroles.toggleDmHint()} checked={draft.notifyDm} onchange={(v) => (draft.notifyDm = v)} />
+              <SettingToggle id="sr-dm" label={m.statroles.toggleDm()} checked={draft.notifyDm} onchange={(v) => (draft.notifyDm = v)} />
               <SettingField label={m.common.message()} hint={m.statroles.fieldMessageHint()} id="sr-message">
                 <textarea id="sr-message" rows="3" placeholder="%user% %action% %role%" bind:value={draft.notifyMessage} class="w-full rounded-lg p-2" style={inputStyle}></textarea>
               </SettingField>
@@ -568,7 +568,7 @@
           </Card>
 
           <div class="flex gap-2">
-            <button type="button" class="flex-1 min-h-[48px] rounded-xl font-medium" style="background: {$colorStore.primary}; color: #fff;" onclick={save} disabled={saving}>
+            <button type="button" class="flex-1 min-h-[48px] rounded-xl font-medium" style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};" onclick={save} disabled={saving}>
               {saving ? m.common.saving() : draft.id === null ? m.statroles.createRole() : m.common.saveChanges()}
             </button>
             <button type="button" class="min-h-[48px] px-5 rounded-xl font-medium" style="background: {$colorStore.primary}20; color: {$colorStore.text};" onclick={() => { draft = emptyDraft(); activeTab = "roles"; }}>{m.common.cancel()}</button>

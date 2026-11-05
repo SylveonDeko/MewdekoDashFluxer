@@ -439,9 +439,6 @@
                 {/if}
                 <div>
                   <span class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.achievements.editorIconLabel()}</span>
-                  <p class="text-xs -mt-1 mb-2" style="color: {$colorStore.muted}">
-                    {m.achievements.editorIconHint()}
-                  </p>
                   <IconPicker value={draft.icon} defaultIcon={draftCategory?.icon ?? null}
                               defaultIconUrl={draftCategory?.iconUrl ?? null} defaultLabel={m.achievements.editorIconDefaultLabel()}
                               uploads={catalog.uploads} emojis={lookups?.emojis ?? []} color={grade.color}
@@ -621,9 +618,6 @@
                 </div>
               {/if}
             </div>
-            <p class="text-xs" style="color: {$colorStore.muted}">
-              {m.achievements.editorPreviewHint()}
-            </p>
             {#if !isNew && achievement}
               <div class="rounded-xl p-4 space-y-2 text-sm" style="background: {$colorStore.primary}08;">
                 <div class="flex justify-between gap-2"><span style="color: {$colorStore.muted}">{m.achievements.editorUnlockedBy()}</span>

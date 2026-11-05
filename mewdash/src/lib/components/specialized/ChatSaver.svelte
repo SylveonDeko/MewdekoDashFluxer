@@ -164,7 +164,7 @@
 
   async function fetchMessages(): Promise<void> {
     if (!selectedChannelId) {
-      showNotificationMessage(m.common.notifySelectChannel(), "error");
+      showNotificationMessage(m.common.selectAChannelPlaceholder(), "error");
       return;
     }
 
@@ -1335,9 +1335,7 @@
       <div class="text-center py-12 px-4">
         <i class="fa-solid fa-envelope"
            style="color: {$colorStore.muted}; font-size: 48px; display: block; margin: 0 auto 16px;"></i>
-        <p class="text-base sm:text-lg" style="color: {$colorStore.muted}">{m.chatsaver.saverNoMessages()}</p>
-        <p class="text-sm mt-2" style="color: {$colorStore.muted}">{m.chatsaver.saverNoMessagesHint()}</p>
-      </div>
+        <p class="text-base sm:text-lg" style="color: {$colorStore.muted}">{m.chatsaver.saverNoMessages()}</p>      </div>
     {/if}
   {/if}
 </DashboardPageLayout>

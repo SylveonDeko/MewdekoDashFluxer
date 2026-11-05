@@ -223,13 +223,10 @@
   <div class="rounded-2xl border p-5 md:p-6"
        style="background: {$colorStore.primary}0c;
               border-color: {problems.length > 0 ? $colorStore.accent : $colorStore.primary}30;">
-    <h3 class="flex items-center gap-2 font-semibold mb-1" style="color: {$colorStore.text}">
+    <h3 class="flex items-center gap-2 font-semibold mb-3" style="color: {$colorStore.text}">
       <DuoIcon icon="fa-link" />
       {m.achievements.overviewSourcesTitle()}
     </h3>
-    <p class="text-sm mb-4" style="color: {$colorStore.muted}">
-      {m.achievements.overviewSourcesHint()}
-    </p>
     <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
       {#each sourceRows as source (source.key)}
         <div class="flex items-center gap-3 p-3 rounded-xl min-h-[56px]" style="background: {$colorStore.primary}08;">

@@ -495,11 +495,7 @@
                         <div class="text-center py-8">
                           <i class="fa-utility-duo fa-regular fa-crown"
                              style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.primary}; font-size: 48px; opacity: 0.5; display: block; margin: 0 auto 16px;"></i>
-                            <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.votes.pageRolesEmptyTitle()}</h3>
-                            <p class="text-sm" style="color: {$colorStore.muted}">
-                                {m.votes.pageRolesEmptyHint()}
-                            </p>
-                        </div>
+                            <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.votes.pageRolesEmptyTitle()}</h3>                        </div>
                     {:else}
                       {#each voteRoles as voteRole (voteRole.roleId)}
                             <div class="flex items-center justify-between p-4 rounded-xl transition-all"
@@ -576,11 +572,7 @@
                         <div class="text-center py-8">
                           <i class="fa-utility-duo fa-regular fa-trophy"
                              style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.primary}; font-size: 48px; opacity: 0.5; display: block; margin: 0 auto 16px;"></i>
-                            <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.votes.pageLeaderboardEmptyTitle()}</h3>
-                            <p class="text-sm" style="color: {$colorStore.muted}">
-                                {m.votes.pageLeaderboardEmptyHint()}
-                            </p>
-                        </div>
+                            <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.votes.pageLeaderboardEmptyTitle()}</h3>                        </div>
                     {:else}
                       {#each leaderboard as entry, index (entry.userId)}
                             <div class="flex items-center gap-4 p-4 rounded-xl transition-all"

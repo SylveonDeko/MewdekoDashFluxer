@@ -44,11 +44,7 @@
         placeholder={m.administration.rolesAutoAssignNormalPlaceholder()}
         type="role"
         onchange={() => saveNormalRoles()}
-      />
-      <p class="text-sm" style="color: {$colorStore.muted}">
-        {m.administration.rolesAutoAssignNormalHint()}
-      </p>
-    </div>
+      />    </div>
 
     <!-- Bot Users -->
     <div class="space-y-4">
@@ -65,10 +61,6 @@
         placeholder={m.administration.rolesAutoAssignBotPlaceholder()}
         type="role"
         onchange={() => saveBotRoles()}
-      />
-      <p class="text-sm" style="color: {$colorStore.muted}">
-        {m.administration.rolesAutoAssignBotHint()}
-      </p>
-    </div>
+      />    </div>
   </div>
 </div>

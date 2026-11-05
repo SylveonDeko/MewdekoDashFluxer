@@ -520,9 +520,7 @@
                             border-color: {$colorStore.primary}30;">
                     <i class="fa-utility-duo fa-regular fa-chart-simple"
                        style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 48px; opacity: 0.5;"></i>
-                    <p class="mt-4 text-lg font-medium" style="color: {$colorStore.text}">{m.statchannels.listEmptyTitle()}</p>
-                    <p class="text-sm mt-1" style="color: {$colorStore.muted}">{m.statchannels.listEmptyText()}</p>
-                    <button class="mt-4 flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all mx-auto"
+                    <p class="mt-4 text-lg font-medium" style="color: {$colorStore.text}">{m.statchannels.listEmptyTitle()}</p>                    <button class="mt-4 flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all mx-auto"
                             style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
                             onclick={() => { activeTab = 'add'; }}>
                         <i class="fa-solid fa-plus" style="font-size: 14px;"></i>
@@ -820,11 +818,7 @@
                                 <i class="fa-solid fa-circle-notch fa-spin"
                                    style="color: {$colorStore.muted}; font-size: 12px;"></i>
                             {/if}
-                        </div>
-                        <p class="text-xs mt-1" style="color: {$colorStore.muted}">
-                            {m.statchannels.addPreviewHint()}
-                        </p>
-                    </div>
+                        </div>                    </div>
 
                     <div>
                         <label for="f-style" class="block text-sm font-medium mb-2"
@@ -960,10 +954,6 @@
                      style="background: {$colorStore.primary}0c;
                             border-color: {$colorStore.primary}30;">
                     <h2 class="text-xl font-bold mb-1" style="color: {$colorStore.text}">{m.statchannels.countersTitle()}</h2>
-                    <p class="text-sm mb-5" style="color: {$colorStore.muted}">
-                        {m.statchannels.countersText()}
-                    </p>
-
                     {#each [...new Set(metadata.statTypes.map((t) => t.category))] as category}
                         <div class="mb-5 last:mb-0">
                             <h3 class="text-sm font-bold mb-2"

@@ -672,9 +672,6 @@
               }
             }}
           />
-          <p class="mt-2 text-sm" style="color: {$colorStore.muted}">
-            {m.afk.typeHint()}
-          </p>
         </div>
       </div>
 
@@ -751,9 +748,6 @@
             selected={selectedDisabledChannels}
             onchange={handleDisabledChannelsChange}
           />
-          <p class="mt-2 text-sm" style="color: {$colorStore.muted}">
-            {m.afk.channelsHint()}
-          </p>
         </div>
 
         <!-- Custom Message -->

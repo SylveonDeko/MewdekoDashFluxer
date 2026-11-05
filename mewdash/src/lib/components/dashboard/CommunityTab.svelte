@@ -227,9 +227,6 @@
             <i class="fa-utility-duo fa-regular fa-star text-4xl mx-auto mb-3 block"
                style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.primary}; --fa-primary-opacity: 0.5; --fa-secondary-opacity: 0.3;"></i>
             <h3 class="text-base font-semibold mb-1" style="color: {$colorStore.text}">{m.dashboard.communityNoXpData()}</h3>
-            <p class="text-xs" style="color: {$colorStore.muted}">
-              {m.dashboard.communityNoXpDataHint()}
-            </p>
           </div>
         {:else}
           {#each xpLeaderboard as user, index (user.userId)}

@@ -387,7 +387,7 @@
       action: createStarboard,
       loading: creatingStarboard,
       disabled: !newStarboard.channelId || creatingStarboard,
-      style: `background: ${$colorStore.primary}; color: ${$colorStore.text};`
+      style: `background: ${$colorStore.primary}; color: ${$colorStore.onPrimary};`
     }
   ]}
   statusMessages={statusMessages}
@@ -585,11 +585,7 @@
           <i class="fa-utility-duo fa-regular fa-star"
              style="--fa-primary-color: {$colorStore.muted}; --fa-secondary-color: {$colorStore.muted}; font-size: 48px; display: block; margin: 0 auto 16px;"
              aria-hidden="true"></i>
-          <p style="color: {$colorStore.muted}">{m.starboard.emptyTitle()}</p>
-          <p class="mt-2 text-sm" style="color: {$colorStore.muted}">
-            {m.starboard.emptyHint()}
-          </p>
-        </div>
+          <p style="color: {$colorStore.muted}">{m.starboard.emptyTitle()}</p>        </div>
       {:else}
         <div class="space-y-6">
           {#each starboards as starboard (starboard.id)}

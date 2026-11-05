@@ -115,9 +115,6 @@
   <div class="container mx-auto max-w-3xl space-y-6">
     <div>
       <h1 class="text-3xl font-bold mb-1" style="color: {$colorStore.text};">{m.forms.submissionsHeading()}</h1>
-      <p style="color: {$colorStore.muted};">
-        {m.forms.submissionsEveryFormYouHaveSent()}
-      </p>
     </div>
 
     {#if error}
@@ -142,9 +139,6 @@
       >
         <i class="fa-solid fa-inbox text-3xl mb-3" style="color: {$colorStore.muted};"></i>
         <div class="font-semibold mb-1" style="color: {$colorStore.text};">{m.common.nothingHereYet()}</div>
-        <div style="color: {$colorStore.muted};">
-          {m.forms.submissionsFormsYouSubmitWillShow()}
-        </div>
       </div>
     {:else}
       <div class="flex flex-wrap gap-2">

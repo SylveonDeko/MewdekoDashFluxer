@@ -317,7 +317,7 @@
           <a
             href="/api/auth/login?redirect_to={encodeURIComponent($page.url.pathname)}"
             class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-opacity hover:opacity-90"
-            style="background: {$colorStore.primary}; color: white;"
+            style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
           >
             {m.common.loginWithDiscord()}
           </a>
@@ -555,7 +555,7 @@
                   <div class="w-full bg-gray-600 rounded-full h-2">
                     <div
                       class="h-2 rounded-full transition-all duration-500"
-                      style="background: {$colorStore.primary};
+                      style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};
                              width: {Math.min((user.levelXp / user.requiredXp) * 100, 100)}%;"
                     ></div>
                   </div>

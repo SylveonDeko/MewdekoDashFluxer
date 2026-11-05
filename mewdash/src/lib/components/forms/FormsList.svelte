@@ -76,14 +76,11 @@
         class="fa-solid fa-clipboard-list"
         style="color: {$colorStore.muted}; font-size: 48px; display: block; margin: 0 auto 16px;"
       ></i>
-      <h3 class="text-xl font-bold mb-2" style="color: {$colorStore.text};">{m.forms.listEmptyTitle()}</h3>
-      <p class="mb-6" style="color: {$colorStore.muted};">
-        {m.forms.listEmptyBody()}
-      </p>
+      <h3 class="text-xl font-bold mb-6" style="color: {$colorStore.text};">{m.forms.listEmptyTitle()}</h3>
       <button
         onclick={onCreateNew}
         class="px-6 py-3 rounded-lg font-medium transition-all"
-        style="background: {$colorStore.primary}; color: white;"
+        style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
       >
         <i class="fa-solid fa-plus mr-2"></i>
         {m.forms.listCreateFirst()}

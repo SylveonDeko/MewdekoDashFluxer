@@ -78,7 +78,6 @@
       <div class="text-center py-8">
         <i class="fa-solid fa-flag" style="color: {$colorStore.muted}; font-size: 48px; opacity: 0.3;"></i>
         <p class="mt-4" style="color: {$colorStore.muted}">{m.tickets.configPrioritiesEmpty()}</p>
-        <p class="text-sm mt-2" style="color: {$colorStore.muted}">{m.tickets.configPrioritiesEmptyHint()}</p>
       </div>
     {:else}
       <div class="space-y-3">
@@ -145,7 +144,6 @@
       <div class="text-center py-8">
         <i class="fa-solid fa-tags" style="color: {$colorStore.muted}; font-size: 48px; opacity: 0.3;"></i>
         <p class="mt-4" style="color: {$colorStore.muted}">{m.tickets.configTagsEmpty()}</p>
-        <p class="text-sm mt-2" style="color: {$colorStore.muted}">{m.tickets.configTagsEmptyHint()}</p>
       </div>
     {:else}
       <div class="space-y-3">

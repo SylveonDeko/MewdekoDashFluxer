@@ -369,11 +369,7 @@
                         <div class="text-center py-8">
                           <i class="fa-utility-duo fa-regular fa-user-check"
                              style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.primary}; font-size: 48px; opacity: 0.5; display: block; margin: 0 auto 16px;"></i>
-                            <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.statusroles.pageListEmptyTitle()}</h3>
-                            <p class="text-sm" style="color: {$colorStore.muted}">
-                                {m.statusroles.pageListEmptyHint()}
-                            </p>
-                        </div>
+                            <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.statusroles.pageListEmptyTitle()}</h3>                        </div>
                     {:else}
                         {#each statusRoles as role}
                             <div class="rounded-xl border transition-all"
@@ -569,11 +565,7 @@
                                 placeholder={m.statusroles.pageAddStatusPlaceholder()}
                                 class="w-full p-3 rounded-xl border transition-all min-h-[44px] text-base"
                                 style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}30; color: {$colorStore.text};"
-                      >
-                        <p class="text-xs mt-2" style="color: {$colorStore.muted}">
-                            {m.statusroles.pageAddStatusHint()}
-                        </p>
-                    </div>
+                      >                    </div>
 
                   <button
                     class="flex items-center justify-center gap-3 px-4 sm:px-6 py-2.5 sm:py-3 rounded-xl transition-all min-h-[44px] sm:min-h-[52px] font-medium focus:outline-hidden focus:ring-2 focus:ring-offset-2"
@@ -587,12 +579,6 @@
                        aria-hidden="true"></i>
                     <span class="text-sm sm:text-base">{saving ? m.common.adding() : m.statusroles.pageAddAria()}</span>
                   </button>
-
-                    <div class="p-4 rounded-xl" style="background: {$colorStore.primary}10; border: 1px solid {$colorStore.primary}30;">
-                        <p class="text-sm" style="color: {$colorStore.text}">
-                            {@html m.statusroles.pageAddNote()}
-                        </p>
-                    </div>
                 </div>
             </div>
         </div>

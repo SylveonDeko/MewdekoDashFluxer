@@ -102,7 +102,6 @@
       </div>
       <div class="flex-1">
         <h2 class="text-xl font-bold" style="color: {$colorStore.text}">{m.tickets.advancedBlacklistTitle()}</h2>
-        <p class="text-sm mt-1" style="color: {$colorStore.muted}">{m.tickets.advancedBlacklistSubtitle()}</p>
       </div>
     </div>
 

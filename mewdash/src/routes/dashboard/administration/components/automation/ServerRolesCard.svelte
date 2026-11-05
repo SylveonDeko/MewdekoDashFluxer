@@ -39,11 +39,7 @@
         placeholder={m.administration.automationServerRolesStaffPlaceholder()}
         type="role"
         onchange={(d) => saveStaffRole(typeof d.selected === "string" && d.selected ? d.selected : null)}
-      />
-      <p class="text-xs" style="color: {$colorStore.muted}">
-        {m.administration.automationServerRolesStaffHint()}
-      </p>
-    </div>
+      />    </div>
 
     <div class="space-y-4">
       <span class="block text-sm font-medium" id="member-role-label" style="color: {$colorStore.text}">
@@ -56,11 +52,7 @@
         placeholder={m.administration.automationServerRolesMemberPlaceholder()}
         type="role"
         onchange={(d) => saveMemberRole(typeof d.selected === "string" && d.selected ? d.selected : null)}
-      />
-      <p class="text-xs" style="color: {$colorStore.muted}">
-        {m.administration.automationServerRolesMemberHint()}
-      </p>
-    </div>
+      />    </div>
   </div>
 
 </div>

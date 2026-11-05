@@ -98,9 +98,6 @@
       <i class="fa-solid fa-code-branch mr-1"></i>
       {m.forms.conditionalTitle()}
     </span>
-    <p class="text-xs mb-3" style="color: {$colorStore.muted};">
-      {m.forms.conditionalIntro()}
-    </p>
 
     <div class="grid grid-cols-2 md:grid-cols-3 gap-2">
       {#each CONDITIONAL_TYPES as condType}
@@ -385,9 +382,6 @@
         {m.forms.conditionalRequiredTitle()}
       </span>
     </div>
-    <p class="text-xs mb-3" style="color: {$colorStore.muted};">
-      {m.forms.conditionalRequiredIntro()}
-    </p>
 
     <!-- Required When Parent Question -->
     <div class="space-y-3">

@@ -14,7 +14,7 @@
   interface Props {
     title: string;
     /** One line saying what the group decides, shown under the title. */
-    summary: string;
+    summary?: string;
     icon: string;
     /**
      * Whether the group starts open, read once when it first renders. Later changes are ignored
@@ -26,7 +26,7 @@
     children: Snippet;
   }
 
-  let { title, summary, icon, initiallyOpen = false, changed = 0, children }: Props = $props();
+  let { title, summary = "", icon, initiallyOpen = false, changed = 0, children }: Props = $props();
 
   let expanded = $state(untrack(() => initiallyOpen));
 </script>
@@ -49,7 +49,9 @@
       ></i>
       <div class="min-w-0">
         <div class="font-semibold" style="color: {$colorStore.text};">{title}</div>
-        <div class="text-sm" style="color: {$colorStore.muted};">{summary}</div>
+        {#if summary}
+          <div class="text-sm" style="color: {$colorStore.muted};">{summary}</div>
+        {/if}
       </div>
     </div>
 

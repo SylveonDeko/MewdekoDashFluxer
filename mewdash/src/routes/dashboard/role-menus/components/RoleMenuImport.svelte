@@ -116,7 +116,7 @@
           <i class="fa-utility-duo fa-regular fa-comment"
              style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 20px;"></i>
           <h2 class="text-xl font-bold" style="color: {$colorStore.text}">
-            {source.channelName ? `#${source.channelName}` : m.roleMenus.channelDeleted()}
+            {source.channelName ? `#${source.channelName}` : m.common.channelDeleted()}
           </h2>
           {#if source.exclusive}
             <span class="text-xs px-2 py-1 rounded-lg font-medium"

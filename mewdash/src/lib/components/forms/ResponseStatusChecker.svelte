@@ -427,9 +427,6 @@
           class=" rounded-xl border p-4 text-center"
           style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}30;"
         >
-          <p class="text-sm mb-3" style="color: {$colorStore.muted};">
-            {m.forms.statusCheckerSubmissionsIntro()}
-          </p>
           <a
             href="/forms/submissions"
             class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg text-sm font-medium transition-all"

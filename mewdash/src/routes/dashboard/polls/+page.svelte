@@ -399,9 +399,7 @@
         {:else if polls.length === 0}
           <div class="text-center py-8">
             <i class="fa-utility-duo fa-regular fa-chart-simple" style="--fa-primary-color: {$colorStore.muted}; --fa-secondary-color: {$colorStore.muted}; font-size: 48px; opacity: 0.5; display: block; margin: 0 auto 16px;"></i>
-            <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.polls.listEmptyTitle()}</h3>
-            <p class="text-sm" style="color: {$colorStore.muted}">{m.polls.listEmptyHint()}</p>
-          </div>
+            <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.polls.listEmptyTitle()}</h3>          </div>
         {:else}
           <div class="space-y-3">
             {#each polls as poll (poll.id)}
@@ -709,7 +707,7 @@
             <div class="flex items-end gap-1 h-40 overflow-x-auto" role="img" aria-label={m.polls.analyticsPerDay()}>
               {#each entries as [day, count]}
                 <div class="flex-1 min-w-[8px] rounded-t-sm" title={`${new Date(day).toLocaleDateString()}: ${count}`}
-                     style="height: {Math.max(4, (count / max) * 100)}%; background: {$colorStore.primary};"></div>
+                     style="height: {Math.max(4, (count / max) * 100)}%; background: {$colorStore.primary}; color: {$colorStore.onPrimary};"></div>
               {/each}
             </div>
           </div>

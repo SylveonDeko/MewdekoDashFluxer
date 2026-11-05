@@ -660,7 +660,6 @@
                                     <i class="fa-utility-duo fa-regular fa-comment" style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 20px;"></i>
                                     <div>
                                         <div class="font-medium" style="color: {$colorStore.text}">{m.common.announcements()}</div>
-                                        <div class="text-sm" style="color: {$colorStore.muted}">{m.birthday.featureAnnouncementsHint()}</div>
                                     </div>
                                 </div>
                                 <label class="relative inline-flex items-center cursor-pointer">
@@ -682,7 +681,6 @@
                                     <i class="fa-utility-duo fa-regular fa-crown" style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 20px;"></i>
                                     <div>
                                         <div class="font-medium" style="color: {$colorStore.text}">{m.birthday.featureRole()}</div>
-                                        <div class="text-sm" style="color: {$colorStore.muted}">{m.birthday.featureRoleHint()}</div>
                                     </div>
                                 </div>
                                 <label class="relative inline-flex items-center cursor-pointer">
@@ -705,7 +703,6 @@
                                     <i class="fa-utility-duo fa-regular fa-bell" style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 20px;"></i>
                                     <div>
                                         <div class="font-medium" style="color: {$colorStore.text}">{m.common.reminders()}</div>
-                                        <div class="text-sm" style="color: {$colorStore.muted}">{m.birthday.featureRemindersHint()}</div>
                                     </div>
                                 </div>
                                 <label class="relative inline-flex items-center cursor-pointer">
@@ -727,7 +724,6 @@
                                     <i class="fa-utility-duo fa-regular fa-bell-ring" style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 20px;"></i>
                                     <div>
                                         <div class="font-medium" style="color: {$colorStore.text}">{m.common.pingRole()}</div>
-                                        <div class="text-sm" style="color: {$colorStore.muted}">{m.birthday.featurePingRoleHint()}</div>
                                     </div>
                                 </div>
                                 <label class="relative inline-flex items-center cursor-pointer">
@@ -750,7 +746,6 @@
                                     <i class="fa-utility-duo fa-regular fa-location-dot" style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 20px;"></i>
                                     <div>
                                         <div class="font-medium" style="color: {$colorStore.text}">{m.birthday.featureTimezone()}</div>
-                                        <div class="text-sm" style="color: {$colorStore.muted}">{m.birthday.featureTimezoneHint()}</div>
                                     </div>
                                 </div>
                                 <label class="relative inline-flex items-center cursor-pointer">
@@ -851,9 +846,6 @@
                             <div class="text-center py-8">
                                 <i class="fa-utility-duo fa-regular fa-calendar" style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.primary}; font-size: 48px; opacity: 0.5;"></i>
                                 <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.birthday.usersUpcomingEmptyTitle()}</h3>
-                                <p class="text-sm" style="color: {$colorStore.muted}">
-                                    {m.birthday.usersUpcomingEmpty({ days: upcomingDays })}
-                                </p>
                             </div>
                         {:else}
                             {#each upcomingBirthdays as user}
@@ -899,9 +891,6 @@
                             <div class="text-center py-8">
                                 <i class="fa-utility-duo fa-regular fa-users" style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.primary}; font-size: 48px; opacity: 0.5;"></i>
                                 <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.birthday.usersNoneTitle()}</h3>
-                                <p class="text-sm" style="color: {$colorStore.muted}">
-                                    {m.birthday.usersNoneHint()}
-                                </p>
                             </div>
                         {:else}
                             {#each birthdayUsers as user}
@@ -973,9 +962,6 @@
                     <div class="col-span-full text-center py-12">
                         <i class="fa-utility-duo fa-regular fa-chart-simple" style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.primary}; font-size: 64px; opacity: 0.5;"></i>
                         <h3 class="text-xl font-semibold mb-2" style="color: {$colorStore.text}">{m.common.noStatisticsAvailable()}</h3>
-                        <p style="color: {$colorStore.muted}">
-                            {m.birthday.statsEmpty()}
-                        </p>
                     </div>
                 {/if}
             </div>

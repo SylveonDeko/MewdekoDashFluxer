@@ -510,7 +510,7 @@
         <p style="color: {$colorStore.accent};">{error}</p>
         <button
           class="px-4 py-2 rounded-lg mt-4 transition-colors"
-          style="background: {$colorStore.accent}; color: {$colorStore.text};"
+          style="background: {$colorStore.accent}; color: {$colorStore.onAccent};"
           onclick={loadAllData}
         >
           <i class="fa-solid fa-arrows-rotate" style="font-size: 16px;"></i>
@@ -528,18 +528,15 @@
         <i class="fa-utility-duo fa-regular fa-heart"
            style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 64px; opacity: 0.5; display: block; margin: 0 auto 16px;"></i>
         <h3 class="text-2xl font-bold mb-2" style="color: {$colorStore.text};">{m.patreon.connectTitle()}</h3>
-        <p class="mb-8 max-w-md mx-auto text-lg" style="color: {$colorStore.muted};">
-          {m.patreon.connectIntro()}
-        </p>
 
         <button
           class="px-8 py-4 rounded-xl font-semibold transition-all flex items-center gap-3 mx-auto text-lg"
-          style="background: {$colorStore.primary}; color: {$colorStore.text};"
+          style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
           onclick={connectPatreon}
           disabled={isConnecting}
         >
           {#if isConnecting}
-            <div class="animate-spin rounded-full h-5 w-5 border-b-2" style="border-color: {$colorStore.text};"></div>
+            <div class="animate-spin rounded-full h-5 w-5 border-b-2" style="border-color: {$colorStore.onPrimary};"></div>
             {m.patreon.connectConnecting()}
           {:else}
             <i class="fa-solid fa-heart" style="font-size: 20px;"></i>
@@ -558,7 +555,7 @@
             <div class="flex items-start gap-3">
               <div
                       class="w-6 h-6 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0 mt-0.5"
-                style="background: {$colorStore.primary};"
+                style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
               >1
               </div>
               <p style="color: {$colorStore.muted};">{m.patreon.howStep1()}</p>
@@ -566,7 +563,7 @@
             <div class="flex items-start gap-3">
               <div
                       class="w-6 h-6 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0 mt-0.5"
-                style="background: {$colorStore.primary};"
+                style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
               >2
               </div>
               <p style="color: {$colorStore.muted};">{m.patreon.howStep2()}</p>
@@ -574,7 +571,7 @@
             <div class="flex items-start gap-3">
               <div
                       class="w-6 h-6 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0 mt-0.5"
-                style="background: {$colorStore.primary};"
+                style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
               >3
               </div>
               <p style="color: {$colorStore.muted};">{m.patreon.howStep3()}</p>
@@ -582,7 +579,7 @@
             <div class="flex items-start gap-3">
               <div
                       class="w-6 h-6 rounded-full flex items-center justify-center text-white text-sm font-bold shrink-0 mt-0.5"
-                style="background: {$colorStore.primary};"
+                style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
               >4
               </div>
               <p style="color: {$colorStore.muted};">{m.patreon.howStep4()}</p>
@@ -696,7 +693,7 @@
                       </p>
 
                       <div class="flex items-center gap-1 mt-1">
-                        <div class="w-2 h-2 rounded-full" style="background: {$colorStore.primary};"></div>
+                        <div class="w-2 h-2 rounded-full" style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"></div>
                         <span class="text-xs"
                               style="color: {$colorStore.muted};">{m.patreon.creatorPatronCount({ count: patreonCreator.patronCount || 0 })}</span>
                       </div>
@@ -783,7 +780,7 @@
               <h3 class="text-lg font-semibold" style="color: {$colorStore.text};">{m.patreon.supportersAll({ count: patreonSupporters.length })}</h3>
               <button
                 class="px-4 py-2 rounded-lg transition-colors flex items-center gap-2"
-                style="background: {$colorStore.primary}; color: {$colorStore.text};"
+                style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
                 onclick={() => triggerOperation("sync")}
                 disabled={isSyncing}
               >
@@ -874,13 +871,13 @@
                 <div>
                   <button
                     class="w-full px-4 py-2 rounded-lg transition-colors flex items-center justify-center gap-2"
-                    style="background: {$colorStore.primary}; color: {$colorStore.text};"
+                    style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
                     onclick={mapTierToRole}
                     disabled={isMappingTier || !selectedTierId || !selectedRoleId}
                   >
                     {#if isMappingTier}
                       <div class="animate-spin rounded-full h-4 w-4 border-b-2"
-                           style="border-color: {$colorStore.text};"></div>
+                           style="border-color: {$colorStore.onPrimary};"></div>
                     {:else}
                       <i class="fa-solid fa-plus" style="font-size: 16px;"></i>
                     {/if}

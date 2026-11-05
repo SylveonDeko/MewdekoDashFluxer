@@ -161,7 +161,6 @@
         </div>
         <div>
           <h2 class="text-xl font-bold" style="color: {$colorStore.text}">{m.tickets.ticketsHeading({ count: filtered.length })}</h2>
-          <p class="text-sm" style="color: {$colorStore.muted}">{m.tickets.ticketsSubtitle()}</p>
         </div>
       </div>
       <div class="flex flex-col sm:flex-row gap-3 w-full lg:w-auto">

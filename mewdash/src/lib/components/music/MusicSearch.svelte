@@ -136,7 +136,7 @@ A modal music search component for finding and adding tracks to the music queue.
       }
 
       if (searchResults.length === 0) {
-        errorMessage = m.music.searchNoResultsRetry();
+        errorMessage = m.common.noResultsFound();
       }
 
       // Reset retry count on success
@@ -505,7 +505,6 @@ A modal music search component for finding and adding tracks to the music queue.
           <div class="py-12 sm:py-8 text-center px-4">
             <i class="fa-utility-duo fa-regular fa-music mx-auto mb-4 sm:mb-2 opacity-50" style="--fa-primary-color: {colors.accent}; --fa-secondary-color: {colors.accent}; font-size: 64px; display: block;"></i>
             <p class="text-lg sm:text-base mb-2" style="color: {colors.text};">{m.common.noResultsFound()}</p>
-            <p class="text-sm opacity-70" style="color: {colors.text};">{m.music.searchNoResultsHint()}</p>
           </div>
         {:else}
           <div class="py-12 sm:py-8 text-center px-4">

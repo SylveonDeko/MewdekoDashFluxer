@@ -304,7 +304,6 @@
             ariaLabelledby="jrt-required-label"
             onchange={(d) => pick("requiredRoleIds", d)}
           />
-          <p class="text-xs mt-1" style="color: {$colorStore.muted}">{m.joinRoleTimeout.requiredRolesHint()}</p>
         </div>
 
         <div>
@@ -318,7 +317,6 @@
             ariaLabelledby="jrt-exempt-label"
             onchange={(d) => pick("exemptRoleIds", d)}
           />
-          <p class="text-xs mt-1" style="color: {$colorStore.muted}">{m.joinRoleTimeout.exemptRolesHint()}</p>
         </div>
 
         <div>
@@ -374,7 +372,7 @@
                     placeholder={m.joinRoleTimeout.warnMessagePlaceholder()}
                     class={inputClass}
                     style={inputStyle}></textarea>
-          <p class="text-xs mt-1" style="color: {$colorStore.muted}">{m.joinRoleTimeout.warnMessageHint()}</p>
+          <p class="text-xs mt-1" style="color: {$colorStore.muted}">{m.joinRoleTimeout.actionMessageHint()}</p>
         </div>
         <div>
           <label for="jrt-action-message" class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.joinRoleTimeout.actionMessageLabel()}</label>

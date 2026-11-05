@@ -51,13 +51,13 @@
 
     switch (errorType) {
       case "network":
-        return context === "load" ? m.public.giveawaysErrorNetworkLoad() : m.public.giveawaysErrorNetworkEnter();
+        return m.public.giveawaysErrorNetworkEnter();
       case "auth":
         return context === "load" ? m.public.giveawaysErrorAuthLoad() : m.public.giveawaysErrorAuthEnter();
       case "validation":
         return m.public.giveawaysErrorValidation({ message: baseMessage });
       case "server":
-        return context === "load" ? m.public.giveawaysErrorServerLoad() : m.public.giveawaysErrorServerEnter();
+        return m.public.giveawaysErrorServerEnter();
       default:
         return context === "load" ? m.public.giveawaysErrorDefaultLoad({ message: baseMessage }) : m.public.giveawaysErrorDefaultEnter({ message: baseMessage });
     }
@@ -342,7 +342,7 @@
                   onclick={enterGiveaway}
                   disabled={!turnstileToken || !isGiveawayActive || isSubmitting}
                   class="px-8 py-4 rounded-xl font-bold text-lg transition-opacity duration-300 hover:opacity-90 disabled:opacity-50 disabled:cursor-not-allowed min-w-[200px]"
-                  style="background: {$colorStore.primary}; color: white; border: 1px solid {$colorStore.primary};"
+                  style="background: {$colorStore.primary}; color: {$colorStore.onPrimary}; border: 1px solid {$colorStore.primary};"
                 >
                   {#if isSubmitting}
                     <div class="flex items-center justify-center gap-2">

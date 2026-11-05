@@ -233,7 +233,6 @@
       <span class="font-semibold" style="color: {$colorStore.text}">{m.tickets.overviewPanels()}</span>
     </div>
     <p class="text-2xl font-bold" style="color: {$colorStore.text}">{panels.length}</p>
-    <p class="text-sm mt-1" style="color: {$colorStore.muted}">{m.tickets.overviewPanelsHint()}</p>
   </div>
 
   <div class="p-6 rounded-xl"
@@ -243,7 +242,6 @@
       <span class="font-semibold" style="color: {$colorStore.text}">{m.tickets.overviewPriorities()}</span>
     </div>
     <p class="text-2xl font-bold" style="color: {$colorStore.text}">{priorities.length}</p>
-    <p class="text-sm mt-1" style="color: {$colorStore.muted}">{m.tickets.overviewPrioritiesHint()}</p>
   </div>
 
   <div class="p-6 rounded-xl"
@@ -253,7 +251,6 @@
       <span class="font-semibold" style="color: {$colorStore.text}">{m.tickets.overviewTags()}</span>
     </div>
     <p class="text-2xl font-bold" style="color: {$colorStore.text}">{tags.length}</p>
-    <p class="text-sm mt-1" style="color: {$colorStore.muted}">{m.tickets.overviewTagsHint()}</p>
   </div>
 
   <div class="p-6 rounded-xl"
@@ -263,7 +260,6 @@
       <span class="font-semibold" style="color: {$colorStore.text}">{m.tickets.tabCases()}</span>
     </div>
     <p class="text-2xl font-bold" style="color: {$colorStore.text}">{cases.length}</p>
-    <p class="text-sm mt-1" style="color: {$colorStore.muted}">{m.tickets.overviewCasesHint()}</p>
   </div>
 </div>
 

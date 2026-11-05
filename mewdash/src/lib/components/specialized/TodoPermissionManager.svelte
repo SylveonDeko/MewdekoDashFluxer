@@ -190,7 +190,7 @@
               <h3 class="text-lg font-semibold" style="color: {$colorStore.text}">{m.todo.permissionsCurrent()}</h3>
               <button
                 class="flex items-center gap-2 px-4 py-2 rounded-lg transition-all"
-                style="background: {$colorStore.primary}; color: white;"
+                style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
                 onclick={() => showAddUser = !showAddUser}
               >
                 <i class="fa-solid fa-plus" style="font-size: 16px;"></i>
@@ -298,7 +298,7 @@
                 <div class="flex items-center gap-2">
                   <button
                     class="flex-1 px-4 py-2 rounded-lg transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                    style="background: {$colorStore.primary}; color: white;"
+                    style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
                     onclick={grantPermissions}
                     disabled={!selectedUserId || !newPermissions.canView}
                   >
@@ -323,11 +323,7 @@
               <div class="text-center py-8">
                 <i class="fa-solid fa-users"
                    style="color: {$colorStore.primary}50; font-size: 48px; display: block; margin: 0 auto 16px;"></i>
-                <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.todo.permissionsEmptyTitle()}</h3>
-                <p class="text-sm" style="color: {$colorStore.muted}">
-                  {m.todo.permissionsEmptyHint()}
-                </p>
-              </div>
+                <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.todo.permissionsEmptyTitle()}</h3>              </div>
             {:else}
               {#each permissions as permission, index}
                 {@const member = guildMembers.find(gm => gm.id === permission.userId.toString())}

@@ -522,11 +522,13 @@
 {#snippet card(title: string, icon: string, subtitle: string, body: import("svelte").Snippet)}
   <div class=" rounded-2xl border p-6 md:p-8 transition-all"
        style="background: {$colorStore.primary}0c; border-color: {$colorStore.primary}30;">
-    <div class="flex items-center gap-3 mb-1">
+    <div class="flex items-center gap-3 {subtitle ? 'mb-1' : 'mb-6'}">
       <i class="fa-utility-duo fa-regular {icon}" style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 20px;"></i>
       <h2 class="text-xl font-bold" style="color: {$colorStore.text}">{title}</h2>
     </div>
-    <p class="text-sm mb-6" style="color: {$colorStore.muted}">{subtitle}</p>
+    {#if subtitle}
+      <p class="text-sm mb-6" style="color: {$colorStore.muted}">{subtitle}</p>
+    {/if}
     {@render body()}
   </div>
 {/snippet}
@@ -591,7 +593,7 @@
           </button>
         {/if}
       {/snippet}
-      {@render card(m.utility.aliasesCardTitle(), "fa-code", m.utility.aliasesCardSubtitle(), aliasesBody)}
+      {@render card(m.utility.aliasesCardTitle(), "fa-code", "",aliasesBody)}
     </div>
 
   {:else if activeTab === 'quotes'}
@@ -660,7 +662,7 @@
           {/if}
         {/if}
       {/snippet}
-      {@render card(m.utility.quotesCardTitle({ count: quoteTotal }), "fa-comment", m.utility.quotesCardSubtitle(), quotesBody)}
+      {@render card(m.utility.quotesCardTitle({ count: quoteTotal }), "fa-comment", "",quotesBody)}
     </div>
 
   {:else if activeTab === 'autopublish'}
@@ -716,7 +718,7 @@
           </div>
         {/if}
       {/snippet}
-      {@render card(m.utility.tabAutopublish(), "fa-newspaper", m.utility.autopublishCardSubtitle(), autoPublishBody)}
+      {@render card(m.utility.tabAutopublish(), "fa-newspaper", "",autoPublishBody)}
     </div>
 
   {:else if activeTab === 'ai'}
@@ -802,7 +804,7 @@
           </div>
         </div>
       {/snippet}
-      {@render card(m.utility.tabAi(), "fa-microchip", m.utility.aiCardSubtitle(), aiBody)}
+      {@render card(m.utility.tabAi(), "fa-microchip", "",aiBody)}
     </div>
 
   {:else if activeTab === 'nsfw'}
@@ -826,7 +828,7 @@
           </div>
         {/if}
       {/snippet}
-      {@render card(m.utility.nsfwCardTitle({ count: nsfwTags.length }), "fa-eye-slash", m.utility.nsfwCardSubtitle(), nsfwBody)}
+      {@render card(m.utility.nsfwCardTitle({ count: nsfwTags.length }), "fa-eye-slash", "",nsfwBody)}
     </div>
 
   {:else if activeTab === 'rolemonitor'}
@@ -839,7 +841,7 @@
           <p class="text-xs mt-2" style="color: {$colorStore.muted}">{m.utility.rmDefaultHint()}</p>
         </div>
       {/snippet}
-      {@render card(m.utility.rmCardTitle(), "fa-shield", m.utility.rmCardSubtitle(), rmDefaultBody)}
+      {@render card(m.utility.rmCardTitle(), "fa-shield", "",rmDefaultBody)}
 
       {#snippet rmRolesBody()}
         <form class="grid grid-cols-1 md:grid-cols-[1fr_1fr_auto] gap-3 mb-4" onsubmit={(e) => { e.preventDefault(); addRmRole(); }}>

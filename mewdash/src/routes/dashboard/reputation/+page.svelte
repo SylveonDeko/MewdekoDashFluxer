@@ -498,11 +498,7 @@
                             <div>
                                 <div class="font-medium mb-1" style="color: {$colorStore.text}">
                                     {m.reputation.enableAria()}
-                                </div>
-                                <div class="text-sm" style="color: {$colorStore.muted}">
-                                    {m.reputation.enableHint()}
-                                </div>
-                            </div>
+                                </div>                            </div>
                           <button aria-label={m.reputation.enableAria()}
                                     role="switch"
                                     aria-checked={configForm.enabled}
@@ -795,11 +791,7 @@
                         <div class="text-center py-8">
                           <i class="fa-utility-duo fa-regular fa-star"
                              style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 48px; opacity: 0.5; display: block; margin: 0 auto 16px;"></i>
-                            <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.reputation.rewardsEmptyTitle()}</h3>
-                            <p class="text-sm" style="color: {$colorStore.muted}">
-                                {m.reputation.rewardsEmptyHint()}
-                            </p>
-                        </div>
+                            <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.reputation.rewardsEmptyTitle()}</h3>                        </div>
                     {:else}
                         {#each roleRewards.sort((a, b) => a.repRequired - b.repRequired) as reward}
                             <div class="flex items-center justify-between p-4 rounded-xl"
@@ -845,11 +837,7 @@
                         <div class="text-center py-8">
                           <i class="fa-utility-duo fa-regular fa-star"
                              style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 48px; opacity: 0.5; display: block; margin: 0 auto 16px;"></i>
-                            <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.reputation.leaderboardEmptyTitle()}</h3>
-                            <p class="text-sm" style="color: {$colorStore.muted}">
-                                {m.reputation.leaderboardEmptyHint()}
-                            </p>
-                        </div>
+                            <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.reputation.leaderboardEmptyTitle()}</h3>                        </div>
                     {:else}
                         {#each leaderboard as entry}
                             <div class="flex items-center gap-4 p-4 rounded-xl transition-all"
@@ -1007,11 +995,7 @@
                 <div class="text-center py-12">
                   <i class="fa-utility-duo fa-regular fa-chart-simple"
                      style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 64px; opacity: 0.5; display: block; margin: 0 auto 16px;"></i>
-                    <h3 class="text-xl font-semibold mb-2" style="color: {$colorStore.text}">{m.common.noStatisticsAvailable()}</h3>
-                    <p style="color: {$colorStore.muted}">
-                        {m.reputation.statsEmptyHint()}
-                    </p>
-                </div>
+                    <h3 class="text-xl font-semibold mb-2" style="color: {$colorStore.text}">{m.common.noStatisticsAvailable()}</h3>                </div>
             {/if}
         </div>
     {/if}

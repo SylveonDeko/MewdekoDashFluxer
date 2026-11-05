@@ -178,9 +178,6 @@
         <span class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.achievements.settingsSecretTitle()}</span>
         <ToggleRow checked={revealHidden} title={m.achievements.settingsRevealTitle()}
                    colors={$colorStore} onchange={(v) => { revealHidden = v; queue(true); }} />
-        <p class="text-xs mt-2" style="color: {$colorStore.muted}">
-          {m.achievements.settingsRevealHint()}
-        </p>
       </div>
     </div>
   </div>
@@ -194,18 +191,12 @@
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mt-5">
       <div class="p-4 rounded-xl" style="background: {$colorStore.primary}08;">
         <div class="font-semibold text-sm" style="color: {$colorStore.text}">{m.achievements.settingsRecheckTitle()}</div>
-        <p class="text-xs mt-1 mb-3" style="color: {$colorStore.muted}">
-          {m.achievements.settingsRecheckHint()}
-        </p>
         <button type="button" class="px-4 py-2 rounded-xl min-h-[44px] text-sm font-medium disabled:opacity-50"
                 style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
                 disabled={working} onclick={recheck}>{m.achievements.settingsRecheckButton()}</button>
       </div>
       <div class="p-4 rounded-xl" style="background: #ef444410;">
         <div class="font-semibold text-sm" style="color: {$colorStore.text}">{m.achievements.settingsResetAllTitle()}</div>
-        <p class="text-xs mt-1 mb-3" style="color: {$colorStore.muted}">
-          {m.achievements.settingsResetAllHint()}
-        </p>
         <button type="button" class="px-4 py-2 rounded-xl min-h-[44px] text-sm font-medium disabled:opacity-50"
                 style="background: #ef444420; color: #ef4444; border: 1px solid #ef444430;"
                 disabled={working} onclick={resetAll}>{m.common.resetEverything()}</button>

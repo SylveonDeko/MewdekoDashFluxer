@@ -47,9 +47,5 @@
         previewTitle={m.administration.advancedBanMessageTitle()}
         user={user}
       />
-
-      <p class="text-xs mt-3" style="color: {$colorStore.muted}">
-        {m.administration.advancedBanMessageHint()}
-      </p>
     </div>  </div>
 </div>

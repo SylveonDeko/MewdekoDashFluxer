@@ -655,7 +655,7 @@
               </button>
               <button aria-label={m.me.buttonAction()}
                 class="px-4 py-2 rounded-lg text-sm flex items-center gap-2"
-                style="background: {$colorStore.primary}; color: white;"
+                style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
                 onclick={saveProfile}
                 disabled={saving}
               >
@@ -1203,7 +1203,7 @@
               <div class="relative max-w-md mx-auto" use:clickOutside onclickoutside={() => showGuildDropdown = false}>
               <button
                 class="w-full flex items-center justify-center gap-3 px-6 py-3 rounded-xl font-medium transition-all"
-                style="background: {$colorStore.primary}; color: white;"
+                style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
                 onclick={() => showGuildDropdown = !showGuildDropdown}
               >
                 <i class="fa-solid fa-server" style="font-size: 20px;"></i>
@@ -1379,7 +1379,7 @@
                 >
                 <button aria-label={m.common.add()}
                         class="px-4 py-2 rounded-lg transition-all"
-                  style="background: {$colorStore.primary}; color: white;"
+                  style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
                   onclick={addHighlight}
                   disabled={!newHighlightWord.trim()}
                 >
@@ -1526,7 +1526,7 @@
                 <div class="flex gap-2">
                   <button
                     class="flex-1 px-4 py-2 rounded-lg text-sm font-medium min-h-[40px]"
-                    style="background: {$colorStore.primary}; color: white;"
+                    style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
                     onclick={setAfkStatus}
                     disabled={saving}
                   >

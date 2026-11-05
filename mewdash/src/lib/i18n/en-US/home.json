@@ -1,5 +1,5 @@
 {
-  "error_boundary_fallback": "The page encountered an unexpected error. Please try refreshing.",
+  "error_boundary_fallback": "Something went wrong. Try refreshing.",
   "error_heading": "Error {status}",
   "error_need_help": "Need help? Join our <a class=\"hover:underline font-semibold\" href=\"https://fluxer.gg/GQuFOiBV\" style=\"color: {color}\">Fluxer community</a>",
   "error_return_home": "Return Home",

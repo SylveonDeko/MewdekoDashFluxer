@@ -736,7 +736,6 @@
         <div class="text-center py-12">
           <i class="fa-utility-duo fa-regular fa-list-numeric" style="--fa-primary-color: {$colorStore.muted}; --fa-secondary-color: {$colorStore.muted}; font-size: 48px; opacity: 0.5; display: block; margin: 0 auto 16px;"></i>
           <h3 class="text-xl font-bold mb-2" style="color: {$colorStore.text}">{m.counting.channelsEmptyTitle()}</h3>
-          <p style="color: {$colorStore.muted}">{m.counting.channelsEmptyHint()}</p>
         </div>
       {:else}
         <div class="grid gap-4">
@@ -991,7 +990,6 @@
               multiple={true}
               onchange={() => saveSetting("requiredRoles")}
             />
-            <p class="text-sm mt-1" style="color: {$colorStore.muted}">{m.counting.configRequiredRolesHint()}</p>
           </div>
 
           <div>
@@ -1004,7 +1002,6 @@
               multiple={true}
               onchange={() => saveSetting("bannedRoles")}
             />
-            <p class="text-sm mt-1" style="color: {$colorStore.muted}">{m.counting.configBannedRolesHint()}</p>
           </div>
         </div>
       </div>
@@ -1183,7 +1180,6 @@
         <div class="text-center py-12">
           <i class="fa-utility-duo fa-regular fa-trophy" style="--fa-primary-color: {$colorStore.muted}; --fa-secondary-color: {$colorStore.muted}; font-size: 48px; opacity: 0.5; display: block; margin: 0 auto 16px;"></i>
           <h3 class="text-xl font-bold mb-2" style="color: {$colorStore.text}">{m.counting.leaderboardEmptyTitle()}</h3>
-          <p style="color: {$colorStore.muted}">{m.counting.leaderboardEmptyHint()}</p>
         </div>
       {:else}
         <div class="space-y-3">
@@ -1373,7 +1369,6 @@
           <i class="fa-utility-duo fa-regular fa-flag" style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 20px;"></i>
           <h3 class="text-xl font-bold" style="color: {$colorStore.text}">{m.counting.milestonesTitle()}</h3>
         </div>
-        <p class="text-sm mb-4" style="color: {$colorStore.muted}">{m.counting.milestonesHint()}</p>
 
         <div class="flex flex-wrap gap-2 mb-4">
           {#if milestones.length === 0}
@@ -1510,7 +1505,6 @@
     <div class="text-center py-12">
       <i class="fa-utility-duo fa-regular fa-gear" style="--fa-primary-color: {$colorStore.muted}; --fa-secondary-color: {$colorStore.muted}; font-size: 48px; opacity: 0.5; display: block; margin: 0 auto 16px;"></i>
       <h3 class="text-xl font-bold mb-2" style="color: {$colorStore.text}">{m.common.selectAChannelPlaceholder()}</h3>
-      <p style="color: {$colorStore.muted}">{m.counting.selectHint()}</p>
     </div>
   {/if}
 </DashboardPageLayout>

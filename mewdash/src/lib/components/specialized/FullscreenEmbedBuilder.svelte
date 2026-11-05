@@ -1147,9 +1147,6 @@
                       <i class="fa-solid fa-layer-group"
                          style="font-size: 48px; opacity: 0.3; display: block; margin: 0 auto 16px; color: {$colorStore.muted};"></i>
                       <h4 class="text-lg font-semibold mb-2" style="color: {$colorStore.text};">{m.embedbuilder.fullscreenEmbedsEmptyTitle()}</h4>
-                      <p class="text-sm mb-4" style="color: {$colorStore.muted};">
-                        {m.embedbuilder.fullscreenEmbedsEmptyHint()}
-                      </p>
                       <button
                         class="px-4 py-2 rounded-lg font-medium text-sm transition-all flex items-center gap-2 mx-auto"
                         style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
@@ -1181,9 +1178,6 @@
                       <h3 class="text-base md:text-lg font-semibold" style="color: {$colorStore.text};">
                         {m.embedbuilder.tabLinks()} <span class="text-sm font-normal">({linkButtons.length}/{MAX_LINK_BUTTONS})</span>
                       </h3>
-                      <p class="text-xs md:text-sm" style="color: {$colorStore.muted};">
-                        {m.embedbuilder.linksHint()}
-                      </p>
                     </div>
 
                     <button
@@ -1202,9 +1196,6 @@
                     <div class="text-center py-12">
                       <i class="fa-solid fa-link text-4xl mb-4" style="color: {$colorStore.muted}; opacity: 0.5;"></i>
                       <h4 class="text-lg font-semibold mb-2" style="color: {$colorStore.text};">{m.embedbuilder.linksEmptyTitle()}</h4>
-                      <p class="text-sm" style="color: {$colorStore.muted};">
-                        {m.embedbuilder.linksEmptyHint()}
-                      </p>
                     </div>
                   {:else}
                     <div class="space-y-3" role="list">
@@ -1233,9 +1224,6 @@
                   <div class="flex justify-between items-center flex-wrap gap-2">
                     <div>
                       <h3 class="text-base md:text-lg font-semibold" style="color: {$colorStore.text};">{m.embedbuilder.fullscreenJsonHeading()}</h3>
-                      <p class="text-xs md:text-sm" style="color: {$colorStore.muted};">
-                        {m.embedbuilder.fullscreenJsonHint()}
-                      </p>
                     </div>
                     <div class="flex gap-2">
                       <button

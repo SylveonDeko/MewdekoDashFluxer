@@ -1062,12 +1062,8 @@
                 style="border-color: {colors.primary}30; color: {colors.text}; background: {colors.primary}08;"
                 placeholder={m.common.helloPlaceholder()}
                 bind:value={quickTriggerText}
-                aria-describedby="trigger-help"
                 aria-required="true"
               >
-              <div id="trigger-help" class="text-xs mt-1" style="color: {colors.muted}">
-                {m.chatTriggers.pageQuickTriggerHint()}
-              </div>
             </div>
 
             <!-- Response Input -->
@@ -1091,10 +1087,6 @@
                 user={data.user}
                 placeholder={m.chatTriggers.pageQuickResponsePlaceholder()}
               />
-
-              <div class="text-xs mt-2" style="color: {colors.muted}">
-                {m.chatTriggers.pageQuickResponseHint()}
-              </div>
             </div>
 
             <!-- Action Buttons -->
@@ -1104,7 +1096,6 @@
                 style="background: {colors.primary}20; color: {colors.primary}; border: 1px solid {colors.primary}30;"
                 onclick={createQuickTrigger}
                 disabled={!quickTriggerText.trim() || (typeof quickResponseText === 'object' ? Object.keys(quickResponseText).length === 0 : !quickResponseText?.trim())}
-                aria-describedby="create-help"
               >
                 <div class="flex items-center justify-center gap-2">
                   <i class="fa-solid fa-plus" style="font-size: 20px;"></i>
@@ -1120,10 +1111,6 @@
               >
                 {m.chatTriggers.pageQuickMoreOptions()}
               </button>
-            </div>
-            
-            <div id="create-help" class="text-xs" style="color: {colors.muted}">
-              {m.chatTriggers.pageQuickCreateHint()}
             </div>
           </div>
         </div>
@@ -1195,9 +1182,7 @@
                       border-color: {colors.primary}30;"
                transition:fade>
             <i class="fa-utility-duo fa-regular fa-comment" style="--fa-primary-color: {colors.muted}; --fa-secondary-color: {colors.muted}; font-size: 48px; opacity: 0.5;"></i>
-            <h3 class="text-lg font-semibold mb-2" style="color: {colors.text}">{m.chatTriggers.pageEmptyTitle()}</h3>
-            <p style="color: {colors.muted}">{m.chatTriggers.pageEmptyHint()}</p>
-          </div>
+            <h3 class="text-lg font-semibold mb-2" style="color: {colors.text}">{m.chatTriggers.pageEmptyTitle()}</h3>          </div>
         {:else}
           <!-- Server-wide tools: counters and the placeholder reference -->
           <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mb-4">
@@ -1451,13 +1436,7 @@
                             id="edit-trigger-{trigger.id}"
                             class="w-full min-h-[44px] p-3 rounded-lg border text-base transition-all duration-200"
                             style="border-color: {colors.primary}30; color: {colors.text}; background: {colors.primary}08;"
-                            bind:value={trigger.trigger}
-                            aria-describedby="edit-trigger-help-{trigger.id}"
-                          >
-                          <div id="edit-trigger-help-{trigger.id}" class="text-xs mt-1" style="color: {colors.muted}">
-                            {m.chatTriggers.pageEditTriggerHint()}
-                          </div>
-                        </div>
+                            bind:value={trigger.trigger}                          >                        </div>
 
                         <div>
                           <label for="f-+page-response-message-1191" class="block text-sm font-medium mb-3" style="color: {colors.text}">
@@ -1638,7 +1617,7 @@
                   allowComponents={true}
                   guildId={$currentGuild?.id}
                   user={data.user}
-                  placeholder={m.chatTriggers.pageAdvancedResponsePlaceholder()}
+                  placeholder={m.chatTriggers.pageQuickResponsePlaceholder()}
                 />
               </div>
             </div>
@@ -1710,11 +1689,7 @@
                   </div>
                   <span style="color: {colors.text}">{m.chatTriggers.pageAdvancedTypeReactionRemoved()}</span>
                 </label>
-              </div>
-              <div class="text-xs" style="color: {colors.muted}">
-                {m.chatTriggers.pageAdvancedTypesHint()}
-              </div>
-            </div>
+              </div>            </div>
 
             <!-- Regex Testing (shown when regex is enabled) -->
             {#if newTrigger.isRegex}
@@ -1781,18 +1756,13 @@
                 style="background: {colors.primary}20; color: {colors.primary}; border: 1px solid {colors.primary}30;"
                 onclick={addTrigger}
                 disabled={!newTrigger.trigger?.trim() || (typeof newTrigger.response === 'object' && newTrigger.response !== null ? Object.keys(newTrigger.response).length === 0 : !(typeof newTrigger.response === 'string' && newTrigger.response.trim())) || (newTrigger.isRegex && !newTrigger.isValidRegex)}
-                aria-describedby="create-help"
               >
                 <div class="flex items-center gap-2">
                   <i class="fa-solid fa-plus" style="font-size: 20px;"></i>
                   <span>{m.chatTriggers.pageAdvancedCreate()}</span>
                 </div>
               </button>
-            </div>
-            <div id="create-help" class="text-xs text-right" style="color: {colors.muted}">
-              {m.chatTriggers.pageAdvancedCreateHint()}
-            </div>
-          </div>
+            </div>          </div>
         </div>
       </div>
     {/if}

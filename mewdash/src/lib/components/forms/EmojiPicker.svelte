@@ -735,7 +735,7 @@
   {/if}
 
   <!-- Emojis grid -->
-  <div bind:this={scrollContainerRef} class="flex-1 overflow-y-auto overflow-x-hidden p-4 relative">
+  <div bind:this={scrollContainerRef} class="flex-1 min-h-0 overflow-y-auto overflow-x-hidden overscroll-contain p-4 relative">
     <!-- Loading skeleton (position absolute to prevent size changes) -->
     {#if isLoadingTab}
       <div
@@ -794,9 +794,9 @@
                 {#if isSelected}
                   <div
                     class="absolute top-0 right-0 w-4 h-4 rounded-full flex items-center justify-center"
-                    style="background: {$colorStore.primary}"
+                    style="background: {$colorStore.primary}; color: {$colorStore.onPrimary}"
                   >
-                    <i class="fa-solid fa-check" style="color: white; font-size: 8px;"></i>
+                    <i class="fa-solid fa-check" style="color: {$colorStore.onPrimary}; font-size: 8px;"></i>
                   </div>
                 {/if}
               </button>
@@ -850,9 +850,9 @@
                 {#if isSelected}
                   <div
                     class="absolute top-0 right-0 w-4 h-4 rounded-full flex items-center justify-center"
-                    style="background: {$colorStore.primary}"
+                    style="background: {$colorStore.primary}; color: {$colorStore.onPrimary}"
                   >
-                    <i class="fa-solid fa-check" style="color: white; font-size: 8px;"></i>
+                    <i class="fa-solid fa-check" style="color: {$colorStore.onPrimary}; font-size: 8px;"></i>
                   </div>
                 {/if}
               </button>
@@ -896,9 +896,9 @@
             {#if isSelected}
               <div
                 class="absolute top-0 right-0 w-4 h-4 rounded-full flex items-center justify-center"
-                style="background: {$colorStore.primary}"
+                style="background: {$colorStore.primary}; color: {$colorStore.onPrimary}"
               >
-                <i class="fa-solid fa-check" style="color: white; font-size: 8px;"></i>
+                <i class="fa-solid fa-check" style="color: {$colorStore.onPrimary}; font-size: 8px;"></i>
               </div>
             {/if}
           </button>

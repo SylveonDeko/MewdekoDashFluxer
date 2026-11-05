@@ -271,7 +271,7 @@
            style="background: {$colorStore.primary}0c;
                   border-color: {$colorStore.primary}30;">
         <DuoIcon icon="fa-user" size={36} />
-        <p class="text-sm mt-4" style="color: {$colorStore.muted}">{m.achievements.membersPickPrompt()}</p>
+        <p class="text-sm mt-4" style="color: {$colorStore.muted}">{m.common.pickMemberPlaceholder()}</p>
       </div>
     {:else}
       <div class="relative rounded-2xl border p-5 md:p-6 space-y-5" style="z-index: 10;
@@ -337,7 +337,7 @@
                 <span class="text-sm font-semibold" style="color: {$colorStore.text}">{group.category.name}</span>
                 <span class="text-xs" style="color: {$colorStore.muted}">{m.achievements.membersCategoryProgress({ done, total: group.items.length })}</span>
                 <span class="flex-1 h-1.5 rounded-full overflow-hidden" style="background: {$colorStore.primary}15;">
-                  <span class="block h-full rounded-full" style="width: {(done / group.items.length) * 100}%; background: {$colorStore.primary};"></span>
+                  <span class="block h-full rounded-full" style="width: {(done / group.items.length) * 100}%; background: {$colorStore.primary}; color: {$colorStore.onPrimary};"></span>
                 </span>
               </div>
               <ul class="space-y-1">

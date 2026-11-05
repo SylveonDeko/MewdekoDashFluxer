@@ -512,7 +512,7 @@
         label: m.todo.pageActionCreateList(),
         icon: "fa-plus",
         action: () => showNewListModal = true,
-        style: `background: ${$colorStore.primary}; color: ${$colorStore.text};`
+        style: `background: ${$colorStore.primary}; color: ${$colorStore.onPrimary};`
       },
       {
         label: m.common.filters(),
@@ -620,18 +620,14 @@
         </div>
         <h3 class="text-2xl font-bold mb-4" style="color: {$colorStore.text}">
           {searchQuery ? m.todo.pageListsEmptySearchTitle() : m.todo.pageListsEmptyTitle()}
-        </h3>
-        <p class="text-lg mb-8" style="color: {$colorStore.muted}">
-          {searchQuery ? m.todo.pageListsEmptySearchHint() : m.todo.pageListsEmptyHint()}
-        </p>
-        {#if !searchQuery}
+        </h3>        {#if !searchQuery}
           <button
             class="w-full sm:w-auto flex items-center justify-center gap-3 px-8 py-4 rounded-2xl font-semibold transition-all duration-300 bg-white/10 border border-white/20"
             style="color: {$colorStore.text};"
             onclick={() => showNewListModal = true}
           >
             <span class="p-2 rounded-lg flex items-center justify-center"
-                  style="background: {$colorStore.primary}; color: white;">
+                  style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};">
               <i class="fa-solid fa-plus" style="font-size: 20px;"></i>
             </span>
             <span>{m.todo.pageCreateFirstList()}</span>
@@ -717,11 +713,11 @@
                 <div class="flex items-center justify-between text-sm">
                   <div class="flex items-center gap-3">
                     <div class="flex items-center gap-1.5">
-                      <div class="w-2 h-2 rounded-full" style="background: {$colorStore.primary}"></div>
+                      <div class="w-2 h-2 rounded-full" style="background: {$colorStore.primary}; color: {$colorStore.onPrimary}"></div>
                       <span style="color: {$colorStore.text}">{listStats.pendingItems}</span>
                     </div>
                     <div class="flex items-center gap-1.5">
-                      <div class="w-2 h-2 rounded-full" style="background: {$colorStore.secondary}"></div>
+                      <div class="w-2 h-2 rounded-full" style="background: {$colorStore.secondary}; color: {$colorStore.onSecondary}"></div>
                       <span style="color: {$colorStore.text}">{listStats.completedItems}</span>
                     </div>
                     {#if listStats.overdueItems > 0}
@@ -747,7 +743,7 @@
                     </div>
                     <div class="w-full rounded-full h-2" style="background: {$colorStore.primary}20;">
                       <div class="h-2 rounded-full transition-all duration-1000"
-                           style="background: {$colorStore.primary};
+                           style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};
                                   width: {listStats.completionRate}%"></div>
                     </div>
                   </div>
@@ -885,15 +881,7 @@
                    style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.primary}; font-size: 48px; opacity: 0.5; display: block; margin: 0 auto 16px;"></i>
                 <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">
                   {todoItems.length === 0 ? m.todo.pageItemsEmptyTitle() : m.todo.pageItemsFilteredTitle()}
-                </h3>
-                <p style="color: {$colorStore.muted}">
-                  {todoItems.length === 0 
-                    ? currentPermissions.canAdd 
-                      ? m.todo.pageItemsEmptyCanAdd()
-                      : m.todo.pageItemsEmptyReadOnly()
-                    : m.todo.pageItemsFilteredHint()}
-                </p>
-              </div>
+                </h3>              </div>
             {:else}
               {#each filteredItems as item, index (item.id)}
                 <div class="p-4 rounded-xl transition-all" 

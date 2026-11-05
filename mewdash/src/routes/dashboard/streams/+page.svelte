@@ -411,11 +411,7 @@
             <div class="text-center py-8">
               <i class="fa-utility-duo fa-regular fa-radio"
                  style="--fa-primary-color: {$colorStore.muted}; --fa-secondary-color: {$colorStore.muted}; font-size: 48px; opacity: 0.5; display: block; margin: 0 auto 16px;"></i>
-              <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.streams.emptyTitle()}</h3>
-              <p class="text-sm" style="color: {$colorStore.muted}">
-                {m.streams.emptyHint()}
-              </p>
-            </div>
+              <h3 class="text-lg font-semibold mb-2" style="color: {$colorStore.text}">{m.streams.emptyTitle()}</h3>            </div>
           {:else}
             {#each streams as stream}
               {@const platform = getPlatformInfo(stream.type, stream.typeName)}
@@ -678,11 +674,7 @@
             <div>
               <div class="font-medium mb-1" style="color: {$colorStore.text}">
                 {m.streams.offlineNotifications()}
-              </div>
-              <div class="text-sm" style="color: {$colorStore.muted}">
-                {m.streams.offlineNotificationsHint()}
-              </div>
-            </div>
+              </div>            </div>
             <button aria-label={m.streams.offlineNotificationsAria()}
                     onclick={toggleOfflineNotifications}
                     class="relative inline-flex items-center h-6 rounded-full w-11 transition-colors"
@@ -769,11 +761,7 @@
         <div class="text-center py-12">
           <i class="fa-utility-duo fa-regular fa-chart-simple"
              style="--fa-primary-color: {$colorStore.muted}; --fa-secondary-color: {$colorStore.muted}; font-size: 64px; opacity: 0.5; display: block; margin: 0 auto 16px;"></i>
-          <h3 class="text-xl font-semibold mb-2" style="color: {$colorStore.text}">{m.common.noStatisticsAvailable()}</h3>
-          <p style="color: {$colorStore.muted}">
-            {m.streams.statsEmptyHint()}
-          </p>
-        </div>
+          <h3 class="text-xl font-semibold mb-2" style="color: {$colorStore.text}">{m.common.noStatisticsAvailable()}</h3>        </div>
       {/if}
     </div>
   {/if}

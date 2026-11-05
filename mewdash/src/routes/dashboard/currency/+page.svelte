@@ -658,18 +658,18 @@
           <h2 class="text-xl font-bold mb-4" style="color: {$colorStore.text}">{m.currency.whereTitle()}</h2>
           <div class="flex h-8 rounded-full overflow-hidden mb-3" style="background: {$colorStore.primary}10;">
             {#if analytics.snapshot.moneySupply > 0}
-              <div style="width: {(analytics.snapshot.inWallets / analytics.snapshot.moneySupply) * 100}%; background: {$colorStore.primary};"></div>
-              <div style="width: {(analytics.snapshot.inBanks / analytics.snapshot.moneySupply) * 100}%; background: {$colorStore.secondary};"></div>
+              <div style="width: {(analytics.snapshot.inWallets / analytics.snapshot.moneySupply) * 100}%; background: {$colorStore.primary}; color: {$colorStore.onPrimary};"></div>
+              <div style="width: {(analytics.snapshot.inBanks / analytics.snapshot.moneySupply) * 100}%; background: {$colorStore.secondary}; color: {$colorStore.onSecondary};"></div>
             {/if}
           </div>
           <div class="flex flex-wrap gap-6 text-sm">
             <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full" style="background: {$colorStore.primary}"></span>
+              <span class="w-3 h-3 rounded-full" style="background: {$colorStore.primary}; color: {$colorStore.onPrimary}"></span>
               <span style="color: {$colorStore.text}">{m.currency.whereWallets({ amount: formatNumber(analytics.snapshot.inWallets) })}</span>
               <span style="color: {$colorStore.muted}">{m.currency.whereWalletsNote()}</span>
             </div>
             <div class="flex items-center gap-2">
-              <span class="w-3 h-3 rounded-full" style="background: {$colorStore.secondary}"></span>
+              <span class="w-3 h-3 rounded-full" style="background: {$colorStore.secondary}; color: {$colorStore.onSecondary}"></span>
               <span style="color: {$colorStore.text}">{m.currency.whereBanked({ amount: formatNumber(analytics.snapshot.inBanks) })}</span>
               <span style="color: {$colorStore.muted}">{m.currency.whereBankedNote()}</span>
             </div>
@@ -771,7 +771,7 @@
       {:else if !loading}
         <div class="rounded-2xl border p-12 text-center"
              style="border-color: {$colorStore.primary}30; color: {$colorStore.muted};">
-          {m.currency.analyticsEmpty()}
+          {m.currency.boardEmpty()}
         </div>
       {/if}
     </div>
@@ -810,7 +810,7 @@
           <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6">
             {@render toggle(m.currency.cfgEnableGambling(), m.currency.cfghintTurnsEveryWageringGameOnOrOff(), config.gamblingEnabled, () => toggleSetting("gamblingEnabled"))}
             {@render numberField(m.currency.cfgMinimumBet(), "", "minBet", 1)}
-            {@render numberField(m.currency.cfgMaximumBet(), m.currency.cfghint0ForUnlimitedACeilingStopsOneLuck(), "maxBet")}
+            {@render numberField(m.currency.cfgMaximumBet(), m.currency.shopMaxPerUserHint(), "maxBet")}
             {@render numberField(m.currency.cfgPayoutMultiplier(), m.currency.cfghintScalesWinningsOnlyNeverTheReturned(), "payoutMultiplier")}
             {@render numberField(m.currency.cfgGameCooldownSeconds(), formatDuration(config.gameCooldownSeconds), "gameCooldownSeconds")}
             {@render numberField(m.currency.cfgDailyLossLimit(), m.currency.cfghint0ToDisableCutsAUserOffAfterLosin(), "lossLimitPerDay")}
@@ -917,9 +917,6 @@
       <div class="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 class="text-xl font-bold" style="color: {$colorStore.text}">{m.currency.shopTitle()}</h2>
-          <p class="text-sm" style="color: {$colorStore.muted}">
-            {m.currency.shopHint()}
-          </p>
         </div>
         <button onclick={() => openShopEditor(null)}
                 class="px-6 py-3 rounded-xl font-medium transition-all min-h-[44px]"

@@ -46,17 +46,12 @@
   </div>
 
   <div class="space-y-4">
-    <p class="text-sm" style="color: {$colorStore.muted}">
-      {m.administration.rolesAutoBanDescription()}
-    </p>
 
     {#if autoBanRoles.length === 0}
       <div class="text-center py-8">
         <i class="fa-utility-duo fa-regular fa-shield"
            style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary}; font-size: 48px; opacity: 0.5;"></i>
-        <p class="text-lg font-medium mt-4" style="color: {$colorStore.text}">{m.administration.rolesAutoBanEmptyTitle()}</p>
-        <p class="text-sm" style="color: {$colorStore.muted}">{m.administration.rolesAutoBanEmptyHint()}</p>
-      </div>
+        <p class="text-lg font-medium mt-4" style="color: {$colorStore.text}">{m.administration.rolesAutoBanEmptyTitle()}</p>      </div>
     {:else}
       <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
         {#each autoBanRoles as role (role.roleId)}

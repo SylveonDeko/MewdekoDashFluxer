@@ -133,9 +133,6 @@
       <DuoIcon icon="fa-bell" />
       {m.achievements.announcementsWhereTitle()}
     </h2>
-    <p class="text-sm mt-1 mb-5" style="color: {$colorStore.muted}">
-      {m.achievements.announcementsWhereHint()}
-    </p>
     <div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-3" role="radiogroup" aria-label={m.achievements.announcementsModeLabel()}>
       {#each modeChoices as choice (choice.value)}
         {@const pressed = mode === choice.value}
@@ -173,8 +170,6 @@
         <p class="text-xs mt-2" style="color: #ef4444">{m.achievements.announcementsLogProblem()}</p>
       {:else if needsLog}
         <p class="text-xs mt-2" style="color: {$colorStore.accent}">{m.achievements.announcementsLogNeeded()}</p>
-      {:else}
-        <p class="text-xs mt-2" style="color: {$colorStore.muted}">{m.achievements.announcementsLogHint()}</p>
       {/if}
     </div>
 
@@ -199,10 +194,8 @@
       <span class="block text-sm font-medium mb-2" style="color: {$colorStore.text}">{m.achievements.announcementsDelivery()}</span>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
         <ToggleRow checked={dmByDefault} title={m.achievements.announcementsDmTitle()} class="h-full"
-                   subtitle={m.achievements.announcementsDmSubtitle()}
                    colors={$colorStore} onchange={(v) => { dmByDefault = v; queue(); }} />
         <ToggleRow checked={mentionUsers} title={m.achievements.announcementsMentionTitle()} class="h-full"
-                   subtitle={m.achievements.announcementsMentionSubtitle()}
                    colors={$colorStore} onchange={(v) => { mentionUsers = v; queue(); }} />
         <ToggleRow checked={unlockImage} title={m.achievements.announcementsImageTitle()} class="h-full"
                    subtitle={m.achievements.announcementsImageSubtitle()}

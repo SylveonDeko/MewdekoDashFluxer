@@ -494,7 +494,7 @@
           <div class="h-2 w-full rounded-full overflow-hidden" style="background: {$colorStore.primary}15;"
                role="progressbar" aria-valuemin={0} aria-valuemax={progress.total} aria-valuenow={progress.done}>
             <div class="h-full rounded-full transition-all duration-500"
-                 style="width: {progress.total > 0 ? Math.min(100, (progress.done / progress.total) * 100) : 100}%; background: {$colorStore.primary};"></div>
+                 style="width: {progress.total > 0 ? Math.min(100, (progress.done / progress.total) * 100) : 100}%; background: {$colorStore.primary}; color: {$colorStore.onPrimary};"></div>
           </div>
         </div>
       {/if}

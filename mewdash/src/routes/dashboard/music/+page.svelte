@@ -999,7 +999,6 @@
             <div class="text-center py-8" style="color: {colors.muted}">
               <i class="fa-regular fa-link-slash text-3xl mb-3 block" style="color: {colors.primary}30;"></i>
               <p>{m.music.linkEmpty()}</p>
-              <p class="text-sm mt-1">{m.music.linkEmptyHint()}</p>
             </div>
           {:else}
             <div class="space-y-2">
@@ -1120,7 +1119,6 @@
                   class="w-full px-3 py-2 rounded-lg border"
                   style="background: {colors.gradientStart}20; border-color: {colors.primary}30; color: {colors.text};"
                 >
-                <div class="text-sm mt-1" style="color: {colors.muted}">{m.music.ttsDefaultVoiceHint()}</div>
               </div>
 
               <!-- TTS Role -->
@@ -1324,7 +1322,6 @@
             <div class="text-center py-8" style="color: {colors.muted}">
               <i class="fa-regular fa-volume-slash text-3xl mb-3 block" style="color: {colors.primary}30;"></i>
               <p>{m.music.ttsVcEmpty()}</p>
-              <p class="text-sm mt-1">{m.music.ttsVcEmptyHint()}</p>
             </div>
           {:else}
             <div class="space-y-4">

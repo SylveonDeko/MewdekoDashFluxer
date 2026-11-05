@@ -269,7 +269,7 @@
 
             dashboardStore.setLastUpdated(new Date());
         } catch (err) {
-            error = (err as any).message || m.dashboard.pageErrorFetch();
+            error = (err as any).message || m.common.failedToFetchData();
             logger.error("Dashboard data fetch error:", err);
         } finally {
             fetchingData = false;
@@ -670,13 +670,13 @@
                 <div class="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-30" class:hidden={refreshing}>
                     <button aria-label={m.dashboard.pageRefreshAria()}
                             class="flex items-center justify-center w-12 h-12 rounded-full shadow-lg transition-all"
-                            style="background: {$colorStore.primary}; color: white"
+                            style="background: {$colorStore.primary}; color: {$colorStore.onPrimary}"
                             onclick={() => fetchAllData(true)}
 
                     >
           <span class:animate-spin={refreshing}>
             <i class="fa-utility-duo fa-regular fa-sync"
-               style="--fa-primary-color: white; --fa-secondary-color: white; --fa-secondary-opacity: 0.7;"></i>
+               style="--fa-primary-color: {$colorStore.onPrimary}; --fa-secondary-color: {$colorStore.onPrimary}; --fa-secondary-opacity: 0.7;"></i>
           </span>
                     </button>
                 </div>

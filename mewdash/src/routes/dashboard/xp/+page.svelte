@@ -606,7 +606,7 @@
   async function addRoleReward(level: number, roleId: string) {
     try {
       if (!$currentGuild?.id) throw new Error(m.common.noGuildSelected());
-      if (!roleId) throw new Error(m.common.notifySelectRole());
+      if (!roleId) throw new Error(m.common.selectARolePlaceholder());
       if (level < 1) throw new Error(m.xp.pageErrorLevelMin());
 
       await xpApi.addXpRoleReward($currentGuild.id, level, BigInt(roleId));
@@ -663,7 +663,7 @@
   async function excludeChannel(channelId: string) {
     try {
       if (!$currentGuild?.id) throw new Error(m.common.noGuildSelected());
-      if (!channelId) throw new Error(m.common.notifySelectChannel());
+      if (!channelId) throw new Error(m.common.selectAChannelPlaceholder());
 
       await xpApi.excludeXpChannel($currentGuild.id, BigInt(channelId));
       showNotificationMessage(m.xp.pageNotifyChannelExcluded(), "success");
@@ -690,7 +690,7 @@
   async function excludeRole(roleId: string) {
     try {
       if (!$currentGuild?.id) throw new Error(m.common.noGuildSelected());
-      if (!roleId) throw new Error(m.common.notifySelectRole());
+      if (!roleId) throw new Error(m.common.selectARolePlaceholder());
 
       await xpApi.excludeXpRole($currentGuild.id, BigInt(roleId));
       showNotificationMessage(m.xp.pageNotifyRoleExcluded(), "success");
@@ -1326,7 +1326,7 @@
                         >
                             <span
                                     class="flex items-center gap-2 px-3 py-1.5 rounded-full text-sm font-medium"
-                                    style="background: {$colorStore.primary}; color: white;"
+                                    style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
                             >
                                 <i class="fa-solid fa-pen" style="font-size: 14px;"></i>
                                 {m.common.edit()}
@@ -1340,7 +1340,7 @@
                     <button
                       class="px-6 py-3 rounded-xl font-medium transition-all flex items-center gap-2 text-base"
                             style="background: {$colorStore.primary};
-                         color: white;"
+                         color: {$colorStore.onPrimary};"
                             onclick={() => { showTemplateEditor = true; }}
                     >
                       <i class="fa-solid fa-image" style="font-size: 20px;"></i>
@@ -1398,7 +1398,7 @@
               class="px-6 py-2 rounded-lg font-medium transition-all duration-200 min-h-[44px]"
               onclick={updateXpTemplate}
               style="background: {$colorStore.primary};
-               color: {$colorStore.text};"
+               color: {$colorStore.onPrimary};"
               aria-label={m.xp.pageSaveTemplate()}
             >
               {m.xp.pageSaveTemplate()}

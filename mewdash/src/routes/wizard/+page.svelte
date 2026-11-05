@@ -1726,7 +1726,7 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
         <p class="mb-4">{dataError}</p>
         <button
           class="px-4 py-2 rounded-lg font-medium transition-all"
-          style="background: {$colorStore.primary}; color: white;"
+          style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
           onclick={() => goto('/dashboard')}
         >
           {m.wizard.backToDashboard()}
@@ -2096,7 +2096,7 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
               </button>
               <button
                 class="px-6 py-3 rounded-xl font-medium transition-all focus:outline-hidden focus:ring-2 focus:ring-offset-2 flex items-center gap-2 min-h-[44px] disabled:opacity-60"
-                style="background: {$colorStore.primary}; color: white;"
+                style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
                 disabled={wizardLoading}
                 onclick={finishAfterMigration}
               >

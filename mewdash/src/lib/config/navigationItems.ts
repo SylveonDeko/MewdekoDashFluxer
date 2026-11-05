@@ -277,6 +277,15 @@ export const allDashboardFeatures: NavigationItem[] = [
     keywords: ["link fix", "fix links", "embed fix", "fxtwitter", "vxtwitter", "twitter", "instagram", "tiktok", "reddit", "pinterest", "bluesky", "pixiv", "embeds"],
   },
   {
+    label: m.features.bridgesName,
+    icon: "fa-utility-duo fa-regular fa-link",
+    href: "/dashboard/bridges",
+    category: "Community",
+    categoryLabel: m.features.categoryCommunity,
+    description: m.features.bridgesDescription,
+    keywords: ["bridge", "bridges", "discord", "cross platform", "relay", "link channel", "mirror", "webhook"],
+  },
+  {
     label: m.features.liveboardsName,
     icon: "fa-utility-duo fa-regular fa-thumbtack",
     href: "/dashboard/liveboards",
