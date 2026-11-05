@@ -402,16 +402,14 @@
       {#if !listLoading && !listError && !hasNewMemberRole}
         <div class="mb-4">
           <Card title={m.statroles.newMemberTitle()}>
-            <div class="flex flex-wrap items-end gap-3">
+            <div class="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] items-end gap-4">
               <SettingField label={m.statroles.newMemberDays()} id="sr-new-member-days">
-                <input id="sr-new-member-days" type="number" min="1" max="365" bind:value={newMemberDays} class="w-28 min-h-[40px] px-3 rounded-lg text-sm" style={inputStyle} />
+                <input id="sr-new-member-days" type="number" min="1" max="365" bind:value={newMemberDays} class="w-full rounded-lg p-2 min-h-[44px]" style={inputStyle} />
               </SettingField>
               <SettingField label={m.statroles.newMemberIcon()} id="sr-new-member-icon">
-                <div class="w-40">
-                  <EmojiPicker id="sr-new-member-icon" guildEmojis={[]} bind:selected={newMemberIcon} showUnicodeEmojis={true} />
-                </div>
+                <EmojiPicker id="sr-new-member-icon" guildEmojis={[]} bind:selected={newMemberIcon} showUnicodeEmojis={true} />
               </SettingField>
-              <button type="button" class="min-h-[40px] px-4 rounded-lg text-sm font-medium" style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};" onclick={createNewMemberRole} disabled={creatingNewMember}>{m.common.create()}</button>
+              <button type="button" class="min-h-[44px] px-6 rounded-lg font-medium" style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};" onclick={createNewMemberRole} disabled={creatingNewMember}>{m.common.create()}</button>
             </div>
           </Card>
         </div>

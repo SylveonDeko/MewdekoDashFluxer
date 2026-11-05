@@ -10,7 +10,8 @@
   import type { LayoutData } from "../../.svelte-kit/types/src/routes/$types";
   import { onMount } from "svelte";
   import { browser } from "$app/environment";
-  import { page } from "$app/state";
+  import { page, updated } from "$app/state";
+  import { beforeNavigate } from "$app/navigation";
   import { colorStore } from "$lib/stores/colorStore.ts";
   import { userStore } from "$lib/stores/userStore.ts";
   import { initAuthRefresh } from "$lib/authRefresh";
@@ -27,6 +28,10 @@
     }
 
     let {data, children}: Props = $props();
+
+  beforeNavigate(({ willUnload, to }) => {
+    if (updated.current && !willUnload && to?.url) location.href = to.url.href;
+  });
 
   async function extractColors(user: any) {
       if (!browser) {
