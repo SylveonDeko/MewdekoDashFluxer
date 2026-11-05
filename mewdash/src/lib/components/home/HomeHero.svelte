@@ -44,6 +44,14 @@
       </a>
     </div>
 
+    <p class="text-sm sm:text-base mt-4">
+      <a href="https://fluxer.gg/GQuFOiBV" target="_blank" rel="noreferrer"
+         class="underline underline-offset-4 hover:no-underline"
+         style="color: {$colorStore.text}">
+        <span class="inline-block align-[-0.15em] mr-1.5"><FluxerIcon /></span>{m.home.heroSupport()}
+      </a>
+    </p>
+
     <div class="flex flex-wrap items-center justify-center lg:justify-start gap-2 mt-7">
       {#each commands as command, index (command)}
         <a href="/commands" in:fly={{ y: 8, duration: 300, delay: 150 + index * 50 }}
