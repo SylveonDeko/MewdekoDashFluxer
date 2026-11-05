@@ -17,6 +17,10 @@ export const statRolesApi = {
   create: (guildId: bigint, request: StatRoleRequest) =>
     apiRequest<StatRole>(`StatRoles/${guildId}`, "POST", request),
 
+  /** Creates a role with an emoji icon that members hold for their first days */
+  createNewMember: (guildId: bigint, request: { name: string; days: number; icon: string }) =>
+    apiRequest<StatRole>(`StatRoles/${guildId}/new-member`, "POST", request),
+
   /** Updates a stat role */
   update: (guildId: bigint, id: number, request: StatRoleRequest) =>
     apiRequest<StatRole>(`StatRoles/${guildId}/${id}`, "PUT", request),

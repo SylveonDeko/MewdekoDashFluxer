@@ -11,6 +11,18 @@ export type ProductUpdate = {
 // Keep the newest public update first. The landing page intentionally features one item at a time.
 export const productUpdates: ProductUpdate[] = [
   {
+    id: "new-member-role",
+    label: "New setting",
+    title: "Mark New Members With A Role Icon",
+    summary: "New members get a role with an icon for their first days.",
+    details: [
+      "It goes on when they join and comes off by itself.",
+      "Set any role's icon with the roleicon command."
+    ],
+    href: "/dashboard/statroles",
+    action: "Add the role"
+  },
+  {
     id: "bridges",
     label: "New page",
     title: "Bridge Channels With Discord",

@@ -346,6 +346,7 @@ export const administrationPreviews: Record<string, CommandPreview> = {
   ),
   setrole: reply(`setrole Verified ${MEMBER}`, confirm("Successfully added role **Verified** to user **Biscuit**")),
   rolehoist: reply("rolehoist Staff", confirm("Role **Staff** is now displayed separately from online members.")),
+  roleicon: reply("roleicon Staff 🛡️", confirm("Updated the icon of **Staff**.")),
   rolecolor: chat(
     "general",
     sylveon("rolecolor Staff"),

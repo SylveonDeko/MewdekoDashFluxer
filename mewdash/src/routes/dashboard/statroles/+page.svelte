@@ -21,6 +21,7 @@
   import { requestConfirmation } from "$lib/stores/confirmationStore";
   import DashboardPageLayout from "$lib/components/layout/DashboardPageLayout.svelte";
   import DiscordSelector from "$lib/components/forms/DiscordSelector.svelte";
+  import EmojiPicker from "$lib/components/forms/EmojiPicker.svelte";
   import SettingToggle from "$lib/components/forms/SettingToggle.svelte";
   import SettingField from "$lib/components/forms/SettingField.svelte";
   import Card from "$lib/components/analytics/Card.svelte";
@@ -161,6 +162,34 @@
       fail(err, m.statroles.runFailed());
     } finally {
       busyId = null;
+    }
+  }
+
+  /** New member role */
+  let newMemberDays = $state(7);
+  let newMemberIcon = $state<string | string[] | null>("🌱");
+  let creatingNewMember = $state(false);
+  const hasNewMemberRole = $derived(
+    statRoles.some((r) => r.statType === StatRoleStat.JoinedDays && r.minimum === 0 && r.maximum !== null && !r.invert),
+  );
+
+  async function createNewMemberRole() {
+    if (!$currentGuild?.id) return;
+    const icon = Array.isArray(newMemberIcon) ? newMemberIcon[0] : newMemberIcon;
+    creatingNewMember = true;
+    try {
+      const created = await statRolesApi.createNewMember($currentGuild.id, {
+        name: m.statroles.newMemberRoleName(),
+        days: Math.min(365, Math.max(1, Math.round(newMemberDays))),
+        icon: icon || "🌱",
+      });
+      statRoles = [...statRoles, created];
+      await loadGuildLists();
+      notify(m.statroles.newMemberCreated(), "success");
+    } catch (err) {
+      fail(err, m.statroles.newMemberFailed());
+    } finally {
+      creatingNewMember = false;
     }
   }
 
@@ -369,6 +398,24 @@
   {#if activeTab === "roles"}
     <section>
       <SectionHeader icon="fa-trophy" title={m.features.statrolesName()} />
+
+      {#if !listLoading && !listError && !hasNewMemberRole}
+        <div class="mb-4">
+          <Card title={m.statroles.newMemberTitle()}>
+            <div class="flex flex-wrap items-end gap-3">
+              <SettingField label={m.statroles.newMemberDays()} id="sr-new-member-days">
+                <input id="sr-new-member-days" type="number" min="1" max="365" bind:value={newMemberDays} class="w-28 min-h-[40px] px-3 rounded-lg text-sm" style={inputStyle} />
+              </SettingField>
+              <SettingField label={m.statroles.newMemberIcon()} id="sr-new-member-icon">
+                <div class="w-40">
+                  <EmojiPicker id="sr-new-member-icon" guildEmojis={[]} bind:selected={newMemberIcon} showUnicodeEmojis={true} />
+                </div>
+              </SettingField>
+              <button type="button" class="min-h-[40px] px-4 rounded-lg text-sm font-medium" style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};" onclick={createNewMemberRole} disabled={creatingNewMember}>{m.common.create()}</button>
+            </div>
+          </Card>
+        </div>
+      {/if}
 
       <AsyncState loading={listLoading} error={listError} empty={statRoles.length === 0} emptyMessage={m.statroles.listEmpty()} emptyIcon="fa-trophy">
         <div class="space-y-4">

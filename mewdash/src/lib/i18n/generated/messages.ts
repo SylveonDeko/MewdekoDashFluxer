@@ -15025,6 +15025,18 @@ export const m = {
     listEmpty: () => t("statroles", "list_empty", "No stat roles yet"),
     /** Failed to load stat roles */
     loadFailed: () => t("statroles", "load_failed", "Failed to load stat roles"),
+    /** Created the new member role */
+    newMemberCreated: () => t("statroles", "new_member_created", "Created the new member role"),
+    /** Days counted as new */
+    newMemberDays: () => t("statroles", "new_member_days", "Days counted as new"),
+    /** Couldn't create the new member role */
+    newMemberFailed: () => t("statroles", "new_member_failed", "Couldn't create the new member role"),
+    /** Icon */
+    newMemberIcon: () => t("statroles", "new_member_icon", "Icon"),
+    /** New member */
+    newMemberRoleName: () => t("statroles", "new_member_role_name", "New member"),
+    /** New member role */
+    newMemberTitle: () => t("statroles", "new_member_title", "New member role"),
     /** New stat role */
     newRole: () => t("statroles", "new_role", "New stat role"),
     /** Any game */

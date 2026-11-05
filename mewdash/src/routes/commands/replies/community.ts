@@ -94,6 +94,10 @@ export const communityPreviews: Record<string, CommandPreview> = {
     description: "```\n%copr.package% failed, see %copr.url%\n```",
   }),
 
+  newmemberrole: reply(
+    "newmemberrole 7 🌱",
+    byUser("Members now get @New member when they join and lose it after 7 days. It's stat role **#2**."),
+  ),
   statroleadd: reply(
     "statroleadd @Active Messages 500 30 Active Chatter",
     byUser("Created stat role **#1** for @Active: 500+ messages (last 30d)"),
