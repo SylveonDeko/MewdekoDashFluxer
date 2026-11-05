@@ -404,12 +404,12 @@
           <Card title={m.statroles.newMemberTitle()}>
             <div class="grid grid-cols-1 sm:grid-cols-[minmax(0,1fr)_minmax(0,1fr)_auto] items-end gap-4">
               <SettingField label={m.statroles.newMemberDays()} id="sr-new-member-days">
-                <input id="sr-new-member-days" type="number" min="1" max="365" bind:value={newMemberDays} class="w-full rounded-lg p-2 min-h-[44px]" style={inputStyle} />
+                <input id="sr-new-member-days" type="number" min="1" max="365" bind:value={newMemberDays} class="w-full rounded-lg p-2 min-h-[50px]" style={inputStyle} />
               </SettingField>
               <SettingField label={m.statroles.newMemberIcon()} id="sr-new-member-icon">
                 <EmojiPicker id="sr-new-member-icon" guildEmojis={[]} bind:selected={newMemberIcon} showUnicodeEmojis={true} />
               </SettingField>
-              <button type="button" class="min-h-[44px] px-6 rounded-lg font-medium" style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};" onclick={createNewMemberRole} disabled={creatingNewMember}>{m.common.create()}</button>
+              <button type="button" class="min-h-[50px] px-6 rounded-lg font-medium" style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};" onclick={createNewMemberRole} disabled={creatingNewMember}>{m.common.create()}</button>
             </div>
           </Card>
         </div>
@@ -495,7 +495,7 @@
               <DiscordSelector id="sr-role" type="role" options={roles} bind:selected={draft.roleId} placeholder={m.common.pickRolePlaceholder()} />
             </SettingField>
             <SettingField label={m.common.name()} hint={m.statroles.fieldNameHint()} id="sr-name">
-              <input id="sr-name" type="text" maxlength="64" bind:value={draft.name} class="w-full rounded-lg p-2 min-h-[44px]" style={inputStyle} />
+              <input id="sr-name" type="text" maxlength="64" bind:value={draft.name} class="w-full rounded-lg p-2 min-h-[50px]" style={inputStyle} />
             </SettingField>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
               <SettingField label={m.statroles.fieldMeasure()} hint={m.statroles.fieldMeasureHint()} id="sr-stat">
@@ -524,35 +524,35 @@
 
             {#if draft.statType === StatRoleStat.ActivityMinutes}
               <SettingField label={m.statroles.fieldActivity()} hint={m.statroles.fieldActivityHint()} id="sr-activity">
-                <input id="sr-activity" type="text" maxlength="128" placeholder={m.statroles.phAnyGame()} bind:value={draft.activityName} class="w-full rounded-lg p-2 min-h-[44px]" style={inputStyle} />
+                <input id="sr-activity" type="text" maxlength="128" placeholder={m.statroles.phAnyGame()} bind:value={draft.activityName} class="w-full rounded-lg p-2 min-h-[50px]" style={inputStyle} />
               </SettingField>
             {/if}
 
             {#if draft.limitType === StatRoleLimit.Threshold}
               <div class="grid grid-cols-2 gap-4">
                 <SettingField label={m.statroles.fieldMinimum()} hint={m.statroles.fieldMinimumHint()} id="sr-min">
-                  <input id="sr-min" type="number" min="0" bind:value={draft.minimum} class="w-full rounded-lg p-2 min-h-[44px]" style={inputStyle} />
+                  <input id="sr-min" type="number" min="0" bind:value={draft.minimum} class="w-full rounded-lg p-2 min-h-[50px]" style={inputStyle} />
                 </SettingField>
                 <SettingField label={m.statroles.fieldMaximum()} hint={m.statroles.fieldMaximumHint()} id="sr-max">
-                  <input id="sr-max" type="number" min="0" value={draft.maximum ?? ""} oninput={(e) => { const v = (e.currentTarget as HTMLInputElement).value; draft.maximum = v === "" ? null : Number(v); }} class="w-full rounded-lg p-2 min-h-[44px]" style={inputStyle} />
+                  <input id="sr-max" type="number" min="0" value={draft.maximum ?? ""} oninput={(e) => { const v = (e.currentTarget as HTMLInputElement).value; draft.maximum = v === "" ? null : Number(v); }} class="w-full rounded-lg p-2 min-h-[50px]" style={inputStyle} />
                 </SettingField>
               </div>
             {:else if draft.limitType === StatRoleLimit.TopRank || draft.limitType === StatRoleLimit.TopPercent}
               <div class="grid grid-cols-2 gap-4">
                 <SettingField label={draft.limitType === StatRoleLimit.TopRank ? m.statroles.fieldFromRank() : m.statroles.fieldFromPercentile()} hint={m.statroles.fieldFromHint()} id="sr-topstart">
-                  <input id="sr-topstart" type="number" min="1" bind:value={draft.topStart} class="w-full rounded-lg p-2 min-h-[44px]" style={inputStyle} />
+                  <input id="sr-topstart" type="number" min="1" bind:value={draft.topStart} class="w-full rounded-lg p-2 min-h-[50px]" style={inputStyle} />
                 </SettingField>
                 <SettingField label={draft.limitType === StatRoleLimit.TopRank ? m.statroles.fieldToRank() : m.statroles.fieldToPercentile()} hint={m.statroles.fieldToHint()} id="sr-topend">
-                  <input id="sr-topend" type="number" min="1" max={draft.limitType === StatRoleLimit.TopPercent ? 100 : undefined} bind:value={draft.topEnd} class="w-full rounded-lg p-2 min-h-[44px]" style={inputStyle} />
+                  <input id="sr-topend" type="number" min="1" max={draft.limitType === StatRoleLimit.TopPercent ? 100 : undefined} bind:value={draft.topEnd} class="w-full rounded-lg p-2 min-h-[50px]" style={inputStyle} />
                 </SettingField>
               </div>
             {:else}
               <div class="grid grid-cols-2 gap-4">
                 <SettingField label={m.statroles.fieldPerday()} hint={m.statroles.fieldPerdayHint()} id="sr-perday">
-                  <input id="sr-perday" type="number" min="1" bind:value={draft.minimum} class="w-full rounded-lg p-2 min-h-[44px]" style={inputStyle} />
+                  <input id="sr-perday" type="number" min="1" bind:value={draft.minimum} class="w-full rounded-lg p-2 min-h-[50px]" style={inputStyle} />
                 </SettingField>
                 <SettingField label={m.statroles.fieldDays()} hint={m.statroles.fieldDaysHint()} id="sr-days">
-                  <input id="sr-days" type="number" min="1" bind:value={draft.requiredDays} class="w-full rounded-lg p-2 min-h-[44px]" style={inputStyle} />
+                  <input id="sr-days" type="number" min="1" bind:value={draft.requiredDays} class="w-full rounded-lg p-2 min-h-[50px]" style={inputStyle} />
                 </SettingField>
               </div>
               {#if !streakAllowed}
@@ -562,7 +562,7 @@
 
             {#if usesWindow}
               <SettingField label={m.statroles.fieldWindow()} hint={m.statroles.fieldWindowHint()} id="sr-lookback">
-                <input id="sr-lookback" type="number" min={draft.limitType === StatRoleLimit.DailyStreak ? 1 : 0} max="90" bind:value={draft.lookbackDays} class="w-full rounded-lg p-2 min-h-[44px]" style={inputStyle} />
+                <input id="sr-lookback" type="number" min={draft.limitType === StatRoleLimit.DailyStreak ? 1 : 0} max="90" bind:value={draft.lookbackDays} class="w-full rounded-lg p-2 min-h-[50px]" style={inputStyle} />
               </SettingField>
             {/if}
 
@@ -592,7 +592,7 @@
                 <DiscordSelector id="sr-ignored" type="custom" customIcon="fa-user" options={members} multiple selected={draft.ignoredUsers} placeholder={m.common.none()} onchange={(e) => (draft.ignoredUsers = toList(e.selected))} />
               </SettingField>
               <SettingField label={m.common.group()} hint={m.statroles.fieldGroupHint()} id="sr-group">
-                <input id="sr-group" type="text" maxlength="32" placeholder={m.statroles.phGroup()} bind:value={draft.groupName} class="w-full rounded-lg p-2 min-h-[44px]" style={inputStyle} />
+                <input id="sr-group" type="text" maxlength="32" placeholder={m.statroles.phGroup()} bind:value={draft.groupName} class="w-full rounded-lg p-2 min-h-[50px]" style={inputStyle} />
               </SettingField>
             </div>
           </Card>
@@ -600,7 +600,7 @@
           <Card title={m.statroles.cardSchedule()}>
             <div class="space-y-4">
               <SettingField label={m.statroles.fieldInterval()} hint={m.statroles.fieldIntervalHint()} id="sr-interval">
-                <input id="sr-interval" type="number" min="10" bind:value={draft.intervalMinutes} class="w-full rounded-lg p-2 min-h-[44px]" style={inputStyle} />
+                <input id="sr-interval" type="number" min="10" bind:value={draft.intervalMinutes} class="w-full rounded-lg p-2 min-h-[50px]" style={inputStyle} />
               </SettingField>
               <SettingField label={m.statroles.fieldAnnounce()} hint={m.statroles.fieldAnnounceHint()} id="sr-notify-channel">
                 <DiscordSelector id="sr-notify-channel" type="channel" options={textChannels} bind:selected={draft.notifyChannelId} placeholder={m.common.noAnnouncements()} />
