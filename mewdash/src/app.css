@@ -37,6 +37,10 @@
         cursor: pointer;
     }
 
+    .relative:is([style*="z-index"], [class*="z-"]):has([aria-haspopup="listbox"][aria-expanded="true"]) {
+        z-index: 75 !important;
+    }
+
     /* Global scrollbar styling */
     *::-webkit-scrollbar {
         width: 0.5rem;
