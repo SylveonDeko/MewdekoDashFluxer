@@ -579,7 +579,7 @@
 
   // Mark template as changed
   function markAsChanged() {
-    changedSettings = changedSettings.add("template");
+    changedSettings = new Set(changedSettings).add("template");
   }
 
   // Update element position
