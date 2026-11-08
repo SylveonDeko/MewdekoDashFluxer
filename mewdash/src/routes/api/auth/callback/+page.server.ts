@@ -19,6 +19,7 @@ function isValidRedirect(url: string): boolean {
     if (url.startsWith('//')) return false;
     // Allow specific paths
     return url.startsWith('/dashboard') ||
+           url.startsWith('/api/discord-link/start') ||
            url.startsWith('/forms') ||
            url === '/' ||
            url.startsWith('/commands') ||

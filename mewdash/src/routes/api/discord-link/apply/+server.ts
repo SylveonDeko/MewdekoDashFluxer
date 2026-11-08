@@ -1,6 +1,7 @@
 import { json } from "@sveltejs/kit";
 import type { RequestHandler } from "./$types";
 import { callBot, relayBotResponse, userAdministersGuild } from "$lib/server/botApi";
+import { adoptMobileUser } from "../discordLink";
 
 const ID = /^\d{1,20}$/;
 
@@ -16,6 +17,7 @@ const toOverrides = (value: unknown): Record<string, bigint> | null => {
 };
 
 export const POST: RequestHandler = async (event) => {
+  await adoptMobileUser(event);
   const user = event.locals.user;
   if (!user) return json({ error: "unauthorized" }, { status: 401 });
 

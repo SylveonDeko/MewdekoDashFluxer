@@ -3,10 +3,12 @@ import type { RequestHandler } from "./$types";
 import { sessionManager } from "$lib/server/redisSession";
 import { callBot, relayBotResponse, userAdministersGuild } from "$lib/server/botApi";
 import { canAdministerDiscordGuild } from "$lib/types/discordLink";
+import { adoptMobileUser } from "../discordLink";
 
 const ID = /^\d{1,20}$/;
 
 export const POST: RequestHandler = async (event) => {
+  await adoptMobileUser(event);
   const user = event.locals.user;
   if (!user) return json({ error: "unauthorized" }, { status: 401 });
 
