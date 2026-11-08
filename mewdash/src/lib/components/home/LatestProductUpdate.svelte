@@ -75,14 +75,6 @@
               {update.summary}
             </p>
 
-            <ul class="mt-6 grid max-w-2xl gap-3 text-sm" style="color: {$colorStore.text}">
-              {#each update.details as detail}
-                <li class="border-l-2 pl-3 leading-relaxed" style="border-color: {$colorStore.primary}30;">
-                  {detail}
-                </li>
-              {/each}
-            </ul>
-
             <a
               class="mt-7 inline-flex items-center gap-2 border-b pb-1 text-sm font-semibold transition-opacity hover:opacity-70 focus:outline-hidden focus:ring-2 focus:ring-offset-4"
               href={update.href}
