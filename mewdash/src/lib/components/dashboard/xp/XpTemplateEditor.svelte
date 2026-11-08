@@ -1706,6 +1706,8 @@
                         <div class="text-xs" style="color: {$colorStore.muted}">{m.xp.editorTextAlignment()}
                           <DiscordSelector
                             type="custom"
+                            clearable={false}
+                            customIcon="fa-text"
                             options={textAlignOptions}
                             selected={element.textAlign || "left"}
                             searchable={false}
@@ -1725,6 +1727,8 @@
                           <div class="text-xs" style="color: {$colorStore.muted}">{m.common.style()}
                             <DiscordSelector
                               type="custom"
+                              clearable={false}
+                              customIcon="fa-palette"
                               options={progressStyleOptions}
                               selected={element.progressStyle || "rounded"}
                               searchable={false}

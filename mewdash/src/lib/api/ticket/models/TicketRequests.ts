@@ -1,4 +1,5 @@
 // lib/api/ticket/models/TicketRequests.ts
+import type { ButtonStyle } from "./TicketModels";
 
 /**
  * Create panel request
@@ -27,6 +28,9 @@ export interface UpdateEmbedRequest {
 export interface AddButtonRequest {
   label: string;
   emoji?: string | null;
+  style?: ButtonStyle;
+  claimedCategoryId?: bigint | null;
+  dmTranscript?: boolean;
   openMessageJson?: string | null;
   modalJson?: string | null;
   channelFormat?: string | null;
@@ -50,6 +54,11 @@ export interface AddButtonRequest {
 export interface UpdateButtonRequest {
   label?: string | null;
   emoji?: string | null;
+  style?: ButtonStyle | null;
+  description?: string | null;
+  channelFormat?: string | null;
+  claimedCategoryId?: bigint | null;
+  dmTranscript?: boolean | null;
   categoryId?: bigint | null;
   archiveCategoryId?: bigint | null;
   /** Text or forum channel tickets open in as threads or posts; 0 clears it on an update */
@@ -97,6 +106,8 @@ export interface AddSelectOptionRequest {
   openMessageJson?: string | null;
   modalJson?: string | null;
   channelFormat?: string | null;
+  claimedCategoryId?: bigint | null;
+  dmTranscript?: boolean;
   categoryId?: bigint | null;
   archiveCategoryId?: bigint | null;
   /** Text or forum channel tickets open in as threads or posts; 0 clears it on an update */
@@ -108,6 +119,22 @@ export interface AddSelectOptionRequest {
   maxActiveTickets?: number;
   allowedPriorities?: string[] | null;
   defaultPriority?: string | null;
+}
+
+/**
+ * Update select option request
+ * Maps to Mewdeko.Controllers.Common.Tickets.UpdateSelectOptionRequest
+ */
+export type UpdateSelectOptionRequest = Omit<UpdateButtonRequest, "style">;
+
+/**
+ * Update notification settings request
+ * Maps to Mewdeko.Controllers.Common.Tickets.UpdateNotificationSettingsRequest
+ */
+export interface UpdateNotificationSettingsRequest {
+  enableStaffPings: boolean;
+  enableDmNotifications: boolean;
+  notificationRoles: bigint[];
 }
 
 /**

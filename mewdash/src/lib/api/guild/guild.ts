@@ -1,6 +1,7 @@
 // lib/api/guild/guild.ts
 import { apiRequest } from "../core";
 import type {
+  BotSettings,
   GuildConfig,
   GuildInfo,
   BotGuildProfile,
@@ -80,4 +81,21 @@ export const guildApi = {
    */
   updateGuildConfig: (guildId: bigint, config: GuildConfig) =>
     apiRequest<void>(`GuildConfig/${guildId}`, "POST", config),
+
+  /**
+   * Gets the general bot settings
+   * @param guildId The guild ID
+   * @returns The settings
+   */
+  getBotSettings: (guildId: bigint) =>
+    apiRequest<BotSettings>(`botsettings/${guildId}`),
+
+  /**
+   * Changes the general bot settings, touching only the fields sent
+   * @param guildId The guild ID
+   * @param settings The settings to change
+   * @returns The settings after the change
+   */
+  updateBotSettings: (guildId: bigint, settings: BotSettings) =>
+    apiRequest<BotSettings>(`botsettings/${guildId}`, "POST", settings),
 };

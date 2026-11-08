@@ -7,7 +7,7 @@
   import { m } from "$lib/i18n";
   import { colorStore } from "$lib/stores/colorStore";
   import { logger } from "$lib/logger.ts";
-  import { bridgeApi, type BridgeCode, type Pair, type PairApprovalMode, type PairProposal } from "$lib/api/index.ts";
+  import { bridgesApi, type BridgeCode, type Pair, type PairApprovalMode, type PairProposal } from "$lib/api/index.ts";
   import type { AutoSave } from "$lib/utils/autoSave.svelte";
   import Card from "$lib/components/analytics/Card.svelte";
   import DiscordSelector from "$lib/components/forms/DiscordSelector.svelte";
@@ -48,8 +48,8 @@
   const needsPolling = $derived(!!code || pairs.some((p) => p.outgoingProposals.length > 0));
 
   const modes: Array<{ value: PairApprovalMode; label: () => string }> = [
-    { value: "Approve", label: () => m.bridge.pairModeApprove() },
-    { value: "Auto", label: () => m.bridge.pairModeAuto() }
+    { value: "Approve", label: () => m.bridges.pairModeApprove() },
+    { value: "Auto", label: () => m.bridges.pairModeAuto() }
   ];
 
   const inputStyle = $derived(`background: ${$colorStore.primary}10; color: ${$colorStore.text};`);
@@ -75,7 +75,7 @@
   }
 
   async function loadPairs() {
-    pairs = await bridgeApi.getPairs(guildId);
+    pairs = await bridgesApi.getPairs(guildId);
   }
 
   async function refresh() {
@@ -88,10 +88,10 @@
     if (!code) return;
     if (pairs.some((p) => !codePairIds.includes(p.pairId))) {
       clearCode();
-      notify(m.bridge.pairLinked(), "success");
+      notify(m.bridges.pairLinked(), "success");
     } else if (remaining === 0) {
       clearCode();
-      notify(m.bridge.codeExpired(), "error");
+      notify(m.bridges.codeExpired(), "error");
     }
   }
 
@@ -114,7 +114,7 @@
     void guarded("code", async () => {
       clearCode();
       entering = false;
-      const created = await bridgeApi.createPairCode(guildId, user);
+      const created = await bridgesApi.createPairCode(guildId, user);
       codePairIds = pairs.map((p) => p.pairId);
       now = Date.now();
       code = created;
@@ -124,16 +124,12 @@
   function linkCode() {
     const user = uid();
     const value = codeInput.trim();
-    if (user === null) return;
-    if (!value) {
-      notify(m.bridge.errorNoCode(), "error");
-      return;
-    }
+    if (user === null || !value) return;
     void guarded("link", async () => {
-      await bridgeApi.linkPair(guildId, value, user);
+      await bridgesApi.linkPair(guildId, value, user);
       codeInput = "";
       entering = false;
-      notify(m.bridge.pairLinked(), "success");
+      notify(m.bridges.pairLinked(), "success");
       await loadPairs();
     });
   }
@@ -159,8 +155,8 @@
     if (!pick?.local || !pick.remote || user === null) return;
     const { local, remote } = pick;
     void guarded(`connect-${pair.pairId}`, async () => {
-      const result = await bridgeApi.connectPair(guildId, pair.pairId, BigInt(local), BigInt(remote), user);
-      results[pair.pairId] = result.status === "connected" ? m.bridge.pairConnected() : m.bridge.pairProposed({ community: pair.remoteGuildName });
+      const result = await bridgesApi.connectPair(guildId, pair.pairId, BigInt(local), BigInt(remote), user);
+      results[pair.pairId] = result.status === "connected" ? m.bridges.pairConnected() : m.bridges.pairProposed({ community: pair.remoteGuildName });
       picks[pair.pairId] = { local: null, remote: null };
       await Promise.all([loadPairs(), onrefresh()]);
     });
@@ -170,15 +166,15 @@
     const user = uid();
     if (user === null) return;
     void guarded(`proposal-${proposal.proposalId}`, async () => {
-      if (accept) await bridgeApi.acceptProposal(guildId, pair.pairId, proposal.proposalId, user);
-      else await bridgeApi.declineProposal(guildId, pair.pairId, proposal.proposalId, user);
+      if (accept) await bridgesApi.acceptProposal(guildId, pair.pairId, proposal.proposalId, user);
+      else await bridgesApi.declineProposal(guildId, pair.pairId, proposal.proposalId, user);
       await Promise.all([loadPairs(), onrefresh()]);
     });
   }
 
   function cancelProposal(pair: Pair, proposal: PairProposal) {
     void guarded(`proposal-${proposal.proposalId}`, async () => {
-      await bridgeApi.cancelProposal(guildId, pair.pairId, proposal.proposalId);
+      await bridgesApi.cancelProposal(guildId, pair.pairId, proposal.proposalId);
       await loadPairs();
     });
   }
@@ -187,7 +183,7 @@
     const pair = pairs.find((p) => p.pairId === id);
     if (!pair) return;
     try {
-      await bridgeApi.updatePairSettings(guildId, id, {
+      await bridgesApi.updatePairSettings(guildId, id, {
         approvalMode: pair.approvalMode,
         hiddenChannelIds: pair.hiddenChannelIds.map((c) => BigInt(c))
       });
@@ -233,8 +229,8 @@
     unlinking = null;
     if (!target) return;
     void guarded(`unlink-${target.pairId}`, async () => {
-      await bridgeApi.removePair(guildId, target.pairId, keepBridges);
-      notify(m.bridge.pairUnlinked(), "success");
+      await bridgesApi.removePair(guildId, target.pairId, keepBridges);
+      notify(m.bridges.pairUnlinked(), "success");
       await Promise.all([loadPairs(), onrefresh()]);
     });
   }
@@ -270,10 +266,10 @@
 </script>
 
 {#if ready}
-  <Card title={m.bridge.pairsTitle()}>
+  <Card title={m.bridges.pairsTitle()}>
     <div class="space-y-4">
       {#if pairs.length === 0}
-        <p class="text-sm" style="color: {$colorStore.muted}">{m.bridge.pairsIntro()}</p>
+        <p class="text-sm" style="color: {$colorStore.muted}">{m.bridges.pairsIntro()}</p>
       {/if}
 
       {#each pairs as pair (pair.pairId)}
@@ -282,12 +278,12 @@
         <div class="rounded-xl border p-4 space-y-4" style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}20;">
           <div class="min-w-0">
             <h3 class="font-medium break-words" style="color: {$colorStore.text}">{pair.remoteGuildName}</h3>
-            <p class="text-xs" style="color: {$colorStore.muted}">{m.bridge.since({ date: new Date(pair.dateAdded).toLocaleDateString() })}</p>
+            <p class="text-xs" style="color: {$colorStore.muted}">{m.bridges.pairSince({ date: new Date(pair.dateAdded).toLocaleDateString() })}</p>
           </div>
 
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <div>
-              <span class="block text-sm mb-2" id="pair-local-{id}" style="color: {$colorStore.muted}">{m.bridge.pairLocalLabel()}</span>
+              <span class="block text-sm mb-2" id="pair-local-{id}" style="color: {$colorStore.muted}">{m.bridges.pairLocalLabel()}</span>
               <DiscordSelector
                 type="channel"
                 options={channelOptions(pair.localChannels)}
@@ -297,7 +293,7 @@
                 onchange={(detail) => setPick(id, "local", detail.selected)} />
             </div>
             <div>
-              <span class="block text-sm mb-2" id="pair-remote-{id}" style="color: {$colorStore.muted}">{m.bridge.pairRemoteLabel()}</span>
+              <span class="block text-sm mb-2" id="pair-remote-{id}" style="color: {$colorStore.muted}">{m.bridges.pairRemoteLabel()}</span>
               <DiscordSelector
                 type="channel"
                 options={channelOptions(pair.remoteChannels)}
@@ -308,7 +304,7 @@
             </div>
           </div>
           <div class="flex flex-wrap items-center gap-3">
-            <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium disabled:opacity-50" style={primaryStyle} disabled={busy[`connect-${id}`] || !picks[id]?.local || !picks[id]?.remote} onclick={() => connect(pair)}>{m.bridge.pairConnect()}</button>
+            <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium disabled:opacity-50" style={primaryStyle} disabled={busy[`connect-${id}`] || !picks[id]?.local || !picks[id]?.remote} onclick={() => connect(pair)}>{m.bridges.pairConnect()}</button>
             {#if results[id]}
               <p class="text-sm" style="color: {$colorStore.muted}" aria-live="polite">{results[id]}</p>
             {/if}
@@ -316,13 +312,13 @@
 
           {#if pair.incomingProposals.length > 0}
             <div class="space-y-2">
-              <span class="block text-sm" style="color: {$colorStore.muted}">{m.bridge.pairIncomingLabel({ community: pair.remoteGuildName })}</span>
+              <span class="block text-sm" style="color: {$colorStore.muted}">{m.bridges.pairIncomingLabel({ community: pair.remoteGuildName })}</span>
               {#each pair.incomingProposals as proposal (proposal.proposalId)}
                 <div class="flex flex-wrap items-center justify-between gap-2 rounded-lg p-3" style="background: {$colorStore.primary}10;">
-                  <p class="text-sm break-words min-w-0" style="color: {$colorStore.text}">{m.bridge.pairProposalItem({ local: proposal.localChannelName, remote: proposal.remoteChannelName })}</p>
+                  <p class="text-sm break-words min-w-0" style="color: {$colorStore.text}">{m.bridges.pairProposalItem({ local: proposal.localChannelName, remote: proposal.remoteChannelName })}</p>
                   <div class="flex gap-2">
-                    <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium disabled:opacity-50" style={primaryStyle} disabled={busy[`proposal-${proposal.proposalId}`]} onclick={() => answer(pair, proposal, true)}>{m.bridge.pairAccept()}</button>
-                    <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium disabled:opacity-50" style={idleStyle} disabled={busy[`proposal-${proposal.proposalId}`]} onclick={() => answer(pair, proposal, false)}>{m.bridge.pairDecline()}</button>
+                    <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium disabled:opacity-50" style={primaryStyle} disabled={busy[`proposal-${proposal.proposalId}`]} onclick={() => answer(pair, proposal, true)}>{m.bridges.pairAccept()}</button>
+                    <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium disabled:opacity-50" style={idleStyle} disabled={busy[`proposal-${proposal.proposalId}`]} onclick={() => answer(pair, proposal, false)}>{m.bridges.pairDecline()}</button>
                   </div>
                 </div>
               {/each}
@@ -331,10 +327,10 @@
 
           {#if pair.outgoingProposals.length > 0}
             <div class="space-y-2">
-              <span class="block text-sm" style="color: {$colorStore.muted}">{m.bridge.pairOutgoingLabel({ community: pair.remoteGuildName })}</span>
+              <span class="block text-sm" style="color: {$colorStore.muted}">{m.bridges.pairOutgoingLabel({ community: pair.remoteGuildName })}</span>
               {#each pair.outgoingProposals as proposal (proposal.proposalId)}
                 <div class="flex flex-wrap items-center justify-between gap-2 rounded-lg p-3" style="background: {$colorStore.primary}10;">
-                  <p class="text-sm break-words min-w-0" style="color: {$colorStore.text}">{m.bridge.pairProposalItem({ local: proposal.localChannelName, remote: proposal.remoteChannelName })}</p>
+                  <p class="text-sm break-words min-w-0" style="color: {$colorStore.text}">{m.bridges.pairProposalItem({ local: proposal.localChannelName, remote: proposal.remoteChannelName })}</p>
                   <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium disabled:opacity-50" style={idleStyle} disabled={busy[`proposal-${proposal.proposalId}`]} onclick={() => cancelProposal(pair, proposal)}>{m.common.cancel()}</button>
                 </div>
               {/each}
@@ -350,13 +346,13 @@
               aria-controls="pair-sharing-{id}"
               onclick={() => (sharingOpen[id] = !sharingOpen[id])}
             >
-              {m.bridge.pairSharing()}
+              {m.bridges.pairSharing()}
               <i class="fa-solid fa-chevron-down text-xs transition-transform {sharingOpen[id] ? 'rotate-180' : ''}" style="color: {$colorStore.muted};" aria-hidden="true"></i>
             </button>
             {#if sharingOpen[id]}
               <div id="pair-sharing-{id}" class="space-y-4 mt-2">
                 <div>
-                  <span class="block text-sm mb-2" id="pair-mode-{id}" style="color: {$colorStore.muted}">{m.bridge.pairApprovalLabel()}</span>
+                  <span class="block text-sm mb-2" id="pair-mode-{id}" style="color: {$colorStore.muted}">{m.bridges.pairApprovalLabel()}</span>
                   <div class="flex flex-wrap gap-2" role="group" aria-labelledby="pair-mode-{id}">
                     {#each modes as option (option.value)}
                       <button
@@ -369,7 +365,7 @@
                   </div>
                 </div>
                 <div>
-                  <span class="block text-sm mb-2" id="pair-shared-{id}" style="color: {$colorStore.muted}">{m.bridge.pairSharedLabel()}</span>
+                  <span class="block text-sm mb-2" id="pair-shared-{id}" style="color: {$colorStore.muted}">{m.bridges.pairSharedLabel()}</span>
                   <DiscordSelector
                     type="channel"
                     multiple
@@ -384,31 +380,31 @@
           </div>
 
           <div>
-            <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium disabled:opacity-50" style={idleStyle} disabled={busy[`unlink-${id}`]} onclick={() => askUnlink(pair)}>{m.bridge.pairUnlink()}</button>
+            <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium disabled:opacity-50" style={idleStyle} disabled={busy[`unlink-${id}`]} onclick={() => askUnlink(pair)}>{m.bridges.pairUnlink()}</button>
           </div>
         </div>
       {/each}
 
       {#if code}
         <div class="rounded-lg p-4 space-y-3" style="background: {$colorStore.primary}10;">
-          <span class="block text-sm" style="color: {$colorStore.muted}">{m.bridge.codeLabel()}</span>
+          <span class="block text-sm" style="color: {$colorStore.muted}">{m.bridges.codeLabel()}</span>
           <div class="flex flex-wrap items-center gap-3">
             <span class="text-3xl font-bold font-mono tracking-widest select-all break-all" style="color: {$colorStore.text}">{code.code}</span>
-            <button type="button" class="px-3 min-h-[44px] rounded-lg text-sm font-medium" style={idleStyle} onclick={copyCode}>{m.bridge.codeCopy()}</button>
+            <button type="button" class="px-3 min-h-[44px] rounded-lg text-sm font-medium" style={idleStyle} onclick={copyCode}>{m.bridges.codeCopy()}</button>
           </div>
-          <p class="text-sm" style="color: {$colorStore.muted}">{m.bridge.codeExpiresIn({ time: countdown })}</p>
-          <p class="text-sm" style="color: {$colorStore.text}">{m.bridge.pairCodeInstructions({ command: `.bridge pair ${code.code}` })}</p>
+          <p class="text-sm" style="color: {$colorStore.muted}">{m.bridges.codeExpiresIn({ time: countdown })}</p>
+          <p class="text-sm" style="color: {$colorStore.text}">{m.bridges.pairCodeInstructions({ command: `.bridge pair ${code.code}` })}</p>
         </div>
       {:else if entering}
         <div class="flex flex-col sm:flex-row gap-2">
-          <input type="text" bind:value={codeInput} placeholder={m.bridge.pairCodePlaceholder()} aria-label={m.bridge.codeLabel()} autocomplete="off" class="w-full rounded-lg p-2 min-h-[44px] font-mono uppercase" style={inputStyle} onkeydown={(e) => e.key === "Enter" && linkCode()} />
-          <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium whitespace-nowrap disabled:opacity-50" style={primaryStyle} disabled={busy.link || !codeInput.trim()} onclick={linkCode}>{m.bridge.pairLink()}</button>
+          <input type="text" bind:value={codeInput} placeholder={m.bridges.pairCodePlaceholder()} aria-label={m.bridges.codeLabel()} autocomplete="off" class="w-full rounded-lg p-2 min-h-[44px] font-mono uppercase" style={inputStyle} onkeydown={(e) => e.key === "Enter" && linkCode()} />
+          <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium whitespace-nowrap disabled:opacity-50" style={primaryStyle} disabled={busy.link || !codeInput.trim()} onclick={linkCode}>{m.bridges.pairLink()}</button>
           <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium whitespace-nowrap" style={idleStyle} onclick={() => (entering = false)}>{m.common.cancel()}</button>
         </div>
       {:else}
         <div class="flex flex-wrap gap-2">
-          <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium disabled:opacity-50" style={primaryStyle} disabled={busy.code} onclick={createCode}>{m.bridge.pairCreateCode()}</button>
-          <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium" style={idleStyle} onclick={() => (entering = true)}>{m.bridge.pairHaveCode()}</button>
+          <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium disabled:opacity-50" style={primaryStyle} disabled={busy.code} onclick={createCode}>{m.bridges.pairCreateCode()}</button>
+          <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium" style={idleStyle} onclick={() => (entering = true)}>{m.bridges.pairHaveCode()}</button>
         </div>
       {/if}
     </div>
@@ -417,15 +413,15 @@
 
 <ConfirmationModal
   bind:isOpen={unlinkOpen}
-  title={m.bridge.pairUnlinkTitle({ community: unlinking?.remoteGuildName ?? "" })}
-  message={m.bridge.pairUnlinkMessage()}
-  confirmText={m.bridge.pairUnlink()}
+  title={m.bridges.pairUnlinkTitle({ community: unlinking?.remoteGuildName ?? "" })}
+  message={m.bridges.pairUnlinkMessage()}
+  confirmText={m.bridges.pairUnlink()}
   variant="danger"
   oncancel={() => (unlinking = null)}
   onconfirm={confirmUnlink}
 >
-  <div class="flex flex-col gap-2 mt-4" role="group" aria-label={m.bridge.pairUnlinkTitle({ community: unlinking?.remoteGuildName ?? "" })}>
-    <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium text-left" style={keepBridges ? activeStyle : idleStyle} aria-pressed={keepBridges} onclick={() => (keepBridges = true)}>{m.bridge.pairKeepBridges()}</button>
-    <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium text-left" style={!keepBridges ? activeStyle : idleStyle} aria-pressed={!keepBridges} onclick={() => (keepBridges = false)}>{m.bridge.pairRemoveBridges()}</button>
+  <div class="flex flex-col gap-2 mt-4" role="group" aria-label={m.bridges.pairUnlinkTitle({ community: unlinking?.remoteGuildName ?? "" })}>
+    <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium text-left" style={keepBridges ? activeStyle : idleStyle} aria-pressed={keepBridges} onclick={() => (keepBridges = true)}>{m.bridges.pairKeepBridges()}</button>
+    <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium text-left" style={!keepBridges ? activeStyle : idleStyle} aria-pressed={!keepBridges} onclick={() => (keepBridges = false)}>{m.bridges.pairRemoveBridges()}</button>
   </div>
 </ConfirmationModal>

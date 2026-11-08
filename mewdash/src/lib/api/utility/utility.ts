@@ -111,8 +111,8 @@ export const utilityApi = {
       `Utility/${guildId}/autopublish/${channelId}/words/${encodeURIComponent(word)}`,
       "DELETE",
     ),
-  // ============================================
 
+  // ============================================
   // NSFW blacklist
   // ============================================
 

@@ -2,6 +2,8 @@
 import { apiRequest } from "../core";
 import type {
   LoggingConfigurationResponse,
+  LoggingExport,
+  LoggingImportResult,
   LogType,
   SetIgnoredChannelsRequest,
   BulkUpdateLogChannelsRequest,
@@ -81,4 +83,32 @@ export const loggingApi = {
 
   getLoggingStatistics: (guildId: bigint) =>
     apiRequest<any>(`logging/${guildId}/statistics`),
+
+  setupLogging: (guildId: bigint) =>
+    apiRequest<{ success: boolean; channels: Record<string, bigint> }>(
+      `logging/${guildId}/setup`,
+      "POST",
+    ),
+
+  exportConfig: (guildId: bigint) =>
+    apiRequest<LoggingExport>(`logging/${guildId}/export`),
+
+  importConfig: (guildId: bigint, code: string) =>
+    apiRequest<LoggingImportResult>(`logging/${guildId}/import`, "POST", {
+      code,
+    }),
+
+  setIgnoreBots: (guildId: bigint, ignoreBots: boolean) =>
+    apiRequest<{ success: boolean; ignoreBots: boolean }>(
+      `logging/${guildId}/ignore-bots`,
+      "PUT",
+      { ignoreBots },
+    ),
+
+  setIgnorePrefixes: (guildId: bigint, prefixes: string[]) =>
+    apiRequest<{ success: boolean; prefixes: string[] }>(
+      `logging/${guildId}/ignore-prefixes`,
+      "PUT",
+      { prefixes },
+    ),
 };

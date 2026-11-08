@@ -1,7 +1,7 @@
 ---
 title: Process Logs
 slug: process-logs
-summary: A bot owner only dashboard page that lists the processes pm2 runs on the bot's host and lets you read, follow, filter and download their console logs.
+summary: A page for bot owners to read the console logs of the processes pm2 runs on the bot's host
 icon: fa-rectangle-code
 category: Analytics
 dashboard: /owner/process-logs
@@ -11,7 +11,7 @@ related: [performance, analytics, leave-feedback]
 
 ## What it does
 
-Process Logs shows what the bot writes to its console, straight from the log files pm2 keeps for it, without opening a shell on the server. It is only visible to bot owners: the sidebar hides it for everyone else, opening the URL directly sends non owners back to the dashboard home, and the bot itself refuses the requests unless the signed in account is an owner.
+Process Logs shows what the bot writes to its console, straight from the log files pm2 keeps for it, without opening a shell on the host. It is only visible to bot owners: the sidebar hides it for everyone else and opening the URL directly sends non owners back to the dashboard home. The bot itself also refuses the requests unless the signed in account is an owner.
 
 The page asks the bot instance you have selected for its pm2 process table. Every process pm2 manages on that host is listed, not just the bot, with its status, pid, uptime, restart count, CPU and memory, and the size of its two log files. Pick one and the page loads the last few hundred lines of its stdout log, then keeps appending new lines every couple of seconds while **Following** is on.
 
@@ -28,7 +28,7 @@ Lines keep the colours Serilog prints with, and each line is tagged with its lev
 
 | Control | What it does |
 | --- | --- |
-| Process cards | One per pm2 process on the host. The card marked **this bot** is the instance answering the request. Click one to read its logs. |
+| **Processes** | One card per pm2 process on the host, with its status, **pm2 id** and pid, **Uptime** and restarts, **Usage** (CPU and memory) and **Logs** (out and err file sizes). The card marked **this bot** is the instance answering the request. Click one to read its logs. **Refresh** reloads the list, which also refreshes every 15 seconds. |
 | **stdout** / **stderr** | Switches between the process's out log, where normal logging goes, and its error log, where crashes and runtime diagnostics land. |
 | **100** to **2k** | How many lines to load when the log is opened or reloaded. The follow mode keeps up to 5,000 in the page before it starts dropping the oldest. |
 | Filter box | Hides every line whose text does not contain what you typed. Case does not matter. |
@@ -52,7 +52,7 @@ On a dashboard connected to several bot instances, the process list belongs to w
 
 ## Setup walkthrough
 
-1. Run the bot under pm2 on its server, for example `pm2 start dotnet --name mewdeko -- Mewdeko.dll`.
+1. Run the bot under pm2 on its host, for example `pm2 start dotnet --name mewdeko -- Mewdeko.dll`.
 2. Sign in to the dashboard with a bot owner account and open **Process Logs** from the sidebar.
 3. Pick the process marked **this bot**, or any other process on the host.
 4. Leave **Following** on to watch the log live, or switch it off and use the filter and level chips to dig through what is loaded.
@@ -63,4 +63,4 @@ On a dashboard connected to several bot instances, the process list belongs to w
 - Logs are read from files, so a process that was started outside pm2 has none here. The bot's own console output only appears if the bot itself runs under pm2.
 - pm2 rotates or truncates files when you run `pm2 flush` or use `pm2-logrotate`. The page notices the file shrinking and reloads the tail on its own.
 - The filter and level chips only apply to lines already loaded. Load more lines, or download the file, when searching further back.
-- Nothing on this page changes the bot. There is no way to restart processes or clear logs from here; the owner `restartinstance` command and `pm2 flush` on the server cover that.
+- Nothing on this page changes the bot. There is no way to restart processes or clear logs from here; the owner `restartinstance` command and `pm2 flush` on the host cover that.

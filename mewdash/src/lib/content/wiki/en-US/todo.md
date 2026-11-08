@@ -1,7 +1,7 @@
 ---
 title: Todo Lists
 slug: todo
-summary: Shared and personal task lists inside Fluxer, with priorities, due dates, tags, search and per-person permissions.
+summary: Shared and personal task lists inside Fluxer, with due dates and permissions
 icon: fa-check
 category: Community
 dashboard: /dashboard/todo
@@ -12,13 +12,13 @@ related: [administration, tickets]
 
 ## What it does
 
-Todo Lists gives your community task lists that live in the bot. A member creates a list, adds items to it, marks them done, and can hand out access so other people can view or work on the same list. Staff with Manage Community can create community-wide lists that every member can see.
+Todo Lists gives your community task lists that live in the bot. A member creates a list and works through its items, and can hand out access so other people can view or work on the same list. Staff with Manage Community can create community-wide lists that every member can see.
 
 Each item has a title, an optional description, a priority from 1 to 4, optional tags, an optional due date and an optional reminder time. Items keep a position so you can reorder them, and completed items are stamped with who completed them and when.
 
 There are two kinds of list. A personal list belongs to one member and is invisible to everyone else unless the owner grants access. A community list belongs to the community; it is public by default so anyone can view it, but only people with explicit permission can add or change items.
 
-Lists show up as embeds in Fluxer and as cards on the dashboard. The dashboard also tracks progress, overdue counts and completion rate for the list you have open.
+Lists show up as embeds in Fluxer and on the dashboard, where you can also manage settings and access. The dashboard tracks progress and overdue counts for the list you have open.
 
 ## Why you would use it
 
@@ -62,7 +62,7 @@ Who can see a list:
 | Title | required | Shown in bold in the list |
 | Description | none | Shown in italics under the title |
 | Priority | 1 (Low) via commands, Medium on the dashboard | 1 Low, 2 Medium, 3 High, 4 Critical. Anything outside 1 to 4 is clamped |
-| Due date | none | Shown as a relative Fluxer timestamp next to the title |
+| Due date | none | Shown as a relative timestamp next to the title |
 | Reminder time | none | Stored on the item and set with `todosetreminder` |
 | Tags | none | Case-insensitive; adding an existing tag is a no-op |
 | Position | end of list | Change with `todoreorder` |
@@ -77,26 +77,41 @@ Each list can have a hex colour, set with `todosetcolor 12 #ff8800`, which is us
 
 There are no community-wide settings. Everything is per list or per item.
 
-The Todo Lists page has one view. The left side lists every list you can see, with a **Search todo lists** box, a **Show completed items** toggle, and **Sort by** (Priority, Due Date, Created, Title) with an order selector. Selecting a list shows its items with **Add Item** and **Delete List** buttons, an item editor with **Priority** and **Due date**, and a **Manage permissions** button per list.
+The Todo lists page has a **Create list** button in its header and two cards, **Lists** and **Items**. Changes save as you make them.
+
+### Lists card
+
+Pick a list from the dropdown. Personal lists are labelled with "Personal list". The URL keeps the open list as `?list=`, so a link opens straight on it. Under the dropdown you see the list's color dot, whether it is a **Community list** or **Personal list**, a **Private list** badge when a community list is hidden, an **Owner** badge when it is yours, and the description. When the list has items, a line shows how many are to do, done and overdue with a progress bar. The **List settings** button opens the settings sheet.
+
+### List settings sheet
 
 | Setting | Default | What it controls |
 | --- | --- | --- |
-| List name and description | required, none | Set when creating a list from the **Create List** button |
-| Priority (item) | Medium | The item's priority; shown as a coloured chip |
-| Due date (item) | none | Deadline used for the overdue counter |
-| Show completed items | off | Whether done items appear in the list view |
+| Name | required, max 100 characters | Shown in the dropdown and in Fluxer |
+| Description | none, max 500 characters | Shown under the list |
+| Color | `#7289da` | The list's embed color in Fluxer |
+| Visible to everyone | on | Community lists only. When off, only the owner and people with access can see it |
+
+**Delete list** removes the list and all its items after confirmation. Only the owner and people with the manage permission can change these settings or delete the list.
+
+**People with access** lists everyone who has been granted access. Pick a member under "Search members...", switch on what they may do and press **Save access**. The switches are **Add items**, **Edit items**, **Complete items**, **Delete items** and **Manage list**. Everyone granted access can view the list. Saving a member again replaces what they had. The pencil edits an entry and the bin removes it. A person with only view access shows as "Viewer" and a person with **Manage list** as "Manager".
+
+### Items card
+
+**Add item** opens a sheet with **Title** (required, max 200 characters), **Description**, **Priority** (Low, Medium, High or Critical, Medium by default), **Due date** and **Tags** (max 32 characters each). The button only shows if you can add items.
+
+Above the list are a search box, an **Any priority** filter, an **Any tag** filter, a **Sort by** dropdown (List order, Priority, Due date, Newest, Title) and the **Show completed items** switch, which is off by default. Tick the circle on a row to mark it done or not done. With **List order** selected and no filter active, the arrows move an item up or down. Open an item to edit it. Edits save as you make them, and rows you may not edit open read-only.
 
 > [!NOTE]
-> Lists created from the dashboard are always community lists. Create personal lists with `todocreatelist` in Fluxer.
+> **Create list** asks for a name and a **Type** of Community list or Personal list. You can add a description too. Community lists are the default. Color, visibility and access appear once the list exists. Personal lists only show up on the dashboard for their owner.
 
 ## Setup walkthrough
 
-1. Open **Todo Lists** in the dashboard and click **Create List**.
-2. Enter a name and optional description. The list is created as a public community list.
-3. Click the list, then **Add Item**. Fill in **What needs to be done?**, an optional description and a priority.
-4. Use **Manage permissions** on the list card to see who has access. Grant access from Fluxer with `todogrant <listId> @user add,complete` so those people can work on it.
+1. Open **Todo Lists** in the dashboard and click **Create list**.
+2. Enter a name and the type, and optionally a description, then click **Create**.
+3. Click **Add item** in the **Items** card. Fill in a title, an optional description, a priority, a due date and tags.
+4. Open **List settings** and add people under **People with access** so they can work on the list.
 5. In Fluxer, run `todolists` to get the list ID, then `todoshow <listId>` to check it renders.
-6. Mark things done with `todocomplete <itemId>`; the item ID is shown in backticks in `todoshow`.
 
 ## Commands
 
@@ -129,7 +144,7 @@ Run these with your community's prefix (`.` unless you changed it). List and ite
 | `todorevoke <listId> @user` | `trv` | Nobody | Remove all of a user's permissions |
 | `todopermissions <listId>` | `tp` | Nobody | Show who has which permissions |
 
-"Nobody" means there is no Fluxer permission check; the list's own permissions decide whether the command succeeds. The same commands exist as
+"Nobody" means there is no permission check on the member; the list's own permissions decide whether the command succeeds.
 
 ## Tips and gotchas
 
@@ -138,5 +153,5 @@ Run these with your community's prefix (`.` unless you changed it). List and ite
 - A list name must be unique per owner and type, so two members can each have a "Shopping" personal list but one member cannot have two.
 - `todoreorder` renumbers every item in the list, so positions stay contiguous.
 - Public community lists are readable by everyone but nobody except the owner can add to them until you grant `add`.
-- Use `todogrant` in Fluxer for the full permission set; the dashboard's **Manage permissions** view is for checking who has access.
+- Reminder times are not editable on the dashboard, since nothing sends them yet.
 - Deleting a list removes its permissions and items in one go and cannot be undone.

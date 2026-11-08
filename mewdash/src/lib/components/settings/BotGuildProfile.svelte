@@ -282,7 +282,9 @@
          style="--fa-primary-color: {$colorStore.primary}; --fa-secondary-color: {$colorStore.secondary};"></i>
     </div>
     <div class="flex-1">
-      <h2 class="text-lg font-bold" style="color: {$colorStore.text}">{m.settings.profileTitle()}</h2>    </div>
+      <h2 class="text-lg font-bold" style="color: {$colorStore.text}">{m.settings.profileTitle()}</h2>
+      <p class="text-xs md:text-sm" style="color: {$colorStore.muted}">{m.settings.profileSubtitle()}</p>
+    </div>
     {#if !loading && hasCustomProfile}
       <button
         class="px-3 py-1.5 rounded-lg text-xs md:text-sm font-medium transition-all disabled:opacity-50"
@@ -344,7 +346,9 @@
               </div>
             {/if}
             <div class="flex-1">
-              <h3 class="font-semibold text-sm md:text-base" style="color: {$colorStore.text}">{m.settings.profileAvatarTitle()}</h3>            </div>
+              <h3 class="font-semibold text-sm md:text-base" style="color: {$colorStore.text}">{m.settings.profileAvatarTitle()}</h3>
+              <p class="text-xs" style="color: {$colorStore.muted}">{m.settings.profileAvatarHint()}</p>
+            </div>
           </div>
           {#if !editingAvatar}
             <div class="flex gap-2">
@@ -426,7 +430,9 @@
         <div class="flex flex-col gap-3 mb-3">
           <div class="flex items-center justify-between">
             <div class="flex-1">
-              <h3 class="font-semibold text-sm md:text-base" style="color: {$colorStore.text}">{m.settings.profileBannerTitle()}</h3>            </div>
+              <h3 class="font-semibold text-sm md:text-base" style="color: {$colorStore.text}">{m.settings.profileBannerTitle()}</h3>
+              <p class="text-xs" style="color: {$colorStore.muted}">{m.settings.profileBannerHint()}</p>
+            </div>
             {#if !editingBanner}
               <div class="flex gap-2">
                 <button
@@ -515,7 +521,9 @@
            style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}20;">
         <div class="flex items-center justify-between mb-3">
           <div class="flex-1">
-            <h3 class="font-semibold text-sm md:text-base" style="color: {$colorStore.text}">{m.settings.profileBioTitle()}</h3>          </div>
+            <h3 class="font-semibold text-sm md:text-base" style="color: {$colorStore.text}">{m.settings.profileBioTitle()}</h3>
+            <p class="text-xs" style="color: {$colorStore.muted}">{m.settings.profileBioHint()}</p>
+          </div>
           {#if !editingBio}
             <div class="flex gap-2">
               <button

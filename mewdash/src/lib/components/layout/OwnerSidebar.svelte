@@ -369,7 +369,7 @@
             <img src={userAvatarUrl} alt={$userStore.username} class="w-9 h-9 rounded-full shrink-0">
             {#if collapsed}
               <span class="absolute -bottom-0.5 -right-0.5 flex items-center justify-center w-4 h-4 rounded-full border-2"
-                    style="background: {$colorStore.primary}; color: {$colorStore.onPrimary}; border-color: {$colorStore.gradientStart};">
+                    style="background: {$colorStore.primary}; border-color: {$colorStore.gradientStart}; color: {$colorStore.onPrimary};">
                 <i class="fa-solid fa-angles-right text-[7px]" style="color: {$colorStore.onPrimary};" aria-hidden="true"></i>
               </span>
             {/if}

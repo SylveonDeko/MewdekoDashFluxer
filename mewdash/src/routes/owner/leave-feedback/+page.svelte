@@ -449,7 +449,7 @@
       </span>
       <DiscordSelector
         type="custom"
-        customIcon="fa-list-check"
+        customIcon="fa-list-ul"
         options={statusOptions}
         selected={statusFilter}
         placeholder={m.owner.leaveFeedbackAllStatuses()}

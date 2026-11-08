@@ -1496,7 +1496,7 @@
     {#if bottomSheetOpen}
       <div
         class="fixed inset-x-0 bottom-0 z-20 rounded-t-3xl border-t shadow-2xl transition-all"
-        style="background: {$colorStore.background}; border-color: {$colorStore.primary}30;
+        style="background: {$colorStore.surface}; border-color: {$colorStore.primary}30;
              max-height: 70vh;"
         transition:fly={{ y: 100, duration: 300 }}
       >
@@ -1671,6 +1671,8 @@
                       <div class="text-xs" style="color: {$colorStore.muted}">{m.xp.editorTextAlignment()}
                         <DiscordSelector
                           type="custom"
+                          clearable={false}
+                          customIcon="fa-text"
                           options={textAlignOptions}
                           selected={element.textAlign || "left"}
                           searchable={false}
@@ -1690,6 +1692,8 @@
                         <div class="text-xs" style="color: {$colorStore.muted}">{m.common.style()}
                           <DiscordSelector
                             type="custom"
+                            clearable={false}
+                            customIcon="fa-palette"
                             options={progressStyleOptions}
                             selected={element.progressStyle || "rounded"}
                             searchable={false}

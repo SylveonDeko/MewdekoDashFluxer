@@ -1,6 +1,6 @@
 // lib/api/votes/votes.ts
 import { apiRequest } from "../core";
-import type { VoteRole, Vote, VoteLeaderboardEntry } from "./models";
+import type { VoteRole, Vote, VoteLeaderboardEntry, VoteSummary, FluxerListStatus } from "./models";
 
 /**
  * Voting system API
@@ -33,11 +33,14 @@ export const votesApi = {
   setVoteMessage: (guildId: bigint, message: string) =>
     apiRequest<void>(`Votes/${guildId}/message`, "POST", message),
 
-  getVotePassword: (guildId: bigint) =>
-    apiRequest<string>(`Votes/${guildId}/password`),
+  getFluxerListStatus: (guildId: bigint) =>
+    apiRequest<FluxerListStatus>(`Votes/${guildId}/fluxerlist`),
 
-  setVotePassword: (guildId: bigint, password: string) =>
-    apiRequest<void>(`Votes/${guildId}/password`, "POST", password),
+  setFluxerListKey: (guildId: bigint, apiKey: string) =>
+    apiRequest<void>(`Votes/${guildId}/fluxerlist`, "PUT", apiKey),
+
+  removeFluxerListKey: (guildId: bigint) =>
+    apiRequest<void>(`Votes/${guildId}/fluxerlist`, "DELETE"),
 
   getVoteChannel: (guildId: bigint) =>
     apiRequest<bigint>(`Votes/${guildId}/channel`),
@@ -51,4 +54,7 @@ export const votesApi = {
     apiRequest<VoteLeaderboardEntry[]>(
       `Votes/${guildId}/leaderboard?limit=${limit}`,
     ),
+
+  getVoteSummary: (guildId: bigint) =>
+    apiRequest<VoteSummary>(`Votes/${guildId}/summary`),
 };

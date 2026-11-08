@@ -101,6 +101,9 @@ export interface CreatePollRequest {
   allowVoteChanges?: boolean;
   showResults?: boolean;
   showProgressBars?: boolean;
+  blockedRoles?: bigint[] | null;
+  maxVotes?: number | null;
+  resultsMessage?: string | null;
   userId: bigint;
 }
 
@@ -169,6 +172,9 @@ export interface CreateTemplateRequest {
   color?: string | null;
   allowVoteChanges?: boolean;
   showResults?: boolean;
+  blockedRoles?: bigint[] | null;
+  maxVotes?: number | null;
+  resultsMessage?: string | null;
   userId: bigint;
 }
 

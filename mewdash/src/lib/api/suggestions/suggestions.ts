@@ -154,6 +154,19 @@ export const suggestionsApi = {
   setSuggestEmotes: (guildId: bigint, emotes: string | null) =>
     apiRequest<void>(`suggestions/${guildId}/suggestEmotes`, "POST", emotes),
 
+  getAnonymous: (guildId: bigint) =>
+    apiRequest<boolean>(`suggestions/${guildId}/anonymous`),
+
+  setAnonymous: (guildId: bigint, anonymous: boolean) =>
+    apiRequest<void>(`suggestions/${guildId}/anonymous`, "POST", anonymous),
+
+  // Votes one side must lead by to recolour a suggestion, 0 is off
+  getVoteColor: (guildId: bigint) =>
+    apiRequest<number>(`suggestions/${guildId}/voteColor`),
+
+  setVoteColor: (guildId: bigint, threshold: number) =>
+    apiRequest<void>(`suggestions/${guildId}/voteColor`, "POST", threshold),
+
   // Suggestion message format
   getSuggestionMessage: (guildId: bigint) =>
     apiRequest<string | null>(`suggestions/${guildId}/suggestionMessage`),

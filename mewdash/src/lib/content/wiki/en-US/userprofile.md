@@ -1,7 +1,7 @@
 ---
 title: User Profile
 slug: userprofile
-summary: Give every member a profile card the bot can show anywhere, with a bio, pronouns, zodiac sign, birthday, colour, image and Switch friend code, plus privacy controls over what other people see.
+summary: A profile card for every member, with a bio and privacy controls over what others see
 icon: fa-user
 category: Community
 module: UserProfile
@@ -15,15 +15,14 @@ Every member has a profile that follows them across every community the bot is i
 
 Members fill the profile in with a handful of `set...` commands, or from the **My Settings** page on the dashboard. Nothing is community specific: set your bio once and it shows the same everywhere.
 
-Privacy is under the member's control. A profile can be made private so only its owner can open it, the birthday can be trimmed to just the month or hidden entirely, and members can opt out of command statistics and of welcome DMs.
+Privacy is under the member's control. A profile can be made private so only its owner can open it, and the birthday can be trimmed to just the month or hidden entirely. Members can also opt out of command statistics and of welcome DMs.
 
-Pronouns are a little special. If a member has not set any with the bot, the bot looks them up on PronounDB. Members can override that with their own text, and anyone can report an abusive override to the bot owners.
+Pronouns are a little special. If a member has not set any with the bot, the bot tries to look them up on PronounDB. Members can override that with their own text, and anyone can report an abusive override to the bot owners.
 
 ## Why you would use it
 
 - Members want a quick "about me" card without a dedicated introductions channel.
 - A community that shares Switch friend codes can keep them in one place instead of pinning messages.
-- Pronouns can be shown from PronounDB automatically, so most people never have to type them.
 - Staff can check someone's pronouns with `pronouns @user` before replying.
 - Members who do not want welcome DMs or statistics collection can turn those off themselves.
 
@@ -35,7 +34,7 @@ Pronouns are a little special. If a member has not set any with the bot, the bot
 | --- | --- |
 | Title | "Profile for" the user |
 | Colour | `setprofilecolor`, otherwise the bot's default colour |
-| Thumbnail | The member's Fluxer avatar |
+| Thumbnail | The member's avatar |
 | Description | The bio from `setbio` (only shown if set) |
 | Pronouns | Your override, otherwise PronounDB, otherwise "Unspecified" |
 | Zodiac Sign | `setzodiac`, otherwise "Unspecified" |
@@ -83,12 +82,12 @@ Pronouns are a little special. If a member has not set any with the bot, the bot
 `pronouns [@user]` shows pronouns for you or someone else. Lookup order:
 
 1. Text the member set with `setpronouns`.
-2. The member's English pronoun set on PronounDB, if they linked their Fluxer account there. Standard sets are shown in the usual form, for example `he/him`, `Any pronouns`, or `Ask me my pronouns`.
+2. The member's English pronoun set on PronounDB, if one is found. The bot looks members up by their Discord account ID, so this only matches people whose ID is registered on PronounDB. Standard sets are shown in the usual form, for example `he/him` or `Any pronouns`.
 3. "Unspecified".
 
-`setpronouns <text>` stores an override. Run it with no text to see your current override with two buttons: **Overwrite** opens a form to type new pronouns, and **Clear** removes the override so PronounDB is used again.
+`setpronouns <text>` stores an override. Run it with no text to see your current override with a 🗑️ reaction. React to clear the override.
 
-When the pronouns shown come from a member's own override (not PronounDB), the reply carries a **Report** button. Reports go to a channel the bot owners run, where they can clear the override, disable pronouns for that user, or blacklist them. A user whose pronouns have been disabled sees the reason whenever they try to use the pronoun commands.
+If a member's pronouns look abusive, run `pronounsreport @user`. It sends the override to a channel the bot owners run, where they can clear it or disable pronouns for that user. A user whose pronouns have been disabled sees the reason whenever they try to use the pronoun commands.
 
 > [!NOTE]
 > The bot owner command `pronounsforceclear` is how those reports are acted on. Community staff cannot clear another member's pronouns.
@@ -101,7 +100,7 @@ When the pronouns shown come from a member's own override (not PronounDB), the r
 
 ## Settings
 
-There is no community-level configuration. Everything lives on the member. The dashboard's **My Settings** page (`/me`) has a **Profile** section with an **Edit** button and a privacy section with toggles.
+There is no community-side configuration. Everything lives on the member. The dashboard's **My Settings** page (`/me`) has a **Profile** section with an **Edit** button and a privacy section with toggles.
 
 | Setting | Default | What it controls |
 | --- | --- | --- |
@@ -124,7 +123,7 @@ The same page also has a toggle that disables pronoun fetching for your account.
 ## Setup walkthrough
 
 1. Run `setbio Hi, I run the art channel.` to add a description.
-2. Run `setpronouns she/her`, or skip this if your PronounDB account is already linked to Fluxer.
+2. Run `setpronouns she/her`.
 3. Run `setbirthday 1998-04-12` and then `setbirthdayprivacy MonthAndDate` if you do not want the year shown.
 4. Run `setprofilecolor #ff66aa` and `setprofileimage https://example.com/banner.png` to style the embed.
 5. Add `setswitchfc SW-1234-5678-9012` if you want people to find you on Switch.
@@ -138,25 +137,26 @@ Run these with your community's prefix (`.` unless you changed it).
 | --- | --- | --- | --- |
 | `profile [@user]` | `userprofile` | Nobody | Show your profile or someone else's |
 | `setbio <text>` | | Nobody | Set your bio, up to 2048 characters |
-| `setpronouns [text]` | `pronounsset` | Nobody | Set a pronoun override, or view it with clear and overwrite buttons |
-| `pronouns [@user]` | `getpronouns` | Nobody | Show pronouns, with a report button on overrides |
+| `setpronouns [text]` | `pronounsset` | Nobody | Set a pronoun override, or view it with a clear reaction |
+| `pronouns [@user]` | `getpronouns` | Nobody | Show pronouns |
+| `pronounsreport @user` | `reportpronouns` | Nobody | Report a member's pronoun override to the bot owners |
 | `setzodiac <sign>` | | Nobody | Set your zodiac sign |
 | `setprofilecolor <colour>` | | Nobody | Set the embed colour |
 | `setprofileimage <url>` | | Nobody | Set the image shown on the profile |
 | `setbirthday <date>` | | Nobody | Set your birthday |
 | `setbirthdayprivacy <mode>` | | Nobody | `Default`, `MonthOnly`, `YearOnly`, `MonthAndDate` or `Disabled` |
-| `setprivacy <Public|Private>` | `profilepricvacy` | Nobody | Make the profile public or private |
+| `setprivacy <Public\|Private>` | `profilepricvacy` | Nobody | Make the profile public or private |
 | `setswitchfc [code]` | `setfc`, `setswitchfriendcode`, `setfriendcode` | Nobody | Set or clear your Switch friend code |
 | `greetdmoptout` | `gdmoptout` | Nobody | Toggle receiving DM greetings from this bot |
 | `userstatsoptout` | `ustatsoptout` | Nobody | Toggle command statistics collection |
 | `deleteuserstatsdata` | `deluserstatsdata` | Nobody | Delete your stored command statistics (once per hour) |
-| `pronounsforceclear <@user or id> <true|false> <reason>` | `pnfc` | Bot owner | Clear a member's pronouns and optionally disable them |
+| `pronounsforceclear <@user or id> <true\|false> <reason>` | `pnfc` | Bot owner | Clear a member's pronouns and optionally disable them |
 
 ## Tips and gotchas
 
 - The profile is global. Changing it in one community changes it everywhere.
 - `setbirthday` reads the date with the bot's date parser, so an unambiguous format like `1998-04-12` is safest.
 - If the profile image URL stops working, the embed still sends but Fluxer shows no image. Set a new URL to fix it.
-- PronounDB lookups need the member to have linked their Fluxer account on pronoundb.org. Without that, the profile says "Unspecified" until they run `setpronouns`.
+- PronounDB lookups go by Discord account ID, so most members will see "Unspecified" until they run `setpronouns`.
 - Private profiles still respond to `profile @user`, but with an error saying the profile is private, so people can tell one exists.
 - `deleteuserstatsdata` only removes command statistics. Profile fields are cleared by overwriting them.

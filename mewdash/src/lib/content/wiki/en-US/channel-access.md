@@ -1,7 +1,7 @@
 ---
 title: Channel Access
 slug: channel-access
-summary: Gate a private channel behind an application form, and let the members already inside vote on who gets in.
+summary: Keeps a private channel behind an application form that the members inside vote on
 icon: fa-lock
 category: Security
 dashboard: /dashboard/channel-access
@@ -12,9 +12,9 @@ related: [administration, tickets, forms]
 
 ## What it does
 
-Staff put a "gate" on a channel that most members cannot see. Members click an **Apply for access** button, or run `channelaccessapply`, and fill in a short form of up to five questions. The application is posted as an embed in a review channel with **Approve**, **Deny**, optional **Abstain** and **Breakdown** buttons.
+Staff put a "gate" on a channel that most members cannot see. Members react with 📝 to an apply panel, or run `channelaccessapply`, and answer up to five questions in a DM with the bot. The application is posted as an embed in a review channel with ✅ approve, ❌ deny and optional 🤷 abstain reactions.
 
-The people who can already see the channel vote. Once enough approvals arrive the applicant is let in, either by being given a role or by getting a personal permission overwrite on the channel. Enough denials, or the voting window closing, turns them down. Staff can force either outcome at any time.
+The people who can already see the channel vote by reacting. Once enough approvals arrive the applicant is let in, either by being given a role or by getting a personal permission overwrite on the channel. Enough denials, or the voting window closing, turns them down, and staff can force either outcome at any time.
 
 The applicant is told the result by DM if the gate allows it, and denied applicants have to wait out a cooldown before applying again. Everything is logged to an optional log channel.
 
@@ -38,9 +38,9 @@ Approved members are never removed automatically. Take the role away or delete t
 
 ## Applications
 
-Before an application opens, the bot checks in this order: the gate is accepting applications, the member does not already have access, they are not blocked, their account and community join are old enough, they have no open application for this gate, and their reapply cooldown has passed. Failing any check returns an ephemeral message saying why.
+Before an application opens, the bot checks in this order: the gate is accepting applications, the member does not already have access, they are not blocked, their account and community join are old enough, they have no open application for this gate, and their reapply cooldown has passed. Failing any check tells the member why, in a reply to the command or by DM when they used the panel.
 
-If the gate has questions, a modal opens with one box per question. Questions are capped at 45 characters. Answer boxes are either single-line (200 characters) or multi-line (1000 characters) and can be marked required. A gate with no questions submits straight away.
+The bot then opens a DM and asks each question in turn. The member's next message is the answer. Questions are capped at 45 characters. Answers can be up to 200 characters, or 1000 when the question is marked multi-line. A required question repeats until the answer fits, and an optional one can be skipped by replying `skip`. If the member does not reply within 5 minutes the application is cancelled. The member needs DMs open, or the bot cannot ask the questions. A gate with no questions submits straight away.
 
 The review message goes to the **Review channel**, or into the gated channel itself when none is set. It shows the applicant, when their account was created and when they joined, each question and answer, a live vote tally, and a footer with when voting closes. If **Hide the applicant until the vote closes** is on, the name is replaced with "Hidden until the vote closes" while pending.
 
@@ -58,11 +58,11 @@ The review message goes to the **Review channel**, or into the gated channel its
 
 Who may vote depends on the gate. If a **Voter role** is set, only members with that role can vote. Otherwise anyone who already has access to the channel, plus anyone with Manage Roles, can vote. Applicants can never vote on their own application.
 
-Clicking a button records a vote. Clicking a different button changes it. Clicking the same button again removes it. The tally updates on the message after every change.
+Reacting with ✅, ❌ or 🤷 records a vote. Reacting with a different emoji changes it, and taking the reaction back removes the vote. Reactions from people who cannot vote are removed. The tally updates on the message after every change.
 
 The application resolves as soon as approvals reach **Approvals needed** or denials reach **Denials needed**. Setting either threshold to 0 disables that side, so a gate with **Denials needed** at 0 can only be denied by staff or expiry.
 
-**Breakdown** shows who voted which way, for voters only. With **Hide who voted which way** on, only members with Manage Roles can see it.
+`channelaccessbreakdown <id>` shows who voted which way, for voters only. With **Hide who voted which way** on, only members with Manage Roles can see it.
 
 ### When the window closes
 
@@ -82,15 +82,21 @@ Staff can block a user from one gate or from every gate in the community. Blocke
 
 ## Settings
 
-The **Channel Access** page has three tabs: **Gates**, **Applications** and **Blocked**.
+The **Channel Access** page has three tabs: **Gates**, **Applications** and **Blocked**. The header has a **Refresh** button.
 
-**Gates** lists every gate with an **Accepting applications** toggle, and expands to show its settings, **Application questions** and an **Apply panel** poster. Defaults below apply to new gates.
+### Gates tab
+
+The **Gates** card shows three counters (**Gates**, **Open applications** and **Blocked users**) and one row per gate. Each row shows the channel, how it grants access (`Grants <role>` or `Adds people to the channel directly`) and badges for whether it is accepting applications, the votes needed, the voting window and the open count. Click a row to open its settings. The trash button deletes the gate after a confirmation. Deleting removes its questions, applications and votes, but access already granted stays.
+
+**Create gate** opens **Open applications for a channel** with **Locked channel**, **How people get in** and, for a role gate, **Role granted on approval**. A channel that already has a gate is not offered. After creating, the gate's settings open straight away.
+
+The gate settings sheet has an **Accepting applications** toggle, the settings below, the **Application questions** list and the **Apply panel** poster. Changes save as you make them. The defaults apply to new gates.
 
 | Setting | Default | What it controls |
 | --- | --- | --- |
-| Locked channel | required | The channel being gated |
+| Locked channel | required | The channel being gated, set when the gate is created |
 | How people get in | Give them a role | Role gate or direct gate |
-| Role granted on approval | none | The access role, for role gates |
+| Role granted on approval / Access role | none | The access role, for role gates |
 | Approvals needed | 3 | Approvals that resolve as approved; 0 disables |
 | Denials needed | 3 | Denials that resolve as denied; 0 disables |
 | Voting window (hours) | 72 | Time before the expiry rule runs; 0 for no limit |
@@ -102,21 +108,31 @@ The **Channel Access** page has three tabs: **Gates**, **Applications** and **Bl
 | Min account age (days) | 0 | Reject accounts younger than this |
 | Min time in community (days) | 0 | Reject members who joined more recently than this |
 | Reapply cooldown (hours) | 168 | Wait after a denial or expiry before applying again |
-| Offer an abstain button | on | Adds an Abstain button to the review message |
+| Offer an abstain button | on | Adds a 🤷 abstain reaction to the review message |
 | Hide the applicant until the vote closes | off | Anonymous applicant while pending |
 | Hide who voted which way | off | Breakdown only for Manage Roles |
 | DM the applicant on a decision | on | Sends the result by DM |
 
-**Applications** lists applications filtered by gate and status, with the tally and **Approve** and **Deny** buttons for pending ones. **Blocked** lists blocked users by scope and lets you **Block** someone from one gate or **Every gate**, with an optional reason.
+**Application questions** takes up to five questions. Each has the question text (45 characters max) and **Required** and **Multi-line answer** toggles, both on by default. Multi-line answers can be longer. The placeholder field is not shown to applicants. Use the trash button to remove one.
+
+**Apply panel** shows where the panel was last posted. Pick a channel under **Where should the button go?** and click **Post panel**. The panel is an embed with a 📝 reaction that members click to apply.
+
+### Applications tab
+
+The **Filters** card has a **Gate** dropdown (**All gates** or one gate) and a **Status** dropdown (**Any status**, **Pending**, **Approved**, **Denied**, **Withdrawn**, **Expired**). It opens on **Pending**. The **Applications** card lists up to 200 matches. Each row shows the applicant, the gate channel, when it opened and, for pending ones, when voting closes, plus the approval, denial and abstain counts. **Details** expands the row, where you can add a **Reason (optional)** and click **Approve** or **Deny** to resolve it regardless of votes. Resolved rows show when and why they closed.
+
+### Blocked tab
+
+**Block someone from applying** has a **User** picker, a **Scope** (**Every gate** or one gate), a **Reason (optional)** box and a **Block** button. **Blocked users** lists everyone blocked with their scope, reason and date, and an **Unblock** button on each.
 
 ## Setup walkthrough
 
 1. Make the channel private in Fluxer and, for a role gate, create the role that can see it.
-2. Open **Channel Access** in the dashboard and use **Open applications for a channel**. Pick the **Locked channel**, choose **How people get in**, and select the role if needed.
-3. Expand the gate. Set a **Review channel** so applications do not land in the locked channel, and a **Log channel** if you want a record.
-4. Adjust **Approvals needed**, **Denials needed** and the **Voting window** to match how many voters you expect.
-5. Under **Application questions**, add up to five questions. Tick **Required** and **Multi-line answer** as needed.
-6. Under **Apply panel**, choose where the button should go and click **Post panel**.
+2. Open **Channel Access** in the dashboard, stay on **Gates** and click **Create gate**. Pick the **Locked channel**, choose **How people get in**, and select the role if needed.
+3. In the gate settings that open, set a **Review channel** so applications do not land in the locked channel, and a **Log channel** if you want a record.
+4. Adjust **Approvals needed**, **Denials needed** and the **Voting window (hours)** to match how many voters you expect.
+5. Under **Application questions**, add up to five questions. Set **Required** and **Multi-line answer** as needed and click **Add question**.
+6. Under **Apply panel**, choose where the panel should go and click **Post panel**.
 7. Apply from a test account, vote from a member who has access, and check the applicant gets in.
 
 ## Commands
@@ -129,12 +145,13 @@ Run these with your community's prefix (`.` unless you changed it).
 | `channelaccessremove <#channel>` | `caremove` | Manage Roles | Delete a gate with its questions and history |
 | `channelaccesslist` | `calist` | Nobody | List gates with thresholds, window and status |
 | `channelaccessconfig <#channel> [setting] [value]` | `caconfig` | Manage Roles | Change one setting; run without a setting to see the list |
-| `channelaccesspanel <#channel> [#target]` | `capanel` | Manage Roles | Post the apply button, in the current channel by default |
+| `channelaccesspanel <#channel> [#target]` | `capanel` | Manage Roles | Post the apply panel, in the current channel by default |
 | `channelaccessquestionadd <#channel> <question>` | `caqadd` | Manage Roles | Add a required multi-line question |
 | `channelaccessquestionremove <#channel> <position>` | `caqremove` | Manage Roles | Remove a question by its listed number |
 | `channelaccessquestionlist <#channel>` | `caqlist` | Manage Roles | Show the questions in order |
-| `channelaccessapply <#channel>` | `caapply` | Nobody | Post the apply button for yourself |
+| `channelaccessapply <#channel>` | `caapply` | Nobody | Start your application, with the questions asked in your DMs |
 | `channelaccesswithdraw <id>` | `cawithdraw` | Nobody | Pull back your own open application |
+| `channelaccessbreakdown <id>` | `cabreakdown` | Voters | Show who voted which way |
 | `channelaccesshistory [@user]` | `cahistory` | Nobody | Your application history; other users need Manage Roles |
 | `channelaccesspending [#channel]` | `capending` | Nobody | List open applications, optionally for one gate |
 | `channelaccessapprove <id> [reason]` | `caapprove` | Manage Roles | Approve regardless of votes |
@@ -154,6 +171,7 @@ The settings accepted by `channelaccessconfig` are `enabled`, `approvals`, `deni
 - If no **Review channel** is set, applications are posted inside the locked channel. That works for "members vote on newcomers", but set a separate channel if staff should vote instead.
 - Questions added by command are always required and multi-line. Use the dashboard to make a question optional or single-line, or to give it placeholder text.
 - Deleting a gate removes its questions, applications and votes permanently.
+- Members with DMs closed cannot apply, because the questions are asked by DM.
 - Members who leave the community before the vote ends are not granted access even if approved.
 - Vote and expiry outcomes are only DMed for approvals and denials. Withdrawn applications get no DM.
 - A blocked user must be unblocked with the same scope the block was made with. A community-wide block is not lifted by an unblock naming a channel.

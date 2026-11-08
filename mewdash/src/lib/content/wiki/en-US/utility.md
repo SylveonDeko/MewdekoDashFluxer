@@ -1,29 +1,29 @@
 ---
 title: Utilities
 slug: utility
-summary: A toolbox of everyday helpers, from command aliases, quotes and reminders to auto-publishing, an AI assistant, message counting and repeaters.
+summary: A grab bag of everyday helpers, such as reminders and command aliases
 icon: fa-wrench
 category: Actions
 dashboard: /dashboard/utility
 module: Utility
-tags: [alias, quotes, auto publish, ai, chatbot, nsfw filter, role monitor, reminder, snipe, repeater, sticky, message count, invites, embed, calculator, userinfo, serverinfo]
-related: [repeaters, polls, invites, messagestats, embedbuilder, xp, administration, moderation]
+tags: [alias, quotes, auto publish, ai, chatbot, nsfw filter, role monitor, reminder, snipe, repeater, message count, invites, embed, calculator, userinfo, community info]
+related: [repeaters, invites, messagestats, embedbuilder, xp, administration, moderation]
 ---
 
 ## What it does
 
-Utility is the catch-all module for small features that most communities end up wanting. Members get reminders, quotes, dice rolls, a calculator, unit conversion, and info commands for users, roles, channels and the community. Staff get command aliases, repeating messages, auto-publishing for announcement channels, deleted-message sniping, message counting and invite tracking.
+Utility is the catch-all module for small features that most communities end up wanting. Members get reminders and quotes, dice rolls, a calculator, unit conversion, and info commands for users, roles, channels and the community. Staff get command aliases and repeating messages, auto-publishing for announcement channels, deleted-message sniping, message counting and invite tracking.
 
 The dashboard's **Utilities** page collects the parts that benefit from a form: aliases, quotes, auto publish, the AI assistant, the NSFW tag filter and the role monitor. Everything else is command-only.
 
-Because this module is broad, each sub-feature below is described on its own. The command table at the end lists every command in the module.
+Because this module is broad, each sub-feature below is described on its own. The command table at the end lists the main commands in the module.
 
 ## Why you would use it
 
 - Shorten `play youtube` to `yt` for the whole community with an alias.
 - Keep a shared quote book that members can add to and pull random lines from.
 - Have every post in your announcements channel published to followers automatically.
-- Post rules or a sticky notice every few minutes, or only when the channel is active.
+- Post rules or a notice every few minutes, or only when the channel is active.
 - Let members set reminders for themselves or for a channel.
 - Run an AI assistant in one channel using your own API key.
 
@@ -31,19 +31,19 @@ Because this module is broad, each sub-feature below is described on its own. Th
 
 An alias is a trigger word that the bot rewrites into another command before running it. `alias yt play youtube` means `.yt lofi` runs as `.play youtube lofi`. The trigger must be the first word of the message; anything after it is appended to the mapped command. Longer triggers are matched first. Running `alias <trigger>` with no mapping removes it, and `aliasesclear` removes them all.
 
-On the dashboard, the **Aliases** tab has **Alias trigger** and **Alias mapping** fields, a search box, and a list you can delete from.
+On the dashboard, the **Aliases** tab has a **Command aliases** card with a trigger field ("Trigger, e.g. yt"), a mapping field ("Runs this command, e.g. play youtube"), **Search aliases**, a list you can delete from and a **Clear all aliases** button.
 
 ## Quotes
 
-Quotes are short texts filed under a keyword. `quoteadd <keyword> <text>` stores one, `quoteprint <keyword>` (or `..`) shows a random quote for that keyword, and `quoteshow <id>` shows a specific one. `quotesearch` matches on keyword and text, `quoteid` shows who added a quote, and `listquotes` pages through them ordered by keyword or date added. Anyone can add quotes. A quote can be deleted by the member who added it or by an administrator; deleting every quote under a keyword, exporting to JSON and importing from a JSON attachment need Administrator.
+Quotes are short texts filed under a keyword. `quoteadd <keyword> <text>` stores one. `quoteprint <keyword>` (or `..`) shows a random quote for that keyword and `quoteshow <id>` shows a specific one. `quotesearch` matches on keyword and text, and `quoteid` shows who added a quote. `listquotes` pages through them ordered by keyword or date added. Anyone can add quotes. A quote can be deleted by the member who added it or by an administrator. Deleting every quote under a keyword, and exporting or importing quotes as JSON, need Administrator.
 
-The **Quotes** tab lets you add, edit, search and delete quotes.
+The **Quotes** tab shows a **Quotes** card with the total count, a search box ("Search keyword or text"), paging, and each quote with its ID, author and how many times it was used. **New quote** and the edit button open a sheet with a keyword (max 50 characters) and the quote text, which is built in the message editor, so a quote can be plain text or an embed. The delete button asks for confirmation.
 
 ## Auto publish
 
-Fluxer announcement channels need each message to be published by hand. `addautopublish #channel` makes the bot publish every new message in that channel. Two blacklists per channel skip messages: `addpublishblacklist @user #channel` ignores a user, and `addpublishblacklist #channel word` ignores any message containing that word, case-insensitive. `getautopublishes` shows every channel with its blacklists.
+Announcement channels need each message to be published by hand. `addautopublish #channel` makes the bot publish every new message in that channel. Two blacklists per channel skip messages: `addpublishblacklist @user #channel` ignores a user, and `addpublishblacklist #channel word` ignores any message containing that word, case-insensitive. `getautopublishes` shows every channel with its blacklists.
 
-The **Auto Publish** tab adds channels and manages the **Skip messages from these users** and **Skip messages containing these words** lists.
+The **Auto publish** tab has an **Add an announcement channel** picker that lists only announcement channels. Each published channel has a **Disable** button and two lists, **Skip messages from these users** (picked from members) and **Skip messages containing these words**.
 
 ## AI assistant
 
@@ -59,30 +59,39 @@ The assistant answers every message posted in one chosen channel, keeping the la
 | Webhook | `aiwebhook [name] [avatarUrl]` | Post replies through a webhook with a custom name and avatar |
 | Custom embed | `aicustomembed [template]` | Wrap replies in an embed; `%airesponse%` marks where the answer goes |
 
-`aiconfig` shows the current configuration. The **AI Assistant** tab has **Assistant enabled**, **Channel**, **Provider**, **Model**, **API key**, **System prompt**, **Allow web search** and **Hide "searching the web" notices**.
+`aiconfig` shows the current configuration. The **AI assistant** tab has two cards. The first has the card switch (it needs a channel first), **Channel**, **Provider** (OpenAI, Claude (Anthropic) or Groq), **API key**, **Model**, **System prompt**, **Allow web search** and **Hide "searching the web" notices**. A token count appears once the assistant has been used. Once a key is stored the field shows a hint of it, and **Remove key** deletes it, after which the assistant stops responding until a new key is set. **Fetch models** loads the provider's model list into the **Model** dropdown and needs a saved key. Until then **Model** is a text field for a model id.
+
+The **Replies** card has a **Webhook URL (optional)** field with a **Remove** button once one is set, and a **Reply embed** editor where `%airesponse%` marks the answer. Changes save as you make them.
 
 > [!WARNING]
 > The assistant runs on your API key and your bill. Without a key set, messages in the channel get an error reply.
 
 ## NSFW filter
 
-The **NSFW Filter** tab lists blocked tags for the NSFW module's image searches. Type a tag in **Tag to block** to add it, or click one to remove it. The matching command is `nsfwtagbl [tag]` from the NSFW module; with no tag it lists the current blacklist.
+The **NSFW filter** tab shows a **Blocked NSFW tags** card with the count. Type a tag in **Tag to block** and press **Block tag** to add it, or use the remove button on a tag to unblock it. These tags filter the NSFW module's image searches. The matching command is `nsfwtagbl [tag]` from the NSFW module; with no tag it lists the current blacklist.
 
 ## Role monitor
 
-The **Role Monitor** tab configures the Community Management module's role monitor, which reacts when a role or permission you have marked as protected is handed out. Choose a **Default punishment** (only revert the change, warn, remove all roles, mute, timeout, kick or ban), add roles and permissions to protect, and list **Trusted roles** and **Trusted members** who are exempt. The commands (`addblacklistedrole`, `addblacklistedpermission`, `whitelistuser`, `whitelistrole`, `setdefaultpunishment`, `listblacklists`) are community-owner only and live in Community Management.
+The **Role monitor** tab configures the role monitor, which reacts when a role or permission you have marked as protected is handed out. It has four cards:
+
+- **Role monitor** holds the **Default punishment**: Only revert the change, Warn, Remove all roles, Mute, Timeout, Kick or Ban. It is used unless an entry has its own.
+- **Blacklisted roles** protects roles. Changes are reverted and the moderator punished. Each entry can use **Use default punishment** or its own punishment.
+- **Blacklisted permissions** protects permissions such as Administrator or Manage Roles. Roles with these permissions are reverted, and each entry has its own punishment choice too.
+- **Trusted roles and members** lists the roles and members whose changes are never reverted.
+
+The commands (`addblacklistedrole`, `addblacklistedpermission`, `addwhitelisteduser` (alias `whitelistuser`), `addwhitelistedrole` (alias `whitelistrole`), `setdefaultpunishment`, `listblacklists`) are community-owner only.
 
 ## Reminders
 
-`remind me <time> <message>` DMs you later; `remind here <time> <message>` posts in the current channel; `remind #channel <time> <message>` targets another channel and needs Manage Messages. Time is written like `2h30m`, `3 days`, `1w` or `in 45 minutes`, and can be at most 60 days away. `remindlist` shows your reminders with index numbers and `reminddelete <index>` removes one. Mentions in the message are neutralised unless you can mention everyone in that channel.
+`remind me <time> <message>` DMs you later and `remind here <time> <message>` posts in the current channel. `remind #channel <time> <message>` targets another channel and needs Manage Messages. Time is written like `2h30m`, `3 days`, `1w` or `in 45 minutes`, and can be at most 60 days away. `remindlist` shows your reminders with index numbers and `reminddelete <index>` removes one. Mentions in the message are neutralised unless you can mention everyone in that channel.
 
 ## Snipe
 
-Sniping is off until an administrator runs `snipeset enable`. Once on, the bot keeps deleted and edited messages for 30 days. `snipe [#channel] [@user]` shows the most recent deleted message, `editsnipe` the most recent edit, and `snipelist` and `editsnipelist` show the last five (or a number you give), filtered by channel or user.
+Sniping is off until an administrator runs `snipeset enable`. Once on, the bot keeps deleted and edited messages for 30 days. `snipe [#channel] [@user]` shows the most recent deleted message and `editsnipe` the most recent edit. `snipelist` and `editsnipelist` show the last five (or a number you give), filtered by channel or user.
 
 ## Repeaters
 
-A repeater posts a message on a schedule. `repeat <message>` uses a five-minute interval; `repeat <interval> <message>` sets one between 5 seconds and 25000 minutes; `repeat <time of day> <message>` runs once a day. Each repeater has an index shown by `repeatlist`.
+A repeater posts a message on a schedule. `repeat <message>` uses a five-minute interval and `repeat <interval> <message>` sets one between 5 seconds and 25000 minutes. `repeat <time of day> <message>` runs once a day. Each repeater has an index shown by `repeatlist`.
 
 | Trigger mode | Behaviour |
 | --- | --- |
@@ -92,7 +101,7 @@ A repeater posts a message on a schedule. `repeat <message>` uses a five-minute 
 | `immediate` | Post right away, then follow the interval |
 | `aftermessages` | Post after a set number of messages |
 
-Other per-repeater switches: `repeatredun` skips posting if the repeater's message is already the last one in the channel; `repeatschedule <business\|evening\|weekend\|custom>` limits when it runs; `repeatconversation` toggles conversation detection; `repeatpriority` orders repeaters 0 to 100; `repeatthreadonly` and `repeatthreadautosticky` target threads; `repeatforumtags` restricts forum posts by tag; `repeatsuppressnotifications` sends silently; `repeattoggle` pauses.
+Other per-repeater switches: `repeatredun` skips posting if the repeater's message is already the last one in the channel; `repeatschedule <business\|evening\|weekend\|custom>` limits when it runs; `repeatconversation` toggles conversation detection; `repeatpriority` orders repeaters 0 to 100; `repeatsuppressnotifications` sends silently; `repeattoggle` pauses.
 
 ## Message counting and invites
 
@@ -102,30 +111,31 @@ Invite tracking records who invited each member. `invites`, `whoinvited`, `invit
 
 ## Settings
 
-The dashboard page is split into tabs: **Aliases**, **Quotes**, **Auto Publish**, **AI Assistant**, **NSFW Filter** and **Role Monitor**.
+The dashboard page is split into tabs: **Aliases**, **Quotes**, **Auto publish**, **AI assistant**, **NSFW filter** and **Role monitor**. The open tab is kept in the URL as `?tab=` (`aliases`, `quotes`, `autopublish`, `ai`, `nsfw` or `rolemonitor`).
 
 | Setting | Default | What it controls |
 | --- | --- | --- |
 | Alias trigger and mapping | none | Word to rewrite and the command it becomes |
 | Quote keyword and text | none | A stored quote |
-| Auto publish channels | none | Announcement channels the bot publishes in |
+| Announcement channels | none | Announcement channels the bot publishes in |
 | Skip messages from these users / containing these words | none | Per-channel publish blacklists |
-| Assistant enabled | off | Whether the AI channel responds |
-| Provider, Model, API key, System prompt | none | AI configuration |
-| Allow web search | off | Claude web search |
+| Assistant switch | off | Whether the AI channel responds |
+| Channel, Provider, Model, API key, System prompt | none, provider OpenAI | AI configuration |
+| Allow web search | off | Web search for the model |
 | Hide "searching the web" notices | on | Suppress the model's web search status messages |
-| Blocked tags | none | NSFW search tags that are filtered |
-| Default punishment | use default | Role monitor action |
+| Webhook URL (optional) and Reply embed | none | How replies are posted |
+| Blocked NSFW tags | none | NSFW search tags that are filtered |
+| Default punishment | Only revert the change | Role monitor action when an entry has none of its own |
 
 Sniping, message counting, invite tracking, repeaters, reminders and link previews have no dashboard controls.
 
 ## Setup walkthrough
 
 1. Open **Utilities** in the dashboard.
-2. On **Aliases**, add a trigger such as `yt` mapped to `play youtube`. Test it in Fluxer.
-3. On **Auto Publish**, add your announcements channel. Add any bot or webhook users to the skip list.
-4. On **AI Assistant**, choose a channel, provider and model, paste your key, write a system prompt and enable it.
-5. In Fluxer, run `snipeset enable` if you want deleted-message sniping and `togglemsgcount` for message statistics.
+2. On **Aliases**, add a trigger such as `yt` mapped to `play youtube`. Test it in your community.
+3. On **Auto publish**, add your announcements channel. Add any bot or webhook users to the skip list.
+4. On **AI assistant**, choose a channel and provider, paste your key, press **Fetch models** and pick a model, write a system prompt and turn the switch on.
+5. In your community, run `snipeset enable` if you want deleted-message sniping and `togglemsgcount` for message statistics.
 
 ## Commands
 
@@ -181,10 +191,7 @@ Run these with your community's prefix (`.` unless you changed it).
 | `repeatschedule <index> <preset>` | `repschedule`, `repsched` | Manage Messages | Time-of-day schedule |
 | `repeatconversation <index>` | `repconversation`, `repconv` | Manage Messages | Toggle conversation detection |
 | `repeattoggle <index>` | `reptoggle`, `reptog` | Manage Messages | Pause or resume |
-| `repeatthreadautosticky <index>` | `repthreadauto`, `repthreads` | Manage Messages | Sticky in new threads |
-| `repeatthreadonly <index>` | `repthreadonly`, `reptonly` | Manage Messages | Only post in threads |
 | `repeatsuppressnotifications <index>` | `repsuppressnotif`, `repsilent`, `repsuppress` | Manage Messages | Send silently |
-| `repeatforumtags <index> <action> [tagType] [tags]` | `repforumtags`, `repftags` | Manage Messages | Forum tag rules |
 | `togglemsgcount` | `togglemessagecount` | Administrator | Turn message counting on or off |
 | `minmsglength [length]` | `mmlength`, `minmlength` | Manage Community | Ignore short messages |
 | `usermessages [@user]` | `usermsg`, `umsg` | Nobody | A member's message stats |
@@ -211,7 +218,7 @@ Run these with your community's prefix (`.` unless you changed it).
 | `vinfo [channel]` | `voiceinfo` | Nobody | Voice channel details |
 | `rinfo <role>` | `roleinfo` | Nobody | Role details |
 | `fetch <id>` | | Nobody | Look up any user by ID |
-| `avatar [@user]` | `av` | Nobody | Avatar, with a button for the community avatar |
+| `avatar [@user]` | `av` | Nobody | Avatar, with a link to the community avatar |
 | `banner [@user]` | `userbanner` | Nobody | User banner |
 | `userid [@user]` | `uid` | Nobody | User ID |
 | `roleid <role>` | `rid` | Nobody | Role ID |
@@ -222,7 +229,6 @@ Run these with your community's prefix (`.` unless you changed it).
 | `inroles <role> <role>` | | Nobody | Members with both roles |
 | `rolepermlist [and\|or] <permissions...>` | `roleperms` | Nobody | Roles holding permissions |
 | `channeltopic [#channel]` | `ct` | Nobody | Channel topic |
-| `whosplaying <game>` | `whpl` | Nobody | Members playing a game |
 | `emotelist [type]` | | Nobody | Community emotes |
 | `showemojis <emojis>` | `se` | Nobody | Enlarge emojis |
 | `say [#channel] <text or embed JSON>` | | Manage Messages | Speak as the bot |
@@ -256,7 +262,7 @@ Run these with your community's prefix (`.` unless you changed it).
 ## Tips and gotchas
 
 - An alias only rewrites the text; the mapped command still runs with its own permission checks.
-- Auto publish only works in Fluxer announcement (news) channels.
+- Auto publish only works in announcement (news) channels.
 - Sniping is off by default, and snipes older than 30 days are dropped.
 - Reminders longer than 60 days are rejected.
 - The AI assistant only responds in the one configured channel and ignores bots. Its memory is the last five messages per member, so long conversations lose early context.

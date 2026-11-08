@@ -1,5 +1,6 @@
 import { env } from "$env/dynamic/public";
 import * as Sentry from "@sentry/sveltekit";
+import type { HandleClientError } from "@sveltejs/kit";
 
 const dsn = env.PUBLIC_SENTRY_DSN;
 
@@ -26,10 +27,10 @@ function reloadOnStaleBuild(error: unknown): boolean {
   return true;
 }
 
-const reportError = Sentry.handleErrorWithSentry();
+const reportError = Sentry.handleErrorWithSentry<HandleClientError>();
 
 /** Reloads once when a deploy removed the chunk a page needs, and reports other client-side errors to Sentry. */
-export const handleError: typeof reportError = (input) => {
+export const handleError: HandleClientError = (input) => {
   if (reloadOnStaleBuild(input.error)) return;
   return reportError(input);
 };

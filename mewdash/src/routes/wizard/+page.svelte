@@ -23,6 +23,7 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
   import MigrationFlow from "$lib/components/dashboard/migration/MigrationFlow.svelte";
   import FeatureSetupCard from "./components/FeatureSetupCard.svelte";
   import PermissionCheck from "./components/PermissionCheck.svelte";
+  import MessageField from "$lib/components/plugin/MessageField.svelte";
   import ProgressiveFeatureConfig from "./components/ProgressiveFeatureConfig.svelte";
   import BulkNotificationSetup from "./components/BulkNotificationSetup.svelte";
   import FeatureDependencySuggestion from "./components/FeatureDependencySuggestion.svelte";
@@ -1426,9 +1427,6 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
           }
           if (config.message?.trim()) {
             await votesApi.setVoteMessage(guildId, config.message.trim());
-          }
-          if (config.password?.trim()) {
-            await votesApi.setVotePassword(guildId, config.password.trim());
           }
           break;
 
@@ -2969,7 +2967,7 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
                               </span>
                               <DiscordSelector
                                 type="custom"
-                                customIcon="fa-gavel"
+                                customIcon="fa-shield"
                                 options={wizardPunishmentActions}
                                 selected={String(config.antiRaid.action)}
                                 onchange={(detail) => config.antiRaid.action = Number(detail.selected)}
@@ -3015,7 +3013,7 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
                               </span>
                               <DiscordSelector
                                 type="custom"
-                                customIcon="fa-gavel"
+                                customIcon="fa-shield"
                                 options={wizardPunishmentActions}
                                 selected={String(config.antiSpam.action)}
                                 onchange={(detail) => config.antiSpam.action = Number(detail.selected)}
@@ -3061,7 +3059,7 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
                               </span>
                               <DiscordSelector
                                 type="custom"
-                                customIcon="fa-gavel"
+                                customIcon="fa-shield"
                                 options={wizardPunishmentActions}
                                 selected={String(config.antiAlt.action)}
                                 onchange={(detail) => config.antiAlt.action = Number(detail.selected)}
@@ -3105,7 +3103,7 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
                               </span>
                               <DiscordSelector
                                 type="custom"
-                                customIcon="fa-gavel"
+                                customIcon="fa-shield"
                                 options={wizardPunishmentActions}
                                 selected={String(config.antiMassMention.action)}
                                 onchange={(detail) => config.antiMassMention.action = Number(detail.selected)}
@@ -3636,15 +3634,17 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
                       </div>
 
                       <div>
-                        <label for="repeat-message" class="block text-sm font-medium mb-2"
-                               style="color: {$colorStore.text};">
+                        <span class="block text-sm font-medium mb-2" style="color: {$colorStore.text};">
                           {m.common.message()}
-                        </label>
-                        <textarea id="repeat-message" rows="4"
-                                  class="w-full px-3 py-2 rounded-lg border resize-none"
-                                  style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}30; color: {$colorStore.text};"
-                                  bind:value={config.message}
-                                  placeholder={m.wizard.configRepeatersMessagePlaceholder()}></textarea>
+                        </span>
+                        <MessageField
+                          value={config.message}
+                          previewTitle={m.common.message()}
+                          user={data.user}
+                          placeholders={allPlaceholders}
+                          placeholder={m.wizard.configRepeatersMessagePlaceholder()}
+                          onchange={(next) => (config.message = next)}
+                        />
                       </div>
 
                       <div>
@@ -3686,31 +3686,19 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
                       </div>
 
                       <div>
-                        <label for="vote-message" class="block text-sm font-medium mb-2"
-                               style="color: {$colorStore.text};">
+                        <span class="block text-sm font-medium mb-2" style="color: {$colorStore.text};">
                           {m.wizard.configVotesMessage()}
-                        </label>
-                        <textarea id="vote-message" rows="3"
-                                  class="w-full px-3 py-2 rounded-lg border resize-none"
-                                  style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}30; color: {$colorStore.text};"
-                                  bind:value={config.message}></textarea>
+                        </span>
+                        <MessageField
+                          value={config.message}
+                          previewTitle={m.wizard.configVotesMessage()}
+                          icon="fa-circle-check"
+                          user={data.user}
+                          placeholders={allPlaceholders}
+                          onchange={(next) => (config.message = next)}
+                        />
                         <p class="text-xs mt-1" style="color: {$colorStore.muted};">
                           {m.wizard.configVotesMessageHint()}
-                        </p>
-                      </div>
-
-                      <div>
-                        <label for="vote-password" class="block text-sm font-medium mb-2"
-                               style="color: {$colorStore.text};">
-                          {m.wizard.configVotesPassword()}
-                        </label>
-                        <input id="vote-password" type="text"
-                               class="w-full px-3 py-2 rounded-lg border min-h-[44px]"
-                               style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}30; color: {$colorStore.text};"
-                               bind:value={config.password}
-                               placeholder={m.wizard.configVotesPasswordPlaceholder()} />
-                        <p class="text-xs mt-1" style="color: {$colorStore.muted};">
-                          {m.wizard.configVotesPasswordHint()}
                         </p>
                       </div>
                     </div>
@@ -3812,15 +3800,18 @@ Multi-Channel Intelligence, Bulk Configuration, and Three-State Feature Selectio
                       </div>
 
                       <div>
-                        <label for="afk-message" class="block text-sm font-medium mb-2"
-                               style="color: {$colorStore.text};">
+                        <span class="block text-sm font-medium mb-2" style="color: {$colorStore.text};">
                           {m.wizard.configAfkMessage()}
-                        </label>
-                        <textarea id="afk-message" rows="3"
-                                  class="w-full px-3 py-2 rounded-lg border resize-none"
-                                  style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}30; color: {$colorStore.text};"
-                                  bind:value={config.customMessage}
-                                  placeholder={m.wizard.configAfkMessagePlaceholder()}></textarea>
+                        </span>
+                        <MessageField
+                          value={config.customMessage}
+                          previewTitle={m.wizard.configAfkMessage()}
+                          icon="fa-moon"
+                          user={data.user}
+                          placeholders={allPlaceholders}
+                          placeholder={m.wizard.configAfkMessagePlaceholder()}
+                          onchange={(next) => (config.customMessage = next)}
+                        />
                       </div>
 
                       <div>

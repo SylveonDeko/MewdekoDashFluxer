@@ -678,14 +678,6 @@ export const CONDITIONAL_TYPES: Array<{
     requiresDiscord: true,
   },
   {
-    value: 3,
-    type: "BoostStatus",
-    get label() { return conditionalTypeLabel("3"); },
-    icon: "fa-gem",
-    get description() { return conditionalTypeDescription("3"); },
-    requiresDiscord: true,
-  },
-  {
     value: 4,
     type: "Permission",
     get label() { return conditionalTypeLabel("4"); },

@@ -1,27 +1,27 @@
 ---
 title: Role States
 slug: rolestates
-summary: Remember the roles a member had when they left the community and hand them back automatically when they rejoin.
+summary: Gives members their old roles back when they rejoin the community
 icon: fa-tag
 category: Actions
-dashboard: /dashboard/rolestates
+dashboard: /dashboard/roles?tab=states
 module: RoleStates
 tags: [role states, role persistence, restore roles, rejoin, saved roles, role backup, transfer roles]
-related: [administration, statusroles]
+related: [roles, administration, statusroles]
 ---
 
 ## What it does
 
-When Role States is enabled, the bot watches for members leaving. The moment someone leaves, it records the list of roles they held at that time. If that person later rejoins, the bot adds every saved role back to them, so they do not have to ask staff to be re-verified or re-assigned.
+When Role States is on, the bot watches for members leaving. The moment someone leaves, it records the list of roles they held at that time. If that person later rejoins, the bot adds every saved role back to them, so they do not have to ask staff to be re-verified or re-assigned.
 
 From the member's point of view nothing changes on the way out. On the way back in, their roles are simply there again, usually before they finish reading the welcome channel.
 
-Staff get a saved role list per member that they can inspect, edit or delete, an exclusion list for roles that should never be restored, and a bulk "save everyone now" action so the feature also covers members who were already in the community before you turned it on.
+Staff get a saved role list per member that they can review and change, and an exclusion list for roles that should never be restored. A bulk "save everyone now" action covers members who were already in the community before you turned the feature on.
 
 ## Why you would use it
 
 - Verified members who leave by accident, or to clear notifications, come back without losing access.
-- Colour, ping and hobby roles picked from a reaction role menu survive a rejoin.
+- Roles picked from a role menu, such as colour or ping roles, survive a rejoin.
 - Communities with a manual verification process avoid re-checking people who were already approved.
 - You can hand pick roles that should never come back, such as a temporary muted role or a staff role.
 - Moving to a new community: role states can be transferred and matched to roles with the same names.
@@ -30,17 +30,17 @@ Staff get a saved role list per member that they can inspect, edit or delete, an
 
 When a member leaves, the bot checks:
 
-1. Role States is enabled for the community.
-2. **Ignore Bots** is off, or the member is not a bot.
-3. The member is not on the **Denied Users** list.
+1. **Sticky roles** is on for the community.
+2. **Ignore bots** is off, or the member is not a bot.
+3. The member is not on the **Denied users** list.
 
-If all of that passes, it takes the member's current roles, drops the `@everyone` role and any managed roles (bot roles, booster role, integration roles), then removes anything on the **Denied Roles** list. If nothing is left, nothing is saved. Otherwise the list replaces whatever was stored for that member before.
+If all of that passes, it takes the member's current roles and drops the `@everyone` role and any role that no longer exists. It then removes anything on the **Denied roles** list. If nothing is left, nothing is saved. Otherwise the list replaces whatever was stored for that member before.
 
-Bans are handled separately. With **Clear on Ban** enabled, banning a member deletes their saved state, so an unban and rejoin does not restore anything.
+Bans are handled separately. With **Clear on ban** on, banning a member deletes their saved state, so an unban and rejoin does not restore anything.
 
 ## How a role state is restored
 
-On join, the bot again checks that the feature is enabled, that bots are not being ignored (if the member is a bot), and that the user is not on the denied list. It then adds every saved role in one request. Roles that no longer exist or sit above the bot's highest role cause that request to fail, and the failure is only logged.
+On join, the bot repeats the checks above. It then adds every saved role in one request. Roles that no longer exist or sit above the bot's highest role cause that request to fail, and the failure is only logged.
 
 > [!PERMISSION]
 > The bot needs Manage Roles, and its highest role must be above every role it is expected to give back.
@@ -53,41 +53,60 @@ If you also use auto-assign roles from the Administration module, a returning me
 
 Staff can build or adjust a member's state without waiting for them to leave:
 
-- `setuserrolestate` replaces a member's saved list with the roles you name. Managed roles and `@everyone` are dropped.
+- `setuserrolestate` replaces a member's saved list with the roles you name.
 - `addrolestorolestate` and `removerolesfromrolestate` change an existing saved list.
 - `deleteuserrolestate` forgets a member entirely.
 - `saveallrolestates` snapshots every current member at once, applying the same bot and deny filters as an automatic save.
 
-The dashboard adds one thing commands do not have: **Copy Role State**, which takes one member's saved roles and applies them directly to another member who is currently in the community.
+The dashboard adds one thing commands do not have: **Copy role state**, which takes one member's saved roles and applies them directly to another member who is currently in the community.
 
 ## Transferring to another community
 
-`transferrolestates <serverId>` copies every saved state from the current community to another community the bot is in. Roles are matched by name, ignoring case, and managed roles are skipped. Members whose saved roles have no name match in the target are skipped. The target community has Role States enabled automatically if it was not already, inheriting the source's **Ignore Bots** and **Clear on Ban** values when it has no settings of its own.
+`transferrolestates <communityId>` copies every saved state from the current community to another community the bot is in. Roles are matched by name, ignoring case. Members whose saved roles have no name match in the target are skipped. The target community has Role States enabled automatically if it was not already, inheriting the source's **Ignore bots** and **Clear on ban** values when it has no settings of its own.
 
-## Settings
+## The Sticky roles tab
 
-The **Settings** tab on the Role States page has two sub-tabs, **General** and **Denied**.
+On the Roles page this feature is the **Sticky roles** tab. It has three sub-tabs, **Settings**, **Management** and **Sticky roles**. The toolbar above them has **Save all states** and **Refresh**. Settings save as you change them.
 
-| Setting | Default | What it controls |
-| --- | --- | --- |
-| Role States | Off | Master switch for saving and restoring |
-| Clear on Ban | Off | Delete a member's saved state when they are banned |
-| Ignore Bots | Off | Do not save or restore roles for bot accounts |
-| Save Current States | button | Snapshot every current member's roles now |
-| Denied Roles | none | Roles that are never saved, and therefore never restored |
-| Denied Users | none | Members whose roles are never saved or restored |
+### Settings
 
-The **Management** tab holds **Manage User Roles** (add or remove selected roles from a member's saved state) and **Copy Role State**. The **Role States** tab lists every saved state with the member's name, ID and roles, and lets you view details or delete an entry.
+The **Sticky roles** card has three switches. All start off, and the other two are locked until the first one is on.
+
+| Setting | What it controls |
+| --- | --- |
+| Sticky roles | Master switch for saving and restoring. Reads **Saving roles when members leave** when on. |
+| Clear on ban | Delete a member's saved state when they are banned. **Deleted after a ban** when on, **Kept after a ban** when off. |
+| Ignore bots | Do not save or restore roles for bot accounts. **Bot roles are not saved** when on. |
+
+Two cards below it hold the lists. Pick a role or member to add it, and remove it with its remove button.
+
+| Card | What it holds |
+| --- | --- |
+| Denied roles | Roles that are never saved or restored. Empty reads **No roles are being excluded**. |
+| Denied users | Members whose roles are never saved or restored. Empty reads **No users are being excluded**. |
+
+**Save all states** in the toolbar snapshots every current member's roles now and reports how many members were saved. It is locked while the master switch is off.
+
+### Management
+
+| Card | What it does |
+| --- | --- |
+| Manage user roles | Pick a user and one or more roles, then **Add selected roles** or **Remove selected roles** to change that member's saved state |
+| Copy role state | Pick a **Source user (copy from)** who has a saved state and a **Target user (copy to)** who is in the community, then **Apply role state** to give the target those roles |
+
+### Sticky roles
+
+The **Saved role states (N)** card lists every saved state, 20 to a page, with the member's name and how many roles they have. Press a row to see **All saved roles**, or the bin to delete the state. With nothing saved it reads **No role states saved**.
 
 ## Setup walkthrough
 
 1. Make sure the bot's role is above every role you want it to restore.
-2. Open **Role States** in the dashboard and turn on **Role States** under **Settings**, **General**.
-3. Turn on **Ignore Bots** unless you specifically want bot roles remembered.
-4. Decide on **Clear on Ban**. Leave it off if you want unbanned members to get their roles back.
-5. In **Denied**, add staff roles, punishment roles and anything temporary to **Denied Roles**.
-6. Press **Save All** under **Save Current States** so existing members are covered from today.
-7. Check the **Role States** tab to confirm the snapshot populated.
+2. Open **Roles**, pick the **Sticky roles** tab and turn on **Sticky roles** under **Settings**.
+3. Turn on **Ignore bots** unless you specifically want bot roles remembered.
+4. Decide on **Clear on ban**. Leave it off if you want unbanned members to get their roles back.
+5. Add roles that should not come back, such as staff roles or temporary punishment roles, to **Denied roles**.
+6. Press **Save all states** so existing members are covered from today.
+7. Open the **Sticky roles** sub-tab to confirm the snapshot populated.
 
 ## Commands
 
@@ -99,7 +118,7 @@ Run these with your community's prefix (`.` unless you changed it). Every comman
 | `viewrolestatessettings` | `vrss` | Administrator | Show the current settings and deny lists |
 | `viewuserrolestates` | `viewrolestates`, `vurs` | Administrator | Page through every saved state |
 | `saveallrolestates` | `saveserverstates`, `backuprolestates` | Administrator | Snapshot every current member |
-| `transferrolestates <serverId>` | `copyrolestates`, `moverolestates` | Administrator | Copy states to another community, matching roles by name |
+| `transferrolestates <communityId>` | `copyrolestates`, `moverolestates` | Administrator | Copy states to another community, matching roles by name |
 | `togglerolestatesignorebots` | `trsib` | Administrator | Toggle ignoring bot accounts |
 | `togglerolestatesclearonban` | `trscob` | Administrator | Toggle clearing a state on ban |
 | `togglerolestatesskipautoassign` | `trssaa`, `rsskipautoassign` | Administrator | Toggle skipping auto-assign roles for members with a saved state |
@@ -114,10 +133,10 @@ Run these with your community's prefix (`.` unless you changed it). Every comman
 
 ## Tips and gotchas
 
-- Nothing is saved for members who were already in the community when you enabled the feature until they leave, or until you run **Save All**. Run it once right after setup.
-- Only leaves trigger a save. Kicks count as leaves. Bans also count as leaves, and the state is then removed again if **Clear on Ban** is on.
+- Nothing is saved for members who were already in the community when you enabled the feature until they leave, or until you press **Save all states**. Do it once right after setup.
+- Only leaves trigger a save. Kicks count as leaves. Bans also count as leaves, and the state is then removed again if **Clear on ban** is on.
 - Restoring uses a single add-roles call. One missing or too-high role makes the whole restore fail silently, so keep the deny list current when you delete or reorder roles.
-- Managed roles (bot integration roles, the booster role) are never saved. Fluxer assigns those itself.
+- Roles the bot cannot give, such as ones above its own highest role, are still saved and make the restore fail. Add them to **Denied roles**.
 - `viewuserrolestates` shows three members per page.
 - Both `setuserrolestate` and `deleteuserrolestate` accept a user who has already left, so you can fix a state before someone rejoins.
-- Denied Users only affects automatic saves and restores. Manual commands and **Copy Role State** still work on those members.
+- **Denied users** only affects automatic saves and restores. Manual commands and **Copy role state** still work on those members.

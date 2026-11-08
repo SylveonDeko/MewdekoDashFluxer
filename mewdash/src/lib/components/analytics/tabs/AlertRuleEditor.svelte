@@ -136,7 +136,7 @@
     >
       <div
         class="w-full max-w-5xl rounded-2xl border shadow-2xl"
-        style="background: {$colorStore.background}; border-color: {$colorStore.primary}30;"
+        style="background: {$colorStore.surface}; border-color: {$colorStore.primary}30;"
         in:fly={{ y: 20, duration: 200 }}
         out:fly={{ y: -20, duration: 150 }}
         role="dialog"
@@ -280,7 +280,7 @@
               {/if}
             </div>
             <label class="block">{m.analytics.tabAlertEditorWebhookUrl()}
-              <input type="url" class="mt-1 w-full min-h-[44px] rounded-lg border px-2 font-mono" style={field} bind:value={draft.webhookUrl} placeholder="https://discord.com/api/webhooks/…" />
+              <input type="url" class="mt-1 w-full min-h-[44px] rounded-lg border px-2 font-mono" style={field} bind:value={draft.webhookUrl} placeholder="https://api.fluxer.app/webhooks/…" />
             </label>
             <div class="grid grid-cols-2 gap-2">
               <label class="block">{m.analytics.tabAlertEditorMentionRoleId()}

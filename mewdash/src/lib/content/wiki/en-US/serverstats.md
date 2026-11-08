@@ -1,18 +1,18 @@
 ---
 title: Activity Stats
 slug: serverstats
-summary: Messages, voice time, games and member growth for the whole community, a member or a channel over any window up to ninety days, with charts, rankings, exports and a privacy opt out.
+summary: Activity charts for the whole community or for a single member
 icon: fa-chart-simple
 category: Analytics
 dashboard: /dashboard/serverstats
 module: ServerStats
-tags: [activity, stats, statistics, statbot, voice time, games, presence, lookback, top chatters, charts, member growth, status, snapshots, privacy, opt out]
+tags: [activity, stats, statistics, voice time, lookback, top chatters, charts, member growth, status, snapshots, privacy, opt out]
 related: [messagestats, statroles, liveboards, statchannels, invites]
 ---
 
 ## What it does
 
-The bot already counted messages. Activity Stats adds voice time, games and apps, hourly member and status snapshots, and a way to ask about any of it over a window: the last day, week, month, up to ninety days, or all time. Everything is available in the dashboard, as commands, as charts, as CSV, and to stat roles, live boards, reports and stat channels.
+The bot already counted messages. Activity Stats adds voice time and hourly member and status snapshots. You can ask about any of it over a window of a day, a week, a month, up to ninety days, or all time. Everything is available in the dashboard, as commands, as charts and as CSV, and it feeds stat roles, live boards, reports and stat channels.
 
 ## What is tracked
 
@@ -20,7 +20,6 @@ The bot already counted messages. Activity Stats adds voice time, games and apps
 | --- | --- |
 | Messages | Every counted message with a timestamp, kept for ninety days, plus lifetime totals per member and channel |
 | Voice time | A segment per member per channel, split whenever they move, mute, deafen, start streaming or turn on their camera, kept for ninety days, plus lifetime totals |
-| Games and apps | A segment per member per activity (playing, streaming, listening, watching, competing), kept for ninety days, plus lifetime totals. Off by default |
 | Snapshots | Member, human, bot, online, idle, DND, offline and in-voice counts every hour, kept for ninety days |
 | Joins and leaves | Every join and leave with a timestamp |
 
@@ -28,61 +27,60 @@ Windows up to ninety days read the timestamped data. **All time** reads the life
 
 ## Games and apps
 
-Game tracking is off until you turn it on, because it is the heaviest tracker. Once on, the bot watches every member's presence and records how long each game, stream, Spotify session or watched app lasts.
-
-- **Verify activities** (on by default) only counts activities Fluxer itself attests to: ones with a registered application ID, Spotify, and streams. A modified client can claim to be playing anything, so plain named activities are ignored while this is on.
-- The **activity filter** is a list of game names that is either a **blacklist** (listed games are ignored) or a **whitelist** (only listed games count).
-- Custom statuses are never counted.
+Fluxer presences carry only a status, so the bot does not record games or apps. Nothing new is counted and nobody shows as playing right now. Totals stored earlier still appear in the game rankings and lookups. The **Track games and apps** and **Verify activities** switches and the **Activity filter** exist in the settings but have nothing to act on.
 
 ## Dashboard tabs
 
 | Tab | What it shows |
 | --- | --- |
-| Overview | Messages, voice time, chatters, joins, leaves, net growth, members now, the top chatter, top voice member, busiest channel and most played game, and charts for messages, voice hours, members, member status and joins and leaves |
-| Rankings | Members and channels ranked by messages, voice or game time, and the top games with player counts, exportable as CSV. Click a member, channel or game to open it |
-| Member & Channel | One member's messages, voice time, ranks, lifetime totals, favourite channels and games; one channel's activity and top members; and **Who plays** for any game |
-| Settings | Every tracker, the default window, message cooldown, bots, voice states that do not count, ignored channels, roles and members, and the activity filter |
+| Overview | **Community activity**: messages, **Voice time**, chatters, joins, leaves, **Net growth**, **Members now**, **Top chatter**, **Top voice** and **Busiest channel**, and charts for messages, **Voice hours**, members, **Member status** (**Online**, **Idle**, **DND**, **In voice**) and **Joins and leaves**. A **Time window** picker sets the range |
+| Rankings | Members and channels ranked by messages or voice time. **CSV** exports the ranking. Click a member or channel to open it |
+| Member & channel | **Look up** a member (messages, voice time, ranks, **Lifetime messages**, **Lifetime voice**, **Chats most in**) or a channel (**Top chatters**, **Voice channels**) |
+| Settings | **Tracking settings**, **Voice states that do not count**, and ignored channels, roles and members |
+
+The tab is kept in the address as `?tab=overview`, `top`, `lookup` or `settings`.
 
 ## Settings
 
 | Setting | Default | What it controls |
 | --- | --- | --- |
-| Default window | 14 days | What commands and the page use when no window is given |
-| Message cooldown | 0 | Seconds between counted messages from one member. Stops spam from inflating counts |
-| Track voice time | on | Whether voice segments are recorded |
-| Hourly snapshots | on | Whether member and status counts are sampled every hour |
+| Default window (days) | 14 | What commands and the page use when no window is given, 1 to 90 |
+| Message cooldown (seconds) | 0 | Counts a member's messages once per this many seconds. 0 counts all |
+| Track voice time | on | Whether voice segments are recorded, per member and channel |
+| Hourly snapshots | on | Whether member and status counts are sampled every hour for the charts |
 | Count bots | off | Whether bot accounts are included |
-| Track games and apps | off | Whether presence activities are recorded |
-| Verify activities | on | Only count Fluxer attested activities |
-| Voice states that do not count | none | Any of self muted, self deafened, server muted, server deafened, AFK channel, alone, streaming, camera on |
-| Ignored channels, roles, members | none | Nothing from these is counted |
+| Voice states that do not count | none | Toggle any of **Self muted**, **Self deafened**, **Community muted**, **Community deafened**, **AFK channel**, **Alone**, **Streaming**, **Camera on** to leave that time out of voice stats |
+| Ignored channels, Ignored roles, Ignored members | none | Nothing from these is counted. Add each with its picker and **Add** |
+
+Settings save as you change them.
 
 ## Privacy
 
-Any member can run `statsprivacy` (or `/serverstats privacy`) to opt out. Their recorded messages, voice time and game time are deleted in every community the bot shares with them, and nothing new is recorded until they run it again to opt back in. Community admins cannot override it.
+Any member can run `statsprivacy` to opt out. Their recorded messages and voice time are deleted in every community the bot shares with them, and nothing new is recorded until they run it again to opt back in. Community admins cannot override it.
 
 ## Commands
 
-Run these with your community's prefix (`.` unless you changed it). Every command also exists under `/serverstats`. `days` is the window; 0 means all time and leaving it out uses the community default.
+Run these with your community's prefix (`.` unless you changed it). `days` is the window; 0 means all time and leaving it out uses the community default.
 
 | Command | Aliases | Needs | Purpose |
 | --- | --- | --- | --- |
-| `serveractivity [days]` | `sstats` | Nobody | The community overview |
-| `useractivity [@user] [days]` | `ustats`, `mystats` | Nobody | A member's messages, voice time, ranks, lifetime totals, top channels and games |
+| `serveractivity [days]` | `sstats`, `activitystats` | Nobody | The community overview |
+| `useractivity [@user] [days]` | `ustats`, `mystats` | Nobody | A member's messages, voice time, ranks, lifetime totals and top channels |
 | `channelactivity [#channel] [days]` | `cstats` | Nobody | A channel's activity and top members |
-| `activitytop [Messages/Voice/Activity] [days] [@role]` | `topchatters`, `topvoice` | Nobody | Rank members |
+| `activitytop [Messages/Voice/Activity] [days] [@role]` | `topactivity`, `topchatters`, `topvoice` | Nobody | Rank members |
 | `activitytopchannels [Messages/Voice] [days]` | `topchannels` | Nobody | Rank channels |
-| `topgames [days]` | `games` | Nobody | The most played games and apps |
-| `whoplays <game>` | | Nobody | Who is in a game right now and who has played it most |
-| `activitychart [Messages/Voice/Members/Status/Joins/Leaves/Growth/InVoice/Activities] [days]` | `graph` | Nobody | A chart image |
-| `activityexport [Messages/Voice/Activity] [days]` | | Manage Community | A CSV ranking |
-| `statssettings` | | Manage Community | Show the settings |
-| `statslookback <days>`, `statscooldown <seconds>` | `lookback` | Manage Community | Default window and message cooldown |
-| `statstrackvoice`, `statstracksnapshots`, `statscountbots`, `statstrackactivities`, `statsverifyactivities` | `trackvoice`, `trackgames` | Manage Community | Toggle each tracker |
-| `statsignorevoicestate <state>` | | Manage Community | Toggle whether a voice state counts |
-| `statsignore <#channel, @role or @user>`, `statsignored` | | Manage Community | Exclusions |
-| `statsactivityfiltermode <Whitelist/Blacklist>`, `statsactivityfilter <game>`, `statsactivityfilters` | `gamefilter` | Manage Community | The activity filter |
-| `statsprivacy` | `optoutstats` | Nobody | Opt out of, or back in to, tracking everywhere |
+| `activitychart [Messages/Voice/Members/Status/Joins/Leaves/Growth/InVoice] [days]` | `statschart`, `graph` | Nobody | A chart image |
+| `activityexport [Messages/Voice/Activity] [days]` | `exportactivity` | Manage Community | A CSV ranking |
+| `statssettings` | `activitysettings` | Manage Community | Show the settings |
+| `statslookback <days>` | `lookback` | Manage Community | Default window |
+| `statscooldown <seconds>` | | Manage Community | Message cooldown |
+| `statstrackvoice` | `trackvoice` | Manage Community | Toggle voice tracking |
+| `statstracksnapshots` | `tracksnapshots` | Manage Community | Toggle hourly snapshots |
+| `statscountbots` | | Manage Community | Toggle counting bots |
+| `statsignorevoicestate <state>` | `ignorevoicestate` | Manage Community | Toggle whether a voice state counts |
+| `statsignore <#channel, @role or @user>` | `activityignore` | Manage Community | Exclude a channel, role or member |
+| `statsignored` | `activityignored` | Manage Community | List exclusions |
+| `statsprivacy` | `activityprivacy`, `optoutstats` | Nobody | Opt out of, or back in to, tracking everywhere |
 
 ## Tips and gotchas
 
@@ -90,4 +88,3 @@ Run these with your community's prefix (`.` unless you changed it). Every comman
 - Voice time only counts while the bot is running. A restart closes and reopens every session, so nothing is lost, but the segment boundaries move.
 - Excluding a channel hides its history from every query as well as stopping new counts, so old numbers change too.
 - Message counting itself still has to be on (the Message Stats page toggle) for message numbers to appear here.
-- Game names are matched case insensitively in the filter and in `whoplays`.

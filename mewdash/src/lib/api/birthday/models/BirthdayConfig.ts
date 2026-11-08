@@ -22,6 +22,12 @@ export interface BirthdayConfigRequest {
 
   /** Default timezone for the guild */
   defaultTimezone?: string | null;
+
+  announcementHour?: number | null;
+
+  ageMessage?: string | null;
+
+  birthYearRule?: number | null;
 }
 
 /**
@@ -46,6 +52,12 @@ export interface BirthdayConfig {
 
   /** Default timezone for the guild */
   defaultTimezone: string;
+
+  announcementHour: number;
+
+  ageMessage: string | null;
+
+  birthYearRule: number;
 
   /** Enabled birthday features (bitfield) */
   enabledFeatures: number;

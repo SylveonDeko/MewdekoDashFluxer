@@ -1,7 +1,10 @@
-/** Whether members can hold any number of the menu's roles or only one at a time. */
+/** How members pick roles from the menu. */
 export enum RoleMenuMode {
   PickAny = 0,
   PickOne = 1,
+  AddOnly = 2,
+  RemoveOnly = 3,
+  Reverse = 4,
 }
 
 /** Whether members get a private note listing what changed after they pick. */
@@ -38,6 +41,15 @@ export interface RoleMenuOption {
 
   /** Short description */
   description?: string | null;
+
+  /** Seconds this role lasts before it is taken back, 0 to follow the menu */
+  tempRoleSeconds: number;
+
+  /** Most members who can hold this role through the menu, 0 for no limit */
+  maxHolders: number;
+
+  /** How many members hold this role right now */
+  holders: number;
 
   /** 0-based position */
   position: number;
@@ -84,6 +96,21 @@ export interface RoleMenu {
   /** Role needed to use the menu, missing for anyone */
   requiredRoleId?: bigint | null;
 
+  /** Roles that stop a member from using the menu */
+  blockedRoleIds: bigint[];
+
+  /** Seconds a role from this menu lasts before it is taken back, 0 for forever */
+  tempRoleSeconds: number;
+
+  /** When the menu deletes its message and turns itself off, UTC without a zone. Missing means never. */
+  expiresAt?: string | null;
+
+  /** Group the menu is linked into, missing for none */
+  groupId?: number | null;
+
+  /** RGB colour of the default message, missing for the default */
+  accentColor?: number | null;
+
   /** See {@link RoleMenuReplyMode} */
   replyMode: number;
 
@@ -125,6 +152,12 @@ export interface RoleMenuOptionRequest {
 
   /** Short text under the dropdown option and in the default message */
   description?: string | null;
+
+  /** Seconds this role lasts before it is taken back. 0 uses the menu's setting. */
+  tempRoleSeconds: number;
+
+  /** Most members who can hold this role through the menu. 0 means no limit. */
+  maxHolders: number;
 }
 
 /**
@@ -152,6 +185,21 @@ export interface RoleMenuRequest {
 
   /** Role needed to use the menu. Null or 0 means anyone. */
   requiredRoleId?: bigint | null;
+
+  /** Roles that stop a member from using the menu */
+  blockedRoleIds: bigint[];
+
+  /** Seconds a role from this menu lasts before it is taken back. 0 means it stays. */
+  tempRoleSeconds: number;
+
+  /** When the menu deletes its message and turns itself off, an ISO time in UTC. Null means never. */
+  expiresAt?: string | null;
+
+  /** Group to link the menu into. Null or 0 means none. */
+  groupId?: number | null;
+
+  /** RGB colour of the default message. Null means the default. */
+  accentColor?: number | null;
 
   /** See {@link RoleMenuReplyMode} */
   replyMode: number;
@@ -237,9 +285,6 @@ export interface RoleMenuLookupEmoji {
  * Maps to Mewdeko.Controllers.Common.RoleMenus.RoleMenuLimitsLookup
  */
 export interface RoleMenuLimits {
-  /** Most menus per server */
-  maxMenus: number;
-
   /** Most options per menu */
   maxOptions: number;
 
@@ -250,6 +295,43 @@ export interface RoleMenuLimits {
   labelLength: number;
 
   /** Longest option description */
+  descriptionLength: number;
+
+  /** Longest temporary role duration, in seconds */
+  maxTempSeconds: number;
+
+  /** Most roles a menu can block */
+  maxBlockedRoles: number;
+}
+
+/**
+ * A group of menus that share one role limit
+ * Maps to Mewdeko.Controllers.Common.RoleMenus.RoleMenuGroupResponse
+ */
+export interface RoleMenuGroup {
+  /** Group ID */
+  id: number;
+
+  /** Group name */
+  name: string;
+
+  /** Most roles a member can hold across the group's menus, 0 for no limit */
+  maxRoles: number;
+
+  /** IDs of the menus in the group */
+  menuIds: number[];
+}
+
+/**
+ * Creates a group or changes its limit
+ * Maps to Mewdeko.Controllers.Common.RoleMenus.RoleMenuGroupRequest
+ */
+export interface RoleMenuGroupRequest {
+  /** Group name. Ignored when changing an existing group. */
+  name?: string | null;
+
+  /** Most roles a member can hold across the group's menus. 1 means one at a time, 0 means no limit. */
+  maxRoles: number;
 }
 
 /**

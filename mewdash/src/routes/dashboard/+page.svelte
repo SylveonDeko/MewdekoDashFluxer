@@ -1,5 +1,4 @@
 <script lang="ts">
-  import * as cdn from "$lib/utils/cdn";
   import { m } from "$lib/i18n";
 
     import { onDestroy, onMount } from "svelte";
@@ -25,6 +24,7 @@
 
     // Import  components
     import TabbedDashboard from "$lib/components/layout/TabbedDashboard.svelte";
+    import FeatureGrid from "$lib/components/dashboard/FeatureGrid.svelte";
     import SkeletonLoader from "$lib/components/ui/SkeletonLoader.svelte";
     import KeyboardShortcuts from "$lib/components/specialized/KeyboardShortcuts.svelte";
 
@@ -269,7 +269,7 @@
 
             dashboardStore.setLastUpdated(new Date());
         } catch (err) {
-            error = (err as any).message || m.common.failedToFetchData();
+            error = (err as any).message || m.dashboard.pageErrorFetch();
             logger.error("Dashboard data fetch error:", err);
         } finally {
             fetchingData = false;
@@ -483,10 +483,12 @@
             if (guildInfo?.iconUrl) {
                 void colorStore.extractFromServerIcon(guildInfo.iconUrl);
             } else if ($currentGuild?.icon) {
-                const serverIconUrl = cdn.guildIconUrl($currentGuild.id, $currentGuild.icon);
+                const serverIconUrl = `https://cdn.discordapp.com/icons/${$currentGuild.id}/${$currentGuild.icon}.${$currentGuild.icon.startsWith("a_") ? "gif" : "png"}`;
                 void colorStore.extractFromServerIcon(serverIconUrl);
             } else if (currentUser?.avatar) {
-                const userAvatarUrl = cdn.userAvatarUrl(currentUser.id, currentUser.avatar);
+                const userAvatarUrl = currentUser.avatar.startsWith("a_")
+                    ? `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.gif`
+                    : `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.png`;
                 void colorStore.extractFromImage(userAvatarUrl);
             } else if ($currentInstance?.botAvatar) {
                 void colorStore.extractFromImage($currentInstance.botAvatar);
@@ -554,10 +556,12 @@
         if (guildInfo?.iconUrl) {
             colorStore.extractFromServerIcon(guildInfo.iconUrl);
         } else if ($currentGuild?.icon) {
-            const serverIconUrl = cdn.guildIconUrl($currentGuild.id, $currentGuild.icon);
+            const serverIconUrl = `https://cdn.discordapp.com/icons/${$currentGuild.id}/${$currentGuild.icon}.${$currentGuild.icon.startsWith("a_") ? "gif" : "png"}`;
             colorStore.extractFromServerIcon(serverIconUrl);
         } else if (currentUser?.avatar) {
-            const userAvatarUrl = cdn.userAvatarUrl(currentUser.id, currentUser.avatar);
+            const userAvatarUrl = currentUser.avatar.startsWith("a_")
+                ? `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.gif`
+                : `https://cdn.discordapp.com/avatars/${currentUser.id}/${currentUser.avatar}.png`;
             colorStore.extractFromImage(userAvatarUrl);
         } else if ($currentInstance?.botAvatar) {
             colorStore.extractFromImage($currentInstance.botAvatar);
@@ -676,7 +680,7 @@
                     >
           <span class:animate-spin={refreshing}>
             <i class="fa-utility-duo fa-regular fa-sync"
-               style="--fa-primary-color: {$colorStore.onPrimary}; --fa-secondary-color: {$colorStore.onPrimary}; --fa-secondary-opacity: 0.7;"></i>
+               style="--fa-primary-color: white; --fa-secondary-color: white; --fa-secondary-opacity: 0.7;"></i>
           </span>
                     </button>
                 </div>
@@ -736,6 +740,8 @@
                         </div>
                     </div>
                 {/if}
+
+                <FeatureGrid />
 
                 <!-- Tabbed Dashboard -->
                 {#key $currentGuild?.id}

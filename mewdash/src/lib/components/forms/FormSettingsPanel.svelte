@@ -401,7 +401,7 @@
           bind:value={settings.notificationWebhookUrl}
           class="w-full p-2 rounded-lg"
           style="background: {$colorStore.primary}10; border: 1px solid {$colorStore.primary}30; color: {$colorStore.text};"
-          placeholder="https://"
+          placeholder="https://api.fluxer.app/webhooks/…"
         />
       </SettingField>
     </SettingsSection>

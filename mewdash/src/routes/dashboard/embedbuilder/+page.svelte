@@ -2,7 +2,7 @@
 <script lang="ts">
   import { m } from "$lib/i18n";
   import type { PageData } from "./$types";
-  import { onMount } from "svelte";
+  import { onDestroy, onMount, untrack } from "svelte";
   import { get } from "svelte/store";
   import { currentGuild } from "$lib/stores/currentGuild.ts";
   import { embedsApi } from "$lib/api/index.ts";
@@ -12,30 +12,27 @@
     SendableChannel,
     SendEmbedResult
   } from "$lib/api/embeds/models";
-  import { fade, fly } from "svelte/transition";
+  import { fade } from "svelte/transition";
+  import { goto } from "$app/navigation";
+  import { page } from "$app/state";
   import { logger } from "$lib/logger.ts";
   import { colorStore } from "$lib/stores/colorStore.ts";
 
   import TemplateGallery from "$lib/components/specialized/TemplateGallery.svelte";
   import EmbedEditor from "$lib/components/specialized/EmbedEditor.svelte";
-  import LinkButtonEditor from "$lib/components/specialized/LinkButtonEditor.svelte";
-  import {
-    isValidLinkUrl,
-    linkButtonsFromComponents,
-    linkButtonsToComponents,
-    linkButtonsToPreviewRows,
-    MAX_LINK_BUTTONS,
-    newLinkButton,
-    type LinkButton
-  } from "$lib/utils/linkButtons";
+  import ComponentEditor from "$lib/components/specialized/ComponentEditor.svelte";
   import PlaceholderPicker from "$lib/components/forms/PlaceholderPicker.svelte";
-  import DiscordSelector from "$lib/components/forms/DiscordSelector.svelte";
+  import ImagePlaceholderChip from "$lib/components/specialized/ImagePlaceholderChip.svelte";
+  import { newImagePlaceholder, removePlaceholder } from "$lib/utils/imagePlaceholders";
   import PersonaManager from "$lib/components/specialized/PersonaManager.svelte";
   import ValidationCard from "$lib/components/specialized/ValidationCard.svelte";
   import PreviewCard from "$lib/components/specialized/PreviewCard.svelte";
   import Notification from "$lib/components/ui/Notification.svelte";
   import ConfirmationModal from "$lib/components/ui/ConfirmationModal.svelte";
-  import DashboardPageLayout from "$lib/components/layout/DashboardPageLayout.svelte";
+  import PluginPage from "$lib/components/plugin/PluginPage.svelte";
+  import JsonTab from "./components/JsonTab.svelte";
+  import SavedTab from "./components/SavedTab.svelte";
+  import SendTab from "./components/SendTab.svelte";
 
   interface Props {
     data: PageData;
@@ -81,6 +78,22 @@
     fields: Field[];
   }
 
+  interface NewEmbedComponent {
+    componentKey: string;
+    rowIndex: number;
+    displayName: string;
+    style: number;
+    url: string;
+    emoji: string;
+  }
+
+  interface ComponentRow {
+    componentKey: string;
+    rowKey: string;
+    components: NewEmbedComponent[];
+  }
+
+
   interface Placeholder {
     category: string;
     name: string;
@@ -101,11 +114,48 @@
     }]);
 
     let content = $state("");
-  let linkButtons: LinkButton[] = $state([]);
+  let componentRows: ComponentRow[] = $state([]);
 
 
   // Main navigation state
-    let activeMainTab = $state("templates");
+  const TAB_IDS = ["templates", "editor", "components", "json", "saved", "send"];
+  const activeMainTab = $derived(
+    TAB_IDS.find(id => id === page.url.searchParams.get("tab")) ?? "templates"
+  );
+
+  function selectTab(id: string) {
+    if (id === activeMainTab) return;
+    const url = new URL(page.url);
+    url.searchParams.set("tab", id);
+    void goto(url, { replaceState: true, noScroll: true, keepFocus: true });
+  }
+
+  let contentImageToken: string | null = $state(null);
+  let lastCheckedContent = "";
+
+  $effect(() => {
+    lastCheckedContent = content;
+  });
+
+  function checkContentImage(next: string) {
+    const token = newImagePlaceholder(lastCheckedContent, next);
+    if (token) {
+      contentImageToken = token;
+    } else if (contentImageToken && !next.includes(contentImageToken)) {
+      contentImageToken = null;
+    }
+  }
+
+  function moveContentImage(mediaField: "thumbnail" | "image") {
+    const token = contentImageToken;
+    if (!token) return;
+    if (embeds.length === 0) addEmbed();
+    if (embeds.length === 0) return;
+    embeds[0] = { ...embeds[0], [mediaField]: { url: token } };
+    embeds = [...embeds];
+    content = removePlaceholder(content, token);
+    contentImageToken = null;
+  }
 
   // UI state
     let showNotification = $state(false);
@@ -119,6 +169,18 @@
     let placeholderSearchTerm = $state("");
   let currentEditingElement: HTMLInputElement | HTMLTextAreaElement | null = null;
   let currentEditingField: string | null = null;
+
+    let editingComponent: NewEmbedComponent | null = $state(null);
+
+  let draggedComponent: NewEmbedComponent | null = $state(null);
+  let draggedFromRow: string | null = $state(null);
+  let dragOverRow: string | null = $state(null);
+  let dragOverIndex: number = $state(-1);
+  let isDragging = $state(false);
+
+  let draggedRow: ComponentRow | null = $state(null);
+  let dragOverRowIndex: number = $state(-1);
+  let isDraggingRow = $state(false);
 
   // Validation state
     let validationErrors: any[] = $state([]);
@@ -142,7 +204,10 @@
   let saveAsGuildShared = $state(false);
   let savingEmbed = $state(false);
   let showDeleteConfirm = $state(false);
+  let showOverwriteConfirm = $state(false);
+  let embedPendingOverwrite: SavedEmbed | null = $state(null);
   let embedPendingDelete: SavedEmbed | null = $state(null);
+  let openSavedEmbed: SavedEmbed | null = $state(null);
 
   // Send tab state
   let sendChannels: SendableChannel[] = $state([]);
@@ -166,7 +231,7 @@
   const tabs = $derived([
     { id: "templates", label: m.common.templates(), icon: "fa-sparkles" },
     { id: "editor", label: m.common.editor(), icon: "fa-layer-group" },
-    { id: "components", label: m.embedbuilder.tabLinks(), icon: "fa-link" },
+    { id: "components", label: m.embedbuilder.tabComponents(), icon: "fa-comment" },
     { id: "json", label: m.embedbuilder.tabJson(), icon: "fa-code" },
     { id: "saved", label: m.common.saved(), icon: "fa-floppy-disk" },
     { id: "send", label: m.common.send(), icon: "fa-paper-plane" }
@@ -198,6 +263,11 @@
     }
   });
 
+  onDestroy(() => {
+    if (isDragging || isDraggingRow) {
+      unlockBodyScroll();
+    }
+  });
 
   // Load saved embeds (personal for the current user, plus guild-shared if a guild is selected)
   async function loadSavedEmbeds(guildId?: bigint) {
@@ -232,9 +302,17 @@
       exportData.embeds = cleanedEmbeds;
     }
 
-    const components = linkButtonsToComponents(linkButtons);
-    if (components.length > 0) {
-      exportData.components = components;
+    if (componentRows.length > 0) {
+      const cleanedComponents: any[] = [];
+      componentRows.forEach(row => {
+        row.components.forEach(component => {
+          cleanedComponents.push(cleanComponent(component));
+        });
+      });
+
+      if (cleanedComponents.length > 0) {
+        exportData.components = cleanedComponents;
+      }
     }
 
     return exportData;
@@ -272,7 +350,7 @@
   }
 
   $effect(() => {
-    JSON.stringify({ content, embeds, linkButtons });
+    JSON.stringify({ content, embeds, componentRows });
 
     if (!historyReady || restoringHistory) return;
 
@@ -336,14 +414,41 @@
       }];
     }
 
-    linkButtons = isFullPayload ? linkButtonsFromComponents(parsed.components) : [];
+    if (isFullPayload && Array.isArray(parsed.components) && parsed.components.length > 0) {
+      const rowsByIndex = new Map<number, ComponentRow>();
+      parsed.components.forEach((c: any, componentIndex: number) => {
+        if (c.isSelect || c.style !== 5) return;
+        const rowIndex = typeof c.row === "number" ? c.row : 0;
+        let row = rowsByIndex.get(rowIndex);
+        if (!row) {
+          const rowKey = `row-${Date.now()}-${rowIndex}-${Math.random().toString(36).substr(2, 9)}`;
+          row = { componentKey: rowKey, rowKey, components: [] };
+          rowsByIndex.set(rowIndex, row);
+        }
+
+        row.components.push({
+          componentKey: `comp-${Date.now()}-${componentIndex}-${Math.random().toString(36).substr(2, 9)}`,
+          rowIndex,
+          displayName: c.displayName ?? "",
+          style: 5,
+          url: c.url ?? "",
+          emoji: c.emoji ?? ""
+        });
+      });
+
+      componentRows = Array.from(rowsByIndex.keys())
+        .sort((a, b) => a - b)
+        .map(key => rowsByIndex.get(key)!);
+    } else {
+      componentRows = [];
+    }
 
     jsonParseError = "";
     validateEmbeds();
     validateComponents();
     if (notify) {
       showNotificationMessage(m.embedbuilder.fullscreenNotifyJsonApplied());
-      activeMainTab = "editor";
+      selectTab("editor");
     }
   }
 
@@ -380,13 +485,13 @@
 
     savingEmbed = true;
     try {
-      await embedsApi.createEmbed({
+      openSavedEmbed = await embedsApi.createEmbed({
         userId: data.user.id,
         guildId: saveAsGuildShared ? guildId : undefined,
         embedName: name,
         jsonCode: JSON.stringify(exportData),
         isGuildShared: saveAsGuildShared
-      });
+      }) ?? null;
 
       showNotificationMessage(m.embedbuilder.fullscreenNotifySavedNamed({ name }));
       saveEmbedName = "";
@@ -401,7 +506,47 @@
 
   function loadSavedEmbed(saved: SavedEmbed) {
     applyImportedJson(saved.jsonCode);
+    openSavedEmbed = saved;
     showNotificationMessage(m.embedbuilder.fullscreenNotifyLoadedNamed({ name: saved.embedName ?? m.embedbuilder.fullscreenSavedNameFallback() }));
+    selectTab("editor");
+  }
+
+  function requestOverwriteSavedEmbed(saved: SavedEmbed) {
+    embedPendingOverwrite = saved;
+    showOverwriteConfirm = true;
+  }
+
+  async function confirmOverwriteSavedEmbed() {
+    const saved = embedPendingOverwrite;
+    embedPendingOverwrite = null;
+    await writeSavedEmbed(saved);
+  }
+
+  async function writeSavedEmbed(saved: SavedEmbed | null) {
+    if (!saved || !data.user?.id) return;
+
+    const exportData = buildExportData();
+    if (Object.keys(exportData).length === 0) {
+      showNotificationMessage(m.embedbuilder.fullscreenNotifyNothingToSave(), "error");
+      return;
+    }
+
+    savingEmbed = true;
+    try {
+      await embedsApi.updateEmbed(saved.id, {
+        userId: data.user.id,
+        jsonCode: JSON.stringify(exportData)
+      });
+      openSavedEmbed = saved;
+      showNotificationMessage(m.embedbuilder.fullscreenNotifySavedNamed({ name: saved.embedName ?? m.embedbuilder.fullscreenSavedNameFallback() }));
+      const guild = get(currentGuild);
+      await loadSavedEmbeds(guild ? BigInt(guild.id) : undefined);
+    } catch (error) {
+      logger.error("Failed to overwrite embed:", error);
+      showNotificationMessage(m.embedbuilder.fullscreenNotifySaveFailed(), "error");
+    } finally {
+      savingEmbed = false;
+    }
   }
 
   function requestDeleteSavedEmbed(saved: SavedEmbed) {
@@ -416,6 +561,7 @@
 
     try {
       await embedsApi.deleteEmbed(saved.id, data.user.id);
+      if (openSavedEmbed?.id === saved.id) openSavedEmbed = null;
       showNotificationMessage(m.embedbuilder.personaDeleted({ name: saved.embedName ?? m.embedbuilder.fullscreenSavedNameFallback() }));
       const guild = get(currentGuild);
       await loadSavedEmbeds(guild ? BigInt(guild.id) : undefined);
@@ -535,13 +681,14 @@
   // Template handling
   function handleTemplateSelect(detail: { template: any }) {
     const template = detail.template;
+    openSavedEmbed = null;
 
     // Apply template to first embed
     embeds[0] = { ...template.embed };
     embeds = [...embeds];
 
     // Switch to editor tab
-    activeMainTab = "editor";
+    selectTab("editor");
     showNotificationMessage(m.embedbuilder.pageNotifyTemplateApplied({ name: template.name }));
   }
 
@@ -584,36 +731,513 @@
     validateEmbeds();
   }
 
-  function addLinkButton() {
-    if (linkButtons.length >= MAX_LINK_BUTTONS) {
-      showNotificationMessage(m.embedbuilder.linksNotifyMax(), "error");
+  function addRow() {
+    if (getTotalComponentCount() >= 25) return;
+
+    const rowKey = `row-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    const newRow: ComponentRow = {
+      componentKey: rowKey,
+      rowKey,
+      components: []
+    };
+
+    componentRows = [...componentRows, newRow];
+    showNotificationMessage(m.embedbuilder.fullscreenNotifyRowAdded());
+  }
+
+  function addComponentToRow(rowKey: string) {
+    const rowIndex = componentRows.findIndex(r => r.rowKey === rowKey);
+    if (rowIndex === -1) return;
+
+    const row = componentRows[rowIndex];
+
+    if (getTotalComponentCount() >= 25) {
+      showNotificationMessage(m.embedbuilder.fullscreenNotifyMaxComponents(), "error");
       return;
     }
-    linkButtons = [...linkButtons, newLinkButton()];
-  }
 
-  function handleLinkButtonUpdate(detail: { button: LinkButton }) {
-    linkButtons = linkButtons.map(b => (b.key === detail.button.key ? detail.button : b));
-    validateComponents();
-  }
-
-  function handleLinkButtonRemove(detail: { key: string }) {
-    linkButtons = linkButtons.filter(b => b.key !== detail.key);
-    validateComponents();
-    showNotificationMessage(m.embedbuilder.linksNotifyRemoved());
-  }
-
-  function handleLinkButtonDuplicate(detail: { key: string }) {
-    if (linkButtons.length >= MAX_LINK_BUTTONS) {
-      showNotificationMessage(m.embedbuilder.linksNotifyMax(), "error");
+    if (row.components.length >= 5) {
+      showNotificationMessage(m.embedbuilder.fullscreenNotifyMaxButtons(), "error");
       return;
     }
-    const index = linkButtons.findIndex(b => b.key === detail.key);
-    if (index === -1) return;
-    const copy = { ...linkButtons[index], key: newLinkButton().key };
-    linkButtons = [...linkButtons.slice(0, index + 1), copy, ...linkButtons.slice(index + 1)];
-    showNotificationMessage(m.embedbuilder.linksNotifyDuplicated());
+
+    const componentKey = `component-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+    const newComponent: NewEmbedComponent = {
+      componentKey,
+      rowIndex,
+      displayName: m.common.newButton(),
+      style: 5,
+      url: "",
+      emoji: ""
+    };
+
+    row.components = [...row.components, newComponent];
+    componentRows = [...componentRows];
+    showNotificationMessage(m.embedbuilder.fullscreenNotifyButtonAdded());
   }
+
+  function removeRow(rowKey: string) {
+    componentRows = componentRows.filter(r => r.rowKey !== rowKey);
+
+    componentRows = componentRows.map((r, idx) => ({
+      ...r,
+      components: r.components.map(c => ({
+        ...c,
+        rowIndex: idx
+      }))
+    }));
+
+    showNotificationMessage(m.embedbuilder.fullscreenNotifyRowRemoved());
+  }
+
+  function duplicateRow(rowKey: string) {
+    const row = componentRows.find(r => r.rowKey === rowKey);
+    if (!row) return;
+
+    if (componentRows.length >= 5) {
+      showNotificationMessage(m.embedbuilder.pageNotifyMaxRows(), "error");
+      return;
+    }
+
+    const timestamp = Date.now();
+    const newRowKey = `row-${timestamp}-${Math.random().toString(36).substr(2, 9)}`;
+
+    const sourceRowIndex = componentRows.indexOf(row);
+    const newRowIndex = sourceRowIndex + 1;
+
+    const duplicatedComponents = row.components.map((comp, idx) => ({
+      ...JSON.parse(JSON.stringify(comp)),
+      componentKey: `component-${timestamp}-${idx}-${Math.random().toString(36).substr(2, 9)}`,
+      rowIndex: newRowIndex
+    }));
+
+    const newRow: ComponentRow = {
+      componentKey: newRowKey,
+      rowKey: newRowKey,
+      components: duplicatedComponents
+    };
+
+    componentRows.splice(newRowIndex, 0, newRow);
+
+    componentRows = componentRows.map((r, idx) => ({
+      ...r,
+      components: r.components.map(c => ({
+        ...c,
+        rowIndex: idx
+      }))
+    }));
+
+    showNotificationMessage(m.embedbuilder.pageNotifyRowDuplicated());
+  }
+
+  function duplicateComponent(componentKey: string) {
+    for (let rowIdx = 0; rowIdx < componentRows.length; rowIdx++) {
+      const row = componentRows[rowIdx];
+      const component = row.components.find(c => c.componentKey === componentKey);
+      if (component) {
+        if (row.components.length >= 5) {
+          showNotificationMessage(m.embedbuilder.pageNotifyRowFull(), "error");
+          return;
+        }
+
+        const duplicated = {
+          ...JSON.parse(JSON.stringify(component)),
+          componentKey: `component-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`,
+          rowIndex: rowIdx
+        };
+
+        const index = row.components.indexOf(component);
+        row.components.splice(index + 1, 0, duplicated);
+        componentRows = [...componentRows];
+        showNotificationMessage(m.embedbuilder.fullscreenNotifyComponentDuplicated());
+        return;
+      }
+    }
+  }
+
+  function handleDragStart(e: DragEvent | TouchEvent, component: NewEmbedComponent, fromRow: string) {
+    draggedComponent = component;
+    draggedFromRow = fromRow;
+    isDragging = true;
+
+    document.body.classList.add("dragging");
+
+    if (e instanceof DragEvent && e.dataTransfer) {
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("text/plain", component.componentKey);
+    }
+  }
+
+  function handleDragEnd() {
+    draggedComponent = null;
+    draggedFromRow = null;
+    dragOverRow = null;
+    dragOverIndex = -1;
+    isDragging = false;
+
+    document.body.classList.remove("dragging");
+  }
+
+  function handleDragOver(e: DragEvent | TouchEvent, rowKey: string, index: number) {
+    e.preventDefault();
+
+    if (!isDragging) return;
+
+    if (index === -1 && e instanceof DragEvent) {
+      const dropZone = e.currentTarget as HTMLElement;
+      const components = dropZone.querySelectorAll("[data-component]");
+      let calculatedIndex = components.length;
+
+      for (let i = 0; i < components.length; i++) {
+        const rect = (components[i] as HTMLElement).getBoundingClientRect();
+        if (e.clientX < rect.left + rect.width / 2) {
+          calculatedIndex = i;
+          break;
+        }
+      }
+
+      dragOverRow = rowKey;
+      dragOverIndex = calculatedIndex;
+    } else {
+      dragOverRow = rowKey;
+      dragOverIndex = index >= 0 ? index : 0;
+    }
+  }
+
+  function handleDrop(e: DragEvent | TouchEvent, targetRowKey: string) {
+    e.preventDefault();
+
+    if (!draggedComponent || !draggedFromRow) return;
+    const dragged = draggedComponent;
+
+    const targetRowIndex = componentRows.findIndex(r => r.rowKey === targetRowKey);
+    const sourceRowIndex = componentRows.findIndex(r => r.rowKey === draggedFromRow);
+
+    if (targetRowIndex === -1 || sourceRowIndex === -1) return;
+
+    const targetRow = componentRows[targetRowIndex];
+
+    if (targetRow.components.length >= 5 && draggedFromRow !== targetRowKey) {
+      showNotificationMessage(m.embedbuilder.fullscreenNotifyMaxButtons(), "error");
+      handleDragEnd();
+      return;
+    }
+
+    if (sourceRowIndex !== targetRowIndex) {
+      componentRows[sourceRowIndex].components = componentRows[sourceRowIndex].components.filter(
+        c => c.componentKey !== dragged.componentKey
+      );
+    }
+
+    const insertIndex = dragOverIndex >= 0 ? dragOverIndex : targetRow.components.length;
+
+    const updatedComponent = { ...dragged, rowIndex: targetRowIndex };
+
+    if (sourceRowIndex === targetRowIndex) {
+      targetRow.components = targetRow.components.filter(c => c.componentKey !== dragged.componentKey);
+    }
+
+    targetRow.components.splice(insertIndex, 0, updatedComponent);
+
+    componentRows = [...componentRows];
+
+    handleDragEnd();
+  }
+
+  function handleRowDragStart(e: DragEvent | TouchEvent, row: ComponentRow) {
+    draggedRow = row;
+    isDraggingRow = true;
+
+    document.body.classList.add("dragging-row");
+
+    if (e instanceof DragEvent && e.dataTransfer) {
+      e.dataTransfer.effectAllowed = "move";
+      e.dataTransfer.setData("text/plain", row.rowKey);
+    }
+  }
+
+  function handleRowDragEnd() {
+    draggedRow = null;
+    dragOverRowIndex = -1;
+    isDraggingRow = false;
+
+    document.body.classList.remove("dragging-row");
+  }
+
+  function handleRowDragOver(e: DragEvent | TouchEvent, targetIndex: number) {
+    e.preventDefault();
+
+    if (!isDraggingRow || !draggedRow) return;
+
+    dragOverRowIndex = targetIndex;
+  }
+
+  function handleRowDrop(e: DragEvent | TouchEvent, targetIndex: number) {
+    e.preventDefault();
+
+    if (!draggedRow || !isDraggingRow) return;
+
+    const sourceIndex = componentRows.findIndex(r => draggedRow !== null && r.rowKey === draggedRow.rowKey);
+
+    if (sourceIndex === -1 || sourceIndex === targetIndex) {
+      handleRowDragEnd();
+      return;
+    }
+
+    const [movedRow] = componentRows.splice(sourceIndex, 1);
+
+    componentRows.splice(targetIndex, 0, movedRow);
+
+    componentRows = componentRows.map((row, idx) => ({
+      ...row,
+      components: row.components.map(c => ({
+        ...c,
+        rowIndex: idx
+      }))
+    }));
+
+    handleRowDragEnd();
+  }
+
+  const TOUCH_DRAG_THRESHOLD = 8;
+  let touchStartPoint = { x: 0, y: 0 };
+  let pendingTouchRow: ComponentRow | null = null;
+  let pendingTouchComponent: { component: NewEmbedComponent; fromRow: string } | null = null;
+
+  function movedPastThreshold(touch: Touch): boolean {
+    return Math.hypot(touch.clientX - touchStartPoint.x, touch.clientY - touchStartPoint.y) >= TOUCH_DRAG_THRESHOLD;
+  }
+
+  function lockBodyScroll() {
+    scrollPosition.x = window.pageXOffset;
+    scrollPosition.y = window.pageYOffset;
+
+    document.body.style.overflow = "hidden";
+    document.body.style.touchAction = "none";
+    document.body.style.webkitUserSelect = "none";
+    (document.body.style as any).webkitTouchCallout = "none";
+    document.body.classList.add("dragging-active");
+
+    document.addEventListener("touchmove", preventScroll, { passive: false });
+
+    // Safari needs the body fixed in place
+    document.body.style.position = "fixed";
+    document.body.style.top = `-${scrollPosition.y}px`;
+    document.body.style.width = "100%";
+  }
+
+  function unlockBodyScroll() {
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.width = "";
+    document.body.style.overflow = "";
+    document.body.style.touchAction = "";
+    document.body.style.webkitUserSelect = "";
+    (document.body.style as any).webkitTouchCallout = "";
+    document.body.classList.remove("dragging-active");
+
+    window.scrollTo(scrollPosition.x, scrollPosition.y);
+
+    document.removeEventListener("touchmove", preventScroll);
+  }
+
+  function handleRowTouchStart(e: TouchEvent, row: ComponentRow) {
+    const touch = e.touches[0];
+    touchStartPoint = { x: touch.clientX, y: touch.clientY };
+    pendingTouchRow = row;
+  }
+
+  function handleRowTouchMove(e: TouchEvent) {
+    const touch = e.touches[0];
+
+    if (!isDraggingRow && pendingTouchRow) {
+      if (!movedPastThreshold(touch)) return;
+
+      handleRowDragStart(e, pendingTouchRow);
+      pendingTouchRow = null;
+      (e.currentTarget as HTMLElement).style.opacity = "0.5";
+      lockBodyScroll();
+    }
+
+    if (!isDraggingRow || !draggedRow) return;
+
+    e.stopPropagation();
+
+    const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+    if (elementBelow) {
+      const rowElement = elementBelow.closest("[aria-label^=\"Row \"]");
+      if (rowElement) {
+        const allRows = document.querySelectorAll("[aria-label^=\"Row \"]");
+        const index = Array.from(allRows).indexOf(rowElement);
+        if (index !== -1) {
+          dragOverRowIndex = index;
+        }
+      }
+    }
+  }
+
+  function handleRowTouchEnd(e: TouchEvent) {
+    pendingTouchRow = null;
+    if (!isDraggingRow) return;
+
+    e.preventDefault();
+    unlockBodyScroll();
+
+    (e.currentTarget as HTMLElement).style.opacity = "";
+
+    if (dragOverRowIndex >= 0) {
+      handleRowDrop(e, dragOverRowIndex);
+    } else {
+      handleRowDragEnd();
+    }
+  }
+
+  function preventScroll(e: TouchEvent) {
+    e.preventDefault();
+    return false;
+  }
+
+  let scrollPosition = { x: 0, y: 0 };
+
+  let touchItem: HTMLElement | null = null;
+  let touchOffset = { x: 0, y: 0 };
+
+  function handleTouchStart(e: TouchEvent, component: NewEmbedComponent, fromRow: string) {
+    const touch = e.touches[0];
+    touchStartPoint = { x: touch.clientX, y: touch.clientY };
+    pendingTouchComponent = { component, fromRow };
+    touchItem = e.currentTarget as HTMLElement;
+
+    const rect = touchItem.getBoundingClientRect();
+    touchOffset.x = touch.clientX - rect.left;
+    touchOffset.y = touch.clientY - rect.top;
+  }
+
+  function handleTouchMove(e: TouchEvent) {
+    const touch = e.touches[0];
+
+    if (!isDragging && pendingTouchComponent) {
+      if (!movedPastThreshold(touch)) return;
+
+      handleDragStart(e, pendingTouchComponent.component, pendingTouchComponent.fromRow);
+      pendingTouchComponent = null;
+      lockBodyScroll();
+    }
+
+    if (!isDragging || !touchItem) return;
+
+    e.stopPropagation();
+
+    if (touchItem) {
+      touchItem.style.position = "fixed";
+      touchItem.style.zIndex = "9999";
+      touchItem.style.left = `${touch.clientX - touchOffset.x}px`;
+      touchItem.style.top = `${touch.clientY - touchOffset.y}px`;
+      touchItem.style.opacity = "0.8";
+      touchItem.style.pointerEvents = "none";
+    }
+
+    const elementBelow = document.elementFromPoint(touch.clientX, touch.clientY);
+    if (elementBelow) {
+      const dropZone = elementBelow.closest("[data-drop-zone]");
+      if (dropZone) {
+        const rowKey = dropZone.getAttribute("data-row-key");
+        if (rowKey) {
+          const components = dropZone.querySelectorAll("[data-component]");
+          let index = components.length;
+
+          for (let i = 0; i < components.length; i++) {
+            const rect = components[i].getBoundingClientRect();
+            if (touch.clientX < rect.left + rect.width / 2) {
+              index = i;
+              break;
+            }
+          }
+
+          dragOverRow = rowKey;
+          dragOverIndex = index;
+        }
+      }
+    }
+  }
+
+  function handleTouchEnd(e: TouchEvent) {
+    pendingTouchComponent = null;
+    if (!isDragging) {
+      touchItem = null;
+      return;
+    }
+
+    e.preventDefault();
+    unlockBodyScroll();
+
+    if (touchItem) {
+      touchItem.style.position = "";
+      touchItem.style.zIndex = "";
+      touchItem.style.left = "";
+      touchItem.style.top = "";
+      touchItem.style.opacity = "";
+      touchItem.style.pointerEvents = "";
+    }
+
+    if (dragOverRow) {
+      handleDrop(e, dragOverRow);
+    } else {
+      handleDragEnd();
+    }
+
+    touchItem = null;
+  }
+
+  function handleComponentUpdate(detail: { component: NewEmbedComponent }) {
+    const { component } = detail;
+
+    for (const row of componentRows) {
+      const index = row.components.findIndex(c => c.componentKey === component.componentKey);
+      if (index !== -1) {
+        row.components[index] = component;
+        componentRows = [...componentRows];
+        validateComponents();
+        return;
+      }
+    }
+  }
+
+  function handleComponentRemove(detail: { componentKey: string }) {
+    const { componentKey } = detail;
+
+    for (const row of componentRows) {
+      const initialLength = row.components.length;
+      row.components = row.components.filter(c => c.componentKey !== componentKey);
+
+      if (row.components.length !== initialLength) {
+        componentRows = [...componentRows];
+        showNotificationMessage(m.embedbuilder.fullscreenNotifyComponentRemoved());
+        return;
+      }
+    }
+  }
+
+  function handleComponentEdit(detail: { component: NewEmbedComponent }) {
+    const { component } = detail;
+    editingComponent = JSON.parse(JSON.stringify(component));
+  }
+
+  function getTotalComponentCount(): number {
+    return componentRows.reduce((sum, row) => sum + row.components.length, 0);
+  }
+
+  let flattenedComponents = $derived(
+    componentRows.flatMap(row => row.components)
+  );
+
+  let componentsByRow = $derived(() => {
+    const grouped = new Map<string, NewEmbedComponent[]>();
+    componentRows.forEach(row => {
+      grouped.set(row.rowKey, row.components);
+    });
+    return grouped;
+  });
 
   // Placeholder handling
   function showPlaceholderFromButton(buttonElement: HTMLButtonElement, field: string) {
@@ -693,29 +1317,6 @@
   function validateComponents() {
     validationErrors = validationErrors.filter(err => !err.id.startsWith("component-"));
 
-    linkButtons.forEach((button, index) => {
-      if (!button.displayName.trim()) {
-        validationErrors.push({
-          id: `component-${button.key}-label`,
-          message: m.embedbuilder.fullscreenValidationButtonNeedsLabel(),
-          field: `components[${index}]`
-        });
-      }
-
-      if (!button.url.trim()) {
-        validationErrors.push({
-          id: `component-${button.key}-url`,
-          message: m.embedbuilder.fullscreenValidationLinkNeedsUrl({ name: button.displayName }),
-          field: `components[${index}].url`
-        });
-      } else if (!isValidLinkUrl(button.url)) {
-        validationErrors.push({
-          id: `component-${button.key}-url`,
-          message: m.embedbuilder.componentsErrorLinkUrl(),
-          field: `components[${index}].url`
-        });
-      }
-    });
   }
 
   // Clean up empty embed properties
@@ -754,6 +1355,24 @@
     // Only include fields if there are any
     if (embed.fields?.length > 0) {
       cleaned.fields = embed.fields;
+    }
+
+    return cleaned;
+  }
+
+  function cleanComponent(component: NewEmbedComponent) {
+    const cleaned: any = {
+      row: component.rowIndex,
+      displayName: component.displayName,
+      style: 5
+    };
+
+    if (component.url?.trim()) {
+      cleaned.url = component.url;
+    }
+
+    if (component.emoji?.trim()) {
+      cleaned.emoji = component.emoji;
     }
 
     return cleaned;
@@ -809,40 +1428,41 @@
     { category: "User", name: "%user.nick%", description: m.placeholders.userNick() },
     
     // Server placeholders
-    { category: "Community", name: "%server%", description: m.placeholders.server() },
-    { category: "Community", name: "%server.id%", description: m.common.ariaGuildId() },
-    { category: "Community", name: "%server.members%", description: m.placeholders.serverMembers() },
-    { category: "Community", name: "%server.owner%", description: m.placeholders.serverOwner() },
-    { category: "Community", name: "%server.icon%", description: m.placeholders.mcFavicon() },
+    { category: "Server", name: "%server%", description: m.placeholders.server() },
+    { category: "Server", name: "%server.id%", description: m.placeholders.serverId() },
+    { category: "Server", name: "%server.members%", description: m.placeholders.serverMembers() },
+    { category: "Server", name: "%server.owner%", description: m.placeholders.serverOwner() },
+    { category: "Server", name: "%server.icon%", description: m.placeholders.mcFavicon() },
     
     // Random placeholders
     { category: "Random", name: "%rng%", description: m.placeholders.rng() },
-    { category: "Random", name: "%rng1-10%", description: m.placeholders.rngRange() },
-    { category: "Random", name: "%choose{a|b|c}%", description: m.placeholders.choose() },
+    { category: "Random", name: "%rng(1,10)%", description: m.placeholders.rngRange() },
+    { category: "Random", name: "%choose(a|b|c)%", description: m.placeholders.choose() },
     { category: "Random", name: "%target%", description: m.placeholders.target() },
     { category: "Random", name: "%img:stuff%", description: m.placeholders.img() }
   ]);
 
 
-  // Tab change handler for DashboardPageLayout
-  function handleMainTabChange(detail: { tabId: string }) {
-    activeMainTab = detail.tabId;
-
-    // Validate when switching tabs
+  function handleMainTabChange(tab: string) {
     validateEmbeds();
     validateComponents();
 
-    if (activeMainTab === "json") {
+    if (tab === "json") {
       refreshJsonPreview();
-    } else if (activeMainTab === "saved") {
+    } else if (tab === "saved") {
       const guild = get(currentGuild);
       loadSavedEmbeds(guild ? BigInt(guild.id) : undefined);
-    } else if (activeMainTab === "send") {
+    } else if (tab === "send") {
       const guild = get(currentGuild);
       if (guild) loadSendableChannels(BigInt(guild.id));
       loadPersonas(guild ? BigInt(guild.id) : undefined);
     }
   }
+
+  $effect(() => {
+    const tab = activeMainTab;
+    untrack(() => handleMainTabChange(tab));
+  });
 
   let selectedPersona = $derived(personas.find(persona => persona.id === selectedPersonaId) ?? null);
 
@@ -952,50 +1572,78 @@
 
 {#snippet statusMessageContent()}
   {#if showNotification}
-    <div class="fixed top-4 right-4 z-50" transition:fade>
+    <div class="fixed top-4 right-4 z-[10001]" transition:fade>
       <Notification message={notificationMessage} type={notificationType} />
     </div>
   {/if}
 {/snippet}
 
-<DashboardPageLayout
+<PluginPage
   title={m.embedbuilder.pageTitle()}
   subtitle={m.embedbuilder.pageSubtitle()}
   icon="fa-layer-group"
-  guildName={m.common.embedBuilder()}
-  {tabs}
-  activeTab={activeMainTab}
+  guildName={$currentGuild?.name ?? m.common.embedBuilder()}
   {actionButtons}
-  ontabChange={handleMainTabChange}
   statusMessages={statusMessageContent}
 >
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 h-full w-full">
-    <!-- Editor Side -->
-    <section
-      class="rounded-2xl border"
-      style="background: {$colorStore.primary}0c;
-             border-color: {$colorStore.primary}30;"
+  <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2 [&>:last-child:nth-child(odd)]:col-span-2 sm:[&>:last-child:nth-child(odd)]:col-span-1" role="group" aria-label={m.embedbuilder.pageTabsAria()}>
+    {#each tabs as tab (tab.id)}
+      {@const selected = activeMainTab === tab.id}
+      <button
+        type="button"
+        class="min-h-[44px] px-2 rounded-lg border text-sm font-medium flex items-center justify-center gap-2"
+        style="background: {selected ? $colorStore.selectedSurface : `${$colorStore.primary}08`}; border-color: {selected ? $colorStore.selectedBorder : `${$colorStore.primary}20`}; color: {$colorStore.text};"
+        aria-pressed={selected}
+        onclick={() => selectTab(tab.id)}
+      >
+        <i class="fa-solid {tab.icon}" aria-hidden="true"></i>
+        {tab.label}
+      </button>
+    {/each}
+  </div>
+
+  {#if openSavedEmbed}
+    <div
+      class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 p-3 rounded-lg border"
+      style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}20;"
     >
-      <div class="p-6 min-h-[600px]">
+      <span class="text-sm font-medium truncate" style="color: {$colorStore.text};">
+        <i class="fa-solid fa-pen mr-2" aria-hidden="true"></i>{m.embedbuilder.pageSavedEditing({ name: openSavedEmbed.embedName ?? m.embedbuilder.fullscreenSavedNameFallback() })}
+      </span>
+      <button
+        type="button"
+        class="min-h-[44px] px-4 rounded-lg text-sm font-medium flex items-center justify-center gap-2 disabled:opacity-50 shrink-0"
+        style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
+        disabled={savingEmbed}
+        onclick={() => writeSavedEmbed(openSavedEmbed)}
+      >
+        <i class="fa-solid fa-floppy-disk" aria-hidden="true"></i>
+        {savingEmbed ? m.common.saving() : m.embedbuilder.pageSavedSaveChanges()}
+      </button>
+    </div>
+  {/if}
+
+  <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 w-full">
+    <section
+      class="rounded-2xl border min-w-0"
+      style="background: {$colorStore.surface}; border-color: {$colorStore.primary}30;"
+    >
+      <div class="p-4 sm:p-6 lg:min-h-[600px]">
         {#if activeMainTab === "templates"}
-          <!-- Templates Tab -->
           <div class="space-y-6">
-            <div class="text-center mb-6">
-              <h2 class="text-xl font-semibold mb-2" style="color: {$colorStore.text};">{m.embedbuilder.pageTemplatesHeading()}</h2>
-            </div>
+            <h2 class="text-xl font-semibold" style="color: {$colorStore.text};">{m.embedbuilder.pageTemplatesHeading()}</h2>
 
             <TemplateGallery
               onselect={handleTemplateSelect}
             />
-            
-            <div class="text-center pt-6 border-t" style="border-color: {$colorStore.primary}20;">
+
+            <div class="pt-6 border-t" style="border-color: {$colorStore.primary}20;">
               <button
+                type="button"
                 aria-label={m.embedbuilder.pageStartFromScratch()}
-                class="px-6 py-3 rounded-lg font-medium transition-all flex items-center gap-2 mx-auto"
-                style="background: {$colorStore.primary}20;
-                       color: {$colorStore.primary};
-                       border: 1px solid {$colorStore.primary}30;"
-                onclick={() => activeMainTab = "editor"}
+                class="w-full sm:w-auto px-6 min-h-[44px] rounded-lg font-medium flex items-center justify-center gap-2"
+                style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
+                onclick={() => selectTab("editor")}
               >
                 <i class="fa-solid fa-layer-group" style="font-size: 16px;"></i>
                 {m.embedbuilder.pageStartFromScratch()}
@@ -1018,31 +1666,40 @@
                           style="background: {$colorStore.primary}10; border-color: {$colorStore.primary}30; color: {$colorStore.text};"
                           placeholder={m.embedbuilder.pageContentPlaceholder()}
                           bind:value={content}
+                          oninput={(e) => checkContentImage(e.currentTarget.value)}
                 ></textarea>
                 <button
-                  class="absolute right-2 top-2 p-1 rounded-sm hover:bg-black/10"
+                  type="button"
+                  class="absolute right-1 top-1 min-h-[44px] min-w-[44px] rounded-sm hover:bg-black/10"
                   style="color: {$colorStore.muted};"
                   onclick={(e) => showPlaceholderFromButton(e.currentTarget, 'content')}
                   title={m.embedbuilder.editorInsertPlaceholder()}
+                  aria-label={m.embedbuilder.editorInsertPlaceholder()}
                 >
                   %
                 </button>
               </div>
-              <p class="text-xs mt-1" style="color: {$colorStore.muted};">
-                {m.embedbuilder.pageContentHint()}
-              </p>
+              {#if contentImageToken}
+                <ImagePlaceholderChip
+                  token={contentImageToken}
+                  onthumbnail={() => moveContentImage("thumbnail")}
+                  onimage={() => moveContentImage("image")}
+                  ondismiss={() => (contentImageToken = null)}
+                />
+              {/if}
             </div>
 
             <!-- Embeds List -->
             <div class="space-y-4">
-              <div class="flex justify-between items-center z-50">
+              <div class="flex justify-between items-center gap-2">
                 <h3 class="text-lg font-semibold" style="color: {$colorStore.text};">
                   {m.embedbuilder.fullscreenEmbedsHeading({ count: embeds.length, max: 10 })}
                 </h3>
                 <button
+                  type="button"
                   aria-label={m.embedbuilder.fullscreenAddEmbed()}
-                  class="px-4 py-2 rounded-lg font-medium transition-all flex items-center gap-2 disabled:opacity-50"
-                  style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
+                  class="px-4 min-h-[44px] rounded-lg font-medium flex items-center gap-2 disabled:opacity-50"
+                  style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
                   disabled={embeds.length >= 10}
                   onclick={addEmbed}
                 >
@@ -1069,457 +1726,340 @@
             <div class="flex justify-between items-center">
               <div>
                 <h3 class="text-base sm:text-lg font-semibold" style="color: {$colorStore.text};">
-                  {m.embedbuilder.tabLinks()} <span class="text-xs sm:text-sm font-normal">({linkButtons.length}/{MAX_LINK_BUTTONS})</span>
+                  {m.embedbuilder.tabComponents()} <span class="text-xs sm:text-sm font-normal">({getTotalComponentCount()}/25)</span>
                 </h3>
+                <p class="text-xs sm:text-sm" style="color: {$colorStore.muted};">
+                  <span class="hidden sm:inline">{m.embedbuilder.fullscreenComponentsLimits({ rows: componentRows.length })}</span>
+                  <span class="sm:hidden">{m.embedbuilder.pageComponentsLimitsShort({ rows: componentRows.length })}</span>
+                </p>
               </div>
 
               <button
-                aria-label={m.common.addButton()}
-                class="px-2 sm:px-4 py-1 sm:py-2 rounded-md sm:rounded-lg text-xs sm:text-base font-medium transition-all flex items-center gap-1 sm:gap-2 disabled:opacity-50"
-                style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
-                disabled={linkButtons.length >= MAX_LINK_BUTTONS}
-                onclick={addLinkButton}
+                type="button"
+                aria-label={m.embedbuilder.fullscreenAddRow()}
+                class="px-4 min-h-[44px] rounded-lg text-sm font-medium flex items-center gap-2 disabled:opacity-50"
+                style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
+                disabled={componentRows.length >= 5 || getTotalComponentCount() >= 25}
+                onclick={addRow}
               >
                 <i class="fa-solid fa-plus" style="font-size: 12px;"></i>
-                <span>{m.common.addButton()}</span>
+                <span class="hidden sm:inline">{m.embedbuilder.fullscreenAddRow()}</span>
+                <span class="sm:hidden">{m.embedbuilder.pageAddRowShort()}</span>
               </button>
             </div>
 
-            {#if linkButtons.length === 0}
+            {#if componentRows.length === 0}
               <div class="text-center py-6 sm:py-12">
-                <i class="fa-utility-duo fa-regular fa-link"
+                <i class="fa-utility-duo fa-regular fa-comment"
                    style="--fa-primary-color: {$colorStore.muted}; --fa-secondary-color: {$colorStore.muted}; font-size: 36px; opacity: 0.5; display: block; margin: 0 auto 12px;"></i>
-                <h4 class="text-base sm:text-lg font-semibold mb-1 sm:mb-2" style="color: {$colorStore.text};">{m.embedbuilder.linksEmptyTitle()}</h4>
+                <h4 class="text-base sm:text-lg font-semibold mb-1 sm:mb-2" style="color: {$colorStore.text};">{m.embedbuilder.pageRowsEmptyTitle()}</h4>
+                <p class="text-xs sm:text-sm mb-2 sm:mb-4" style="color: {$colorStore.muted};">
+                  {m.embedbuilder.fullscreenComponentsEmptyHint()}
+                </p>
               </div>
             {:else}
-              <div class="space-y-3 sm:space-y-4" role="list">
-                {#each linkButtons as button (button.key)}
+              <div class="sm:hidden text-center mb-3">
+                <p class="text-[10px] flex items-center justify-center gap-1" style="color: {$colorStore.muted};">
+                  <i class="fa-solid fa-grip-vertical" style="font-size: 10px;"></i>
+                  {m.embedbuilder.pageRowsDragHint()}
+                </p>
+              </div>
+              <div
+                class="space-y-4"
+                role="list"
+                ondragover={(e) => {
+                  if (isDraggingRow) {
+                    e.preventDefault();
+                    handleRowDragOver(e, componentRows.length);
+                  }
+                }}
+                ondrop={(e) => {
+                  if (isDraggingRow && dragOverRowIndex === componentRows.length) {
+                    handleRowDrop(e, componentRows.length);
+                  }
+                }}
+              >
+                {#each componentRows as row, rowIndex (row.componentKey)}
+                  {#if isDraggingRow && dragOverRowIndex === rowIndex}
+                    <div
+                      class="h-2 rounded transition-all"
+                      style="background: {$colorStore.primary}50;"
+                    ></div>
+                  {/if}
+
                   <div
-                    class="p-2 sm:p-4 border rounded-lg"
+                    class="relative p-2 sm:p-4 border rounded-lg transition-all"
+                    class:opacity-50={isDraggingRow && draggedRow?.rowKey === row.rowKey}
                     style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}20;"
                     role="listitem"
+                    aria-label={m.common.rowNumber({ number: rowIndex + 1 })}
+                    ondragover={(e) => handleRowDragOver(e, rowIndex)}
+                    ondrop={(e) => handleRowDrop(e, rowIndex)}
                   >
-                    <LinkButtonEditor
-                      {button}
-                      user={data.user}
-                      onupdate={handleLinkButtonUpdate}
-                      onremove={handleLinkButtonRemove}
-                      onduplicate={handleLinkButtonDuplicate}
-                    />
+                    <div class="flex items-center justify-between mb-2 sm:mb-3">
+                      <div class="flex items-center gap-1 sm:gap-2">
+                        <div
+                          class="cursor-grab min-h-[44px] min-w-[44px] flex items-center justify-center rounded-md transition-colors"
+                          style="touch-action: none; background: {$colorStore.primary}10;"
+                          role="button"
+                          tabindex="0"
+                          draggable="true"
+                          ondragstart={(e) => handleRowDragStart(e, row)}
+                          ondragend={handleRowDragEnd}
+                          ontouchstart={(e) => handleRowTouchStart(e, row)}
+                          ontouchmove={(e) => handleRowTouchMove(e)}
+                          ontouchend={(e) => handleRowTouchEnd(e)}
+                          ontouchcancel={(e) => handleRowTouchEnd(e)}
+                          title={m.embedbuilder.pageRowDragTitle()}
+                          aria-label={m.embedbuilder.pageRowDragAria({ number: componentRows.indexOf(row) + 1 })}
+                        >
+                          <i
+                            class="fa-solid fa-grip-vertical"
+                            style="color: {$colorStore.primary}; font-size: 12px; pointer-events: none;"
+                          ></i>
+                        </div>
+                        <span class="text-xs sm:text-sm font-medium" style="color: {$colorStore.text};">
+                          <span class="hidden sm:inline">{row.components.length === 1 ? m.embedbuilder.fullscreenRowHeaderOne({ number: componentRows.indexOf(row) + 1, count: 1 }) : m.embedbuilder.fullscreenRowHeaderOther({ number: componentRows.indexOf(row) + 1, count: row.components.length })}</span>
+                          <span class="sm:hidden">{m.embedbuilder.pageRowHeaderShort({ number: componentRows.indexOf(row) + 1, count: row.components.length })}</span>
+                        </span>
+                      </div>
+                      <div class="flex gap-1 sm:gap-2">
+                        <button
+                          aria-label={m.embedbuilder.pageRowDuplicateAria()}
+                          class="px-3 min-h-[44px] min-w-[44px] text-sm rounded-lg font-medium disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                          style="background: {$colorStore.primary}10; color: {$colorStore.text}; border: 1px solid {$colorStore.primary}20;"
+                          disabled={row.components.length === 0}
+                          onclick={(e) => {
+                            e.stopPropagation();
+                            duplicateRow(row.rowKey);
+                          }}
+                        >
+                          <i class="fa-solid fa-copy" style="font-size: 10px;"></i>
+                          <span class="hidden sm:inline">{m.common.duplicate()}</span>
+                        </button>
+                        <button
+                          aria-label={m.embedbuilder.pageRowRemoveAria()}
+                          class="px-3 min-h-[44px] min-w-[44px] text-sm rounded-lg font-medium flex items-center justify-center gap-2"
+                          style="background: #ED424520; color: #ED4245; border: 1px solid #ED424530;"
+                          onclick={(e) => {
+                            e.stopPropagation();
+                            removeRow(row.rowKey);
+                          }}
+                        >
+                          <i class="fa-solid fa-trash" style="font-size: 10px;"></i>
+                          <span class="hidden sm:inline">{m.embedbuilder.pageRowRemoveAria()}</span>
+                        </button>
+                      </div>
+                    </div>
+
+                    {#if row.components.length === 0}
+                      <div class="text-center py-3 sm:py-6">
+                        <p class="text-xs sm:text-sm mb-2 sm:mb-3" style="color: {$colorStore.muted};">
+                          {m.embedbuilder.fullscreenRowEmpty()}
+                        </p>
+                        <div class="flex gap-1 sm:gap-2 justify-center">
+                          <button
+                            aria-label={m.common.addButton()}
+                            class="px-3 min-h-[44px] rounded-lg text-sm font-medium flex items-center gap-2"
+                            style="background: {$colorStore.primary}10; color: {$colorStore.text}; border: 1px solid {$colorStore.primary}20;"
+                            onclick={(e) => {
+                              e.stopPropagation();
+                              addComponentToRow(row.rowKey);
+                            }}
+                          >
+                            <i class="fa-solid fa-plus" style="font-size: 11px;"></i>
+                            {m.common.addButton()}
+                          </button>
+                        </div>
+                      </div>
+                    {:else}
+                      {#if editingComponent && row.components.some(c => c.componentKey === editingComponent!.componentKey)}
+                        <div class="p-2 sm:p-3 border rounded-lg mb-2 sm:mb-3"
+                             style="background: {$colorStore.secondary}05; border-color: {$colorStore.secondary}30;">
+                          <ComponentEditor
+                            component={editingComponent}
+                            isEditing={true}
+                            user={data.user}
+                            onupdate={(detail) => {
+                              editingComponent = detail.component;
+                            }}
+                            onremove={handleComponentRemove}
+                            onedit={handleComponentEdit}
+                            onduplicate={(detail) => {
+                              duplicateComponent(detail.componentKey);
+                              editingComponent = null;
+                            }}
+                          />
+
+                          <div class="flex justify-end gap-1 sm:gap-2 mt-2 sm:mt-4 pt-2 sm:pt-4 border-t"
+                               style="border-color: {$colorStore.secondary}20;">
+                            <button
+                              aria-label={m.common.cancel()}
+                              class="px-4 min-h-[44px] rounded-lg font-medium"
+                              style="background: {$colorStore.primary}10; color: {$colorStore.text}; border: 1px solid {$colorStore.primary}20;"
+                              onclick={(e) => {
+                                e.stopPropagation();
+                                editingComponent = null;
+                              }}
+                            >
+                              {m.common.cancel()}
+                            </button>
+                            <button
+                              aria-label={m.common.done()}
+                              class="px-4 min-h-[44px] rounded-lg font-medium"
+                              style="background: {$colorStore.primary}; color: {$colorStore.onPrimary};"
+                              onclick={(e) => {
+                                e.stopPropagation();
+                                if (editingComponent) {
+                                  handleComponentUpdate({ component: editingComponent });
+                                }
+                                editingComponent = null;
+                              }}
+                            >
+                              {m.common.done()}
+                            </button>
+                          </div>
+                        </div>
+                      {/if}
+
+                      <div
+                        class="flex gap-2 flex-wrap min-h-[50px] relative"
+                        data-drop-zone
+                        data-row-key={row.rowKey}
+                        ondragover={(e) => handleDragOver(e, row.rowKey, -1)}
+                        ondrop={(e) => handleDrop(e, row.rowKey)}
+                        role="list"
+                        aria-label={m.embedbuilder.pageRowComponentsAria({ number: rowIndex + 1 })}
+                      >
+                        {#each row.components as component, idx (component.componentKey)}
+                          {#if isDragging && dragOverRow === row.rowKey && dragOverIndex === idx}
+                            <div
+                              class="w-2 h-10 rounded transition-all"
+                              style="background: {$colorStore.primary}50;"
+                            ></div>
+                          {/if}
+
+                          <div
+                            class="transition-all cursor-grab"
+                            class:opacity-50={isDragging && draggedComponent?.componentKey === component.componentKey}
+                            style="touch-action: none;"
+                            aria-label={m.embedbuilder.pageComponentAriaButton({ name: component.displayName })}
+                            draggable="true"
+                            data-component
+                            ondragstart={(e) => handleDragStart(e, component, row.rowKey)}
+                            ondragend={handleDragEnd}
+                            ondragover={(e) => handleDragOver(e, row.rowKey, idx)}
+                            ontouchstart={(e) => handleTouchStart(e, component, row.rowKey)}
+                            ontouchmove={(e) => handleTouchMove(e)}
+                            ontouchend={(e) => handleTouchEnd(e)}
+                            ontouchcancel={(e) => handleTouchEnd(e)}
+                            onclick={() => !isDragging && handleComponentEdit({ component })}
+                            onkeydown={(e) => { if (e.key === 'Enter' && !isDragging) handleComponentEdit({ component }); }}
+                            role="button"
+                            tabindex="0"
+                          >
+                            <ComponentEditor
+                              {component}
+                              isEditing={false}
+                              user={data.user}
+                              onupdate={handleComponentUpdate}
+                              onremove={handleComponentRemove}
+                              onedit={handleComponentEdit}
+                              onduplicate={(detail) => duplicateComponent(detail.componentKey)}
+                            />
+                          </div>
+                        {/each}
+
+                        {#if isDragging && dragOverRow === row.rowKey && dragOverIndex === row.components.length}
+                          <div
+                            class="w-2 h-10 rounded transition-all"
+                            style="background: {$colorStore.primary}50;"
+                          ></div>
+                        {/if}
+                      </div>
+
+                      {#if row.components.length < 5}
+                        <div class="flex gap-1 sm:gap-2 justify-center pt-2 sm:pt-3 border-t mt-2 sm:mt-3"
+                             style="border-color: {$colorStore.primary}20;">
+                          <button
+                            aria-label={m.embedbuilder.pageRowAddButtonAria()}
+                            class="px-3 min-h-[44px] rounded-lg text-sm font-medium flex items-center gap-2"
+                            style="background: {$colorStore.primary}10; color: {$colorStore.text}; border: 1px solid {$colorStore.primary}20;"
+                            onclick={(e) => {
+                              e.stopPropagation();
+                              addComponentToRow(row.rowKey);
+                            }}
+                          >
+                            <i class="fa-solid fa-plus" style="font-size: 10px;"></i>
+                            {m.common.button()}
+                          </button>
+                        </div>
+                      {/if}
+                    {/if}
                   </div>
                 {/each}
+
+                {#if isDraggingRow && dragOverRowIndex === componentRows.length}
+                  <div
+                    class="h-2 rounded transition-all"
+                    style="background: {$colorStore.primary}50;"
+                  ></div>
+                {/if}
               </div>
             {/if}
           </div>
 
         {:else if activeMainTab === "json"}
-          <!-- JSON Tab -->
-          <div class="space-y-4">
-            <div class="flex justify-between items-center flex-wrap gap-2">
-              <div>
-                <h3 class="text-lg font-semibold" style="color: {$colorStore.text};">{m.embedbuilder.fullscreenJsonHeading()}</h3>
-              </div>
-              <div class="flex gap-2">
-                <button
-                  aria-label={m.embedbuilder.pageJsonRefreshAria()}
-                  class="px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2"
-                  style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
-                  onclick={refreshJsonPreview}
-                >
-                  <i class="fa-solid fa-rotate" style="font-size: 14px;"></i>
-                  {m.embedbuilder.pageJsonRefresh()}
-                </button>
-                <button
-                  aria-label={m.embedbuilder.pageJsonApplyAria()}
-                  class="px-3 py-2 rounded-lg text-sm font-medium transition-all flex items-center gap-2"
-                  style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
-                  onclick={applyJsonText}
-                >
-                  <i class="fa-solid fa-check" style="font-size: 14px;"></i>
-                  {m.embedbuilder.pageJsonApply()}
-                </button>
-              </div>
-            </div>
-
-            <textarea
-              rows="20"
-              spellcheck="false"
-              class="w-full px-3 py-2 rounded-lg border font-mono text-xs resize-y"
-              style="background: {$colorStore.primary}10; border-color: {$colorStore.primary}30; color: {$colorStore.text};"
-              placeholder={m.embedbuilder.fullscreenJsonPlaceholder()}
-              bind:value={jsonText}
-            ></textarea>
-
-            {#if jsonParseError}
-              <p class="text-sm" style="color: #ED4245;">{jsonParseError}</p>
-            {/if}
-
-            <p class="text-xs" style="color: {$colorStore.muted};">
-              {m.embedbuilder.pageJsonFooter({ payload: "{ content, embeds, components }" })}
-            </p>
-          </div>
+          <JsonTab bind:jsonText {jsonParseError} onrefresh={refreshJsonPreview} onapply={applyJsonText} />
 
         {:else if activeMainTab === "saved"}
-          <!-- Saved Embeds Tab -->
-          <div class="space-y-6">
-            <!-- Save current embed -->
-            <div
-              class="p-4 rounded-lg border space-y-3"
-              style="background: {$colorStore.primary}10; border-color: {$colorStore.primary}30;"
-            >
-              <h3 class="text-base font-semibold" style="color: {$colorStore.text};">{m.embedbuilder.fullscreenSaveHeading()}</h3>
-              <div class="flex flex-col sm:flex-row gap-2">
-                <input
-                  type="text"
-                  class="flex-1 px-3 py-2 rounded-lg border min-h-[44px]"
-                  style="background: {$colorStore.primary}10; border-color: {$colorStore.primary}30; color: {$colorStore.text};"
-                  placeholder={m.embedbuilder.fullscreenSaveNamePlaceholder()}
-                  bind:value={saveEmbedName}
-                />
-                <button
-                  aria-label={m.common.saveEmbed()}
-                  class="px-4 py-2 rounded-lg font-medium transition-all flex items-center justify-center gap-2 disabled:opacity-50 min-h-[44px]"
-                  style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
-                  disabled={savingEmbed || !saveEmbedName.trim()}
-                  onclick={saveCurrentEmbed}
-                >
-                  <i class="fa-solid fa-floppy-disk" style="font-size: 14px;"></i>
-                  {savingEmbed ? m.common.saving() : m.common.save()}
-                </button>
-              </div>
-              {#if $currentGuild}
-                <label class="flex items-center gap-2 text-sm min-h-[44px]" style="color: {$colorStore.muted};">
-                  <input type="checkbox" bind:checked={saveAsGuildShared} />
-                  {m.embedbuilder.personaShareWithEveryone({ server: $currentGuild.name })}
-                </label>
-              {/if}
-            </div>
-
-            <!-- Guild-shared embeds -->
-            {#if $currentGuild}
-              <div class="space-y-2">
-                <h3 class="text-base font-semibold" style="color: {$colorStore.text};">
-                  {m.embedbuilder.pageSavedSharedHeading({ server: $currentGuild.name, count: savedGuildEmbeds.length })}
-                </h3>
-                {#if loadingSavedEmbeds}
-                  <p class="text-sm" style="color: {$colorStore.muted};">{m.common.loading()}</p>
-                {:else if savedGuildEmbeds.length === 0}
-                  <p class="text-sm" style="color: {$colorStore.muted};">{m.embedbuilder.pageSavedSharedEmpty()}</p>
-                {:else}
-                  {#each savedGuildEmbeds as saved (saved.id)}
-                    <div
-                      class="flex items-center justify-between gap-2 p-3 rounded-lg border"
-                      style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}20;"
-                    >
-                      <span class="text-sm font-medium truncate" style="color: {$colorStore.text};">
-                        {saved.embedName}
-                      </span>
-                      <div class="flex gap-2 shrink-0">
-                        <button
-                          aria-label={m.embedbuilder.pageSavedLoadAria()}
-                          class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all min-h-[44px]"
-                          style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
-                          onclick={() => loadSavedEmbed(saved)}
-                        >
-                          {m.common.load()}
-                        </button>
-                        <button
-                          aria-label={m.embedbuilder.pageSavedDeleteAria()}
-                          class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all min-h-[44px]"
-                          style="background: #ED424520; color: #ED4245; border: 1px solid #ED424530;"
-                          onclick={() => requestDeleteSavedEmbed(saved)}
-                        >
-                          {m.common.delete()}
-                        </button>
-                      </div>
-                    </div>
-                  {/each}
-                {/if}
-              </div>
-            {/if}
-
-            <!-- Personal embeds -->
-            <div class="space-y-2">
-              <h3 class="text-base font-semibold" style="color: {$colorStore.text};">
-                {m.embedbuilder.fullscreenMineHeading({ count: savedUserEmbeds.length })}
-              </h3>
-              {#if !data.user}
-                <p class="text-sm" style="color: {$colorStore.muted};">{m.embedbuilder.pageSavedLogin()}</p>
-              {:else if loadingSavedEmbeds}
-                <p class="text-sm" style="color: {$colorStore.muted};">{m.common.loading()}</p>
-              {:else if savedUserEmbeds.length === 0}
-                <p class="text-sm" style="color: {$colorStore.muted};">{m.embedbuilder.fullscreenMineEmpty()}</p>
-              {:else}
-                {#each savedUserEmbeds as saved (saved.id)}
-                  <div
-                    class="flex items-center justify-between gap-2 p-3 rounded-lg border"
-                    style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}20;"
-                  >
-                    <span class="text-sm font-medium truncate" style="color: {$colorStore.text};">
-                      {saved.embedName}
-                    </span>
-                    <div class="flex gap-2 shrink-0">
-                      <button
-                        aria-label={m.embedbuilder.pageSavedLoadAria()}
-                        class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all min-h-[44px]"
-                        style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
-                        onclick={() => loadSavedEmbed(saved)}
-                      >
-                        {m.common.load()}
-                      </button>
-                      <button
-                        aria-label={m.embedbuilder.pageSavedDeleteAria()}
-                        class="px-3 py-1.5 rounded-lg text-xs font-medium transition-all min-h-[44px]"
-                        style="background: #ED424520; color: #ED4245; border: 1px solid #ED424530;"
-                        onclick={() => requestDeleteSavedEmbed(saved)}
-                      >
-                        {m.common.delete()}
-                      </button>
-                    </div>
-                  </div>
-                {/each}
-              {/if}
-            </div>
-          </div>
+          <SavedTab
+            guildName={$currentGuild?.name ?? null}
+            loggedIn={!!data.user}
+            guildEmbeds={savedGuildEmbeds}
+            userEmbeds={savedUserEmbeds}
+            loading={loadingSavedEmbeds}
+            bind:saveName={saveEmbedName}
+            bind:saveShared={saveAsGuildShared}
+            saving={savingEmbed}
+            onsave={saveCurrentEmbed}
+            onload={loadSavedEmbed}
+            onoverwrite={requestOverwriteSavedEmbed}
+            ondelete={requestDeleteSavedEmbed}
+          />
 
         {:else if activeMainTab === "send"}
-          <!-- Send Tab -->
-          <div class="space-y-6">
-            {#if !$currentGuild}
-              <p class="text-sm" style="color: {$colorStore.muted};">
-                {m.embedbuilder.pageSendNoGuild()}
-              </p>
-            {:else}
-              <div class="space-y-2">
-                <h3 class="text-base font-semibold" style="color: {$colorStore.text};">
-                  {m.embedbuilder.pageSendHeading({ server: $currentGuild.name })}
-                </h3>
-              </div>
-
-              <!-- Channel picker -->
-              <div class="space-y-2">
-                <span class="block text-sm font-medium" style="color: {$colorStore.text};">{m.common.channel()}</span>
-                {#if loadingSendChannels}
-                  <p class="text-sm" style="color: {$colorStore.muted};">{m.common.loadingChannels()}</p>
-                {:else if sendChannelsError}
-                  <p class="text-sm" style="color: #ED4245;">{sendChannelsError}</p>
-                {:else if sendableChannelOptions.length === 0}
-                  <p class="text-sm" style="color: #ED4245;">
-                    {m.embedbuilder.pageSendNoChannels()}
-                  </p>
-                {:else}
-                  <DiscordSelector
-                    type="channel"
-                    options={sendableChannelOptions}
-                    bind:selected={selectedSendChannelId}
-                    placeholder={m.common.selectAChannelPlaceholder()}
-                    ariaLabel={m.embedbuilder.pageSendChannelAria()}
-                  />
-                {/if}
-              </div>
-
-              <!-- Permissions for the selected channel -->
-              {#if selectedSendChannel}
-                <div
-                  class="p-4 rounded-lg border space-y-2"
-                  style="background: {$colorStore.primary}10; border-color: {$colorStore.primary}30;"
-                  transition:fly={{ y: -8, duration: 200 }}
-                >
-                  <h4 class="text-sm font-semibold" style="color: {$colorStore.text};">
-                    {m.embedbuilder.pageSendPermissionsHeading({ channel: selectedSendChannel.name })}
-                  </h4>
-                  <div class="grid grid-cols-1 sm:grid-cols-2 gap-1 text-xs" style="color: {$colorStore.muted};">
-                    <span>{selectedSendChannel.canSend ? "✓" : "✕"} {m.common.sendMessages()}</span>
-                    <span>{selectedSendChannel.canEmbed ? "✓" : "✕"} {m.embedbuilder.pageSendPermEmbeds()}</span>
-                    <span>{selectedSendChannel.canMentionEveryone ? "✓" : "✕"} {m.embedbuilder.pageSendPermMentions()}</span>
-                    <span>{selectedSendChannel.canUseWebhooks ? "✓" : "✕"} {m.common.manageWebhooks()}</span>
-                  </div>
-                  {#if !selectedSendChannel.canMentionEveryone}
-                    <p class="text-xs" style="color: {$colorStore.muted};">
-                      {m.embedbuilder.pageSendMentionsStripped()}
-                    </p>
-                  {/if}
-                  {#if embedPermissionBlock}
-                    <p class="text-xs" style="color: #ED4245;">{embedPermissionBlock}</p>
-                  {/if}
-                </div>
-              {/if}
-
-              <!-- Webhook options, revealed once a channel is chosen -->
-              {#if selectedSendChannel}
-                <div
-                  class="p-4 rounded-lg border space-y-3"
-                  style="background: {$colorStore.primary}10; border-color: {$colorStore.primary}30;"
-                  transition:fly={{ y: -8, duration: 200 }}
-                >
-                  <label class="flex items-center gap-2 text-sm min-h-[44px]" style="color: {$colorStore.text};">
-                    <input
-                      type="checkbox"
-                      bind:checked={sendAsWebhook}
-                      disabled={!webhookAvailable}
-                    />
-                    {m.embedbuilder.pageSendWebhookToggle()}
-                  </label>
-
-                  {#if !webhookAvailable}
-                    <p class="text-xs" style="color: #ED4245;">
-                      {selectedSendChannel.canUseWebhooks
-                        ? m.embedbuilder.pageSendWebhookNeedBot()
-                        : m.embedbuilder.pageSendWebhookNeedUser()}
-                    </p>
-                  {/if}
-
-                  {#if sendAsWebhook}
-                    <div class="space-y-2" transition:fly={{ y: -8, duration: 200 }}>
-                      <!-- Send as: a saved persona, or a one-off name and avatar -->
-                      <span class="block text-sm font-medium" style="color: {$colorStore.text};">{m.embedbuilder.pageSendAs()}</span>
-
-                      <div class="flex flex-wrap items-center gap-2">
-                        <button
-                          aria-label={m.embedbuilder.pageSendCustomAria()}
-                          class="px-3 py-2 rounded-lg text-xs font-medium transition-all min-h-[44px]"
-                          style="background: {$colorStore.primary}{selectedPersonaId === null ? '30' : '10'};
-                                 color: {$colorStore.primary};
-                                 border: 1px solid {$colorStore.primary}{selectedPersonaId === null ? '60' : '30'};"
-                          onclick={() => (selectedPersonaId = null)}
-                        >
-                          {m.common.custom()}
-                        </button>
-                        {#each personas as persona (persona.id)}
-                          <button
-                            aria-label={m.embedbuilder.pageSendAsPersonaAria({ name: persona.name })}
-                            class="px-3 py-2 rounded-lg text-xs font-medium transition-all flex items-center gap-2 min-h-[44px]"
-                            style="background: {$colorStore.primary}{selectedPersonaId === persona.id ? '30' : '10'};
-                                   color: {$colorStore.primary};
-                                   border: 1px solid {$colorStore.primary}{selectedPersonaId === persona.id ? '60' : '30'};"
-                            onclick={() => (selectedPersonaId = persona.id)}
-                          >
-                            {#if persona.avatarUrl}
-                              <img alt="" class="w-5 h-5 rounded-full object-cover" src={persona.avatarUrl} />
-                            {/if}
-                            {persona.name}
-                            {#if persona.isGuildShared}
-                              <i class="fa-solid fa-users" style="font-size: 10px;"></i>
-                            {/if}
-                          </button>
-                        {/each}
-                        {#if loadingPersonas}
-                          <span class="text-xs" style="color: {$colorStore.muted};">{m.common.loading()}</span>
-                        {/if}
-
-                        <!-- Trailing action, dashed so it does not read as another persona to pick -->
-                        <button
-                          aria-label={m.embedbuilder.pageSendManageAria()}
-                          class="px-3 py-2 rounded-lg text-xs font-medium transition-all flex items-center gap-2 min-h-[44px]"
-                          style="color: {$colorStore.muted}; border: 1px dashed {$colorStore.primary}40;"
-                          onclick={() => (showPersonaManager = true)}
-                        >
-                          <i class="fa-solid fa-gear" style="font-size: 12px;"></i>
-                          {m.common.manage()}
-                        </button>
-                      </div>
-
-                    </div>
-
-                    <!-- One-off name and avatar, used when no persona is picked -->
-                    {#if selectedPersonaId === null}
-                      <div class="space-y-2" transition:fly={{ y: -8, duration: 200 }}>
-                        <input
-                          type="text"
-                          class="w-full px-3 py-2 rounded-lg border min-h-[44px]"
-                          style="background: {$colorStore.primary}10; border-color: {$colorStore.primary}30; color: {$colorStore.text};"
-                          placeholder={m.embedbuilder.pageSendWebhookNamePlaceholder()}
-                          maxlength="80"
-                          bind:value={webhookUsername}
-                        />
-
-                        <input
-                          type="url"
-                          class="w-full px-3 py-2 rounded-lg border min-h-[44px]"
-                          style="background: {$colorStore.primary}10; border-color: {$colorStore.primary}30; color: {$colorStore.text};"
-                          placeholder={m.embedbuilder.pageSendWebhookAvatarPlaceholder()}
-                          bind:value={webhookAvatarUrl}
-                        />
-
-                        <p class="text-xs" style="color: {$colorStore.muted};">
-                          {m.embedbuilder.pageSendLinksOnly()}
-                          <button
-                            class="underline"
-                            style="color: {$colorStore.primary};"
-                            onclick={() => (showPersonaManager = true)}
-                          >
-                            {m.embedbuilder.pageSendSavePersona()}
-                          </button>
-                        </p>
-                      </div>
-                    {/if}
-                  {/if}
-                </div>
-              {/if}
-
-              <!-- Send button -->
-              <button
-                aria-label={m.embedbuilder.pageSendButton()}
-                class="w-full px-4 py-2 rounded-lg font-medium transition-all flex items-center justify-center gap-2 disabled:opacity-50 min-h-[44px]"
-                style="background: {$colorStore.primary}20; color: {$colorStore.primary}; border: 1px solid {$colorStore.primary}30;"
-                disabled={sending || !selectedSendChannelId || !canCopyJson || !!embedPermissionBlock}
-                onclick={() => (showSendConfirm = true)}
-              >
-                <i class="fa-solid fa-paper-plane" style="font-size: 14px;"></i>
-                {sending ? m.common.sending() : m.embedbuilder.pageSendButton()}
-              </button>
-
-              {#if lastSendResult}
-                <div
-                  class="p-3 rounded-lg border text-sm"
-                  style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}20; color: {$colorStore.text};"
-                >
-                  {lastSendResult.personaName
-                    ? m.embedbuilder.pageSendResultPersona({ channel: lastSendResult.channelName, persona: lastSendResult.personaName })
-                    : lastSendResult.sentViaWebhook
-                      ? m.embedbuilder.pageSendResultWebhook({ channel: lastSendResult.channelName })
-                      : m.embedbuilder.pageSendResultBot({ channel: lastSendResult.channelName })}
-                  <a
-                    class="underline"
-                    href={lastSendResult.messageLink}
-                    rel="noopener noreferrer"
-                    style="color: {$colorStore.primary};"
-                    target="_blank"
-                  >
-                    {m.embedbuilder.pageSendJump()}
-                  </a>
-                </div>
-              {/if}
-
-              <!-- Channels that exist but cannot be used -->
-              {#if blockedChannels.length > 0}
-                <div class="space-y-2">
-                  <h4 class="text-sm font-semibold" style="color: {$colorStore.text};">
-                    {m.embedbuilder.pageSendUnavailable({ count: blockedChannels.length })}
-                  </h4>
-                  {#each blockedChannels as channel (channel.id)}
-                    <div
-                      class="flex items-center justify-between gap-2 p-2 rounded-lg border text-xs"
-                      style="background: {$colorStore.primary}05; border-color: {$colorStore.primary}20;"
-                    >
-                      <span class="truncate" style="color: {$colorStore.text};">#{channel.name}</span>
-                      <span class="shrink-0" style="color: {$colorStore.muted};">{channel.restriction}</span>
-                    </div>
-                  {/each}
-                </div>
-              {/if}
-            {/if}
-          </div>
-
+          <SendTab
+            guildName={$currentGuild?.name ?? null}
+            channelOptions={sendableChannelOptions}
+            loadingChannels={loadingSendChannels}
+            channelsError={sendChannelsError}
+            bind:selectedChannelId={selectedSendChannelId}
+            selectedChannel={selectedSendChannel}
+            {blockedChannels}
+            {embedPermissionBlock}
+            bind:sendAsWebhook
+            {webhookAvailable}
+            {personas}
+            {loadingPersonas}
+            bind:selectedPersonaId
+            bind:webhookUsername
+            bind:webhookAvatarUrl
+            {sending}
+            canSend={!sending && !!selectedSendChannelId && canCopyJson && !embedPermissionBlock && validationErrors.length === 0}
+            hasValidationErrors={validationErrors.length > 0}
+            lastResult={lastSendResult}
+            onmanage={() => (showPersonaManager = true)}
+            onsend={() => (showSendConfirm = true)}
+          />
         {/if}
       </div>
     </section>
 
     <!-- Preview Side -->
     <section
-      class="hidden lg:block rounded-2xl border sticky top-4 self-start"
-      style="background: {$colorStore.primary}0c;
-             border-color: {$colorStore.primary}30;"
+      class="rounded-2xl border lg:sticky lg:top-4 self-start min-w-0"
+      style="background: {$colorStore.surface}; border-color: {$colorStore.primary}30;"
     >
       <div class="p-4">
         <h3 class="text-lg font-semibold mb-4" style="color: {$colorStore.text};">{m.embedbuilder.fullscreenLivePreview()}</h3>
@@ -1540,13 +2080,13 @@
         <PreviewCard
           {content}
           {embeds}
-          componentRows={linkButtonsToPreviewRows(linkButtons)}
+          {componentRows}
           emptyMessage={m.embedbuilder.previewEmptyMessage()}
         />
       </div>
     </section>
   </div>
-</DashboardPageLayout>
+</PluginPage>
 
 <!-- Placeholder Picker -->
 <PlaceholderPicker
@@ -1568,6 +2108,16 @@
   variant="danger"
   oncancel={() => embedPendingDelete = null}
   onconfirm={confirmDeleteSavedEmbed}
+/>
+
+<ConfirmationModal
+  bind:isOpen={showOverwriteConfirm}
+  title={m.embedbuilder.pageSavedOverwriteAria()}
+  message={m.embedbuilder.pageSavedOverwriteMessage({ name: embedPendingOverwrite?.embedName ?? m.embedbuilder.fullscreenSavedNameFallbackThis() })}
+  confirmText={m.embedbuilder.pageSavedOverwrite()}
+  variant="warning"
+  oncancel={() => embedPendingOverwrite = null}
+  onconfirm={confirmOverwriteSavedEmbed}
 />
 
 <ConfirmationModal
@@ -1599,5 +2149,64 @@
   /* Smooth transitions */
   .transition-all {
     transition: all 0.2s ease;
+  }
+
+  .cursor-grab {
+      cursor: grab;
+  }
+
+  .cursor-grab:active {
+      cursor: grabbing;
+  }
+
+  .fa-grip-vertical {
+      cursor: grab;
+  }
+
+  .fa-grip-vertical:active,
+  :global(.dragging-row .fa-grip-vertical) {
+      cursor: grabbing;
+  }
+
+  [draggable="true"] {
+      user-select: none;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+  }
+
+  :global(.dragging *) {
+      user-select: none !important;
+      -webkit-user-select: none !important;
+  }
+
+  :global(body.dragging-active) {
+      position: fixed !important;
+      width: 100% !important;
+      height: 100% !important;
+      overflow: hidden !important;
+      touch-action: none !important;
+      -webkit-touch-callout: none !important;
+      user-select: none !important;
+      -webkit-user-select: none !important;
+      -webkit-overflow-scrolling: touch !important;
+  }
+
+  :global(body.dragging-active *) {
+      touch-action: none !important;
+      -webkit-touch-callout: none !important;
+      user-select: none !important;
+      -webkit-user-select: none !important;
+  }
+
+  :global(html) {
+      overscroll-behavior: none;
+  }
+
+  @media (max-width: 768px) {
+      [data-drop-zone] {
+          -webkit-overflow-scrolling: touch;
+          overscroll-behavior: none;
+      }
   }
 </style>

@@ -236,6 +236,8 @@ export interface GuildShape {
   online: number;
   channels: number;
   roles: number;
+  boosts: number;
+  boostTier: number;
   ownerId: string;
   createdAt: string;
 }

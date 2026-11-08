@@ -71,6 +71,12 @@ export const birthdayApi = {
   getUserBirthday: (guildId: bigint, userId: bigint) =>
     apiRequest<BirthdayUser>(`birthday/${guildId}/users/${userId}`),
 
+  setUserBirthday: (guildId: bigint, userId: bigint, birthday: string) =>
+    apiRequest<void>(`birthday/${guildId}/users/${userId}`, "PUT", { birthday }),
+
+  removeUserBirthday: (guildId: bigint, userId: bigint) =>
+    apiRequest<void>(`birthday/${guildId}/users/${userId}`, "DELETE"),
+
   /**
    * Enables a specific birthday feature for a guild
    * @param guildId The guild ID

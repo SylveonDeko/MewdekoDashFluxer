@@ -19,6 +19,8 @@
       user?: any;
       guild?: any;
       guildId?: string | bigint | null;
+      /** A drawn card: the embed's image, or a file below the message. An embed image fills the first embed without one, or its own embed. */
+      card?: { image: string; placement: "EmbedImage" | "Attached" } | null;
     }
 
     let {
@@ -29,7 +31,8 @@
       emptyMessage = m.embedbuilder.previewEmptyMessage(),
       user = null,
       guild = null,
-      guildId = null
+      guildId = null,
+      card = null
     }: Props = $props();
 
   // Get real data from stores
@@ -256,7 +259,16 @@
       .filter(component => !component.isSelect && typeof component.url === "string" && component.url.trim() && component.displayName)
   );
 
+  const cardEmbedIndex = $derived(
+    card?.placement === "EmbedImage"
+      ? embeds.findIndex(e => (e.title || e.description || e.fields?.length > 0) && !e.image?.url)
+      : -1
+  );
+  const cardOwnEmbed = $derived(!!card?.image && card.placement === "EmbedImage" && cardEmbedIndex < 0);
+  const cardAttached = $derived(!!card?.image && card.placement === "Attached");
   let hasContent = $derived(content.trim() ||
+    cardAttached ||
+    cardOwnEmbed ||
     embeds.some(e => e.title || e.description || e.fields?.length > 0) ||
     linkButtons.length > 0);
 </script>
@@ -347,7 +359,11 @@
             {/if}
 
           <!-- Image -->
-          {#if embed.image?.url}
+          {#if card && index === cardEmbedIndex}
+            <div class="dc-embed-image">
+              <img src={card.image} alt="">
+            </div>
+          {:else if embed.image?.url}
             {@const processedImage = processText(embed.image.url)}
             {#if processedImage && !processedImage.includes('%')}
               <div class="dc-embed-image">
@@ -371,6 +387,14 @@
       {/if}
     {/each}
 
+    {#if card && cardOwnEmbed}
+      <div class="dc-embed" style="--dc-embed-color: #5865F2;">
+        <div class="dc-embed-image">
+          <img src={card.image} alt="">
+        </div>
+      </div>
+    {/if}
+
     {#if linkButtons.length > 0}
       <div class="flex flex-col gap-1">
         {#each linkButtons as link, linkIndex (linkIndex)}
@@ -387,6 +411,10 @@
           </div>
         {/each}
       </div>
+    {/if}
+
+    {#if card && cardAttached}
+      <img class="rounded-lg max-w-[400px]" src={card.image} alt={m.plugin.cardAttachedFile()}>
     {/if}
 
   {:else if showEmpty}

@@ -136,7 +136,7 @@ A modal music search component for finding and adding tracks to the music queue.
       }
 
       if (searchResults.length === 0) {
-        errorMessage = m.common.noResultsFound();
+        errorMessage = m.music.searchNoResultsRetry();
       }
 
       // Reset retry count on success

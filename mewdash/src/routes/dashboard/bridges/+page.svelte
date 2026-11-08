@@ -1,33 +1,32 @@
 <!-- routes/dashboard/bridges/+page.svelte -->
 <script lang="ts">
   import { m } from "$lib/i18n";
-  import { onDestroy, onMount, untrack } from "svelte";
+  import { onDestroy } from "svelte";
   import { goto } from "$app/navigation";
+  import { fade } from "svelte/transition";
   import { ApiError } from "$lib/api/core";
-  import {
-    bridgeApi,
-    clientApi,
-    type Bridge,
-    type BridgeCode,
-    type Pair
-  } from "$lib/api/index.ts";
+  import { bridgesApi, clientApi, type Bridge, type Pair } from "$lib/api/index.ts";
   import { currentGuild } from "$lib/stores/currentGuild.ts";
   import { currentInstance } from "$lib/stores/instanceStore.ts";
   import { colorStore } from "$lib/stores/colorStore";
   import { logger } from "$lib/logger.ts";
-  import DashboardPageLayout from "$lib/components/layout/DashboardPageLayout.svelte";
+  import type { PageData } from "./$types";
+  import PluginPage from "$lib/components/plugin/PluginPage.svelte";
+  import PluginCard from "$lib/components/plugin/PluginCard.svelte";
   import SettingToggle from "$lib/components/forms/SettingToggle.svelte";
-  import DiscordSelector from "$lib/components/forms/DiscordSelector.svelte";
-  import ConfirmationModal from "$lib/components/ui/ConfirmationModal.svelte";
-  import Card from "$lib/components/analytics/Card.svelte";
   import AsyncState from "$lib/components/stats/AsyncState.svelte";
+  import Notification from "$lib/components/ui/Notification.svelte";
+  import ConfirmationModal from "$lib/components/ui/ConfirmationModal.svelte";
   import BridgeSettingsPanel from "$lib/components/forms/BridgeSettingsPanel.svelte";
   import BridgePairs from "$lib/components/forms/BridgePairs.svelte";
   import { createAutoSave } from "$lib/utils/autoSave.svelte";
+  import ConnectCard from "./components/ConnectCard.svelte";
 
-  let { data } = $props();
+  interface Props {
+    data: PageData;
+  }
 
-  const POLL_MS = 4000;
+  let { data }: Props = $props();
 
   let bridges = $state<Bridge[]>([]);
   let pairs = $state<Pair[]>([]);
@@ -37,228 +36,69 @@
   let error = $state<string | null>(null);
   let notificationMessage = $state("");
   let notificationType = $state<"success" | "error">("success");
+  let busy = $state<Record<string, boolean>>({});
 
-  let channelId = $state<string | null>(null);
-  let entering = $state(false);
-  let codeInput = $state("");
-  let busy = $state(false);
-  let code = $state<BridgeCode | null>(null);
-  let codeChannelId = $state<string | null>(null);
-  let now = $state(Date.now());
+  let removeTarget = $state<Bridge | null>(null);
+  let removeOpen = $state(false);
 
-  let removing = $state<Bridge | null>(null);
-  let showRemoveConfirm = $state(false);
+  let notifyTimer: ReturnType<typeof setTimeout> | null = null;
+  let loadedFor = $state("");
 
-  let pollTimer: ReturnType<typeof setInterval> | null = null;
-  let tickTimer: ReturnType<typeof setInterval> | null = null;
-
-  const remainingMs = $derived(code ? new Date(code.expiresAt).getTime() - now : 0);
-  const countdown = $derived.by(() => {
-    const total = Math.max(0, Math.ceil(remainingMs / 1000));
-    return `${Math.floor(total / 60)}:${String(total % 60).padStart(2, "0")}`;
-  });
+  let guildId = $derived($currentGuild?.id ? BigInt($currentGuild.id) : null);
 
   function notify(message: string, type: "success" | "error" = "error") {
     notificationMessage = message;
     notificationType = type;
-    setTimeout(() => (notificationMessage = ""), 4000);
+    if (notifyTimer) clearTimeout(notifyTimer);
+    notifyTimer = setTimeout(() => (notificationMessage = ""), 4000);
   }
 
   const autoSave = createAutoSave({
-    onError: (err) => notify(errorText(err), "error")
+    onError: (err) => notify(errorText(err))
   });
 
-  function errorText(err: unknown) {
-    if (err instanceof ApiError) {
-      switch ((err.body as { details?: { error?: string } } | null)?.details?.error ?? err.error) {
-        case "already_bridged":
-          return m.bridge.errorAlreadyBridged();
-        case "channel_invalid":
-          return m.bridge.errorChannelInvalid();
-        case "code_invalid":
-          return m.bridge.errorCodeInvalid();
-        case "code_wrong_platform":
-          return m.bridge.errorCodeWrongPlatform();
-        case "missing_permission":
-          return m.bridge.errorMissingPermission();
-        case "invalid_name_format":
-          return m.bridge.errorNameFormat({ name: "{name}" });
-        case "invalid_min_age":
-          return m.bridge.errorMinAge();
-        case "not_found":
-          return m.bridge.errorNotFound();
-        case "already_paired":
-          return m.bridge.errorAlreadyPaired();
-        case "channel_not_shared":
-          return m.bridge.errorChannelNotShared();
-      }
-    }
-    return m.bridge.errorGeneric();
+  function errorText(err: unknown): string {
+    const text = (err instanceof Error ? err.message : "") + (err instanceof ApiError ? JSON.stringify(err.body ?? "") : "");
+    if (text.includes("InvalidCode")) return m.bridges.errorInvalidCode();
+    if (text.includes("SamePlatform")) return m.bridges.errorSamePlatform();
+    if (text.includes("AlreadyBridged")) return m.bridges.errorAlreadyBridged();
+    if (text.includes("NeedWebhooks")) return m.bridges.errorWebhooks();
+    if (text.includes("NoPermission")) return m.bridges.errorNoPermission();
+    if (text.includes("invalid_name_format")) return m.bridges.errorNameFormat({ name: "{name}" });
+    if (text.includes("invalid_min_age")) return m.bridges.errorMinAge();
+    if (text.includes("not_found")) return m.bridges.errorNotFound();
+    if (text.includes("already_paired")) return m.bridges.errorAlreadyPaired();
+    if (text.includes("channel_not_shared")) return m.bridges.errorChannelNotShared();
+    if (text.includes("code_invalid")) return m.bridges.errorInvalidCode();
+    if (text.includes("code_wrong_platform")) return m.bridges.errorSamePlatform();
+    if (text.includes("already_bridged")) return m.bridges.errorAlreadyBridged();
+    if (text.includes("missing_permission")) return m.bridges.errorWebhooks();
+    return m.bridges.errorUnknown();
   }
 
-  async function load(quiet = false) {
-    if (!$currentGuild?.id) return;
-    if (!quiet) {
-      loading = true;
-      error = null;
-    }
+  async function load(id: bigint) {
+    loading = true;
+    error = null;
     try {
-      bridges = await bridgeApi.getBridges($currentGuild.id);
+      const [list, text, roleList] = await Promise.all([
+        bridgesApi.list(id),
+        clientApi.getTextChannels(id),
+        clientApi.getRoles(id).catch(() => [])
+      ]);
+      bridges = list;
+      channels = text.map((c) => ({ id: c.id.toString(), name: c.name }));
+      roles = roleList.map((r: any) => ({ id: r.id.toString(), name: r.name, color: r.color }));
     } catch (err) {
-      if (!quiet) error = err instanceof Error ? err.message : m.bridge.errorLoad();
+      error = err instanceof Error ? err.message : m.bridges.errorLoad();
       logger.error("Failed to load bridges", err);
     } finally {
-      if (!quiet) loading = false;
+      loading = false;
     }
   }
 
-  async function loadChannels() {
-    if (!$currentGuild?.id) return;
-    try {
-      channels = await clientApi.getTextChannels($currentGuild.id);
-    } catch (err) {
-      logger.error("Failed to load channels", err);
-    }
-  }
-
-  async function loadRoles() {
-    if (!$currentGuild?.id) return;
-    try {
-      const list = await clientApi.getRoles($currentGuild.id);
-      roles = list.map((r: any) => ({ id: r.id.toString(), name: r.name, color: r.color }));
-    } catch (err) {
-      logger.error("Failed to load roles", err);
-    }
-  }
-
-  function stopCode() {
-    code = null;
-    codeChannelId = null;
-    if (pollTimer) clearInterval(pollTimer);
-    if (tickTimer) clearInterval(tickTimer);
-    pollTimer = null;
-    tickTimer = null;
-  }
-
-  async function poll() {
-    await load(true);
-    if (codeChannelId && bridges.some((b) => String(b.channelId) === codeChannelId)) {
-      stopCode();
-      channelId = null;
-      notify(m.bridge.linked(), "success");
-      return;
-    }
-    if (code && remainingMs <= 0) {
-      stopCode();
-      notify(m.bridge.codeExpired(), "error");
-    }
-  }
-
-  async function createCode() {
-    if (!$currentGuild?.id || !data.user?.id) return;
-    if (!channelId) {
-      notify(m.common.pickChannelFirstPlaceholder(), "error");
-      return;
-    }
-    entering = false;
-    busy = true;
-    try {
-      stopCode();
-      code = await bridgeApi.createCode($currentGuild.id, BigInt(channelId), data.user.id);
-      codeChannelId = channelId;
-      now = Date.now();
-      tickTimer = setInterval(() => (now = Date.now()), 1000);
-      pollTimer = setInterval(poll, POLL_MS);
-    } catch (err) {
-      notify(errorText(err), "error");
-    } finally {
-      busy = false;
-    }
-  }
-
-  async function linkCode() {
-    if (!$currentGuild?.id || !data.user?.id) return;
-    if (!channelId) {
-      notify(m.common.pickChannelFirstPlaceholder(), "error");
-      return;
-    }
-    if (!codeInput.trim()) {
-      notify(m.bridge.errorNoCode(), "error");
-      return;
-    }
-    busy = true;
-    try {
-      await bridgeApi.link($currentGuild.id, codeInput.trim(), BigInt(channelId), data.user.id);
-      codeInput = "";
-      channelId = null;
-      entering = false;
-      notify(m.bridge.linked(), "success");
-      await load(true);
-    } catch (err) {
-      notify(errorText(err), "error");
-    } finally {
-      busy = false;
-    }
-  }
-
-  async function copyCode() {
-    if (!code) return;
-    try {
-      await navigator.clipboard.writeText(code.code);
-      notify(m.bridge.codeCopied(), "success");
-    } catch (err) {
-      logger.error("Failed to copy code", err);
-    }
-  }
-
-  async function setPaused(bridge: Bridge, paused: boolean) {
-    if (!$currentGuild?.id) return;
-    const previous = bridge.paused;
-    bridge.paused = paused;
-    try {
-      if (paused) await bridgeApi.pause($currentGuild.id, bridge.bridgeId);
-      else await bridgeApi.resume($currentGuild.id, bridge.bridgeId);
-    } catch (err) {
-      bridge.paused = previous;
-      notify(m.bridge.errorSave(), "error");
-      logger.error("Failed to change bridge state", err);
-    }
-  }
-
-  async function setAllowBots(bridge: Bridge, allow: boolean) {
-    if (!$currentGuild?.id) return;
-    const previous = bridge.allowBots;
-    bridge.allowBots = allow;
-    try {
-      await bridgeApi.setAllowBots($currentGuild.id, bridge.bridgeId, allow);
-    } catch (err) {
-      bridge.allowBots = previous;
-      notify(m.bridge.errorSave(), "error");
-      logger.error("Failed to change bridge setting", err);
-    }
-  }
-
-  function askRemove(bridge: Bridge) {
-    removing = bridge;
-    showRemoveConfirm = true;
-  }
-
-  async function confirmRemove() {
-    if (!$currentGuild?.id || !removing) return;
-    const target = removing;
-    removing = null;
-    try {
-      await bridgeApi.remove($currentGuild.id, target.bridgeId);
-      bridges = bridges.filter((b) => b.bridgeId !== target.bridgeId);
-      notify(m.bridge.removed(), "success");
-    } catch (err) {
-      notify(m.bridge.errorSave(), "error");
-      logger.error("Failed to remove bridge", err);
-    }
-  }
-
-  function channelLabel(bridge: Bridge) {
-    return bridge.channelName ? `#${bridge.channelName}` : m.common.channelDeleted();
+  async function refreshBridges() {
+    if (!guildId) return;
+    bridges = await bridgesApi.list(guildId);
   }
 
   function viaName(bridge: Bridge) {
@@ -266,147 +106,174 @@
     return pairs.find((p) => p.pairId === bridge.pairId)?.remoteGuildName ?? bridge.remoteGuildName;
   }
 
-  function remoteLabel(bridge: Bridge) {
-    return `${bridge.remoteGuildName} / #${bridge.remoteChannelName}`;
+  function replace(next: Bridge) {
+    bridges = bridges.map((b) => (b.bridgeId === next.bridgeId ? next : b));
   }
 
-  let loadedFor = $state("");
-
-  async function loadAll() {
-    if (!$currentGuild?.id) return;
-    const key = `${$currentGuild.id}:${$currentInstance?.port ?? ""}`;
-    if (loadedFor === key) return;
-    loadedFor = key;
-    stopCode();
-    await Promise.all([load(), loadChannels(), loadRoles()]);
-  }
-
-  onMount(async () => {
-    if (!$currentGuild) {
-      await goto("/dashboard");
-      return;
+  async function change(bridge: Bridge, apply: Partial<Bridge>, request: () => Promise<Bridge>, failure: string) {
+    if (busy[bridge.bridgeId]) return;
+    const previous = bridge;
+    busy[bridge.bridgeId] = true;
+    replace({ ...bridge, ...apply });
+    try {
+      replace(await request());
+    } catch (err) {
+      replace(previous);
+      notify(failure);
+      logger.error("Failed to change a bridge", err);
+    } finally {
+      busy[bridge.bridgeId] = false;
     }
-    await loadAll();
-  });
+  }
 
-  onDestroy(stopCode);
+  function togglePause(bridge: Bridge) {
+    if (!guildId) return;
+    const id = guildId;
+    const paused = !bridge.paused;
+    void change(bridge, { paused }, () => (paused ? bridgesApi.pause(id, bridge.bridgeId) : bridgesApi.resume(id, bridge.bridgeId)), m.bridges.errorPause());
+  }
+
+  function setAllowBots(bridge: Bridge, allow: boolean) {
+    if (!guildId) return;
+    const id = guildId;
+    void change(bridge, { allowBots: allow }, () => bridgesApi.setAllowBots(id, bridge.bridgeId, allow), m.bridges.errorAllowBots());
+  }
+
+  function askRemove(bridge: Bridge) {
+    removeTarget = bridge;
+    removeOpen = true;
+  }
+
+  async function remove() {
+    const target = removeTarget;
+    if (!target || !guildId) return;
+    try {
+      await bridgesApi.remove(guildId, target.bridgeId);
+      bridges = bridges.filter((b) => b.bridgeId !== target.bridgeId);
+      notify(m.bridges.bridgeRemoved(), "success");
+    } catch (err) {
+      notify(m.bridges.errorRemove());
+      logger.error("Failed to remove a bridge", err);
+    } finally {
+      removeTarget = null;
+    }
+  }
+
+  onDestroy(() => {
+    if (notifyTimer) clearTimeout(notifyTimer);
+  });
 
   $effect(() => {
-    if ($currentGuild && $currentInstance) untrack(() => loadAll());
+    if (!$currentGuild) {
+      void goto("/dashboard");
+      return;
+    }
+    if ($currentGuild.icon) {
+      const serverIconUrl = `https://cdn.discordapp.com/icons/${$currentGuild.id}/${$currentGuild.icon}.${$currentGuild.icon.startsWith("a_") ? "gif" : "png"}`;
+      colorStore.extractFromServerIcon(serverIconUrl);
+    } else if ($currentInstance?.botAvatar) {
+      colorStore.extractFromImage($currentInstance.botAvatar);
+    }
+    const key = `${$currentGuild.id}:${$currentInstance?.port ?? ""}`;
+    if (loadedFor !== key) {
+      loadedFor = key;
+      void load(BigInt($currentGuild.id));
+    }
   });
 
-  const inputStyle = $derived(`background: ${$colorStore.primary}10; color: ${$colorStore.text};`);
-  const primaryStyle = $derived(`background: ${$colorStore.primary}; color: ${$colorStore.onPrimary};`);
-  const secondaryStyle = $derived(`background: ${$colorStore.primary}14; color: ${$colorStore.text};`);
+  const buttonStyle = $derived(`background: ${$colorStore.primary}20; color: ${$colorStore.text};`);
 </script>
 
-<DashboardPageLayout
-  title={m.features.bridgesName()}
-  subtitle={m.bridge.pageSubtitle()}
-  icon="fa-link"
-  guildName={$currentGuild?.name || "Dashboard"}
-  bind:notificationMessage
-  {notificationType}
+{#snippet statusMessages()}
+  {#if notificationMessage}
+    <div class="fixed top-4 right-4 z-[10001]" transition:fade>
+      <Notification message={notificationMessage} type={notificationType} />
+    </div>
+  {/if}
+{/snippet}
+
+<PluginPage
+  {statusMessages}
   {autoSave}
+  icon="fa-link"
+  guildName={$currentGuild?.name || m.common.dashboard()}
+  title={m.features.bridgesName()}
+  subtitle={m.bridges.pageSubtitle()}
 >
   <AsyncState {loading} {error}>
-    <div class="space-y-6">
-      {#if $currentGuild}
-        <BridgePairs
-          guildId={$currentGuild.id}
-          userId={data.user?.id}
-          bind:pairs
-          {autoSave}
-          {notify}
-          {errorText}
-          onrefresh={() => load(true)} />
-      {/if}
+    {#if guildId}
+      {#key `${guildId}:${$currentInstance?.port ?? ""}`}
+        <div class="space-y-4 min-w-0">
+          <BridgePairs
+            guildId={$currentGuild!.id}
+            userId={data.user?.id}
+            bind:pairs
+            {autoSave}
+            {notify}
+            {errorText}
+            onrefresh={refreshBridges} />
 
-      <Card title={m.bridge.connectTitle()}>
-        <div class="space-y-4">
-          <div>
-            <span class="block text-sm mb-2" id="bridge-channel-label" style="color: {$colorStore.muted}">{m.bridge.connectChannelLabel()}</span>
-            <DiscordSelector
-              type="channel"
-              options={channels}
-              selected={channelId}
-              ariaLabelledby="bridge-channel-label"
-              placeholder={m.common.selectAChannelPlaceholder()}
-              onchange={(detail) => (channelId = typeof detail.selected === "string" ? detail.selected : null)} />
-          </div>
+          <ConnectCard
+            {guildId}
+            userId={data.user?.id}
+            {channels}
+            {bridges}
+            {notify}
+            {errorText}
+            onbridges={(list) => (bridges = list)} />
 
-          {#if code}
-            <div class="rounded-lg p-4 space-y-3" style="background: {$colorStore.primary}10;">
-              <span class="block text-sm" style="color: {$colorStore.muted}">{m.bridge.codeLabel()}</span>
-              <div class="flex flex-wrap items-center gap-3">
-                <span class="text-3xl font-bold font-mono tracking-widest select-all" style="color: {$colorStore.text}">{code.code}</span>
-                <button type="button" class="px-3 min-h-[44px] rounded-lg text-sm font-medium" style={secondaryStyle} onclick={copyCode}>{m.bridge.codeCopy()}</button>
-              </div>
-              <p class="text-sm" style="color: {$colorStore.muted}">{m.bridge.codeExpiresIn({ time: countdown })}</p>
-              <p class="text-sm" style="color: {$colorStore.text}">{m.bridge.codeInstructions({ command: `.bridge link ${code.code}` })}</p>
-            </div>
-          {:else if entering}
-            <div class="flex flex-col sm:flex-row gap-2">
-              <input type="text" bind:value={codeInput} placeholder={m.bridge.codePlaceholder()} aria-label={m.bridge.codeLabel()} autocomplete="off" class="w-full rounded-lg p-2 min-h-[44px] font-mono uppercase" style={inputStyle} onkeydown={(e) => e.key === "Enter" && linkCode()} />
-              <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium whitespace-nowrap disabled:opacity-50" style={primaryStyle} disabled={busy || !channelId || !codeInput.trim()} onclick={linkCode}>{m.bridge.connectLink()}</button>
-              <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium whitespace-nowrap" style={secondaryStyle} onclick={() => (entering = false)}>{m.common.cancel()}</button>
-            </div>
-          {:else}
-            <div class="flex flex-wrap gap-2">
-              <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium disabled:opacity-50" style={primaryStyle} disabled={busy || !channelId} onclick={createCode}>{m.bridge.connectCreate()}</button>
-              <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium" style={secondaryStyle} onclick={() => (entering = true)}>{m.bridge.connectHaveCode()}</button>
-            </div>
-          {/if}
-        </div>
-      </Card>
-
-      {#if bridges.length === 0}
-        <p class="text-sm px-1" style="color: {$colorStore.muted}">{m.bridge.emptyMessage()}</p>
-      {:else}
-        <section class="space-y-3">
-          <h2 class="text-base font-semibold px-1" style="color: {$colorStore.text}">{m.bridge.listTitle()}</h2>
-          <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+          <PluginCard title={m.bridges.listTitle()} alwaysOpen>
+            {#if bridges.length === 0}
+              <p class="text-sm" style="color: {$colorStore.muted};">{m.bridges.empty()}</p>
+            {/if}
             {#each bridges as bridge (bridge.bridgeId)}
-              <Card title={channelLabel(bridge)}>
-                <div class="space-y-4">
-                  <div class="flex items-start justify-between gap-3">
-                    <div class="min-w-0">
-                      <p class="text-sm font-medium truncate" style="color: {$colorStore.text}">{remoteLabel(bridge)}</p>
-                      <p class="text-xs" style="color: {$colorStore.muted}">
-                        {bridge.paused ? m.common.paused() : m.common.active()} · {m.bridge.since({ date: new Date(bridge.dateAdded).toLocaleDateString() })}
-                      </p>
-                      {#if viaName(bridge)}
-                        <p class="text-xs" style="color: {$colorStore.muted}">{m.bridge.pairVia({ community: viaName(bridge) ?? "" })}</p>
-                      {/if}
-                    </div>
-                    <button type="button" class="px-3 min-h-[44px] rounded-lg text-sm font-medium whitespace-nowrap" style="background: {$colorStore.primary}20; color: {$colorStore.text};" onclick={() => askRemove(bridge)}>{m.common.remove()}</button>
+              <div class="rounded-xl border p-4 space-y-3 min-w-0" style="background: {$colorStore.primary}08; border-color: {$colorStore.primary}20;">
+                <div class="flex flex-wrap items-start justify-between gap-3">
+                  <div class="min-w-0">
+                    <p class="font-medium break-words" style="color: {$colorStore.text};">#{bridge.channelName}</p>
+                    <p class="text-sm break-words" style="color: {$colorStore.muted};">
+                      {m.bridges.bridgeWith({ channel: `#${bridge.remoteChannelName}`, community: bridge.remoteGuildName })}
+                    </p>
+                    <p class="text-xs mt-1" style="color: {$colorStore.muted};">
+                      {bridge.paused ? m.common.paused() : m.bridges.stateRunning()} · {new Date(bridge.dateAdded).toLocaleDateString()}
+                    </p>
+                    {#if viaName(bridge)}
+                      <p class="text-xs" style="color: {$colorStore.muted};">{m.bridges.pairVia({ community: viaName(bridge) ?? "" })}</p>
+                    {/if}
                   </div>
-                  <SettingToggle id="bridge-paused-{bridge.bridgeId}" label={m.common.paused()} checked={bridge.paused} onchange={(v) => setPaused(bridge, v)} />
-                  <SettingToggle id="bridge-bots-{bridge.bridgeId}" label={m.bridge.allowBotsLabel()} checked={bridge.allowBots} onchange={(v) => setAllowBots(bridge, v)} />
-                  <BridgeSettingsPanel
-                    {bridge}
-                    {roles}
-                    {autoSave}
-                    examplePlatform={m.bridge.examplePlatform()}
-                    save={(settings) => bridgeApi.updateSettings($currentGuild!.id, bridge.bridgeId, settings)}
-                    onupdate={(next) => (bridges = bridges.map((b) => (b.bridgeId === next.bridgeId ? next : b)))}
-                    notify={(message) => notify(message, "error")} />
+                  <div class="flex flex-wrap gap-2">
+                    <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium" style={buttonStyle} disabled={busy[bridge.bridgeId]} onclick={() => togglePause(bridge)}>
+                      {bridge.paused ? m.bridges.resume() : m.common.pause()}
+                    </button>
+                    <button type="button" class="px-4 min-h-[44px] rounded-lg text-sm font-medium" style="background: #ef444420; color: {$colorStore.text};" onclick={() => askRemove(bridge)}>
+                      {m.common.remove()}
+                    </button>
+                  </div>
                 </div>
-              </Card>
+                <SettingToggle id="bridge-bots-{bridge.bridgeId}" label={m.bridges.allowBotsLabel()} checked={bridge.allowBots} disabled={busy[bridge.bridgeId]} onchange={(v) => setAllowBots(bridge, v)} />
+                <BridgeSettingsPanel
+                  {bridge}
+                  {roles}
+                  {autoSave}
+                  examplePlatform={m.bridges.examplePlatform()}
+                  save={(settings) => bridgesApi.updateSettings(guildId, bridge.bridgeId, settings)}
+                  onupdate={replace}
+                  notify={(message) => notify(message)} />
+              </div>
             {/each}
-          </div>
-        </section>
-      {/if}
-    </div>
+          </PluginCard>
+        </div>
+      {/key}
+    {/if}
   </AsyncState>
-</DashboardPageLayout>
+</PluginPage>
 
 <ConfirmationModal
-  bind:isOpen={showRemoveConfirm}
-  title={m.bridge.removeTitle()}
-  message={m.bridge.removeMessage({ channel: removing ? channelLabel(removing) : "", remote: removing ? remoteLabel(removing) : "" })}
+  bind:isOpen={removeOpen}
+  title={m.bridges.removeTitle()}
+  message={m.bridges.removeMessage()}
   confirmText={m.common.remove()}
   variant="danger"
-  oncancel={() => (removing = null)}
-  onconfirm={confirmRemove}
+  onconfirm={remove}
+  oncancel={() => { removeTarget = null; }}
 />

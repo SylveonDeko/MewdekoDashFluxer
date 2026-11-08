@@ -270,7 +270,7 @@
               </div>
             </div>
             <a class="px-2 py-1 rounded-sm text-xs transition-all"
-               href="/dashboard/administration"
+               href="/dashboard/automod?tab=protection"
                style="background: {$colorStore.primary}20; color: {$colorStore.primary};">
               {m.common.configure()}
             </a>
@@ -291,7 +291,7 @@
               </div>
             </div>
             <a class="px-2 py-1 rounded-sm text-xs transition-all"
-               href="/dashboard/administration"
+               href="/dashboard/automod?tab=protection"
                style="background: {$colorStore.secondary}20; color: {$colorStore.secondary};">
               {m.common.configure()}
             </a>
@@ -312,7 +312,7 @@
               </div>
             </div>
             <a class="px-2 py-1 rounded-sm text-xs transition-all"
-               href="/dashboard/administration"
+               href="/dashboard/automod?tab=protection"
                style="background: {$colorStore.accent}20; color: {$colorStore.accent};">
               {m.common.configure()}
             </a>
@@ -333,7 +333,7 @@
               </div>
             </div>
             <a class="px-2 py-1 rounded-sm text-xs transition-all"
-               href="/dashboard/administration"
+               href="/dashboard/automod?tab=protection"
                style="background: {$colorStore.primary}20; color: {$colorStore.primary};">
               {m.common.configure()}
             </a>
@@ -434,7 +434,7 @@
               <div class="text-xs" style="color: {$colorStore.muted}">{m.dashboard.securityProtectionsEnabled({ active: activeProtections, total: 4 })}</div>
             </div>
             <a class="px-2 py-1 rounded-sm text-xs transition-all"
-               href="/dashboard/administration"
+               href="/dashboard/automod?tab=protection"
                style="background: {$colorStore.primary}20; color: {$colorStore.primary};">
               {m.common.configure()}
             </a>

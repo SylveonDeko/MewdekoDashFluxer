@@ -1,27 +1,27 @@
 ---
 title: Community Management
 slug: servermanagement
-summary: Bulk tools for the shape of your community: create and delete channels and roles, hand roles to hundreds of members in one job, lock the community down, sync channel overrides, steal emotes and watch for dangerous role changes.
+summary: Bulk tools for reshaping your community, like creating channels or giving a role to many members at once
 icon: fa-server
 category: Actions
 module: ServerManagement
 tags: [community management, roles, mass role, channels, lockdown, slowmode, lock channel, nuke, emotes, steal emotes, webhook, permcontrol, role monitor, role jobs, community icon, community banner]
-related: [administration, permissions, moderation]
+related: [administration, channel-tools, server-backups, permissions, moderation]
 ---
 
 ## What it does
 
-Community Management collects the commands that change the structure of a community rather than the people in it. Staff can create a category and all its channels in one line, rename or delete channels, set topics, toggle NSFW, set slowmode, lock a channel, or delete and recreate one to wipe its history.
+Community Management collects the commands that change the structure of a community rather than the people in it. Staff can create a category and all its channels in one line, rename or delete channels and set topics, or toggle NSFW and slowmode. They can also lock a channel, or delete and recreate one to wipe its history.
 
-Roles get the most attention. One-off commands create, rename, recolour, hoist and delete roles or give a role to a single member, with an optional timer. Mass commands add or remove a role for every member, every human, every bot, everyone in another role, or everyone who joined before or after a cutoff. Those run as background jobs you can list and stop.
+Roles get the most attention. One-off commands create, rename, recolour, hoist and delete roles, and they can give a role to a single member with an optional timer. Mass commands add or remove a role for every member, every human, every bot, everyone in another role, or everyone who joined before or after a cutoff. Those run as background jobs you can list and stop.
 
-The module also covers the community's own look (icon, banner, splash, name), emote management including stealing emotes from other communities, per-channel permission overrides, voice channel moves, three kinds of lockdown, and a role monitor that reverts and punishes dangerous role changes.
+The module also covers the community's own look (icon, banner, splash, name) and emote management, including stealing emotes from other communities. It handles per-channel permission overrides and voice channel moves. It also has three kinds of lockdown and a role monitor that reverts and punishes dangerous role changes.
 
-Nothing here is configured on the dashboard. Everything is run from commands.
+Lockdown, bulk channel actions, purging and voice text links are also on the **Channels** tab of the **Administration** page. See [Channel tools](/wiki/channel-tools). Backups and templates are on the **Backups** tab, covered in [Community backups](/wiki/server-backups). Everything else is run from commands.
 
 ## Why you would use it
 
-- Setting up a new community and wanting ten channels under a category without clicking through Fluxer's UI ten times.
+- Setting up a new community and wanting ten channels under a category without creating them one at a time.
 - Giving a "Member" role to two thousand existing members after turning on role gating.
 - Locking the community during a raid so nobody can post, then restoring the old permissions exactly.
 - Copying emotes from a friend's community in one command.
@@ -75,10 +75,12 @@ The `cc...` family builds several at once:
 | Type | What it does |
 | --- | --- |
 | `Joins` | Anyone who joins while it is active is kicked or banned. The action is `Ban` by default; `Kick` is the only other option. |
-| `Readonly` | The bot saves every channel's current `@everyone` override, then denies Send Messages, thread creation and thread replies in text channels, and Connect and Speak in voice channels. Forum channels keep Send Messages so existing threads stay readable. |
+| `Readonly` | The bot saves every channel's current `@everyone` override, then denies Send Messages and thread replies in text channels, and Connect and Speak in voice channels. |
 | `Full` | Both of the above. |
 
-Before applying a read-only lockdown the bot checks it can edit every channel. If some are missing, it lists them and stops, unless you pass `true` as the third argument to continue anyway. Lifting the lockdown restores the saved overrides. Join lockdowns survive a bot restart.
+Before applying a read-only lockdown the bot checks it can edit every channel. If some are missing, it lists them and stops, unless you pass `true` as the third argument to continue anyway. Lifting the lockdown restores the saved overrides.
+
+`lockdownexempt <#channel or category>` toggles a channel or category in the lockdown exemption list, so a lockdown leaves it alone. `lockdownexemptlist` shows the list.
 
 `unlockdown` is a separate, older tool: it turns Send Messages back on for the `@everyone` role itself, for communities that locked down by editing that role.
 
@@ -112,7 +114,7 @@ Role and member arguments can be given in either order for `setrole` and `remove
 
 ### Mass role jobs
 
-These go through the whole member list and run as background jobs. Because of Fluxer rate limits the bot pauses briefly per member and only allows five jobs per community at a time. Each job reports how long it expects to take.
+These go through the whole member list and run as background jobs. To stay inside rate limits the bot pauses briefly per member and only allows five jobs at a time. Each job reports how long it expects to take.
 
 | Command | Who is affected |
 | --- | --- |
@@ -138,12 +140,11 @@ These go through the whole member list and run as background jobs. Because of Fl
 
 `seticon <url>`, `setbanner <url>`, `setsplash <url>` and `setservername <name>` change the community itself and need Administrator. `setguildavatar`, `setguildbanner` and `setguildbio` change how the bot itself appears in this community only, and need Manage Community.
 
-Emote commands need Manage Expressions on both you and the bot:
+Emote commands need Manage Expressions for you:
 
 - `addemote <name> [url]` uploads an emote from a URL or an attached image.
 - `removeemote <emote>` and `renameemote <emote> <name>` work on emotes from this community.
-- `stealemotes <emotes...>` copies every custom emote in your message into this community. `sfr <role> <emotes...>` does the same but restricts the emotes to one role.
-- Right-clicking a message and choosing **Steal Emotes** or **Steal Sticker** from the Apps menu does the same without typing.
+- `stealemotes <emotes...>` copies every custom emote in your message into this community.
 
 ## Role monitor
 
@@ -159,7 +160,7 @@ Punishment values are `None`, `Warn`, `Mute`, `ChatMute`, `VoiceMute`, `Timeout`
 
 ## Settings
 
-There is no dashboard page. The only stored settings belong to the role monitor and the lockdown state.
+There is no dashboard page for this module's commands. The only stored settings belong to the role monitor and the lockdown state.
 
 | Setting | Default | What it controls |
 | --- | --- | --- |
@@ -196,7 +197,6 @@ Run these with your community's prefix (`.` unless you changed it).
 | `removeemote <emote>` | `deleteemote`, `emoteremove`, `emotedelete` | Manage Expressions | Delete an emote |
 | `renameemote <emote> <name>` | `emoterename` | Manage Expressions | Rename an emote |
 | `stealemotes <emotes...>` | `steal` | Manage Expressions | Copy emotes into this community |
-| `sfr <role> <emotes...>` | | Manage Expressions | Copy emotes, restricted to a role |
 | `creatxtchanl <name>` | `ctch` | Manage Channels | Create a text channel |
 | `creatvoichanl <name>` | `cvch` | Manage Channels | Create a voice channel |
 | `deltxtchanl <#channel>` | `dtch` | Manage Channels | Delete a text channel |
@@ -213,7 +213,7 @@ Run these with your community's prefix (`.` unless you changed it).
 | `lock [#channel]` | `channellock`, `lockchannel` | Manage Messages | Deny Send Messages for everyone |
 | `unlock [#channel]` | `channelunlock`, `unlockchannel` | Manage Messages | Undo `lock` |
 | `nuke [#channel]` | `channelnuke`, `nukechannel` | Manage Channels | Delete and recreate a channel |
-| `permcontrol <channel> <allow|deny|inherit> <role or user> <perms...>` | `permc` | Manage Channels | Edit a channel override |
+| `permcontrol <channel> <allow\|deny\|inherit> <role or user> <perms...>` | `permc` | Manage Channels | Edit a channel override |
 | `syncroletoall <role>` | `synctoall` | Manage Channels | Copy an override to all channels and categories |
 | `syncroletoallchannels <role>` | `srtch`, `srtach` | Manage Channels | Copy an override to text channels |
 | `syncroletoallcategories <role>` | `srtc`, `srtac` | Manage Channels | Copy an override to categories |
@@ -221,8 +221,10 @@ Run these with your community's prefix (`.` unless you changed it).
 | `moveto <voice channel>` | | Nobody | Move yourself |
 | `moveuserto @user <voice channel>` | `moveuto` | Manage Channels | Move someone |
 | `grab @user` | `getoverhere` | Nobody | Pull someone into your voice channel |
-| `lockdown [joins|readonly|full] [kick|ban] [true]` | `lockdownserver` | Administrator | Start a lockdown |
+| `lockdown [joins\|readonly\|full] [kick\|ban] [true]` | `lockdownserver` | Administrator | Start a lockdown |
 | `liftlockdown [type]` | `unlockserver` | Administrator | End a lockdown |
+| `lockdownexempt <#channel or category>` | `ldexempt` | Administrator | Toggle a lockdown exemption |
+| `lockdownexemptlist` | `ldexemptlist` | Administrator | List lockdown exemptions |
 | `unlockdown` | `endlockdown` | Manage Channels | Re-enable Send Messages on `@everyone` |
 | `createrole [name]` | `cr` | Manage Roles | Create a role |
 | `deleterole <role>` | `dr` | Manage Roles | Delete a role |
@@ -268,9 +270,9 @@ Run these with your community's prefix (`.` unless you changed it).
 ## Tips and gotchas
 
 - Role commands check hierarchy twice: your top role and the bot's top role must both be above the role in question. The community owner skips the check on their own side.
-- Mass jobs take roughly one second per member. Adding a role to five thousand members is well over an hour, and the bot refuses a sixth simultaneous job.
+- Mass jobs take roughly half a second per member or more. Adding a role to five thousand members takes the better part of an hour, and the bot refuses a sixth simultaneous job.
 - `syncroletoall` and its variants need the role to already have an override on the channel you run them in; that override is what gets copied.
 - `nuke` cannot be undone and the confirmation prompt is the only safeguard.
-- Read-only lockdown edits overrides on every channel, which is a lot of API calls on large communities. Lift it with `liftlockdown`, not by hand, so the saved overrides are restored.
+- Read-only lockdown edits overrides on every channel, which is a lot of API calls in large communities. Lift it with `liftlockdown`, not by hand, so the saved overrides are restored.
 - The role monitor relies on the audit log, so the bot needs View Audit Log, and it needs the permission for whatever punishment you pick.
 - Emote stealing needs free emote slots; failures are listed under "Errored Emotes".

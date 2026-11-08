@@ -1,7 +1,7 @@
 ---
 title: Move from Discord
 slug: migrate
-summary: Bring your Mewdeko settings from a Discord server to this Fluxer community, and let your members carry over their own XP, balance and warnings.
+summary: Bring your Mewdeko settings over from a Discord server, and let members carry over their own progress
 icon: fa-arrow-right-arrow-left
 category: Settings
 dashboard: /dashboard/migrate
@@ -12,15 +12,14 @@ related: [settings, xp, currency, access]
 
 ## What it does
 
-If your community used Mewdeko on Discord, you do not have to set everything up again. The dashboard reads your Discord server's Mewdeko setup, pairs its channels and roles with the ones in your Fluxer community, and writes the settings over. Members then bring their own data across from their profile page.
+If your community used Mewdeko on Discord, you do not have to set everything up again. The dashboard reads your Discord server's Mewdeko setup and pairs its channels and roles with the ones in your Fluxer community, then writes the settings over. Members bring their own data across from their profile page.
 
 Everything happens in the dashboard and the setup wizard. You never type a command, and nothing is changed on Discord.
 
 ## Why you would use it
 
-- Keep your greetings, logging, XP rewards, filters and the rest of your configuration instead of rebuilding them.
+- Keep your greetings, logging, XP rewards, filters and the rest of your configuration instead of rebuilding them, and check the channel and role pairs before anything is written.
 - Keep your members' progress. XP, balances, warnings and similar data wait for each member until they link their Discord account.
-- Check the channel and role pairs before anything is written.
 
 ## Who can use it
 
@@ -35,7 +34,7 @@ Community administrators of the Fluxer community. You also need to own the Disco
 2. Press **Connect Discord** and approve the sign in.
 3. Pick the Discord server to move. If a server has more than one Mewdeko in it, each one is listed with its name and avatar, so pick the one whose data you want.
 4. Wait while the export is read. Large servers can take up to a minute.
-5. Review the preview: how many features, settings and members will come over, and the channel and role pairs.
+5. Review the preview. It counts what will come over and lists the channel and role pairs.
 6. Fix any pair that was not matched. Unmatched channels and roles are highlighted. Choose the right one from the list next to it and the preview updates.
 7. Read the warning, tick the box and confirm.
 

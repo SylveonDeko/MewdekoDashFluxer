@@ -103,6 +103,31 @@ export function format(template: string, params?: Record<string, string | number
  * @param params Placeholder values.
  */
 export function t(module: string, key: string, fallback: string, params?: Record<string, string | number>): string {
-  const text = active().catalog?.[module]?.[key] ?? fallback;
+  const { locale, catalog } = active();
+  const entries = catalog?.[module];
+  const text = (entries && pluralVariant(entries, locale, key, params)) ?? entries?.[key] ?? fallback;
   return format(text, params);
+}
+
+const pluralRules = new Map<string, Intl.PluralRules>();
+
+/**
+ * Picks the plural variant of a key from the `count` parameter using the locale's CLDR rules.
+ */
+function pluralVariant(
+  entries: ModuleCatalog,
+  locale: string,
+  key: string,
+  params?: Record<string, string | number>
+): string | undefined {
+  const count = params?.count;
+  if (typeof count !== "number") return undefined;
+  const match = /^(.*)_(one|other)$/.exec(key);
+  if (!match) return undefined;
+  let rules = pluralRules.get(locale);
+  if (!rules) {
+    rules = new Intl.PluralRules(locale);
+    pluralRules.set(locale, rules);
+  }
+  return entries[`${match[1]}_${rules.select(count)}`];
 }

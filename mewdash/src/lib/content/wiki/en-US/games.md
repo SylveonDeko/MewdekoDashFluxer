@@ -1,32 +1,32 @@
 ---
 title: Games
 slug: games
-summary: Chat games members can start in any channel, from trivia, hangman and word chains to typing races, acrophobia and polls.
+summary: Chat games like trivia and hangman that members can start in any channel
 icon: fa-gamepad-modern
 category: Entertainment
 module: Games
-tags: [games, trivia, hangman, kaladont, nunchi, typing race, acrophobia, tic tac toe, poll, vote, 8ball, choose]
+tags: [games, trivia, hangman, kaladont, nunchi, typing race, acrophobia, tic tac toe, poll, vote, daily dice, 8ball, choose]
 related: [polls, currency, xp, searches, utility]
 ---
 
 ## What it does
 
-Games are played in the channel where they are started. A member runs a command, the bot posts the game, and everyone in the channel plays by typing answers or pressing buttons. Only one game of each kind runs per channel (or per community for Nunchi and Kaladont) at a time, and most games can be stopped early with a matching stop command.
+Games are played in the channel where they are started. A member runs a command, the bot posts the game, and everyone in the channel plays by typing answers or reacting. Only one game of each kind runs per channel (or per community for Nunchi and Kaladont) at a time, and most games can be stopped early with a matching stop command.
 
-Trivia, hangman, Kaladont, Nunchi, the typing race, acrophobia and tic-tac-toe are multiplayer. Polls let staff put a question to the channel with buttons or a dropdown. `choose` and `8ball` are one-off toys.
+Trivia, hangman, Kaladont, Nunchi, the typing race, acrophobia and tic-tac-toe are multiplayer. Polls let staff put a question to the channel and collect votes as reactions. `choose` and `8ball` are one-off toys, and `dailydice` is a once-a-day roll with a monthly leaderboard.
 
-There is no dashboard page for this module. Everything is done with commands, and most of them need no permission at all.
+Game commands live in this article. Polls also have a dashboard page, covered in the Polls article.
 
 ## Why you would use it
 
 - Break up a quiet evening with a round of trivia or hangman.
 - Run a typing race or Kaladont tournament as a community event.
-- Ask the community a quick yes or no question, or a multi-option poll with a dropdown.
+- Ask the community a quick yes or no question, or a multi-option poll.
 - Set up a permanent Kaladont channel so the word chain never stops.
 
 ## Trivia
 
-`trivia` starts a quiz. The bot posts a question, shows a hint halfway through the question timer unless hints are off, and the first member to type the answer gets a point. When a member reaches the win requirement the game ends and they win. If enough questions in a row go unanswered, the game stops.
+`trivia` starts a quiz. The bot posts a question and the first member to type the answer gets a point. A hint appears halfway through the question timer unless hints are off. When a member reaches the win requirement the game ends and they win. If enough questions in a row go unanswered, the game stops.
 
 | Option | Default | What it does |
 | --- | --- | --- |
@@ -43,7 +43,7 @@ There is no dashboard page for this module. Everything is done with commands, an
 
 ## Hangman
 
-`hangman [type]` picks a word from a category and shows it as blanks. Members guess a single letter, or the whole word, by typing it in the channel. Six wrong guesses lose the game. The categories are `countries`, `movies`, `animals`, `things` and `random`; `random` is the default. `hangmanlist` shows the types available on your community and `hangmanstop` ends the game.
+`hangman [type]` picks a word from a category and shows it as blanks. Members guess a single letter, or the whole word, by typing it in the channel. Six wrong guesses lose the game. The categories are `countries`, `movies`, `animals`, `things` and `random`; `random` is the default. `hangmanlist` shows the types available and `hangmanstop` ends the game.
 
 ## Kaladont
 
@@ -57,7 +57,7 @@ Kaladont is a word chain. Each word must start with the last two letters of the 
 | `-l`, `--language` | en | `en` or `sr` |
 | `-e`, `--endless` | off | Rejects words that leave no valid word for the next player |
 
-`kaladontstop` ends the current game. `kaladontsetup` turns the current channel into a persistent Kaladont channel that keeps the chain going, with the same language and endless flags, and `kaladontdisable` removes it. Both need Manage Channels.
+`kaladontstop` ends the current game. `kaladontsetup` turns the current channel into a persistent Kaladont channel that keeps the chain going and takes the same language and endless flags. `kaladontdisable` removes it. Both need Manage Channels.
 
 ## Nunchi
 
@@ -65,7 +65,7 @@ Kaladont is a word chain. Each word must start with the last two letters of the 
 
 ## Typing race
 
-`typestart` counts down (five seconds by default, `-s` or `--start-time` sets 3 to 30) and then posts a sentence. The first member to type it back closely enough wins; a few typos are tolerated, roughly one per 25 characters. The result shows words per minute and error count. `typestop` ends a race, `typelist` shows the sentence pool, and bot owners can add or delete sentences with `typeadd` and `typedel`.
+`typestart` counts down (five seconds by default, `-s` or `--start-time` sets 3 to 30) and then posts a sentence. The first member to type it back closely enough wins; a few typos are tolerated, roughly one per 25 characters. The result shows words per minute and error count. `typestop` ends a race and `typelist` shows the sentence pool. Bot owners can add or delete sentences with `typeadd` and `typedel`.
 
 ## Acrophobia
 
@@ -77,24 +77,26 @@ Kaladont is a word chain. Each word must start with the last two letters of the 
 
 ## Polls
 
-Polls need Manage Messages to create. Options are separated with semicolons.
+Polls need Manage Messages to create. Options are separated with semicolons, up to 20 per poll. Members vote by reacting to the poll message, and the bot needs Add Reactions in the channel.
 
 | Command | Type | Behaviour |
 | --- | --- | --- |
-| `poll <question>` | Yes/No | Two buttons |
+| `poll <question>` | Yes/No | Two reactions, a tick and a cross |
 | `pollc question;option1;option2;...` | Single choice | One vote per member |
 | `pollm question;option1;option2;...` | Multiple choice | Members can pick several options |
-| `polla question;option1;option2;...` | Anonymous | Voter identities are hidden |
+| `polla question;option1;option2;...` | Anonymous | Voter identities are hidden. The bot needs Manage Messages in the channel. |
 
-Polls with two to five options use buttons; longer ones use a dropdown with up to 25 entries. Members can change their vote. Templates save a question and its options for reuse: `polltemplates` lists them and `polltemplate <name>` posts one. Creating and deleting templates, closing a poll, listing active polls and viewing a poll's statistics are done with the Polls dashboard page, which has its own article.
+Members can change their vote. Templates save a question and its options for reuse: `polltemplates` lists them and `polltemplate <name>` posts one. `polltemplatecreate` and `polltemplatedelete` manage templates, `pollstats <id>` shows a poll's statistics, `pollclose <id>` closes a poll, `polldelete <id>` deletes it and `polllist` lists active polls. The Polls dashboard page covers the same ground and has its own article.
+
+## Daily dice
+
+`dailydice` rolls once per day per member. `dailydiceboard` shows this month's best rolls, and `dailydiceboard true` shows last month's.
 
 ## Other
 
 - `choose a; b; c` picks one option at random from a semicolon list.
 - `8ball <question>` answers from a list of responses in the bot's games config.
 - `linux <word> <word>` posts the "I'd just like to interject" copypasta with the two names swapped.
-- `dragon` toggles your beta-tester flag, which some experimental commands check.
-- `rategirl` exists only as a stub with a note about why it was removed. It does nothing useful.
 
 ## Settings
 
@@ -137,16 +139,22 @@ Run these with your community's prefix (`.` unless you changed it).
 | `polla <question;options>` | | Manage Messages | Anonymous poll |
 | `polltemplates` | `ptemplates` | Nobody | List poll templates |
 | `polltemplate <name>` | `ptemplate` | Manage Messages | Post a poll from a template |
+| `polltemplatecreate <input>` | `ptcreate` | Manage Messages | Create a poll template |
+| `polltemplatedelete <name>` | `ptdelete` | Manage Messages | Delete a poll template |
+| `polllist` | `activepolls` | Nobody | List active polls |
+| `pollstats <id>` | | Nobody | Show a poll's statistics |
+| `pollclose <id>` | | Poll creator or Manage Messages | Close a poll |
+| `polldelete <id>` | | Poll creator or Manage Messages | Delete a poll |
+| `dailydice` | `ddice` | Nobody | Roll your daily dice |
+| `dailydiceboard [true]` | `ddboard` | Nobody | Monthly dice leaderboard |
 | `choose <a; b; c>` | | Nobody | Pick one at random |
 | `8ball [question]` | `eightball` | Nobody | Magic 8-ball |
 | `linux <word> <word>` | | Nobody | The interjection copypasta |
-| `dragon` | | Nobody | Toggle your beta flag |
-| `rategirl` | | Nobody | Stub, does nothing |
 
 ## Tips and gotchas
 
 - Games read replies from the channel, so the bot needs Read Message History and Send Messages there, and it must not be blocked by a channel permission rule.
 - Trivia, hangman and Kaladont answers are ordinary messages. If you also run message counting or XP, those messages count.
 - Only one trivia, hangman, typing or Kaladont game can run per channel; the start command tells you if one is already going.
-- Poll options longer than 100 characters are cut short in the dropdown.
+- Polls count reactions, so removing the bot's own reactions or blocking Add Reactions breaks voting.
 - Nunchi eliminates the slowest player each round, so a large group can take a while to finish.

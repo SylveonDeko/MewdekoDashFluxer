@@ -1,11 +1,12 @@
-import * as cdn from "$lib/utils/cdn";
 import { m } from "$lib/i18n";
 import type {
   Achievement,
   AchievementCatalog,
   AchievementGrade,
+  AchievementLookups,
   AchievementMetric,
 } from "$lib/api/achievements/models";
+import type { GuildEmojiInfo } from "$lib/api/client/models";
 import { AchievementTrigger } from "$lib/api/achievements/models";
 
 /** Grade colors used before the catalog loads; they match the bot's. */
@@ -141,7 +142,31 @@ export function emojiImageUrl(emoji: string | null | undefined): string | null {
   if (!emoji) return null;
   const match = emoji.match(/^<(a?):[^:]+:(\d+)>$/);
   if (!match) return null;
-  return cdn.emojiUrl(match[2], 48);
+  return `https://cdn.discordapp.com/emojis/${match[2]}.${match[1] === "a" ? "gif" : "png"}?size=48`;
+}
+
+/**
+ * The server's custom emojis grouped the way the emoji picker takes them.
+ * @param lookups The editor lookups, or null before they load
+ * @param guild The current server
+ */
+export function guildEmojiGroups(
+  lookups: AchievementLookups | null,
+  guild: { id: { toString(): string }; name: string } | null | undefined,
+): GuildEmojiInfo[] {
+  if (!lookups || !guild) return [];
+  return [{
+    guild: { id: guild.id.toString(), name: guild.name },
+    emojis: lookups.emojis.map((e) => ({
+      id: e.id.toString(),
+      name: e.name,
+      animated: e.formatted.startsWith("<a:"),
+      isAvailable: true,
+      roleIds: [],
+      requireColons: true,
+      url: e.url,
+    })),
+  }];
 }
 
 /**
@@ -195,9 +220,9 @@ export function timeAgo(iso: string | null | undefined): string {
 /** Names and help for the features that feed achievements data. */
 export const DATA_SOURCES: Record<string, { label: string; icon: string; off: string; href?: string }> = {
   messages: { label: "Message counting", icon: "fa-comments", off: "Message achievements can't track until message counting is on." },
-  voice: { label: "Voice tracking", icon: "fa-microphone", off: "Voice hours and channels need voice tracking in Community Stats.", href: "/dashboard/serverstats" },
+  voice: { label: "Voice tracking", icon: "fa-microphone", off: "Voice hours and channels need voice tracking in Server Stats.", href: "/dashboard/serverstats" },
   invites: { label: "Invite tracking", icon: "fa-users", off: "Invite achievements need invite tracking.", href: "/dashboard/invites" },
-  commands: { label: "Command stats", icon: "fa-code", off: "Command achievements need command stats, which this community opted out of." },
+  commands: { label: "Command stats", icon: "fa-code", off: "Command achievements need command stats, which this server opted out of." },
   xp: { label: "XP", icon: "fa-star", off: "Level achievements need XP gain turned on.", href: "/dashboard/xp" },
   reputation: { label: "Reputation", icon: "fa-trophy", off: "Reputation achievements need the reputation system.", href: "/dashboard/reputation" },
 };

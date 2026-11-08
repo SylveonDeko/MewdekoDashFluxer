@@ -32,12 +32,25 @@ export type LogType =
   | "InviteDeleted"
   | "MessagesBulkDeleted"
   | "ReactionEvents"
-  | "AvatarUpdated";
+  | "AvatarUpdated"
+  | "EmojiCreated"
+  | "EmojiUpdated"
+  | "EmojiDeleted"
+  | "StickerCreated"
+  | "StickerUpdated"
+  | "StickerDeleted"
+  | "UserTimedOut"
+  | "UserTimeoutRemoved"
+  | "InviteLinkPosted"
+  | "ChannelPermissionsUpdated"
+  | "WebhookChanged";
 
 export interface LoggingConfigurationResponse {
   enabled: boolean;
   ignoredChannels: bigint[];
   logTypes: Record<string, bigint | null>;
+  ignorePrefixes: string[];
+  ignoreBots: boolean;
 }
 
 export interface SetLogChannelRequest {
@@ -275,3 +288,15 @@ export const LOG_TYPE_MAPPINGS = [
     icon: "alert-triangle",
   },
 ] as const;
+
+export interface LoggingExport {
+  empty: boolean;
+  code?: string;
+  json?: string;
+}
+
+export interface LoggingImportResult {
+  success: boolean;
+  applied: number;
+  unmapped: string[];
+}

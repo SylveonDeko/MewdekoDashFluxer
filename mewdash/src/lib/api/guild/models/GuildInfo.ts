@@ -29,6 +29,9 @@ export interface GuildInfo {
   /** Total member count */
   memberCount: number;
 
+  /** Premium tier (boost level) */
+  premiumTier: number;
+
   /** Guild owner ID */
   ownerId: bigint;
 

@@ -1,36 +1,38 @@
 ---
 title: Moderation
 slug: moderation
-summary: Warn, mute, time out, kick and ban members, escalate punishments automatically as warnings stack up, and control how many days of messages a ban deletes.
+summary: Warn and punish members, with stacking warnings and a numbered case history
 icon: fa-flag
 category: Security
 dashboard: /dashboard/moderation
 module: Moderation
-tags: [moderation, warn, warnings, warn punish, punishment ladder, mute, mute role, timeout, ban, softban, kick, ban purge, ban prune, purge, prune, dehoist, warnlog]
+tags: [moderation, warn, warnings, warn punish, punishment ladder, mute, mute role, timeout, ban, softban, kick, ban purge, ban prune, purge, prune, dehoist, warnlog, cases, notes, reason aliases, punishment dm]
 related: [administration, filter, logging, auditlog]
 ---
 
 ## What it does
 
-Moderation is the toolbox staff use on individual members. Warnings are the core of it: a moderator runs `warn @user reason`, the member gets a DM with the reason and who warned them, the warning is stored, and if the community has a warning log channel an embed lands there with the warn count and any punishment that fired.
+Moderation is the toolbox staff use on individual members. Warnings are the core of it: a moderator runs `warn @user reason`, the member gets a DM with the reason and who warned them, and the warning is stored. If the community has a warning log channel, an embed lands there with the warn count and any punishment that fired.
 
 Warnings add up. You can build a punishment ladder so that reaching a set number of active warnings triggers something automatically: a mute, a timeout, a kick, a ban, or a role. Staff do not have to remember the rules; the bot applies them the moment the count is hit. Warnings can be forgiven later, or set to expire on their own after a number of days.
 
-Around that sit the direct actions: mute (with a managed mute role), timeout, kick, softban, ban, temporary ban, mass kick, message purging, and nickname clean up for members who hoist themselves to the top of the list with special characters. Every ban action also has a configurable purge, which is how many days of the member's messages Fluxer deletes along with the ban.
+Around that sit the direct actions: mute (with a managed mute role), timeout, kick, softban, ban, temporary ban, mass kick, message purging, and nickname clean up for members who hoist themselves to the top of the list with special characters. Every ban action also has a configurable purge, which is how many days of the member's messages are deleted along with the ban.
 
-The dashboard page covers warnings, the punishment ladder, the warning log channel and ban purge settings. Direct actions like mute, kick and ban are commands only.
+Every warning, mute, timeout, kick, ban and similar action is also recorded as a numbered case. Cases can be browsed, filtered, edited and exported. Staff can keep private notes on members, and short names can stand in for long punishment reasons. Members can report each other to the staff. Cases, notes, reports, reason aliases and punishment DMs can be managed with commands as well as on the dashboard.
+
+The dashboard page is one scroll of cards covering warnings, the warning punishment ladder, cases, notes, reason aliases, punishment DMs, ban purge settings and recent activity. Direct actions like mute, kick and ban are commands only.
 
 ## Why you would use it
 
 - You want a consistent "three strikes" policy that applies the same way no matter which moderator is on shift.
 - Members need to be silenced quickly without touching channel permissions by hand.
 - A spammer joined and you want their last day of messages gone with the ban, but a temp ban for a regular should not wipe their history.
-- Staff need a searchable record of who was warned, by whom, and why, that survives moderator turnover.
+- Staff need a searchable record of who warned whom, and why, that survives moderator turnover.
 - Names like "!!! xXx" keep floating to the top of the member list and you want them cleaned up in one go.
 
 ## Warnings
 
-`warn <user> [reason]` needs Ban Members. The bot first tries to DM the member an embed with the community name, the moderator and the reason. If the DM fails, the confirmation in the channel gets a footer saying so. The warning is then saved with the moderator's name and the reason, or `-` if none was given.
+`warn <user> [reason]` needs Ban Members. The bot first tries to DM the member an embed naming the community and the moderator, and giving the reason. If the DM fails, the confirmation in the channel gets a footer saying so. The warning is then saved with the moderator's name and the reason, or `-` if none was given.
 
 The member must be below the moderator in the role hierarchy, and below the bot. If they are not, the command refuses.
 
@@ -51,7 +53,7 @@ Expiry is checked every twelve hours, and once immediately when you set it.
 
 ### The warning log channel
 
-Set it with `setwarnchannel #channel` or the **Warning Log Channel** selector on the dashboard's Punishments tab. Every warning posts an embed there with the member's name and ID, their current warn number, the punishment that fired (or "None"), the reason and a jump link to the message that issued the warning.
+Set it with `setwarnchannel #channel` or the **Warning log channel** selector at the bottom of the **Warning punishments** card on the dashboard. Every warning posts an embed there with the member's name and ID, their current warn number, the punishment that fired (or "None"), the reason and a jump link to the message that issued the warning.
 
 ## Warn punishments
 
@@ -63,8 +65,8 @@ Set a rule with `warnpunish <number> <punishment> [time]`, or `warnpunish <numbe
 | --- | --- | --- |
 | Mute | Optional | Applies the mute role, or a timed mute if a time is given |
 | ChatMute | Optional | Mute role only, no voice mute |
-| VoiceMute | Optional | Server voice mute only |
-| Timeout | Required, up to 28 days | Fluxer timeout |
+| VoiceMute | Optional | Community voice mute only |
+| Timeout | Required, up to 28 days | Timeout |
 | Kick | No | Kicks the member |
 | Softban | No | Bans and immediately unbans to delete messages |
 | Ban | Optional | Permanent ban, or a timed ban if a time is given |
@@ -73,7 +75,7 @@ Set a rule with `warnpunish <number> <punishment> [time]`, or `warnpunish <numbe
 
 Times are stored in minutes and can be up to 49 days. Softban, Kick and RemoveRoles refuse a time. Timeout refuses to save without one. Punishments run with the reason "Warned too many times."
 
-On the dashboard the same ladder is on the **Punishments** tab: pick **At warning #**, a **Punishment**, an optional **Duration (minutes)**, and a **Role to add** for the role punishment, then **Add to ladder**. Saving a rule at a count that already has one replaces it.
+On the dashboard the same ladder is the **Warning punishments** card: pick **At warning #**, a **Punishment**, an optional **Duration (minutes)** (empty means permanent), and a **Role to add** for the role punishment, then **Add to ladder**. Each rule in the list has a **Remove** button. Saving a rule at a count that already has one replaces it. Until a rule exists the card shows "No automatic punishments yet. Warnings are only recorded."
 
 > [!EXAMPLE]
 > `warnpunish 2 mute 1h`, `warnpunish 3 timeout 1d`, `warnpunish 5 ban`. Two warnings mutes for an hour, three times out for a day, five bans.
@@ -90,7 +92,7 @@ The bot manages a mute role. By default it is named `Mewdeko-mute`; change it wi
 | --- | --- |
 | `mute` | Full mute: adds the mute role |
 | `chatmute` | Adds the mute role only |
-| `voicemute` | Server mutes the member in voice only |
+| `voicemute` | Mutes the member in voice only |
 | `stfu` | Denies Send Messages for that member in the current channel only, via a permission overwrite |
 
 Each has a timed form. Full mutes run from one minute up to 90 days; chat and voice mutes from one minute up to 49 days. `stfu` with a time lifts the overwrite when the time is up. Muted members get a DM when muted and unmuted.
@@ -99,7 +101,7 @@ Each has a timed form. Full mutes run from one minute up to 90 days; chat and vo
 
 ## Timeouts
 
-`timeout <time> <user> [reason]` uses Fluxer's native timeout, up to 28 days. Both you and the bot need Moderate Members. `untimeout <user>` lifts it. The reason goes into the audit log as `moderator | reason`.
+`timeout <time> <user> [reason]` uses the platform's native timeout, up to 28 days. Both you and the bot need Moderate Members. `untimeout <user>` lifts it.
 
 ## Bans, kicks and softbans
 
@@ -109,7 +111,7 @@ Each has a timed form. Full mutes run from one minute up to 90 days; chat and vo
 
 ### The ban DM
 
-The message sent to a banned member can be customised with `banmessage <text or embed code>`. The text runs through the embed parser, so anything from the embed builder works. Set it to `-` to send no DM at all, and use `banmsgreset` to return to the default. `banmsgtest [duration] [reason]` sends the current template to you so you can see it.
+The message sent to a banned member can be customised with `banmessage <text or embed code>`, or with **Ban** in the dashboard's **Punishment DMs** card, which edits the same template. The text runs through the embed parser, so anything from the embed builder works. Set it to `-` to send no DM at all, and use `banmsgreset` to return to the default. `banmsgtest [duration] [reason]` sends the current template to you so you can see it.
 
 | Placeholder | Value |
 | --- | --- |
@@ -122,9 +124,55 @@ The message sent to a banned member can be customised with `banmessage <text or 
 
 Community placeholders such as `%server.name%` also work here.
 
+## Cases
+
+Every warning, mute, unmute, timeout, untimeout, kick, ban, softban, unban and remove-roles action creates a case with a number that counts up per community. A case stores the action, the member, the moderator, the reason and the date. Cases can be managed with commands or on the dashboard.
+
+`case <number>` shows one case and `cases <user>` lists a member's cases, newest first. `casereason <number> <reason>` changes a reason, `casedelete <number>` deletes a case, and `caseexport` uploads every case as a CSV file. `modstats` shows how many cases each moderator has. `modcaselog [#channel]` sets the channel new cases are posted to, or turns it off when no channel is given.
+
+The dashboard's **Mod cases** card lists cases 25 per page with **Previous** and **Next** buttons. Filter by **Member ID**, **Moderator ID** and **Action** (**All actions** or one action). Each case has an edit button for the reason and a delete button that asks for confirmation. **Leaderboard** shows how many cases each moderator has and **Export** downloads `cases.csv`. The **Case log channel** selector posts new cases to a channel and **Turn off** clears it.
+
+## User notes
+
+Notes are private staff comments on a member and never count toward warnings. In the **User notes** card, enter a member's **User ID** to see their notes and add one (up to 1000 characters) with **Add**. With no ID entered it lists recent notes for the whole community. Each note shows who wrote it and when, and has a delete button.
+
+`note <user> <text>` adds a note, `notes <user>` lists a member's notes, `noteremove <id>` removes one and `noteclear <user>` removes all of them.
+
+## Member reports
+
+`report <user> <reason> [message link]` sends a report to the staff. The bot posts an embed with the reported member, the reporter, the reason and a link to the message, then deletes the command message and confirms. Each member can report once every 5 minutes. A message link from this community replaces the link to the command message.
+
+Pick the channel with `reportlog [#channel]`, or with **Report channel** in the dashboard. Run it with no channel to turn reports off. Without a report channel, `report` tells the member that reports are not set up.
+
+## Reason aliases
+
+A reason alias is a short name that expands to a full reason. When a moderator types the alias as the reason for a warning, mute, kick, ban or similar command, the bot swaps in the saved text.
+
+In the **Reason aliases** card, enter a **Name** (up to 32 characters, no spaces) and a **Reason** (up to 500 characters) and press **Add**. Saving an existing name replaces it. Names are stored lowercase.
+
+`reasonalias <name> <reason>` saves one and `reasonaliasremove <name>` removes one. `reasonaliaslist` lists them.
+
+> [!EXAMPLE]
+> Save an alias named `spam` with the reason "No advertising or spam.", then `ban @user spam` bans with the full reason.
+
+## Punishment DMs
+
+The **Punishment DMs** card sets the message a member receives for each punishment. Pick a **Punishment** (Warn, Mute, Timeout, Kick, Ban or Softban), write the message in the editor, which accepts embed builder output and shows a preview, and it saves automatically. **Use the default message** puts the built in text back.
+
+| Placeholder | Value |
+| --- | --- |
+| `%user%` | Member name |
+| `%reason%` | Reason given |
+| `%mod%` | Moderator name |
+| `%duration%` | Length of the punishment |
+| `%case%` | Case number |
+| `%server%` | Community name |
+
+`punishdm <warn|mute|timeout|kick|ban|softban> <message>` sets one, using `-` to send no DM. `punishdmlist` shows what is set for each punishment and `punishdmreset <punishment>` restores the default. The ban DM can also be set with `banmessage`.
+
 ## Ban purge
 
-Every ban carries a purge: the number of days of the member's messages Fluxer deletes with it, from 0 to 7. Rather than one global number, each kind of ban has its own default, and you can override any of them for the whole community, for a category, or for a single channel.
+Every ban carries a purge: the number of days of the member's messages deleted with it, from 0 to 7. Rather than one global number, each kind of ban has its own default, and you can override any of them for the whole community, for a category, or for a single channel.
 
 | Action | Key | Built in default |
 | --- | --- | --- |
@@ -147,7 +195,7 @@ When a ban happens the bot looks for the most specific setting: the channel the 
 
 `banprune` shows what a ban from the current channel would purge plus every configured setting. `banpruneset <action|all> <days> [#channel or category]` sets one, `banpruneclear <action|all> [#channel or category]` removes one, and `banprunereset` wipes them all.
 
-The dashboard's **Ban Purge** tab lists every action under **Community Defaults** with a days box each, an **All actions** fallback row, and an **Overrides** section where you pick a **Scope** (Channel or Category), the target, an **Action** and the **Purge (days)**.
+The dashboard's **Ban purge** card lists every action under **Community defaults** with a days box each (0 to 7) and an **Unset** button once you override it, an **All actions** fallback row, and an **Overrides** section where you pick a **Scope** (Channel or Category), the target, an **Action** and the **Purge (days)**. Each override can be removed, and **Reset everything to defaults** clears every default and override after confirmation. A channel beats its category, which beats the community default.
 
 ## Purging messages
 
@@ -161,33 +209,38 @@ The dashboard's **Ban Purge** tab lists every action under **Community Defaults*
 
 ## Settings
 
-The dashboard page has five tabs: **Overview** (warning counts), **Warnings**, **Punishments**, **Recent Activity** and **Ban Purge**.
+The Moderation page has no tabs. It is a single page of cards, in this order: **All warnings**, **Warning punishments**, **Mod cases**, **User notes**, **Reason aliases**, **Punishment DMs**, **Ban purge** and **Recent moderation activity**. **Refresh** in the page header reloads every card. Settings save automatically.
 
-| Setting | Default | What it controls |
-| --- | --- | --- |
-| Warning Log Channel | none | Channel that receives an embed for every warning |
-| Punishment ladder | empty | What fires at each warning count |
-| Warning expiry | off | Days until a warning is cleared or deleted, commands only |
-| Mute role | `Mewdeko-mute` | The role applied by mute commands, commands only |
-| Remove roles on mute | off | Strip and restore roles around a full mute, commands only |
-| Ban DM template | default embed | The DM a banned member receives, commands only |
-| Ban purge defaults | per action | Days of messages deleted with each kind of ban |
-| Ban purge overrides | none | Per channel or per category purge |
+| Setting | Default | Where | What it controls |
+| --- | --- | --- | --- |
+| Warning log channel | none | Warning punishments | Channel that receives an embed for every warning |
+| Punishment ladder | empty | Warning punishments | What fires at each warning count |
+| Case log channel | none | Mod cases | Channel that receives every new case |
+| Report channel | none | Mod cases | Channel that receives member reports |
+| Punishment DMs | built in text | Punishment DMs | The DM for Warn, Mute, Timeout, Kick, Ban and Softban |
+| Reason aliases | none | Reason aliases | Short names that expand to full reasons |
+| Ban purge defaults | per action | Ban purge | Days of messages deleted with each kind of ban |
+| Ban purge overrides | none | Ban purge | Per channel or per category purge |
+| Warning expiry | off | Commands only | Days until a warning is cleared or deleted |
+| Mute role | `Mewdeko-mute` | Commands only | The role applied by mute commands |
+| Remove roles on mute | off | Commands only | Strip and restore roles around a full mute |
 
-On the **Warnings** tab staff can warn a member by user ID with a required reason, search by ID, reason or moderator, hide forgiven warnings, forgive one warning, forgive all for a member, or delete one permanently.
+**All warnings** shows an active and forgiven count. **Warn a user** opens a form for a **User ID to warn** and a required reason (up to 500 characters). Below it, staff can search by user ID, reason or moderator, tick **Show forgiven**, **Forgive** one warning, **Forgive all** for a member, or delete one permanently. Warnings are grouped by member. **Recent moderation activity** lists the ten latest warnings.
 
 > [!WARNING]
 > Deleting a warning from the dashboard removes it for good and it stops counting. Forgiving keeps the record and also stops it counting. Forgive unless you have a reason to erase history.
 
 ## Setup walkthrough
 
-1. Open **Moderation** in the dashboard and go to **Punishments**.
-2. Pick a **Warning Log Channel** that only staff can read.
+1. Open **Moderation** in the dashboard and find the **Warning punishments** card.
+2. Pick a **Warning log channel** that only staff can read.
 3. Add rules to the ladder. A gentle start is Mute for 60 minutes at 2, Timeout for 1440 minutes at 3, Ban at 5.
-4. Run `muterole @Muted` if you already have a muted role, otherwise let the bot create `Mewdeko-mute` on first use.
-5. Decide on expiry with `warnexpire 90 clear` so old warnings stop counting after three months.
-6. On **Ban Purge**, set **Temporary ban** to 0 if you do not want temp bans to delete history, and add channel overrides if a bot spam channel should purge more.
-7. Test with an alt: `warn @alt test`, check the log channel, then `warnclear @alt`.
+4. In **Mod cases**, pick a **Case log channel** that only staff can read.
+5. Run `muterole @Muted` if you already have a muted role, otherwise let the bot create `Mewdeko-mute` on first use.
+6. Decide on expiry with `warnexpire 90 clear` so old warnings stop counting after three months.
+7. In **Ban purge**, set **Temporary ban** to 0 if you do not want temp bans to delete history, and add channel overrides if a bot spam channel should purge more.
+8. Optionally add **Reason aliases** for rule violations you cite often and write your own **Punishment DMs**.
+9. Test with an alt: `warn @alt test`, check the log channel, then `warnclear @alt`.
 
 ## Commands
 
@@ -211,6 +264,25 @@ Run these with your community's prefix (`.` unless you changed it).
 | `mwarnpunish <number> <punishment> [time]` | `mwarnp` | Administrator | Set or remove a mini warning ladder rule |
 | `mwarnpunishlist` | `mwarnplist`, `mwarnpl` | Nobody | Show the mini warning ladder |
 | `setmwarnchannel <#channel>` | `mwarnchannel` | Administrator | Set the mini warning log channel |
+| `case <number>` | | Ban Members | Show one case |
+| `cases <user>` | | Ban Members | List a member's cases |
+| `casereason <number> <reason>` | `casereas` | Ban Members | Change a case's reason |
+| `casedelete <number>` | `casedel` | Manage Community | Delete a case |
+| `caseexport` | | Manage Community | Export every case as CSV |
+| `modstats` | `modleaderboard` | Ban Members | Cases per moderator |
+| `modcaselog [#channel]` | | Manage Community | Set or clear the case log channel |
+| `note <user> <text>` | | Ban Members | Add a staff note |
+| `notes <user>` | | Ban Members | List a member's notes |
+| `noteremove <id>` | `notedel` | Ban Members | Remove one note |
+| `noteclear <user>` | | Ban Members | Remove every note on a member |
+| `report <user> <reason> [message link]` | | Nobody | Report a member to the staff |
+| `reportlog [#channel]` | `setreport` | Manage Community | Set or clear the report channel |
+| `reasonalias <name> <reason>` | `rsnalias` | Manage Community | Save a reason alias |
+| `reasonaliaslist` | `rsnaliases` | Ban Members | List reason aliases |
+| `reasonaliasremove <name>` | `rsnaliasdel` | Manage Community | Remove a reason alias |
+| `punishdm <punishment> <message>` | `pdm` | Manage Community | Set a punishment DM, `-` for none |
+| `punishdmlist` | `pdmlist` | Manage Community | Show the punishment DMs |
+| `punishdmreset <punishment>` | `pdmreset` | Manage Community | Restore a default punishment DM |
 | `timeout <time> <user> [reason]` | | Moderate Members | Time out a member, up to 28 days |
 | `untimeout <user>` | | Moderate Members | Remove a timeout |
 | `mute <user> [time] [reason]` | | Manage Roles or Mute Members | Full mute, optionally timed |
@@ -251,8 +323,8 @@ Run these with your community's prefix (`.` unless you changed it).
 - The bot's role must sit above anyone it mutes, kicks or bans, and above the mute role itself. Most "cannot apply punishment" errors are hierarchy problems.
 - The bot needs Ban Members, Kick Members, Moderate Members, Manage Roles and Manage Messages for the matching commands; each command checks the bot's own permission before running.
 - The ladder only fires on an exact count. Fill in every step you care about rather than assuming "3 or more".
-- Only warnings issued through the bot count. Fluxer's own timeouts and bans do not add warnings.
+- Only warnings issued through the bot count. Timeouts and bans made outside the bot do not add warnings.
 - The mute role denies permissions per channel. Channels created after the role exists get the overwrite the next time someone is muted, not immediately.
-- Fluxer only lets bulk delete reach back 14 days. Older messages are skipped by purge commands.
-- Purge on ban is capped at 7 days by Fluxer no matter what you configure.
+- Bulk delete only reaches back 14 days. Older messages are skipped by purge commands.
+- Purge on ban is capped at 7 days no matter what you configure.
 - Warnings from the dashboard need a valid reason and use your dashboard account as the moderator name.

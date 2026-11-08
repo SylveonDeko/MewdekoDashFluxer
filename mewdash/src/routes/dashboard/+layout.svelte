@@ -21,11 +21,11 @@
     unseenProductUpdates
   } from "$lib/content/productUpdates";
   import {
-    announceProductUpdates,
     closeProductUpdates,
     unseenUpdates,
     updatesDialog
   } from "$lib/stores/productUpdateStore";
+  import { loadFeatureStatus } from "$lib/stores/featureStatusStore";
   import { browser } from "$app/environment";
   import { logger } from "$lib/logger";
   import { wizardApi } from "$lib/api/index.ts";
@@ -264,6 +264,13 @@
     document.cookie = `selectedInstanceId=${botId.toString()}; path=/; max-age=31536000; SameSite=Lax`;
   });
 
+  $effect(() => {
+    if (!browser || !$currentInstance) return;
+
+    const guildId = $currentGuild?.id;
+    untrack(() => loadFeatureStatus(guildId));
+  });
+
   onMount(() => {
     // Set user from server data if available
     if (data.user) {
@@ -290,7 +297,6 @@
     const unseen = lastSeen ? unseenProductUpdates(lastSeen) : [latestProductUpdate];
 
     unseenUpdates.set(unseen);
-    if (unseen.length > 0) announceProductUpdates();
 
     // If no user, redirect to login with current URL
     if (browser && !data.user && !$userStore) {

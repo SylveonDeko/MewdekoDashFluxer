@@ -11,6 +11,102 @@ export type ProductUpdate = {
 // Keep the newest public update first. The landing page intentionally features one item at a time.
 export const productUpdates: ProductUpdate[] = [
   {
+    id: "global-list",
+    label: "New page",
+    title: "A Shared List Of Harmful Users",
+    summary: "Communities that opt in report harmful users and act on the entries that pass review.",
+    details: [
+      "Choose what happens when a listed user joins your community.",
+      "A reviewer checks the evidence on every report before it goes live."
+    ],
+    href: "/dashboard/globallist",
+    action: "Set it up"
+  },
+  {
+    id: "ticket-setup",
+    label: "New setting",
+    title: "Quick Ticket Setup",
+    summary: "Choose a channel and your ticket types, and the bot posts the panel.",
+    details: [
+      "Members open a ticket by reacting with that type's emoji.",
+      "Each type can be changed later in the full editor."
+    ],
+    href: "/dashboard/tickets",
+    action: "Set up tickets"
+  },
+  {
+    id: "welcome-cards",
+    label: "New setting",
+    title: "Cards On Welcome Messages",
+    summary: "Each welcome or goodbye message can have its own card, shown in the embed or attached.",
+    details: [
+      "Design the card right where you write the message.",
+      "Role greets and boost messages can have cards too."
+    ],
+    href: "/dashboard/multigreets",
+    action: "Add a card"
+  },
+  {
+    id: "card-designs",
+    label: "New feature",
+    title: "Card Designs Members Can Wear",
+    summary: "Sell rank and achievement card designs in the shop, or let members make their own.",
+    details: [
+      "Member designs wait for staff approval before anyone sees them.",
+      "A design can also unlock at a level or with a role."
+    ],
+    href: "/dashboard/currency?tab=designs",
+    action: "Open designs"
+  },
+  {
+    id: "currency-setup",
+    label: "New setting",
+    title: "Guided Currency Setup",
+    summary: "A short setup picks your coin emoji and daily reward.",
+    details: [
+      "Start from a preset that matches how competitive you want it.",
+      "It opens the first time you visit Currency."
+    ],
+    href: "/dashboard/currency?tab=setup",
+    action: "Start the setup"
+  },
+  {
+    id: "xp-categories",
+    label: "New setting",
+    title: "XP Multipliers For Whole Categories",
+    summary: "Boost or reduce XP across every channel in a category at once.",
+    details: [
+      "A channel's own multiplier still wins over its category.",
+      "Threads follow the channel they belong to."
+    ],
+    href: "/dashboard/xp",
+    action: "Set a multiplier"
+  },
+  {
+    id: "voice-text-channels",
+    label: "New setting",
+    title: "Text Chats For Custom Voice Channels",
+    summary: "Each temporary voice channel can come with its own text channel.",
+    details: [
+      "Only the owner and the people they allow can see it.",
+      "It goes away when the voice channel does."
+    ],
+    href: "/dashboard/customvoice",
+    action: "Turn it on"
+  },
+  {
+    id: "fluxerlist-votes",
+    label: "New page",
+    title: "Reward Votes On FluxerList",
+    summary: "Thank members who vote for your community on FluxerList.",
+    details: [
+      "Give a role for a set time or keep it permanent.",
+      "Post a thank-you message with their vote count."
+    ],
+    href: "/dashboard/votes",
+    action: "Set up votes"
+  },
+  {
     id: "new-member-role",
     label: "New setting",
     title: "Mark New Members With A Role Icon",
@@ -19,7 +115,7 @@ export const productUpdates: ProductUpdate[] = [
       "It goes on when they join and comes off by itself.",
       "Set any role's icon with the roleicon command."
     ],
-    href: "/dashboard/statroles",
+    href: "/dashboard/roles?tab=stats",
     action: "Add the role"
   },
   {
@@ -91,7 +187,7 @@ export const productUpdates: ProductUpdate[] = [
       "Base them on messages, voice time, games, invites or tenure.",
       "Preview who gains and loses before a rule runs."
     ],
-    href: "/dashboard/statroles",
+    href: "/dashboard/roles?tab=stats",
     action: "Create a stat role"
   },
   {
@@ -163,7 +259,7 @@ export const productUpdates: ProductUpdate[] = [
       "Turn each filter on everywhere or in chosen channels.",
       "Keep a word list and an instant ban list."
     ],
-    href: "/dashboard/filter",
+    href: "/dashboard/automod?tab=filters",
     action: "Open message filters"
   },
   {
@@ -184,7 +280,7 @@ export const productUpdates: ProductUpdate[] = [
     title: "Work Tickets From The Dashboard",
     summary: "Browse and act on every ticket.",
     details: [
-      "Search by creator, claimer or tag.",
+      "Search by who opened or claimed a ticket.",
       "Claim, prioritise, close and leave staff notes."
     ],
     href: "/dashboard/tickets?tab=tickets",

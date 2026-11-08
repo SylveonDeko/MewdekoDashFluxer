@@ -31,9 +31,9 @@
   ];
 
   const directions: Array<{ value: BridgeDirection; label: () => string }> = [
-    { value: "Both", label: () => m.bridge.directionBoth() },
-    { value: "SendOnly", label: () => m.bridge.directionSendOnly() },
-    { value: "ReceiveOnly", label: () => m.bridge.directionReceiveOnly() }
+    { value: "Both", label: () => m.bridges.directionBoth() },
+    { value: "SendOnly", label: () => m.bridges.directionSendOnly() },
+    { value: "ReceiveOnly", label: () => m.bridges.directionReceiveOnly() }
   ];
 
   const initial = untrack(() => bridge);
@@ -136,7 +136,7 @@
   );
 
   const inputStyle = $derived(`background: ${$colorStore.primary}10; color: ${$colorStore.text};`);
-  const activeStyle = $derived(`background: ${$colorStore.selectedSurface}; box-shadow: inset 0 0 0 1px ${$colorStore.selectedBorder}; color: ${$colorStore.text};`);
+  const activeStyle = $derived(`background: ${$colorStore.selectedSurface}; border: 1px solid ${$colorStore.selectedBorder}; color: ${$colorStore.text};`);
   const idleStyle = $derived(`background: ${$colorStore.primary}14; color: ${$colorStore.text};`);
   const removeStyle = $derived(`background: ${$colorStore.primary}20; color: ${$colorStore.text};`);
 </script>
@@ -174,7 +174,7 @@
       </div>
 
       <div>
-        <span class="block text-sm mb-2" id="bridge-allowed-{id}" style="color: {$colorStore.muted}">{m.bridge.allowedRolesLabel()}</span>
+        <span class="block text-sm mb-2" id="bridge-allowed-{id}" style="color: {$colorStore.muted}">{m.bridges.allowedRolesLabel()}</span>
         <DiscordSelector
           type="role"
           multiple
@@ -189,7 +189,7 @@
       </div>
 
       <div>
-        <span class="block text-sm mb-2" id="bridge-blocked-roles-{id}" style="color: {$colorStore.muted}">{m.bridge.blockedRolesLabel()}</span>
+        <span class="block text-sm mb-2" id="bridge-blocked-roles-{id}" style="color: {$colorStore.muted}">{m.bridges.blockedRolesLabel()}</span>
         <DiscordSelector
           type="role"
           multiple
@@ -231,7 +231,7 @@
       </div>
 
       <div>
-        <label class="block text-sm mb-2" for="bridge-age-{id}" style="color: {$colorStore.muted}">{m.bridge.minAgeLabel()}</label>
+        <label class="block text-sm mb-2" for="bridge-age-{id}" style="color: {$colorStore.muted}">{m.bridges.minAgeLabel()}</label>
         <div class="flex flex-wrap items-center gap-2">
           <input
             id="bridge-age-{id}"
@@ -243,7 +243,7 @@
             onblur={saveOnBlur}
             class="w-28 rounded-lg p-2 min-h-[44px]"
             style={inputStyle} />
-          <div class="flex flex-wrap gap-2" role="group" aria-label={m.bridge.minAgeLabel()}>
+          <div class="flex flex-wrap gap-2" role="group" aria-label={m.bridges.minAgeLabel()}>
             {#each UNITS as unit (unit.minutes)}
               <button
                 type="button"
@@ -261,7 +261,7 @@
 
       <SettingToggle
         id="bridge-invites-{id}"
-        label={m.bridge.blockInvitesLabel()}
+        label={m.bridges.blockInvitesLabel()}
         checked={blockInvites}
         onchange={(v) => {
           blockInvites = v;
@@ -269,7 +269,7 @@
         }} />
       <SettingToggle
         id="bridge-filter-{id}"
-        label={m.bridge.wordFilterLabel()}
+        label={m.bridges.wordFilterLabel()}
         checked={useWordFilter}
         onchange={(v) => {
           useWordFilter = v;
@@ -277,7 +277,7 @@
         }} />
 
       <div>
-        <label class="block text-sm mb-2" for="bridge-format-{id}" style="color: {$colorStore.muted}">{m.bridge.nameFormatLabel()}</label>
+        <label class="block text-sm mb-2" for="bridge-format-{id}" style="color: {$colorStore.muted}">{m.bridges.nameFormatLabel()}</label>
         <input
           id="bridge-format-{id}"
           type="text"
@@ -291,7 +291,7 @@
           class="w-full rounded-lg p-2 min-h-[44px]"
           style={inputStyle} />
         <p id="bridge-format-hint-{id}" class="text-xs mt-1" style="color: {$colorStore.muted}">
-          {m.bridge.nameFormatHint({ name: "{name}", platform: "{platform}", community: "{community}" })}
+          {m.bridges.nameFormatHint({ name: "{name}", platform: "{platform}", community: "{community}" })}
         </p>
         <p class="text-sm mt-1 break-words" style="color: {$colorStore.text}">{example}</p>
       </div>
