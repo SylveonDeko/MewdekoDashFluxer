@@ -615,11 +615,13 @@ A unified navigation component that provides responsive navigation with server a
     if (!browser || initialized) return;
 
     try {
-      if (currentUser) {
-        await checkOwnership();
+      if (!currentUser) {
+        initialized = true;
+        return;
       }
 
-      // Always initialize instances, but handle dashboard differently
+      await checkOwnership();
+
       await initializeInstances();
 
       // Explicitly check if we have a current instance now

@@ -2,6 +2,8 @@ import { env } from "$env/dynamic/private";
 import { env as publicEnv } from "$env/dynamic/public";
 import { logger } from "$lib/logger";
 import JSONbig from "json-bigint";
+import { mintBackendToken } from "$lib/server/backendJwt";
+import type { FluxerUser } from "$lib/types/fluxer";
 
 const CACHE_TTL_MS = 15_000;
 
@@ -69,17 +71,28 @@ async function fetchInstances(): Promise<RawInstance[]> {
     return cache.raw;
   }
 
-  const response = await fetch(`${primary}/InstanceManagement`, {
-    headers: { "X-API-Key": env.MEWDEKO_API_KEY },
-  });
-  if (!response.ok) {
-    logger.warn(`Mobile instance discovery failed (${response.status}) at ${primary}`);
-    throw new Error("primary_unreachable");
-  }
-  const raw = JSONbig.parse(await response.text()) as RawInstance[];
-  cache = { fetchedAt: Date.now(), raw };
-  return raw;
+  inflight ??= (async () => {
+    try {
+      const response = await fetch(`${primary}/InstanceManagement`, {
+        headers: { "X-API-Key": env.MEWDEKO_API_KEY },
+        signal: AbortSignal.timeout(5000),
+      });
+      if (!response.ok) throw new Error(`status ${response.status}`);
+      const raw = JSONbig.parse(await response.text()) as RawInstance[];
+      cache = { fetchedAt: Date.now(), raw };
+      return raw;
+    } catch (err) {
+      logger.warn(`Mobile instance discovery failed at ${primary}`, err);
+      if (cache) return cache.raw;
+      throw new Error("primary_unreachable");
+    } finally {
+      inflight = null;
+    }
+  })();
+  return inflight;
 }
+
+let inflight: Promise<RawInstance[]> | null = null;
 
 /**
  * Sanitised list of instances safe to return to authenticated mobile
@@ -105,14 +118,17 @@ export async function listMobileInstances(): Promise<MobileInstance[]> {
  * are dropped.
  *
  * @param instances The instances to consider.
- * @param userId The Discord user whose access is being resolved.
+ * @param user The user whose access is being resolved.
  * @returns The subset the user can administer.
  */
 export async function filterInstancesForUser(
   instances: MobileInstance[],
-  userId: string,
+  user: FluxerUser,
 ): Promise<MobileInstance[]> {
   const raw = await fetchInstances();
+  const userId = user.id.toString();
+  const backendToken = mintBackendToken(user);
+  if (!backendToken) return [];
   const checks = await Promise.all(
     instances.map(async (instance) => {
       const match = raw.find((i) => i.botId.toString() === instance.botId);
@@ -120,7 +136,12 @@ export async function filterInstancesForUser(
       try {
         const response = await fetch(
           `${instanceUrl(match)}/ClientOperations/mutualguilds/${userId}?adminOnly=true`,
-          { headers: { "X-API-Key": env.MEWDEKO_API_KEY } },
+          {
+            headers: {
+              "X-API-Key": env.MEWDEKO_API_KEY,
+              Authorization: `Bearer ${backendToken}`,
+            },
+          },
         );
         if (!response.ok) {
           logger.warn(
@@ -152,10 +173,14 @@ export async function resolveInstanceURL(botId: string): Promise<string | null> 
 
 /** Finds an active instance, refetching the list once on a miss. */
 async function findActiveInstance(predicate: (instance: RawInstance) => boolean): Promise<RawInstance | null> {
-  const match = (await fetchInstances()).find((i) => predicate(i) && i.isActive);
-  if (match) return match;
-  cache = null;
-  return (await fetchInstances()).find((i) => predicate(i) && i.isActive) ?? null;
+  try {
+    const match = (await fetchInstances()).find((i) => predicate(i) && i.isActive);
+    if (match) return match;
+    cache = null;
+    return (await fetchInstances()).find((i) => predicate(i) && i.isActive) ?? null;
+  } catch {
+    return null;
+  }
 }
 
 /**
@@ -176,9 +201,10 @@ export async function resolveInstanceURLByPort(port: number): Promise<string | n
  * surface a "select an instance" error.
  */
 export async function defaultInstanceURL(): Promise<string | null> {
-  const raw = await fetchInstances();
-  const active = raw.filter((i) => i.isActive);
-  if (active.length === 1) return instanceUrl(active[0]);
+  try {
+    const active = (await fetchInstances()).filter((i) => i.isActive);
+    if (active.length === 1) return instanceUrl(active[0]);
+  } catch {}
   return primaryInstanceUrl();
 }
 

@@ -9,26 +9,37 @@ import {
   resolveInstanceURL,
   resolveInstanceURLByPort,
 } from "$lib/server/instances";
-import { mintBackendToken } from "$lib/server/backendJwt";
+import { canMintBackendToken, mintBackendToken } from "$lib/server/backendJwt";
 import type { FluxerUser } from "$lib/types/fluxer";
 import { userGuildIds } from "$lib/server/userGuilds";
 
 /**
- * Resolved backend target plus the dashboard user behind the request, if one
- * could be identified. `user` drives the per-request backend JWT; it is `null`
- * only for unauthenticated callers (which the bot still accepts via API key
- * during the auth cutover).
+ * Resolved backend target plus the dashboard user behind the request. `user`
+ * is `null` only for the public routes listed in `PUBLIC_ROUTES`; every other
+ * unauthenticated call is refused before this is built.
  */
 interface ResolvedBackend {
   backend: string;
   user: FluxerUser | null;
 }
 
+const PUBLIC_ROUTES: ReadonlyArray<{ method: string; pattern: RegExp }> = [
+  { method: "GET", pattern: /^reviews$/ },
+  { method: "GET", pattern: /^forms\/status\/[a-z0-9_-]{8,128}$/ },
+];
+
+function isPublicRoute(method: string, path: string): boolean {
+  const normalised = normalisePath(path);
+  if (normalised === null || /[?#]|\.\./.test(normalised)) return false;
+  const lowered = normalised.toLowerCase();
+  return PUBLIC_ROUTES.some((route) => route.method === method && route.pattern.test(lowered));
+}
+
 /**
  * Builds the outbound headers for a proxied bot API call. Always sends the
  * server-only `X-API-Key`; additionally sends a short-lived `Authorization:
- * Bearer` backend JWT when the user is known, so the bot can attribute the
- * request to a Discord user for the dashboard audit log.
+ * Bearer` backend JWT when the user is known, so the bot can identify the
+ * caller and attribute the request in the dashboard audit log.
  */
 function botHeaders(user: FluxerUser | null, includeContentType = false): HeadersInit {
   const headers: Record<string, string> = { "X-API-Key": env.MEWDEKO_API_KEY };
@@ -158,6 +169,7 @@ async function resolveMobileBackend(
 async function resolveBackend(
   request: Request,
   locals: App.Locals,
+  path: string,
 ): Promise<ResolvedBackend | Response> {
   const authHeader = request.headers.get("authorization");
   if (authHeader?.toLowerCase().startsWith("bearer ")) {
@@ -168,6 +180,15 @@ async function resolveBackend(
   }
 
   const user = locals.user ?? null;
+  if (!user && !isPublicRoute(request.method, path)) {
+    return json({ error: "unauthorized" }, { status: 401 });
+  }
+
+  if (user && !canMintBackendToken()) {
+    logger.error("BOT_JWT_SECRET is missing or too short; refusing to proxy without a user token");
+    return json({ error: "backend_auth_unavailable" }, { status: 503 });
+  }
+
   const portHeader = request.headers.get("x-instance-port");
 
   if (!portHeader) {
@@ -235,7 +256,7 @@ export const GET: RequestHandler = async (event) => {
   const blocked = blockedPath(params.path);
   if (blocked) return blocked;
 
-  const resolved = await resolveBackend(request, locals);
+  const resolved = await resolveBackend(request, locals, params.path ?? "");
   if (resolved instanceof Response) return resolved;
 
   const search = new URLSearchParams(url.search);
@@ -256,7 +277,7 @@ export const POST: RequestHandler = async ({ request, params, locals }) => {
   const blocked = blockedPath(params.path);
   if (blocked) return blocked;
 
-  const resolved = await resolveBackend(request, locals);
+  const resolved = await resolveBackend(request, locals, params.path ?? "");
   if (resolved instanceof Response) return resolved;
   const url = new URL(request.url);
 
@@ -296,7 +317,7 @@ export const PUT: RequestHandler = async ({ request, params, locals }) => {
   const blocked = blockedPath(params.path);
   if (blocked) return blocked;
 
-  const resolved = await resolveBackend(request, locals);
+  const resolved = await resolveBackend(request, locals, params.path ?? "");
   if (resolved instanceof Response) return resolved;
   const url = new URL(request.url);
 
@@ -329,7 +350,7 @@ export const PATCH: RequestHandler = async ({ request, params, locals }) => {
   const blocked = blockedPath(params.path);
   if (blocked) return blocked;
 
-  const resolved = await resolveBackend(request, locals);
+  const resolved = await resolveBackend(request, locals, params.path ?? "");
   if (resolved instanceof Response) return resolved;
   const url = new URL(request.url);
 
@@ -352,7 +373,7 @@ export const DELETE: RequestHandler = async ({ request, params, locals }) => {
   const blocked = blockedPath(params.path);
   if (blocked) return blocked;
 
-  const resolved = await resolveBackend(request, locals);
+  const resolved = await resolveBackend(request, locals, params.path ?? "");
   if (resolved instanceof Response) return resolved;
   const url = new URL(request.url);
 

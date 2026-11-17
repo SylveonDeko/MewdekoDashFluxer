@@ -701,14 +701,23 @@
               </div>
 
               <!-- CTA -->
-              <div class="flex-shrink-0">
-                <a class="inline-flex items-center gap-2 px-6 py-3 rounded-xl font-semibold transition-colors hover:bg-white/5"
+              <div class="flex-shrink-0 flex flex-col sm:flex-row gap-3">
+                <a class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold transition-colors hover:bg-white/5"
                    href="https://github.com/SylveonDeko/MewdekoFluxer"
                    rel="noreferrer"
                    style="color: {$colorStore.text}; border: 1px solid {$colorStore.primary}30;"
                    target="_blank">
                   <i class="fa-brands fa-github"></i>
-                  {m.home.landingViewSource()}                </a>
+                  {m.home.landingViewSource()}
+                </a>
+                <a class="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl font-semibold transition-colors hover:bg-white/5"
+                   href="https://github.com/SylveonDeko/Mewdeko"
+                   rel="noreferrer"
+                   style="color: {$colorStore.text}; border: 1px solid {$colorStore.primary}30;"
+                   target="_blank">
+                  <i class="fa-brands fa-discord"></i>
+                  {m.home.landingViewDiscordSource()}
+                </a>
               </div>
             </div>
           </div>

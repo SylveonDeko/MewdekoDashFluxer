@@ -8053,8 +8053,8 @@ export const m = {
     pageWitchMessage2: () => t("dashboard", "page_witch_message_2", "Trick or treat 🧙‍♀️"),
     /** Happy Halloween 👻 */
     pageWitchMessage3: () => t("dashboard", "page_witch_message_3", "Happy Halloween 👻"),
-    /** Color swap spell cast ✨ */
-    pageWitchMessage4: () => t("dashboard", "page_witch_message_4", "Color swap spell cast ✨"),
+    /** Color swap spell cast */
+    pageWitchMessage4: () => t("dashboard", "page_witch_message_4", "Color swap spell cast"),
     /** Boo 🦇 */
     pageWitchMessage5: () => t("dashboard", "page_witch_message_5", "Boo 🦇"),
     /** {action} */
@@ -12033,6 +12033,8 @@ export const m = {
     landingViewCompleteFeatureList: () => t("home", "landing_view_complete_feature_list", "View complete feature list"),
     /** View dashboard */
     landingViewDashboard: () => t("home", "landing_view_dashboard", "View dashboard"),
+    /** Discord version */
+    landingViewDiscordSource: () => t("home", "landing_view_discord_source", "Discord version"),
     /** View source */
     landingViewSource: () => t("home", "landing_view_source", "View source"),
     /** Voting system */
