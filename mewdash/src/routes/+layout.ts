@@ -4,13 +4,14 @@ import { setFluxerHosts } from "$lib/utils/cdn";
 import type { LayoutLoad } from "./$types";
 
 /**
- * The server rendered this request in `data.locale`. Install the same locale (and its catalog)
- * on the client before the first client render, so hydration produces identical text.
+ * The server rendered this request in `data.locale`. Install the same locale (with its catalog and
+ * approved translations) on the client before the first client render, so hydration produces
+ * identical text.
  */
 export const load: LayoutLoad = async ({ data }) => {
   setFluxerHosts(data.fluxerHosts);
   if (browser && data.locale !== getLocale()) {
-    await setLocale(data.locale);
+    await setLocale(data.locale, data.translationOverlay ?? null);
   }
   return data;
 };

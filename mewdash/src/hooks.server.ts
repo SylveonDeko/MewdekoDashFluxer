@@ -2,6 +2,8 @@ import { env } from "$env/dynamic/public";
 import { authenticateUser } from "$lib/server/fluxerApi";
 import { logBackendJwtInit } from "$lib/server/backendJwt";
 import { recordPageView } from "$lib/server/analyticsBeacon";
+import { startDatabase } from "$lib/server/db";
+import { startTranslations } from "$lib/server/translations/startup";
 import * as Sentry from "@sentry/sveltekit";
 import { sequence } from "@sveltejs/kit/hooks";
 import type { Handle, ServerInit } from "@sveltejs/kit";
@@ -18,6 +20,8 @@ Sentry.init({
 });
 
 logBackendJwtInit();
+startDatabase();
+startTranslations();
 
 export const init: ServerInit = async () => {
   await resolveFluxerInstance();
